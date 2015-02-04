@@ -351,7 +351,7 @@ Need to have a definable set of parameters that give possible choices of the moc
 \newcommand\field{F}
 \makeatletter
 \newcommand\topcite[1]{\gdef\t@pic{#1}\cite{#1}}
-\newcommand\loccit{\cite\t@pic}
+\newcommand\loccit{\expandafter\cite\expandafter{\t@pic}}
 
 Yu \cite{yu:supercuspidal} associates to a datum
 \((\vec G, \vec\phi, \pi_0)\) satisfying certain conditions
@@ -382,4 +382,9 @@ Coefficients of Harish-Chandra local character expansion are motivic functions o
 
 \section{Done!}
 
+\begin{bibdiv}
+\begin{biblist}
+\bibselect{spice-references}
+\end{biblist}
+\end{bibdiv}
 \end{document}
