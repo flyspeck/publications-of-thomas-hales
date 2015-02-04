@@ -334,9 +334,28 @@ That determines the cocycle space $Z$
 Need to have a definable set of parameters that give possible choices of the mock exponential map that we care about (a change of $\mexp$ can affect the coefficients a little). 
 
 \subsection{asymptotic character expansion}
+
+\newcommand\BB{\mathcal B}
+\newcommand\field{F}
+\makeatletter
+\newcommand\topcite[1]{\gdef\t@pic{#1}\cite{#1}}
+\newcommand\loccit{\cite\t@pic}
+
+Yu \cite{yu:supercuspidal} associates to a datum
+\((\vec G, \vec\phi, \pi_0)\) satisfying certain conditions
+a supercuspidal representation \(\pi\).
+\textit{Via} the Moy--Prasad theory
+\cite{moy-prasad:jacquet}*{Theorem 6.8}
+(and \cite{yu:supercuspidal}*{Lemma 3.3}), there is
+associated to the depth-0 representation \(\pi_0\) a vertex
+\(x_0\) of \(\BB(\bG^0, \field)\).
+Kim and Murnaghan \topcite{jkim-murnaghan:gamma-asymptotic}
+associate to the good, positive \(G\)-datum
+\((\vec G, x_0, \vec\phi)\) \loccit*{Definition 4.1.1, 3}
+an element \(\Gamma\) in \(\fg\) \loccit*{Definition 4.1.3}.
+ 
 Loren says:
 $$\Theta_\pi(\mexp(Y))= \sum_{\cO\in \cO(X)} c_\cO\widehat\mu_{\cO}(Y),$$
-
 
 We will prove by induction
 \begin{theorem} The coefficients $c_{\cO}$ of this expansion are motivic functions of the parameters defining $G$, $\pi$ (as above) and $\mexp$. 
@@ -352,8 +371,3 @@ Coefficients of Harish-Chandra local character expansion are motivic functions o
 \section{Done!}
 
 \end{document}
-
-
-
-
-
