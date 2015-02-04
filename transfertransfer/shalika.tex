@@ -649,9 +649,9 @@ and $\op{qFr}$ is a fixed generator of the Galois group of $E/\VF$.
 
 There is a space of field extensions $K/E/\VF$, for fixed degrees
 $E/\VF$ and $K/\VF$.  It is specified by irreducible polynomials
-$p$ and $q$ for $E = \VF[t]/(p(t))$ and $K = \VF[s]/(q(s))$, and an
-element $t'\in \VF[s]/(q(s))$ (the image of $t$ under $E\to K$) such
-that $p(t') = 0$.  There is a space of Galois field extensions
+$p$ and $q$ for $E = \VF[t]/(p(t))$ and $K = \VF[t']/(q(t'))$, and an
+element $t''\in \VF[t']/(q(t'))$ (the image of $t$ under $E\to K$) such
+that $p(t'') = 0$.  There is a space of Galois field extensions
 $K/E/\VF$ for fixed degrees for $E/\VF$ and $K/\VF$ with enumerations
 of the Galois groups of $K/\VF$ and $K/E$, together with a table
 describing the homomorphism $\op{Gal}(K/\VF)$ to $\op{Gal}(E/\VF)$.
@@ -715,7 +715,7 @@ obtained from the outer automorphisms of $T^{**}$ used to define
 $G^*$.  That is, the Galois group $\op{Gal}(K/\VF)$ acts so that
 $\VF$-points are
 \[
-t =  \phi_\sigma(\sigma(t))^{w_\sigma}, \quad\forall \sigma\in\op{Gal}(K/\VF),
+t =  \phi_\sigma(\sigma(t))\mod W, \quad\forall \sigma\in\op{Gal}(K/\VF),
 \]
 where $w_\sigma\in W$, $\sigma(t)$ is standard action of the Galois
 group on $T^{**}(K)$, and $\phi_\sigma$ is the outer automorphism
@@ -764,7 +764,7 @@ summarize the properties that we use.
 \item $0$ lies in the $p$-adic closure of the adjoint orbit of $N$;
 \item there exists $\lambda\in X_*^F(G_z)$ such that $\lim_{t\to 0}
   \op{Ad}(\lambda(t))N = 0$; and
-\item the image of $N$ under the morphism $\fg_z\mapsto \fc_{\fg^*,z}$
+\item the image of $N$ under the morphism $\fg_z\mapsto \fc_{\fg^*\,z}$
   is $0$.
 \end{enumerate}
 \end{theorem}
@@ -1660,7 +1660,7 @@ B^1 = B^1_{kk'\s \s'} = &\{(z,X_G,\bar X_H,\bar X_G,\Y_G,\Y_H) \mid \\
 For any $r$-tuples $k=(k_1,\ldots,k_r)$, $k'=(k'_1,\ldots,k'_r)$,
 $\s = (\s_1,\ldots,\s_r)$, $\s'=(\s'_1,\ldots,\s'_r)$, we set
 \[
-B^r = B^r_{kk'\s \s'} = \{(b_1,\ldots,b_r) \mid b_i \in B^1_{k_ik'_is_it_i}\quad
+B^r = B^r_{kk'\s \s'} = \{(b_1,\ldots,b_r) \mid b_i \in B^1_{k_ik'_i\s_i\s'_i}\quad
   (z(b_1),\ldots,z(b_r))\in Z^r \}.
 \]
 (We apologize for the nesting of subscripts.  Note that $\s_i$ is
@@ -1674,63 +1674,63 @@ P^1_{kk'\s \s'} = P^1 = \{(X_H,b) \mid b\in B^1_{kk'\s \s'},
 Also, for $r$-tuples $k$, $k'$, $\s$, $\s'$:
 \[
 P^r_{kk'\s \s'} = P^r = \{(X_H,b) \mid b = (b_1,\ldots,b_r)\in B^r_{kk'\s \s'},\quad
-  X_H = (X_H^1,\ldots,X_H^r), \quad (X_H^i,b_i) \in P^1_{k_ik'_is_it_i}\}.
+  X_H = (X_H^1,\ldots,X_H^r), \quad (X_H^i,b_i) \in P^1_{k_ik'_i\s_i\s'_i}\}.
 \]
 We have a projection map $P^r\to B^r$ onto the second coordinate.
 Our two definitions of $Z^1$, $B^1$ and $P^1$ are coherent when
 $r=1$.
 
 For any $r$-tuples $k'=(k'_1,\ldots,k'_r)$ and $k=(k_1,\ldots,k_r)$, set
-$J_\rho = J^+_\rho\sqcup J^-_\rho$, where $J^-_\rho =
-\{1,\ldots,k_\rho\}\times\{-\}$ and $J^+_\rho =
-\{1,\ldots,k'_\rho\}\times\{+\}$.
+$L_i(k,k') = L^+(k')_i\sqcup L^-_i(k)$, where $L^-_i(k) =
+\{1,\ldots,k_i\}\times\{-\}$ and $L^+_i(k') =
+\{1,\ldots,k'_i\}\times\{+\}$.
 \[
-J = \{i = (i_1,\ldots,i_r)\mid i_\rho=(i'_\rho,\pm)\in J_\rho\}.
+L(k,k') = \{\ell = (\ell_1,\ldots,\ell_r)\mid \ell_i=(\ell'_i,\pm)\in L_i(k,k')\}.
 \]
 Let
 \[
-J^+ = \{i = (i_1,\ldots,i_r)\mid i_\rho=(i'_\rho,+)\in J^+_\rho\}.
+L^+(k') = \{\ell = (\ell_1,\ldots,\ell_r)\mid \ell_i=(\ell'_i,+)\in L^+_i(k')\}.
 \]
 
 We define constructible functions.  For $(X_H,b)\in
-P^r_{kk'\s \s'}$,  $\rho=1,\ldots,r$, and $i_\rho\in J_\rho(k,k')$,
+P^r_{kk'\s \s'}$,  $i=1,\ldots,r$, and $\ell_i\in L_i(k,k')$,
 set
 \[
-\psi^{\rho,i_\rho}(X_H^\rho,b_\rho) = 
+\psi^{i,\ell_i}(X_H^i,b_i) = 
 \begin{cases}   
-  O^\kappa(X_H^\rho,X_G(b_\rho),\ldots,1_{\Y_G^{i'_\rho}(b_\rho)}),
-   & \text{if } i_\rho = (i'_\rho,-)\in J^-_\rho(k) \\
-  O^{st}(X_H^\rho,1_{\Y_H^{i'_\rho}}),
-   & \text{if } i_\rho = (i'_\rho,+)\in J^+_\rho(k').
+  O^\kappa(X_H^i,X_G(b_i),\ldots,1_{\Y_G^{\ell'_i}(b_i)}),
+   & \text{if } \ell_i = (\ell'_i,-)\in L^-_i(k) \\
+  O^{st}(X_H^i,1_{\Y_H^{\ell'_i}}),
+   & \text{if } \ell_i = (\ell'_i,+)\in L^+_i(k').
 \end{cases}
 \]
  We also define constructible functions
-on $P_{kk'\s \s'}$ indexed by $i\in J(k,k')$:
+on $P_{kk'\s \s'}$ indexed by $\ell\in L(k,k')$:
 \[
-(X_H,b)\mapsto \theta^i(X_H)_b := \prod_{\rho=1}^r \psi^{\rho,i_\rho}(X_H^\rho,b_\rho).
+(X_H,b)\mapsto \theta^\ell(X_H)_b := \prod_{i=1}^r \psi^{i,\ell_i}(X_H^i,b_i).
 \]
 
 We use the following elementary facts about tensor products of
 finite dimensional vector spaces in our analysis of the products
-defining $\theta^i$.
+defining $\theta^\ell$.
 
 \begin{lem}\label{thm:tensor}
 Let $V_1,\ldots,V_r$ be finite dimensional vector spaces of
 dimensions $\dim(V_i) = n_i$.  
 \begin{enumerate}
 \item 
-Let $S_\rho\subset V_\rho$ be a finite set of vectors for each
-  $\rho = 1,\ldots,r$. 
+Let $S_i\subset V_i$ be a finite set of vectors for each
+  $i = 1,\ldots,r$. 
 If the product of the cardinalities of the
-  sets $S_\rho$ is $n_1\cdots n_r$ and if the tensors $w_{i_1}\otimes
- \cdots\otimes w_{i_r}$, for $w_{i_\rho}\in S_\rho$, span 
+  sets $S_i$ is $n_1\cdots n_r$ and if the tensors $w_{i_1}\otimes
+ \cdots\otimes w_{i_r}$, for $w_{i_j}\in S_i$, span 
 $V_1\otimes\cdots\otimes V_r$, then
-  for each $\rho$, the set $S_\rho$ is a basis of $V_\rho$.
-\item For each $\rho=1,\ldots,r$, let $W_\rho$ be a subspace of
-$V_\rho$.  Let $v_{1}\otimes \cdots \otimes v_{r} \in
-  W_1\otimes\cdots\otimes W_r$, with $v_{\rho}\in V_\rho$.  For
-  each $\rho$, if $v_{{\rho'}}\ne0$, for all $\rho'\ne\rho$, then
-  $v_{\rho}\in W_\rho$.
+  for each $i$, the set $S_i$ is a basis of $V_i$.
+\item For each $i=1,\ldots,r$, let $W_i$ be a subspace of
+$V_i$.  Let $v_{1}\otimes \cdots \otimes v_{r} \in
+  W_1\otimes\cdots\otimes W_r$, with $v_{i}\in V_i$.  For
+  each $i$, if $v_{j}\ne0$, for all $j\ne i$, then
+  $v_{i}\in W_i$.
 \end{enumerate}
 \end{lem}
 
@@ -1745,34 +1745,34 @@ transfer principle.  Thus, $r$ is also the maximum for which
 $Z^r(F_2)\ne\emptyset$.
 
 Pick $z\in Z^r(F_2)$.  Let $k=(k_1,\ldots,k_r)$ be tuple such that
-$k_\rho$ is the number of nilpotent orbits in $\fg_{z_\rho,F_2}$.  By the
+$k_i$ is the number of nilpotent orbits in $\fg_{z_i,F_2}$.  By the
 Barbasch-Moy classification of nilpotent orbits in terms of residue
-field parameters~\cite{barbasch-moy}, $k_\rho$ is also equal to the
-number of nilpotent classes in $\fg_{z_\rho,F}$.  Choose a $k_\rho$-tuple
-$\s_\rho\in \cF_G^{k_\rho}$ such that $\NF^{k_\rho}_{\s_\rho,F_2}\ne
+field parameters~\cite{barbasch-moy}, $k_i$ is also equal to the
+number of nilpotent classes in $\fg_{z_i,F}$.  Choose a $k_i$-tuple
+$\s_i\in \cF_G^{k_i}$ such that $\NF^{k_i}_{\s_i,F_2}\ne
 \emptyset$.  Let $\s = (\s_1,\ldots,\s_r)$.
 
-Let $k'_\rho$ be the dimension of the space of stable Shalika germs on
-$\fh_{z_\rho}$.  By the definition of stable distribution, this equals
+Let $k'_i$ be the dimension of the space of stable Shalika germs on
+$\fh_{z_i}$.  By the definition of stable distribution, this equals
 the dimension of the space of stable orbital integrals supported on
-the unipotent set.  For each $\rho$, let $\mu_i^{st}$, for $i\le k'_\rho$,
+the unipotent set.  For each $i$, let $\mu_i^{st}$, for $i\le k'_i$,
 be a basis of the stable distributions supported on the unipotent set
-of $H_{z_\rho}$.  We have a Shalika germ expansion
+of $H_{z_i}$.  We have a Shalika germ expansion
 \[
 O^{st}(X,f^H) = \sum_{i=1}^{k'} \Gamma^{st}_i(X) \mu_i^{st}(f^H),
 \]
 for a compactly supported function $f^H$ on $H(F)$ and some stable
 germs $\Gamma^{st}_i$.  The germ
 expansion holds on $G$-regular semisimple elements in a suitable
-neighborhood (depending on $f^H$).  For each $\rho$, we pick a
-parameter $\Y^\rho_{H_{z_\rho},F}\in \NF^{k'_\rho}_{H_{z_\rho}}(F)$ such
-that the functions $1_{\Y_H^{\rho,j}}$, for $j=1,\ldots,k'_\rho$, form a
+neighborhood (depending on $f^H$).  For each $i$, we pick a
+parameter $\Y^i_{H_{z_i},F}\in \NF^{k'_i}_{H_{z_i}}(F)$ such
+that the functions $1_{\Y_H^{i,j}}$, for $j=1,\ldots,k'_i$, form a
 dual basis to $\mu_i^{st}$.  (The functions span the space dual to
 invariant distributions with nilpotent support, hence span the
 quotient space dual to stably invariant distributions with nilpotent
 support; hence a subset of the functions forms a dual basis.)  We can
-do this by Theorem~\ref{thm:bm}.  Let $\s'_\rho = \s(\Y^\rho_{H_{z_\rho},F})\in
-S^{k'_\rho}_{H}$ and $\s' = (\s'_1,\ldots,\s'_r)$.  We have now fixed the
+do this by Theorem~\ref{thm:bm}.  Let $\s'_i = \s(\Y^i_{H_{z_i},F})\in
+S^{k'_i}_{H}$ and $\s' = (\s'_1,\ldots,\s'_r)$.  We have now fixed the
 choices $r,k,k',\s,\s'$.  To lighten notation, we sometimes drop
 $r,k,k',\s,\s'$.  We also return to our earlier notation of $z$ as a
 parameter running over the definable set $Z^r$.
@@ -1788,84 +1788,84 @@ orbital integrals using these functions $1_a O^{st}(X,f^H)$ and $1_a
 O^\kappa(X_H,X_G,\bar X_H,\bar X_G,f)$.  Integrals now have an extra
 integer parameter $a\in\ring{Z}$ that we may use to study
 $a$-asymptotic linear dependence.   By a similar abuse of notation, we
-write $1_a\theta^i_b$
-for the truncation of $\theta^i_b$.
+write $1_a\theta^\ell_b$
+for the truncation of $\theta^\ell_b$.
 
-We claim that for all $j \in J\setminus J^+$, there exists
+We claim that for all $j \in L(k,k')\setminus L^+(k')$, there exists
 $a_0\in\ring{Z}$, such that for each $b\in B^r(F_1)$, the functions
-$1_{a_0,F_1}\theta^i_{b,F_1}$, for $i\in \{j\}\cup J^+$, are
+$1_{a_0,F_1}\theta^\ell_{b,F_1}$, for $\ell\in \{j\}\cup L^+(k')$, are
 $a_0$-asymptotically linearly dependent.  If there exists $a_0$ such
-that for all $b\in B^r(F_1)$, the functions indexed by $J^+$ are
+that for all $b\in B^r(F_1)$, the functions indexed by $L^+(k')$ are
 $a_0$-asymptotically linearly dependent, this is immediate.  If, on
 the other hand, for all $a_0$, there exists $b$ such that the
-functions indexed by $J^+$ are not $a_0$-asymptotically linearly
+functions indexed by $L^+(k')$ are not $a_0$-asymptotically linearly
 dependent, then there exists a parameter $\Y_H(b)$ from the base space
-$B^r(F_1)$ such that for each $\rho$, the functions
-$1_{\Y_{H,b}^{\rho,j}}$ give a dual basis to the stable distributions
-on the nilpotent set of $\fh_{z_\rho}$.  We use Waldspurger's
+$B^r(F_1)$ such that for each $i$, the functions
+$1_{\Y_{H,b}^{i,j}}$ give a dual basis to the stable distributions
+on the nilpotent set of $\fh_{z_i}$.  We use Waldspurger's
 fundamental result \cite{waldspurger1997lemme} that the $\kappa$-orbital integral (over
 $F_1$) admits smooth matching, which implies that there exists $a_0$
 such that $1_{a_0}\theta^{j}_{b,F_1}$ is a linear combination of
-$1_{a_0}\theta^i_{b,F_1}$, for $i\in J^+$.  This proves the claim.
+$1_{a_0}\theta^\ell_{b,F_1}$, for $\ell\in L^+(k')$.  This proves the claim.
 
 
 We apply Theorem~\ref{thm:cgh-asymp} to the morphism $f:P^r_{kk'\s \s'}\times\ring{Z}\to
-B^r_{kk'\s \s'}$.  By the theorem, for each $j\in J\setminus J^+$, and for
-all $b'\in B^r_{F_2}$, the functions $\theta^i_{b',F_2}$, for $i\in
-\{j\}\cup J^+$ are $a_0$-asymptotically linearly dependent.  Let $c^i_{j,b'}\in \ring{C}$
+B^r_{kk'\s \s'}$.  By the theorem, for each $j\in L(k,k')\setminus L^+(k')$, and for
+all $b'\in B^r_{F_2}$, the functions $\theta^\ell_{b',F_2}$, for $\ell\in
+\{j\}\cup L^+(k')$ are $a_0$-asymptotically linearly dependent.  Let $c^\ell_{j,b'}\in \ring{C}$
 be the coefficients of a nontrivial linear combination (depending on
 $b'$).  We write this relation as
 \begin{equation}\label{eqn:du}
-\sum_{i\in \{j\}\cup J^+} c^i_{j,b'}1_a\theta^i_{b',F_2}  =
+\sum_{\ell\in \{j\}\cup L^+(k')} c^\ell_{j,b'}1_a\theta^\ell_{b',F_2}  =
 0\quad\text{for }\quad a\ge a_0.
 \end{equation}
 For each $j$ and $b'$, the nontriviality of the relation
 means
-that $c^i_{j,b'}\ne 0$ for some $i$.
+that $c^\ell_{j,b'}\ne 0$ for some $\ell$.
 
 We claim that there exists $b'\in B^r_{F_2}$, such that for all $j\in
-J\setminus J^+$,
+L(k,k')\setminus L^+(k')$,
 $c^j_{j,b'}\ne 0$.  Otherwise, for all $b'\in B^r(F_2)$, there exists
-$j\in J\setminus J^+$ such that $c^j_{j,b'}=0$.  Equation~\ref{eqn:du}
+$j\in L(k,k')\setminus L^+(k')$ such that $c^j_{j,b'}=0$.  Equation~\ref{eqn:du}
 becomes
 \begin{equation}\label{eqn:du}
-\sum_{i\in J^+} c^i_{j,b'}1_a\theta^i_{b',F_2}  = 0.
+\sum_{\ell\in L^+(k')} c^\ell_{j,b'}1_a\theta^\ell_{b',F_2}  = 0.
 \end{equation}
 This asserts that for all $b'\in B^r(F_2)$, the functions
-$1_a\theta^i_{b',F_2}$ are linearly dependent.  Applying
+$1_a\theta^\ell_{b',F_2}$ are linearly dependent.  Applying
 Theorem~\ref{thm:cgh-asymp} again in the opposite direction, to go from
 dependence on $F_2$ to linear dependence on $F_1$, we find that for all
-$b\in B^r(F_1)$, the functions $1_a\theta^i_{b,F_1}$, for $i\in J^+$ are linearly
+$b\in B^r(F_1)$, the functions $1_a\theta^\ell_{b,F_1}$, for $\ell\in L^+(k')$ are linearly
 dependent.  The choice of $k',\s'$ gives linear independence, contrary to
 the assumption of dependence.  This gives the claim.
 
 Let $b'\in B^r(F_2)$ be the parameter in the claim.  The
 nonvanishing $c^j_{j,b'}\ne 0$, gives for each $j$ a formula for
 $1_a\theta^j_{b',F_2}$ in terms of products of stable orbital integrals on
-factors $\fh_{z_\rho}$.  In particular, fixing $\rho$, we let
-$j = (i_1,\ldots,i_r)$, where 
+factors $\fh_{z_i}$.  In particular, fixing $i$, we let
+$j = (\ell_1,\ldots,\ell_r)$, where 
 \[
-i_{\rho'} = \begin{cases} (j_{0,\rho'},+), &\text{if } \rho'\ne \rho\\
-       (i'_0,-) & \text{if } \rho' = \rho.
+\ell_{i'} = \begin{cases} (j_{0,i'},+), &\text{if } i'\ne i\\
+       (\ell'_0,-) & \text{if } i' = i.
   \end{cases}
 \]
-We let $(j_{0,\rho'},+)\in J^+$ be chosen so that it represents the
+We let $(j_{0,i'},+)\in L^+(k')$ be chosen so that it represents the
 regular stable nilpotent orbit in the endoscopic group
-$\fh_{z_\rho'}$, and we let $i'_0\le k_{\rho}$ be arbitrary.  It is
+$\fh_{z_i'}$, and we let $\ell'_0\le k_{i}$ be arbitrary.  It is
 known by Langlands and Shelstad that when suitably normalized, the
 Shalika germ of the stable regular nilpotent class is identically $1$.
 In particular, it is nonzero.  Considering the linear relation
-involving $1_a\theta^j_{b',F_2}$ as a function of $X_H^\rho$ alone, it
+involving $1_a\theta^j_{b',F_2}$ as a function of $X_H^i$ alone, it
 gives a nontrivial relation between functions
-$X_H^\rho\mapsto\psi^{\rho,i'_0}(X_H^\rho)_{b'}$ (with nonzero
+$X_H^i\mapsto\psi^{i,\ell'_0}(X_H^i)_{b'}$ (with nonzero
 coefficient) and the stable nilpotent orbital integrals on
-$\fh_{z_\rho}$. As we run over all $i'_0$ and $\rho=1,\ldots,r$, we
+$\fh_{z_i}$. As we run over all $\ell'_0$ and $i=1,\ldots,r$, we
 obtain the desired matching of all $\kappa$-Shalika germs on all
 reductive groups in the cocycle space $Z^r$.  This proves the theorem.
 \qed
 
 (An analysis of the proof shows that we might modify the proof to take
-$J^+_\rho$ to be a singleton set for each $\rho$ with $\Y_H^{i'_\rho}$
+$L^+_i(k')$ to be a singleton set for each $i$ with $\Y_H^{\ell'_i}$
 a regular nilpotent element.)
 
 \section{Adaptation to (unipotent) Shalika germs}
@@ -2198,7 +2198,7 @@ constructions such as the set $\NF^k_G$.
 If we allow a free parameter $N$ that ranges over the nilpotent set,
 then the nilpotent orbits are trivially definable by the formula
 \[
-O(N) = \{N' \mid \exists g\in G\mid \op{ad}g\,N = N' \}.
+O(N) = \{N' \mid \exists g\in G\mid \op{ad}g\,(N) = N' \}.
 \]  
 However, this leaves open the question of whether nilpotent orbits can
 be defined in the Denef-Pas language without the use of parameters.
