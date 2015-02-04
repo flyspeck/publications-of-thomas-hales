@@ -281,7 +281,51 @@ The groups $G^i$ are encoded by appropriate  cocycle spaces $Z^i$.
 
 The representation $\pi_0$ is determined by its inducing datum: a parahoric subgroup $K^0$ and a representation $\rho_0$ of its reductive quotient $\fG^0$. 
 
-\subsection{Parahorics} Suppose the depth of the representation $\pi$ is fixed. Then there are finitely many points in the alcove that can arise in J.-K. Yu's construction. This list will become part of fixed choices. 
+\subsection{Parahorics}
+
+\newcommand\BB{\mathcal B}
+\newcommand\motB{\BB_{\text{mot}}}
+\newcommand\Cent{C}
+\newcommand\dota{\cdot}
+\newcommand\field{F}
+	\newcommand\unfield{F^{\text{un}}}
+\newcommand\Lxxx[1]{\ensuremath\spadesuit\footnote{\ensuremath\spadesuit\ #1}}
+	\newcommand\citeme{\Lxxx{Cite me!}}
+	\newcommand\refme{\Lxxx{Reference me!}}
+\newcommand\muhat{\widehat\mu}
+\newcommand\Simple{\Delta}
+\newcommand\st{\mathbin:}
+
+\makeatletter
+\newcommand\topcite[1]{\gdef\t@pic{#1}\cite{#1}}
+\newcommand\loccit{\expandafter\cite\expandafter{\t@pic}}
+\makeatother
+
+Suppose that \(\mathcal R\) is a collection of positive real
+numbers.
+Suppose that \(G\) is \(\unfield\)-split.
+	\Lxxx{Is this enough to get a hyperspecial point?
+Maybe we need even \(\field\)-quasi-splitness for that.
+Anyway, even if we don't worry about hyperspecial points,
+then we still have some unpleasantness from replacing
+each \(\R/\Z\) by \(\R/e^{-1}\Z\), where \(e\) is the
+ramification degree of (the splitting field of) the
+corresponding root.}
+We put
+\[
+\motB(G) = (\R/\Z)^\Simple \times 2^W.
+\]
+For any alcove \(C \subseteq \BB(G)\),
+we define a map \(\BB(G) \to \motB(G)\) as follows.
+For \(x \in \BB(G)\), there is a unique point \(x'\) in the
+intersection with \(G\dota x\) of the closure of \(C\).
+Then we associate to \(x\) the pair \((r, S)\), where, for
+each \(\alpha \in \Simple\), \(r_\alpha\) is the value at
+\(x\) of any affine root with gradient \(\alpha\),
+and \(S\) is the set of all those elements of \(W(G, S)\) that
+have a representative in \(N_G(S)\) fixing \(x'\).
+
+Suppose the depth of the representation $\pi$ is fixed. Then there are finitely many points in the alcove that can arise in J.-K. Yu's construction. This list will become part of fixed choices. 
 
 Fix $r=a/m$ for some positive integers $a, m$. .
 Let $d_i$ be the depths of the characters $\phi_i$. 
@@ -346,18 +390,6 @@ Given a cuspidal character $\chi$ of $\fT$, there is an associated irreducible D
 Need to have a definable set of parameters that give possible choices of the mock exponential map that we care about (a change of $\mexp$ can affect the coefficients a little). 
 
 \subsection{asymptotic character expansion}
-
-\newcommand\BB{\mathcal B}
-\newcommand\Cent{C}
-\newcommand\field{F}
-\newcommand\Lxxx[1]{\ensuremath\spadesuit\footnote{\ensuremath\spadesuit\ #1}}
-	\newcommand\citeme{\Lxxx{Cite me!}}
-	\newcommand\refme{\Lxxx{Reference me!}}
-\newcommand\muhat{\widehat\mu}
-\makeatletter
-\newcommand\topcite[1]{\gdef\t@pic{#1}\cite{#1}}
-\newcommand\loccit{\expandafter\cite\expandafter{\t@pic}}
-\makeatother
 
 Yu \cite{yu:supercuspidal} associates to a datum
 \((\vec G, \vec\phi, \pi_0)\) satisfying certain conditions
