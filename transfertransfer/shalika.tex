@@ -11,6 +11,9 @@
 % Fix theorem numbering by section.
 % Measure on unipotent by exponentiation nilpotent?
 % Mock exp. vs no mock.
+% Simplify D_l indicator functions as a product.
+% Explain relation of Delta, Delta_loc, Langlands & Shelst do
+% L-embedding case.
 
 % Notation:
 % Zent = Center
@@ -109,6 +112,7 @@
 \newcommand{\fb}{\mathfrak{b}}
 \newcommand{\fn}{\mathfrak{n}}
 \newcommand{\fc}{\mathfrak{c}}
+\newcommand{\ft}{\mathfrak{t}}
 \newcommand{\fh}{\mathfrak{h}}
 \newcommand{\fF}{\mathfrak{F}}
 
@@ -187,7 +191,7 @@ with the same residue field~\cite{CLe}.  We use recent extensions of
 the transfer principle to transfer linear dependencies from one field
 to another \cite{CGH2}.
 
-We note that the term transfer is used in with two separate meanings
+We note that the term transfer is used with two separate meanings
 in this paper.  {\it Endoscopic matching}\footnote{It is called
   endoscopic transfer in the literature, title, and abstract, but we
   prefer to call it endoscopic matching in the body of the paper
@@ -324,7 +328,7 @@ theory of multiplicative characters for motivic integration.
 
 \begin{theorem}[Constructibility of group transfer factors] Let
   $(G,H)_{/Z}$ be a definable reductive group and associated
-  endoscopic group over a coycle space $Z$.  We write $\op{Topu}(S)$
+  endoscopic group over a cocycle space $Z$.  We write $\op{Topu}(S)$
   for the set of topologically unipotent elements in a definable
   subset $S$ of a reductive group.  There exists a constructible
   function $\Delta$ on
@@ -361,7 +365,7 @@ algebra and in the group.
   Langlands-Shelstad transfer factor) are equal to the stable orbital
   integrals of $f^H$ near $1$. More precisely,
 \[
-SO(\gamma_H,f^H) = \sum_{\gamma_G} \Delta_F(\gamma_H,\gamma_G,\bar
+O^{st}(\gamma_H,f^H) = \sum_{\gamma_G} \Delta_F(\gamma_H,\gamma_G,\bar
 \gamma_H,\bar \gamma_G) O(\gamma_G,f),
 \]
 for all $\gamma_H\in H^{G-\reg}_z(F)$ near $1$.
@@ -390,7 +394,7 @@ $\tilde H(F)$ \cite[Sec.4.4]{LSxf}.
   are equal to the stable orbital integrals of $f^{\tilde H}$. More
   precisely,
 \[
-SO(\gamma_{\tilde H},f^{\tilde H}) = \sum_{\gamma_G}
+O^{st}(\gamma_{\tilde H},f^{\tilde H}) = \sum_{\gamma_G}
 \Delta_F(\gamma_{\tilde H},\gamma_G,\bar
 \gamma_{\tilde H},\bar \gamma_G) O(\gamma_G,f),
 \]
@@ -508,7 +512,7 @@ connected components of $\op{Aut}(G^{**})$ that contains the full
 group of inner automorphisms and the image of $\Sigma$.
 
 To treat the theory of reductive groups in a definable context, we fix
-faithful rational representations of all reductive groups (over
+faithful rational representations of all split reductive groups (over
 $\ring{Q}$) of interest: $G^{**}$, $G^{**}_{sc}$, $G^{**}_{der}$,
 $G^{**}_{\op{adj}}$, $A(G^{**})$, and even $(G^{**}_{sc}\times
 G^{**}_{sc})/\op{Zent}_{sc}$, with diagonal embedding of the center
@@ -554,21 +558,21 @@ For each $\tau$, we choose an action
 \phi_\tau:\Sigma^{unr}_\tau\to \op{Aut}({}^e\R_\tau)
 \]
 of $\Sigma^{unr}_\tau$ on the affine diagram.  When $e\ne 1$, by
-inspection the various affine diagrams we see that the order of the
+inspection of the various affine diagrams we see that the order of the
 automorphism group is at most $2$, so that the choice of $\phi_\tau$
 amounts to at most a binary choice of whether the action is trivial or
 non-trivial.  When $e=1$, the situation is only slightly more
 involved.
 
 From each orbit of $\Sigma$ on the set of components of the Dynkin
-diagram $\op{Dyn}(\Phi^+(G^{**}))$ we choice a representative
+diagram $\op{Dyn}(\Phi^+(G^{**}))$ we choose a representative
 $\tau$.  Let $A = \{\tau\}$ be this set of representatives.  Let
 $S$ (depending on all the choices above) be the product
 \[
 S = \prod_{\tau\in A} \op{node}({}^e\R_\tau)/\phi_\tau,
 \]
 of the $\phi_\tau$-orbits of nodes in each affine diagram.  Let $\cF
-= \cF(G^{**},\Sigma,\rho_G,\phi_\tau,\ldots)$ be the set of all
+= \cF(G^{**},\Sigma,\rho_G,\phi_\tau)$ be the set of all
 subsets $X$ of $S$ such that the projection of $X$ to each factor is
 non-empty.  We call $\cF$ the parahoric indexing set.
 
@@ -621,8 +625,9 @@ The space of automorphisms of $E/\VF$ consists of a linear maps
 \VF^{n^2}$) respecting the field operations.  The space of Galois
 field extensions $E/\VF$ of fixed degree $n$ is definable by the
 condition that there exist $n$ distinct automorphisms of the field
-$E/\VF$.  There is a space of the enumerated Galois group of Galois
-field extensions of fixed degree $n$, given by tuples
+$E/\VF$.  There is a space of Galois
+field extensions of fixed degree $n$, with an enumeration of
+its automorphisms, given by tuples
 \begin{equation}\label{eqn:enum-gal}
 (E,\sigma_1,\sigma_2,\ldots,\sigma_n),
 \end{equation}
@@ -656,7 +661,7 @@ If we have a short exact sequence of enumerated groups
 1 \to \Sigma^t \to \Sigma \to \Sigma^{unr}\to 1,
 \]
 there is a space of Galois field extensions $K/E/\VF$ with enumerated
-automorphisms $\sigma_1,\ldots$, such that the automorphisms in
+automorphisms $\sigma_1,\ldots,\sigma_n$, such that the automorphisms in
 $\Sigma^t$ act trivially on $E$, $K/E$ is totally ramified with Galois
 group $\Sigma^t$, $K/\VF$ has Galois group $\Sigma$, and $E/\VF$ is
 unramified with Galois group $\Sigma^{unr}$.
@@ -665,15 +670,14 @@ unramified with Galois group $\Sigma^{unr}$.
 
 The space of Galois cocycles is given as tuples
 \[
-(K,\sigma_1,\ldots,\sigma_n,m_1,\ldots,m_n),
+(K,\sigma_1,\ldots,\sigma_n,a_1,\ldots,a_n),
 \]
-(where $m_i \in K^k$ or $m_i\in GL(n',K)$ or some related parameter
-space as module).  Here $K$ is a Galois extension of fixed degre $n$, with
+where $a_i \in K^k$ for some $k$.  Here $K$ is a Galois extension of fixed degre $n$, with
 enumerated Galois group $\sigma_i$ subject to the cocycle relations:
 \[
 \sigma_i \sigma_j 
-  = \sigma_k \Longrightarrow m_i \sigma_i(m_j) 
-  = m_k\quad\text{for all } i,j,k.
+  = \sigma_k \Longrightarrow a_i \sigma_i(a_j) 
+  = a_k\quad\text{for all } i,j,k.
 \]
 
 For fixed choices of $G^{**}$, action of $\Sigma$ on the root datum,
@@ -687,7 +691,7 @@ pair $(B^{**},T^{**})$ gives a pair $(B^*,T^*)$ in the quasi-split
 form.
 
 $G$ is a definable family of reductive groups parametrized by a
-definable cocycle space $Z$, which is constructed as in \cite{CGH2}.  We
+definable cocycle space $Z$, which is constructed as in \cite{CGH}.  We
 include in the space $Z$ an explicit choice of inner twisting 
 \[
 \psi:G
@@ -699,14 +703,23 @@ over $K$, so that $\psi$ is the identity, but it is retained in
 notation in the form of a cocycle $\sigma(\psi)\psi^{-1}$.  
 
 Let $\fc_{\fg^{*}} = \fg/\op{ad}$ be Chevalley's adjoint quotient, which
-we identify with the space of characteristic polynomials $\fg\to
+we identify with the space of ``characteristic polynomials'' $\fg\to
 \fc_{\fg^{*}}$.  The fiber in $\fg^\reg$ over each element is
 $\fc_{\fg^{*}}$ is the definable stable conjugacy class with the given
 characteristic polynomial.  Note that $\fc_{\fg^{*}}$ depends only on
-the quasi-split form $\fc^*$. Similarly, we have a map $G\to T^*/W$,
-where $T^*$ is a maximally split Cartan subgroup of the quasi-split
-inner form $G^*$ of $G$, and $W$ is the absolute Weyl group for $T^*$
-in $G^*$.
+the quasi-split form $G^*$. Similarly, we have a map $G\to (T^{**}/W)^*$,
+where $T^{**}$ is a maximally split Cartan subgroup of the split
+form $G^{**}$ of $G$, and $W$ is the absolute Weyl group for $T^{**}$
+in $G^*$.  By $(T^{**}/W)^*$ we mean the twisted form of $T^{**}/W$
+obtained from the outer automorphisms of $T^{**}$ used to define
+$G^*$.  That is, the Galois group $\op{Gal}(K/\VF)$ acts so that
+$\VF$-points are
+\[
+t =  \phi_\sigma(\sigma(t))^{w_\sigma}, \quad\forall \sigma\in\op{Gal}(K/\VF),
+\]
+where $w_\sigma\in W$, $\sigma(t)$ is standard action of the Galois
+group on $T^{**}(K)$, and $\phi_\sigma$ is the outer automorphism
+associated with $\sigma$.
 
 If $F$ is a nonarchimedean field, and $z\in Z(F)$, we have the fiber
 $G_z$.  It is a connected reductive linear algebraic group with Lie
@@ -861,7 +874,7 @@ $u$ under $G\to T^*/W$ is $1$.
 
   Pick $u$ in the given conjugacy class in such a way that $u =
   \exp(N)$, and $N$ has the properties in Theorem~\ref{thm:bm}, for
-  some $\s\in cF$.
+  some $\s\in \cF$.
   Then $u\in G_{z,\s,0}$.  Let $u' = \exp(N') \in u G_{z,\s,0+}$.
   Reducing modulo
   $G_{\s,0+}$ gives $\op{fexp}(\bar N') = \op{fexp}(\bar N)$. By
@@ -878,7 +891,7 @@ All integrals are to be computed with respect to invariant measures on
 their respective orbits.  This means that the appropriate context for
 motivic integration is integration with respect to volume forms, as
 described in \cite[Sec. 8]{CL}.    Volume forms in the context of
-reductive groups are explained in \cite{shin-templier:b}.  We follow
+reductive groups are explained in \cite{CGH}.  We follow
 those sources.
 
 We recall that each nilpotent orbit can be endowed with an invariant
@@ -995,8 +1008,8 @@ characters.
 
 Although we may speak of unramified extensions and their Galois
 groups, when working motivically, we have no way to single out the
-canonical Frobenius generator of the Galois group of unramified
-extensions.  Indeed, we do not have access the cardinality of the
+canonical Frobenius generator of the Galois group of an unramified
+extension.  Indeed, we do not have access the cardinality of the
 residue field $q$, until we specialize to a particular local field
 $F$.
 
@@ -1128,7 +1141,7 @@ exponential map used to define $n(s_\alpha)$ is a polynomial function
 on nilpotent elements.
 
 The cocycle $\lambda(T_{sc})$ is defined using the $a$-data by an enumerated
-coycle of $\op{Gal}(K/\VF)$ as described above, with
+cocycle of $\op{Gal}(K/\VF)$ as described above, with
 \[
 \sigma \mapsto h m(\sigma_T) \sigma(h)^{-1},\quad \text{where}\quad
 m(\sigma_T):= \left( \prod_{1,\sigma}^p a_\alpha^{\alpha^\vee}\right) n(\omega_T(\sigma)),
@@ -1159,7 +1172,7 @@ To construct the cocycle, we take bound parameters $h$ and $\bar h$
 with $\psi$ the inner twist given above.  As an inner twist, we get an
 enumerated cocycle of $\op{Gal}(K/\VF)$ by $\op{Int} u(\sigma) := \psi
 \sigma(\psi)^{-1}$.  By our embedding $K\to L$ we obtain an enumerated
-coycle of $\op{Gal}(L/\VF)$.  Set $v(\sigma) = h u(\sigma)
+cocycle of $\op{Gal}(L/\VF)$.  Set $v(\sigma) = h u(\sigma)
 \sigma(h)^{-1}$ and $\bar v(\sigma) = \bar h u(\sigma) \sigma(\bar
 h)^{-1}$. The cocycle $\op{inv}(X_H,X_G,\bar X_H,\bar X_G)$ is then
 \[
@@ -1185,7 +1198,7 @@ definable set
 \[
 \langle c(\sigma),\kappa_T\rangle_l
 \]
-of all cocycles such that the Tate-Nakayama pairing of the coycle with
+of all cocycles such that the Tate-Nakayama pairing of the cocycle with
 $\kappa_T$ has value $e^{2\pi l/k}$.  We define $D_{l,\rom1}(X_H,X_G)$ to
 be
 \[
@@ -1291,10 +1304,10 @@ Let $S$ be a definable set.
 Let $g$ be a constructible function on $S$ and let
   $f:S\to \ring{Z}$ be a definable function.  For each $a\in\ring{Z}$,
 let $S_a = f^{-1}(a)$.  Then there exists 
-  $m\in\ring{N}$ such that for all $F,F'\in\Loc_m$ with the same
+  $m\in\ring{N}$ such that for all $F_1,F_2\in\Loc_m$ with the same
   residue field, we have the following: for all $a\in\ring{Z}$, 
-  $g_F$ is zero on $S_a(F)$ if and only if $g_{F'}$ is zero
-  on $S_a(F')$.
+  $g_{F_1}$ is zero on $S_a(F_1)$ if and only if $g_{F_2}$ is zero
+  on $S_a(F_2)$.
 \end{theorem}
 
 \begin{proof} We use the notation of the cell decomposition theorem
@@ -1333,27 +1346,26 @@ f_{|Z} = p^* f_C,\quad  g_{|Z} = p^* g_C.
 \]
 The morphisms $p_F:Z(F)\to C(F)$ are onto, for $F\in\op{Loc}_m$.
 
-Let $F,F'\in\op{Loc}_m$ have the same residue field.  Since $g_C$ and
-$f_C$ have no valued field variables, we may assume that $f_{C,F} =
-f_{C,F'}$ and $g_{C,F} = g_{C,F'}$, when $F,F'\in\op{Loc}_m$ have the
-same residue field.
+Let $F_1,F_2\in\op{Loc}_m$ have the same residue field.  Since $g_C$ and
+$f_C$ have no valued field variables, we may assume that $f_{C,F_1} =
+f_{C,F_2}$ and $g_{C,F_1} = g_{C,F_2}$.
 
-The set $S_a$ is definable.  Assume that $g_{|S_a,F} = 0$.  Then on
+The set $S_a$ is definable.  Assume that $g_{|S_a,F_1} = 0$.  Then on
 any part $Z$,
 \[
-0 = g_{|S_a\cap Z,F} = p^*_F g_{C_a,F}, \quad\text{where}\quad C_a = f_^{-1}(a)
+0 = g_{|S_a\cap Z,F_1} = p^*_{F_1} g_{C_a,F_1}, \quad\text{where}\quad C_a = f_C^{-1}(a)
 \]
-Since $p_F$ is onto, $g_{C_a,F}$ is identically zero, and thus so is
-$g_{C_a,F'}$ and $0 = p^*_{F'} g_{C_a,F'} = g_{|S_a\cap Z,F'}$.  Thus,
-$g_{|S_a,F'}=0$.  This proves the theorem.
+Since $p_{F_1}$ is onto, $g_{C_a,F_1}$ is identically zero, and thus so is
+$g_{C_a,F_2}$ and $0 = p^*_{F_2} g_{C_a,F_2} = g_{|S_a\cap Z,F_2}$.  Thus,
+$g_{|S_a,F_2}=0$.  This proves the theorem.
 \end{proof}
 
 \begin{cor}\label{cor:12} Let $g$ be a constructible function on $S\times\ring{Z}$.
-  There exists $m$ such for all $F,F'\in\op{Loc}_m$ with the same
-  residue field, we have the following.  If for some $a_F\in\ring{Z}$, the
-  function $g(\cdot,a)_F$ is identically zero on $S(F)$ for all $a\ge
-  a_F$, then the function $g(\cdot,a)_{F'}$ is also identically zero
-  on $S(F')$ for all $a\ge a_F$.
+  There exists $m$ such for all $F_1,F_2\in\op{Loc}_m$ with the same
+  residue field, we have the following.  If for some $a_{F_1}\in\ring{Z}$, the
+  function $g(\cdot,a)_{F_1}$ is identically zero on $S(F_1)$ for all $a\ge
+  a_{F_1}$, then the function $g(\cdot,a)_{F_2}$ is also identically zero
+  on $S(F_2)$ for all $a\ge a_F$.
 \end{cor}
 
 \begin{proof} Let $f:S\times \ring{Z}\to\ring{Z}$ be the projection
@@ -1469,11 +1481,11 @@ Let $f:P\to B$ be a definable morphism between
   B$.  Let $\Theta$ be a list (i.e., finite ordered tuple) of constructible
   functions on $P$. For $b\in B$, let $\Theta_b$ be the corresponding list
   of constructible functions on the fiber $P_b$.  Then there exists a
-  natural number $m$ with the following property.  For every $F,F' \in
-  \Loc_{m}$ such that $F$ and and $F'$ have isomorphic residue
-  fields, the following holds: if for each $b\in B_F$, the list of
-  functions $\Theta_{b,F}$ is linearly dependent, then then also for each
-  $b'\in B_{F'}$, the list of functions $\Theta_{b',F}$ is linearly
+  natural number $m$ with the following property.  For every $F_1,F_2 \in
+  \Loc_{m}$ such that $F_1$ and and $F_2$ have isomorphic residue
+  fields, the following holds: if for each $b\in B({F_1})$, the list of
+  functions $\Theta_{b,F_1}$ is linearly dependent, then then also for each
+  $b'\in B_{F_2}$, the list of functions $\Theta_{b',F_2}$ is linearly
   dependent.
 \end{theorem}
 
@@ -1489,23 +1501,23 @@ We need an asymptotic variant of the theorem.
 
 \begin{theorem}\label{thm:cgh-asymp}
 Let $f:P\to B$ be a definable morphism between
-  definable sets.   Assume that $P\subset P_1\times\ring{Z}$, for some
-  definable set $P_1$ and that $f:P\to B$ extends to
-  $P_1\times\ring{Z}\to B$.  Let $\Theta$ be a list (i.e., finite ordered tuple) of constructible
+  definable sets.   Assume that $P\subset P'\times\ring{Z}$, for some
+  definable set $P'$ and that $f:P\to B$ extends to
+  $P'\times\ring{Z}\to B$.  Let $\Theta$ be a list (i.e., finite ordered tuple) of constructible
   functions on $P$.   Then there exists a
   natural number $m$ with the following property.  For every
-  $a_0\in\ring{Z}$ and every $F,F' \in
-  \Loc_{m}$ such that $F$ and and $F'$ have isomorphic residue
-  fields, the following holds: if for each $b\in B_F$, the list of
-  functions $\Theta_{b,F}$ is $a$-asymptotically linearly dependent, then then also for each
-  $b'\in B_{F'}$, the list of functions $\Theta_{b',F}$ is $a$-asymptotically linearly
+  $a_0\in\ring{Z}$ and every $F_1,F_2 \in
+  \Loc_{m}$ such that $F_1$ and and $F_2$ have isomorphic residue
+  fields, the following holds: if for each $b\in B_{F_1}$, the list of
+  functions $\Theta_{b,F_1}$ is $a_0$-asymptotically linearly dependent, then then also for each
+  $b'\in B_{F_2}$, the list of functions $\Theta_{b',F_2}$ is $a_0$-asymptotically linearly
   dependent.
 \end{theorem}
 
 \begin{proof} We adapt the proof in \cite{CGH2}.
 
-We may replace $f_i$ with $f_i 1_P$ on $P_1\times\ring{Z}$ to reduce
-to the case $P=P_1\times\ring{Z}$.  We may reduce asymptotic linear
+We may replace $f_i$ with $f_i 1_P$ on $P'\times\ring{Z}$ to reduce
+to the case $P=P'\times\ring{Z}$.  We may reduce asymptotic linear
 dependence to the identical vanishing of a determinant.
 Let 
 \[
@@ -1525,15 +1537,15 @@ Let $m\in\ring{Z}$ be an integer that is sufficiently large for
 Corollary~\ref{cor:12} applied to $\locus{g}$ and large enough for the
 $Iva$ locus in \cite{cgh}.
 
-Let $F,F'\in\Loc_m$ have isomorphic residue fields.  Choose any
-$a_0\in\ring{Z}$.  Assume that for all $b\in B(F)$, the list of
-functions $\Theta_{b,F}$ is $a_0$-asymptotically linearly dependent.
-Then $g_F$ vanishes identically for each element of $A:=\{(b,a)\mid
-a\ge a_0\}$.  Then $\locus{g}_F$ is zero on $A$.  By
-Corollary~\cite{cor:12}, $\locus{g}_{F'}$ is zero on $A$.  Following
-the preceding steps backwards now for $F'$ instead of $F$, from
-$\locus_{g}_F'$ back to asymptotic linear depedence, we conclude that
-$\Theta_{b,F'}$ is $a_0$-asymptotically linearly dependent.
+Let $F_1,F_2\in\Loc_m$ have isomorphic residue fields.  Choose any
+$a_0\in\ring{Z}$.  Assume that for all $b\in B(F_1)$, the list of
+functions $\Theta_{b,F_1}$ is $a_0$-asymptotically linearly dependent.
+Then $g_{F_1}$ vanishes identically for each element of $A:=\{(b,a)\mid
+a\ge a_0\}$.  Then $\locus{g}_{F_1}$ is zero on $A$.  By
+Corollary~\ref{cor:12}, $\locus{g}_{F_2}$ is zero on $A$.  Following
+the preceding steps backwards now for $F_2$ instead of $F_1$, from
+$\locus{g}_{F_2}$ back to asymptotic linear depedence, we conclude that
+$\Theta_{b,F_2}$ is $a_0$-asymptotically linearly dependent.
 \end{proof}
 
 
@@ -1542,36 +1554,36 @@ $\Theta_{b,F'}$ is $a_0$-asymptotically linearly dependent.
 
 
 We will invoke Theorem~\ref{thm:cgh-asymp} a finite number of times for different
-($r$-tuples of) constants $l$, $k$, $t$, $\s$.  These constants as
+($r$-tuples of) constants $k'$, $k$, $\s'$, $\s$.  These constants as
 well as $r$-tuples (with $r$ bounded) of these constants range over a
-finite set of possibilities.  For instance, $l$ is bounded above by
+finite set of possibilities.  For instance, $k'$ is bounded above by
 the number of nilpotent conjugacy classes in $\fh$.  Corollary~\ref{cor:nilbound}
 gives a
-constant $l_{\op{max}}$ such that for all nonarchimedean fields of
+constant $k'_{\op{max}}$ such that for all nonarchimedean fields of
 sufficiently large residue characteristic, the number of nilpotent
-conjugacy classes is at most $l_{\op{max}}$.  So $0\le l\le
-l_{\op{max}}$.  We can arrange so that the bound $l_{\op{max}}$
+conjugacy classes is at most $k'_{\op{max}}$.  So $0\le k'\le
+k'_{\op{max}}$.  We can arrange so that the bound $k'_{\op{max}}$
 depends only on fixed choices such as the root data for the endoscopic
 group, and not on the nonarchimedean field.  Similarly, each component
-of $t$ is bounded by the number of parahoric subgroups up to
-conjugacy, so that $t$ is constrained to run over finitely many
+of $\s'$ is bounded by the number of parahoric subgroups up to
+conjugacy, so that $\s'$ is constrained to run over finitely many
 possibilities (for each fixed choice of root data). By invoking the
 theorem a finite number of times, we may pick a single natural numbers
 $m$ that works in all cases by taking the maximum of the natural
 numbers obtained in the finitely many separate cases.  Let $m$ be a
-natural number that works for all $k,l,\s,t$ (keeping the other
+natural number that works for all $k,k',\s,\s'$ (keeping the other
 choices fixed).
 
-Let $F'\in\op{Loc}_m$.  Choose a second field $F\in \op{Loc}_m$ that
+Let $F_2\in\op{Loc}_m$.  Choose a second field $F_1\in \op{Loc}_m$ that
 has characteristic zero and a residue field isomorphic to that of
-$F'$.
+$F_2$.
 
 Our argument is highly depedent on making choices in the right
 order.  First we pick root data for $G$ and $H$ with all the
 associated fixed choices $\Sigma,\cF,\ldots$.  Then we bound various
 discrete parameters 
-$r,l,k,\s,t$ to lie in a finite set.  Then we pick $m$, $F$, and $F'$.
-Then we pick the particular values of $r,l,k,\s,t$ among the finite
+$r,k',k,\s,\s'$ to lie in a finite set.  Then we pick $m$, $F_1$, and $F_2$.
+Then we pick the particular values of $r,k',k,\s,\s'$ among the finite
 set of possibilities.
 
 Let $X_H,X_G,\bar X_H,\bar X_G$ be parameters that appear in the
@@ -1589,17 +1601,17 @@ parameters $(X_H,X_G,\bar X_H,\bar X_G)$ run over the definable set
 $V$ in Equation \ref{eqn:delta-domain}.  Similarly, we define stable
 orbital integrals on $\fh$ by
 \begin{equation}\label{eqn:stable}
-SO(X_H,f^H) = \int_{x\in O(X_H)} f^H (x)\,d\mu^\reg_H,
+O^{st}(X_H,f^H) = \int_{x\in O(X_H)} f^H (x)\,d\mu^\reg_H,
 \end{equation}
 where $f^H$ is a constructible motivic function on $\fh$.
 
 
 Waldspurger has proved that the germs of $O^\kappa$ are linear
-combinations of the germs of $SO$ in Equation~\ref{eqn:stable} when
-the field $F$ has characteristic zero~\cite{W}.
+combinations of the germs of $O^{st}$ in Equation~\ref{eqn:stable} when
+the field $F_1$ has characteristic zero~\cite{W}.
 
 The basic naive strategy is to invoke the Theorem~\ref{thm:cgh-asymp} to transfer these
-linear relations to a field $F'$ of positive characteristic.
+linear relations to a field $F_2$ of positive characteristic.
 Unfortunately, the naive strategy does not work, because the
 coefficients of the linear relation potentially vanish identically
 on part of the cocycle space $Z$, which would mean that we would
@@ -1636,42 +1648,42 @@ cocycle space.  For each $r\in\ring{N}$, let $Z^r$ be the definable
 set of $r$-tuples $(z_1,\ldots,z_r)$, where $z_i \in Z^1$ and such
 that $z_i$ and $z_j$ are not cohomologous for $i\ne j$.  There exists
 $m$ and a bound $r_{\op{max}}$ such that for all $F\in \op{Loc}_m$,
-and all $r\ge r_{\op{max}}$, we have $Z^r(F) = \emptyset$.
+and all $r> r_{\op{max}}$, we have $Z^r(F) = \emptyset$.
 
 The Lie algebras $\fh_z$, $\fg_z$ depend on a parameter $z\in Z^1$.
 We have spaces
 \begin{align*}
-B^1 = B^1_{kl\s t} = &\{(z,X_G,\bar X_H,\bar X_G,\Y_G,\Y_H) \mid \\
+B^1 = B^1_{kk'\s \s'} = &\{(z,X_G,\bar X_H,\bar X_G,\Y_G,\Y_H) \mid \\
      &\quad z\in Z, X_G\in \fg_z,
-\bar X_H \in \fh_z, \bar X_G\in \fg_z, \Y_G\in \NF^k_{G,t}, \Y_H\in \NF^l_{H,\s}\}.
+\bar X_H \in \fh_z, \bar X_G\in \fg_z, \Y_G\in \NF^k_{G,\s'}, \Y_H\in \NF^{k'}_{H,\s}\}.
 \end{align*}
-For any $r$-tuples $k=(k_1,\ldots,k_r)$, $l=(l_1,\ldots,l_r)$,
-$\s = (\s_1,\ldots,\s_r)$, $t=(t_1,\ldots,t_r)$, we set
+For any $r$-tuples $k=(k_1,\ldots,k_r)$, $k'=(k'_1,\ldots,k'_r)$,
+$\s = (\s_1,\ldots,\s_r)$, $\s'=(\s'_1,\ldots,\s'_r)$, we set
 \[
-B^r = B^r_{kl\s t} = \{(b_1,\ldots,b_r) \mid b_i \in B^1_{k_il_is_it_i}\quad
+B^r = B^r_{kk'\s \s'} = \{(b_1,\ldots,b_r) \mid b_i \in B^1_{k_ik'_is_it_i}\quad
   (z(b_1),\ldots,z(b_r))\in Z^r \}.
 \]
 (We apologize for the nesting of subscripts.  Note that $\s_i$ is
 itself a tuple indexing parahorics.)  For $b\in B^r$, we write
 $z(b_i)$, $X_G(b_i)$, and so forth for the components of $b_i$.  We
-define for $1$-tuples $k$, $l$, $\s$, $t$:
+define for $1$-tuples $k$, $k'$, $\s$, $\s'$:
 \[
-P^1_{kl\s t} = P^1 = \{(X_H,b) \mid b\in B^1_{kl\s t},
+P^1_{kk'\s \s'} = P^1 = \{(X_H,b) \mid b\in B^1_{kk'\s \s'},
 \quad z = z(b),\quad X_H \in \fh_z\}.
 \]
-Also, for $r$-tuples $k$, $l$, $\s$, $t$:
+Also, for $r$-tuples $k$, $k'$, $\s$, $\s'$:
 \[
-P^r_{kl\s t} = P^r = \{(X_H,b) \mid b = (b_1,\ldots,b_r)\in B^r_{kl\s t},\quad
-  X_H = (X_H^1,\ldots,X_H^r), \quad (X_H^i,b_i) \in P^1_{k_il_is_it_i}\}.
+P^r_{kk'\s \s'} = P^r = \{(X_H,b) \mid b = (b_1,\ldots,b_r)\in B^r_{kk'\s \s'},\quad
+  X_H = (X_H^1,\ldots,X_H^r), \quad (X_H^i,b_i) \in P^1_{k_ik'_is_it_i}\}.
 \]
 We have a projection map $P^r\to B^r$ onto the second coordinate.
 Our two definitions of $Z^1$, $B^1$ and $P^1$ are coherent when
 $r=1$.
 
-For any $r$-tuples $l=(l_1,\ldots,l_r)$ and $k=(k_1,\ldots,k_r)$, set
+For any $r$-tuples $k'=(k'_1,\ldots,k'_r)$ and $k=(k_1,\ldots,k_r)$, set
 $J_\rho = J^+_\rho\sqcup J^-_\rho$, where $J^-_\rho =
 \{1,\ldots,k_\rho\}\times\{-\}$ and $J^+_\rho =
-\{1,\ldots,l_\rho\}\times\{+\}$.
+\{1,\ldots,k'_\rho\}\times\{+\}$.
 \[
 J = \{i = (i_1,\ldots,i_r)\mid i_\rho=(i'_\rho,\pm)\in J_\rho\}.
 \]
@@ -1680,24 +1692,22 @@ Let
 J^+ = \{i = (i_1,\ldots,i_r)\mid i_\rho=(i'_\rho,+)\in J^+_\rho\}.
 \]
 
-
-For $i\in J_{kl}$, 
 We define constructible functions.  For $(X_H,b)\in
-P_{kl\s t}$, and $\rho=1,\ldots,r$,
+P^r_{kk'\s \s'}$,  $\rho=1,\ldots,r$, and $i_\rho\in J_\rho(k,k')$,
 set
 \[
 \psi^{\rho,i_\rho}(X_H^\rho,b_\rho) = 
 \begin{cases}   
   O^\kappa(X_H^\rho,X_G(b_\rho),\ldots,1_{\Y_G^{i'_\rho}(b_\rho)}),
-   & \text{if } i_\rho = (i'_\rho,-)\in J^-_\rho \\
-  SO(X_H^\rho,1_{\Y_H^{i'_\rho}}),
-   & \text{if } i_\rho = (i'_\rho,+)\in J^+_\rho.
+   & \text{if } i_\rho = (i'_\rho,-)\in J^-_\rho(k) \\
+  O^{st}(X_H^\rho,1_{\Y_H^{i'_\rho}}),
+   & \text{if } i_\rho = (i'_\rho,+)\in J^+_\rho(k').
 \end{cases}
 \]
  We also define constructible functions
-on $P_{kl\s t}$ indexed by $i\in J$:
+on $P_{kk'\s \s'}$ indexed by $i\in J(k,k')$:
 \[
-\theta^i(X_H)_b = \prod_{i=1}^r \psi^{\rho,i_\rho}(X_H^\rho,b_\rho).
+(X_H,b)\mapsto \theta^i(X_H)_b := \prod_{\rho=1}^r \psi^{\rho,i_\rho}(X_H^\rho,b_\rho).
 \]
 
 We use the following elementary facts about tensor products of
@@ -1727,104 +1737,111 @@ $V_\rho$.  Let $v_{1}\otimes \cdots \otimes v_{r} \in
 \begin{proof}
 \end{proof}
 
-Let $r$ be the maximum for which $Z^r(F)\ne\emptyset$.  That is, it is
+Let $r$ be the maximum for which $Z^r(F_1)\ne\emptyset$.  That is, it is
 the number of nonisomorphic reductive groups in the family of
 cocycles.  This maximum can be expressed as sentence in the Denef-Pas
-language and can hence be transferred to $F'$ by an Ax-Kochen style
+language and can hence be transferred to $F_2$ by an Ax-Kochen style
 transfer principle.  Thus, $r$ is also the maximum for which
-$Z^r(F')\ne\emptyset$.
+$Z^r(F_2)\ne\emptyset$.
 
-Pick $z\in Z^r(F')$.  Let $k=(k_1,\ldots,k_r)$ be tuple such that
-$k_\rho$ is the number of nilpotent orbits in $\fg_{z_\rho,F'}$.  By the
+Pick $z\in Z^r(F_2)$.  Let $k=(k_1,\ldots,k_r)$ be tuple such that
+$k_\rho$ is the number of nilpotent orbits in $\fg_{z_\rho,F_2}$.  By the
 Barbasch-Moy classification of nilpotent orbits in terms of residue
 field parameters~\cite{barbasch-moy}, $k_\rho$ is also equal to the
 number of nilpotent classes in $\fg_{z_\rho,F}$.  Choose a $k_\rho$-tuple
-$\s_\rho\in \cF_G^{k_\rho}$ such that $\NF^{k_\rho}_{\s_\rho,F'}\ne
+$\s_\rho\in \cF_G^{k_\rho}$ such that $\NF^{k_\rho}_{\s_\rho,F_2}\ne
 \emptyset$.  Let $\s = (\s_1,\ldots,\s_r)$.
 
-Let $l_\rho$ be the dimension of the space of stable Shalika germs on
+Let $k'_\rho$ be the dimension of the space of stable Shalika germs on
 $\fh_{z_\rho}$.  By the definition of stable distribution, this equals
 the dimension of the space of stable orbital integrals supported on
-the unipotent set.  For each $\rho$, let $\mu_i^{st}$, for $i\le l_\rho$,
+the unipotent set.  For each $\rho$, let $\mu_i^{st}$, for $i\le k'_\rho$,
 be a basis of the stable distributions supported on the unipotent set
 of $H_{z_\rho}$.  We have a Shalika germ expansion
 \[
-SO(X,f^H) = \sum_{i=1}^l S\Gamma_i(X) \mu_i^{st}(f^H),
+O^{st}(X,f^H) = \sum_{i=1}^{k'} \Gamma^{st}_i(X) \mu_i^{st}(f^H),
 \]
 for a compactly supported function $f^H$ on $H(F)$ and some stable
-germs $S\Gamma_i$.  The germ
+germs $\Gamma^{st}_i$.  The germ
 expansion holds on $G$-regular semisimple elements in a suitable
 neighborhood (depending on $f^H$).  For each $\rho$, we pick a
-parameter $\Y^\rho_{H_{z_\rho},F}\in \NF^{l_\rho}_{H_{z_\rho},F}$ such
-that the functions $1_{\Y_H^{\rho,j}}$, for $j=1,\ldots,l_\rho$, form a
+parameter $\Y^\rho_{H_{z_\rho},F}\in \NF^{k'_\rho}_{H_{z_\rho}}(F)$ such
+that the functions $1_{\Y_H^{\rho,j}}$, for $j=1,\ldots,k'_\rho$, form a
 dual basis to $\mu_i^{st}$.  (The functions span the space dual to
 invariant distributions with nilpotent support, hence span the
 quotient space dual to stably invariant distributions with nilpotent
 support; hence a subset of the functions forms a dual basis.)  We can
-do this by Theorem~\ref{thm:bm}.  Let $t_\rho = \s(\Y^\rho_{H_{z_\rho},F})\in
-S^{l_\rho}_{H}$ and $t = (t_1,\ldots,t_r)$.  We have now fixed the
-choices $r,k,l,\s,t$.  To lighten notation, we sometimes drop
-$r,k,l,\s,t$.  We also return to our earlier notation of $z$ as a
+do this by Theorem~\ref{thm:bm}.  Let $\s'_\rho = \s(\Y^\rho_{H_{z_\rho},F})\in
+S^{k'_\rho}_{H}$ and $\s' = (\s'_1,\ldots,\s'_r)$.  We have now fixed the
+choices $r,k,k',\s,\s'$.  To lighten notation, we sometimes drop
+$r,k,k',\s,\s'$.  We also return to our earlier notation of $z$ as a
 parameter running over the definable set $Z^r$.
 
 We may construct germs of functions as follows.  Let $1_a$, for
 $a\in\ring{Z}$ be sequence of support functions, defined as the
-indicator functions of small balls around $0$ in $\fg$ tending to $0$
-as $a$ tends to infinity.  We do the same for $\fh$, ambiguously
-denoted that support sequence $1_a$ as well.  We may truncate the
-orbital integrals using these functions $1_a SO(X,f^H)$ and $1_a
+preimage in $\fg$ of
+indicator functions of small balls around $0$ in $\fc_{\fg^*}$ tending to $0$
+as $a$ tends to infinity.  We take the preimage of these balls in
+$\fc_{\fh}$ and $\fh$ and
+denote that support sequence $1_a$ as well, by abuse of notation.  We may truncate the
+orbital integrals using these functions $1_a O^{st}(X,f^H)$ and $1_a
 O^\kappa(X_H,X_G,\bar X_H,\bar X_G,f)$.  Integrals now have an extra
 integer parameter $a\in\ring{Z}$ that we may use to study
-$a$-asymptotic linear dependence.  Similarly, (abusively) write $1_a\theta^i_b$
+$a$-asymptotic linear dependence.   By a similar abuse of notation, we
+write $1_a\theta^i_b$
 for the truncation of $\theta^i_b$.
 
 We claim that for all $j \in J\setminus J^+$, there exists
-$a_0\in\ring{Z}$, such that for each $b\in
-B^r(F)$, the functions $1_{a_0,F}\theta^i_{b,F}$, for $i\in \{j\}\cup J^+$,
-are $a_0$-asymptotically linearly dependent.  If the functions indexed by $J^+$ are
-$a_0$-asymptotically linearly dependent, this is immediate.  If, on the other hand, the
-functions indexed by $J^+$ are linearly dependent, then there exists
-a parameter $\Y_H(b)$ from the base space $B^r(F)$ such that for each
-$\rho$, the functions $1_{\Y_{H,b}^{\rho,j}}$ give a dual basis to the
-stable distributions on the nilpotent set of $\fh_{z_\rho}$.  We use
-Waldspurger's fundamental result \cite{W} that the $\kappa$-orbital
-integral (over $F$) admits smooth matching, which implies that
-$\theta^{j}_{b,F}$ is a linear combination of $\theta^i_{b,F}$, for
-$i\in J^+$.  This proves the claim.
-(XX fix, need the right dependence on $b$ and $a_0$ in the logic.)
+$a_0\in\ring{Z}$, such that for each $b\in B^r(F_1)$, the functions
+$1_{a_0,F_1}\theta^i_{b,F_1}$, for $i\in \{j\}\cup J^+$, are
+$a_0$-asymptotically linearly dependent.  If there exists $a_0$ such
+that for all $b\in B^r(F_1)$, the functions indexed by $J^+$ are
+$a_0$-asymptotically linearly dependent, this is immediate.  If, on
+the other hand, for all $a_0$, there exists $b$ such that the
+functions indexed by $J^+$ are not $a_0$-asymptotically linearly
+dependent, then there exists a parameter $\Y_H(b)$ from the base space
+$B^r(F_1)$ such that for each $\rho$, the functions
+$1_{\Y_{H,b}^{\rho,j}}$ give a dual basis to the stable distributions
+on the nilpotent set of $\fh_{z_\rho}$.  We use Waldspurger's
+fundamental result \cite{W} that the $\kappa$-orbital integral (over
+$F_1$) admits smooth matching, which implies that there exists $a_0$
+such that $1_{a_0}\theta^{j}_{b,F_1}$ is a linear combination of
+$1_{a_0}\theta^i_{b,F_1}$, for $i\in J^+$.  This proves the claim.
 
-We apply Theorem~\ref{thm:cgh-asymp} to the morphism $f:P^r_{kl\s t}\to
-B^r_{kl\s t}$.  By the theorem, for each $j\in J\setminus J^+$, and for
-all $b'\in B^r_{F'}$, the functions $\theta^i_{b',F'}$, for $i\in
-\{j\}\cup J^+$ are linearly dependent.  Let $c^i_{j,b'}\in \ring{C}$
+
+We apply Theorem~\ref{thm:cgh-asymp} to the morphism $f:P^r_{kk'\s \s'}\times\ring{Z}\to
+B^r_{kk'\s \s'}$.  By the theorem, for each $j\in J\setminus J^+$, and for
+all $b'\in B^r_{F_2}$, the functions $\theta^i_{b',F_2}$, for $i\in
+\{j\}\cup J^+$ are $a_0$-asymptotically linearly dependent.  Let $c^i_{j,b'}\in \ring{C}$
 be the coefficients of a nontrivial linear combination (depending on
 $b'$).  We write this relation as
 \begin{equation}\label{eqn:du}
-\sum_{i\in \{j\}\cup J^+} c^i_{j,b'}\theta^i_{b',F'}  = 0.
+\sum_{i\in \{j\}\cup J^+} c^i_{j,b'}1_a\theta^i_{b',F_2}  =
+0\quad\text{for }\quad a\ge a_0.
 \end{equation}
 For each $j$ and $b'$, the nontriviality of the relation
 means
 that $c^i_{j,b'}\ne 0$ for some $i$.
 
-We claim that there exists $b'\in B^r_{F'}$, such that for all $j\in
+We claim that there exists $b'\in B^r_{F_2}$, such that for all $j\in
 J\setminus J^+$,
-$c^j_{j,b'}\ne 0$.  Otherwise, for all $b'\in B^r(F')$, there exists
+$c^j_{j,b'}\ne 0$.  Otherwise, for all $b'\in B^r(F_2)$, there exists
 $j\in J\setminus J^+$ such that $c^j_{j,b'}=0$.  Equation~\ref{eqn:du}
 becomes
 \begin{equation}\label{eqn:du}
-\sum_{i\in J^+} c^i_{j,b'}\theta^i_{b',F'}  = 0.
+\sum_{i\in J^+} c^i_{j,b'}1_a\theta^i_{b',F_2}  = 0.
 \end{equation}
-This asserts that for all $b'\in B^r(F')$, the functions
-$\theta^i_{b',F'}$ are linearly dependent.  Applying
+This asserts that for all $b'\in B^r(F_2)$, the functions
+$1_a\theta^i_{b',F_2}$ are linearly dependent.  Applying
 Theorem~\ref{thm:cgh-asymp} again in the opposite direction, to go from
-dependence on $F'$ to linear dependence on $F$, we find that for all
-$b\in B^r(F)$, the functions $\theta^i_{b,F}$, for $i\in J^+$ are linearly
-dependent.  The choice of $l,t$ gives linear independence, contrary to
+dependence on $F_2$ to linear dependence on $F_1$, we find that for all
+$b\in B^r(F_1)$, the functions $1_a\theta^i_{b,F_1}$, for $i\in J^+$ are linearly
+dependent.  The choice of $k',\s'$ gives linear independence, contrary to
 the assumption of dependence.  This gives the claim.
 
-Let $b'\in B^r_{F'}$ be the parameter as in the claim.  The
+Let $b'\in B^r(F_2)$ be the parameter in the claim.  The
 nonvanishing $c^j_{j,b'}\ne 0$, gives for each $j$ a formula for
-$\theta^j_{b',F'}$ in terms of products of stable orbital integrals on
+$1_a\theta^j_{b',F_2}$ in terms of products of stable orbital integrals on
 factors $\fh_{z_\rho}$.  In particular, fixing $\rho$, we let
 $j = (i_1,\ldots,i_r)$, where 
 \[
@@ -1838,14 +1855,14 @@ $\fh_{z_\rho'}$, and we let $i'_0\le k_{\rho}$ be arbitrary.  It is
 known by Langlands and Shelstad that when suitably normalized, the
 Shalika germ of the stable regular nilpotent class is identically $1$.
 In particular, it is nonzero.  Considering the linear relation
-involving $\theta^j_{b',F'}$ as a function of $X_H^\rho$ alone, it
+involving $1_a\theta^j_{b',F_2}$ as a function of $X_H^\rho$ alone, it
 gives a nontrivial relation between functions
 $X_H^\rho\mapsto\psi^{\rho,i'_0}(X_H^\rho)_{b'}$ (with nonzero
 coefficient) and the stable nilpotent orbital integrals on
 $\fh_{z_\rho}$. As we run over all $i'_0$ and $\rho=1,\ldots,r$, we
 obtain the desired matching of all $\kappa$-Shalika germs on all
 reductive groups in the cocycle space $Z^r$.  This proves the theorem.
-
+\qed
 
 (An analysis of the proof shows that we might modify the proof to take
 $J^+_\rho$ to be a singleton set for each $\rho$ with $\Y_H^{i'_\rho}$
@@ -1854,14 +1871,12 @@ a regular nilpotent element.)
 \section{Adaptation to (unipotent) Shalika germs}
 
 We now adapt the results of the previous two sections to unipotent
-classes in the group.
-
-All of the proofs go through with the following changes.
-
-Functions on the Lie algebra (Shalika germs, orbital integrals) are
-replaced with functions on a neighborhood of the identity element in
-the group.  We use notation $\gamma_G,\gamma_H,\bar \gamma_G,\bar
-\gamma_H$, and so forth instead of $X_G,X_H,\bar X_G,\bar X_H$.
+classes in the group. All of the proofs go through with the following
+changes.  Functions on the Lie algebra (Shalika germs, orbital
+integrals) are replaced with functions on a neighborhood of the
+identity element in the group.  We use notation
+$\gamma_G,\gamma_H,\bar \gamma_G,\bar \gamma_H$, and so forth instead
+of $X_G,X_H,\bar X_G,\bar X_H$.
 
 Nilpotent elements are replaced with unipotent elements.  In large
 residue characteristic,
@@ -1928,7 +1943,7 @@ have\footnote{Langlands and Shelstad fix $\tilde{\bar \gamma_H}$ and
   notation, so that only the first two variables of $\Delta$ are displayed.}
 $\Delta$-matching orbital integrals:
 \[
-SO(\tilde \gamma_H,f^{\tilde H}) 
+O^{st}(\tilde \gamma_H,f^{\tilde H}) 
  = \sum_{\gamma_G} \Delta(\tilde\gamma_H,\gamma_G)O(\gamma_G,f)
 \]
 for all strongly $G$-regular $\tilde \gamma_H \in \tilde H(F)$.
@@ -1939,7 +1954,7 @@ We recall that $(G,H)$ admits {\it local endoscopic $\Delta$-matching}
 if for any $f\in C_l(G(F))$ we can find $f^H \in C_c^\infty(H(F))$
 such that
 \[
-SO( \gamma_H,f^{ H}) 
+O^{st}( \gamma_H,f^{ H}) 
  = \sum_{\gamma_G} \Delta_{loc}(\gamma_H,\gamma_G)O(\gamma_G,f)
 \]
 for all strongly $G$-regular elements $\gamma_H$ near $1$ in $H(F)$.
@@ -2007,17 +2022,17 @@ presentation in \cite{Gross}.  We refer to \cite{Gross} for necessary
 details about our presentation here.  We recall that we do not have
 access to a Frobenius element of the Galois group, which is used in
 essential ways in the classification.  We make do the best we can with
-$\op{qFr}$, a generator of $\Sigma^{unr}$.
+$\op{qFr}$, a fixed generator of $\Sigma^{unr}$.
 
 We describe the extent to which nonisomorphic reductive groups $G$
-over a given field $F$ can give the same set of fixed choices above.
+over a given field $F$ can have the same set of fixed choices above.
 For simplicity, assume that $G$ and $G'$ are absolutely almost simple
 and simply connected.  Assume that the fixed choices can be made for
 $G$ and $G'$ so that they have identical combinatorial data.  There
 are obvious such cases:
 \begin{enumerate}
 \item $G$ and $G'$ are inner forms of $SL(n)$, and their invariants in
-  the Brauer group are $a/m$ and $a'/m$ with $(a,m)=(a',m)=1$.
+  the Brauer group have equal denominators, when expressed in lowest terms.
 \item $G$ and $G'$ have isomorphic split outer forms, are not split,
   are quasi-split, and split over different ramified
   extensions of the same degree.  For example, we may have two
@@ -2094,12 +2109,12 @@ ramified quadratic extension that splits it. This is the third case.
 
 Langlands and Igusa have results about the asymptotic behavior of
 integrals \cite{langlands:sl3} \cite{igusa}.  Under certain
-assumptions, a family of $p$-adic integrals with parameter $\lambda$
+assumptions, a family of $p$-adic integrals with parameter $x$
 in a nonarchimedean field $F$ can be expanded in a finite asymptotic
 series
 \begin{equation}\label{eqn:igusa}
 \sum_{a,b,\theta} c_{a,b,\theta} \,
-\theta(\lambda) \,|\lambda|^a \, (\op{ord}\lambda)^b\, 
+\theta(x) \,|x|^a \, (\op{ord}x)^b\, 
 \end{equation}
 for some integers $a,b$, multiplicative characters $\theta:F^\times\to
 \ring{C}^\times$, and for some constants $c_{a,b,\theta}$.  The
@@ -2153,22 +2168,23 @@ We may also ask {\it to what extent is the harmonic analysis on two groups
 in the same family the same?}
 
 We give an example.  Consider the Denef-Pas language with constants in
-$\ring{Z}[[t]]$.  Consider the quasi-split definable simply connected group of
+$\ring{Z}[[\pi]]$, where $\pi$ is simply a variable.  
+Consider the quasi-split definable simply connected group of
 typ ${}^eA_n$, ${}^eD_n$, or ${}^eE_6$, with $e=2$ or $3$ as
 appropriate, associated with the totally ramified extension $K/\VF$ of
 degree $e$:
 \[
-K = \VF[t]/(x^e - t),\quad \ord (t) = 1.
+K = \VF[t]/(t^e - \pi),\quad \ord (\pi) = 1.
 \]
 We make the remarkable observation that the given definable group has
 nonisomorphic interpretations as reductive groups over a
 nonarchimedean field $F$, simply because nonisomorphic field
 extensions of $F$ are obtained by different choices of the uniformizer
-$\varpi\in F$ interpreting $t$.  So in particular, for two differerent
+$\pi_F\in F$ interpreting $\pi$.  So in particular, for two differerent
 quasi-split unitary groups over $F$, splitting over different ramified
 quadratic extensions, the Shalika germs are given by identical
 constructible formulas, differing over $F$ only by the specialization
-of $t$ to different uniformizers $\varpi\in F$.  This suggests that
+of $\pi$ to different uniformizers $\pi_F\in F$.  This suggests that
 the harmonic analyses on two groups in the same family are closely
 related.
 
@@ -2177,19 +2193,18 @@ related.
 
 We have carefully avoided the issue of the definability of nilpotent
 orbits in this paper.  This has required us to use certain roundabout
-constructions such as the set $NF^k_G$.
+constructions such as the set $\NF^k_G$.
 
 If we allow a free parameter $N$ that ranges over the nilpotent set,
 then the nilpotent orbits are trivially definable by the formula
 \[
-O(u) = \{u' \mid \exists g\in G\mid u' g = g
-u \}.
+O(N) = \{N' \mid \exists g\in G\mid \op{ad}g\,N = N' \}.
 \]  
 However, this leaves open the question of whether nilpotent orbits can
 be defined in the Denef-Pas language without the use of parameters.
 Diwadkar has obtained partial results on this problem \cite{Did}.  The
 results of Barbasch-Moy and DeBacker on the classification of
-nilpotent --together with definability for the Moy-Prasad filtration
+nilpotent orbits --together with definability for the Moy-Prasad filtration
 \cite{cgh} -- reduce this problem to the definability of nilpotent
 orbits (or more simply of distinguished nilpotent orbits) in reductive
 groups over finite fields.  For some groups such as $SL(n)$, roots of
@@ -2203,7 +2218,7 @@ definable in the first-order language of rings?
 
 \bibliographystyle{alpha}
 \bibliography{refs}
-(Jan 27, 2015)
+(Feb 4, 2015)
 
 \end{document}
 
