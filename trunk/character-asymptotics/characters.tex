@@ -67,7 +67,7 @@
 
 
 \newcommand{\cF}{\mathcal{F}}
-\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cO}{{\mathcal O}}
 \newcommand{\ri}{\mathcal{O}}
 \newcommand{\cM}{\mathcal {M}}
 \newcommand{\cV}{\mathcal{V}}
@@ -348,10 +348,16 @@ Need to have a definable set of parameters that give possible choices of the moc
 \subsection{asymptotic character expansion}
 
 \newcommand\BB{\mathcal B}
+\newcommand\Cent{C}
 \newcommand\field{F}
+\newcommand\Lxxx[1]{\ensuremath\spadesuit\footnote{\ensuremath\spadesuit\ #1}}
+	\newcommand\citeme{\Lxxx{Cite me!}}
+	\newcommand\refme{\Lxxx{Reference me!}}
+\newcommand\muhat{\widehat\mu}
 \makeatletter
 \newcommand\topcite[1]{\gdef\t@pic{#1}\cite{#1}}
 \newcommand\loccit{\expandafter\cite\expandafter{\t@pic}}
+\makeatother
 
 Yu \cite{yu:supercuspidal} associates to a datum
 \((\vec G, \vec\phi, \pi_0)\) satisfying certain conditions
@@ -362,20 +368,53 @@ a supercuspidal representation \(\pi\).
 associated to the depth-0 representation \(\pi_0\) a vertex
 \(x_0\) of \(\BB(\bG^0, \field)\).
 Kim and Murnaghan \topcite{jkim-murnaghan:gamma-asymptotic}
-associate to the good, positive \(G\)-datum
+associate to the strongly good, positive \(G\)-datum
 \((\vec G, x_0, \vec\phi)\) \loccit*{Definition 4.1.1, 3}
-an element \(\Gamma\) in \(\fg\) \loccit*{Definition 4.1.3}.
- 
-Loren says:
-$$\Theta_\pi(\mexp(Y))= \sum_{\cO\in \cO(X)} c_\cO\widehat\mu_{\cO}(Y),$$
+an element \(\Gamma\) in \(\fg\) \loccit*{Definition 4.1.3},
+and prove that, if \(\cO^G(\Gamma)\) is the set of adjoint
+orbits of \(G\) on \(\fg\) whose closures contain \(\Gamma\)
+\loccit*{\S2.1.4}, then there is an indexed family
+\((c_\cO(\pi))_{\cO \in \cO^G(\Gamma)}\) of complex numbers
+such that
+\[
+\Theta_\pi(\mexp(Y))
+= \sum_{\cO \in \cO^G(\Gamma)}
+	c_\cO(\pi)\muhat^G_\cO(Y)
+\]
+for \(Y \in \fg_{r/2}\), where \(r\) is the minimal depth of
+\(\pi\)
+\loccit*{Theorem 4.4.1}.
+(Technically, their definition of a good, positive
+\(G\)-datum includes an additional piece of information
+\(\vec r\), but this is just the vector of depths of the
+characters \(\vec\phi\).)
+The following theorem appears in \cite{spice:coefficients}.
 
-We will prove by induction
-\begin{theorem} The coefficients $c_{\cO}$ of this expansion are motivic functions of the parameters defining $G$, $\pi$ (as above) and $\mexp$. 
+\begin{theorem}
+We have that
+\[
+\Theta_{\pi_0}(\mexp(Y))
+= \sum_{\cO_0 \in \cO^{G^0}(\Gamma)}
+	c_{\Ad(G)\cO^0}(\pi)\muhat^{G^0}_{\cO^0}(Y)
+\]
+for \(Y \in \fg^0_r\).
+	\Lxxx{I think that it's actually true for all
+\(Y \in \fg^0_{0+}\).}
 \end{theorem}
 
-\begin{proof}
-\end{proof}
-
+That is, the coefficients in the local character expansion
+of \(\pi_0\) are the same as the corresponding coefficients
+in the asymptotic character expansion of \(\pi\).
+Since
+\(\Cent_G(\Gamma) = G^0\) \citeme,
+the `fattening map'
+\(\cO^{G^0}(\Gamma) \to \cO^G(\Gamma)\)
+that sends \(\cO^0\) to \(\Ad(G)\cO^0\) is surjective
+\cite{hc:queens}*{Lemma 2.8},
+so that the asymptotic character expansion of
+\(\pi\) contains precisely the same information as the local
+character expansion of \(\pi^0\).
+ 
 \begin{cor}
 Coefficients of Harish-Chandra local character expansion are motivic functions of the same thing.
 \end{cor}

@@ -5085,6 +5085,12 @@ date = {2008},
 	eprint={arxiv:math.RT/1008.1592},
 }
 
+\bib{spice:coefficients}{article}{
+	author={Spice, Loren},
+	title={Inductive computations of asymptotic expansions},
+	status={in preparation},
+}
+
 \bib{springer:unipotent}{article}{
     author={Springer, Tonny A.},
      title={The unipotent variety of a semi-simple group},
