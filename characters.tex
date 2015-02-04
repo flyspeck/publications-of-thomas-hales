@@ -1,0 +1,346 @@
+\documentclass[12pt]{amsart}
+\usepackage{amssymb,amscd,amsmath,amsthm,color}
+\usepackage{calc}
+\usepackage{amsrefs}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools}
+\usepackage[normalem]{ulem}
+\usepackage{tikz}
+\usetikzlibrary{matrix,arrows,decorations.pathmorphing}
+\usepackage{setspace}
+\usepackage{verbatim}
+\usepackage{mathrsfs}
+%\usepackage[notcite, notref]{showkeys}
+%\usepackage[left=2cm,top=2cm,right=2cm,nohead]{geometry}
+
+\textwidth 6.5 in
+\oddsidemargin 0 in
+\evensidemargin 0 in
+\topmargin -.125 in
+\textheight 8.75 in
+
+
+\definecolor{bettergreen}{rgb}{0,.7,0}
+%\newcommand\blue[1]{{\color{blue}{#1}}}
+%\newcommand\green[1]{{\color{bettergreen}{#1}}}
+%\newcommand\red[1]{{\color{red}{#1}}}
+
+%\long\def\comment#1{\marginpar{{\footnotesize\color{red} #1\par}}}
+%\long\def\commentimmi#1{\marginpar{{\footnotesize\color{bettergreen} #1\par}}}
+%\long\def\change#1{{\color{blue} #1}}
+%newcommand\green[1]{{\color{green} #1}}
+%\newcommand   [1]{{\color{red}\small #1}}
+
+%\let\immi=\green
+%\let\raf=\blue
+
+\newcommand\todo[1]{\ \vspace{5mm}\par \noindent\framebox{\begin{minipage}[c]{0.95 \textwidth} \tt #1\end{minipage}} \vspace{5mm} \par}
+
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+%%%%  Definitions  re: typeface  %%%%%%%%%%
+
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\LL}{{\mathbb L}}
+\newcommand{\TT}{{\mathbb T}}
+\newcommand{\CC}{{\mathbb C}}
+\newcommand{\ZZ}{{\mathbb Z}}
+
+
+\newcommand{\bF}{\mathbf{F}}
+\newcommand{\Gl}{\mathbf {GL}}
+\newcommand{\SL}{\mathbf {SL}}
+\newcommand{\Sp}{\mathbf {Sp}}
+\newcommand{\aut}{\mathbf{Aut}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bT}{\mathbf {T}}
+\newcommand{\bM}{\mathbf {M}}
+
+
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\ri}{\mathcal{O}}
+\newcommand{\cM}{\mathcal {M}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cB}{\mathcal{B}}
+
+
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\fg}{\mathfrak{g}}
+\newcommand{\ft}{\mathfrak{t}}
+\newcommand{\fz}{\mathfrak{z}}
+\newcommand{\fsp}{\mathfrak{sp}}
+\newcommand{\fsl}{\mathfrak{sl}}
+\newcommand{\fO}{\mathfrak{O}}
+\newcommand{\fP}{\mathfrak{P}}
+\newcommand{\ff}{\mathfrak{f}}
+\newcommand{\fh}{\mathfrak{h}}
+\newcommand{\fF}{\mathfrak{F}}
+
+
+\newcommand{\reg}{\mathrm{rss}}
+\newcommand{\ur}{\mathrm{ur}}
+\newcommand{\nil}{\mathrm{Nil}}
+\newcommand{\val}{\mathrm{val}}
+\newcommand{\rs}{\mathrm{rs}}
+\newcommand{\ram}{\mathrm{Ram}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\oi}{{\bf \mathrm{O}}}
+
+
+\newcommand{\Ad}{\operatorname{Ad}}
+\newcommand{\jac}{\operatorname{Jac}}
+\newcommand{\gal}{\operatorname{Gal}}
+\newcommand{\res}{\operatorname{Res}}
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\ep}{\operatorname{EP}}
+\newcommand{\cI}{{\mathcal I}}
+
+
+\newcommand{\rf}{k}
+
+
+%%%%  Motivic  definitions  %%%%%%%
+
+\newcommand{\ldp}{{\mathcal L}_{\mathrm {DP}}}
+\newcommand\ldpo[1][\ri]{{\mathcal L}_{#1}}
+\newcommand\cmf[1]{{\mathcal C}(#1)}
+\newcommand\cA{{\mathcal A}}
+%\newcommand\co{{\mathcal O}}
+\newcommand\ord{\mathrm{ord}}
+\newcommand\ac{\overline{\mathrm{ac}}}
+\newcommand\lef{\mathbb L}
+\newcommand\cP{{\mathcal P}}
+\newcommand\cC{{\mathcal C}}
+\newcommand\cH{{\mathcal H}}
+\newcommand\cX{{\mathcal X}}
+\newcommand\mot{\mathrm{mot}}
+\newcommand{\scD}{\mathscr{D}}
+\newcommand{\rss}{\mathrm{rss}}
+\newcommand{\bGam}{{\mathbf \Gamma}}
+\newcommand{\Loc}{\mathrm{Loc}}
+
+
+\newcommand{\de}{{\text{Def}}}
+\newcommand{\rde}{{\text{RDef}}}
+\newcommand{\K}{F}
+\newcommand{\mexp}{\mathbf{e}}
+\newcommand{\tf}{{C_c^\infty}}
+
+
+\def\llp{\mathopen{(\!(}}
+\def\llb{\mathopen{[\![}}
+\def\rrp{\mathopen{)\!)}}
+\def\rrb{\mathopen{]\!]}}
+
+
+%%%%%%%%Definitions from Lance %%%%%%%%%%%%%%%%
+
+\newcommand{\Hasse}{\operatorname{Hasse}}
+ %\newcommand{\diag}{\operatorname{diag}}
+ \newcommand{\spa}{\operatorname{span}}
+ \newcommand{\spec}{\operatorname{spec}}
+ \newcommand{\Stab}{\operatorname{Stab}}
+\newcommand{\m}{\operatorname{mod}}
+ \newcommand{\tr}{\operatorname{tr}}
+ \newcommand{\disc}{\operatorname{disc}}
+ \newcommand{\meas}{\operatorname{meas}}
+ \def\ve{\varepsilon}
+ \def\an{_{\text{aniso}}}
+ \def\gerg{\mathfrak{g}}
+\def\gerh{\mathfrak{h}}
+\def\gert{\mathfrak{t}}
+\def\gergbar{\overline{\mathfrak{g}}}
+\def\dgdot{d\dot{g}}
+\def\dmu{d\mu}
+\def\Qtilde{\widetilde{Q}}
+%\def\cA{\mathcal{A}}
+\def\C{\mathbb C}
+\def\R{\mathbb R}
+\def\N{\mathbb N}
+\def\Q{\mathbb Q}
+\def\Z{\mathbb Z}
+\def\A{\mathbb A}
+\def\Fp{\mathbb{F}_p}
+\def\Fq{\mathbb{F}_q}
+\def\Qp{\mathbb{Q}_p}
+\def\GL{\mathrm{GL}}
+\def\GLN{\mathrm{GL}_N}
+\def\GLn{\mathrm{GL}_n}
+\def\Lie{\mathrm{Lie}}
+%\def\SL2{\mathrm{SL}_2}
+%\def\Sp{\mathrm{Sp}}
+\def\sln{\mathfrak{sl}_n}
+\def\gln{\mathfrak{gl}_n}
+\def\sl{\mathfrak{sl}}
+\def\Gm{{\mathbb{G}_m}}
+\def\Grs{G_{\text{rss}}}
+\def\Gbar{\overline{G}}
+%\def\bG{\mathbb{G}}
+\def\bc{\boldsymbol{c}}
+%\def\bT{\mathbb{T}}
+\def\FpT{\mathbb{F}_p((T))}
+\def\Fbar{\overline{F}}
+\def\Aff{\mathbb{A}}
+\def\cci{C_c^\infty}
+\def\cO{\mathcal{O}}
+\def\cQbar{\overline{\mathcal{Q}}}
+\def\cQtilde{\widetilde{\mathcal{Q}}}
+\def\spn{\mathfrak{sp}_{2n}}
+\def\sp{\mathfrak{sp}}
+\def\cT{\mathcal{T}}
+\def\cL{\mathcal{L}}
+\def\cP{\mathcal{P}}
+\def\cN{\mathcal{N}}
+\def\cE{\mathcal{E}}
+\def\cF{\mathcal{F}}
+\def\cH{\mathcal{H}}
+\def\cR{\mathcal{R}}
+\def\cS{\mathcal{S}}
+\def\cQ{\mathcal{Q}}
+\def\cX{\mathcal{X}}
+\def\gO{\mathfrak{O}}
+\def\gp{\mathfrak{p}}
+\def\gP{\mathfrak{P}}
+\def\gq{\mathfrak{q}}
+\def\inv{^{-1}}
+
+% Defs from Hales
+
+\newcommand{\op}[1]{\operatorname{#1}}
+\newcommand{\ring}[1]{{\mathbb #1}}
+\def\rtie{\times}
+
+% More defs 
+
+\newcommand{\fG}{\mathfrak G}
+\newcommand{\fT}{\mathfrak T}
+
+%%%%%%%%%%%%% Theorem declarations %%%%%%%%%%%%%
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{theorem}[thm]{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+%\newtheorem{defn}[thm]{Definition}
+%\newtheorem{rem}[thm]{Remark}
+\newtheorem{prop}[thm]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{example}[thm]{Example}
+
+\title{Coefficients of Harish-Chandra's local character expansion are motivic}
+
+\author{Julia Gordon, Thomas Hales and Loren Spice}
+
+
+
+\begin{document}
+
+%\begin{abstract}  
+%\end{abstract}
+
+\maketitle
+
+\rightline{17 hours 54 minutes since the start}
+\section{Introduction}
+The present version of article is inspired by \cite{unsuccessful self-treatment of writer's block}. 
+ 
+We try to prove that the coefficients of Harish-Chandra's local character expansion are motivic functions of the parameters defining the group and the representation. 
+
+\section{Reductive groups}
+Define field extensions, fixed data, the cocycle space $Z$, and a family of reductive groups $G$ over $Z$ as in \cite{transfer transfer}. Define Haar measure on $G_z$ the same way as well.
+Will also use the term ``fixed choices'' in the same sense. 
+
+\section{Representations}
+We assume that $p$ is large. 
+Supercuspidal representations $\pi$ of $G_z$ are parametrized by J.-K. Yu's data 
+$(\bar G, \bar\phi, \pi_0, x)$, where $\bar G=(G^1, \dots G^d)$ is a sequence of twisted Levi subgroups with $G^d=G$, $\phi_i$ is a character of $G^i$, $\pi_0$ is a depth-zero supercuspidal representation of $G^0$, and $x$ is a point in the reduced building of $G$.
+Let us fix the depth of $\pi$. 
+
+The groups $G^i$ are encoded by appropriate  cocycle spaces $Z^i$.
+
+The representation $\pi_0$ is determined by its inducing datum: a parahoric subgroup $K^0$ and a representation $\rho_0$ of its reductive quotient $\fG^0$. 
+
+\subsection{Parahorics} Suppose the depth of the representation $\pi$ is fixed. Then there are finitely many points in the alcove that can arise in J.-K. Yu's construction. This list will become part of fixed choices. 
+
+  
+\subsection{Deligne-Lusztig representations} 
+For now, consider the case when $\rho_0$ is a Deligne-Luszting representation. 
+Then it is determined by an elliptic torus $\fT$ in $\fG$, which is determined by an element $w$ in the Weyl group of $\fG$, and a character $\chi$ of $\fT$.  
+The element $w$ becomes  part of the fixed choices.
+  
+The multiplicative characters $\phi_i$, as well as $\chi$, will play no role, so we will group representations into 
+families with the same $(\bar G, x, w)$. 
+
+Thus, fixed choices will determine: the root system of $G$, root systems of $G_i$, {\bf{hopefully}} the point $x$ and the data that determines the parahoric $K_0$, and an element $w$ that determines 
+$\fT$.  
+Every fixed choice gives a family of representations of each of the groups $G_z$, with $z\in Z$ -- the cocycle space determined by this fixed data.
+For a given fixed choice, we have the cocycle spaces $Z$ (determining $G$), and $Z^i$ (determining $G^i$), and from this we can reconstruct the representations. 
+Let $\cF_d$ be the set of fixed choices for fixed $d$.
+The elements of $\cF_d$ are tuples 
+$(X^\ast, X_\ast, \Phi, \Phi^\vee), \Sigma, (\Phi^i, {\Phi^\vee}^i)_{i=0}^d, \Sigma^i, x_0, \bar x, w)$, where 
+\begin{enumerate}
+\item  $(X^\ast, X_\ast, \Phi, \Phi^\vee)$  determines the absolute root datum of $G$, 
+\item $\Sigma$ is an enumerated Galois group (with a choice of inertia subgroup and a 
+generator of its cyclic quotient that gives the Galois group of the maximal unramified 
+subextension) of the Galois extension that splits $G$,
+\item  $(\Phi^i, {\Phi^\vee}^i, \Sigma^i)$ does the same for $G^i$. 
+\item  The point $x$ (along with some fixed $r$) determines the parahoric $K^0$.   
+\item $w$ determines  $\fT$. 
+\end{enumerate}
+
+We want to prove: 
+\begin{theorem} (Deligne-Lusztig case) Fix an element of $\cF_d$. 
+Then there is an associated cocycle space $Z\times Z^1\times \dots Z^d$, and a family of representations $\pi_{z_i}$ of $G_z$. 
+For $F\in \Loc_m$, every connected reductive group $G$ over $F$ appears as a member  of such  family for some fixed choice; 
+every supercuspidal representation of $G$ that has a Deligne-Luzstig depth-zero component 
+appears in the family of representations of $G_z$, and 
+the coefficients of Harish-Chandra's local character expansion are motivic functions of 
+$z, z_i$. 
+\end{theorem}
+
+General case: should include the decomposition of a general character near the identity into Deligne-Lusztig ones, and the parameters that account for this -- will probably be part of fixed choices. 
+
+\subsection{field-independent choices for the depth-zero data}
+
+
+\section{Asymptotic character formulae}
+\subsection{mock exponential maps}
+
+\subsection{asymptotic character expansion}
+Loren says:
+$$\Theta_\pi(\mexp(X))= \sum_{\cO\in \cO(X)} c_0\widehat\mu_{\cO},$$
+
+
+We will prove by induction
+\begin{theorem} The coefficients $c_{\cO}$ of this expansion are motivic functions of the parameters defining $G$, $\pi$ (as above) and $\mexp$. 
+\end{theorem}
+
+\begin{cor}
+Coefficients of Harish-Chandra local character expansion are motivic functions of the same thing.
+\end{cor}
+
+\section{Done!}
+
+\end{document}
+
+
+
+
+
