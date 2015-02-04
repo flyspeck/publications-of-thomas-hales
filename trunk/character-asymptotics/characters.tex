@@ -264,8 +264,12 @@ The present version of article is inspired by \cite{unsuccessful self-treatment 
 We try to prove that the coefficients of Harish-Chandra's local character expansion are motivic functions of the parameters defining the group and the representation. 
 
 \section{Reductive groups}
+\subsection{fixed choices and cocycle spaces}
 Define field extensions, fixed data, the cocycle space $Z$, and a family of reductive groups $G$ over $Z$ as in \cite{transfer transfer}. Define Haar measure on $G_z$ the same way as well.
 Will also use the term ``fixed choices'' in the same sense. 
+
+\subsection{nilpotent orbits}
+
 
 \section{Representations}
 We assume that $p$ is large. 
@@ -287,23 +291,24 @@ For now, consider the case when $\rho_0$ is a Deligne-Luszting representation.
 Then it is determined by an elliptic torus $\fT$ in $\fG$, which is determined by an element $w$ in the Weyl group of $\fG$, and a character $\chi$ of $\fT$.  
 The element $w$ becomes  part of the fixed choices.
   
-The multiplicative characters $\phi_i$, as well as $\chi$, will play no role, so we will group representations into 
-families with the same $(\bar G, x, w)$. 
+The multiplicative characters $\phi_i$, as well as $\chi$, will play no role, so we will group 
+representations into families with the same $(\bar G, x, w)$. 
 
-Thus, fixed choices will determine: the root system of $G$, root systems of $G_i$, {\bf{hopefully}} the point $x$ and the data that determines the parahoric $K_0$, and an element $w$ that determines 
+Thus, fixed choices determine: the root system of $G$, root systems of $G_i$, 
+the point $x$ that determines the parahoric $K_0$, and an element $w$ that determines 
 $\fT$.  
 Every fixed choice gives a family of representations of each of the groups $G_z$, with $z\in Z$ -- the cocycle space determined by this fixed data.
 For a given fixed choice, we have the cocycle spaces $Z$ (determining $G$), and $Z^i$ (determining $G^i$), and from this we can reconstruct the representations. 
 Let $\cF_d$ be the set of fixed choices for fixed $d$.
 The elements of $\cF_d$ are tuples 
-$(X^\ast, X_\ast, \Phi, \Phi^\vee), \Sigma, (\Phi^i, {\Phi^\vee}^i)_{i=0}^d, \Sigma^i, x_0, \bar x, w)$, where 
+$(X^\ast, X_\ast, \Phi, \Phi^\vee), \Sigma, (\Phi^i, {\Phi^\vee}^i)_{i=0}^d, \Sigma^i, x, w)$, where 
 \begin{enumerate}
 \item  $(X^\ast, X_\ast, \Phi, \Phi^\vee)$  determines the absolute root datum of $G$, 
 \item $\Sigma$ is an enumerated Galois group (with a choice of inertia subgroup and a 
 generator of its cyclic quotient that gives the Galois group of the maximal unramified 
 subextension) of the Galois extension that splits $G$,
 \item  $(\Phi^i, {\Phi^\vee}^i, \Sigma^i)$ does the same for $G^i$. 
-\item  The point $x$ (along with some fixed $r$) determines the parahoric $K^0$.   
+\item  The point $x$  determines the parahoric $K^0$.   
 \item $w$ determines  $\fT$. 
 \end{enumerate}
 
@@ -327,8 +332,15 @@ General case: should include the decomposition of a general character near the i
 \section{Asymptotic character formulae}
 
 \subsection{Depth-zero characters}
-Let us fix an element of the set of fixed choices $\cF$. 
-That determines the cocycle space $Z$ 
+\subsubsection{Deligne-Lusztig case} Let us fix an element of the set of fixed choices $\cF$. 
+That determines the cocycle space $Z$ whose elements give rise to the groups $G_z$. This fixed 
+choice also contains a point in the building of $G$ that gives rise to a maximal parahoric  $K^0$
+ with reductive quotient $\fG$, and an elliptic torus $\fT$ in $\fG$. 
+Given a cuspidal character $\chi$ of $\fT$, there is an associated irreducible Deligne-Lusztig representation $R_{\fT, \chi}^\fG$. 
+\begin{prop} There exists $m$ and constants $c_{\cO}$
+\end{prop}
+
+\subsubsection{The general case}
 
 \subsection{mock exponential maps}
 Need to have a definable set of parameters that give possible choices of the mock exponential map that we care about (a change of $\mexp$ can affect the coefficients a little). 
