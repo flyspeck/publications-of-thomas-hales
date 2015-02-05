@@ -293,8 +293,11 @@ The representation $\pi_0$ is determined by its inducing datum: a parahoric subg
 
 \subsection{Parahorics}
 
+\renewcommand\AA{\mathcal A}
+\newcommand\affW{{W_{\text{aff}}}}
 \newcommand\BB{\mathcal B}
-\newcommand\motB{\BB_{\text{mot}}}
+	\newcommand\motB{\BB_{\text{mot}}}
+\newcommand\bS{\boldmath S}
 \newcommand\Cent{C}
 \newcommand\dota{\cdot}
 \newcommand\field{F}
@@ -311,29 +314,25 @@ The representation $\pi_0$ is determined by its inducing datum: a parahoric subg
 \newcommand\loccit{\expandafter\cite\expandafter{\t@pic}}
 \makeatother
 
-Suppose that \(\mathcal R\) is a collection of positive real
-numbers.
 Suppose that \(G\) is \(\unfield\)-split.
-	\Lxxx{Is this enough to get a hyperspecial point?
-Maybe we need even \(\field\)-quasi-splitness for that.
-Anyway, even if we don't worry about hyperspecial points,
-then we still have some unpleasantness from replacing
-each \(\R/\Z\) by \(\R/e^{-1}\Z\), where \(e\) is the
-ramification degree of (the splitting field of) the
-corresponding root.}
+	\Lxxx{Without unramifiedness, we have some
+unpleasantness from replacing each \(\R/\Z\) by
+\(\R/e^{-1}\Z\), where \(e\) is the ramification degree of
+(the splitting field of) the corresponding root.}
 We put
 \[
-\motB(G) = (\R/\Z)^\Simple \times 2^W.
+\motB(G) = (\R/\Z)^\Simple \times 2^\affW.
 \]
-For any alcove \(C \subseteq \BB(G)\),
-we define a map \(\BB(G) \to \motB(G)\) as follows.
+If \(\bS\) is a maximal split torus in \(\bG\)
+and \(C\) is an alcove in \(\AA(S)\),
+then we define a map \(\BB(G) \to \motB(G)\) as follows.
 For \(x \in \BB(G)\), there is a unique point \(x'\) in the
 intersection with \(G\dota x\) of the closure of \(C\).
-Then we associate to \(x\) the pair \((r, S)\), where, for
+Then we associate to \(x\) the pair \((r, W')\), where, for
 each \(\alpha \in \Simple\), \(r_\alpha\) is the value at
 \(x\) of any affine root with gradient \(\alpha\),
-and \(S\) is the set of all those elements of \(W(G, S)\) that
-have a representative in \(N_G(S)\) fixing \(x'\).
+and \(W'\) is the set of all those elements of \(\affW(G, S)\) that
+fix \(x'\).
 
 Suppose the depth of the representation $\pi$ is fixed. Then there are finitely many points in the alcove that can arise in J.-K. Yu's construction. This list will become part of fixed choices. 
 
