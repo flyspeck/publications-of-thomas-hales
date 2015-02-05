@@ -258,7 +258,7 @@
 
 \maketitle
 
-\rightline{17 hours 54 minutes since the start}
+\rightline{-23.5 hours}
 \section{Introduction}
 The present version of article is inspired by \cite{unsuccessful self-treatment of writer's block}. 
  
@@ -275,11 +275,12 @@ For all $F\in \Loc_m$ with sufficiently large $m$,
 a point in $\NF_G^k(F)$ gives a tuple of $(N_i, \ff_i)_{i=1}^k$ with $N_i$ representing distinct nilpotent orbits in $\fg(F)$, with $\ff_i$ being their corresponding facets in Barbasch-Moy classification. We also have a family of definable test functions $1_{\Upsilon}$ for 
 $\Upsilon=(N, \ff)\in \NF_G^k$. 
 
-\subsection{orbits with a fixed semisimple part} 
+%\subsection{orbits with a fixed semisimple part} 
 We shall also need to consider the following situation. 
 Let $G^0$ be a twisted Levi in $G$. 
 Let $X_0$ be a central element in $\fg^0=\Lie(G^0)$. 
-Then we will need a construction similar to the above for the set of $G^0$-orbits of elements whose semisimple part is $X_0$. 
+Then we will need a construction similar to the above for the set of $G^0$-orbits of elements whose semisimple part is $X_0$. These are in bijection with the nilpotent orbits in $G^0$ (see below). 
+Let $\NF_{G^0}^k$ be the corresponding parametrizing set for these orbits. 
 
 \section{Representations}
 We assume that $p$ is large. 
@@ -382,8 +383,8 @@ Then there is an associated cocycle space $Z\times Z^1\times \dots Z^d$, and a f
 For $F\in \Loc_m$, every connected reductive group $G$ over $F$ appears as a member  of such  family for some fixed choice; 
 every supercuspidal representation of $G$ that has a Deligne-Luzstig depth-zero component 
 appears in the family of representations of $G_z$, and 
-the coefficients of Harish-Chandra's local character expansion are motivic functions of 
-$z, z_i$. 
+the coefficients of Harish-Chandra's local character expansion are motivic functions on 
+$Z\times Z^1\times \dots \times Z^d\times \NF_G^k$, where $k$ is the number of nilpotent orbits in $\fg_z$. 
 \end{theorem}
 
 General case: should include the decomposition of a general character near the identity into Deligne-Lusztig ones, and the parameters that account for this -- will probably be part of fixed choices. 
@@ -400,8 +401,8 @@ General case: should include the decomposition of a general character near the i
 That determines the cocycle space $Z$ whose elements give rise to the groups $G_z$. This fixed 
 choice also contains a point in the building of $G$ that gives rise to a maximal parahoric  $K^0$
  with reductive quotient $\fG$, and an elliptic torus $\fT$ in $\fG$. 
-Given a cuspidal character $\chi$ of $\fT$, there is an associated irreducible Deligne--Lusztig representation $R_{\fT, \chi}^\fG$. 
-\begin{prop} There exists $m$ and constants $c_{\cO}$
+Given a cuspidal character $\chi$ of $\fT$, there is an associated irreducible Deligne--Lusztig representation $R_{\fT, \chi}^\fG$. Let $\Theta_{\fT, \chi, x}$ be the character of the associated depth-zero representation of $G$. 
+\begin{prop} There exists $m$ and motivic functions $C_{\cO}$ on $\NF_{G}^k$, such that 
 \end{prop}
 
 \subsubsection{The general case}
