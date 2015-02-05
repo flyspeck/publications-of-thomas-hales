@@ -294,10 +294,10 @@ The representation $\pi_0$ is determined by its inducing datum: a parahoric subg
 \subsection{Parahorics}
 
 \renewcommand\AA{\mathcal A}
-\newcommand\affW{{W_{\text{aff}}}}
+\newcommand\affW{W_{\text{aff}}}
 \newcommand\BB{\mathcal B}
 	\newcommand\motB{\BB_{\text{mot}}}
-	\newcommand\motBwith[1]{\BB_{\text{mot, }#1}}
+	\newcommand\motBpin{\BB_{\text{mot, \(S\), \(C\)}}}
 \newcommand\bS{\mathbf S}
 \newcommand\Cent{C}
 \newcommand\dota{\cdot}
@@ -321,38 +321,35 @@ Let \(\bS\) be a maximal split torus in  \(\bG\),
 and \(C\) an alcove in \(\AA(S)\).
 Let \(\mathcal F(C)\) be the set of (open) facets of
 (the closure of) \(C\).
-Write \(\affW_C(G, S)\) for the (finite) set of elements
+Write \(\affW(G, S; C)\) for the (finite) set of elements
 \(w \in \affW(G, S)\) such that \(w\dota C\) is adjacent to
 \(C\).
 We put
 \[
-\motBwith{S, C}(G)
+\motBpin(G)
 = \Bigl(
 	\prod_{\alpha \in \Phi(\bG, \bS)} \R/e_\alpha^{-1}\Z
 \Bigr) \times 
-	2^{\affW_C(G, S)} \times
+	2^{\affW(G, S; C)} \times
 	\mathcal F(C),
 \]
-and define a map \(\BB(G) \to \motBwith{S, C}(G)\) as follows.
+and define a map \(\BB(G) \to \motBpin(G)\) as follows.
 For any \(x \in \BB(G)\), there is a unique point \(x'\) in the
 intersection with \(G\dota x\) of the closure of \(C\).
 	\citeme
-Then we associate to \(x\) the triple \((r, W', F)\),
-where
+Then we associate to \(x\) the triple \((r, W', F)\), where
 	\begin{itemize}
 	\item for each \(\alpha \in \Phi(\bG, \bS)\),
 \(r_\alpha\) is the value at \(x\) of any affine root with
 gradient \(\alpha\),
 		\citeme
 	\item \(W'\) is the set of all those elements of
-\(\affW(G, S)\) that fix \(x'\),
+\(\affW(G, S)\) that fix \(x'\) (hence lie in \(\affW(G, S; C)\)),
 and	\item \(F\) is the facet of \(C\) containing \(x'\).
 	\end{itemize}
 
 Suppose the depth of the representation $\pi$ is fixed. Then there are finitely many points in the alcove that can arise in J.-K. Yu's construction. This list will become part of fixed choices. 
 
-
-  
 \subsection{Deligne-Lusztig representations} 
 For now, consider the case when $\rho_0$ is a Deligne-Luszting representation. 
 Then it is determined by an elliptic torus $\fT$ in $\fG$, which is determined by an element $w$ in the Weyl group of $\fG$, and a character $\chi$ of $\fT$.  
