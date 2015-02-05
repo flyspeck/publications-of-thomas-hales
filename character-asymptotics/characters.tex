@@ -297,7 +297,7 @@ The representation $\pi_0$ is determined by its inducing datum: a parahoric subg
 \newcommand\affW{{W_{\text{aff}}}}
 \newcommand\BB{\mathcal B}
 	\newcommand\motB{\BB_{\text{mot}}}
-\newcommand\bS{\boldmath S}
+\newcommand\bS{\mathbf S}
 \newcommand\Cent{C}
 \newcommand\dota{\cdot}
 \newcommand\field{F}
@@ -316,25 +316,37 @@ The representation $\pi_0$ is determined by its inducing datum: a parahoric subg
 \newcommand\loccit{\expandafter\cite\expandafter{\t@pic}}
 \makeatother
 
-Suppose that \(G\) is \(\unfield\)-split.
-	\Lxxx{Without unramifiedness, we have some
-unpleasantness from replacing each \(\R/\Z\) by
-\(\R/e^{-1}\Z\), where \(e\) is the ramification degree of
-(the splitting field of) the corresponding root.}
+Let \(\bS\) be a maximal split torus in  \(\bG\),
+and \(C\) an alcove in \(\AA(S)\).
+Let \(\mathcal F(C)\) be the set of (open) facets of
+(the closure of) \(C\).
+Write \(\affW_C(G, S)\) for the (finite) set of elements
+\(w \in \affW(G, S)\) such that \(w\dota C\) is adjacent to
+\(C\).
 We put
 \[
-\motB(G) = (\R/\Z)^\Simple \times 2^\affW.
+\motB_{S, C}(G)
+= \Bigl(
+	\prod_{\alpha \in \Phi(\bG, \bS)} \R/e_\alpha^{-1}\Z
+\Bigr) \times 
+(\R/\Z)^\Simple \times
+	2^{\affW_C(G, S)} \times
+	\mathcal F(C),
 \]
-If \(\bS\) is a maximal split torus in \(\bG\)
-and \(C\) is an alcove in \(\AA(S)\),
-then we define a map \(\BB(G) \to \motB(G)\) as follows.
-For \(x \in \BB(G)\), there is a unique point \(x'\) in the
+and define a map \(\BB(G) \to \motB_{S, C}(G)\) as follows.
+For any \(x \in \BB(G)\), there is a unique point \(x'\) in the
 intersection with \(G\dota x\) of the closure of \(C\).
-Then we associate to \(x\) the pair \((r, W')\), where, for
-each \(\alpha \in \Simple\), \(r_\alpha\) is the value at
-\(x\) of any affine root with gradient \(\alpha\),
-and \(W'\) is the set of all those elements of \(\affW(G, S)\) that
-fix \(x'\).
+	\citeme
+Then we associate to \(x\) the pair \((r, W', F)\),
+where
+	\begin{itemize}
+	\item for each \(\alpha \in \Phi(\bG, \bS)\),
+\(r_\alpha\) is the value at \(x\) of any affine root with
+gradient \(\alpha\),
+	\item \(W'\) is the set of all those elements of
+\(\affW(G, S)\) that fix \(x'\),
+and	\item \(F\) is the facet of \(C\) containing \(x'\).
+	\end{itemize}
 
 Suppose the depth of the representation $\pi$ is fixed. Then there are finitely many points in the alcove that can arise in J.-K. Yu's construction. This list will become part of fixed choices. 
 
@@ -464,12 +476,18 @@ character expansion of \(\pi^0\).
 argument), and \(\NFTorbit\) stands for the `normalised' FT
 of an orbital integral (by the square roots of the Weyl
 discriminants of its argument \emph{and} the `orbiting'
-element).  In \cite{spice:coefficients}, the `peeling'
-process from \(\pi\) to \(\pi'\) keeps the multiplicative
-character \(\phi'\) on \(\pi'\), so that we would expect our
-\(\pi_0\) to be twisted by \(\prod_{i = 0}^{d - 1} \phi_i\)
-and our \(\cO^{G^0}(0)\) to be replaced by
-\(\cO^{G^0}(\Gamma)\);
+element).
+Unfortunately, the current notation for \(\Nchar\) conflicts
+with the notation for a root system.
+Notice that the normalisation for the FT of a
+\emph{nilpotent} orbital integral involves only the
+discriminant of its argument.
+
+In \cite{spice:coefficients}, the `peeling' process from
+\(\pi\) to \(\pi'\) keeps the multiplicative character
+\(\phi'\) on \(\pi'\), so that we would expect our \(\pi_0\)
+to be twisted by \(\prod_{i = 0}^{d - 1} \phi_i\) and our
+\(\cO^{G^0}(0)\) to be replaced by \(\cO^{G^0}(\Gamma)\);
 but these corrections (I think) cancel each other out,
 leaving us with the tidy statement above.}
  
