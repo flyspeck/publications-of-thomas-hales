@@ -306,6 +306,8 @@ The representation $\pi_0$ is determined by its inducing datum: a parahoric subg
 	\newcommand\citeme{\Lxxx{Cite me!}}
 	\newcommand\refme{\Lxxx{Reference me!}}
 \newcommand\muhat{\widehat\mu}
+\newcommand\Nchar{\Phi}
+\newcommand\NFTorbit{\widehat O}
 \newcommand\Simple{\Delta}
 \newcommand\st{\mathbin:}
 
@@ -384,11 +386,11 @@ General case: should include the decomposition of a general character near the i
 \section{Asymptotic character formulae}
 
 \subsection{Depth-zero characters}
-\subsubsection{Deligne-Lusztig case} Let us fix an element of the set of fixed choices $\cF$. 
+\subsubsection{Deligne--Lusztig case} Let us fix an element of the set of fixed choices $\cF$. 
 That determines the cocycle space $Z$ whose elements give rise to the groups $G_z$. This fixed 
 choice also contains a point in the building of $G$ that gives rise to a maximal parahoric  $K^0$
  with reductive quotient $\fG$, and an elliptic torus $\fT$ in $\fG$. 
-Given a cuspidal character $\chi$ of $\fT$, there is an associated irreducible Deligne-Lusztig representation $R_{\fT, \chi}^\fG$. 
+Given a cuspidal character $\chi$ of $\fT$, there is an associated irreducible Deligne--Lusztig representation $R_{\fT, \chi}^\fG$. 
 \begin{prop} There exists $m$ and constants $c_{\cO}$
 \end{prop}
 
@@ -399,14 +401,15 @@ Need to have a definable set of parameters that give possible choices of the moc
 
 \subsection{asymptotic character expansion}
 
-Yu \cite{yu:supercuspidal} associates to a datum
-\((\vec G, \vec\phi, \pi_0)\) satisfying certain conditions
-a supercuspidal representation \(\pi\).
+Yu associates to a datum \((\vec G, \vec\phi, \pi_0)\)
+satisfying certain conditions
+\topcite{yu:supercuspidal}*{p.~590, \textbf{D1}--\textbf{D5}}
+a supercuspidal representation \(\pi\) \loccit*{\S4}.
 \textit{Via} the Moy--Prasad theory
 \cite{moy-prasad:jacquet}*{Theorem 6.8}
 (and \cite{yu:supercuspidal}*{Lemma 3.3}), there is
 associated to the depth-0 representation \(\pi_0\) a vertex
-\(x_0\) of \(\BB(\bG^0, \field)\).
+\(x_0\) of \(\BB(G^0)\).
 Kim and Murnaghan \topcite{jkim-murnaghan:gamma-asymptotic}
 associate to the strongly good, positive \(G\)-datum
 \((\vec G, x_0, \vec\phi)\) \loccit*{Definition 4.1.1, 3}
@@ -417,9 +420,9 @@ orbits of \(G\) on \(\fg\) whose closures contain \(\Gamma\)
 \((c_\cO(\pi))_{\cO \in \cO^G(\Gamma)}\) of complex numbers
 such that
 \[
-\Theta_\pi(\mexp(Y))
+\Nchar_\pi(\mexp(Y))
 = \sum_{\cO \in \cO^G(\Gamma)}
-	c_\cO(\pi)\muhat^G_\cO(Y)
+	c_\cO(\pi)\NFTorbit^G_\cO(Y)
 \]
 for \(Y \in \fg_{r/2}\), where \(r\) is the minimal depth of
 \(\pi\)
@@ -433,11 +436,15 @@ The following theorem appears in \cite{spice:coefficients}.
 \begin{theorem}
 We have that
 \[
-\Theta_{\pi_0}(\mexp(Y))
+\Nchar_{\pi_0}(\mexp(Y))
 = \sum_{\cO_0 \in \cO^{G^0}(0)}
-	c_{\Ad(G)(\Gamma + \cO^0)}(\pi)\muhat^{G^0}_{\cO^0}(Y)
+	c_{\Ad(G)(\Gamma + \cO^0)}(\pi)\NFTorbit^{G^0}_{\cO^0}(Y)
 \]
 for \(Y \in \fg^0_{0+}\).
+	\Lxxx{Check whether this should be at depth \(r+\)
+(to avoid worries about twisting by characters).  I think
+that it is taken care of by working with \(\cO^{G^0}(0)\)
+instead of \(\cO^{G^0}(\Gamma)\).}
 \end{theorem}
 
 That is, the coefficients in the local character expansion
@@ -452,6 +459,19 @@ surjective \cite{hc:queens}*{Lemma 2.8},
 so that the asymptotic character expansion of
 \(\pi\) contains precisely the same information as the local
 character expansion of \(\pi^0\).
+\Lxxx{Here, \(\Nchar\) stands for the `normalised' character
+(by the square root of the Weyl discriminant of its
+argument), and \(\NFTorbit\) stands for the `normalised' FT
+of an orbital integral (by the square roots of the Weyl
+discriminants of its argument \emph{and} the `orbiting'
+element).  In \cite{spice:coefficients}, the `peeling'
+process from \(\pi\) to \(\pi'\) keeps the multiplicative
+character \(\phi'\) on \(\pi'\), so that we would expect our
+\(\pi_0\) to be twisted by \(\prod_{i = 0}^{d - 1} \phi_i\)
+and our \(\cO^{G^0}(0)\) to be replaced by
+\(\cO^{G^0}(\Gamma)\);
+but these corrections (I think) cancel each other out,
+leaving us with the tidy statement above.}
  
 \begin{theorem} The coefficients $c_{\cO}$ of this expansion are motivic functions of the parameters defining $G$, $\pi$ (as above) and $\mexp$. 
 \end{theorem}
