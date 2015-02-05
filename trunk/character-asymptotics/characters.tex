@@ -297,6 +297,7 @@ The representation $\pi_0$ is determined by its inducing datum: a parahoric subg
 \newcommand\affW{{W_{\text{aff}}}}
 \newcommand\BB{\mathcal B}
 	\newcommand\motB{\BB_{\text{mot}}}
+	\newcommand\motBwith[1]{\BB_{\text{mot, }#1}}
 \newcommand\bS{\mathbf S}
 \newcommand\Cent{C}
 \newcommand\dota{\cdot}
@@ -325,24 +326,24 @@ Write \(\affW_C(G, S)\) for the (finite) set of elements
 \(C\).
 We put
 \[
-\motB_{S, C}(G)
+\motBwith{S, C}(G)
 = \Bigl(
 	\prod_{\alpha \in \Phi(\bG, \bS)} \R/e_\alpha^{-1}\Z
 \Bigr) \times 
-(\R/\Z)^\Simple \times
 	2^{\affW_C(G, S)} \times
 	\mathcal F(C),
 \]
-and define a map \(\BB(G) \to \motB_{S, C}(G)\) as follows.
+and define a map \(\BB(G) \to \motBwith{S, C}(G)\) as follows.
 For any \(x \in \BB(G)\), there is a unique point \(x'\) in the
 intersection with \(G\dota x\) of the closure of \(C\).
 	\citeme
-Then we associate to \(x\) the pair \((r, W', F)\),
+Then we associate to \(x\) the triple \((r, W', F)\),
 where
 	\begin{itemize}
 	\item for each \(\alpha \in \Phi(\bG, \bS)\),
 \(r_\alpha\) is the value at \(x\) of any affine root with
 gradient \(\alpha\),
+		\citeme
 	\item \(W'\) is the set of all those elements of
 \(\affW(G, S)\) that fix \(x'\),
 and	\item \(F\) is the facet of \(C\) containing \(x'\).
