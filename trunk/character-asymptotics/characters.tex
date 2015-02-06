@@ -327,13 +327,13 @@ The representation $\pi_0$ is determined by its inducing datum: a parahoric subg
 \newcommand\loccit{\expandafter\cite\expandafter{\t@pic}}
 \makeatother
 
-Let \(\bS\) be a maximal split torus in \(\bG\).
+Let \(\bS\) be a maximal split torus in \(\bG\),
 %There is a torus \(\bS^\sharp\) in \(C_\bG(\bS)\) such that
 %\(\bS \times_\field \unfield\) is a maximal \(\unfield\)-split
 %torus in \(\bG \times_\field \unfield\).
 %Then \(\AA(\bS, \field)\) embeds naturally in
 %\(\AA(\bS^\sharp, \unfield)\).
-Let \(C\) be an alcove in \(\AA(\bS, \field)\).
+and \(C\) an alcove in \(\AA(S)\).
 %and \(C^\sharp\) an alcove in \(\AA(\bS^\sharp, \unfield)\)
 %containing \(C\).
 Write \(\affW(G, S; C)\) for the (finite)
@@ -360,7 +360,8 @@ for which
 \(\psi \ge \psi_\alpha + (r - t_\alpha)\),
 where \(\alpha = \dot\psi\) is the gradient of \(\psi\)
 and \(\psi_\alpha\) is the smallest affine root with
-that gradient that is positive on \(C\);
+that gradient that is positive on \(C\)
+\topcite{moy-prasad:k-types}*{\S2.5};
 and put
 \[
 \fg_{\xi, r}
@@ -370,8 +371,17 @@ and put
 G_{\xi, r}
 = \langle
 	\Cent_G(S)_r, U_\psi\st \psi \in \Psi(\xi, r)
-\rangle.
+\rangle
 \]
+\loccit*{\S2.4}.
+	\Lxxx{Be careful with the MP references (in this
+case, to the definitions of `affine root' and of the root
+subgroup associated to an affine root); they are defined
+over \(\unfield\).  I \emph{think} that the statement is
+true anyway; or we could work over \(\unfield\) and then
+perform Galois descent
+(which would require changing the definition of
+\(\motB(G)\)).}
 Also, put
 \[
 \stab_G(\xi) \ldef \lsub{S, C}{\stab_G(\xi)}
@@ -387,8 +397,8 @@ Now we define a map
 \(\BB(G) \to \lsub{S, C}\motB(G)\),
 as follows.
 For any \(x \in \BB(G)\), there is a unique point \(x'\) in the
-intersection with \(G\dota x\) of the closure of \(C\).
-	\citeme
+intersection with \(G\dota x\) of the closure of \(C\)
+	\cite{bruhat-tits:reductive-groups-1}*{Corollaire 2.1.6}.
 Say that \(g \in G\) is such that \(g\dota x = x'\).
 We associate to \(x\) the pair
 \(\xi \ldef \xi_{S, C}(x) = (t, W')\), where
@@ -404,9 +414,11 @@ Note that
 and (if \(r \ge 0\))
 \(G_{\xi, r} = G_{x', r} = \Int(g\inv)G_{x, r}\)
 for all \(r \in \R\);
-	\citeme
-and \(\stab_G(\xi) = \stab_G(x') = \Int(g\inv)\stab_G(x)\).
-	\citeme
+	\Lxxx{Cite MP (or a non-quasi-split generalisation)
+for parahoric subgroups.}
+and \(\stab_G(\xi) = \stab_G(x') = \Int(g\inv)\stab_G(x)\)
+	\cite{bruhat-tits:reductive-groups-2}*
+		{Proposition 4.6.28(ii) and \S5.1.31}.
 
 Suppose that \(\bS'\) is another maximal split torus in
 \(\bG\), and \(C'\) is a chamber in \(\AA(S')\).
@@ -416,7 +428,8 @@ There exist elements \(g \in G\) such that
 \quad\text{and}\quad
 g\dota C = C';
 \]
-	\citeme
+	\cite{bruhat-tits:reductive-groups-1}*
+		{Corollaires 2.3.7(ii) and 2.3.3}
 and, for any such element, conjugation induces a root-system
 isomorphism
 \(\Root(\bG, \bS) \to \Root(\bG, \bS')\)
@@ -431,8 +444,9 @@ If the bijection carries \(\xi \in \lsub{S, C}\motB(G)\) to
 %\begin{align*}
 \lsub{S', C'}\fg_{\xi', r}
 %& {}
-= \Ad(g)\lsub{S, C}\fg_{\xi, r} \\
-\lsub{S', C'}G_{\xi', r}
+= \Ad(g)\lsub{S, C}\fg_{\xi, r}
+% \\
+%\lsub{S', C'}G_{\xi', r}
 %& {}= \Int(g)\lsub{S, C}G_{\xi, r} \\
 %\intertext{(if \(r \ge 0\)) and}
 %\lsub{S', C'}\stab_G(\xi')
