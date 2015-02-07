@@ -5,23 +5,20 @@
 % XX Issues: 
 % E as unramified extension, E as splitting field.
 % Harish-Chandra descent in pos. char.
-% nonstandard endoscopy.
 % group transfer factor
 % group transfer factor tamely ram. char trivial on top unipo
 % Fix theorem numbering by section.
-% Measure on unipotent by exponentiation nilpotent?
 % Mock exp. vs no mock.
-% Simplify D_l indicator functions as a product.
 % Explain relation of Delta, Delta_loc, Langlands & Shelst do
 % L-embedding case.
-% \lambda' in Lambda(F_2) -> lambda_2 in Lambda(F_2), but then double index.
 % Waldspurger cited once.
+% More precise ref for [Cluckers-Gordon-Halupczok] linear dependence
 
 % Notation:
 % Zent = Center
 % Norm = Normalizer
 % Topu = Topological Unipotent
-% Rad(B) = Nilpotent radical of reductive group.
+% R_u(B) = Unipotent radical of reductive group.
 
 \documentclass[12pt]{amsart}
 \usepackage{amssymb,amscd,amsmath,amsthm,color}
@@ -1109,14 +1106,14 @@ definable sets $D_{j,{\rom{1}}}$ and $D_{j,\rom{3}}$:
 \Delta_0 = \left(\sum_{j_1=0}^{k-1} e^{2\pi i j_1/k} 1_{D_{j_1,{\rom{3}}}}\right)
 \left(\sum_{j_2=0}^{k-1} e^{2\pi i j_2/k} 1_{D^{12}_{j_2,{\rom{1}}}}\right)
 \left(\sum_{j_3=0}^{k-1} e^{-2\pi i j_3/k} 1_{D^{34}_{j_3,{\rom{1}}}}\right).
-%\sum_{l=0}^k e^{2\pi i l/k}1_{D_l }.
+%\sum_{j=0}^k e^{2\pi i j/k}1_{D_j }.
 \]
 The
 subscripts
 correspond to the Roman numerals $\rom1$ and $\rom3_1$ in the
 Langlands-Shelstad paper.
-%Here, $D_l$ is the definable set on which $\Delta_0$ takes the value
-%$e^{2\pi i l/k}$.  
+%Here, $D_j$ is the definable set on which $\Delta_0$ takes the value
+%$e^{2\pi i j/k}$.  
 Typically, constructible functions have integer
 coefficients, but there is no harm in extending scalars to $\ring{C}$
 to allow the given roots of unity.
@@ -1259,24 +1256,24 @@ above, for $j\in \ring{Z}$, and for a definable parameter space of
 enumerated cocycles $c(\sigma)$ with values in $T(L)$, there is a
 definable set
 \[
-\langle c(\sigma),\kappa_T\rangle_l
+\langle c(\sigma),\kappa_T\rangle_j
 \]
 of all cocycles such that the Tate-Nakayama pairing of the cocycle with
-$\kappa_T$ has value $e^{2\pi l/k}$.  We define $D_{l,\rom1}(X_H,X_G)$ to
+$\kappa_T$ has value $e^{2\pi j/k}$.  We define $D_{j,\rom1}(X_H,X_G)$ to
 be
 \[
-\langle \lambda(T_{sc}),\kappa_{T_{sc}}\rangle_l
+\langle \lambda(T_{sc}),\kappa_{T_{sc}}\rangle_j
 \]
 
 Similarly, we may form an element $\kappa_U$ (the image of
 $(\kappa_T,\kappa_{\bar T})$ in $X^*(U)$).  We let
 \[
-D_{l,\rom{3}}(X_H,X_G,\bar X_H,\bar X_G)
+D_{j,\rom{3}}(X_H,X_G,\bar X_H,\bar X_G)
 \]
  be the definable set
 \[
 \langle \op{inv}(X_H,X_G,\bar
-X_H,\bar X_G),\kappa_{U}\rangle_l
+X_H,\bar X_G),\kappa_{U}\rangle_j
 \]
 Combined with our earlier definitions, this completes the definition
 of the Lie algebra Langlands-Shelstad transfer factor as a
@@ -1420,7 +1417,7 @@ We use the following lemma based on \cite[Th 4.4.4]{CGH}.
 \end{proof}
 
 
-We can actually show that the bound $a_0$ in the previous corollary
+We can show that the bound $a_0$ in the Corollary~\ref{cor:12}
 can be chosen uniformly in the following sense.
 
 \begin{thm}\label{thm:uniform}
@@ -1493,7 +1490,7 @@ Let $g:P\to \Lambda$ be a definable morphism between
   \Loc_{m}$ such that $F_1$ and and $F_2$ have isomorphic residue
   fields, the following holds: if for each $\lambda\in \Lambda({F_1})$, the tuple of
   functions $\bf_{\lambda,F_1}$ is linearly dependent, then then also for each
-  $\lambda'\in \Lambda({F_2})$, the tuple of functions $\bf_{\lambda',F_2}$ is linearly
+  $\lambda_2\in \Lambda({F_2})$, the tuple of functions $\bf_{\lambda_2,F_2}$ is linearly
   dependent.
 \end{theorem}
 
@@ -1519,22 +1516,22 @@ We need an asymptotic variant of the previous theorem.
   isomorphic residue fields, the following holds: if for each
   $\lambda\in \Lambda({F_1})$, the tuple of functions
   $\bf_{\lambda,F_1}$ is $a_0$-asymptotically linearly dependent, then
-  then also for each $\lambda'\in \Lambda({F_2})$, the tuple of
-  functions $\bf_{\lambda',F_2}$ is $a_0$-asymptotically linearly
+  then also for each $\lambda_2\in \Lambda({F_2})$, the tuple of
+  functions $\bf_{\lambda_2,F_2}$ is $a_0$-asymptotically linearly
   dependent.
 \end{theorem}
 
 \begin{proof} We adapt the proof in \cite{CGH2}.
-We may replace $f_i$ with $f_i 1_P$ on $P'\times\ring{Z}$ to reduce
+We may replace the components $f_i$ of $\bf$ with $f_i 1_P$ on $P'\times\ring{Z}$ to reduce
 to the case $P=P'\times\ring{Z}$.  We may reduce asymptotic linear
 dependence to the identical vanishing of a determinant.  
 Let 
 \[
 S = \{(\lambda,a,X_1,\ldots,X_r)\mid (X_1,a),\ldots,(X_r,a)\in P\times_\Lambda
-P\times_\Lambda\cdots\times_\Lambda 
-P,~X_i\mapsto \lambda\} \subset \Lambda\times\ring{Z}\times P^r.
+\cdots\times_\Lambda 
+P,~X_i\mapsto \lambda\} \subset \Lambda\times\ring{Z}\times P^{'r}.
 \]
-We have a constructible function $d$ on $\Lambda\times\ring{Z}\times P^r$
+We have a constructible function $d$ on $\Lambda\times\ring{Z}\times P^{'r}$
 given by the indicator function of $S$ times
 \[
 (\lambda,a,X_1,\ldots,X_r)\mapsto 
@@ -1550,7 +1547,7 @@ the zero locus of $d$, as in \cite{CGH1}.
 Let $F_1,F_2\in\Loc_m$ have isomorphic residue fields.  Choose any
 $a_0\in\ring{Z}$.  Assume that for all $\lambda\in \Lambda(F_1)$, the
 tuple of functions $\bf_{\lambda,F_1}$ is $a_0$-asymptotically
-linearly dependent.  Then $d_{F_1}$ vanishes identically for each
+linearly dependent.  Then the determinant $d_{F_1}$ vanishes identically for each
 element of $A:=\{(\lambda,a)\mid a\ge a_0\}$.  The set $A$ is
 definable.  Then $\locus{d}_{F_1}$ is zero on $A$.  By
 Corollary~\ref{cor:12}, $\locus{d}_{F_2}$ is zero on $A$.  Following
@@ -1561,7 +1558,7 @@ that $\bf_{\lambda,F_2}$ is $a_0$-asymptotically linearly dependent.
 
 
 
-\section{Smooth endoscopic matching}
+\section{Endoscopic matching of smooth functions}
 
 
 \subsection{Construction of motivic Shalika germs}\label{sec:msg}
@@ -1573,7 +1570,7 @@ orbits can vary according to the nonarchimedean field $F$ and the
 cocycle $z\in Z(F)$.  Since we cannot fix $k$ in advance, this
 complicates matters, and we give a $k$-tuple of constructible
 ``Shalika germs'' for each $k$.  When, for a given nonarchimedean
-field, $k$ is larger than the actual number of nilpotent orbits, the
+field, $k$ is larger than the actual number of nilpotent orbits, a
 set $\Y$ of auxiliary parameters is empty, and the construction yields
 nothing.  When $k$ is smaller than the actual number of nilpotent
 orbits, we obtain an incomplete collection of germs.
@@ -1639,44 +1636,10 @@ triangular with nonzero diagonal entries.  We obtain the Shalika germ
 expansion in its usual form.
 \end{proof}
 
-\subsection{Choices and strategy}
+\subsection{Strategy}\label{sec:strategy}
 
-We will invoke Theorem~\ref{thm:cgh-asymp} a finite number of times
-for different ($r$-tuples of) constants $k$, $k'$, $\s$, $\s'$.  These
-constants as well as $r$-tuples (with $r$ bounded) of these constants
-range over a finite set of possibilities.  For instance, $k'$ is
-bounded above by the number of nilpotent conjugacy classes in $\fh$.
-Corollary~\ref{thm:nilbound} gives a constant $k'_{\op{max}}$ such
-that for all nonarchimedean fields of sufficiently large residue
-characteristic, the number of nilpotent conjugacy classes is at most
-$k'_{\op{max}}$.  So $0\le k'\le k'_{\op{max}}$.  We can arrange so
-that the bound $k'_{\op{max}}$ depends only on fixed choices such as
-the root data for the endoscopic group, and not on the nonarchimedean
-field.  Similarly, each component of $\s'$ is bounded by the number of
-parahoric subgroups up to conjugacy, so that $\s'$ is constrained to
-run over finitely many possibilities (for each fixed choice of root
-data). Recall that $m$ is the natural number that we use as a lower bound
-in Theorem~\ref{thm:cgh-asymp}
-on the residual characteristic in $\Loc_m$ .
-By invoking the theorem a finite number of times, we may pick a
-single natural numbers $m$ that works in the theorem in all cases by taking the
-maximum of the natural numbers obtained in the finitely many separate
-cases.  Let $m$ be a natural number that works for all $k,k',\s,\s'$
-(keeping the other choices fixed).
-
-Let $F_2\in\op{Loc}_m$.  Choose a second field $F_1\in \op{Loc}_m$ that
-has characteristic zero and a residue field isomorphic to that of
-$F_2$.
-
-We have made several choices.  These choices are part of a longer
-sequence of choices that must be made in the correct order.  We have
-already picked root data for $G^{**}$ and $H^{**}$ with all the
-associated fixed choices $\Sigma,\cF,\ldots$.  We have selected group
-and an endoscopic group $(G,H)_{/Z}$ over a cocycle space.  We have
-bounded various discrete parameters $r,k,k',\s,\s'$ to lie in a finite
-set; and we have picked $m$, $F_1$, and $F_2$.  To complete the
-sequence of choices, we will pick the particular values of
-$r,k,k',\s,\s'$ among the finite set of possibilities.
+We now prepare for the proof of Theorem~\ref{thm:local}.  This is the most intricate
+proof in the paper.  It will occupy Subsections~\ref{sec:strategy} through \ref{sec:emsg}.
 
 Let $X_H,X_G,\bar X_H,\bar X_G$ be parameters that appear in the
 transfer factor.  As described above, we have invariant motivic 
@@ -1696,7 +1659,6 @@ orbital integrals on $\fh$ by
 SO(X_H,f^H) = \int_{x\in O(X_H)} f^H (x)\,d\mu^\reg_H,
 \end{equation}
 where $f^H$ is a constructible motivic function on $\fh$.
-
 
 Waldspurger has proved that the germs of $O^\kappa$ are linear
 combinations of the germs of $SO$ in Equation~\ref{eqn:stable} when
@@ -1733,78 +1695,11 @@ quasi-split inner form is
 nonzero.  Thus, we are able to avoid the bad situation where one of
 the factors vanishes identically.  This works.
 
-\subsection{Endoscopic matching of Shalika germs}
-
-We change notation slightly to let $Z^1$ denote the
-cocycle space.  For each $r\in\ring{N}$, let $Z^r$ be the definable
-set of $r$-tuples $(z_1,\ldots,z_r)$, where $z_i \in Z^1$ and such
-that $z_i$ and $z_j$ are not cohomologous for $i\ne j$.  There exists
-$m$ and a bound $r_{\op{max}}$ such that for all $F\in \op{Loc}_m$,
-and all $r> r_{\op{max}}$, we have $Z^r(F) = \emptyset$.
-
-The Lie algebras $\fh_z$, $\fg_z$ depend on a parameter $z\in Z^1$.
-We have spaces
-\begin{align*}
-\Lambda^1 = \Lambda^1_{kk'\s \s'} = &\{(z,X_G,\bar X_H,\bar X_G,\Y_G,\Y_H) \mid \\
-     &\quad z\in Z, X_G\in \fg_z,
-\bar X_H \in \fh_z, \bar X_G\in \fg_z, \Y_G\in \NF^k_{G,\s}, \Y_H\in \NF^{k'}_{H,\s'}\}.
-\end{align*}
-For any $r$-tuples $k=(k_1,\ldots,k_r)$, $k'=(k'_1,\ldots,k'_r)$,
-$\s = (\s_1,\ldots,\s_r)$, $\s'=(\s'_1,\ldots,\s'_r)$, we set
-\[
-\Lambda^r = \Lambda^r_{kk'\s \s'} = \{(\lambda_1,\ldots,\lambda_r) \mid \lambda_i \in \Lambda^1_{k_ik'_i\s_i\s'_i}\quad
-  (z(\lambda_1),\ldots,z(\lambda_r))\in Z^r \}.
-\]
-(We apologize for the nesting of subscripts.  Note that $\s_i$ is
-itself a tuple indexing parahorics.)  For $\lambda\in \Lambda^r$, we write
-$z(\lambda_i)$, $X_G(\lambda_i)$, and so forth for the components of $\lambda_i$.  We
-define for $1$-tuples $k$, $k'$, $\s$, $\s'$:
-\[
-P^1_{kk'\s \s'} = P^1 = \{(X_H,\lambda) \mid \lambda\in \Lambda^1_{kk'\s \s'},
-\quad z = z(\lambda),\quad X_H \in \fh_z\}.
-\]
-Also, for $r$-tuples $k$, $k'$, $\s$, $\s'$:
-\[
-P^r_{kk'\s \s'} = P^r = \{(X_H,\lambda) \mid \lambda = (\lambda_1,\ldots,\lambda_r)\in \Lambda^r_{kk'\s \s'},\quad
-  X_H = (X_{H,1},\ldots,X_{H,r}), \quad (X_{H,i},\lambda_i) \in P^1_{k_ik'_i\s_i\s'_i}\}.
-\]
-We have a projection map $P^r\to \Lambda^r$ onto the second coordinate.
-Our two definitions of $Z^1$, $\Lambda^1$ and $P^1$ are coherent when
-$r=1$.
-
-For any $r$-tuples $k'=(k'_1,\ldots,k'_r)$ and $k=(k_1,\ldots,k_r)$, set
-$L_i(k,k') = L^+(k')_i\sqcup L^-_i(k)$, where $L^-_i(k) =
-\{1,\ldots,k_i\}\times\{-\}$ and $L^+_i(k') =
-\{1,\ldots,k'_i\}\times\{+\}$.
-\[
-L(k,k') = \{\ell = (\ell_1,\ldots,\ell_r)\mid \ell_i=(\ell^0_i,\pm)\in L_i(k,k')\}.
-\]
-Let
-\[
-L^+(k') = \{\ell = (\ell_1,\ldots,\ell_r)\mid \ell_i=(\ell^0_i,+)\in L^+_i(k')\}.
-\]
-
-We define constructible functions.  For $(X_H,\lambda)\in
-P^r_{kk'\s \s'}$,  for $i=1,\ldots,r$, and $\ell_i\in L_i(k,k')$,
-set
-\[
-\psi_{i,\ell_i}(X_{H,i},\lambda_i) = 
-\begin{cases}   
-  O^\kappa(X_{H,i},X_G(\lambda_i),\ldots,1_{\Y_G^{\ell^0_i}(\lambda_i)}),
-   & \text{if } \ell_i = (\ell^0_i,-)\in L^-_i(k) \\
-  SO(X_{H,i},1_{\Y_H^{\ell^0_i}}),
-   & \text{if } \ell_i = (\ell^0_i,+)\in L^+_i(k').
-\end{cases}
-\]
- We also define constructible functions
-on $P_{kk'\s \s'}$ indexed by $\ell\in L(k,k')$:
-\[
-(X_H,\lambda)\mapsto f_\ell(X_H)_\lambda := \prod_{i=1}^r \psi_{i,\ell_i}(X_{H,i},\lambda_i).
-\]
-
-We use the following elementary facts about tensor products of
-finite dimensional vector spaces in our analysis of the products
-defining $f_\ell$.
+The proof will use the following elementary facts about tensor
+products of finite dimensional vector spaces in our analysis of the
+products of Shalika germs.
+The second statement may be used to extract a nontrivial linear relation on
+a factor from a linear relation on the tensor product.
 
 \begin{lem}\label{thm:tensor}
 Let $V_1,\ldots,V_r$ be finite dimensional vector spaces of
@@ -1828,6 +1723,127 @@ $V_i$.  Let $v_{1}\otimes \cdots \otimes v_{r} \in
 
 \begin{proof} This is elementary multilinear algebra.
 \end{proof}
+
+
+
+\subsection{Parameter sets}
+
+We will invoke Theorem~\ref{thm:cgh-asymp} a finite number of times
+for different ($r$-tuples of) constants $k$, $k'$, $\s$, $\s'$.  These
+constants as well as $r$-tuples (with $r$ bounded) of these constants
+range over a finite set of possibilities.  For instance, $k'$ is
+bounded above by the number of nilpotent conjugacy classes in $\fh$.
+Corollary~\ref{thm:nilbound} gives a constant $k'_{\op{max}}$ such
+that for all nonarchimedean fields of sufficiently large residue
+characteristic, the number of nilpotent conjugacy classes is at most
+$k'_{\op{max}}$.  So $0\le k'\le k'_{\op{max}}$.  We can arrange so
+that the bound $k'_{\op{max}}$ depends only on fixed choices such as
+the root data for the endoscopic group, and not on the nonarchimedean
+field.  Similarly, each component of $\s'$ is bounded by the number of
+parahoric subgroups up to conjugacy, so that $\s'$ is constrained to
+run over finitely many possibilities (for each fixed choice of root
+data). 
+
+Recall that $m$ is the natural number that we use as a lower bound in
+Theorem~\ref{thm:cgh-asymp} on the residual characteristic in $\Loc_m$
+.  By invoking the theorem a finite number of times, we may pick a
+single natural numbers $m$ that works in the theorem in all cases by
+taking the maximum of the natural numbers obtained in the finitely
+many separate cases.  Let $m$ be a natural number that works for all
+$k,k',\s,\s'$ (keeping the other choices fixed).
+
+Let $F_2\in\op{Loc}_m$.  Choose a second field $F_1\in \op{Loc}_m$ that
+has characteristic zero and a residue field isomorphic to that of
+$F_2$.
+
+We have made several choices.  These choices are part of a longer
+sequence of choices that must be made in the correct order.  We have
+already picked root data for $G^{**}$ and $H^{**}$ with all the
+associated fixed choices $\Sigma,\cF,\ldots$.  We have selected group
+and an endoscopic group $(G,H)_{/Z}$ over a cocycle space.  We have
+bounded various discrete parameters $r,k,k',\s,\s'$ to lie in a finite
+set; and we have picked $m$, $F_1$, and $F_2$.  To complete the
+sequence of choices, we will pick the particular values of
+$r,k,k',\s,\s'$ among the finite set of possibilities.
+
+
+
+We change notation slightly to let $Z^1$ denote the
+cocycle space.  For each $r\in\ring{N}$, let $Z^r$ be the definable
+set of $r$-tuples $(z_1,\ldots,z_r)$, where $z_i \in Z^1$ and such
+that $z_i$ and $z_j$ are not cohomologous for $i\ne j$.  There exists
+$m$ and a bound $r_{\op{max}}$ such that for all $F\in \op{Loc}_m$,
+and all $r> r_{\op{max}}$, we have $Z^r(F) = \emptyset$.
+
+The Lie algebras $\fh_z$, $\fg_z$ depend on a parameter $z\in Z^1$.
+We have spaces
+\begin{align*}
+\Lambda^1 = \Lambda^1_{kk'\s \s'} = &\{(z,X_G,\bar X_H,\bar X_G,\Y_G,\Y_H) \mid \\
+     &\quad z\in Z, X_G\in \fg_z,
+\bar X_H \in \fh_z, \bar X_G\in \fg_z, \Y_G\in \NF^k_{G,\s}, \Y_H\in \NF^{k'}_{H,\s'}\}.
+\end{align*}
+For any $r$-tuples $k=(k_1,\ldots,k_r)$, $k'=(k'_1,\ldots,k'_r)$,
+$\s = (\s_1,\ldots,\s_r)$, $\s'=(\s'_1,\ldots,\s'_r)$, we set
+\[
+\Lambda^r = \Lambda^r_{kk'\s \s'} = \{(\lambda_1,\ldots,\lambda_r) \mid \lambda_i \in \Lambda^1_{k_ik'_i\s_i\s'_i}\quad
+  (z(\lambda_1),\ldots,z(\lambda_r))\in Z^r \}.
+\]
+(We apologize for the nesting of subscripts.  Note that $\s_i$ is
+itself a tuple indexing parahorics.)  For $\lambda\in \Lambda^r$, we write
+$z(\lambda_i)$, $X_G(\lambda_i)$, $\Y_G(\lambda_i)$, and so forth for the components of $\lambda_i\in\Lambda^1$.  
+If $j\in\ring{N}$ and $\sigma\in\{\pm\}$, write
+\[
+\Y(\lambda_i,(j,\sigma)) = 
+\begin{cases}
+\Y_G(\lambda_i)_j,&\text{if }\sigma= -\\
+\Y_H(\lambda_i)_j,&\text{if }\sigma= +.
+\end{cases}
+\]
+We
+define for $1$-tuples $k$, $k'$, $\s$, $\s'$:
+\[
+P^1_{kk'\s \s'} = P^1 = \{(X_H,\lambda) \mid \lambda\in \Lambda^1_{kk'\s \s'},
+\quad z = z(\lambda),\quad X_H \in \fh_z\}.
+\]
+Also, for $r$-tuples $k$, $k'$, $\s$, $\s'$:
+\[
+P^r_{kk'\s \s'} = P^r = \{(X_H,\lambda) \mid \lambda = (\lambda_1,\ldots,\lambda_r)\in \Lambda^r_{kk'\s \s'},\quad
+  X_H = (X_{H,1},\ldots,X_{H,r}), \quad (X_{H,i},\lambda_i) \in P^1_{k_ik'_i\s_i\s'_i}\}.
+\]
+We have a projection map $P^r\to \Lambda^r$ onto the second coordinate.
+Our two definitions of $Z^1$, $\Lambda^1$ and $P^1$ are coherent when
+$r=1$.
+
+For any $r$-tuples  $k=(k_1,\ldots,k_r)$ and $k'=(k'_1,\ldots,k'_r)$, set
+$L_i(k,k') = L^+(k')_i\sqcup L^-_i(k)$, where $L^-_i(k) =
+\{1,\ldots,k_i\}\times\{-\}$ and $L^+_i(k') =
+\{1,\ldots,k'_i\}\times\{+\}$.
+\[
+L(k,k') = \{\ell = (\ell_1,\ldots,\ell_r)\mid \ell_i=(\ell^0_i,\pm)\in L_i(k,k')\}.
+\]
+Let
+\[
+L^+(k') = \{\ell = (\ell_1,\ldots,\ell_r)\mid \ell_i=(\ell^0_i,+)\in L^+_i(k')\}.
+\]
+
+We define constructible functions.  For $(X_H,\lambda)\in
+P^r_{kk'\s \s'}$,  for $i=1,\ldots,r$, and $\ell_i\in L_i(k,k')$,
+set
+\[
+\psi_{i,\ell_i}(X_{H,i},\lambda_i) = 
+\begin{cases}   
+  O^\kappa(X_{H,i},X_G(\lambda_i),\ldots,1_{\Y(\lambda_i,\ell_i)}),
+   & \text{if } \ell_i\in L^-_i(k) \\
+  SO(X_{H,i},1_{\Y(\lambda_i,\ell_i)}),
+   & \text{if } \ell_i\in L^+_i(k').
+\end{cases}
+\]
+ We also define constructible functions
+on $P_{kk'\s \s'}$ indexed by $\ell\in L(k,k')$:
+\[
+(X_H,\lambda)\mapsto f_\ell(X_H)_\lambda := \prod_{i=1}^r \psi_{i,\ell_i}(X_{H,i},\lambda_i).
+\]
+
 
 Let $r$ be the maximum for which $Z^r(F_1)\ne\emptyset$.  That is, it is
 the number of nonisomorphic reductive groups in the family of
@@ -1867,9 +1883,19 @@ do this by Theorem~\ref{thm:bm}.
 Set  $\Y_i := (\Y_{i1},\ldots,\Y_{ik'_i})$.
 Let $\s'_i = \s(\Y_i)$ be the tuple of first coordinates of $\Y_i$.
 Set $\s' = (\s'_1,\ldots,\s'_r)$.  We have now fixed the
-choices $r,k,k',\s,\s'$.  To lighten notation, we sometimes drop
-$r,k,k',\s,\s'$.  We also return to our earlier notation of $z$ as a
+choices $r,k,k',\s,\s'$. 
+ 
+\subsection{Endoscopic matching of Shalika germs}\label{sec:emsg}
+
+We now give the proof of Theorem~\ref{thm:local}
+
+\begin{proof}
+  To lighten notation, we sometimes drop $r,k,k',\s,\s'$.  In
+  particular, we set $L=L(k,k')$, $L^+=L^+(k')$, $\Lambda^r =
+  \Lambda^r_{kk'\s\s'}$, $P^r = P^r_{kk'\s\s'}$.
+We also return to our earlier notation of $z$ as a
 parameter running over the definable set $Z^r$.
+
 
 We may construct germs of functions as follows.  Let $1_a$, for
 $a\in\ring{Z}$ be sequence of support functions, defined as the
@@ -1883,14 +1909,14 @@ extra integer parameter $a\in\ring{Z}$ that we may use to study
 $a$-asymptotic linear dependence.  By a similar abuse of notation, we
 write $1_a f_{\ell,\lambda}$ for the truncation of $f_{\ell,\lambda}$.
 
-We claim that for all $j \in L(k,k')\setminus L^+(k')$, there exists
+We claim that for all $j \in L\setminus L^+$, there exists
 $a_0\in\ring{Z}$, such that for each $\lambda\in \Lambda^r(F_1)$, the
-functions $1_{a_0,F_1}f_{\ell,\lambda,F_1}$, for $\ell\in \{j\}\cup
-L^+(k')$, are $a_0$-asymptotically linearly dependent.  If there
+tuple of functions $1_{a_0,F_1}f_{\ell,\lambda,F_1}$, indexed by $\ell\in \{j\}\cup
+L^+$, is $a_0$-asymptotically linearly dependent.  If there
 exists $a_0$ such that for all $\lambda\in \Lambda^r(F_1)$, the
-functions indexed by $L^+(k')$ are $a_0$-asymptotically linearly
+functions indexed by $L^+$ are $a_0$-asymptotically linearly
 dependent, this is immediate.  If, on the other hand, for all $a_0$,
-there exists $\lambda$ such that the functions indexed by $L^+(k')$
+there exists $\lambda$ such that the functions indexed by $L^+$
 are not $a_0$-asymptotically linearly dependent, then there exists a
 parameter $\Y_H(\lambda)$ from the base space $\Lambda^r(F_1)$ such
 that for each $i$, the functions $1_{\Y_{H,\lambda}^{i,j}}$ give a
@@ -1899,68 +1925,74 @@ $\fh_{z_i}$.  We use Waldspurger's fundamental result
 \cite{waldspurger1997lemme} that the $\kappa$-orbital integral (over
 $F_1$) admits smooth matching, which implies that there exists $a_0$
 such that $1_{a_0}f_{j,\lambda,F_1}$ is a linear combination of
-$1_{a_0}f_{\ell,\lambda,F_1}$, for $\ell\in L^+(k')$.  This proves the
+$1_{a_0}f_{\ell,\lambda,F_1}$, for $\ell\in L^+$.  This proves the
 claim.
 
 
-We apply Theorem~\ref{thm:cgh-asymp} to the morphism $f:P^r_{kk'\s
-  \s'}\times\ring{Z}\to \Lambda^r_{kk'\s \s'}$.  By the theorem, for each
-$j\in L(k,k')\setminus L^+(k')$, and for all $\lambda'\in \Lambda^r({F_2})$, the
-functions $f_{\ell,\lambda',F_2}$, for $\ell\in \{j\}\cup L^+(k')$ are
-$a_0$-asymptotically linearly dependent.  Let $c^\ell_{j,\lambda'}\in
+We apply Theorem~\ref{thm:cgh-asymp} to the morphism $f:P^r\times\ring{Z}\to \Lambda^r$.  
+By the theorem, for each
+$j\in L\setminus L^+$, and for all $\lambda_2\in \Lambda^r({F_2})$, the
+functions $f_{\ell,\lambda_2,F_2}$, for $\ell\in \{j\}\cup L^+$ are
+$a_0$-asymptotically linearly dependent.  Let $c_{\ell,j,\lambda_2}\in
 \ring{C}$ be the coefficients of a nontrivial linear combination
-(depending on $\lambda'$).  We write this relation as
+(depending on $\lambda_2$).  We write this relation as
 \begin{equation}\label{eqn:du}
-\sum_{\ell\in \{j\}\cup L^+(k')} c^\ell_{j,\lambda'}1_af_{\ell,\lambda',F_2}  =
+\sum_{\ell\in \{j\}\cup L^+} c_{\ell,j,\lambda_2}1_af_{\ell,\lambda_2,F_2}  =
 0\quad\text{for }\quad a\ge a_0.
 \end{equation}
-For each $j$ and $\lambda'$, the nontriviality of the relation
+For each $j$ and $\lambda_2$, the nontriviality of the relation
 means
-that $c^\ell_{j,\lambda'}\ne 0$ for some $\ell$.
+that $c_{\ell,j,\lambda_2}\ne 0$ for some $\ell$.
 
-We claim that there exists $\lambda'\in \Lambda^r({F_2})$, such that for all $j\in
-L(k,k')\setminus L^+(k')$,
-$c^j_{j,\lambda'}\ne 0$.  Otherwise, for all $\lambda'\in \Lambda^r(F_2)$, there exists
-$j\in L(k,k')\setminus L^+(k')$ such that $c^j_{j,\lambda'}=0$.  Equation~\ref{eqn:du}
+We claim that there exists $\lambda_2\in \Lambda^r({F_2})$, such that for all $j\in
+L\setminus L^+$,
+$c_{j,j,\lambda_2}\ne 0$.  Otherwise, for all $\lambda_2\in \Lambda^r(F_2)$, there exists
+$j\in L\setminus L^+$ such that $c_{j,j,\lambda_2}=0$.  Equation~\ref{eqn:du}
 becomes
 \begin{equation}\label{eqn:du}
-\sum_{\ell\in L^+(k')} c^\ell_{j,\lambda'}1_af_{\ell,\lambda',F_2}  = 0.
+\sum_{\ell\in L^+} c_{\ell,j,\lambda_2}1_af_{\ell,\lambda_2,F_2}  = 0.
 \end{equation}
-This asserts that for all $\lambda'\in \Lambda^r(F_2)$, the functions
-$1_af_{\ell,\lambda',F_2}$ are linearly dependent.  Applying
+This asserts that for all $\lambda_2\in \Lambda^r(F_2)$, the functions
+$1_af_{\ell,\lambda_2,F_2}$ are linearly dependent for $a\ge a_0$.  Applying
 Theorem~\ref{thm:cgh-asymp} again in the opposite direction, to go from
 dependence on $F_2$ to linear dependence on $F_1$, we find that for all
-$\lambda\in \Lambda^r(F_1)$, the functions $1_af_{\ell,\lambda,F_1}$, for $\ell\in L^+(k')$ are linearly
+$\lambda\in \Lambda^r(F_1)$, the functions $1_af_{\ell,\lambda,F_1}$, for $\ell\in L^+$ are linearly
 dependent.  The choice of $k',\s'$ gives linear independence, contrary to
 the assumption of dependence.  This gives the claim.
 
-Let $\lambda'\in \Lambda^r(F_2)$ be the parameter in the claim.  The
-nonvanishing $c^j_{j,\lambda'}\ne 0$, gives for each $j$ a formula for
-$1_af_{j,\lambda',F_2}$ in terms of products of stable orbital integrals on
-factors $\fh_{z_i}$.  In particular, fixing $i$, we let
-$j = (\ell_1,\ldots,\ell_r)$, where 
+For each $i$, let $(\op{reg}_i,+)\in L^+_i$ be chosen so that so that
+it represents the regular stable nilpotent orbit in the endoscopic
+group $\fh_{z_i}$.
+
+Let $\lambda_2\in \Lambda^r(F_2)$ be the parameter in the claim.  The
+nonvanishing $c_{j,j,\lambda_2}\ne 0$, gives for each $j\in L\setminus L^+$ a linear relation for
+$1_af_{j,\lambda_2,F_2}$ in terms of products of stable orbital integrals on
+factors $\fh_{z_i}$.  In particular, for each $i\in\{1,\ldots,r\}$, and for each $x\in\{1,\ldots,k_i\}$,
+we define
+$j = j(i,x) = (j_1,\ldots,j_r)$, where 
 \[
-\ell_{i'} = \begin{cases} (j_{0,i'},+), &\text{if } i'\ne i\\
-       (\ell^0_0,-) & \text{if } i' = i.
+j_{i'} = \begin{cases} (\op{reg}_{i'},+), &\text{if } i'\ne i\\
+       (x,-) & \text{if } i' = i.
   \end{cases}
 \]
-We let $(j_{0,i'},+)\in L^+(k')$ be chosen so that it represents the
-regular stable nilpotent orbit in the endoscopic group $\fh_{z_i'}$,
-and we let $\ell^0_0\le k_{i}$ be arbitrary.  It is known by Langlands
-and Shelstad that when suitably normalized, the Shalika germ of the
-stable regular nilpotent class is identically $1$.  In particular, it
-is nonzero.  Considering the linear relation involving
-$1_af_{j,\lambda',F_2}$ as a function of $X_{H,i}$ alone, it gives a
-nontrivial relation between functions
-$X_{H,i}\mapsto\psi_{i,\ell^0_0}(X_{H,i})_{\lambda'}$ (with nonzero coefficient)
-and the stable nilpotent orbital integrals on $\fh_{z_i}$. As we run
-over all $\ell^0_0$ and $i=1,\ldots,r$, we obtain the desired matching
-of all $\kappa$-Shalika germs on all reductive groups in the cocycle
-space $Z^r$.  This proves the theorem.  \qed
+It is known by Langlands and Shelstad that when suitably normalized,
+the Shalika germ of the stable regular nilpotent class is identically
+$1$~\cite{LSxf}.  In particular, it is nonzero.  Considering the linear relation
+involving $1_af_{j,\lambda_2,F_2}$ as a function of $X_{H,i}$ alone,
+it gives a nontrivial linear relation between functions
+$X_{H,i}\mapsto\psi_{i,x}(X_{H,i})_{\lambda_2}$ (with nonzero
+coefficient) and the stable nilpotent orbital integrals on
+$\fh_{z_i}$.  Lemma~\ref{thm:tensor} extracts the linear relation on
+a factor from a linear relation on the tensor product.  As we run over
+all $x$ and $i$, we obtain the desired matching of all
+$\kappa$-Shalika germs on all reductive groups in the cocycle space
+$Z^r$.  This proves the theorem.
+\end{proof}
 
-(An analysis of the proof shows that we might modify the proof to take
-$L^+_i(k')$ to be a singleton set for each $i$ with $\Y_H^{\ell^0_i}$
-a regular nilpotent element.)
+
+An analysis of the proof shows that we might modify the proof to take
+$L^+_i$ to be a singleton set with $\Y(\lambda_i,\ell_i)$
+a regular nilpotent element, for each $i$.
 
 \subsection{Adaptation to from nilpotence to unipotence}
 
@@ -1999,7 +2031,7 @@ In \cite{LSxf}, Langlands and Shelstad define the notion of matching
 (transfer) of orbital integrals from a reductive group over a local
 field to an endoscopic group.  In particular, they introduce the
 transfer factors that are needed for the matching.  In \cite{LSd},
-they take a the further step of reducing the existence of matching to
+they take the further step of reducing the existence of matching to
 a local statement at the identity in the centralizer of a semisimple
 element.  We review this reduction below.  It is this reduction that
 we will use in this section, in combination with the endoscopic
