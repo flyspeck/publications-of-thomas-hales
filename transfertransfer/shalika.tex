@@ -930,7 +930,7 @@ class.
 
 
 We construct an algebraic differential $d$-form on $G$, where $d$ is
-the relative dimension of $G$ over $Z$.  (Compare \cite{Laumon}.) We begin with the split case
+the relative dimension of $G$ over $Z$.  We begin with the split case
 (and $Z$ a singleton set).  If $G^{**}$ is split over $\op{VF}$, we
 have a top invariant form on $G^{**}$ given on an open cell of
 $G^{**}$ by
@@ -1509,7 +1509,7 @@ We need an asymptotic variant of the previous theorem.
 \begin{theorem}\label{thm:cgh-asymp}
   Let $g:P'\times\ring{Z}\to \Lambda$ be a definable morphism between
   definable sets, for some $P'$ and $\Lambda$.  Assume that $P$ is a
-  definable subset of $P'\times\ring{Z}$.  Let $\bf$ be an $r$-tuple of
+  definable subset of $P'\times\ring{Z}$.  Let $\bf$ be a tuple of
   constructible functions on $P$.  Then there exists a natural number
   $m$ with the following property.  For every $a_0\in\ring{Z}$ and
   every $F_1,F_2 \in \Loc_{m}$ such that $F_1$ and and $F_2$ have
@@ -1521,11 +1521,11 @@ We need an asymptotic variant of the previous theorem.
   dependent.
 \end{theorem}
 
-\begin{proof} We adapt the proof in \cite{CGH2}.
-We may replace the components $f_i$ of $\bf$ with $f_i 1_P$ on $P'\times\ring{Z}$ to reduce
-to the case $P=P'\times\ring{Z}$.  We may reduce asymptotic linear
-dependence to the identical vanishing of a determinant.  
-Let 
+\begin{proof} We adapt the proof in \cite{CGH2}. Suppose that $\bf$ is
+  an $r$-tuple.  We may replace the components $f_i$ of $\bf$ with
+  $f_i 1_P$ on $P'\times\ring{Z}$ to reduce to the case
+  $P=P'\times\ring{Z}$.  We may reduce asymptotic linear dependence to
+  the identical vanishing of a determinant.  Let
 \[
 S = \{(\lambda,a,X_1,\ldots,X_r)\mid (X_1,a),\ldots,(X_r,a)\in P\times_\Lambda
 \cdots\times_\Lambda 
@@ -1662,17 +1662,19 @@ where $f^H$ is a constructible motivic function on $\fh$.
 
 Waldspurger has proved that the germs of $O^\kappa$ are linear
 combinations of the germs of $SO$ in Equation~\ref{eqn:stable} when
-the field $F_1$ has characteristic zero~\cite{waldspurger1997lemme}.
+the field $F$ has characteristic zero~\cite{waldspurger1997lemme}.  We
+wish to transfer these linear relations among germs to positive
+characteristic.
 
 The basic naive strategy is to invoke Theorem~\ref{thm:cgh-asymp}
-to transfer these linear relations to a field $F_2$ of positive
-characteristic.  Unfortunately, the naive strategy does not work,
-because the coefficients of the linear relation potentially vanish
-identically on part of the cocycle space $Z$, which would mean that we
-would obtain no information about the endoscopic matching for some of
-the twisted forms of a reductive group.  We note that it is not always
-possible to isolate definably a single isomorphisms class of reductive
-groups $G$.  See Section~\ref{sec:classification}.
+directly to transfer these linear relations among germs.
+Unfortunately, the naive strategy does not work, because the
+coefficients of the linear relation potentially vanish identically on
+part of the cocycle space $Z$, which would mean that we would obtain
+no information about the endoscopic matching for some of the twisted
+forms of a reductive group.  We note that it is not always possible to
+isolate definably a single isomorphisms class of reductive groups $G$.
+See Section~\ref{sec:classification}.
 
 The next (less naive) strategy is take a product $G =
 G_1\times\cdots\times G_r$ over all of the groups up to isomorphism
@@ -1689,17 +1691,17 @@ factors $G_i$.
 This nonetheless, leads to a strategy that works.  Again we take
 $r$-fold products of factors, but we enhance our collection of factors
 to include the stable Shalika germs on the quasi-split endoscopic
-groups.  We know how to choose stable Shalika germs that are nonzero.
-Indeed the stable Shalika germ of the regular nilpotent class in a
-quasi-split inner form is
-nonzero.  Thus, we are able to avoid the bad situation where one of
-the factors vanishes identically.  This works.
+groups (Equation~\ref{eqn:psi}).  We know how to choose stable Shalika
+germs that are nonzero.  Indeed the stable Shalika germ of the regular
+nilpotent class in a quasi-split inner form is nonzero.  Thus, we are
+able to avoid the bad situation where one of the factors vanishes
+identically.  This works.
 
 The proof will use the following elementary facts about tensor
 products of finite dimensional vector spaces in our analysis of the
-products of Shalika germs.
-The second statement may be used to extract a nontrivial linear relation on
-a factor from a linear relation on the tensor product.
+products of Shalika germs.  The second statement may be used to
+extract a nontrivial linear relation on a single factor from a linear
+relation on the tensor product.
 
 \begin{lem}\label{thm:tensor}
 Let $V_1,\ldots,V_r$ be finite dimensional vector spaces of
@@ -1724,127 +1726,159 @@ $V_i$.  Let $v_{1}\otimes \cdots \otimes v_{r} \in
 \begin{proof} This is elementary multilinear algebra.
 \end{proof}
 
-
-
 \subsection{Parameter sets}
 
-We will invoke Theorem~\ref{thm:cgh-asymp} a finite number of times
-for different ($r$-tuples of) constants $k$, $k'$, $\s$, $\s'$.  These
-constants as well as $r$-tuples (with $r$ bounded) of these constants
-range over a finite set of possibilities.  For instance, $k'$ is
-bounded above by the number of nilpotent conjugacy classes in $\fh$.
-Corollary~\ref{thm:nilbound} gives a constant $k'_{\op{max}}$ such
-that for all nonarchimedean fields of sufficiently large residue
-characteristic, the number of nilpotent conjugacy classes is at most
-$k'_{\op{max}}$.  So $0\le k'\le k'_{\op{max}}$.  We can arrange so
-that the bound $k'_{\op{max}}$ depends only on fixed choices such as
-the root data for the endoscopic group, and not on the nonarchimedean
-field.  Similarly, each component of $\s'$ is bounded by the number of
-parahoric subgroups up to conjugacy, so that $\s'$ is constrained to
-run over finitely many possibilities (for each fixed choice of root
-data). 
+We establish notation and various parameter sets that will be used in
+the proof of Theorem~\ref{thm:local}.  We make all the fixed choices
+that are established in Section~\ref{sec:fixed}.  Let $(G,H)_{/Z}$ be
+a definable reductive group $G$ with definable endoscopic group $H$
+over a cocycle space $Z$.  We remain in this context until the end of
+Section~\ref{sec:emsg}.
 
-Recall that $m$ is the natural number that we use as a lower bound in
-Theorem~\ref{thm:cgh-asymp} on the residual characteristic in $\Loc_m$
-.  By invoking the theorem a finite number of times, we may pick a
-single natural numbers $m$ that works in the theorem in all cases by
-taking the maximum of the natural numbers obtained in the finitely
-many separate cases.  Let $m$ be a natural number that works for all
-$k,k',\s,\s'$ (keeping the other choices fixed).
+The order in which we construct our parameters is extremely important
+in the proof.  Below, we will make choices of constants
+$r\in\ring{N}$, $k\in\ring{N}$, $k'\in\ring{N}$, and $r$-tuples $\s$,
+and $\s'$.  These choices will be field dependent.  Before we do this,
+constrain these parameters so that they run over finitely many
+possibilities.
 
-Let $F_2\in\op{Loc}_m$.  Choose a second field $F_1\in \op{Loc}_m$ that
-has characteristic zero and a residue field isomorphic to that of
-$F_2$.
-
-We have made several choices.  These choices are part of a longer
-sequence of choices that must be made in the correct order.  We have
-already picked root data for $G^{**}$ and $H^{**}$ with all the
-associated fixed choices $\Sigma,\cF,\ldots$.  We have selected group
-and an endoscopic group $(G,H)_{/Z}$ over a cocycle space.  We have
-bounded various discrete parameters $r,k,k',\s,\s'$ to lie in a finite
-set; and we have picked $m$, $F_1$, and $F_2$.  To complete the
-sequence of choices, we will pick the particular values of
-$r,k,k',\s,\s'$ among the finite set of possibilities.
+We constrain $r$ to be the lim sup over $m$ of maximum over
+$F\in\Loc_m$ of $r_F$, where $r_F$ is the number of isomorphism
+classes of reductive groups $G_z$ obtained as $z$ runs over $Z(F)$.
+That is, it should be at most the largest number of isomorphism
+classes of reductive groups in the family $G$ in large residual
+characteristic.  The $r$-tuple $k\in\ring{N}^r$ has components $k_i$
+that are constrained to be at most the largest number of nilpotent
+orbits there can be in sufficiently large residual characteristic in a
+Lie algebra of some group in the family $G$.  (See
+Corollary~\ref{thm:nilbound}.) We constrain the tuple $\s$ to be an
+$r$-tuple, where each component $\s_i$ is a $k_i$-tuple of
+elements of $\cF_G$. The cardinality of $\cF_G$ is finite and field
+independent.  The natural number $k'\in\ring{N}^r$ is similarly
+constrained to be at most the largest number of nilpotent orbits there
+can be in sufficiently large residual characteristic in a Lie algebra
+of some group in the family of endoscopic groups $H$.  The $r$-tuple
+$\s'$ is constrained as $\s$, but using $k'$ and $\cF_H$.  By imposing
+these constraints on $r$, $k$, $k'$, $\s$, and $\s'$, it is clear that
+they range over a finite set of possibilities.
 
 
+
+%We have made several choices.  These choices are part of a longer
+%sequence of choices that must be made in the correct order.  We have
+%already picked root data for $G^{**}$ and $H^{**}$ with all the
+%associated fixed choices $\Sigma,\cF,\ldots$.  We have selected group
+%and an endoscopic group $(G,H)_{/Z}$ over a cocycle space.  We have
+%bounded various discrete parameters $r,k,k',\s,\s'$ to lie in a finite
+%set; and we have picked $m$, $F_1$, and $F_2$.  To complete the
+%sequence of choices, we will pick the particular values of
+%$r,k,k',\s,\s'$ among the finite set of possibilities.
+
+\subsubsection{Parameter sets that depend on $\xi$}
+
+Let $\xi=(r,k,k',\s,\s')$ be any collection of parameters as constrained above.  
+We will give definable set $P$, $P'$, $\Lambda$, a definable
+morphism $g:P'\times\ring{Z}\to \Lambda$, and a tuple of
+constructible functions $\bf$ on $P$.
 
 We change notation slightly to let $Z^1$ denote the
-cocycle space.  For each $r\in\ring{N}$, let $Z^r$ be the definable
+cocycle space.  Let $Z^r$ be the definable
 set of $r$-tuples $(z_1,\ldots,z_r)$, where $z_i \in Z^1$ and such
-that $z_i$ and $z_j$ are not cohomologous for $i\ne j$.  There exists
-$m$ and a bound $r_{\op{max}}$ such that for all $F\in \op{Loc}_m$,
-and all $r> r_{\op{max}}$, we have $Z^r(F) = \emptyset$.
+that $z_i$ and $z_j$ are not cohomologous for $i\ne j$.  
 
 The Lie algebras $\fh_z$, $\fg_z$ depend on a parameter $z\in Z^1$.
 We have spaces
 \begin{align*}
-\Lambda^1 = \Lambda^1_{kk'\s \s'} = &\{(z,X_G,\bar X_H,\bar X_G,\Y_G,\Y_H) \mid \\
+\Lambda^1_i = &\{(z,X_G,\bar X_H,\bar X_G,\Y_G,\Y_H) \mid \\
      &\quad z\in Z, X_G\in \fg_z,
-\bar X_H \in \fh_z, \bar X_G\in \fg_z, \Y_G\in \NF^k_{G,\s}, \Y_H\in \NF^{k'}_{H,\s'}\}.
+\bar X_H \in \fh_z, \bar X_G\in \fg_z, \Y_G\in \NF^{k_i}_{G_z,\s_i}, \Y_H\in \NF^{k'_i}_{H_z,\s'_i}\}.
 \end{align*}
-For any $r$-tuples $k=(k_1,\ldots,k_r)$, $k'=(k'_1,\ldots,k'_r)$,
-$\s = (\s_1,\ldots,\s_r)$, $\s'=(\s'_1,\ldots,\s'_r)$, we set
+(We apologize for the nesting of subscripts.)
+We set
 \[
-\Lambda^r = \Lambda^r_{kk'\s \s'} = \{(\lambda_1,\ldots,\lambda_r) \mid \lambda_i \in \Lambda^1_{k_ik'_i\s_i\s'_i}\quad
+\Lambda^r = \Lambda^r_\xi = \{(\lambda_1,\ldots,\lambda_r) \mid \lambda_i \in \Lambda^1_i\quad
   (z(\lambda_1),\ldots,z(\lambda_r))\in Z^r \}.
 \]
-(We apologize for the nesting of subscripts.  Note that $\s_i$ is
-itself a tuple indexing parahorics.)  For $\lambda\in \Lambda^r$, we write
-$z(\lambda_i)$, $X_G(\lambda_i)$, $\Y_G(\lambda_i)$, and so forth for the components of $\lambda_i\in\Lambda^1$.  
-If $j\in\ring{N}$ and $\sigma\in\{\pm\}$, write
+For $\lambda\in \Lambda^r$, we write
+$z(\lambda_i)$, $X_G(\lambda_i)$, $\Y_G(\lambda_i)$, and so forth for the components of $\lambda_i\in\Lambda^1_i$.  
+If $j\in\ring{N}$ and $\epsilon\in\{\pm\}$, write
 \[
-\Y(\lambda_i,(j,\sigma)) = 
+\Y(\lambda_i,(j,\epsilon)) = 
 \begin{cases}
-\Y_G(\lambda_i)_j,&\text{if }\sigma= -\\
-\Y_H(\lambda_i)_j,&\text{if }\sigma= +.
+\Y_G(\lambda_i)_j,&\text{if }\epsilon= -,\\
+\Y_H(\lambda_i)_j,&\text{if }\epsilon= +.
 \end{cases}
 \]
 We
-define for $1$-tuples $k$, $k'$, $\s$, $\s'$:
+define:
 \[
-P^1_{kk'\s \s'} = P^1 = \{(X_H,\lambda) \mid \lambda\in \Lambda^1_{kk'\s \s'},
-\quad z = z(\lambda),\quad X_H \in \fh_z\}.
+P^1_i = \{(X_H,\lambda_i) \mid \lambda_i\in \Lambda^1_i,
+\quad z = z(\lambda_i),\quad X_H \in \fh_z\}.
 \]
-Also, for $r$-tuples $k$, $k'$, $\s$, $\s'$:
+Also, set:
 \[
-P^r_{kk'\s \s'} = P^r = \{(X_H,\lambda) \mid \lambda = (\lambda_1,\ldots,\lambda_r)\in \Lambda^r_{kk'\s \s'},\quad
-  X_H = (X_{H,1},\ldots,X_{H,r}), \quad (X_{H,i},\lambda_i) \in P^1_{k_ik'_i\s_i\s'_i}\}.
+P^r = P^r_\xi = \{(X_H,\lambda) \mid \lambda = (\lambda_1,\ldots,\lambda_r)\in \Lambda^r_\xi,\quad
+  X_H = (X_{H,1},\ldots,X_{H,r}), \quad (X_{H,i},\lambda_i) \in P^1_i\}.
 \]
 We have a projection map $P^r\to \Lambda^r$ onto the second coordinate.
-Our two definitions of $Z^1$, $\Lambda^1$ and $P^1$ are coherent when
-$r=1$.
+%Our two definitions of $Z^1$, $\Lambda^1$ and $P^1$ are coherent when
+%$r=1$.
 
-For any $r$-tuples  $k=(k_1,\ldots,k_r)$ and $k'=(k'_1,\ldots,k'_r)$, set
-$L_i(k,k') = L^+(k')_i\sqcup L^-_i(k)$, where $L^-_i(k) =
-\{1,\ldots,k_i\}\times\{-\}$ and $L^+_i(k') =
+Set
+$L_i = L^+_i\sqcup L^-_i$, where $L^-_i =
+\{1,\ldots,k_i\}\times\{-\}$ and $L^+_i =
 \{1,\ldots,k'_i\}\times\{+\}$.
 \[
-L(k,k') = \{\ell = (\ell_1,\ldots,\ell_r)\mid \ell_i=(\ell^0_i,\pm)\in L_i(k,k')\}.
+L = \{\ell = (\ell_1,\ldots,\ell_r)\mid \ell_i\in L_i\}.
 \]
 Let
 \[
-L^+(k') = \{\ell = (\ell_1,\ldots,\ell_r)\mid \ell_i=(\ell^0_i,+)\in L^+_i(k')\}.
+L^+ = \{\ell = (\ell_1,\ldots,\ell_r)\mid \ell_i\in L^+_i\}.
 \]
 
 We define constructible functions.  For $(X_H,\lambda)\in
-P^r_{kk'\s \s'}$,  for $i=1,\ldots,r$, and $\ell_i\in L_i(k,k')$,
+P^r_\xi$,  for $i=1,\ldots,r$, and $\ell_i\in L_i$,
 set
-\[
+\begin{equation}\label{eqn:psi}
 \psi_{i,\ell_i}(X_{H,i},\lambda_i) = 
 \begin{cases}   
   O^\kappa(X_{H,i},X_G(\lambda_i),\ldots,1_{\Y(\lambda_i,\ell_i)}),
-   & \text{if } \ell_i\in L^-_i(k) \\
+   & \text{if } \ell_i\in L^-_i \\
   SO(X_{H,i},1_{\Y(\lambda_i,\ell_i)}),
-   & \text{if } \ell_i\in L^+_i(k').
+   & \text{if } \ell_i\in L^+_i.
 \end{cases}
-\]
- We also define constructible functions
-on $P_{kk'\s \s'}$ indexed by $\ell\in L(k,k')$:
+\end{equation}
+ We also define a tuple $\bf=(\ldots,f_\ell,\ldots)$ of constructible functions
+on $P^r_\xi$ indexed by $\ell\in L$:
 \[
 (X_H,\lambda)\mapsto f_\ell(X_H)_\lambda := \prod_{i=1}^r \psi_{i,\ell_i}(X_{H,i},\lambda_i).
 \]
 
 
+\subsubsection{Field dependent choices}
+
+At this stage of our argument, we have a finite set of  parameters
+$\xi=(r,k,k',\s,\s')$.  For each such $\xi$, we have produced definable sets
+$P=P_\xi$, $P'=P^{'r}_\xi$, $\Lambda=\Lambda^r_\xi$, a definable
+morphism $g:P'\times\ring{Z}\to \Lambda$, and a tuple of constructible
+functions $\bf$ on $P$.  For each $\xi$, we invoke
+Theorem~\ref{thm:cgh-asymp} on these data to obtain a constant
+$m(\xi)\in\ring{N}$ with properties as described in the theorem.  We
+let $m$ be the maximum of the constants $m(\xi)$ as $\xi$ runs over
+the finite number of possibilities, as constrained in the previous
+paragraph.
+
+As a result of this discussion, we have a constant $m$ that is not
+tied to any particular parameter $\xi$.  This constant will be used to
+satisfy the claim in the statement of Theorem~\ref{thm:local} of the
+existence of a constant $m$ with certain properties.
+
+Let $F_2\in\op{Loc}_m$.  Choose a second field $F_1\in \op{Loc}_m$
+that has characteristic zero and a residue field isomorphic to that of
+$F_2$.  We will use the transfer principle between these two fields.
+
+Now that $m$, $F_1$, and $F_2$ have been constructed, we make a
+particular choice of $\xi$, starting with $r$.
 Let $r$ be the maximum for which $Z^r(F_1)\ne\emptyset$.  That is, it is
 the number of nonisomorphic reductive groups in the family of
 cocycles.  This maximum can be expressed as sentence in the Denef-Pas
@@ -1852,47 +1886,51 @@ language and can hence be transferred to $F_2$ by an Ax-Kochen style
 transfer principle.  Thus, $r$ is also the maximum for which
 $Z^r(F_2)\ne\emptyset$.
 
-Pick $z\in Z^r(F_2)$.  Let $k=(k_1,\ldots,k_r)$ be a tuple such that
-$k_i$ is the number of nilpotent orbits in $\fg_{z_i,F_2}$.  By the
-Barbasch-Moy classification of nilpotent orbits in terms of residue
-field parameters~\cite{barbasch-moy}, $k_i$ is also equal to the
-number of nilpotent classes in $\fg_{z_i,F}$.  Choose a $k_i$-tuple
-$\s_i\in \cF_G^{k_i}$ such that $\NF^{k_i}_{\s_i,F_2}\ne
-\emptyset$.  Let $\s = (\s_1,\ldots,\s_r)$.
+Pick any $z\in Z^r(F_2)$.  Write $G_i=G_{z_i}$.  Let
+$k=(k_1,\ldots,k_r)$ be a tuple such that $k_i$ is the number of
+nilpotent orbits in $\fg_{z_i,F_2}$.  By the Barbasch-Moy
+classification of nilpotent orbits in terms of residue field
+parameters~\cite{barbasch-moy}, $k_i$ is also equal to the number of
+nilpotent classes in $\fg_{z_i,F_2}$.  Choose a $k_i$-tuple $\s_i\in
+\cF_{G_i}^{k_i}$ such that $\NF^{k_i}_{G_i,\s_i}(F_2)\ne \emptyset$.
+Let $\s = (\s_1,\ldots,\s_r)$.
 
-Let $k'_i$ be the dimension of the space of stable Shalika germs on
+Finally, we choose a parameter $\s'$ as follows.
+Write $H_i = H_{z_i}$.  Let $k'=(k'_1,\ldots,k'_r)$ be a tuple such
+that $k'_i$ is the dimension of the space of stable Shalika germs on
 $\fh_{z_i}$.  By the definition of stable distribution, this equals
 the dimension of the space of stable orbital integrals supported on
-the unipotent set.  For each $i$,  let $\mu_{ij}^{st}$, $j = 1,\ldots,k'_i$, 
-be a basis of the stable distributions supported on the nilpotent set
-of $\fh_{z_i}$.  We have a Shalika germ expansion
+the nilpotent set.  For each $i$, let $\mu_{ij}^{st}$, $j =
+1,\ldots,k'_i$, be a basis of the stable distributions supported on
+the nilpotent set of $\fh_{z_i}$.  We have a Shalika germ expansion
 \[
 SO(X_H,f^H) = \sum_{j=1}^{k'} \Gamma^{st}_j(X) \mu_{ij}^{st}(f^H),
 \]
-for compactly supported functions $f^H$ on $\fh_{z_i}(F_2)$ and some stable
-germs $\Gamma^{st}_j$.  The germ
-expansion holds on $G$-regular semisimple elements in a suitable
-neighborhood (depending on $f^H$).  For each $i$ and $j$, we pick a
-parameter $\Y_{ij}\in \NF^{k'_i}_{H_{z_i}}(F_2)$ such that  for each $i$,
- the functions $1_{\Y_{ij}}$, for $j=1,\ldots,k'_i$, form a
-dual basis to $\mu_{ij}^{st}$.  (The functions span the space dual to
-invariant distributions with nilpotent support, hence span the
-quotient space dual to stably invariant distributions with nilpotent
-support; hence a subset of the functions forms a dual basis.)  We can
-do this by Theorem~\ref{thm:bm}.  
-Set  $\Y_i := (\Y_{i1},\ldots,\Y_{ik'_i})$.
+for compactly supported functions $f^H$ on $\fh_{z_i}(F_2)$ and some
+stable germs $\Gamma^{st}_j$.  The germ expansion holds on $G$-regular
+semisimple elements in a suitable neighborhood (depending on $f^H$).
+
+For each $i\le r$, we define a tuple $\Y_i :=
+(\Y_{i1},\ldots,\Y_{ik'_i})$ with $\Y_{ij}\in \in
+\NF^{k'_i}_{H_{i}}(F_2)$ as follows.  We pick
+parameters $\Y_{ij}$ such that the functions $1_{\Y_{ij}}$, for
+$j=1,\ldots,k'_i$, form a dual basis to $\mu_{ij}^{st}$.  (The
+functions span the space dual to invariant distributions with
+nilpotent support, hence span the quotient space dual to stably
+invariant distributions with nilpotent support; hence a subset of the
+functions forms a dual basis.)  We can do this by
+Theorem~\ref{thm:bm}.
+
 Let $\s'_i = \s(\Y_i)$ be the tuple of first coordinates of $\Y_i$.
-Set $\s' = (\s'_1,\ldots,\s'_r)$.  We have now fixed the
-choices $r,k,k',\s,\s'$. 
+Set $\s' = (\s'_1,\ldots,\s'_r)$.  We have now fixed the parameter
+$\xi=(r,k,k',\s,\s')$.
  
 \subsection{Endoscopic matching of Shalika germs}\label{sec:emsg}
 
-We now give the proof of Theorem~\ref{thm:local}
+We now give the proof of Theorem~\ref{thm:local}.  We work in the context
+of the previous subsection.
 
 \begin{proof}
-  To lighten notation, we sometimes drop $r,k,k',\s,\s'$.  In
-  particular, we set $L=L(k,k')$, $L^+=L^+(k')$, $\Lambda^r =
-  \Lambda^r_{kk'\s\s'}$, $P^r = P^r_{kk'\s\s'}$.
 We also return to our earlier notation of $z$ as a
 parameter running over the definable set $Z^r$.
 
@@ -1949,7 +1987,7 @@ L\setminus L^+$,
 $c_{j,j,\lambda_2}\ne 0$.  Otherwise, for all $\lambda_2\in \Lambda^r(F_2)$, there exists
 $j\in L\setminus L^+$ such that $c_{j,j,\lambda_2}=0$.  Equation~\ref{eqn:du}
 becomes
-\begin{equation}\label{eqn:du}
+\begin{equation}\label{eqn:du2}
 \sum_{\ell\in L^+} c_{\ell,j,\lambda_2}1_af_{\ell,\lambda_2,F_2}  = 0.
 \end{equation}
 This asserts that for all $\lambda_2\in \Lambda^r(F_2)$, the functions
@@ -2011,8 +2049,15 @@ gives a bijection between nilpotent classes in the Lie algebra and
 unipotent elements in the group.  The exponential map is polynomial
 and shows that the set of unipotent elements is a definable set.
 
-The set of parahoric subalgebras are replaced with parahoric subgroups.
-The Kostant section is replaced with the Steinberg section.  
+The set of parahoric subalgebras are replaced with parahoric
+subgroups.  The Kostant section is replaced with the Steinberg
+section.  We note that in the construction of transfer factors in
+\cite{CHL}, we used the compatibility of the Kostant section with the
+transfer factor, as proved by Kottwitz \cite{Kott}.  In this article
+we have not used the compatibility with transfer factors, and for our
+arguments we do not need to know whether the Steinberg section is
+compatible with the transfer factor.  In fact, we could replace the
+explicit Steinberg section with an existentially quantified variable.
 
 The choice of $a$-data becomes $a_\alpha = \alpha(\gamma)^{1/2} -
 \alpha(\gamma)^{-1/2}$ (instead of $\alpha(X)$).  For this, we
