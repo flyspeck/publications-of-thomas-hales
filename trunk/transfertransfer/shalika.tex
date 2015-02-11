@@ -1507,10 +1507,10 @@ We need an asymptotic variant of the previous theorem.
 
 
 \begin{theorem}\label{thm:cgh-asymp}
-  Let $g:P'\times\ring{Z}\to \Lambda$ be a definable morphism between
-  definable sets, for some $P'$ and $\Lambda$.  Assume that $P$ is a
-  definable subset of $P'\times\ring{Z}$.  Let $\bf$ be a tuple of
-  constructible functions on $P$.  Then there exists a natural number
+  Let $g:P\times\ring{Z}\to \Lambda$ be a definable morphism between
+  definable sets, for some $P$ and $\Lambda$.  Assume that $P'$ is a
+  definable subset of $P\times\ring{Z}$.  Let $\bf$ be a tuple of
+  constructible functions on $P'$.  Then there exists a natural number
   $m$ with the following property.  For every $a_0\in\ring{Z}$ and
   every $F_1,F_2 \in \Loc_{m}$ such that $F_1$ and and $F_2$ have
   isomorphic residue fields, the following holds: if for each
@@ -1523,15 +1523,15 @@ We need an asymptotic variant of the previous theorem.
 
 \begin{proof} We adapt the proof in \cite{CGH2}. Suppose that $\bf$ is
   an $r$-tuple.  We may replace the components $f_i$ of $\bf$ with
-  $f_i 1_P$ on $P'\times\ring{Z}$ to reduce to the case
-  $P=P'\times\ring{Z}$.  We may reduce asymptotic linear dependence to
+  $f_i 1_{P'}$ on $P\times\ring{Z}$ to reduce to the case
+  $P'=P\times\ring{Z}$.  We may reduce asymptotic linear dependence to
   the identical vanishing of a determinant.  Let
 \[
-S = \{(\lambda,a,X_1,\ldots,X_r)\mid (X_1,a),\ldots,(X_r,a)\in P\times_\Lambda
+S = \{(\lambda,a,X_1,\ldots,X_r)\mid (X_1,a),\ldots,(X_r,a)\in P'\times_\Lambda
 \cdots\times_\Lambda 
-P,~X_i\mapsto \lambda\} \subset \Lambda\times\ring{Z}\times P^{'r}.
+P',~X_i\mapsto \lambda\} \subset \Lambda\times\ring{Z}\times P'^{'r}.
 \]
-We have a constructible function $d$ on $\Lambda\times\ring{Z}\times P^{'r}$
+We have a constructible function $d$ on $\Lambda\times\ring{Z}\times P'^{'r}$
 given by the indicator function of $S$ times
 \[
 (\lambda,a,X_1,\ldots,X_r)\mapsto 
@@ -1539,7 +1539,7 @@ given by the indicator function of $S$ times
 \]
 By \cite{CGH1}, there is a constructible function $\locus{d}$ on
 $\Lambda\times\ring{Z}$ whose zero locus coincides with the locus of
-identical vanishing of $d$ on $(\Lambda\times\ring{Z})\times P^r$.
+identical vanishing of $d$ on $(\Lambda\times\ring{Z})\times P'^r$.
 Let $m\in\ring{Z}$ be an integer that is sufficiently large for
 Corollary~\ref{cor:12} applied to $\locus{d}$ and large enough to be
 the zero locus of $d$, as in \cite{CGH1}.
@@ -1737,7 +1737,7 @@ Section~\ref{sec:emsg}.
 
 The order in which we construct our parameters is extremely important
 in the proof.  Below, we will make choices of constants
-$r\in\ring{N}$, $k\in\ring{N}$, $k'\in\ring{N}$, and $r$-tuples $\s$,
+$r\in\ring{N}$, and $r$-tuples: $k$, $k'$, $\s$,
 and $\s'$.  These choices will be field dependent.  Before we do this,
 constrain these parameters so that they run over finitely many
 possibilities.
@@ -1752,8 +1752,9 @@ that are constrained to be at most the largest number of nilpotent
 orbits there can be in sufficiently large residual characteristic in a
 Lie algebra of some group in the family $G$.  (See
 Corollary~\ref{thm:nilbound}.) We constrain the tuple $\s$ to be an
-$r$-tuple, where each component $\s_i$ is a $k_i$-tuple of
-elements of $\cF_G$. The cardinality of $\cF_G$ is finite and field
+$r$-tuple, where each component $\s_i$ is a $k_i$-tuple of elements of
+$\cF_G$. Recall that $\cF_G$ is a fixed choice that does not depend on
+the cocycle space $Z$.  The cardinality of $\cF_G$ is finite and field
 independent.  The natural number $k'\in\ring{N}^r$ is similarly
 constrained to be at most the largest number of nilpotent orbits there
 can be in sufficiently large residual characteristic in a Lie algebra
@@ -1777,16 +1778,15 @@ they range over a finite set of possibilities.
 \subsubsection{Parameter sets that depend on $\xi$}
 
 Let $\xi=(r,k,k',\s,\s')$ be any collection of parameters as constrained above.  
-We will give definable set $P$, $P'$, $\Lambda$, a definable
-morphism $g:P'\times\ring{Z}\to \Lambda$, and a tuple of
-constructible functions $\bf$ on $P$.
+We will give definable sets $P$, $\Lambda$, a definable
+morphism $g:P\times\ring{Z}\to \Lambda$, and a tuple of
+constructible functions $\bf$ on $P\times\ring{Z}$.
 
-We change notation slightly to let $Z^1$ denote the
-cocycle space.  Let $Z^r$ be the definable
-set of $r$-tuples $(z_1,\ldots,z_r)$, where $z_i \in Z^1$ and such
+Let $Z^r$ be the definable
+set of $r$-tuples $(z_1,\ldots,z_r)$, where $z_i \in Z$ and such
 that $z_i$ and $z_j$ are not cohomologous for $i\ne j$.  
 
-The Lie algebras $\fh_z$, $\fg_z$ depend on a parameter $z\in Z^1$.
+The Lie algebras $\fh_z$, $\fg_z$ depend on a parameter $z\in Z$.
 We have spaces
 \begin{align*}
 \Lambda^1_i = &\{(z,X_G,\bar X_H,\bar X_G,\Y_G,\Y_H) \mid \\
@@ -1799,14 +1799,14 @@ We set
 \Lambda^r = \Lambda^r_\xi = \{(\lambda_1,\ldots,\lambda_r) \mid \lambda_i \in \Lambda^1_i\quad
   (z(\lambda_1),\ldots,z(\lambda_r))\in Z^r \}.
 \]
-For $\lambda\in \Lambda^r$, we write
+For $\lambda=(\lambda_1,\ldots,\lambda_r)\in \Lambda^r$, we write
 $z(\lambda_i)$, $X_G(\lambda_i)$, $\Y_G(\lambda_i)$, and so forth for the components of $\lambda_i\in\Lambda^1_i$.  
 If $j\in\ring{N}$ and $\epsilon\in\{\pm\}$, write
 \[
 \Y(\lambda_i,(j,\epsilon)) = 
 \begin{cases}
-\Y_G(\lambda_i)_j,&\text{if }\epsilon= -,\\
-\Y_H(\lambda_i)_j,&\text{if }\epsilon= +.
+\Y_G(\lambda_i)_j,&\text{if }\epsilon= -,\quad j\le k_i,\\
+\Y_H(\lambda_i)_j,&\text{if }\epsilon= +,\quad j\le k'_i.
 \end{cases}
 \]
 We
@@ -1821,20 +1821,32 @@ P^r = P^r_\xi = \{(X_H,\lambda) \mid \lambda = (\lambda_1,\ldots,\lambda_r)\in \
   X_H = (X_{H,1},\ldots,X_{H,r}), \quad (X_{H,i},\lambda_i) \in P^1_i\}.
 \]
 We have a projection map $P^r\to \Lambda^r$ onto the second coordinate.
-%Our two definitions of $Z^1$, $\Lambda^1$ and $P^1$ are coherent when
+%Our two definitions of $Z$, $\Lambda^1$ and $P^1$ are coherent when
 %$r=1$.
 
 Set
 $L_i = L^+_i\sqcup L^-_i$, where $L^-_i =
 \{1,\ldots,k_i\}\times\{-\}$ and $L^+_i =
 \{1,\ldots,k'_i\}\times\{+\}$.
+Set
 \[
-L = \{\ell = (\ell_1,\ldots,\ell_r)\mid \ell_i\in L_i\}.
-\]
-Let
-\[
+L = \{\ell = (\ell_1,\ldots,\ell_r)\mid \ell_i\in L_i\},\quad\text{and}\quad
 L^+ = \{\ell = (\ell_1,\ldots,\ell_r)\mid \ell_i\in L^+_i\}.
 \]
+
+We introduce a parameter $a\in\ring{Z}$ to construct germs of
+functions as follows.  Let $1_a$, for $a\in\ring{Z}$ be sequence of
+support functions, defined as the preimage in $\fg$ of indicator
+functions of small balls around $0$ in $\fc_{\fg^*}$ tending to $0$ as
+$a$ tends to infinity.  We take the preimage of these balls in
+$\fc_{\fh}$ and $\fh$ and denote that support sequence $1_a$ as well,
+by abuse of notation.  We may truncate the orbital integrals using
+these functions $1_a SO(X,f^H)$ and $1_a O^\kappa(X_H,X_G,\bar
+X_H,\bar X_G,f)$.  Integrals now have an extra integer parameter
+$a\in\ring{Z}$ that we may use to study $a$-asymptotic linear
+dependence.  
+%By a similar abuse of notation, we write $1_a
+%f_{\ell,\lambda}$ for the truncation of $f_{\ell,\lambda}$.
 
 We define constructible functions.  For $(X_H,\lambda)\in
 P^r_\xi$,  for $i=1,\ldots,r$, and $\ell_i\in L_i$,
@@ -1849,9 +1861,10 @@ set
 \end{cases}
 \end{equation}
  We also define a tuple $\bf=(\ldots,f_\ell,\ldots)$ of constructible functions
-on $P^r_\xi$ indexed by $\ell\in L$:
+on $P^r_\xi\times\ring{Z}$ indexed by $\ell\in L$:
 \[
-(X_H,\lambda)\mapsto f_\ell(X_H)_\lambda := \prod_{i=1}^r \psi_{i,\ell_i}(X_{H,i},\lambda_i).
+((X_H,\lambda),a)\mapsto 1_a f_\ell(X_H)_\lambda 
+:= 1_a \prod_{i=1}^r \psi_{i,\ell_i}(X_{H,i},\lambda_i).
 \]
 
 
@@ -1859,9 +1872,9 @@ on $P^r_\xi$ indexed by $\ell\in L$:
 
 At this stage of our argument, we have a finite set of  parameters
 $\xi=(r,k,k',\s,\s')$.  For each such $\xi$, we have produced definable sets
-$P=P_\xi$, $P'=P^{'r}_\xi$, $\Lambda=\Lambda^r_\xi$, a definable
+$P=P^r_\xi$, $P'=P\times\ring{Z}$,  $\Lambda=\Lambda^r_\xi$, a definable
 morphism $g:P'\times\ring{Z}\to \Lambda$, and a tuple of constructible
-functions $\bf$ on $P$.  For each $\xi$, we invoke
+functions $\bf$ on $P'$.  For each $\xi$, we invoke
 Theorem~\ref{thm:cgh-asymp} on these data to obtain a constant
 $m(\xi)\in\ring{N}$ with properties as described in the theorem.  We
 let $m$ be the maximum of the constants $m(\xi)$ as $\xi$ runs over
@@ -1935,17 +1948,6 @@ We also return to our earlier notation of $z$ as a
 parameter running over the definable set $Z^r$.
 
 
-We may construct germs of functions as follows.  Let $1_a$, for
-$a\in\ring{Z}$ be sequence of support functions, defined as the
-preimage in $\fg$ of indicator functions of small balls around $0$ in
-$\fc_{\fg^*}$ tending to $0$ as $a$ tends to infinity.  We take the
-preimage of these balls in $\fc_{\fh}$ and $\fh$ and denote that
-support sequence $1_a$ as well, by abuse of notation.  We may truncate
-the orbital integrals using these functions $1_a SO(X,f^H)$ and
-$1_a O^\kappa(X_H,X_G,\bar X_H,\bar X_G,f)$.  Integrals now have an
-extra integer parameter $a\in\ring{Z}$ that we may use to study
-$a$-asymptotic linear dependence.  By a similar abuse of notation, we
-write $1_a f_{\ell,\lambda}$ for the truncation of $f_{\ell,\lambda}$.
 
 We claim that for all $j \in L\setminus L^+$, there exists
 $a_0\in\ring{Z}$, such that for each $\lambda\in \Lambda^r(F_1)$, the
