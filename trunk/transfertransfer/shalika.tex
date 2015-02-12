@@ -1467,17 +1467,17 @@ $\ring{Z}$, we may partition $\ring{Z}$ into a finite (field
 independent) disjoint union of Presburger sets such that on each of
 these sets, $\locus{g}$ has the form
 \[
-\locus{g}_F(t) = \sum_{i=1}^\ell c_i t^{a_i} q^{b_i t},
+\blue{\locus{g}_F(t) = \sum_{i=1}^n c_i t^{k_i} q_F^{\ell_i t},}
 \]
-where each $c_i$ depends only on residue field variables, the integers
-$a_i$ and $b_i$ do not depend on any variables in the Denef-Pas
-language, and we can assume that $(a_i,b_i)$ are mutually different
+where \blue{$q_F$ is the cardinality of the residue field of $F$}, and each $c_i$ depends only on residue field variables, the integers
+\blue{$k_i$ and $\ell_i$} do not depend on any variables in the Denef-Pas
+language, and we can assume that $(k_i,\ell_i)$ are mutually different
 for different $i$.
 
 The key point is that such a function can have only finitely many
 zeroes, and their number is bounded by a constant that depends only on
 the number $\ell$ of terms in the sum.  This is \cite[Lemma 2.1.7]{CGH1},
-and follows from $o$-minimality of the reals with the exponential.
+and follows from \blue{$o$-minimality of the structure of the real field enriched with} the exponential.
 Thus, the only way for the zero locus of $\locus{g}$ to contain all integers
 greater than $a_F$ is for the coefficients $c_i$ to be zero on all
 unbounded Presburger sets in the disjoint union for all fields $F$.
