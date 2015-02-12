@@ -44,7 +44,7 @@
 \textheight 8.75 in
 
 \definecolor{bettergreen}{rgb}{0,.7,0}
-%\newcommand\blue[1]{{\color{blue}{#1}}}
+\newcommand\blue[1]{{\color{blue}{#1}}}
 %\newcommand\green[1]{{\color{bettergreen}{#1}}}
 %\newcommand\red[1]{{\color{red}{#1}}}
 
@@ -158,7 +158,7 @@
   of motivic integration, both for ordinary orbital integrals and
   $\kappa$-orbital integrals.  Based on transfer principles in motivic
   integration and on Waldspurger's endoscopic transfer of smooth
-  functions in characteristic zero, we deduce the the endoscopic
+  functions in characteristic zero, we deduce the endoscopic
   transfer of smooth functions in sufficiently large residual
   characteristic.
 \end{abstract}
@@ -215,8 +215,9 @@ Shalika germs can serve as a further illustration of the close
 connection between harmonic analysis of $p$-adic groups and motivic
 integration.
 
-% J.G. add acknowledgements
-
+\blue{\subsection{Acknowledgement} J.G. is grateful to  
+Radhika Ganapathy for suggesting this project and helpful conversations at the beginning;
+we also thank MSRI where this collaboration was started. }
 \section{Statement of results}
 
 
@@ -226,15 +227,16 @@ the paper.  Our first theorem establishes the existence of motivic
 constructible functions that represent Shalika germs.
 
 We use the concepts of {\it definable sets} and {\it
-  constructible motivic functions} (or constructible function for
+  constructible motivic functions} (or constructible functions for
 short) from \cite{CL}.  All constructible functions in this paper are
-understood in this sense.  
+understood in this sense. \blue{In fact, in \cite{CL} a closely related notion of \emph{definable subassignment} is used in the place of our notion of a \emph{definable set}, which does not change the meaning. }
+
 
 In this article, by nonarchimidean field we mean a non-discrete
 locally compact nonarchimedean valued field; that is, a field
 isomorphic to a finite extension of $\ring{Q}_p$ or $\ring{F}_p((t))$
 for some prime $p$.  Let $\op{Loc}_m$ denote the set of all
-nonarchimedean fields whose residue field characteristic at least
+nonarchimedean fields whose residue field characteristic is at least
 $m\in \ring{N}=\{0,1,2,\ldots\}$.  To avoid set-theoretic issues, we
 assume that (the carrier of) each field is a subset of some fixed
 cardinal number (that is sufficiently large to obtain every such field
@@ -606,14 +608,14 @@ We recall our conventions for handling Galois cohomology and the
 theory of reductive groups in the Denef-Pas language.  Further details
 about these constructions can be found in \cite{CHL} and \cite{CGH}.
 We describe
-various parameter spaces (or simply space for short) with variables of
+various parameter spaces (or simply spaces for short) with variables of
 the valued field sort.  
 
 
 \subsubsection{Field extensions}
 
 The parameter space of field extensions\footnote{When we work with
-  field extension, we will write $E/\VF$, rather than the more
+  field extensions, we will write $E/\VF$, rather than the more
   cumbersome $VE/\VF$, etc.} $E/\VF$ of a fixed degree $n$ is defined
 to be the parameter space of $(a_0,\ldots,a_{n-1})\in \VF^n$ (that is,
 $n$ variables of the valued field sort) such that
@@ -627,7 +629,7 @@ E = \VF[t]/(p_a(t)) \simeq \VF^n.
 \]
 
 
-The space of automorphisms of $E/\VF$ consists of a linear maps
+The space of automorphisms of $E/\VF$ consists of linear maps
 (brought back to arithmetic on $\op{End}(E) = \op{End}{\VF^n} =
 \VF^{n^2}$) respecting the field operations.  The space of Galois
 field extensions $E/\VF$ of fixed degree $n$ is definable by the
@@ -712,7 +714,7 @@ notation in the form of a cocycle $\sigma(\psi)\psi^{-1}$.
 
 Let $\fc_{\fg^{*}} = \fg/\!/G$ be Chevalley's adjoint quotient, which
 we identify with the space of ``characteristic polynomials'' $\fg\to
-\fc_{\fg^{*}}$.  The fiber in $\fg^\reg$ over each element is
+\fc_{\fg^{*}}$.  The fiber in $\fg^\reg$ over each element \blue{of}
 $\fc_{\fg^{*}}$ is the definable stable conjugacy class with the given
 characteristic polynomial.  Note that $\fc_{\fg^{*}}$ depends only on
 the quasi-split form $G^*$. Similarly, we have a map $G\to \fc_{G^*}:= (T^{**}/W)^*$,
@@ -777,12 +779,12 @@ summarize the properties that we use.
 \end{enumerate}
 \end{theorem}
 
-\begin{proof} The equivalence of the first two properties is
+\begin{proof} \blue{All the implications mentioned in this proof should be understood as implications for the residual characteristic $p$ sufficiently large, with effective bound that depends only on the absolute root datum of $G$ (such bounds are stated in the sources we cite).} The equivalence of the first two properties is
   well-known \cite[15.3]{humphreys1975linear}.  The implications (5)
   $\Leftrightarrow$ (4) $\Rightarrow$ (3) are in \cite{debacker:nilp},
   ~\cite[2.5.1]{adler-debacker:bt-lie}.  The implications (2)
   $\Leftrightarrow$ (3) $\Rightarrow$ (5) are in \cite[3.5]{mcninch},
-  \cite[4.1,Prop 4]{mcninch}.
+  \cite[4.1,Prop. 4 and Theorem 26]{mcninch}.
 
   To see the equivalence of (6) with say (2), we may work over an
   algebraically closed field. In particular, $\fg = \fg^{**}$.  Note
@@ -847,12 +849,20 @@ $u$ under $G\to \fc_{G^*}$ is $1$.
 \end{enumerate}
 \end{theorem}
 
-\begin{proof} This is a first order statement in the Denef-Pas
-  language.  Therefore, by a transfer principle, it is enough to prove
-  the result when $F$ has characteristic zero.  We work over $F$, with
+\begin{proof} \blue{First, we show that (1) and (2) are first order statements in the 
+  Denef-Pas language, which would imply, by a transfer principle, that it is enough to prove
+  the result when $F$ has characteristic zero.  
+  The statement (2) is first-order since the set $G_{z,\s,0+}$ is definable, by 
+  \cite{CGH2}*{Lemma 3.4}. The set  $G_{z,\s,0}$ appearing in (1) is not yet known to be definable in general, but it is contained in a slightly larger definable set of Galois-fixed points of 
+  $G(K)_{\s, 0}$, which we will denote by $G_\s^0$ (where $K$ is an extension that splits $G_z$), by the same lemma. 
+  However, if $u$ is a unipotent element contained in $G_\s^0$, then in fact $u$ is contained in $G_{z, \s, 0}$ by \cite{debacker:nilp}*{Lemma 4.5.1}. 
+  Thus (2) is a first-order statement as well. }
+   
+  
+  \blue{Now we} work over $F$, with
   $z\in Z(F)$ fixed, and write $\fg_{\s,r}$, $\fg_{\s,r+}$, $G_{\s,r}$,
   $G_{\s,r+}$ for the usual Moy-Prasad filtrations with
-  $r\in\ring{R}$.  In particular, $\fg_{\s,0}=\fg_{z,\s,0}(F)$, and so
+  $r\in\ring{R}$ \blue{for the Lie algebra, and $r\in \ring{R}_{\ge 0}$ for the group}.  In particular, $\fg_{\s,0}=\fg_{z,\s,0}(F)$, and so
   forth.
 
   When $F$ is characteristic zero, and $m$ is large enough, we have an
@@ -882,7 +892,11 @@ $u$ under $G\to \fc_{G^*}$ is $1$.
    \item The exponential map from the nilpotent set to the unipotent
      set preserves orbits and the partial order given by orbit closure.
  \end{enumerate}
-
+  \blue{This follows from \cite{kim:hecke}*{Prop. 3.1.1}, which shows that the 
+  exponential map defined by the usual series converges, and from the properties of 
+  mock exponential maps constructed by J. Adler \cite{adler:anisotropic}*{\S 1.5-1.6} combined  
+  with the fact that the exponential map when it is defined is a mock exponential map.}
+   
   Pick $u$ in the given conjugacy class in such a way that $u =
   \exp(N)$, and $N$ has the properties in Theorem~\ref{thm:bm}, for
   some $\s\in \cF$.
@@ -907,14 +921,14 @@ those sources.
 
 We recall that each nilpotent orbit can be endowed with an invariant
 motivic measure $d\mu^{\op{nil}}$ that comes from the the canonical
-symplectic form on coadjoint orbits~\cite[Prop.~4.3]{CGH}.  This
-measure has a free parameter $N$ that runs over the nilpotent cone.
+symplectic form on coadjoint orbits~\cite[Prop.~4.3]{CGH}.  
+%This measure has a free parameter $N$ that runs over the nilpotent cone.
 
 We obtain an invariant motivic measures on the unipotent set in the
 group by exponentiating the measure on the nilpotent cone.
 
 We recall that the invariant volume forms on stable regular semisimple
-orbits in the Lie algebra is constructed in \cite{CHL}.  We have the
+orbits in the Lie algebra are constructed in \cite{CHL}.  We have the
 morphism $\fg^\reg\to\fc_{\fg^*}$ that classifies the regular
 semisimple stable orbits.  The Leray residue (in the sense of
 \cite{CL}) of the canonical volume form on $\fg$ by the canonical
@@ -1018,7 +1032,7 @@ appear are tame (that is, wild inertia is trivial).
 
 We recall that there is currently no good theory of multiplicative
 characters for motivic integration.  In particular, since the
-Langlands-Shelstand transfer factor makes uses of multiplicative
+Langlands-Shelstad transfer factor makes uses of multiplicative
 characters in the form of $\chi$-data, when working motivically,
 we restrict our attention to a neighborhood of the identity on the
 group.  That is, we restrict to the kernels of the multiplicative
