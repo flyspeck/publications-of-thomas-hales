@@ -17,8 +17,11 @@
 % Notation:
 % Zent = Center
 % Norm = Normalizer
-% Topu = Topological Unipotent
 % R_u(B) = Unipotent radical of reductive group.
+
+% Usage notes: motivic measure, "motivic context", constructible function,
+% residue field, residual characteristic.
+% 
 
 \documentclass[12pt]{amsart}
 \usepackage{amssymb,amscd,amsmath,amsthm,color}
@@ -179,17 +182,17 @@ integration that have been inspired by the Igusa zeta function.
 \bigskip
 
 This article establishes the endoscopic matching of smooth functions
-in sufficiently large residual characteristic.  The results are based
-on four fundamental results: Langlands-Shelstad descent for transfer
-factors~\cite{LSxf}, Ng\^o's proof of the fundamental
-lemma~\cite{ngo2010lemme}, Waldspurger's proof that the fundamental lemma
-implies endoscopic matching of smooth functions in characteristic
-zero~\cite{waldspurger1997lemme}, and the Cluckers-Loeser version of motivic
-integration~\cite{CL}, including transfer principles for deducing
-results for one nonarchimedean field from another nonarchimedean field
-with the same residue field~\cite{CLe}.  We use recent extensions of
-the transfer principle to transfer linear dependencies from one field
-to another \cite{CGH2}.
+in sufficiently large residual characteristic.  The main conclusions
+are based on four fundamental results: Langlands-Shelstad descent for
+transfer factors~\cite{LSxf}, Ng\^o's proof of the fundamental
+lemma~\cite{ngo2010lemme}, Waldspurger's proof that the fundamental
+lemma implies endoscopic matching of smooth functions in
+characteristic zero~\cite{waldspurger1997lemme}, and the
+Cluckers-Loeser version of motivic integration~\cite{CL}, including
+transfer principles for deducing results for one nonarchimedean field
+from another nonarchimedean field with the same residue
+field~\cite{CLe}.  We use recent extensions of the transfer principle
+to transfer linear dependencies from one field to another \cite{CGH2}.
 
 We note that the term transfer is used with two separate meanings in
 this paper.  {\it Endoscopic matching}\footnote{It is called
@@ -200,9 +203,9 @@ this paper.  {\it Endoscopic matching}\footnote{It is called
 $\kappa$-orbital integrals on a reductive group with stable orbital
 integrals on an endoscopic group, in a form made precise by the
 Langlands-Shelstad transfer factor.  On the other hand, {\it transfer
-  principles} refer to the transfer of first order statements or
+  principles} refer to the transfer of first-order statements or
 properties of constructible functions from one nonarchimedean field to
-another nonarchimedean field with the same residue characteristic.  In
+another nonarchimedean field with the same residual characteristic.  In
 this article, we will refer to endoscopic matching, transfer factors,
 and transfer principles.
 
@@ -215,28 +218,31 @@ Shalika germs can serve as a further illustration of the close
 connection between harmonic analysis of $p$-adic groups and motivic
 integration.
 
-\blue{\subsection{Acknowledgement} J.G. is grateful to  
-Radhika Ganapathy for suggesting this project and helpful conversations at the beginning;
-we also thank MSRI where this collaboration was started. }
+\subsection{Acknowledgement} J.G. is grateful to Radhika Ganapathy for
+suggesting this project and helpful conversations at the beginning; we
+also thank MSRI, where this collaboration began.
+
 \section{Statement of results}
 
 
 This introductory section surveys the main results of this article.
 Unexplained terminology and notation are explained in the main body of
-the paper.  Our first theorem establishes the existence of motivic
-constructible functions that represent Shalika germs.
+the paper.  Our first theorem establishes the existence of 
+constructible motivic functions that represent Shalika germs.
 
-We use the concepts of {\it definable sets} and {\it
-  constructible motivic functions} (or constructible functions for
-short) from \cite{CL}.  All constructible functions in this paper are
-understood in this sense. \blue{In fact, in \cite{CL} a closely related notion of \emph{definable subassignment} is used in the place of our notion of a \emph{definable set}, which does not change the meaning. }
-
+We use the concepts of {\it definable sets} and {\it constructible
+  motivic functions} (or constructible functions for short) from
+\cite{CL}.  All constructible functions in this paper are understood
+in this sense. In fact, in \cite{CL} a closely related notion of
+\emph{definable subassignment} is used instead of our notion of a
+\emph{definable set}, but this distinction does not affect the
+contents of this paper.
 
 In this article, by nonarchimidean field we mean a non-discrete
 locally compact nonarchimedean valued field; that is, a field
-isomorphic to a finite extension of $\ring{Q}_p$ or $\ring{F}_p((t))$
+isomorphic to a finite extension of $\ring{Q}_p$ or $\ring{F}_p(\!(t)\!)$
 for some prime $p$.  Let $\op{Loc}_m$ denote the set of all
-nonarchimedean fields whose residue field characteristic is at least
+nonarchimedean fields whose residual characteristic is at least
 $m\in \ring{N}=\{0,1,2,\ldots\}$.  To avoid set-theoretic issues, we
 assume that (the carrier of) each field is a subset of some fixed
 cardinal number (that is sufficiently large to obtain every such field
@@ -250,7 +256,7 @@ in the sense of \cite{CGH}.  For each $k\in\ring{N}$, there is a
 definable set $\NF^k_G$ representing $k$-tuples of Barbasch-Moy pairs
 $\Y=(N,\s)$, in the sense of Section~\ref{sec:nilpotent}, with
 pairwise non-conjugate nilpotent elements $N$ in the Lie algebra $\fg$
-of $G$.  We give a motivic constructible function $1_\Y$ parametrized
+of $G$.  We give a constructible function $1_\Y$ parametrized
 by $\Y$.  (In this article, we often use the notation $1_S$ quite
 loosely to denote families of indicator functions {\it indexed} by
 some $S$ running over a definable set. We do not require $1_S$ to be
@@ -260,53 +266,53 @@ For $F\in \op{Loc}_m$ and $z\in Z(F)$, we have $F$-points $G_z(F)$ of
 a connected reductive group over $F$, obtained by twisting the split
 group by the cocycle $z$. We also have $F$-points $\fg_z(F)$ of a Lie
 algebra. There is a definable set $\fg^\reg$ of regular semisimple
-elements in $\fg$.
+elements in $\fg$.  The following theorem is proved in
+Section~\ref{sec:msg}.
 
 
 
 
 \begin{theorem} [Lie algebra Shalika germs]\label{thm:lie-shalika} 
-  For each $k\in \ring{N}$, there exists a $k$-tuple $\Gamma$ of
-  motivic constructible functions with domain $\fg^\reg\times_Z
-  \NF^k_G$ and a constructible function $d_k$ with domain $\NF^k_G$.
-  There exists $m\in \ring{N}$, such that for every field $F\in
-  \op{Loc}_{m}$, and for all $z\in Z(F)$, there exists $\Y\in
-  \NF^{k_z}_{G_z}(F)$ such that $d_{k_z,F}(\Y)\ne 0$, where $k = k_z$
-  is the number of nilpotent conjugacy classes in $\fg_z(F)$.
-  Moreover, for every $z\in Z(F)$ and every $\Y\in \NF^{k_z}_{G_z}(F)$
-  such that $d_{k_z,F}(\Y)\ne 0$, the function $X\mapsto
-  \Gamma(X,\Y)_{i,F}/d_{k_z,F}(\Y)$ is the Shalika germ (for some
-  normalization of measures) at $X\in \fg^\reg_z(F)$ on the orbit
-  $N_i$, the first component of $\Y_i=(N_i,\s_i)$, for $i=1,\ldots,k_z$.
+  For each $n\in \ring{N}$, there exists a $n$-tuple $\Gamma$ of
+  constructible functions with domain $\fg^\reg\times_Z \NF^n_G$ and a
+  constructible function $d_n$ with domain $\NF^n_G$.  There exists
+  $m\in \ring{N}$, such that for every field $F\in \op{Loc}_{m}$, and
+  for all $z\in Z(F)$, if $k=k_{F,z}$ is the number of nilpotent
+  orbits in $\fg_z(F)$, then $d_k$ does not vanish anywhere on the
+  nonempty set $\NF^{k}_{G_z}(F)$.  Moreover, for every $\Y\in
+  \NF^{k}_{G_z}(F)$, the function $X\mapsto
+  \Gamma(X,\Y)_{i,F}/d_{k,F}(\Y)$ is the Shalika germ (for some
+  normalization of measures) at $X\in \fg^\reg_z(F)$ on the orbit of
+  $N_i$, where $N_i$ is the first component of $\Y_i=(N_i,\s_i)$, for
+  $i=1,\ldots,k$.
 \end{theorem}
 
-By the definition of $\NF^k_{G}$ and the choice $k=k_z$, the orbits of
-$N_i$, the first components of
-$\Y_i=(N_i,\s_i)$, for $i=1,\ldots,k_z$, give a complete non-redundant
-enumeration of nilpotent classes of $G_z$.  The theorem realizes all
-Shalika germs as constructible functions.  In a sense that can be made
-precise (the residual characteristic must be large with respect to
-fixed choices of the field-independent data such as the root data),
-every large residual characteristic reductive group can be represented
-as fiber $G_z$ in a definable reductive group $G$, so that the
-theorem is general in large residual characteristic.
+The first components of $\Y_i=(N_i,\s_i)$, for $i=1,\ldots,k$, give a
+complete non-redundant enumeration of nilpotent orbits of $G_z$.  The
+theorem realizes all Shalika germs as constructible functions.  In a
+sense that can be made precise (the residual characteristic must be
+large with respect to fixed choices of the field-independent data such
+as the root data), every large residual characteristic reductive group
+can be represented as fiber $G_z$ in a definable reductive group $G$,
+so that the theorem is general in large residual characteristic.
 
 We obtain a similar representation as constructible functions for
-Shalika germ expansions in the group in terms of unipotent conjugacy
-classes.  For each $k$, there is a definable set $\UF^k_G$
-representing $k$-tuples of pairwise non-conjugate Barbasch-Moy
-unipotent pairs in $G$.  We give a motivic constructible function
-$1_\Y$ parametrized by $\Y\in \UF^1_G$.
+Shalika germs in the group in terms of unipotent conjugacy classes.
+For each $n$, there is a definable set $\UF^n_G$ representing
+$n$-tuples of pairwise non-conjugate Barbasch-Moy unipotent pairs in
+$G$.  We give a constructible function $1_\Y$ parametrized by $\Y\in
+\UF^1_G$.  The following theorem is proved in Section~\ref{sec:adapt}.
 
-\begin{theorem} If we replace $\NF^k_G$ (resp. $\NF^{k_z}_{G_z}(F)$,
-  $\fg^\reg$) with $\UF^k_{G}$ (resp. $\UF^{k_z}_{G_z}(F)$, $G^\reg$)
+\begin{theorem} If we replace $\NF^n_G$ (resp. $\NF^{k}_{G_z}(F)$,
+  $\fg^\reg$) with $\UF^n_{G}$ (resp. $\UF^{k}_{G_z}(F)$, $G^\reg$)
   in Theorem~\ref{thm:lie-shalika}, the same statement holds in the
   group.
 \end{theorem}
 
 Our next theorem gives a representation of the Langlands-Shelstad
 transfer factor as a constructible function.  This result was
-previously known for unramified groups \cite{CHL}.
+previously known for unramified groups \cite{CHL}.  The proof appears
+in Section~\ref{sec:lsxfer}.
 
 \begin{theorem}[Constructibility of Lie algebra transfer
   factors]\label{thm:xfer-factor} 
@@ -331,19 +337,20 @@ $\Delta_F(X_H,X_G,\bar X_H,\bar X_G)$.
 
 We are unable to obtain the Langlands-Shelstad
 transfer factor on the full group, because there is currently no good
-theory of multiplicative characters for motivic integration.
+theory of multiplicative characters for motivic integration. The following
+theorem is proved in Section~\ref{sec:adapt}, by adapting the Lie algebra
+proof.
 
-\begin{theorem}[Constructibility of group transfer factors] Let
+\begin{theorem}[Constructibility of group transfer factors]
+\label{thm:gtf} 
+Let
   $(G,H)_{/Z}$ be a definable reductive group and associated
-  endoscopic group over a cocycle space $Z$.  We write $\op{Topu}(S)$
-  for the set of topologically unipotent elements in a definable
-  subset $S$ of a reductive group.  There exists a constructible
-  function $\Delta$ on
+  endoscopic group over a cocycle space $Z$.  
+  There exists a constructible
+  function $\Delta$ on the set of $G$-regular elements in
+   a definable neighborhood $V$ of $1$ in
 \[
-V := \op{Topu}(H^{G-\reg})\times_Z
-  \op{Topu}(G^\reg)\times_Z
-\op{Topu}(H^{G-\reg})\times_Z
-  \op{Topu}(G^\reg)
+H\times_Z  G\times_Z H\times_Z   G
 \] 
 and a natural number $m\in \ring{N}$ such that for every field $F\in
 \op{Loc}_{m}$, every $z\in Z(F)$, and for every 
@@ -359,7 +366,9 @@ factor, we obtain a constructible function representing the Shalika
 germs of $\kappa$-orbital integrals (Equation~\ref{eqn:kappa}).  As a
 special case, we obtain the constructibility of stable Shalika germs
 (Equation~\ref{eqn:stable}).  These constructions work both in the Lie
-algebra and in the group.
+algebra and in the group.  The following theorem is proved in
+Section~\ref{sec:adapt}.  An alternative version of the theorem for
+Lie algebras is proved in Section~\ref{sec:emsg}.
 
 \begin{theorem}[local endoscopic matching of orbital integrals]\label{thm:local}
   Let $(G,H)_{/Z}$ be a definable reductive group $G$ with definable
@@ -367,7 +376,7 @@ algebra and in the group.
   natural number $m\in \ring{N}$ such that for all $F\in
   \op{Loc}_{m}$, and all $z\in Z(F)$, the local endoscopic matching of
   orbital integrals holds for $(G_z,H_z)$.  That is, for all $f\in
-  C_c^\infty(G_z(F))$, there exists a $f^H\in C_c^\infty(H_z(F))$ for
+  C_c^\infty(G_z(F))$, there exists a function $f^H\in C_c^\infty(H_z(F))$ for
   which the $\kappa$-orbital integrals of $f$ (with the usual
   Langlands-Shelstad transfer factor) are equal to the stable orbital
   integrals of $f^H$ near $1$. More precisely,
@@ -387,7 +396,8 @@ Theorem~\ref{thm:xfer} is based on the definition of {\it
 (and the definition of the Langlands-Shelstad transfer factor away
 from $1$) requires a choice of central extension $\tilde H$ of the
 endoscopic group $H$ and a character $\theta$ on the center of
-$\tilde H(F)$ \cite[Sec.4.4]{LSxf}.
+$\tilde H(F)$ \cite{LSxf}*{\S 4.4}.  The following theorem  is the main
+reesult of the paper.  The proof appears in Section~\ref{sec:xfer}.
 
 \begin{theorem}[endoscopic matching of orbital integrals]\label{thm:xfer}
   Let $(G,H)_{/Z}$ be a definable reductive group $G$ with definable
@@ -435,13 +445,13 @@ A final section lists some open problems
 In this section we review basic constructs of motivic integration,
 applied to representation theory and harmonic analysis, as developed
 in \cite{CHL} and \cite{CGH}.  We assume familiarity with definable
-sets and constructible motivic functions, as developed in \cite{CL}.
+sets and constructible functions, as developed in \cite{CL}.
 
 We work in the Denef-Pas language, a three-sorted first-order
 language.  The three sorts are called the valued field sort, the
 residue field sort, and the value group sort.  The valued field sort
-and residue field sort both contain the first order language of rings,
-and the value group sort contains the first order language of ordered
+and residue field sort both contain the first-order language of rings,
+and the value group sort contains the first-order language of ordered
 groups.  There is function symbol $\op{ord}$ from the valued field
 sort to the value group sort, and function symbol $\ac$ from the
 valued field sort to the residue field sort, which are interpreted as
@@ -597,19 +607,17 @@ $\s\in \cF$ may be identified with barycentric centers of facets in a
 standard alcove in a suitable apartment of the Bruhat-Tits building.
 Groups and algebras in the Moy-Prasad filtration may be associated
 with these points in the building.  By \cite{CGH}, for each parameter
-$\s\in \cF$, there are definable sets $G_{\s,0+}$,
-$\fg_{\s,0}$, $\fg_{\s,0+}$ giving parahoric subgroups, subalgebras
-and their pro-unipotent radicals.
-
+$\s\in \cF$, there are definable sets $G_{\s,0+}$, $\fg_{\s,0}$,
+$\fg_{\s,0+}$ the pro-unipotent radical of the parahoric subgroup, a
+parahoric subalgebra, and one of its subalgebras.
 
 \subsection{Parameter spaces}
 
 We recall our conventions for handling Galois cohomology and the
 theory of reductive groups in the Denef-Pas language.  Further details
 about these constructions can be found in \cite{CHL} and \cite{CGH}.
-We describe
-various parameter spaces (or simply spaces for short) with variables of
-the valued field sort.  
+We describe various parameter spaces (or simply spaces for short) with
+variables of the valued field sort.
 
 
 \subsubsection{Field extensions}
@@ -629,23 +637,22 @@ E = \VF[t]/(p_a(t)) \simeq \VF^n.
 \]
 
 
-The space of automorphisms of $E/\VF$ consists of linear maps
-(brought back to arithmetic on $\op{End}(E) = \op{End}{\VF^n} =
-\VF^{n^2}$) respecting the field operations.  The space of Galois
-field extensions $E/\VF$ of fixed degree $n$ is definable by the
-condition that there exist $n$ distinct automorphisms of the field
-$E/\VF$.  There is a space of Galois
-field extensions of fixed degree $n$, with an enumeration of
-its automorphisms, given by tuples
+The space of automorphisms of $E/\VF$ consists of linear maps (brought
+back to arithmetic on $\op{End}(E) = \op{End}{\VF^n} = \VF^{n^2}$)
+respecting the field operations.  The space of Galois field extensions
+$E/\VF$ of fixed degree $n$ is definable by the condition that there
+exist $n$ distinct automorphisms of the field $E/\VF$.  There is a
+space of Galois field extensions of fixed degree $n$, with an
+enumeration of its automorphisms, given by tuples
 \begin{equation}\label{eqn:enum-gal}
 (E,\sigma_1,\sigma_2,\ldots,\sigma_n),
 \end{equation}
 where $E/\VF$ is a Galois field extension and $\sigma_i$ are the
 distinct field automorphisms.  For fixed abstract group $\Sigma$ of
 order $n$ with full enumeration $\sigma'_i\in \Sigma$, for
-$i=1,\ldots,n$, there is a space of Galois groups isomorphic to
-$\Sigma$ given by tuples (\ref{eqn:enum-gal}) with the additional
-isomorphism requirement that
+$i=1,\ldots,n$, there is a space of Galois field extensions with
+Galois groups isomorphic to $\Sigma$ given by tuples
+(\ref{eqn:enum-gal}) with the additional isomorphism requirement that
 \[
 \sigma_i\sigma_j = \sigma_k \Longleftrightarrow \sigma'_i\sigma'_j =
 \sigma'_k.
@@ -701,8 +708,8 @@ pair $(B^{**},T^{**})$ gives a pair $(B^*,T^*)$ in the quasi-split
 form.
 
 $G$ is a definable family of reductive groups parametrized by a
-definable cocycle space $Z$, which is constructed as in \cite{CGH}.  We
-include in the space $Z$ an explicit choice of inner twisting 
+definable cocycle space $Z$, which is constructed as in \cite{CGH}.
+We include in the space $Z$ an explicit choice of inner twisting
 \[
 \psi:G
 \times_\VF K \to G^*\times_\VF K
@@ -714,16 +721,16 @@ notation in the form of a cocycle $\sigma(\psi)\psi^{-1}$.
 
 Let $\fc_{\fg^{*}} = \fg/\!/G$ be Chevalley's adjoint quotient, which
 we identify with the space of ``characteristic polynomials'' $\fg\to
-\fc_{\fg^{*}}$.  The fiber in $\fg^\reg$ over each element \blue{of}
+\fc_{\fg^{*}}$.  The fiber in $\fg^\reg$ over each element of
 $\fc_{\fg^{*}}$ is the definable stable conjugacy class with the given
 characteristic polynomial.  Note that $\fc_{\fg^{*}}$ depends only on
-the quasi-split form $G^*$. Similarly, we have a map $G\to \fc_{G^*}:= (T^{**}/W)^*$,
-where $T^{**}$ is a maximally split Cartan subgroup of the split
-form $G^{**}$ of $G$, and $W$ is the absolute Weyl group for $T^{**}$
-in $G^*$.  By $\fc_{G^*}$ we mean the twisted form of $T^{**}/W$
-obtained from the outer automorphisms of $T^{**}$ used to define
-$G^*$.  That is, the Galois group $\op{Gal}(K/\VF)$ acts so that
-$\VF$-points are
+the quasi-split form $G^*$. Similarly, we have a map $G\to \fc_{G^*}:=
+(T^{**}/W)^*$, where $T^{**}$ is a maximally split Cartan subgroup of
+the split form $G^{**}$ of $G$, and $W$ is the absolute Weyl group for
+$T^{**}$ in $G^*$.  By $\fc_{G^*}$ we mean the twisted form of
+$T^{**}/W$ obtained from the outer automorphisms of $T^{**}$ used to
+define $G^*$.  That is, the Galois group $\op{Gal}(K/\VF)$ acts so
+that $\VF$-points are
 \[
 t =  \phi_\sigma(\sigma(t))\mod W, \quad\forall \sigma\in\op{Gal}(K/\VF),
 \]
@@ -766,33 +773,37 @@ summarize the properties that we use.
   such that for all $F\in\op{Loc}_m$, and all $z\in Z(F)$, the
   following properties are equivalent properties of $N\in \fg_z(F)$:
 \begin{enumerate}
-\item $\rho(N)$ is nilpotent for {\it some} faithful representation $\rho$
- of  $\fg_z$;
-\item $\rho(N)$ is nilpotent for {\it every} faithful representation $\rho$
- of  $\fg_z$;
+\item $\rho(N)$ is nilpotent for {\it some} faithful rational
+  representation $\rho$ of $\fg_z$;
+\item $\rho(N)$ is nilpotent for {\it every} faithful rational
+  representation $\rho$ of $\fg_z$;
 \item $0$ lies in the Zariski closure of the adjoint orbit of $N$;
 \item $0$ lies in the $p$-adic closure of the adjoint orbit of $N$;
 \item there exists $\lambda\in X_*^F(G_z)$ such that $\lim_{t\to 0}
   \op{Ad}(\lambda(t))N = 0$; and
-\item the image of $N$ under the morphism $\fg_z\mapsto \fc_{\fg^*\,z}$
+\item the image of $N$ under the morphism $\fg_z\mapsto \fc_{\fg^*_z}$
   is $0$.
 \end{enumerate}
 \end{theorem}
 
-\begin{proof} \blue{All the implications mentioned in this proof should be understood as implications for the residual characteristic $p$ sufficiently large, with effective bound that depends only on the absolute root datum of $G$ (such bounds are stated in the sources we cite).} The equivalence of the first two properties is
-  well-known \cite[15.3]{humphreys1975linear}.  The implications (5)
+\begin{proof} All the implications mentioned in this proof should be
+  understood as implications for the residual characteristic
+  sufficiently large, with effective bound that depends only on the
+  absolute root datum of $G$. Such bounds are stated in the sources we
+  cite. The equivalence of the first two properties is well-known
+  \cite{humphreys1975linear}*{\S15.3}.  The implications (5)
   $\Leftrightarrow$ (4) $\Rightarrow$ (3) are in \cite{debacker:nilp},
-  ~\cite[2.5.1]{adler-debacker:bt-lie}.  The implications (2)
-  $\Leftrightarrow$ (3) $\Rightarrow$ (5) are in \cite[3.5]{mcninch},
-  \cite[4.1,Prop. 4 and Theorem 26]{mcninch}.
+  ~\cite{adler-debacker:bt-lie}*{2.5.1}.  The implications (2)
+  $\Leftrightarrow$ (3) $\Rightarrow$ (5) are in \cite{mcninch}*{3.5},
+  \cite{mcninch}*{4.1,Prop. 4 and Theorem 26}.
 
   To see the equivalence of (6) with say (2), we may work over an
   algebraically closed field. In particular, $\fg = \fg^{**}$.  Note
   that the image of $N$ is $0$ in $\fc_{\fg}$ if and only if the image
-  of $N$ is $0$ in $\ft^* = \fb/\fn$ (under conjugation to a Borel),
-  which holds if and only if the image of $N$ is in $\fn^*$, the
-  nilradical of $\fb$.  This holds if and only if the semisimple part
-  of $N$ is trivial, which is equivalent to (2).
+  of $N$ is $0$ in the torus $\fb/\fn$ (under conjugation to a Borel
+  subalgebra), which holds if and only if the image of $N$ is in
+  $\fn$, the nilradical of $\fb$.  This holds if and only if the
+  semisimple part of $N$ is trivial, which is equivalent to (2).
 \end{proof}
 
 The last of the properties enumerated in the theorem is a definable
@@ -838,10 +849,10 @@ unipotent elements.  We have a definable subset of $G$ consisting of
 unipotent elements $u$, determined by the condition that the image of
 $u$ under $G\to \fc_{G^*}$ is $1$.
 
-\begin{theorem} Let $G_{/Z}$ be as above.  There exists
-  $m$ such that for all $F\in \op{Loc}_m$, $z\in Z(F)$, and for all unipotent
-  conjugacy classes in $G_z(F)$, there exists $\s\in \cF$ and an element
-  $u$ in the unipotent conjugacy class such that
+\begin{theorem}\label{thm:bmg} Let $G_{/Z}$ be as above.  There exists $m$ such that
+  for all $F\in \op{Loc}_m$, $z\in Z(F)$, and for all unipotent
+  conjugacy classes in $G_z(F)$, there exists $\s\in \cF$ and an
+  element $u$ in the unipotent conjugacy class such that
 \begin{enumerate}
    \item $u\in G_{z,\s,0}$, and
    \item if $u'$ is unipotent and $u'\in u G_{z,\s,0+}$, then $u$
@@ -849,33 +860,29 @@ $u$ under $G\to \fc_{G^*}$ is $1$.
 \end{enumerate}
 \end{theorem}
 
-\begin{proof} \blue{First, we show that (1) and (2) are first order statements in the 
-  Denef-Pas language, which would imply, by a transfer principle, that it is enough to prove
-  the result when $F$ has characteristic zero.  
-  The statement (2) is first-order since the set $G_{z,\s,0+}$ is definable, by 
-  \cite{CGH2}*{Lemma 3.4}. The set  $G_{z,\s,0}$ appearing in (1) is not yet known to be definable in general, but it is contained in a slightly larger definable set of Galois-fixed points of 
-  $G(K)_{\s, 0}$, which we will denote by $G_\s^0$ (where $K$ is an extension that splits $G_z$), by the same lemma. 
-  However, if $u$ is a unipotent element contained in $G_\s^0$, then in fact $u$ is contained in $G_{z, \s, 0}$ by \cite{debacker:nilp}*{Lemma 4.5.1}. 
-  Thus (2) is a first-order statement as well. }
+\begin{proof} First, we show that (1) and (2) are first-order
+  statements in the Denef-Pas language.  The statement (2) is
+  first-order because the set $G_{z,\s,0+}$ is definable, by
+  \cite{CGH2}*{Lemma 3.4}. The set $G_{z,\s,0}$ appearing in (1) is
+  not currently known to be definable in general, but by the same
+  lemma, it is contained in a slightly larger definable set $G_\s^0$
+  of Galois-fixed points of $G_z(K)_{\s, 0}$ (where $K$ is an
+  extension that splits $G_z$).  However, if $u$ is a unipotent
+  element contained in $G_\s^0$, then in fact $u$ is contained in
+  $G_{z, \s, 0}$ by \cite{debacker:nilp}*{Lemma 4.5.1}.  Thus (2) is a
+  first-order statement as well.
    
-  
-  \blue{Now we} work over $F$, with
-  $z\in Z(F)$ fixed, and write $\fg_{\s,r}$, $\fg_{\s,r+}$, $G_{\s,r}$,
-  $G_{\s,r+}$ for the usual Moy-Prasad filtrations with
-  $r\in\ring{R}$ \blue{for the Lie algebra, and $r\in \ring{R}_{\ge 0}$ for the group}.  In particular, $\fg_{\s,0}=\fg_{z,\s,0}(F)$, and so
-  forth.
+  Because these statements are first order in the Denef-Pas language,
+  by a transfer principle, it is enough to prove the result when $F$
+  has characteristic zero.  Now we work over $F$, with $z\in Z(F)$
+  fixed, and write $\fg_{\s,r}$, $\fg_{\s,r+}$, $G_{\s,r}$,
+  $G_{\s,r+}$ for the usual Moy-Prasad filtrations with $r\in\ring{R}$
+  for the Lie algebra, and $r\in \ring{R}_{\ge 0}$ for the group.  In
+  particular, $\fg_{\s,0}=\fg_{z,\s,0}(F)$, and so forth.
 
   When $F$ is characteristic zero, and $m$ is large enough, we have an
   exponential map defined on the set of all topologically nilpotent
   elements with the following properties.
-    % Rewrite---
-    %\footnote{In characteristic
-    %zero, we have the mock exponential map ${\mathbf e}$, such that,
-    %in particular, ${\mathbf e}(\fg(F)_{x,0+})=G(F)_{x, 0+}$ for all
-    %$x$ (see Hypothesis 3.2.1 in \cite{debacker:homogeneity}, which is
-    %known to be true in characteristic zero -- need to find a better
-    %reference, probably a paper by Adler; set $r=0+$ in that
-    %hypothesis.) }
   \begin{enumerate}
     \item $\exp(\fg_{\s,r}) = G_{\s,r}$, for all $r>0$.
     \item $\exp(\fg_{\s,0+}) = G_{\s,0+}$.
@@ -892,10 +899,11 @@ $u$ under $G\to \fc_{G^*}$ is $1$.
    \item The exponential map from the nilpotent set to the unipotent
      set preserves orbits and the partial order given by orbit closure.
  \end{enumerate}
-  \blue{This follows from \cite{kim:hecke}*{Prop. 3.1.1}, which shows that the 
-  exponential map defined by the usual series converges, and from the properties of 
-  mock exponential maps constructed by J. Adler \cite{adler:anisotropic}*{\S 1.5-1.6} combined  
-  with the fact that the exponential map when it is defined is a mock exponential map.}
+ These properties follow from \cite{kim:hecke}*{Prop. 3.1.1}, which
+ shows that the exponential map defined by the usual series converges,
+ and from the properties of mock exponential maps constructed by
+ J. Adler \cite{adler:anisotropic}*{\S 1.5-1.6}.  When the exponential
+ is defined, it is a mock exponential map.
    
   Pick $u$ in the given conjugacy class in such a way that $u =
   \exp(N)$, and $N$ has the properties in Theorem~\ref{thm:bm}, for
@@ -915,7 +923,7 @@ $u$ under $G\to \fc_{G^*}$ is $1$.
 All integrals are to be computed with respect to invariant measures on
 their respective orbits.  This means that the appropriate context for
 motivic integration is integration with respect to volume forms, as
-described in \cite[Sec. 8]{CL}.    Volume forms in the context of
+described in \cite[\S 8]{CL}.    Volume forms in the context of
 reductive groups are explained in \cite{CGH}.  We follow
 those sources.
 
@@ -927,21 +935,18 @@ symplectic form on coadjoint orbits~\cite[Prop.~4.3]{CGH}.
 We obtain an invariant motivic measures on the unipotent set in the
 group by exponentiating the measure on the nilpotent cone.
 
-We recall that the invariant volume forms on stable regular semisimple
-orbits in the Lie algebra are constructed in \cite{CHL}.  We have the
-morphism $\fg^\reg\to\fc_{\fg^*}$ that classifies the regular
-semisimple stable orbits.  The Leray residue (in the sense of
-\cite{CL}) of the canonical volume form on $\fg$ by the canonical
-volume form on $\fc_{\fg^*}$ yields an invariant volume form
-$d\mu^\reg$ on each fiber of the morphism, and hence an invariant
-volume form on stable regular semisimple orbits with free parameter
-$X\in\fc_{\fg^*}$.  We compute all stable orbital integrals on stable
-regular semisimple orbits with respect to this family of volume forms.
-By restriction to each conjugacy class in the stable conjugacy class,
-we obtain an invariant measure on each regular semisimple conjugacy
-class.
-
-
+The invariant volume forms on stable regular semisimple orbits in the
+Lie algebra are constructed in \cite{CHL}.  We have the morphism
+$\fg^\reg\to\fc_{\fg^*}$ that classifies the regular semisimple stable
+orbits.  The Leray residue (in the sense of \cite{CL}) of the
+canonical volume form on $\fg$ by the canonical volume form on
+$\fc_{\fg^*}$ yields an invariant volume form $d\mu^\reg$ on each
+fiber of the morphism, and hence an invariant volume form on stable
+regular semisimple orbits with free parameter $X\in\fc_{\fg^*}$.  We
+compute all stable orbital integrals on stable regular semisimple
+orbits with respect to this family of volume forms.  By restriction to
+each conjugacy class in the stable conjugacy class, we obtain an
+invariant measure on each regular semisimple conjugacy class.
 
 We construct an algebraic differential $d$-form on $G$, where $d$ is
 the relative dimension of $G$ over $Z$.  We begin with the split case
@@ -949,12 +954,12 @@ the relative dimension of $G$ over $Z$.  We begin with the split case
 have a top invariant form on $G^{**}$ given on an open cell of
 $G^{**}$ by
 \begin{equation}\label{eqn:omegaK}
-d^*t\land dn\land dn',
+d^\times t\land dn\land dn',
 \end{equation}
-where $d^*t$ is a top invariant form on a split torus $T^{**} \subset
+where $d^\times t$ is a top invariant form on a split torus $T^{**} \subset
 B^{**}$, $dn$ a top invariant form on the unipotent radical
-$R_u(B)^{**}$ of $B^{**}$, and $dn'$ on the radical of the Borel
-subgroup opposite to $B^{**}$ along $T^{**}$.  We may pick root
+$R_u(B)^{**}$ of $B^{**}$, and $dn'$ on the unipotent radical of the
+Borel subgroup opposite to $B^{**}$ along $T^{**}$.  We may pick root
 vectors $X_\alpha$ for each root (as fixed choices over $\ring{Q}$).
 Then by placing a total order on the positive roots, we may write
 \[
@@ -986,8 +991,8 @@ $Z$.
 We describe the differential form when $G$ is quasi-split.  In this
 case, the action of the Galois group fixes a pinning, the Galois group
 permutes the root spaces and permutes the root vectors $X_\alpha$, up
-to some structure constants.  From the form of the differential form
-in (\ref{eqn:omegaK}), we see that the Galois group preserves the
+to some structure constants.  From the expression for the differential
+form in (\ref{eqn:omegaK}), we see that the Galois group preserves the
 differential form $dz\land \omega_K$ up to a cocycle with values in
 $K^\times$.
 
@@ -1058,12 +1063,13 @@ centralizer, for some $i\in (\ring{Z}/n\ring{Z})^\times$.  This again
 gives valid endoscopic data, and the arguments still work.
 
 
-\section{Langlands-Shelstad transfer factor for Lie algebras}\label{sec:lsxfer}
+\section{Langlands-Shelstad transfer factor for Lie algebras}
+\label{sec:lsxfer}
 
 In this section, we prove the constructibility of the
 Langlands-Shelstad transfer factor for Lie algebras as stated in
 Theorem~\ref{thm:xfer-factor}.  Our definition will be carried out
-entirely in terms of the Denef-Pas language and constructible motivic
+entirely in terms of the Denef-Pas language and constructible
 functions, without reference to a nonarchimedean field.  We note that
 this theorem has already been established in the unramified
 case~\cite{CHL}.  All the ideas of the proof are already present in
@@ -1117,7 +1123,8 @@ and it will
 be defined as a finite combination of indicator functions of
 definable sets $D_{j,{\rom{1}}}$ and $D_{j,\rom{3}}$:
 \[
-\Delta_0 = \left(\sum_{j_1=0}^{k-1} e^{2\pi i j_1/k} 1_{D_{j_1,{\rom{3}}}}\right)
+\Delta_0 = 
+\left(\sum_{j_1=0}^{k-1} e^{2\pi i j_1/k} 1_{D_{j_1,{\rom{3}}}}\right)
 \left(\sum_{j_2=0}^{k-1} e^{2\pi i j_2/k} 1_{D^{12}_{j_2,{\rom{1}}}}\right)
 \left(\sum_{j_3=0}^{k-1} e^{-2\pi i j_3/k} 1_{D^{34}_{j_3,{\rom{1}}}}\right).
 %\sum_{j=0}^k e^{2\pi i j/k}1_{D_j }.
@@ -1132,11 +1139,13 @@ Typically, constructible functions have integer
 coefficients, but there is no harm in extending scalars to $\ring{C}$
 to allow the given roots of unity.
 
-We will give further definable sets $D_{j,{\rom{1}}}$ and $D_{j,\rom{3}}$. 
-The definable set $D_{j,\rom{3}}$ is a subset of (\ref{eqn:xfer-domain}).
-The definable set $D_{j,\rom{1}}$ is a subset of $\fh^{G-\reg}\times_Z\fg^\reg$, which we pull back
-to sets $D^{12}_{j,\rom1}$ and $D^{34}_{j,\rom1}$ on (\ref{eqn:xfer-domain}) under the projections maps
-onto the first two factors, and the last two factors of (\ref{eqn:xfer-domain}), respectively:
+We will give further definable sets $D_{j,{\rom{1}}}$ and
+$D_{j,\rom{3}}$.  The definable set $D_{j,\rom{3}}$ is a subset of
+(\ref{eqn:xfer-domain}).  The definable set $D_{j,\rom{1}}$ is a
+subset of $\fh^{G-\reg}\times_Z\fg^\reg$, which we pull back to sets
+$D^{12}_{j,\rom1}$ and $D^{34}_{j,\rom1}$ on (\ref{eqn:xfer-domain})
+under the projections maps onto the first two factors, and the last
+two factors of (\ref{eqn:xfer-domain}), respectively:
 \[
 (X_H,X_G,\bar X_H,\bar X_G)\mapsto^{12} (X_H,X_G),\quad
 (X_H,X_G,\bar X_H,\bar X_G)\mapsto^{34} (\bar X_H,\bar X_G).
@@ -1235,8 +1244,8 @@ centralizers in $G$ of $X$ and $\bar X$, where $X$ and $\bar X$ are
 constructed as above from a Kostant section.  We take a bound
 parameter space for a Galois field extension $L/K/\VF$ that splits $T$
 and $\bar T$.  The cocycle takes values in the $L$-points of $U:=
-(T\times \bar T)/\op{Zent}_{sc}$, where the center $\op{Zent}_{sc}$ of the simply
-connected cover is mapped diagonally.
+(T\times \bar T)/\op{Zent}_{sc}$, where the center $\op{Zent}_{sc}$ of
+the simply connected cover is mapped diagonally.
 
 To construct the cocycle, we take bound parameters $h$ and $\bar h$
  in $G(L)$ such that
@@ -1291,7 +1300,7 @@ X_H,\bar X_G),\kappa_{U}\rangle_j
 \]
 Combined with our earlier definitions, this completes the definition
 of the Lie algebra Langlands-Shelstad transfer factor as a
-constructible motivic function.
+constructible function.
 
 
 Each part of the definition is a direct translation of the definition
@@ -1365,20 +1374,21 @@ f_{C,F_2}$ and $g_{C,F_1} = g_{C,F_2}$.
 The set $S_a$ is definable.  Assume that $g_{|S_a,F_1} = 0$.  Then on
 any part $Z$,
 \[
-0 = g_{|S_a\cap Z,F_1} = p^*_{F_1} g_{C_a,F_1}, \quad\text{where}\quad C_a = f_C^{-1}(a)
+0 = g_{|S_a\cap Z,F_1} = p^*_{F_1} g_{C_a,F_1}, 
+\quad\text{where}\quad C_a = f_C^{-1}(a)
 \]
-Since $p_{F_1}$ is onto, $g_{C_a,F_1}$ is identically zero, and thus so is
-$g_{C_a,F_2}$ and $0 = p^*_{F_2} g_{C_a,F_2} = g_{|S_a\cap Z,F_2}$.  Thus,
-$g_{|S_a,F_2}=0$.  This proves the theorem.
+Since $p_{F_1}$ is onto, $g_{C_a,F_1}$ is identically zero, and thus
+so is $g_{C_a,F_2}$ and $0 = p^*_{F_2} g_{C_a,F_2} = g_{|S_a\cap
+  Z,F_2}$.  Thus, $g_{|S_a,F_2}=0$.  This proves the theorem.
 \end{proof}
 
-\begin{cor}\label{cor:12} Let $g$ be a constructible function on $S\times\ring{Z}$.
-  There exists $m$ such for all $F_1,F_2\in\op{Loc}_m$ with the same
-  residue field, we have the following.  If for some
-  $a_0\in\ring{Z}$, the function $g(\cdot,a)_{F_1}$ is identically
-  zero on $S(F_1)$ for all $a\ge a_0$, then the function
-  $g(\cdot,a)_{F_2}$ is also identically zero on $S(F_2)$ for all
-  $a\ge a_0$.
+\begin{cor}\label{cor:12} 
+  Let $g$ be a constructible function on $S\times\ring{Z}$.  There
+  exists $m$ such for all $F_1,F_2\in\op{Loc}_m$ with the same residue
+  field, we have the following.  If for some $a_0\in\ring{Z}$, the
+  function $g(\cdot,a)_{F_1}$ is identically zero on $S(F_1)$ for all
+  $a\ge a_0$, then the function $g(\cdot,a)_{F_2}$ is also identically
+  zero on $S(F_2)$ for all $a\ge a_0$.
 \end{cor}
 
 \begin{proof} Let $f:S\times \ring{Z}\to\ring{Z}$ be the projection
@@ -1417,12 +1427,12 @@ We use the following lemma based on \cite[Th 4.4.4]{CGH}.
   constructible functions instead of constructible functions, but the
   identical proof applies when working with non-exponential functions.
 
-  Also, that theorem is restricted to $S=h[n,0,0]$.  We show that
-  this special case implies the more general statement of our lemma.
+  Also, that theorem is restricted to $S=h[n,0,0]$.  We show that this
+  special case implies the more general statement of our lemma.
   First, the case $h[n,n',n'']$ reduces to $h[n+n'+n'',0,0]$ by
-  replacing each $\ring{Z}$-variable with $\ord\, x$ for some new $\VF$
-  parameter $x$, and replacing each residue variable with some $\ac\, x$
-  for some new $\VF$ parameter $x$.
+  replacing each $\ring{Z}$-variable with $\ord\, x$ for some new
+  $\VF$ parameter $x$, and replacing each residue field variable with
+  some $\ac\, x$ for some new $\VF$ parameter $x$.
 
   If $S\subset h[n,n',n'']$ is arbitrary, then we replace the function
   $g$ with the function $g 1_S$, where $1_S$ is the indicator function
@@ -1453,8 +1463,8 @@ can be chosen uniformly in the following sense.
   $Q(\ring{Z})\otimes_{P^0(\ring{Z})} P(\ring{Z})$.  The exact
   definitions of $Q$ and $P^0$ are not important to us.  See
   \cite{CGH1}.  Nonetheless, it is important that this tensor product
-  results in a separation of variables for $\locus{g} = \sum q_i
-  \otimes p_i$, where all residue variables occur in the ring
+  produces a separation of variables for $\locus{g} = \sum q_i
+  \otimes p_i$, where all residue field variables occur in the ring
   $Q(\ring{Z})$ on the left, and where the ring $P(\ring{Z})$ on the
   right is the ring of constructible Presburger functions on
   $\ring{Z}$.  We may assume by quantifier elimination that
@@ -1467,20 +1477,22 @@ $\ring{Z}$, we may partition $\ring{Z}$ into a finite (field
 independent) disjoint union of Presburger sets such that on each of
 these sets, $\locus{g}$ has the form
 \[
-\blue{\locus{g}_F(t) = \sum_{i=1}^n c_i t^{k_i} q_F^{\ell_i t},}
+\locus{g}_F(t) = \sum_{i=1}^n c_i t^{k_i} q_F^{\ell_i t},
 \]
-where \blue{$q_F$ is the cardinality of the residue field of $F$}, and each $c_i$ depends only on residue field variables, the integers
-\blue{$k_i$ and $\ell_i$} do not depend on any variables in the Denef-Pas
-language, and we can assume that $(k_i,\ell_i)$ are mutually different
-for different $i$.
+where $q_F$ is the cardinality of the residue field of $F$,  each
+$c_i$ depends only on residue field variables, the integers $k_i$ and
+$\ell_i$ do not depend on any variables in the Denef-Pas language, and
+we can assume that $(k_i,\ell_i)$ are mutually different for different
+$i$.
 
 The key point is that such a function can have only finitely many
 zeroes, and their number is bounded by a constant that depends only on
-the number $\ell$ of terms in the sum.  This is \cite[Lemma 2.1.7]{CGH1},
-and follows from \blue{$o$-minimality of the structure of the real field enriched with} the exponential.
-Thus, the only way for the zero locus of $\locus{g}$ to contain all integers
-greater than $a_F$ is for the coefficients $c_i$ to be zero on all
-unbounded Presburger sets in the disjoint union for all fields $F$.
+the number $\ell$ of terms in the sum.  This is \cite[Lemma
+2.1.7]{CGH1} and follows from $o$-minimality of the structure of the
+real field enriched with the exponential.  Thus, the only way for the
+zero locus of $\locus{g}$ to contain all integers greater than $a_F$
+is for the coefficients $c_i$ to be zero for all fields $F$ for every
+unbounded Presburger sets in the disjoint union.
 
 If we now take $a_0$ to be larger than the maximum of all the bounded
 Presburger sets in the the disjoint union, then this integer works
@@ -1494,28 +1506,29 @@ this result to hold based on the
 requirements of smooth endoscopic matching.
 
 \begin{theorem}[Cluckers-Gordon-Halupczok]\label{thm:cgh}
-Let $g:P\to \Lambda$ be a definable morphism between
-  definable sets.  For  any constructible function $f$ on $P$, write
-  $f_{\lambda}$ for the constructible function  on the fiber $P_\lambda$ over $\lambda\in
-  \Lambda$.  Let $\bf$ be a tuple of constructible
-  functions on $P$. For $\lambda\in \Lambda$, let $\bf_\lambda$ be the corresponding tuple
-  of constructible functions on the fiber $P_\lambda$.  Then there exists a
-  natural number $m$ with the following property.  For every $F_1,F_2 \in
-  \Loc_{m}$ such that $F_1$ and and $F_2$ have isomorphic residue
-  fields, the following holds: if for each $\lambda\in \Lambda({F_1})$, the tuple of
-  functions $\bf_{\lambda,F_1}$ is linearly dependent, then then also for each
-  $\lambda_2\in \Lambda({F_2})$, the tuple of functions $\bf_{\lambda_2,F_2}$ is linearly
-  dependent.
+  Let $g:P\to \Lambda$ be a definable morphism between definable sets.
+  For any constructible function $f$ on $P$, write $f_{\lambda}$ for
+  the constructible function on the fiber $P_\lambda$ over $\lambda\in
+  \Lambda$.  Let $\bf$ be a tuple of constructible functions on
+  $P$. For $\lambda\in \Lambda$, let $\bf_\lambda$ be the
+  corresponding tuple of constructible functions on the fiber
+  $P_\lambda$.  Then there exists a natural number $m$ with the
+  following property.  For every $F_1,F_2 \in \Loc_{m}$ such that
+  $F_1$ and and $F_2$ have isomorphic residue fields, the following
+  holds: if for each $\lambda\in \Lambda({F_1})$, the tuple of
+  functions $\bf_{\lambda,F_1}$ is linearly dependent, then then also
+  for each $\lambda_2\in \Lambda({F_2})$, the tuple of functions
+  $\bf_{\lambda_2,F_2}$ is linearly dependent.
 \end{theorem}
 
-Let $S \subset S'\times\ring{Z}$ be any sets.  (This particular
+Let $S' \subset S\times\ring{Z}$ be any sets.  (This particular
 definition pertains to sets of set theory rather than definable sets.)
 For $a_0\in\ring{Z}$, we say that a tuple of functions
 $(f_1,\ldots,f_r)$ (each taking values in $\ring{C}$) is {\it
   $a_0$-asymptotically linearly dependent} if for all $a\ge a_0$, the
 tuple of functions $(f_{1\,|S_a},\ldots,f_{r\,|S_a})$ is linearly
-dependent, where $f_{|S_a}$ denotes the restriction of $f$ to $S\cap
-(S'\times\{a\})$.
+dependent, where $f_{|S_a}$ denotes the restriction of $f$ to $S'\cap
+(S\times\{a\})$.
 
 We need an asymptotic variant of the previous theorem.
 
@@ -1543,9 +1556,9 @@ We need an asymptotic variant of the previous theorem.
 \[
 S = \{(\lambda,a,X_1,\ldots,X_r)\mid (X_1,a),\ldots,(X_r,a)\in P'\times_\Lambda
 \cdots\times_\Lambda 
-P',~X_i\mapsto \lambda\} \subset \Lambda\times\ring{Z}\times P'^{'r}.
+P',~X_i\mapsto \lambda\} \subset \Lambda\times\ring{Z}\times P^{r}.
 \]
-We have a constructible function $d$ on $\Lambda\times\ring{Z}\times P'^{'r}$
+We have a constructible function $d$ on $\Lambda\times\ring{Z}\times P^{r}$
 given by the indicator function of $S$ times
 \[
 (\lambda,a,X_1,\ldots,X_r)\mapsto 
@@ -1553,7 +1566,7 @@ given by the indicator function of $S$ times
 \]
 By \cite{CGH1}, there is a constructible function $\locus{d}$ on
 $\Lambda\times\ring{Z}$ whose zero locus coincides with the locus of
-identical vanishing of $d$ on $(\Lambda\times\ring{Z})\times P'^r$.
+identical vanishing of $d$ on $(\Lambda\times\ring{Z})\times P^r$.
 Let $m\in\ring{Z}$ be an integer that is sufficiently large for
 Corollary~\ref{cor:12} applied to $\locus{d}$ and large enough to be
 the zero locus of $d$, as in \cite{CGH1}.
@@ -1561,13 +1574,14 @@ the zero locus of $d$, as in \cite{CGH1}.
 Let $F_1,F_2\in\Loc_m$ have isomorphic residue fields.  Choose any
 $a_0\in\ring{Z}$.  Assume that for all $\lambda\in \Lambda(F_1)$, the
 tuple of functions $\bf_{\lambda,F_1}$ is $a_0$-asymptotically
-linearly dependent.  Then the determinant $d_{F_1}$ vanishes identically for each
-element of $A:=\{(\lambda,a)\mid a\ge a_0\}$.  The set $A$ is
-definable.  Then $\locus{d}_{F_1}$ is zero on $A$.  By
-Corollary~\ref{cor:12}, $\locus{d}_{F_2}$ is zero on $A$.  Following
-the preceding steps backwards now for $F_2$ instead of $F_1$, from
-$\locus{d}_{F_2}$ back to asymptotic linear depedence, we conclude
-that $\bf_{\lambda,F_2}$ is $a_0$-asymptotically linearly dependent.
+linearly dependent.  Then the determinant $d_{F_1}$ vanishes
+identically for each element of $A(F_1)$, where $A:=\{(\lambda,a)\mid
+a\ge a_0\}$.  The set $A$ is definable.  Then $\locus{d}_{F_1}$ is
+zero on $A(F_1)$.  By Corollary~\ref{cor:12}, $\locus{d}_{F_2}$ is
+zero on $A(F_2)$.  Following the preceding steps backwards now for
+$F_2$ instead of $F_1$, from $\locus{d}_{F_2}$ back to asymptotic
+linear depedence, we find that for all $\lambda\in\Lambda(F_2)$, the
+tuple $\bf_{\lambda,F_2}$ is $a_0$-asymptotically linearly dependent.
 \end{proof}
 
 
@@ -1575,37 +1589,43 @@ that $\bf_{\lambda,F_2}$ is $a_0$-asymptotically linearly dependent.
 \section{Endoscopic matching of smooth functions}
 
 
-\subsection{Construction of motivic Shalika germs}\label{sec:msg}
+\subsection{Constructible Shalika germs}\label{sec:msg}
 
 We give a proof of Theorem~\ref{thm:lie-shalika} asserting the
-existence of motivic Shalika germs on the Lie algebra.  The Shalika
-germs are indexed by nilpotent orbits and the number $k$ of nilpotent
-orbits can vary according to the nonarchimedean field $F$ and the
-cocycle $z\in Z(F)$.  Since we cannot fix $k$ in advance, this
+existence of constructible Shalika germs on the Lie algebra.  The
+Shalika germs are indexed by nilpotent orbits and the number $k$ of
+nilpotent orbits can vary according to the nonarchimedean field $F$
+and the cocycle $z\in Z(F)$.  Since we cannot fix $k$ in advance, this
 complicates matters, and we give a $k$-tuple of constructible
 ``Shalika germs'' for each $k$.  When, for a given nonarchimedean
-field, $k$ is larger than the actual number of nilpotent orbits, a
-set $\Y$ of auxiliary parameters is empty, and the construction yields
+field, $k$ is larger than the actual number of nilpotent orbits, a set
+$\Y$ of auxiliary parameters is empty, and the construction yields
 nothing.  When $k$ is smaller than the actual number of nilpotent
 orbits, we obtain an incomplete collection of germs.
 
-\begin{proof}
 This section uses the following notation.  We make fixed choices
 $G^{**}$, $\Sigma$, $\cF$, and so forth, as above.
 We work with respect to a fixed cocycle space $Z$ that is used to
 define a form $G$ of $G^{**}$ and inner form of $G^*$.
 
 For $k\in \ring{N}$, let $\NF^k$ be the definable subset of $k$-tuples
-of pairs $\Y_i=(N_i,\s_i)$, where $\Y_i$ is a Barbasch-Moy pair, and
-$N_i$ is a nilpotent element $\fg_{\s_i,0}$, and such that the
-$k$-tuple of first coordinates $(N_1,\ldots,N_k)$ are pairwise non
-conjugate.  For any $\Y\in \NF^k$, we let $\s(\Y)=(\s_1,\ldots,\s_k)$
-denote the tuple of second coordinates of $\Y$.  We write $\NF^k_\s$
-for the subset of $\NF^k$ whose $k$-tuple of second coordinates is 
-$\s=\s(\Y)$.  For any $\Y=(N,\s)\in \NF^1$, let $1_\Y$ be the
+of pairs $\Y_i=(N_i,\s_i)$, where $\Y_i$ is a Barbasch-Moy pair, $N_i$
+is a nilpotent element in $\fg_{\s_i,0}$, and such that
+$N_1,\ldots,N_k$ are pairwise non-conjugate.  
+
+%For any $\Y\in \NF^k$,
+%we let $\s(\Y)=(\s_1,\ldots,\s_k)$ denote the tuple of second
+%coordinates of $\Y$.  
+
+For any $k$-tuple $\s=(\s_1,\ldots,\s_k)$, we write $\NF^k_\s$ for the
+subset of $\NF^k$ consisting of those elements whose $k$-tuple of second
+coordinates is $\s$.  For any $\Y=(N,\s)\in \NF^1$, let $1_\Y$ be the
 characteristic function of $N+\fg_{\s,0+}$.
 
-We form the motivic orbital integrals
+\begin{proof}[Proof of Theorem~\ref{thm:lie-shalika}]
+
+
+We form the constructible orbital integrals
 \[
 O(X,\Y) = \int_{O(X)} 1_{\Y} \,d\mu,
 \]
@@ -1630,21 +1650,20 @@ $\Gamma(X,\Y)$ as the $k$-tuple given by the matrix product
 \Gamma (X,\Y) = \Theta^a (\Y) O(X,\Y).
 \]
 It then follows directly from the
-definition of adjugate that orbital integrals have a motivic Shalika
+definition of adjugate that orbital integrals have a constructible Shalika
 germ expansion
 \[
 d_k(\Y) O(X,\Y) = \Theta(\Y)\Gamma(X,\Y),
 \]
-That is, up to a determinant $d_k$ (which may be zero), the orbital
+That is, up to a (nonzero) determinant $d_k$, the orbital
 integral of $X$ of a collection of test functions indexed by $\Y$ can
 be expanded in terms of the Shalika germs weighted by the nilpotent
 orbital integrals of the test functions.
 
-
 If we specialize the data to a nonarchimedean field $F$, take $z\in
 Z(F)$, and choose $k$ be the number of nilpotent orbits of $G_z(F)$,
-then it follows from Theorem~\ref{thm:bm} that there exists a
-$k$-tuple $\s$ and $\Y\in \NF^k(F)$ for which $\det\Theta_F(\Y)$ is
+then it follows from Theorem~\ref{thm:bm} that $\NF^k(F)$ is nonempty,
+and for all $\Y\in \NF^k(F)$, we have $\det\Theta_F(\Y)$ is
 nonzero. In fact, by suitable ordering of indices, the matrix is upper
 triangular with nonzero diagonal entries.  We obtain the Shalika germ
 expansion in its usual form.
@@ -1652,27 +1671,28 @@ expansion in its usual form.
 
 \subsection{Strategy}\label{sec:strategy}
 
-We now prepare for the proof of Theorem~\ref{thm:local}.  This is the most intricate
-proof in the paper.  It will occupy Subsections~\ref{sec:strategy} through \ref{sec:emsg}.
+We now prepare for the proof of Theorem~\ref{thm:local}.  This is the
+most intricate proof in the paper.  It will occupy
+Subsections~\ref{sec:strategy} through \ref{sec:emsg}.
 
 Let $X_H,X_G,\bar X_H,\bar X_G$ be parameters that appear in the
-transfer factor.  As described above, we have invariant motivic 
-measures $d\mu^\reg_G$
-and $d\mu^\reg_H$ on the stable orbits of $X_G$ and $X_H$.
+transfer factor.  As described above, we have invariant motivic
+measures $d\mu^\reg_G$ and $d\mu^\reg_H$ on the stable orbits of $X_G$
+and $X_H$.
 
 We define $\kappa$ orbital integrals by the following equation:
 \begin{equation}\label{eqn:kappa}
 O^\kappa(X_H,X_G,\bar X_H,\bar X_G,f) = \int_{x\in O^{st}(X_G)}
 \Delta(X_H,x,\bar X_H,\bar X_G) f (x)\,d\mu^\reg_G,
 \end{equation}
-where $f$ is a constructible motivic function on $\fg$ and the
+where $f$ is a constructible function on $\fg$ and the
 parameters $(X_H,X_G,\bar X_H,\bar X_G)$ run over the definable set
 $V$ in Equation \ref{eqn:delta-domain}.  Similarly, we define stable
 orbital integrals on $\fh$ by
 \begin{equation}\label{eqn:stable}
 SO(X_H,f^H) = \int_{x\in O(X_H)} f^H (x)\,d\mu^\reg_H,
 \end{equation}
-where $f^H$ is a constructible motivic function on $\fh$.
+where $f^H$ is a constructible function on $\fh$.
 
 Waldspurger has proved that the germs of $O^\kappa$ are linear
 combinations of the germs of $SO$ in Equation~\ref{eqn:stable} when
@@ -1791,9 +1811,9 @@ they range over a finite set of possibilities.
 
 \subsubsection{Parameter sets that depend on $\xi$}
 
-Let $\xi=(r,k,k',\s,\s')$ be any collection of parameters as constrained above.  
-We will give definable sets $P$, $\Lambda$, a definable
-morphism $g:P\times\ring{Z}\to \Lambda$, and a tuple of
+Let $\xi=(r,k,k',\s,\s')$ be any collection of parameters as
+constrained above.  We will give definable sets $P$, $\Lambda$, a
+definable morphism $g:P\times\ring{Z}\to \Lambda$, and a tuple of
 constructible functions $\bf$ on $P\times\ring{Z}$.
 
 Let $Z^r$ be the definable
@@ -1805,12 +1825,14 @@ We have spaces
 \begin{align*}
 \Lambda^1_i = &\{(z,X_G,\bar X_H,\bar X_G,\Y_G,\Y_H) \mid \\
      &\quad z\in Z, X_G\in \fg_z,
-\bar X_H \in \fh_z, \bar X_G\in \fg_z, \Y_G\in \NF^{k_i}_{G_z,\s_i}, \Y_H\in \NF^{k'_i}_{H_z,\s'_i}\}.
+\bar X_H \in \fh_z, \bar X_G\in \fg_z, 
+\Y_G\in \NF^{k_i}_{G_z,\s_i}, \Y_H\in \NF^{k'_i}_{H_z,\s'_i}\}.
 \end{align*}
 (We apologize for the nesting of subscripts.)
 We set
 \[
-\Lambda^r = \Lambda^r_\xi = \{(\lambda_1,\ldots,\lambda_r) \mid \lambda_i \in \Lambda^1_i\quad
+\Lambda^r = \Lambda^r_\xi = 
+\{(\lambda_1,\ldots,\lambda_r) \mid \lambda_i \in \Lambda^1_i\quad
   (z(\lambda_1),\ldots,z(\lambda_r))\in Z^r \}.
 \]
 For $\lambda=(\lambda_1,\ldots,\lambda_r)\in \Lambda^r$, we write
@@ -1874,8 +1896,8 @@ set
    & \text{if } \ell_i\in L^+_i.
 \end{cases}
 \end{equation}
- We also define a tuple $\bf=(\ldots,f_\ell,\ldots)$ of constructible functions
-on $P^r_\xi\times\ring{Z}$ indexed by $\ell\in L$:
+We also define a tuple $\bf=(\ldots,f_\ell,\ldots)$ of constructible
+functions on $P^r_\xi\times\ring{Z}$ indexed by $\ell\in L$:
 \[
 ((X_H,\lambda),a)\mapsto 1_a f_\ell(X_H)_\lambda 
 := 1_a \prod_{i=1}^r \psi_{i,\ell_i}(X_{H,i},\lambda_i).
@@ -1884,16 +1906,16 @@ on $P^r_\xi\times\ring{Z}$ indexed by $\ell\in L$:
 
 \subsubsection{Field dependent choices}
 
-At this stage of our argument, we have a finite set of  parameters
-$\xi=(r,k,k',\s,\s')$.  For each such $\xi$, we have produced definable sets
-$P=P^r_\xi$, $P'=P\times\ring{Z}$,  $\Lambda=\Lambda^r_\xi$, a definable
-morphism $g:P'\times\ring{Z}\to \Lambda$, and a tuple of constructible
-functions $\bf$ on $P'$.  For each $\xi$, we invoke
-Theorem~\ref{thm:cgh-asymp} on these data to obtain a constant
-$m(\xi)\in\ring{N}$ with properties as described in the theorem.  We
-let $m$ be the maximum of the constants $m(\xi)$ as $\xi$ runs over
-the finite number of possibilities, as constrained in the previous
-paragraph.
+At this stage of our argument, we have a finite set of parameters
+$\xi=(r,k,k',\s,\s')$.  For each such $\xi$, we have produced
+definable sets $P=P^r_\xi$, $P'=P\times\ring{Z}$,
+$\Lambda=\Lambda^r_\xi$, a definable morphism $g:P'\times\ring{Z}\to
+\Lambda$, and a tuple of constructible functions $\bf$ on $P'$.  For
+each $\xi$, we invoke Theorem~\ref{thm:cgh-asymp} on these data to
+obtain a constant $m(\xi)\in\ring{N}$ with properties as described in
+the theorem.  We let $m$ be the maximum of the constants $m(\xi)$ as
+$\xi$ runs over the finite number of possibilities, as constrained in
+the previous paragraph.
 
 As a result of this discussion, we have a constant $m$ that is not
 tied to any particular parameter $\xi$.  This constant will be used to
@@ -1948,30 +1970,31 @@ invariant distributions with nilpotent support; hence a subset of the
 functions forms a dual basis.)  We can do this by
 Theorem~\ref{thm:bm}.
 
-Let $\s'_i = \s(\Y_i)$ be the tuple of first coordinates of $\Y_i$.
+Let $\s'_i$ be the tuple of second coordinates of $\Y_i$.
 Set $\s' = (\s'_1,\ldots,\s'_r)$.  We have now fixed the parameter
 $\xi=(r,k,k',\s,\s')$.
  
 \subsection{Endoscopic matching of Shalika germs}\label{sec:emsg}
 
-We now give the proof of Theorem~\ref{thm:local}.  We work in the context
-of the previous subsection.
+We now give the proof of Theorem~\ref{thm:local}, adapted to Lie
+algebras.  In Section~\ref{sec:adapt}, we show that the proof can be
+easily adapted to the groups.  Here, we work in the context of the
+previous subsection.
 
-\begin{proof}
-We also return to our earlier notation of $z$ as a
-parameter running over the definable set $Z^r$.
-
-
+\begin{proof}[Proof of Theorem~\ref{thm:local}, adapted to Lie algebras]
+We return to our earlier notation of $z$ as a
+parameter running over the definable set $Z^r$ (as opposed to an $F$-point
+of that set).
 
 We claim that for all $j \in L\setminus L^+$, there exists
 $a_0\in\ring{Z}$, such that for each $\lambda\in \Lambda^r(F_1)$, the
-tuple of functions $1_{a_0,F_1}f_{\ell,\lambda,F_1}$, indexed by $\ell\in \{j\}\cup
-L^+$, is $a_0$-asymptotically linearly dependent.  If there
-exists $a_0$ such that for all $\lambda\in \Lambda^r(F_1)$, the
-functions indexed by $L^+$ are $a_0$-asymptotically linearly
+tuple of functions $1_{a_0,F_1}f_{\ell,\lambda,F_1}$, indexed by
+$\ell\in \{j\}\cup L^+$, is $a_0$-asymptotically linearly dependent.
+If there exists $a_0$ such that for all $\lambda\in \Lambda^r(F_1)$,
+the functions indexed by $L^+$ are $a_0$-asymptotically linearly
 dependent, this is immediate.  If, on the other hand, for all $a_0$,
-there exists $\lambda$ such that the functions indexed by $L^+$
-are not $a_0$-asymptotically linearly dependent, then there exists a
+there exists $\lambda$ such that the functions indexed by $L^+$ are
+not $a_0$-asymptotically linearly dependent, then there exists a
 parameter $\Y_H(\lambda)$ from the base space $\Lambda^r(F_1)$ such
 that for each $i$, the functions $1_{\Y_{H,\lambda}^{i,j}}$ give a
 dual basis to the stable distributions on the nilpotent set of
@@ -1983,9 +2006,9 @@ $1_{a_0}f_{\ell,\lambda,F_1}$, for $\ell\in L^+$.  This proves the
 claim.
 
 
-We apply Theorem~\ref{thm:cgh-asymp} to the morphism $f:P^r\times\ring{Z}\to \Lambda^r$.  
-By the theorem, for each
-$j\in L\setminus L^+$, and for all $\lambda_2\in \Lambda^r({F_2})$, the
+We apply Theorem~\ref{thm:cgh-asymp} to the morphism
+$f:P^r\times\ring{Z}\to \Lambda^r$.  By the theorem, for each $j\in
+L\setminus L^+$, and for all $\lambda_2\in \Lambda^r({F_2})$, the
 functions $f_{\ell,\lambda_2,F_2}$, for $\ell\in \{j\}\cup L^+$ are
 $a_0$-asymptotically linearly dependent.  Let $c_{\ell,j,\lambda_2}\in
 \ring{C}$ be the coefficients of a nontrivial linear combination
@@ -1998,32 +2021,33 @@ For each $j$ and $\lambda_2$, the nontriviality of the relation
 means
 that $c_{\ell,j,\lambda_2}\ne 0$ for some $\ell$.
 
-We claim that there exists $\lambda_2\in \Lambda^r({F_2})$, such that for all $j\in
-L\setminus L^+$,
-$c_{j,j,\lambda_2}\ne 0$.  Otherwise, for all $\lambda_2\in \Lambda^r(F_2)$, there exists
-$j\in L\setminus L^+$ such that $c_{j,j,\lambda_2}=0$.  Equation~\ref{eqn:du}
-becomes
+We claim that there exists $\lambda_2\in \Lambda^r({F_2})$, such that
+for all $j\in L\setminus L^+$, $c_{j,j,\lambda_2}\ne 0$.  Otherwise,
+for all $\lambda_2\in \Lambda^r(F_2)$, there exists $j\in L\setminus
+L^+$ such that $c_{j,j,\lambda_2}=0$.  Equation~\ref{eqn:du} becomes
 \begin{equation}\label{eqn:du2}
 \sum_{\ell\in L^+} c_{\ell,j,\lambda_2}1_af_{\ell,\lambda_2,F_2}  = 0.
 \end{equation}
 This asserts that for all $\lambda_2\in \Lambda^r(F_2)$, the functions
-$1_af_{\ell,\lambda_2,F_2}$ are linearly dependent for $a\ge a_0$.  Applying
-Theorem~\ref{thm:cgh-asymp} again in the opposite direction, to go from
-dependence on $F_2$ to linear dependence on $F_1$, we find that for all
-$\lambda\in \Lambda^r(F_1)$, the functions $1_af_{\ell,\lambda,F_1}$, for $\ell\in L^+$ are linearly
-dependent.  The choice of $k',\s'$ gives linear independence, contrary to
-the assumption of dependence.  This gives the claim.
+$1_af_{\ell,\lambda_2,F_2}$ are linearly dependent for $a\ge a_0$.
+Applying Theorem~\ref{thm:cgh-asymp} again in the opposite direction,
+to go from dependence on $F_2$ to linear dependence on $F_1$, we find
+that for all $\lambda\in \Lambda^r(F_1)$, the functions
+$1_af_{\ell,\lambda,F_1}$, for $\ell\in L^+$ are linearly dependent.
+The choice of $k',\s'$ gives linear independence, contrary to the
+assumption of dependence.  This gives the claim.
 
 For each $i$, let $(\op{reg}_i,+)\in L^+_i$ be chosen so that so that
 it represents the regular stable nilpotent orbit in the endoscopic
 group $\fh_{z_i}$.
 
 Let $\lambda_2\in \Lambda^r(F_2)$ be the parameter in the claim.  The
-nonvanishing $c_{j,j,\lambda_2}\ne 0$, gives for each $j\in L\setminus L^+$ a linear relation for
-$1_af_{j,\lambda_2,F_2}$ in terms of products of stable orbital integrals on
-factors $\fh_{z_i}$.  In particular, for each $i\in\{1,\ldots,r\}$, and for each $x\in\{1,\ldots,k_i\}$,
-we define
-$j = j(i,x) = (j_1,\ldots,j_r)$, where 
+nonvanishing $c_{j,j,\lambda_2}\ne 0$, gives for each $j\in L\setminus
+L^+$ a linear relation for $1_af_{j,\lambda_2,F_2}$ in terms of
+products of stable orbital integrals on factors $\fh_{z_i}$.  In
+particular, for each $i\in\{1,\ldots,r\}$, and for each
+$x\in\{1,\ldots,k_i\}$, we define $j = j(i,x) = (j_1,\ldots,j_r)$,
+where
 \[
 j_{i'} = \begin{cases} (\op{reg}_{i'},+), &\text{if } i'\ne i\\
        (x,-) & \text{if } i' = i.
@@ -2031,13 +2055,13 @@ j_{i'} = \begin{cases} (\op{reg}_{i'},+), &\text{if } i'\ne i\\
 \]
 It is known by Langlands and Shelstad that when suitably normalized,
 the Shalika germ of the stable regular nilpotent class is identically
-$1$~\cite{LSxf}.  In particular, it is nonzero.  Considering the linear relation
-involving $1_af_{j,\lambda_2,F_2}$ as a function of $X_{H,i}$ alone,
-it gives a nontrivial linear relation between functions
-$X_{H,i}\mapsto\psi_{i,x}(X_{H,i})_{\lambda_2}$ (with nonzero
-coefficient) and the stable nilpotent orbital integrals on
-$\fh_{z_i}$.  Lemma~\ref{thm:tensor} extracts the linear relation on
-a factor from a linear relation on the tensor product.  As we run over
+$1$~\cite{LSxf}.  In particular, it is nonzero.  Considering the
+linear relation involving $1_af_{j,\lambda_2,F_2}$ as a function of
+$X_{H,i}$ alone, it gives a nontrivial linear relation between
+functions $X_{H,i}\mapsto\psi_{i,x}(X_{H,i})_{\lambda_2}$ (with
+nonzero coefficient) and the stable nilpotent orbital integrals on
+$\fh_{z_i}$.  Lemma~\ref{thm:tensor} extracts the linear relation on a
+factor from a linear relation on the tensor product.  As we run over
 all $x$ and $i$, we obtain the desired matching of all
 $\kappa$-Shalika germs on all reductive groups in the cocycle space
 $Z^r$.  This proves the theorem.
@@ -2049,24 +2073,34 @@ $L^+_i$ to be a singleton set with $\Y(\lambda_i,\ell_i)$
 a regular nilpotent element, for each $i$.
 
 \subsection{Adaptation to from nilpotence to unipotence}
+\label{sec:adapt}
 
 We now adapt the results of the previous two sections to unipotent
-classes in the group. All of the proofs go through with the following
-changes.  Functions on the Lie algebra (Shalika germs, orbital
-integrals) are replaced with functions on a neighborhood of the
-identity element in the group.  We use notation
-$\gamma_G,\gamma_H,\bar \gamma_G,\bar \gamma_H$, and so forth instead
-of $X_G,X_H,\bar X_G,\bar X_H$.
+classes in the group. 
 
-Nilpotent elements are replaced with unipotent elements.  In large
-residue characteristic,
-the exponential map is defined on the set of nilpotent elements and
-gives a bijection between nilpotent classes in the Lie algebra and
-unipotent elements in the group.  The exponential map is polynomial
-and shows that the set of unipotent elements is a definable set.
 
-The set of parahoric subalgebras are replaced with parahoric
-subgroups.  The Kostant section is replaced with the Steinberg
+\begin{proof}[Proof of Theorem \ref{thm:gtf}]
+  All of the proofs go through with the following changes.  Functions
+  on the Lie algebra (Shalika germs, orbital integrals) are replaced
+  with functions on a neighborhood of the identity element in the
+  group.  We use notation $\gamma_G,\gamma_H,\bar \gamma_G,\bar
+  \gamma_H$, and so forth for elements in the appropriate groups,
+  instead of $X_G,X_H,\bar X_G,\bar X_H$.
+
+The choice of $a$-data becomes $a_\alpha = \alpha(\gamma)^{1/2} -
+\alpha(\gamma)^{-1/2}$ (instead of $\alpha(X)$).  For this, we
+restrict $\gamma$ to the set of topologically unipotent elements (in large
+residual characteristic), on which square roots can be extracted.
+
+We may assume that the multiplicative characters that occur in the
+transfer factor are trivial near the identity element. Near the identity element,
+we have $\Delta_{\rom{3}_2}=1$.
+% This
+%was observed in \cite{hales1993simple}.  The point is that we may
+%choose the multiplicative characters to be tamely ramified, and any
+%such character is trivial on topologically unipotent elements.
+
+The Kostant section is replaced with the Steinberg
 section.  We note that in the construction of transfer factors in
 \cite{CHL}, we used the compatibility of the Kostant section with the
 transfer factor, as proved by Kottwitz \cite{Kott}.  In this article
@@ -2074,19 +2108,33 @@ we have not used the compatibility with transfer factors, and for our
 arguments we do not need to know whether the Steinberg section is
 compatible with the transfer factor.  In fact, we could replace the
 explicit Steinberg section with an existentially quantified variable.
+\end{proof}
 
-The choice of $a$-data becomes $a_\alpha = \alpha(\gamma)^{1/2} -
-\alpha(\gamma)^{-1/2}$ (instead of $\alpha(X)$).  For this, we
-restrict $\gamma$ to topologically unipotent elements (in large
-residual characteristic), on which square roots can be extracted.
+\begin{proof}[Proof of Theorem \ref{thm:local} for groups] 
+  The proof already given in Section~\ref{sec:emsg} for the Lie
+  algebra is readily adapted to the group.
 
-We may assume that the multiplicative characters that occur in the
-transfer factor are trivial on topologically unipotent elements.  This
-was observed in \cite{hales1993simple}.  The point is that we may
-choose the multiplicative characters to be tamely ramified, and any
-such character is trivial on topologically unipotent elements.
+  Nilpotent elements are replaced with unipotent elements.  In large
+  residual characteristic, the exponential map is defined on the set
+  of nilpotent elements and gives a bijection between nilpotent
+  classes in the Lie algebra and unipotent elements in the group.  The
+  exponential map is polynomial and shows that the set of unipotent
+  elements is a definable set.
+
+  The set of parahoric subalgebras are replaced with parahoric
+  subgroups.  We use Theorem~\ref{thm:bmg} for the properties of the
+  Barbasch-Moy pairs.  We have avoided properties of Shalika germ
+  expansions (such as exponential maps and explicit estimates on the
+  neighborhoods on which homogeneity holds) that do not obviously hold
+  in the group.
+\end{proof}
+
+
 
 \subsection{Endoscopic matching of smooth functions on the group}
+\label{sec:xfer}
+
+In this section, we prove Theorem~\ref{thm:xfer}. 
 
 In \cite{LSxf}, Langlands and Shelstad define the notion of matching
 (transfer) of orbital integrals from a reductive group over a local
@@ -2101,41 +2149,52 @@ endoscopic matching in sufficiently large characteristic.
 
 In earlier sections, the primary focus was on constructible
 functions.  In this section, the focus is on reductive groups over
-local fields in sufficiently large residue characteristic.
+local fields in sufficiently large residual characteristic.
 
+We recall some results from \cite{LSd}.  That article assumes that $F$
+is a local field of characteristic zero.  We need to relax the
+restriction on the characteristic to allow fields of large positive
+characteristic.  We briefly sketch how the assumption on the
+characteristic enters into the paper \cite{LSd} and how it can be
+relaxed.  The assumption of characteristic zero is used in the parts
+of the paper devoted to the archimedean places.  These sections of the
+paper do not concern us here.  The assumption is used in an essential
+way in \cite{LSd}*{\S 6.6 Case 3} in a global argument used to deal
+with fields of even residual characteristic.  Since we are assuming
+large residual characteristic, we may disregard that case. The
+complete reducibility of a module is used \cite{LSd}*{\S 5.5}. Again,
+it is enough to assume the characteristic is large.  The cocycle
+calculations, which form the bulk of the paper, do not require the
+assumption that the field has characteristic zero.
 
-In this section, we prove Theorem~\ref{thm:xfer}.  Before presenting
-the proof, we recall some results from \cite{LSd}.  That article
-assumes that $F$ is a local field of characteristic zero.  We will
-need to relax the restriction on the characteristic.  In fact, the
-assumption is rarely used.  It is used to cite other articles that
-also assume characteristic zero.  We need Harish-Chandra descent of
-orbital integrals near a singular semisimple element, which holds in
-positive characteristic by \cite{adler-korman}*{\S 7}. They
-apply descent to Harish-Chandra character of a
-representation; but as they point out, it applies in fact to any
-$G$-invariant distribution). Their result relies on Harish-Chandra's
-submersion principle, which in positive characteristic is proved by
-G. Prasad in \cite{adler-debacker:mktheory}*{Appendix B}.
+That article also cites other sources that assume that the
+characteristic is zero.  We need Harish-Chandra descent of orbital
+integrals near a semisimple element, which holds in positive
+characteristic by \cite{adler-korman}*{\S 7}. They apply descent to
+Harish-Chandra character of a representation; but as they point out,
+it applies in fact to any $G$-invariant distribution). Their result
+relies on Harish-Chandra's submersion principle, which in positive
+characteristic is proved by G. Prasad in
+\cite{adler-debacker:mktheory}*{Appendix B}.
 
-
-
-The only essential use of the assumption appears in Case III on page
-558 of the article, which uses the global argument to deduce a local
-identity in characteristic $2$.  We assume that our fields have
-sufficiently large residue characteristic, and in particular, we can
-do without this case in characteristic $2$.
+The article cites \cite{LSxf}, which also assumes the field has
+characteristic zero. But here again, the arguments are readily adapted
+to large characteristics.
 
 Let $G$ be a reductive group over a nonarchimedean local field $F$,
-and let $H$ be an endoscopic group of $G$.  We recall
-\cite[Sec.2.1]{LSd} that $(G,H)$ admits {\it endoscopic
-  $\Delta$-matching} if for each $f\in C_c^\infty(G(F))$ there exists
-$f^{\tilde H}\in C_c^\infty(\tilde H(F),\theta)$ such that $f$
-and $f^{\tilde H}$ have\footnote{Langlands and Shelstad fix
-  $\tilde{\bar \gamma}_H$ and $\bar\gamma_G$ in the transfer factor
-  and then drop them from notation, so that only the first two
-  variables of $\Delta$ are displayed.  We follow their convention.}  $\Delta$-matching orbital
-integrals:
+and let $H$ be an endoscopic group of $G$.  We recall \cite[\S
+2.1]{LSd} that $(G,H)$ admits {\it endoscopic $\Delta$-matching} if
+for each $f\in C_c^\infty(G(F))$ there exists $f^{\tilde H}\in
+C_c^\infty(\tilde H(F),\theta)$ such that $f$ and $f^{\tilde H}$
+have\footnote{Langlands and Shelstad fix $\tilde{\bar \gamma}_H$ and
+  $\bar\gamma_G$ in the transfer factor and then drop them from
+  notation, so that only the first two variables of $\Delta$ are
+  displayed.  Throughout most of \cite{LSxf}, they assume that the
+  split extension of $\hat H$ by $W_F$ (the Weil group of $F$) is an
+  $L$-group (\S1.2).  When they drop the assumption in \S4.4, the
+  general transfer factor is denoted $\Delta$ and the local factor
+  becomes denoted $\Delta_{loc}$.  We follow their conventions here.}
+$\Delta$-matching orbital integrals:
 \[
 SO(\tilde \gamma_H,f^{\tilde H}) 
  = \sum_{\gamma_G} \Delta(\tilde\gamma_H,\gamma_G)O(\gamma_G,f)
@@ -2145,7 +2204,7 @@ sum is finite, running over representatives $\gamma_G$ of regular
 semisimple conjugacy classes such that
 $\Delta(\tilde\gamma_H,\gamma_G)\ne0$.  The group $\tilde H$ is
 obtained as an admissible $z$-extension from $H$ as explaned in
-\cite[Sec. 4.4]{LSxf}.
+\cite[\S 4.4]{LSxf}.
 
 We recall that $(G,H)$ admits {\it local endoscopic $\Delta$-matching}
 if for any $f\in C_c^\infty(G(F))$ we can find $f^H \in C_c^\infty(H(F))$
@@ -2166,9 +2225,9 @@ endoscopic pair $(G_{\epsilon_G},H_{\epsilon_H})$ with corresponding
 transfer factor $\Delta_\epsilon$.  The group $G_{\epsilon_G}$ is the
 connected centralizer of $\epsilon_G$.
 
-We will need the following result.
+We will need the following result from \cite{LSd}*{2.3.A}.
 
-\begin{theorem}[Langlands-Shelstad 2.3.A]  Suppose all pairs
+\begin{theorem}[Langlands-Shelstad]  Suppose all pairs
   $(G_{\epsilon_G},H_{\epsilon_H})$ have local endoscopic
   $\Delta_\epsilon$-matching, then $(G,H)$ has endoscopic $\Delta$-matching.
 \end{theorem}
@@ -2184,13 +2243,14 @@ $z$-extensions will play no part in our proof.
 
 We now turn to the proof of Theorem~\ref{thm:xfer}.
 
-\begin{proof} Let $G$ be a definable reductive group over a cocycle
+\begin{proof}[Proof of Theorem~\ref{thm:xfer}] 
+Let $G$ be a definable reductive group over a cocycle
   space $Z$.
 
   Over a local field, there are only a finite number of endoscopic
   groups, up to conjugacy.  Also, there are only finitely many
   different centralizers that are obtained by descent, up to conjugacy
-  \cite[Sec.2.2]{LSd}.  We can state this uniformly as the field
+  \cite[\S 2.2]{LSd}.  We can state this uniformly as the field
   varies: there are finitely many definable connected reductive
   centralizers each having finitely many definable reductive
   endoscopic groups such that for all fields of sufficiently large
@@ -2212,7 +2272,8 @@ We now turn to the proof of Theorem~\ref{thm:xfer}.
 \end{proof}
 
 
-\section{Classification of definable reductive groups}\label{sec:classification}
+\section{Classification of definable reductive groups}
+\label{sec:classification}
 
 We rely on the classification of reductive groups from \cite{Gille},
 \cite{Tits}, \cite{Sel}, \cite{Petrov}, \cite{reeder2010torsion},
@@ -2271,8 +2332,8 @@ $\Sigma^{unr}$, which need not correspond with the Frobenius generator
 of $\op{Gal}(E^{unr}/F)$.
 
 In what follows, we use the notation of the fixed choices in
-Subsection~\ref{sec:fixed}.  We refer to \cite{Gross} for a detailed treatment
-of this subject material.
+Subsection~\ref{sec:fixed}.  We refer to \cite{Gross} for a detailed
+treatment of this subject material.
 
 First, consider the case $e=1$.  Then the group splits over an
 unramified extension.  Identifying $\op{Gal}(E^{unr}/F)$ with
@@ -2428,14 +2489,16 @@ than the single parameter $a$ that was given.  This does not affect
 the correctness of ther results, but the dimension of the parameter
 space needs to be changed throughout the paper.
 
-The comments about the Weyl group in the second paragraph of
-Section 4.2 should be deleted.
+In Section 4.2, the construction of the measure on the stable orbit as
+a Leray residue is correct, but the surrounding comments contain
+inaccuracies and should be deleted.
+
 
 
 
 \bibliographystyle{alpha}
 \bibliography{refs}
-(Feb 7, 2015)
+(Feb 12, 2015)
 
 \end{document}
 
