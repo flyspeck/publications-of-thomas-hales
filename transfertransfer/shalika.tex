@@ -754,7 +754,7 @@ similarly construct a cocycle space for $H$ and take the fiber product
 $Z$ of the cocycle spaces for $G$ and $H$, again denoting it by $Z$,
 by abuse of notation.  We also include in the parameters of
 the cocycle space $Z$ a large unramified extension and a choice
-$\op{qFrob}$ of generator.
+$\op{qFr}$ of generator.
 We also
 include in $Z$ a parameter $b$ that trivializes an invariant
 differential form of top degree, as explained in Section~\ref{sec:volume}.
@@ -982,7 +982,7 @@ $\VF$ to $K = \VF[t]/(p_a(t)) = \VF^k$, by taking each coordinate
 $x_\alpha$, and so forth to be a monic polynomial of degree $k$ with
 coefficients in $\VF$.  This does not change the degree $d$ of the
 differential form, but expanding in $t$, it takes values in $\VF^k$.
-The form $\omega_K$ is $G_K$ invariant.  It is also invariant by the
+The form $\omega_K$ is $G_K$-invariant.  It is also invariant by the
 action of $G_{\op{adj}}(K)$ on $G_K$ by conjugation.  We have a
 morphism $G_K\to Z$, and $G$ is identified with the fixed point set of
 the action of $\op{Gal}(K/\VF)$ on $G_K$.  Let $dz$ be any top form on
@@ -1037,7 +1037,7 @@ appear are tame (that is, wild inertia is trivial).
 
 We recall that there is currently no good theory of multiplicative
 characters for motivic integration.  In particular, since the
-Langlands-Shelstad transfer factor makes uses of multiplicative
+Langlands-Shelstad transfer factor makes use of multiplicative
 characters in the form of $\chi$-data, when working motivically,
 we restrict our attention to a neighborhood of the identity on the
 group.  That is, we restrict to the kernels of the multiplicative
@@ -1209,7 +1209,9 @@ $G^*$ such that $(T_{sc},B_{sc}) = \op{Ad}(h)\,(T^*,B^*)$.
 We have a triple $(G^*,B^*,T^*)$ with $T^*\subset B^*\subset G^*$.  If
 $w$ is any element of the Weyl group of $T^*$ in $G^*$ with reduced
 expression $w = s_{\alpha_1}\cdots s_{\alpha_r}$, we set $n(w) =
-n(s_{\alpha_1})\cdots n(s_{\alpha_r})$ and $n(s_\alpha)$ is the image
+n(s_{\alpha_1})\cdots n(s_{\alpha_r})$ where 
+%and
+$n(s_\alpha)$ is the image
 in $\op{Norm}_{G_{sc}^*}(T_{sc}^*)$ of
 \[
 \begin{pmatrix}0 &1\\ -1 & 0\end{pmatrix} = \op{exp} X_\alpha \op{exp} -
@@ -1336,7 +1338,7 @@ let $S_a = f^{-1}(a)$.  Then there exists
   of our formulas contain bound variables of the valued field sort.
   Assume that $S\subset S'[1,0,0]$, for some definable set $S'$.  By
   cell decomposition, we may partition $S$ into finitely many cells
-  $Z$ such that each cells comes with a definable isomorphism
+  $Z$ such that each cell comes with a definable isomorphism
   $\iota:Z \to Z'\subset S'[1,n',n'']$ and a projection $\pi$ of the
   cell $Z'$ onto a base $C\subset S'[0,n',n'']$.  Furthermore, there
   exists a constructible function $g_C$ on each base $C$ such that
@@ -1467,7 +1469,8 @@ can be chosen uniformly in the following sense.
   \otimes p_i$, where all residue field variables occur in the ring
   $Q(\ring{Z})$ on the left, and where the ring $P(\ring{Z})$ on the
   right is the ring of constructible Presburger functions on
-  $\ring{Z}$.  We may assume by quantifier elimination that
+  $\ring{Z}$.  We may assume by cell decomposition that
+  %quantifier elimination that
   $\locus{g}$ contains no variables of valued field sort.
   %The function $\locus{g} = \sum q_i\otimes p_i$
   %may depend on residue field variables through $q_i\in Q(\ring{Z})$.
@@ -1487,12 +1490,12 @@ $i$.
 
 The key point is that such a function can have only finitely many
 zeroes, and their number is bounded by a constant that depends only on
-the number $\ell$ of terms in the sum.  This is \cite[Lemma
+the number $n$ of terms in the sum.  This is \cite[Lemma
 2.1.7]{CGH1} and follows from $o$-minimality of the structure of the
 real field enriched with the exponential.  Thus, the only way for the
 zero locus of $\locus{g}$ to contain all integers greater than $a_F$
 is for the coefficients $c_i$ to be zero for all fields $F$ for every
-unbounded Presburger sets in the disjoint union.
+unbounded Presburger set in the disjoint union.
 
 If we now take $a_0$ to be larger than the maximum of all the bounded
 Presburger sets in the the disjoint union, then this integer works
