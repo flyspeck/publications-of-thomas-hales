@@ -1,3 +1,4 @@
+
 % Authors: Julia Gordon and Thomas Hales
 % December 2014
 % Title: Endoscopic transfer of orbital integrals in large residual characteristic
@@ -1442,7 +1443,7 @@ We use the following lemma based on \cite[Th 4.4.4]{CGH}.
 
 
 We can show that the bound $a_0$ in the Corollary~\ref{cor:12}
-can be chosen uniformly in the following sense.
+can be chosen uniformly in the following sense.  
 
 \begin{thm}\label{thm:uniform}
   Let $g$ be a constructible function on a definable set
@@ -1556,7 +1557,7 @@ We need an asymptotic variant of the previous theorem.
 \[
 S = \{(\lambda,a,X_1,\ldots,X_r)\mid (X_1,a),\ldots,(X_r,a)\in P'\times_\Lambda
 \cdots\times_\Lambda 
-P',~X_i\mapsto \lambda\} \subset \Lambda\times\ring{Z}\times P^{r}.
+P',~g(X_i,a)= \lambda\} \subset \Lambda\times\ring{Z}\times P^{r}.
 \]
 We have a constructible function $d$ on $\Lambda\times\ring{Z}\times P^{r}$
 given by the indicator function of $S$ times
@@ -1716,7 +1717,7 @@ forms of a reductive group.  We note that it is not always possible to
 isolate definably a single isomorphism class of reductive groups $G$.
 See Section~\ref{sec:classification}.
 
-The next (less naive) strategy is take a product $G =
+The next (less naive) strategy is to take a product $G =
 G_1\times\cdots\times G_r$ over all of the groups up to isomorphism
 that appear as fibers over the cocycle space $Z$.  On this product,
 the corresponding cocycle space does in fact determine a single group
@@ -1764,6 +1765,13 @@ $V_1\otimes\cdots\otimes V_r$, then
 
 \begin{proof} This is elementary multilinear algebra.
 \end{proof}
+
+In what follows, to use this lemma, we regularly identify finite dimensional subspaces of
+$C(U_1\times\cdots\times U_r)$ of the functions on
+$U_1\times\cdots U_r$, for various choices of spaces $U_i$, with
+corresponding finite dimensional subspaces of the tensor product
+$C(U_1)\otimes \cdots\otimes C(U_r)$, often without
+explicit mention.
 
 \subsection{Parameter sets}
 
@@ -1915,6 +1923,24 @@ functions on $P^r_\xi\times\ring{Z}$ indexed by $\ell\in L$:
 \]
 
 
+In summary, the tuple $\bf$ is indexed by $\ell$ which is a tuple that, when
+$\ell$ is in $L^-$, enumerates the nilpotent orbits in
+$\fg_{z(\lambda_1)}\times \cdots\times \fg_{z(\lambda_r)}$, and when
+$\ell$ is in $L^+$, enumerates the stable nilpotent distributions on
+$\fh_{z(\lambda_1)}\times \cdots\times \fh_{z(\lambda_r)}$.  The
+components of $\bf$ (the functions $f_\ell$) mix the reductive group
+and its endoscopic group together.  Each function $f_\ell$ is an
+orbital integral on $\fg'_{z(\lambda_1)}\times \cdots\times
+\fg'_{z(\lambda_r)}$, where each factor $\fg'_{z(\lambda_i)}$ is
+$\fh_{z(\lambda_i)}$ or $\fg_{z(\lambda_i)}$, depending on which side
+of the disjoint union the parameter $\ell_i\in L_i = L^+_i\sqcup
+L^-_i$ lands.  These orbital integrals are evaluated at the
+($r$-tuples of) test functions associated with Barbasch-Moy pairs as
+in Section~\ref{sec:msg}. The condition $\Upsilon_{H,i,1}:reg$ (in the
+definition of $\Lambda^1_i$) ensures that one of the nilpotent classes
+on each endoscopic factor is regular, which will be needed later to
+make sure that the corresponding stable Shalika germ does not vanish.
+
 \subsubsection{Field dependent choices}\label{sec:field}
 
 At this stage of our argument, we have a finite set of parameters
@@ -2022,13 +2048,12 @@ and we can simply choose the maximum $a_0$ among finitely many cases.
 
 For $\lambda\in \Lambda_B$, there does not exist an $a_0$ for which
 the given tuple of functions is $a_0$-asymptotically dependent.  Note
-that the number of stable distributions on the product of
-$\fh_{z(\lambda_i)}(F_1)$ does not depend on $\lambda\in
+that the number of stable distributions with nilpotent support on the
+product of $\fh_{z(\lambda_i)}(F_1)$ does not depend on $\lambda\in
 \Lambda^r(F_1)$, since different choices of $\lambda$ merely permute
-the factors $\fh_{z(\lambda_i)}$.  The cardinality of $L^+$ is
-$k'_1\cdots k'_r$, the number of stable distributions support on the
-nilpotent cone on the product of the $\fh_{z_i}$.  We invoke
-Lemma~\ref{thm:tensor}(1) to see that for all $i$, the functions
+the factors $\fh_{z(\lambda_i)}$.  This number is $k'_1\cdots k'_r$,
+the cardinality of $L^+$.  We invoke Lemma~\ref{thm:tensor}(1) to see
+that for all $i$, the functions
 \begin{equation}\label{eqn:1a}
 1_a\psi_{i,\ell_i}(\cdot,\lambda_i)_{F_1},\quad \text{ for }\ell_i\in L^+_i,
 \end{equation}
@@ -2045,7 +2070,7 @@ If we constrain the test functions to be $1_\Y$ for Moy-Prasad pairs,
 then as we vary the parameters, there are only finitely many
 situations up to isomorphism.  Thus, we may pick a single $a_0$ that
 works for all $\lambda\in\Lambda_B$.
-%% Do we need compactness here? XX.
+%% We use the finite number of cosets N+g_{f,+}.
 
 We claim that for all ${\bar\ell} \in L\setminus L^+$, there exists
 $a_0\in\ring{Z}$, such that for each $\lambda\in \Lambda^r(F_1)$, the
@@ -2055,10 +2080,11 @@ dependent.  We may check this claim separately for $\Lambda_A$ and
 $\Lambda_B$ and take the maximum of the constants $a_0$ that we
 obtain.  For $\Lambda_A$ we have already checked that such a constant
 can be chosen, even without including $\bar\ell$.  For $\Lambda_B$, we
-have checked that we have an $a_0$-asymptotic relation relating with
-function with index $\bar\ell_i$ to the others for each
-$i=1,\ldots,r$, and by taking tensor products of the relations we
-obtain a linear relation.  This gives the claim.
+have checked that we have an $a_0$-asymptotic linear dependency that
+expresses the function with index $\bar\ell_i$ in terms of the others
+for each $i=1,\ldots,r$. By taking tensor products of the relations,
+we obtain a linear relation on the tuple of functions indexed by $\ell\in
+\{{\bar\ell}\}\cup L^+$.  This gives the claim.
 
 %If there exists $a_0$ such that for all $\lambda\in \Lambda^r(F_1)$,
 %the functions indexed by $L^+$ are $a_0$-asymptotically linearly
@@ -2362,12 +2388,12 @@ Let $G$ be a definable reductive group over a cocycle
 
 We rely on the classification of reductive groups from \cite{Gille},
 \cite{Tits}, \cite{Sel}, \cite{Petrov}, \cite{reeder2010torsion},
-closely following the presentation in \cite{Gross}.  We refer to
-\cite{Gross} for necessary details about our presentation here.  We
-recall that we do not have access to a Frobenius element of the Galois
-group, which is used in essential ways in the classification.  We
-obtain a slightly weaker classification using $\op{qFr}$, a fixed
-generator of $\Sigma^{unr}$.
+closely following the presentation in \cite{Gross}.  All reductive
+groups in this section are assumed to split over a tamely ramified
+field extension.  We recall that we do not have access to a
+Frobenius element of the Galois group, which is used in essential ways
+in the classification.  We obtain a slightly weaker classification
+using $\op{qFr}$, a fixed generator of $\Sigma^{unr}$.
 
 We describe the extent to which nonisomorphic reductive groups over a
 given field $F$ can have the same set of fixed choices as described in
@@ -2402,9 +2428,15 @@ In the second case, the group of automorphisms of a connected
 
 \begin{lem} Let $G$ and $G'$ are forms of a simple, simply connected
   split group $G^{**}$ over a nonarchimedean field $F$, for which the
-  fixed choices can be chosen to be equal.  Then $G$ and $G'$ fall into one of the
-  three cases just enumerated.
+  fixed choices can be chosen to be equal.  Assume the groups split
+  over a tamely ramified extension of $F$.  Then $G$ and $G'$ fall
+  into one of the three cases just enumerated.
 \end{lem}
+
+We remark that the classification in this lemma with respect to
+specific fixed data is not known to coincide with the classification
+with respect to arbitrary definable data.  This is a question we leave
+unanswered.
 
 \begin{proof}
   Specifically, suppose that we are given $F$ and an enumerated Galois
@@ -2450,7 +2482,7 @@ group, but not the numerator.  This is the first case.
 Now consider the case $e>1$.  These are groups that split over a
 ramified extension.  The fixed data determines whether the group is
 quasi-split.  The quasi-split groups are precisely those for which
-$\phi(\op{qFr})=1$ (see \cite[\S7]{Gross}).
+$\phi(\op{qFr})=1$ (that is, the case $c=1$ in \cite[\S7]{Gross}).
 
 Assume $e>1$ and the group is quasi-split. 
 In this case, the fixed data gives
@@ -2601,7 +2633,7 @@ inaccuracies and should be deleted.
 
 \bibliographystyle{alpha}
 \bibliography{refs}
-(Feb 17, 2015)
+(Feb 21, 2015)
 
 \end{document}
 
