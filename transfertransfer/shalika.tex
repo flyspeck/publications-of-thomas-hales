@@ -1,12 +1,6 @@
-
 % Authors: Julia Gordon and Thomas Hales
 % December 2014
 % Title: Endoscopic transfer of orbital integrals in large residual characteristic
-
-% XX Issues: 
-% Fix theorem numbering by section.
-% Waldspurger cited once.
-% More precise ref for [Cluckers-Gordon-Halupczok] linear dependence
 
 % Notation:
 % Zent = Center
@@ -31,8 +25,6 @@
 \usepackage{verbatim}
 \usepackage{mathrsfs}
 \usepackage{lineno}
-%\usepackage[notcite, notref]{showkeys}
-%\usepackage[left=2cm,top=2cm,right=2cm,nohead]{geometry}
 
 \textwidth 6.5 in
 \oddsidemargin 0 in
@@ -42,17 +34,6 @@
 
 \definecolor{bettergreen}{rgb}{0,.7,0}
 \newcommand\blue[1]{{\color{blue}{#1}}}
-%\newcommand\green[1]{{\color{bettergreen}{#1}}}
-%\newcommand\red[1]{{\color{red}{#1}}}
-
-%\long\def\comment#1{\marginpar{{\footnotesize\color{red} #1\par}}}
-%\long\def\commentimmi#1{\marginpar{{\footnotesize\color{bettergreen} #1\par}}}
-%\long\def\change#1{{\color{blue} #1}}
-%newcommand\green[1]{{\color{green} #1}}
-%\newcommand   [1]{{\color{red}\small #1}}
-
-%\let\immi=\green
-%\let\raf=\blue
 
 \newcommand\todo[1]{\ \vspace{5mm}\par \noindent\framebox{\begin{minipage}[c]{0.95 \textwidth} \tt #1\end{minipage}} \vspace{5mm} \par}
 
@@ -94,17 +75,14 @@
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\Q}{{\mathbb Q}}
 \newcommand{\C}{{\mathbb C}}
-%\newcommand{\R}{{\mathbb R}}
 \newcommand{\Z}{{\mathbb Z}}
 \newcommand{\N}{{\mathbb N}}
 \newcommand{\LL}{{\mathbb L}}
 \newcommand{\TT}{{\mathbb T}}
 \newcommand{\CC}{{\mathbb C}}
 \newcommand{\ZZ}{{\mathbb Z}}
-
 \newcommand{\cF}{\mathcal{F}}
 \newcommand{\cB}{\mathcal{B}}
-
 \newcommand{\fg}{\mathfrak{g}}
 \newcommand{\fb}{\mathfrak{b}}
 \newcommand{\fn}{\mathfrak{n}}
@@ -134,8 +112,6 @@
 \newtheorem{theorem}[thm]{Theorem}
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{cor}[thm]{Corollary}
-%\newtheorem{defn}[thm]{Definition}
-%\newtheorem{rem}[thm]{Remark}
 \newtheorem{prop}[thm]{Proposition}
 
 \theoremstyle{definition}
@@ -251,7 +227,6 @@ is a definable set $\NF^k_G$ representing $k$-tuples of Barbasch-Moy
 pairs $\Y=(N,\s)$, in the sense of Section~\ref{sec:nilpotent}, with
 pairwise non-conjugate nilpotent elements $N$ in the Lie algebra $\fg$
 of $G$.  Here, $\s\in\cF$, where $\cF$ is a parahorics indexing set.
-%We give a constructible function $1_\Y$ parametrized by $\Y$.
 
 For $F\in \op{Loc}_m$ and $z\in Z(F)$, we have $F$-points $G_z(F)$ of
 a connected reductive group over $F$, obtained by twisting the split
@@ -302,9 +277,6 @@ For each $n$, there is a definable set $\UF^n_G$ representing
 $n$-tuples of unipotent Barbasch-Moy pairs in $G$ whose tuple of first
 coordinates are pairwise non-conjugate (Section~\ref{sec:nilpotent}).
 The following theorem is proved in Section~\ref{sec:adapt}.
-
-%We give a constructible function $1_\Y$ parametrized by $\Y\in
-%\UF^1_G$.  
 
 \begin{theorem} If we replace $\NF^n_G$ (resp. $\NF^{k}_{G_z}(F)$,
   $\fg^\reg$) with $\UF^n_{G}$ (resp. $\UF^{k}_{G_z}(F)$, $G^\reg$)
@@ -938,7 +910,6 @@ sources.
 We recall that each nilpotent orbit can be endowed with an invariant
 motivic measure $d\mu^{\op{nil}}$ that comes from the the canonical
 symplectic form on coadjoint orbits~\cite[Prop.~4.3]{CGH}.  
-%This measure has a free parameter $N$ that runs over the nilpotent cone.
 
 We obtain an invariant volume form on the unipotent set in the
 group by exponentiating the volume form on the nilpotent cone.
@@ -1018,8 +989,6 @@ Set $\omega_0 = b\, dz\land\omega_K$.  It is Galois stable on
 $G$, so on this definable set, the $d+\dim Z$-form takes values in $F$.
 Also, since $\omega_K$ is invariant by $G_K$, this implies the
 invariance of $\omega_0$ by $G$ (acting fiberwise over $Z$).  
-%Then $\omega_0$ is an
-%invariant form of (relative) top degree on the fibers $G_z$.
 
 We have a morphism $G^\reg\to \fc_{G^*}$ that classifies stable
 regular semisimple conjugacy classes in the group.  We form the Leray
@@ -1131,17 +1100,11 @@ definable sets $D_{j,{\rom{1}}}$ and $D_{j,\rom{3}}$:
 \left(\sum_{j_1=0}^{k-1} e^{2\pi i j_1/k} 1_{D_{j_1,{\rom{3}}}}\right)
 \left(\sum_{j_2=0}^{k-1} e^{2\pi i j_2/k} 1_{D^{12}_{j_2,{\rom{1}}}}\right)
 \left(\sum_{j_3=0}^{k-1} e^{-2\pi i j_3/k} 1_{D^{34}_{j_3,{\rom{1}}}}\right).
-%\sum_{j=0}^k e^{2\pi i j/k}1_{D_j }.
 \]
-The
-subscripts
-correspond to the Roman numerals $\rom1$ and $\rom3_1$ in the
-Langlands-Shelstad article.
-%Here, $D_j$ is the definable set on which $\Delta_0$ takes the value
-%$e^{2\pi i j/k}$.  
-Typically, constructible functions have integer
-coefficients, but there is no harm in extending scalars to $\ring{C}$
-to allow the given roots of unity.
+The subscripts correspond to the Roman numerals $\rom1$ and $\rom3_1$
+in the Langlands-Shelstad article.  Typically, constructible functions
+have integer coefficients, but there is no harm in extending scalars
+to $\ring{C}$ to allow the given roots of unity.
 
 We will give further definable sets $D_{j,{\rom{1}}}$ and
 $D_{j,\rom{3}}$.  The definable set $D_{j,\rom{3}}$ is a subset of the
@@ -1201,11 +1164,9 @@ running over $L/\VF$ and its enumerated Galois group.  We let $h$ be a
 bound parameter in $G^*$ such that $(T_{sc},B_{sc}) =
 \op{Ad}(h)\,(T^*,B^*)$.
 
-%We have a triple $(G^*,B^*,T^*)$ with $T^*\subset B^*\subset G^*$.  
 If $w$ is any element of the Weyl group of $T^*$ in $G^*$ with reduced
 expression $w = s_{\alpha_1}\cdots s_{\alpha_r}$, we set $n(w) =
 n(s_{\alpha_1})\cdots n(s_{\alpha_r})$ where
-%and
 $n(s_\alpha)$ is the image
 in $\op{Norm}_{G_{sc}^*}(T_{sc}^*)$ of
 \[
@@ -1469,10 +1430,7 @@ can be chosen uniformly in the following sense.
   $Q(\ring{Z})$ on the left, and where the ring $P(\ring{Z})$ on the
   right is the ring of constructible Presburger functions on
   $\ring{Z}$.  We may assume by cell decomposition that
-  %quantifier elimination that
   $\locus{g}$ contains no variables of valued field sort.
-  %The function $\locus{g} = \sum q_i\otimes p_i$
-  %may depend on residue field variables through $q_i\in Q(\ring{Z})$.
 
 By the definition of constructible Presburger functions $p_i$ on
 $\ring{Z}$, we may partition $\ring{Z}$ into a finite (field
@@ -1613,10 +1571,6 @@ For $n\in \ring{N}$, let $\NF^n$ be the definable subset of $n$-tuples
 of pairs $\Y_i=(N_i,\s_i)$, where $\Y_i$ is a Barbasch-Moy pair, $N_i$
 is a nilpotent element in $\fg_{\s_i,0}$, and such that
 $N_1,\ldots,N_n$ are pairwise non-conjugate.  
-
-%For any $\Y\in \NF^n$,
-%we let $\s(\Y)=(\s_1,\ldots,\s_n)$ denote the tuple of second
-%coordinates of $\Y$.  
 
 For any $n$-tuple $\s=(\s_1,\ldots,\s_n)$, we write $\NF^n_\s$ for the
 subset of $\NF^n$ consisting of those elements whose $n$-tuple of
@@ -1766,12 +1720,19 @@ $V_1\otimes\cdots\otimes V_r$, then
 \begin{proof} This is elementary multilinear algebra.
 \end{proof}
 
-In what follows, to use this lemma, we regularly identify finite dimensional subspaces of
-$C(U_1\times\cdots\times U_r)$ of the functions on
-$U_1\times\cdots U_r$, for various choices of spaces $U_i$, with
-corresponding finite dimensional subspaces of the tensor product
-$C(U_1)\otimes \cdots\otimes C(U_r)$, often without
-explicit mention.
+
+In what follows, to use this lemma, we regularly identify finite
+dimensional subspaces of $C(U_1\times\cdots\times U_r)$ of the
+continuous functions on $U_1\times\cdots U_r$, for various choices of spaces
+$U_i$, with corresponding finite dimensional subspaces of the tensor
+product $C(U_1)\otimes \cdots\otimes C(U_r)$, under the map
+\[
+C(U_1)\otimes \cdots\otimes C(U_r)\to C(U_1\times\cdots\times U_r),
+\]
+often without explicit mention.  We recall that the orbital integral
+of $f_1\otimes\cdots\otimes f_r$ on a product
+$\fg_1\times\cdots\times \fg_r$ is a product of the corresponding
+orbital integrals on the factors.
 
 \subsection{Parameter sets}
 
@@ -1810,18 +1771,6 @@ $\s'$ is constrained as $\s$, but using $k'$ and $\cF_H$.  By imposing
 these constraints on $r$, $k$, $k'$, $\s$, and $\s'$, it is clear that
 they range over a finite set of possibilities.
 
-
-
-%We have made several choices.  These choices are part of a longer
-%sequence of choices that must be made in the correct order.  We have
-%already picked root data for $G^{**}$ and $H^{**}$ with all the
-%associated fixed choices $\Sigma,\cF,\ldots$.  We have selected group
-%and an endoscopic group $(G,H)_{/Z}$ over a cocycle space.  We have
-%bounded various discrete parameters $r,k,k',\s,\s'$ to lie in a finite
-%set; and we have picked $m$, $F_1$, and $F_2$.  To complete the
-%sequence of choices, we will pick the particular values of
-%$r,k,k',\s,\s'$ among the finite set of possibilities.
-
 \subsubsection{Parameter sets that depend on $\xi$}
 
 Let $\xi=(r,k,k',\s,\s')$ be any collection of parameters as
@@ -1854,7 +1803,6 @@ $\lambda_i\in\Lambda^1_i$.  For $i=1,\ldots,r$, we set
 \{(\lambda_1,\ldots,\lambda_r) \mid \lambda_i \in \Lambda^1_i\quad
   (z(\lambda_1),\ldots,z(\lambda_r))\in Z^r \}.
 \]
-%For $\lambda=(\lambda_1,\ldots,\lambda_r)\in \Lambda^r$, 
 If $j\in\ring{N}$ and $\epsilon\in\{\pm\}$, write
 \[
 \Y(\lambda_i,(j,\epsilon)) = 
@@ -1876,8 +1824,6 @@ P^r = P^r_\xi = \{(X_H,\lambda) \mid \lambda =
   X_H = (X_{H,1},\ldots,X_{H,r}), \quad (X_{H,i},\lambda_i) \in P^1_i\}.
 \]
 We have a projection map $P^r\to \Lambda^r$ onto the second coordinate.
-%Our two definitions of $Z$, $\Lambda^1$ and $P^1$ are coherent when
-%$r=1$.
 
 Set
 $L_i = L^+_i\sqcup L^-_i$, where $L^-_i =
@@ -1900,8 +1846,6 @@ these functions: $1_a SO(X,f^H)$ and $1_a O^\kappa(X_H,\bar
 X_H,\bar X_G,f)$.  Integrals now have an extra integer parameter
 $a\in\ring{Z}$ that we may use to study $a$-asymptotic linear
 dependence.  
-%By a similar abuse of notation, we write $1_a
-%f_{\ell,\lambda}$ for the truncation of $f_{\ell,\lambda}$.
 
 We define constructible functions.  For $(X_H,\lambda)\in
 P^r_\xi$,  for $i=1,\ldots,r$, and $\ell_i\in L_i$,
@@ -1984,25 +1928,21 @@ $Z^r(F_2)\ne\emptyset$.
 
 Pick any $z\in Z^r(F_2)$.  Write $G_i=G_{z_i}$.  Let
 $k=(k_1,\ldots,k_r)$ be a tuple such that $k_i$ is the number of
-nilpotent orbits in $\fg_{z_i}(F_2)$.  
-% By the Barbasch-Moy
-% classification of nilpotent orbits in terms of residue field
-% parameters~\cite{barbasch-moy}, $k_i$ is also equal to the number of
-% nilpotent classes in $\fg_{z_i}(F_2)$.  
-% Nonsense, z_i is an F_1 parameter!
-Choose a $k_i$-tuple $\s_i\in
+nilpotent orbits in $\fg_{z_i}(F_2)$.  Choose a $k_i$-tuple $\s_i\in
 \cF_{G_i}^{k_i}$ such that $\NF^{k_i}_{G_i,\s_i}(F_2)\ne \emptyset$.
 Let $\s = (\s_1,\ldots,\s_r)$.
 
-Finally, we choose parameters $k'$ and $\s'$ as follows.  Pick any
-$z\in Z^r(F_1)$.  Write $H_i = H_{z_i}$. Let $k'=(k'_1,\ldots,k'_r)$
-be a tuple such that $k'_i$ is the dimension of the space of stable
-Shalika germs on $\fh_{z_i}$.  By the definition of stable
-distribution, this equals the dimension of the space of stable orbital
-integrals supported on the nilpotent set.  For each $i$, let
-$\mu_{ij}^{st}$, $j = 1,\ldots,k'_i$, be a basis of the stable
-distributions supported on the nilpotent set of $\fh_{z_i}$.  We have
-a Shalika germ expansion
+Finally, we choose parameters $k'$ and $\s'$ as follows.  Pick $z\in
+Z^r(F_1)$.  By a transfer principle, we may assume that $z$ is
+selected in such a way that $\NF^{k_i}_{G_i,\s_i}(F_1)\ne \emptyset$,
+where $G_i=G_{z_i}$, for $i=1,\ldots,r$.  Write $H_i = H_{z_i}$. Let
+$k'=(k'_1,\ldots,k'_r)$ be a tuple such that $k'_i$ is the dimension
+of the space of stable Shalika germs on $\fh_{z_i}$.  By the
+definition of stable distribution, this equals the dimension of the
+space of stable orbital integrals supported on the nilpotent set.  For
+each $i$, let $\mu_{ij}^{st}$, $j = 1,\ldots,k'_i$, be a basis of the
+stable distributions supported on the nilpotent set of $\fh_{z_i}$.
+We have a Shalika germ expansion
 \[
 SO(X_H,f^H) = \sum_{j=1}^{k'_i} \Gamma^{st}_{ij}(X) \mu_{ij}^{st}(f^H),
 \]
@@ -2092,20 +2032,9 @@ for each $i=1,\ldots,r$. By taking tensor products of the relations,
 we obtain a linear relation on the tuple of functions indexed by $\ell\in
 \{{\bar\ell}\}\cup L^+$.  This gives the claim.
 
-%If there exists $a_0$ such that for all $\lambda\in \Lambda^r(F_1)$,
-%the functions indexed by $L^+$ are $a_0$-asymptotically linearly
-%dependent, this is immediate.  If, on the other hand, for all $a_0$,
-%there exists $\lambda$ such that the functions indexed by $L^+$ are
-%not $a_0$-asymptotically linearly dependent, then there exists a
-%parameter $\Y_H(\lambda)$ from the base space $\Lambda^r(F_1)$ such
-%that for each $i$, the functions $1_{\Y_{H,\lambda}^{i,{\bar\ell}}}$ give a
-%dual basis to the stable distributions on the nilpotent set of
-%$\fh_{z_i}$.  We use Waldspurger's fundamental result
-%\cite{waldspurger1997lemme} that the $\kappa$-orbital integral (over
-%$F_1$) admits smooth matching, which implies that there exists $a_0$
-%such that $1_{a_0}f_{{\bar\ell},\lambda,F_1}$ is a linear combination of
-%$1_{a_0}f_{\ell,\lambda,F_1}$, for $\ell\in L^+$.  This proves the
-%claim.
+In fact, we may take $a_0\in\ring{Z}$ to be independent of $\bar\ell$,
+because ${\bar\ell}\in L\setminus L^+$ runs over finitely many
+possibilities.
 
 We apply Theorem~\ref{thm:cgh-asymp} to the morphism
 $f:P^r\times\ring{Z}\to \Lambda^r$.  By the theorem, for each ${\bar\ell}\in
@@ -2141,22 +2070,23 @@ for $a\ge a_0$.  Applying Theorem~\ref{thm:cgh-asymp} again in the
 opposite direction, to go from dependence on $F_2$ to linear
 dependence on $F_1$, we find that for all $\lambda'\in
 \Lambda^r(F_1)$, the functions $1_af_{\ell,\lambda',F_1}$, for
-$\ell\in L^+$ are linearly dependent.  This contradicts the choice of
-$k',\s'$, which were chosen to give linear independence.  This gives
-the claim.
-
+$\ell\in L^+$ are linearly dependent.  There exists
+$\lambda'\in\Lambda^r(F_1)$ such that $z(\lambda')\in Z^r(F_1)$ is the
+parameter used to construct $k'$ and $\s'$.  This contradicts the
+choice of $k',\s'$, which were chosen to give linear independence.
+This gives the claim.
 
 Let $\lambda\in \Lambda^r(F_2)$ be the parameter in the claim.  The
 $r$-tuples $k$ and $\s$ were constructed using some different
 parameter $z\in Z(F_2)$.  However, different choices of cocycles
 merely permute the constants $k_i$.  Hence, the product $k_1\cdots
 k_r$ is independent of $z$.  Since $\Y_G(\lambda_i)\in
-\NF^{k_i}=\NF^{k_i}_{G_i,\s_i}(F_2)$, where $G_i = G_{z(\lambda_i)}$,
+\NF^{k_i}:=\NF^{k_i}_{G_i,\s_i}(F_2)$, where $G_i = G_{z(\lambda_i)}$,
 and since the $\NF^{k_i}$ enforces non-conjugacy conditions on its
 components, we see $G_i(F_2)$ has at least $k_i$ nilpotent orbits.
 Since the product $k_1\cdots k_r$ is fixed, in fact, $G_i(F_2)$ has
 exactly $k_i$ nilpotent orbits.  We conclude that the tuples $k$ and
-$\s$ are comptible with the parameter $z(\lambda)\in Z(F_2)$.
+$\s$ are compatible with the parameter $z(\lambda)\in Z(F_2)$.
 
 We write $\Y_H(\lambda)=(\Y_1,\ldots,\Y_r)$.  For each $i=1,\ldots,r$,
 the definition of $\lambda_i\in\Lambda^1_i$ constrains $\Y_{i1}$ to be
@@ -2212,12 +2142,8 @@ restrict $\gamma$ to the set of topologically unipotent elements (in large
 residual characteristic), on which square roots can be extracted.
 
 We may assume that the multiplicative characters that occur in the
-transfer factor are trivial near the identity element. Near the identity element,
-we have $\Delta_{\rom{3}_2}=1$.
-% This
-%was observed in \cite{hales1993simple}.  The point is that we may
-%choose the multiplicative characters to be tamely ramified, and any
-%such character is trivial on topologically unipotent elements.
+transfer factor are trivial near the identity element. Near the
+identity element, we have $\Delta_{\rom{3}_2}=1$.
 
 The Kostant section is replaced with the Steinberg section in the
 quasi-split inner form.  In the construction of transfer factors in
