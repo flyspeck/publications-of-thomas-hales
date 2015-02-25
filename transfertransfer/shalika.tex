@@ -1956,11 +1956,11 @@ Z^r(F_1)$.  By a transfer principle, we may assume that $z$ is
 selected in such a way that $\NF^{k_i}_{G_i,\s_i}(F_1)\ne \emptyset$,
 where $G_i=G_{z_i}$, for $i=1,\ldots,r$.  Write $H_i = H_{z_i}$. Let
 $k'=(k'_1,\ldots,k'_r)$ be a tuple such that $k'_i$ is the dimension
-of the space of stable Shalika germs on $\fh_{z_i}$.  By the
+of the space of stable Shalika germs on $\fh_{z_i}(F_1)$.  By the
 definition of stable distribution, this equals the dimension of the
 space of stable orbital integrals supported on the nilpotent set.  For
 each $i$, let $\mu_{ij}^{st}$, $j = 1,\ldots,k'_i$, be a basis of the
-stable distributions supported on the nilpotent set of $\fh_{z_i}$.
+stable distributions supported on the nilpotent set of $\fh_{z_i}(F_1)$.
 We have a Shalika germ expansion
 \[
 SO(X_H,f^H) = \sum_{j=1}^{k'_i} \Gamma^{st}_{ij}(X) \mu_{ij}^{st}(f^H),
@@ -2016,7 +2016,7 @@ the given tuple of functions is $a_0$-asymptotically dependent.  Note
 that the number of stable distributions with nilpotent support on the
 product of $\fh_{z(\lambda_i)}(F_1)$ does not depend on $\lambda\in
 \Lambda^r(F_1)$, since different choices of $\lambda$ merely permute
-the factors $\fh_{z(\lambda_i)}$.  This number is $k'_1\cdots k'_r$,
+the factors $\fh_{z(\lambda_i)}(F_1)$.  This number is $k'_1\cdots k'_r$,
 the cardinality of $L^+$.  We invoke Lemma~\ref{thm:tensor}(1) to see
 that for all $i$, the functions
 \begin{equation}\label{eqn:1a}
@@ -2024,11 +2024,11 @@ that for all $i$, the functions
 \end{equation}
 are also not $a_0$-asymptotically dependent for any $a_0$.  Thus, the
 functions $1_a 1_{Y(\lambda_i,\ell_i),F_1}$ span the space dual to the
-space of stable nilpotent distributions on $\fh_{z_i(\lambda)}$.  We
-use Waldspurger's fundamental result \cite{waldspurger1997lemme} that
-the $\kappa$-orbital integral (over $F_1$) admits smooth
-matching. This implies that for any test function on any factor
-$\fg_{z_i(\lambda)}$, there exists $a_0$ such that the
+space of stable nilpotent distributions on $\fh_{z_i(\lambda)}(F_1)$.
+We use Waldspurger's fundamental result \cite{waldspurger1997lemme}
+that the $\kappa$-orbital integral (over $F_1$ of characteristic zero)
+admits smooth matching. This implies that for any test function on any
+factor $\fg_{z_i(\lambda)}$, there exists $a_0$ such that the
 $\kappa$-orbital integrals of the test function satisfy an
 $a_0$-asymptotic relation with the functions in Formula \ref{eqn:1a}.
 If we constrain the test functions to be $1_\Y$ for Moy-Prasad pairs,
@@ -2110,13 +2110,13 @@ $\s$ are compatible with the parameter $z(\lambda)\in Z(F_2)$.
 We write $\Y_H(\lambda)=(\Y_1,\ldots,\Y_r)$.  For each $i=1,\ldots,r$,
 the definition of $\lambda_i\in\Lambda^1_i$ constrains $\Y_{i1}$ to be
 associated with a regular nilpotent orbit.  Thus, the index $(1,+)\in
-L^+_i$ represents the regular nilpotent orbit in the endoscopic group
-$\fh_{z_i}$.
+L^+_i$ represents the regular nilpotent orbit in the Lie algebra
+$\fh_{z_i}(F_2)$ of the endoscopic group.
 
 The nonvanishing $c_{{\bar\ell},{\bar\ell},\lambda}\ne 0$, gives for
 each ${\bar\ell}\in L\setminus L^+$ a linear relation for
 $1_af_{{\bar\ell},\lambda,F_2}$ in terms of products of stable orbital
-integrals on factors $\fh_{z_i}$.  In particular, for each
+integrals on factors $\fh_{z_i}(F_2)$.  In particular, for each
 $i\in\{1,\ldots,r\}$, and for each $j\in\{1,\ldots,k_i\}$, we define
 ${\bar\ell} = {\bar\ell}(i,j) = ({\bar\ell}_1,\ldots,{\bar\ell}_r)$,
 where
@@ -2133,11 +2133,11 @@ function of $X_{H,i}$ alone, it gives a nontrivial linear relation
 between functions
 $X_{H,i}\mapsto\psi_{i,\bar\ell_i}(X_{H,i},{\lambda})$ (with nonzero
 coefficient) and the stable nilpotent orbital integrals on
-$\fh_{z_i}$.  Lemma~\ref{thm:tensor}(2) extracts the linear relation
-on a factor from a linear relation on the tensor product.  As we run
-over all $j$ and $i$, we obtain the desired matching of all
+$\fh_{z_i}(F_2)$.  Lemma~\ref{thm:tensor}(2) extracts the linear
+relation on a factor from a linear relation on the tensor product.  As
+we run over all $j$ and $i$, we obtain the desired matching of all
 $\kappa$-Shalika germs on all reductive groups in fibers over the
-cocycle space $Z$.  This proves the theorem.
+cocycle space $Z(F_2)$.  This proves the theorem.
 \end{proof}
 
 \subsection{Adaptation from nilpotence to unipotence}
