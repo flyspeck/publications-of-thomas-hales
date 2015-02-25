@@ -226,7 +226,7 @@ enumerated in Section~\ref{sec:fixed}.  For each $k\in\ring{N}$, there
 is a definable set $\NF^k_G$ representing $k$-tuples of Barbasch-Moy
 pairs $\Y=(N,\s)$, in the sense of Section~\ref{sec:nilpotent}, with
 pairwise non-conjugate nilpotent elements $N$ in the Lie algebra $\fg$
-of $G$.  Here, $\s\in\cF$, where $\cF$ is a parahorics indexing set.
+of $G$.  Here, $\s\in\cF$, where $\cF$ is a parahoric indexing set.
 
 For $F\in \op{Loc}_m$ and $z\in Z(F)$, we have $F$-points $G_z(F)$ of
 a connected reductive group over $F$, obtained by twisting the split
@@ -508,16 +508,16 @@ group of inner automorphisms and the image of $\Sigma$.
 
 To treat the theory of reductive groups in a definable context, we fix
 faithful rational representations of all split reductive groups (over
-$\ring{Q}$) of interest: $G^{**}$, $G^{**}_{sc}$, $G^{**}_{der}$,
-$G^{**}_{\op{adj}}$,
-	\undefined{Why does `adj' get a Roman subscript
-(although it should be \verb+\text+ instead of \verb+\op+),
-whereas the others are in math mode?}
-$\op{Aut}_0(G^{**})$, and even $(G^{**}_{sc}\times
-G^{**}_{sc})/\op{Zent}_{sc}$, with diagonal embedding of the center
-$\op{Zent}_{sc}$ of the simply connected cover of the derived group of
+$\ring{Q}$) of interest: $G^{**}$, $G^{**}_{\text{sc}}$, $G^{**}_{\text{der}}$,
+$G^{**}_{\text{adj}}$,
+%	\undefined{Why does `adj' get a Roman subscript
+%(although it should be \verb+\text+ instead of \verb+\op+),
+%whereas the others are in math mode?}
+$\op{Aut}_0(G^{**})$, and even $(G^{**}_{\text{sc}}\times
+G^{**}_{\text{sc}})/\op{Zent}_{\text{sc}}$, with diagonal embedding of the center
+$\op{Zent}_{\text{sc}}$ of the simply connected cover of the derived group of
 $G^{**}$.  We do the same for $H^{**}$ and its affiliated groups.  We
-fix the obvious morphisms ($G^{**}\to G^{**}_{\op{adj}}$, and so forth)
+fix the obvious morphisms ($G^{**}\to G^{**}_{\text{adj}}$, and so forth)
 between affiliated groups by explicit polynomial maps (expressed as
 collections of polynomials with rational coefficients).  The rational
 representations of the reductive groups give
@@ -691,7 +691,7 @@ We include in the space $Z$ an explicit choice of inner twisting
 \psi:G
 \times_\VF K \to G^*\times_\VF K
 \] to the quasi-split inner form that agrees with an enumerated
-cocycle $\sigma_i(\psi) \psi^{-1}$ with values in $G^*_{\op{adj}}(K)$, also
+cocycle $\sigma_i(\psi) \psi^{-1}$ with values in $G^*_{\text{adj}}(K)$, also
 given as part of the data of $Z$.  In fact, we identify $G$ with $G^*$
 over $K$, so that $\psi$ is the identity, but it is retained in
 notation in the form of a cocycle $\sigma(\psi)\psi^{-1}$.  
@@ -966,7 +966,7 @@ $x_\alpha$, and so forth to be a monic polynomial of degree $k$ with
 coefficients in $\VF$.  This does not change the degree $d$ of the
 differential form, but expanding in $t$, it takes values in $\VF^k$.
 The form $\omega_K$ is $G_K$-invariant.  It is also invariant by the
-action of $G_{K,\op{adj}}$ on $G_K$ by conjugation.  We have a
+action of $G_{K,\text{adj}}$ on $G_K$ by conjugation.  We have a
 morphism $G_K\to Z$, and $G$ is identified with the fixed point set of
 the action of $\op{Gal}(K/\VF)$ on $G_K$.  Let $dz$ be any top form on
 $Z$.
@@ -980,7 +980,7 @@ preserves the differential form $dz\land \omega_K$ up to a cocycle
 with values in $K^\times$.
 
 Even if the group is not quasi-split, the Galois group fixes the
-pinning up to a cocycle $g_\sigma$ with values in $G_{K,\op{adj}}$,
+pinning up to a cocycle $g_\sigma$ with values in $G_{K,\text{adj}}$,
 and because the adjoint group action preserves $dz\land \omega_K$, we
 see that the differential form is preserved by the Galois action, up
 to a cocycle $a_\sigma$ with values in $K^\times$.  When we take
@@ -1138,7 +1138,7 @@ where the last map is the Kostant section.
 
 In the rest of this section, we review the technical details of the
 construction from \cite{LSxf}.  These details require a significant
-amount of local notation ($\lambda(T_{sc})$, $s_\alpha$, $n(s_\alpha)$,
+amount of local notation ($\lambda(T_{\text{sc}})$, $s_\alpha$, $n(s_\alpha)$,
 $m(\sigma_T)$, $a_\alpha$, $\omega_T$, $p$, $\op{inv}$, $h$, $\bar h$,
 $U$, $u(\sigma)$, $v(\sigma)$, $\bar v(\sigma)$, $\kappa_T$,
 $\kappa_U$) that has been borrowed from \cite{LSxf}.  This notation
@@ -1151,40 +1151,40 @@ the Lie algebra transfer factor.
 
 
 
-\subsection{The cocycle $\lambda(T_{sc})$}
+\subsection{The cocycle $\lambda(T_{\text{sc}})$}
 
-We recall the definition of a Galois cocycle $\lambda(T_{sc})$ with
-values in $T_{sc}(K)$, attached to the centralizer $T_{sc}$ of $X$ in
-$G^*_{sc}$, where $G^*_{sc}$ is the simply connected cover of the
+We recall the definition of a Galois cocycle $\lambda(T_{\text{sc}})$ with
+values in $T_{\text{sc}}(K)$, attached to the centralizer $T_{\text{sc}}$ of $X$ in
+$G^*_{\text{sc}}$, where $G^*_{\text{sc}}$ is the simply connected cover of the
 derived group of $G^*$.  The entire construction takes place in the
 simply connected cover.  In this one subsection, we
-sometimes drop the subscript ${sc}$, writing $(G^*,B^*,T^*)$ instead
-of $(G^*_{sc},B^*_{sc},T^*_{sc})$, and so forth.
+sometimes drop the subscript ${\text{sc}}$, writing $(G^*,B^*,T^*)$ instead
+of $(G^*_{\text{sc}},B^*_{\text{sc}},T^*_{\text{sc}})$, and so forth.
 
 
 We take $K/\VF$ to be a splitting field of $G$, and take $L/\VF$ to be
-a Galois extension that splits $T_{sc}$.  There are bound parameters
+a Galois extension that splits $T_{\text{sc}}$.  There are bound parameters
 running over $L/\VF$ and its enumerated Galois group.  We let $h$ be a
-bound parameter in $G^*$ such that $(T_{sc},B_{sc}) =
+bound parameter in $G^*$ such that $(T_{\text{sc}},B_{\text{sc}}) =
 \op{Ad}(h)\,(T^*,B^*)$.
 
 If $w$ is any element of the Weyl group of $T^*$ in $G^*$ with reduced
 expression $w = s_{\alpha_1}\cdots s_{\alpha_r}$, we set $n(w) =
 n(s_{\alpha_1})\cdots n(s_{\alpha_r})$ where
 $n(s_\alpha)$ is the image
-in $\op{Norm}_{G_{sc}^*}(T_{sc}^*)$ of
+in $\op{Norm}_{G_{\text{sc}}^*}(T_{\text{sc}}^*)$ of
 \[
 \begin{pmatrix}0 &1\\ -1 & 0\end{pmatrix} = \op{exp} X_\alpha \op{exp} -
   X_{-\alpha} \op{exp} X_\alpha
 \]
-under the homomorphism $SL(2)\to G^*_{sc}$ attached to the Lie triple
+under the homomorphism $SL(2)\to G^*_{\text{sc}}$ attached to the Lie triple
 $\{ X_\alpha,X_{-\alpha},H_\alpha \}$ coming from a pinning
 $(B^*,T^*,\{X_\alpha\})$).  The transfer factor does not depend on the
 pinning, and we treat the pinning as a bound parameter.  The
 exponential map used to define $n(s_\alpha)$ is a polynomial function
 on nilpotent elements.
 
-The cocycle $\lambda(T_{sc})$ is defined using the $a$-data by an enumerated
+The cocycle $\lambda(T_{\text{sc}})$ is defined using the $a$-data by an enumerated
 cocycle of $\op{Gal}(K/\VF)$ as described above, with
 \[
 \sigma \mapsto h m(\sigma_T) \sigma(h)^{-1},\quad \text{where}\quad
@@ -1196,7 +1196,7 @@ $\alpha^\vee$.  An inspection of each element of the formula shows
 that this cocycle is definable.  See \cite{LSxf} for the combinatorial
 description of the gauge $p$ and the choice $\omega_T$ of Weyl group
 elements (coming from the twisted action of the Galois group on
-$T^*_{sc}$).
+$T^*_{\text{sc}}$).
 
 \subsection{Another cocycle}
 
@@ -1206,7 +1206,7 @@ centralizers in $G$ of $X$ and $\bar X$, where $X$ and $\bar X$ are
 constructed as above from a Kostant section.  We take a bound
 parameter space for a Galois field extension $L/K/\VF$ that splits $T$
 and $\bar T$.  The cocycle takes values in the $L$-points of $U:=
-(T\times \bar T)/\op{Zent}_{sc}$, where the center $\op{Zent}_{sc}$ of
+(T\times \bar T)/\op{Zent}_{\text{sc}}$, where the center $\op{Zent}_{\text{sc}}$ of
 the simply connected cover is mapped diagonally.
 
 To construct the cocycle, we take bound parameters $h$ and $\bar h$
@@ -1247,7 +1247,7 @@ of all cocycles such that the Tate-Nakayama pairing of the cocycle with
 $\kappa_T$ has value $e^{2\pi j/k}$.  We define $D_{j,\rom1}(X_H,X_G)$ to
 be
 \[
-\op{TN}( \lambda(T_{sc}),\kappa_{T_{sc}})_j
+\op{TN}( \lambda(T_{\text{sc}}),\kappa_{T_{\text{sc}}})_j
 \]
 
 Similarly, we may form an element $\kappa_U$ (the image of
@@ -1543,7 +1543,7 @@ a\ge a_0\}$.  The set $A$ is definable.  Then $\locus{d}_{F_1}$ is
 zero on $A(F_1)$.  By Corollary~\ref{cor:12}, $\locus{d}_{F_2}$ is
 zero on $A(F_2)$.  Following the preceding steps backwards now for
 $F_2$ instead of $F_1$, from $\locus{d}_{F_2}$ back to asymptotic
-linear depedence, we find that for all $\lambda\in\Lambda(F_2)$, the
+linear dependence, we find that for all $\lambda\in\Lambda(F_2)$, the
 tuple $\bf_{\lambda,F_2}$ is $a_0$-asymptotically linearly dependent.
 \end{proof}
 
@@ -1740,21 +1740,31 @@ orbital integrals on the factors.
 
 \subsection{Parameter sets}
 
-We establish notation and various parameter sets that will be used in
+We establish notation and various parameters that will be used in
 the proof of Theorem~\ref{thm:local}.  We make all the fixed choices
 that are established in Section~\ref{sec:fixed}.  Let $(G,H)_{/Z}$ be
 a definable reductive group $G$ with definable endoscopic group $H$
 over a cocycle space $Z$.  We remain in this context until the end of
 Section~\ref{sec:emsg}.
 
-The order in which we construct our parameters is extremely important
-in the proof.  Below, we will make choices of constants
-$r\in\ring{N}$, and $r$-tuples: $k$, $k'$, $\s$,
-and $\s'$.  These choices will be field dependent.  Before we do this,
-constrain these parameters so that they run over finitely many
-possibilities.
 
-We constrain $r$ to be the lim sup over $m$ of maximum over
+\subsubsection{Finiteness of the parameter set}\label{sec:finiteness}
+
+The order in which we construct our parameters is extremely important
+in the proof.  Later, in Subsection~\ref{sec:field}, we will make
+choices of constants $r\in\ring{N}$, and $r$-tuples: $k$, $k'$, $\s$,
+and $\s'$ that will be field dependent.  Before we do that, in this
+subsection, we bound these parameters so that they run over finitely
+many possibilities.  That is, we define a finite set $\Xi$ that
+contains all possible parameter choices $\xi=(r,k,k',\s,\s')\in\Xi$.
+It is important to work with the full finite set $\Xi$ of
+possibilities until Subsection~\ref{sec:field}.
+
+In this paragraph, we define a finite set $\Xi$ of parameters
+$\xi=(r,k,k',\s,\s')$ by placing boundedness constraints on
+$r,k,k',\s,\s'$.  (We do not need sharp bounds in this paragraph; we
+are simply establishing a finiteness result.)  We constrain
+$r\in\ring{N}$ to be at most the lim sup over $m$ of maximum over
 $F\in\Loc_m$ of $r_F$, where $r_F$ is the number of isomorphism
 classes of reductive groups $G_z$ obtained as $z$ runs over $Z(F)$.
 That is, it should be at most the largest number of isomorphism
@@ -1767,27 +1777,26 @@ Corollary~\ref{thm:nilbound}.) We constrain the tuple $\s$ to be an
 $r$-tuple, where each component $\s_i$ is a $k_i$-tuple of elements of
 $\cF_G$. Recall that $\cF_G$ is a fixed choice that does not depend on
 the cocycle space $Z$.  The cardinality of $\cF_G$ is finite and field
-independent.  The tuple $k'\in\ring{N}^r$ is similarly
-constrained to be at most the largest number of nilpotent orbits there
-can be in sufficiently large residual characteristic in a Lie algebra
-of some group in the family of endoscopic groups $H$.  The $r$-tuple
-$\s'$ is constrained as $\s$, but using $k'$ and $\cF_H$.  By imposing
-these constraints on $r$, $k$, $k'$, $\s$, and $\s'$, it is clear that
-they range over a finite set of possibilities.
+independent.  The tuple $k'\in\ring{N}^r$ is similarly constrained to
+have components $k'_i$ that are at most the largest number of
+nilpotent orbits there can be in sufficiently large residual
+characteristic in a Lie algebra of some group in the family of
+endoscopic groups $H$.  The $r$-tuple $\s'$ is constrained as $\s$,
+but using $k'$ and $\cF_H$.  By imposing finiteness constraints as we
+have on $r$, $k$, $k'$, $\s$, and $\s'$, the parameters
+$\xi=(r,k,k',\s,\s')$ range over a finite set $\Xi$ of possibilities.
 
 \subsubsection{Parameter sets that depend on $\xi$}
 
-Let $\xi=(r,k,k',\s,\s')$ be any collection of parameters as
-constrained above.  We will give definable sets $P$, $\Lambda$, a
-definable morphism $g:P\times\ring{Z}\to \Lambda$, and a tuple of
-constructible functions $\bf$ on $P\times\ring{Z}$.  The element $\xi$
-remains fixed until Subsection~\ref{sec:field}, and we often omit
-$\xi$ and its components $r$, $k$, $k'$, $\s$, and $\s'$ from the
-notation.
-
-Let $Z^r$ be the definable
-set of $r$-tuples $(z_1,\ldots,z_r)$, where $z_i \in Z$ and such
-that $z_i$ and $z_j$ are not cohomologous for $i\ne j$.  
+Let $\xi=(r,k,k',\s,\s')\in\Xi$ be any parameter in
+$\Xi$.  Until Subsection~\ref{sec:field}, the element $\xi$ remains
+a fixed but arbitrary element of $\Xi$.  We often omit $\xi$ and its
+(fixed but arbitrary) components $r$, $k$, $k'$, $\s$, and $\s'$ from
+the notation.  We will give definable sets $P$, $\Lambda$, a definable
+morphism $g:P\times\ring{Z}\to \Lambda$, and a tuple of constructible
+functions $\bf$ on $P\times\ring{Z}$.  Let $Z^r$ be the definable set
+of $r$-tuples $(z_1,\ldots,z_r)$, where $z_i \in Z$ and such that
+$z_i$ and $z_j$ are not cohomologous for $i\ne j$.
 
 The Lie algebras $\fh_z$, $\fg_z$ depend on a parameter $z\in Z$.
 For $i=1,\ldots,r$, we have spaces
@@ -1897,18 +1906,17 @@ order to isolate a given $\kappa$-germ.
 
 \subsubsection{Field dependent choices}\label{sec:field}
 
-At this stage of our argument, we have a finite set of parameters
-$\xi=(r,k,k',\s,\s')$.  For each such $\xi$, we have produced
-definable sets $P=P^r_\xi$, $P'=P\times\ring{Z}$,
-$\Lambda=\Lambda^r_\xi$, a definable morphism $g:P\times\ring{Z}\to
-\Lambda$, and a tuple of constructible functions $\bf$ on $P'$.  For
-each $\xi$, we invoke Theorem~\ref{thm:cgh-asymp} on these data to
-obtain a constant $m(\xi)\in\ring{N}$ with properties as described in
-the theorem.  Recall that $m(\xi)$ is the parameter that gives the
-restriction on the residual characteristic.  
-We let $m$ be the maximum of the constants $m(\xi)$ as
-$\xi$ runs over the finite number of possibilities, as constrained in
-the previous paragraph.
+Recall that $\xi=(r,k,k',\s,\s')$ denotes an arbitrary element in the
+finite set $\Xi$.  For each $\xi\in\Xi$, we have produced definable
+sets $P=P^r_\xi$, $P'=P\times\ring{Z}$, $\Lambda=\Lambda^r_\xi$, a
+definable morphism $g:P\times\ring{Z}\to \Lambda$, and a tuple of
+constructible functions $\bf$ on $P'$.  For each $\xi$, we invoke
+Theorem~\ref{thm:cgh-asymp} on these data to obtain a constant
+$m(\xi)\in\ring{N}$ with properties as described in the theorem.
+Recall that $m(\xi)$ is the parameter that gives the restriction on
+the residual characteristic in the nonarchimedean field.  We let $m$
+be the maximum of the constants $m(\xi)$ as $\xi$ runs over the finite
+set $\Xi$.
 
 As a result of this discussion, we have a constant $m$ that is not
 tied to any particular parameter $\xi$.  This constant will be used to
@@ -1920,12 +1928,19 @@ that has characteristic zero and a residue field isomorphic to that of
 $F_2$.  We will use the transfer principle between these two fields.
 
 Now that $m$, $F_1$, and $F_2$ have been constructed, we make a
-particular choice of $\xi$, starting with $r$.
-Let $r$ be the maximum for which $Z^r(F_1)\ne\emptyset$.  That is, it is
-the number of nonisomorphic reductive groups in the family of
-cocycles.  This maximum can be expressed as a sentence in the Denef-Pas
-language and can hence be transferred to $F_2$ by an Ax-Kochen style
-transfer principle.  Thus, $r$ is also the maximum for which
+particular choice of $\xi\in\Xi$.  (In particular, from this point
+forward, $\xi=\xi_{m,F_1,F_2}$ and its components $r,k,k',\s,\s'$ will no longer
+denote arbitrary elements drawn from a finite set $\Xi$, but will
+denote choices of parameters that have been adapted to the specific
+nonarchimedean context of $m$, $F_1$, and $F_2$.)
+
+
+We start with $r$.  Let $r$ be the
+maximum for which $Z^r(F_1)\ne\emptyset$.  That is, it is the number
+of nonisomorphic reductive groups in the family of cocycles.  This
+maximum can be expressed as a sentence in the Denef-Pas language and
+can hence be transferred to $F_2$ by an Ax-Kochen style transfer
+principle.  Thus, $r$ is also the maximum for which
 $Z^r(F_2)\ne\emptyset$.
 
 % Feb 17, swapped F_2 and F_1 in the last part of subsection:
@@ -2516,7 +2531,7 @@ We make the remarkable observation that the given definable group has
 nonisomorphic interpretations as reductive groups over a
 nonarchimedean field $F$, simply because nonisomorphic field
 extensions of $F$ are obtained by different choices of the uniformizer
-$\pi_F\in F$ interpreting $\pi$.  So in particular, for two differerent
+$\pi_F\in F$ interpreting $\pi$.  So in particular, for two different
 quasi-split unitary groups over $F$, splitting over different ramified
 quadratic extensions, the Shalika germs are given by identical
 constructible formulas, differing over $F$ only by the specialization
@@ -2546,8 +2561,8 @@ definability of nilpotent orbits (or more simply of distinguished
 nilpotent orbits) in reductive groups over finite fields.  For some
 groups such as $SL(n)$, roots of unity are required to specify the
 nilpotent orbits.  But in the adjoint case, the situation is
-simpler. This leads to the following question: Let $G=G_{\op{adj}}$ be
-an adjoint semisimple linear algebraic group defined over a finite
+simpler. This leads to the following question: Let $G=G_{\text{adj}}$
+be an adjoint semisimple linear algebraic group defined over a finite
 field.  When the characteristic is sufficiently large, is each
 nilpotent orbit in the Lie algebra definable in the first-order
 language of rings?
@@ -2569,7 +2584,7 @@ inaccuracies and should be deleted.
 
 \bibliographystyle{alpha}
 \bibliography{refs}
-(Feb 21, 2015)
+(Feb 23, 2015)
 
 \end{document}
 
