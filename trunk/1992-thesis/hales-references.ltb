@@ -1,0 +1,5806 @@
+
+\documentclass{article}
+\usepackage{amsrefs}
+\usepackage{amsfonts} % to enable \germ macro
+
+\begin{document}
+
+
+This is an AMSRefs database.
+It can also be processed directly by \LaTeX.
+Branched from spice-references.ltb, February 2015.
+
+\begin{bibdiv}
+\begin{biblist}[\normalsize \resetbiblist{999}]
+
+
+%%%% Proceedings volumes
+
+\bib*{cassels-frohlich}{book}{
+     title={Algebraic number theory},
+    editor={Cassels, J. W. S.},  % added JDA
+    editor={Fr\"ohlich, A.}, % added JDA
+    series={Proceedings of an instructional conference organized by the
+            London Mathematical Society (a NATO Advanced Study Institute)
+            with the support of the Inter national Mathematical Union.},
+ publisher={Academic Press},
+     place={London},
+      date={1967},
+     pages={xviii+366},
+    review={\MR {0215665 (35 \#6500)}},
+}
+
+\bib*{seminar:alg-gps}{book}{
+     title={Seminar on Algebraic Groups and Related Finite Groups. (Held at
+            The Institute for Advanced Study, Princeton, NJ, 1968/69)},
+    editor={Borel, A.}, % added JDA
+    editor={Carter, R.}, % added JDA
+		% other editors, but I don't know who they are (JDA)
+    series={Lecture Notes in Mathematics},
+    volume={131},	% added JDA
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1970},
+     pages={viii+321},
+    review={\MR {0258840 (41 \#3486)}},
+}
+
+\bib*{proc:homogeneous}{book}{ % was homogeneous
+     title={Harmonic analysis on homogeneous spaces},
+%  subtitle={Proceedings of the Symposium in Pure Mathematics of the
+%	American Mathematical Society (Nineteenth Annual Summer
+%	Research Institute), held at Williams College, Williamstown, Mass.,
+%	July 31--August 18, 1972}, % added JDA
+    editor={Moore, Calvin C.}, % added JDA
+    series={Proceedings of Symposia in Pure Mathematics}, % added JDA
+    volume={26}, % added JDA
+ publisher={American Mathematical Society},
+     place={Providence, R.I.},
+      date={1973},
+     pages={x+467},
+    review={\MR {0327965 (48 \#6307)}},
+}
+
+\bib*{proc:carmona-vergne}{book}{  % was carmona-vergne
+     title={Non-commutative harmonic analysis},
+    editor={Carmona, J.}, % added JDA
+    editor={Dixmier, J.}, % added JDA
+    editor={Verne, M.}, % added JDA
+    series={Lecture Notes in Mathematics}, % added JDA
+    volume={466},
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1975},
+     pages={vi+231},
+    review={\MR {0374317 (51 \#10517)}},
+}
+
+\bib*{proc:corvallis1}{collection}{  % was corvallis1
+     title={Automorphic forms, representations and $L$-functions. Part 1},
+%  subtitle={Proceedings of the Symposium in Pure Mathematics of the
+%	American Mathematical Society (Twenty-fifth Summer Research Institute)
+%	held at Oregon State University, Corvallis, Ore.,
+%	July 11--August 5, 1977}, % added JDA
+    editor={Borel, A.}, % added JDA
+    editor={Casselman, W.}, % added JDA
+    series={Proceedings of Symposia in Pure Mathematics},
+    volume={XXXIII},
+ publisher={American Mathematical Society},
+     place={Providence, R.I.},
+      date={1979},
+     pages={x+322},
+      isbn={0-8218-1435-4},
+    review={\MR {546586 (80g:10002a)}},
+}
+
+
+\bib*{proc:maryland1984-2}{collection}{
+     title={Lie group representations. II},
+    series={Lecture Notes in Mathematics},
+    volume={1041},
+%  subtitle={Proceedings of the special year held at College Park, Md.,
+%            1982/1983},
+    editor={Herb, R.},
+    editor={Kudla, S.},
+    editor={Lipsman, R.},
+    editor={Rosenberg, J.},
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1984},
+     pages={ix+340},
+      isbn={3-540-12715-1},
+    review={\MR {748503 (85c:11002)}},
+}
+
+
+\bib*{proc:bowdoin}{collection}{  % was harmonic-analysis:brunswick
+     title={Harmonic analysis on reductive groups},
+%  subtitle={Proceedings of the conference held at Bowdoin College,
+%	Brunswick, Maine, July 31--August 11, 1989}, % added JDA
+    editor={Barker, William},      % added JDA
+    editor={Sally, Paul J., Jr.},  % added JDA
+    series={Progress in Mathematics},
+    volume={101},
+ publisher={Birkh\"auser Boston Inc.},
+     place={Boston, MA},
+      date={1991},
+     pages={xii+388},
+      isbn={0-8176-3514-9},
+    review={\MR {1168474 (93a:22001)}},
+}
+
+\bib*{proc:maryland1993}{collection}{ % was rep-theory:maryland
+     title={Representation theory of groups and algebras},
+    editor={Adams, J.}, % added JDA
+    editor={Herb, R.}, % added JDA
+    editor={Kudla, S.}, % added JDA
+    editor={Li, J.-S.}, % added JDA
+    editor={Lipsman, R.}, % added JDA
+    series={Contemporary Mathematics},
+    volume={145},
+ publisher={American Mathematical Society},
+     place={Providence, RI},
+      date={1993},
+     pages={x+491},
+      isbn={0-8218-5168-3},
+    review={\MR {1216178 (93k:00028)}},
+}
+
+\bib*{proc:corwin}{collection}{  % was conference:corwin
+     title={Representation theory and analysis on homogeneous spaces},
+%  subtitle={Papers from the Conference in Memory of Larry Corwin
+%	held at Rutgers University, New Brunswick, New Jersey,
+%	February 5--7, 1993}, % added JDA
+    editor={Gindikin, Simon}, % added JDA
+    editor={Greenleaf, Frederick P.}, % added JDA
+    editor={Sally, Paul J., Jr.}, % added JDA
+    series={Contemporary Mathematics},
+    volume={177},
+ publisher={American Mathematical Society},
+     place={Providence, RI},
+      date={1994},
+     pages={xii+256},
+      isbn={0-8218-0300-X},
+    review={\MR {1303596 (95f:22005)}},
+}
+
+\bib*{proc:hc}{collection}{ % was doran-varadarajan:hc
+     title={The mathematical legacy of Harish-Chandra},
+%  subtitle={A celebration of representation theory and harmonic analysis.
+%	Proceedings of the AMS Special Session on Representation Theory
+%	and Noncommutative Harmonic Analysis, held in memory of
+%	Harish-Chandra on the occasion of the 75th anniversary of his birth,
+%	in Baltimore, MD, January 9--10, 1998}, % added JDA
+    editor={Doran, Robert S.}, % added JDA
+    editor={Varadarajan, V. S.}, % added JDA
+    series={Proceedings of Symposia in Pure Mathematics},
+    volume={68},
+ publisher={American Mathematical Society},
+     place={Providence, RI},
+      date={2000},
+     pages={xii+551},
+      isbn={0-8218-1197-5},
+    review={\MR {1767886 (2001b:22001)}},
+}
+
+
+\bib*{proc:singapore}{collection}{ % was singapore
+     title={Representations of real and $p$-adic groups},
+    editor={Tan, Eng-Chye}, % added JDA
+    editor={Zhu, Chen-Bo}, % added JDA
+    series={Lecture Notes Series. Institute for Mathematical Sciences.
+            National University of Singapore},
+    volume={2},
+ publisher={Singapore University Press},
+     place={Singapore},
+      date={2004},
+     pages={x+415},
+      isbn={981-238-779-X},
+    review={\MR {2090746 (2005e:22001)}},
+}
+
+
+\bib*{proc:shalika}{collection}{  % was shalikafest
+     title={Contributions to automorphic forms, geometry, and number theory},
+    editor={Hida, H.},
+    editor={Ramakrishnan, D.},
+    editor={Shahidi, F.},
+ publisher={Johns Hopkins University Press},
+     place={Baltimore, MD},
+      date={2004},
+     pages={xiv+910},
+      isbn={0-8018-7860-8},
+    review={\MR {2058599 (2005a:11002)}},
+}
+
+\bib*{proc:harp}{collection}{
+	title={Harmonic analysis on reductive, $p$-adic groups},
+	editor={Doran, Robert S.},
+	editor={Sally, Paul J., Jr.},
+	editor={Spice, Loren},
+}
+
+%%%% Individual items
+
+\bib{adler:self-contra}{article}{
+    author={Adler, Jeffrey D.},
+     title={Self-contragredient supercuspidal representations of ${\rm
+            GL}\sb n$},
+   journal={Proc. Amer. Math. Soc.},
+    volume={125},
+      date={1997},
+    number={8},
+     pages={2471\ndash 2479},
+      issn={0002-9939},
+    review={\MR {1376746 (97j:22038)}},
+}
+
+\bib{adler:thesis}{article}{
+    author={Adler, Jeffrey D.},
+     title={Refined anisotropic $K$-types and supercuspidal representations},
+   journal={Pacific J. Math.},
+    volume={185},
+      date={1998},
+    number={1},
+     pages={1\ndash 32},
+      issn={0030-8730},
+    review={\MR {1653184 (2000f:22019)}},
+}
+
+\bib{adler-roche:intertwining}{article}{
+    author={Adler, Jeffrey D.},
+    author={Roche, Alan},
+     title={An intertwining result for $p$-adic groups},
+   journal={Canad. J. Math.},
+    volume={52},
+      date={2000},
+    number={3},
+     pages={449\ndash 467},
+      issn={0008-414X},
+    review={\MR {1758228 (2001m:22032)}},
+}
+
+\bib{adler-debacker:chars}{article}{
+    author={Adler, Jeffrey D.},
+    author={DeBacker, Stephen},
+	title={On supercuspidal characters of reductive $p$-adic groups},
+	status={preprint, subsumed by
+		\emph{Murnaghan-Kirillov theory}},
+}
+
+\bib{adler-debacker:mp-filtrations}{article}{
+    author={Adler, Jeffrey D.},
+    author={DeBacker, Stephen},
+	title={Moy-Prasad filtrations and harmonic analysis},
+	status={preprint, subsumed by
+             \emph{Some applications of Bruhat--Tits theory to
+		harmonic analysis on
+		the Lie algebra of a reductive $p$-adic group}},
+}
+
+\bib{adler-debacker:bt-lie}{article}{
+    author={Adler, Jeffrey D.},
+    author={DeBacker, Stephen},
+     title={Some applications of Bruhat--Tits theory to harmonic analysis on
+            the Lie algebra of a reductive $p$-adic group},
+contribution={with appendices by Reid Huntsinger and Gopal Prasad}, %%added JDA
+   journal={Michigan Math. J.},
+    volume={50},
+      date={2002},
+    number={2},
+     pages={263\ndash 286},
+      issn={0026-2285},
+    review={\MR {1914065 (2003g:22016)}},
+}
+
+\bib{adler-debacker:kazhdan-lusztig}{article}{ % was :kl
+    author={Adler, Jeffrey D.},
+    author={DeBacker, Stephen},
+     title={A generalization of a result of Kazhdan and Lusztig},
+   journal={Proc. Amer. Math. Soc.},
+    volume={132},
+      date={2004},
+    number={6},
+     pages={1861\ndash 1868 (electronic)},
+      issn={0002-9939},
+    review={\MR {2051152 (2005k:22014)}},
+}
+
+\bib{adler-corwin-sally:division-formulas}{article}{
+    author={Adler, Jeffrey D.},
+    author={Corwin, Lawrence},
+    author={Sally, Paul J., Jr.},
+     title={Discrete series characters of division algebras and ${\rm GL}\sb
+            n$ over a $p$-adic field},
+      book={proc:shalika}, % added JDA
+     pages={57\ndash 64},
+    review={\MR {2058603 (2005d:22015)}},
+}
+
+\bib{adler-roche:inj-proj}{article}{
+    author={Adler, Jeffrey D.},
+    author={Roche, Alan},
+     title={Injectivity, projectivity and supercuspidal representations},
+   journal={J. London Math. Soc. (2)},
+    volume={70},
+      date={2004},
+    number={2},
+     pages={356\ndash 368},
+      issn={0024-6107},
+    review={\MR {2078898 (2005g:22019)}},
+}
+
+\bib{adler-debacker:mk-theory}{article}{
+    author={Adler, Jeffrey D.},
+    author={DeBacker, Stephen},
+     title={Murnaghan--Kirillov theory for supercuspidal representations of
+            tame general linear groups},
+   journal={J. Reine Angew. Math.},
+    volume={575},
+      date={2004},
+     pages={1\ndash 35},
+      issn={0075-4102},
+    review={\MR {2097545 (2005j:22008)}},
+}
+
+\bib{adler-roche:unipotent}{article}{
+    author={Adler, Jeffrey D.},
+    author={Roche, Alan},
+     title={Discrete series representations of unipotent $p$-adic groups},
+   journal={J. Lie Theory},
+    volume={15},
+      date={2005},
+    number={1},
+     pages={261\ndash 267},
+      issn={0949-5932},
+    review={\MR {2115241 (2005i:22015)}},
+}
+
+\bib{adler-lansky:bc-u3-unram}{article}{
+    author={Adler, Jeffrey D.},
+    author={Lansky, Joshua M.},
+     title={Depth-zero base change for unramified ${\rm U}(2,1)$},
+   journal={J. Number Theory},
+    volume={114},
+      date={2005},
+    number={2},
+     pages={324\ndash 360},
+      issn={0022-314X},
+    review={\MR {2167974}},
+    eprint={arXiv:math.RT/0601695},
+note={Printer's error corrected in vol. 121 (2006), no. 1, 186.}
+}
+
+
+\bib{adler-dprasad:mult-one}{article}{
+    author={Adler, Jeffrey D.},
+        author={Prasad, Dipendra},
+        title={On certain multiplicity one theorems},
+        journal={Israel J. Math.},
+	volume={153},
+	date={2006},
+	pages={221-245},
+        eprint={arXiv:math.RT/0410002},
+        }
+
+\bib{adler-korman:loc-char-exp}{article}{
+    author={Adler, Jeffrey D.},
+	author={Korman, Jonathan},
+	title={The local character expansion near a
+		tame, semisimple element},
+	journal={Amer. J. Math.},
+	volume={129},
+	number={2},
+	year={2007},
+	pages={381--403},
+	eprint={arXiv:math.RT/0503051},
+}
+
+\bib{adler-garlow-wheland:p4}{article}{
+	author={Adler, Jeffrey D.},
+	author={Garlow, Michael},
+	author={Wheland, Ethel R.},
+	title={Groups of order $p^4$ made less difficult},
+	status={preprint},
+}
+
+\bib{adler-spice:good-expansions}{article}{
+	author={Adler, Jeffrey D.},
+	author={Spice, Loren},
+	title={Good product expansions for tame elements of $p$-adic groups},
+	journal={Int. Math. Res. Pap.},
+	volume={2008},
+	number={1},
+	doi={10.1093/imrp/rpn003},
+	issn={1687-3017},
+	review={\MR{2431235}},
+        eprint={arXiv:math.RT/0611554},
+}
+
+
+\bib{adler-spice:explicit-chars}{article}{
+	author={Adler, Jeffrey D.},
+	author={Spice, Loren},
+	title={Supercuspidal characters of reductive $p$-adic groups},
+	journal={Amer. J. Math.},
+	volume={131},
+	number={4},
+	year={2009},
+	pages={1136\ndash 1210},
+	eprint={arXiv:0707.3313},
+}
+
+\bib{adler-lansky:bc-u3-ram}{article}{
+    author={Adler, Jeffrey D.},
+    author={Lansky, Joshua M.},
+     title={Depth-zero base change for ramified ${\rm U}(2,1)$},
+	eprint={arXiv:0807.1528},
+}
+
+
+\bib{adler-lansky:lifting}{article}{
+    author={Adler, Jeffrey D.},
+    author={Lansky, Joshua M.},
+     title={Lifting representations of finite reductive groups},
+    status={in preparation}
+}
+
+\bib{adler-debacker-sally-spice:sl2}{article}{
+	author={Adler, Jeffrey D.},
+	author={DeBacker, Stephen},
+	author={Sally, Paul J., Jr.},
+	author={Spice, Loren},
+	title={Supercuspidal characters of ${\rm SL}_2$ over a $p$-adic field},
+	book={proc:harp},
+	pages={19\ndash70},
+}
+
+\bib{alperin-bell:groups}{book}{
+    author={Alperin, J. L.},
+    author={Bell, Rowen B.},
+     title={Groups and representations},
+    series={Graduate Texts in Mathematics},
+    volume={162},
+ publisher={Springer--Verlag},
+     place={New York},
+      date={1995},
+     pages={x+194},
+      isbn={0-387-94525-3},
+    review={\MR {1369573 (96m:20001)}},
+}
+
+\bib{arthur-clozel:trace}{book}{
+    author={Arthur, James},
+    author={Clozel, Laurent},
+     title={Simple algebras, base change, and the advanced theory of the
+            trace formula},
+    series={Annals of Mathematics Studies},
+    volume={120},
+ publisher={Princeton University Press},
+     place={Princeton, NJ},
+      date={1989},
+     pages={xiv+230},
+      isbn={0-691-08517-X},
+      isbn={0-691-08518-8},
+    review={\MR {1007299 (90m:22041)}},
+}
+
+\bib{arthur:elliptic-tempered}{article}{
+    author={Arthur, James},
+     title={On elliptic tempered characters},
+   journal={Acta Math.},
+    volume={171},
+      date={1993},
+    number={1},
+     pages={73\ndash 138},
+      issn={0001-5962},
+    review={\MR {1237898 (94i:22038)}},
+}
+
+\bib{arthur:functoriality}{article}{
+    author={Arthur, James},
+     title={The principle of functoriality},
+   journal={Bull. Amer. Math. Soc. (N.S.)},
+    volume={40},
+      date={2003},
+    number={1},
+     pages={39\ndash 53 (electronic)},
+      issn={0273-0979},
+    review={\MR {1943132 (2004d:11111)}},
+}
+
+\bib{assem:sll}{article}{
+    author={Assem, Magdy},
+     title={The Fourier transform and some character formulae for $p$-adic
+            ${\rm SL}\sb l,\ l$ a prime},
+   journal={Amer. J. Math.},
+    volume={116},
+      date={1994},
+    number={6},
+     pages={1433\ndash 1467},
+      issn={0002-9327},
+    review={\MR {1305872 (96i:22037)}},
+}
+
+\bib{asmuth:weil}{article}{
+    author={Asmuth, Charles},
+     title={Weil representations of symplectic $p$-adic groups},
+   journal={Amer. J. Math.},
+    volume={101},
+      date={1979},
+    number={4},
+     pages={885\ndash 908},
+      issn={0002-9327},
+    review={\MR {536044 (81e:22028)}},
+}
+
+\bib{asmuth:sp4}{article}{
+    author={Asmuth, Charles},
+     title={Some supercuspidal representations of ${\rm Sp}\sb 4(k)$},
+   journal={Canad. J. Math.},
+    volume={39},
+      date={1987},
+    number={1},
+     pages={1\ndash 7},
+      issn={0008-414X},
+    review={\MR {889103 (88h:22028)}},
+}
+
+\bib{asmuth-keys:gsp4-wild1}{article}{
+    author={Asmuth, Charles},
+    author={Keys, C. David},
+     title={Supercuspidal representations of ${\rm GSp}\sb 4$ over a local
+            field of residual characteristic $2$. I},
+   journal={Compositio Math.},
+    volume={79},
+      date={1991},
+    number={1},
+     pages={109\ndash 122},
+      issn={0010-437X},
+    review={\MR {1112282 (92d:22022)}},
+}
+
+\bib{aubert-hasan-plymen:gl3}{article}{
+   author={Aubert, Anne-Marie},
+   author={Hasan, Samir},
+   author={Plymen, Roger},
+   title={Cycles in the chamber homology of ${\rm GL}(3)$},
+   journal={$K$-Theory},
+   volume={37},
+   date={2006},
+   number={4},
+   pages={341--377},
+   issn={0920-3036},
+   review={\MR{2269817 (2008e:22012)}},
+}
+
+\bib{auzende:types-classical}{article}{
+	author={Auzende, Fr\'ed\'eric},
+	title={Construction de types \`a la Bushnell et Kutzko
+		dan les groups ${\rm Sp}_{2N}$ et $SO_{2N}$},
+	status={preprint},
+}
+
+\bib{auzende:self-dual}{article}{
+	author={Auzende, Fr\'ed\'eric},
+	title={Repr\'esentations autoduales de ${\rm GL}_N(F)$
+		et scin\-dage de paires couvrantes},
+%	organization={\'Ecole Normale Superieure},
+%	status={preprint 99-29},
+	status={\'Ecole Normale Superieure, preprint 99-29},
+}
+
+\bib{badulescu:thesis}{thesis}{
+	author={Badulescu, A.},
+	title={Correspondance entre ${\rm GL}_n$ et ses formes
+		int\'erieures en caract\'eristique positive},
+	organization={Universit\'e de Paris-Sud},
+	type={Ph. D. Thesis},
+	year={1999},
+}
+
+\bib{badulescu:jacquet-langlands}{article}{
+   author={Badulescu, Alexandru Ioan},
+   title={Correspondance de Jacquet-Langlands pour les corps locaux de
+   caract\'eristique non nulle},
+   language={French, with English and French summaries},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+   volume={35},
+   date={2002},
+   number={5},
+   pages={695--747},
+   issn={0012-9593},
+   review={\MR{1951441 (2004i:11048)}},
+}
+
+\bib{bala-carter:unipotent1}{article}{ % was bala-carter:1
+    author={Bala, P.},
+    author={Carter, R. W.},
+     title={Classes of unipotent elements in simple algebraic groups. I},
+   journal={Math. Proc. Cambridge Philos. Soc.},
+    volume={79},
+      date={1976},
+    number={3},
+     pages={401\ndash 425},
+      issn={0305-0041},
+    review={\MR {0417306 (54 \#5363a)}},
+}
+
+\bib{bala-carter:unipotent2}{article}{ % was bala-carter:2
+    author={Bala, P.},
+    author={Carter, R. W.},
+     title={Classes of unipotent elements in simple algebraic groups. II},
+   journal={Math. Proc. Cambridge Philos. Soc.},
+    volume={80},
+      date={1976},
+    number={1},
+     pages={1\ndash 17},
+      issn={0305-0041},
+    review={\MR {0417307 (54 \#5363b)}},
+}
+
+\bib{ban-jantzen:langlands-nonconnected}{article}{ % was :langlands
+    author={Ban, Dubravka},
+    author={Jantzen, Chris},
+     title={The Langlands classification for non-connected $p$-adic groups},
+   journal={Israel J. Math.},
+    volume={126},
+      date={2001},
+     pages={239\ndash 261},
+      issn={0021-2172},
+    review={\MR {1882038 (2002i:22018)}},
+}
+
+\bib{ban-jantzen:langlands-nonconnected2}{article}{ % was :langlands2
+    author={Ban, Dubravka},
+    author={Jantzen, Chris},
+     title={The Langlands classification for non-connected $p$-adic groups.
+            II. Multiplicity one},
+   journal={Proc. Amer. Math. Soc.},
+    volume={131},
+      date={2003},
+    number={10},
+     pages={3297\ndash 3304 (electronic)},
+      issn={0002-9939},
+    review={\MR {1992872 (2004e:22019)}},
+}
+
+\bib{bandt:self-similar-5}{article}{
+	author={Bandt, Christoph},
+	title={Self-similar sets 5. Integer matrices and fractal
+		tilings of $\mathbb{R}^n$},
+	journal={Proc. Amer. Math. Soc.},
+	volume={112},
+	number={2},
+	year={1991},
+	pages={549--562},
+}
+
+\bib{barbasch-moy:unitarity-criterion}{article}{
+    author={Barbasch, Dan},
+    author={Moy, Allen},
+     title={A unitarity criterion for $p$-adic groups},
+   journal={Invent. Math.},
+    volume={98},
+      date={1989},
+    number={1},
+     pages={19\ndash 37},
+      issn={0020-9910},
+    review={\MR {1010153 (90m:22038)}},
+}
+
+\bib{barbasch-moy:unitary-classical}{article}{
+    author={Barbasch, Dan},
+    author={Moy, Allen},
+     title={Unitary spherical spectrum for $p$-adic classical groups},
+   journal={Acta Appl. Math.},
+    volume={44},
+      date={1996},
+    number={1-2},
+     pages={3\ndash 37},
+      issn={0167-8019},
+    review={\MR {1407038 (98k:22067)}},
+}
+
+\bib{barbasch-moy:loc-char-exp}{article}{
+    author={Barbasch, Dan},
+    author={Moy, Allen},
+     title={Local character expansions},
+  language={English, with English and French summaries},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={30},
+      date={1997},
+    number={5},
+     pages={553\ndash 567},
+      issn={0012-9593},
+    review={\MR {1474804 (99j:22021)}},
+}
+
+\bib{baruch-rallis:fourier-jacobi-sp4}{article}{ % was :fourier-jacobi
+    author={Baruch, Ehud Moshe},
+    author={Rallis, Steve},
+     title={A uniqueness theorem of Fourier Jacobi models for
+            representations of ${\rm Sp}(4)$},
+   journal={J. London Math. Soc. (2)},
+    volume={62},
+      date={2000},
+    number={1},
+     pages={183\ndash 197},
+      issn={0024-6107},
+    review={\MR {1772180 (2001j:22021)}},
+}
+
+\bib{baruch-ps-rallis:fourier-jacobi-u3}{article}{
+    author={Baruch, Ehud Moshe},
+    author={Piatetski-Shapiro, Ilya},
+    author={Rallis, Stephen},
+     title={On the uniqueness of Fourier Jacobi models for representations
+            of ${\rm U}(2,1)$},
+ booktitle={Lie groups and symmetric spaces},
+    series={Amer. Math. Soc. Transl. Ser. 2},
+    volume={210},
+     pages={47\ndash 56},
+ publisher={Amer. Math. Soc.},
+     place={Providence, RI},
+      date={2003},
+    review={\MR {2018352 (2004k:22021)}},
+}
+
+\bib{bernstein-zelevinskii1}{article}{
+    author={Bern{\v{s}}te{\u\i}n, I. N.},
+    author={Zelevinski{\u\i}, A. V.},
+     title={Representations of the group $GL(n,F),$ where $F$ is a local
+            non-Archimedean field},
+  language={Russian},
+   journal={Uspehi Mat. Nauk},
+    volume={31},
+      date={1976},
+    number={3(189)},
+     pages={5\ndash 70},
+      issn={0042-1316},
+    review={\MR {0425030 (54 \#12988)}},
+}
+
+\bib{bernstein-zelevinskii2}{article}{
+    author={Bern{\v{s}}te{\u\i}n, I. N.},
+    author={Zelevinski{\u\i}, A. V.},
+     title={Induced representations of the group $GL(n)$ over a $p$-adic
+            field},
+  language={Russian},
+   journal={Funkcional. Anal. i Prilo\v zen.},
+    volume={10},
+      date={1976},
+    number={3},
+     pages={74\ndash 75},
+      issn={0374-1990},
+    review={\MR {0425031 (54 \#12989)}},
+}
+
+\bib{bernstein:center}{article}{
+    author={Bernstein, J. N.},
+     title={Le ``centre'' de Bernstein},
+ booktitle={Representations of reductive groups over a local field},
+  language={French},
+    series={Travaux en Cours},
+     pages={1\ndash 32},
+ publisher={Hermann},
+     place={Paris},
+      date={1984},
+    review={\MR {771671 (86e:22028)}},
+}
+
+\bib{blasco-blondel:sp4}{article}{ % was blondel-blasco:sp4
+    author={Blasco, Laure},
+    author={Blondel, Corinne},
+     title={Types induits des paraboliques maximaux de ${\rm Sp}\sb 4(F)$ et
+            ${\rm GSp}\sb 4(F)$},
+  language={French},
+   journal={Ann. Inst. Fourier (Grenoble)},
+    volume={49},
+      date={1999},
+    number={6},
+     pages={1805\ndash 1851},
+      issn={0373-0956},
+    review={\MR {1738067 (2001f:22054)}},
+}
+
+\bib{blasco:u3}{article}{
+    author={Blasco, Laure},
+     title={Description du dual admissible de ${\rm U}(2,1)(F)$ par la
+            th\'eorie des types de C. Bushnell et P. Kutzko},
+  language={French, with English summary},
+   journal={Manuscripta Math.},
+    volume={107},
+      date={2002},
+    number={2},
+     pages={151\ndash 186},
+      issn={0025-2611},
+    review={\MR {1894738 (2003d:22017)}},
+}
+
+\bib{blasco-blondel:gen-prin-sp4}{article}{
+    author={Blasco, Laure},
+    author={Blondel, Corinne},
+     title={Alg\`ebres de Hecke et s\'eries principales g\'en\'eralis\'ees
+            de ${\rm Sp}\sb 4(F)$},
+  language={French},
+   journal={Proc. London Math. Soc. (3)},
+    volume={85},
+      date={2002},
+    number={3},
+     pages={659\ndash 685},
+      issn={0024-6115},
+    review={\MR {1936816 (2003k:22025)}},
+}
+
+\bib{blasco:u3-bc-1}{article}{
+    author={Blasco, Laure},
+     title={Types, paquets et changement de base:
+	l'exemple de $U(2,1)(F_0)$.
+	I. Types simples maximaux et paquets singletons},
+   journal={Canad. J. Math.},
+    volume={60},
+number={4},
+date={2008},
+pages={790\ndash 821},
+}
+
+
+\bib{blasco:u11-bc}{article}{
+    author={Blasco, Laure},
+     title={Changements de base explicites des repr\'esentations
+	supercuspidales de $U(1,1)(F_0)$},
+      date={2009-09-18},
+   eprint={arXiv:0909.3476},
+}
+
+
+\bib{blondel:injectivity}{article}{
+    author={Blondel, Corinne},
+     title={Crit\`ere d'injectivit\'e pour l'application de Jacquet},
+  language={French},
+   journal={C. R. Acad. Sci. Paris S\'er. I Math.},
+    volume={325},
+      date={1997},
+    number={11},
+     pages={1149\ndash 1152},
+      issn={0764-4442},
+    review={\MR {1490115 (98k:22069)}},
+}
+
+\bib{blondel:g2}{article}{
+    author={Blondel, Corinne},
+     title={Une m\'ethode de construction de types induits et son
+            application \`a\ $G\sb 2$},
+  language={French},
+   journal={J. Algebra},
+    volume={213},
+      date={1999},
+    number={1},
+     pages={231\ndash 271},
+      issn={0021-8693},
+    review={\MR {1674685 (2000e:22006)}},
+}
+
+\bib{blondel:sp2n-covers}{article}{
+    author={Blondel, Corinne},
+     title={${\rm SP}(2N)$-covers for self-contragredient supercuspidal
+            representations of ${\rm GL}(N)$},
+  language={English, with English and French summaries},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={37},
+      date={2004},
+    number={4},
+     pages={533\ndash 558},
+      issn={0012-9593},
+    review={\MR {2097892 (2006a:22013)}},
+}
+
+\bib{boller:thesis}{thesis}{
+	author={Boller, John},
+	title={Characters of some supercuspidal representations
+		of $p$-adic ${\rm Sp}_4(F)$},
+	organization={The University of Chicago},
+	type={Ph. D. Thesis},
+	year={1999},
+}
+
+\bib{boltje:glauberman-induction}{article}{
+    author={Boltje, Robert},
+     title={Glauberman's correspondence via canonical induction formulae},
+ booktitle={Darstellungstheorietage Jena 1996},
+    series={Sitzungsber. Math.-Naturwiss. Kl.},
+    volume={7},
+     pages={19\ndash 35},
+ publisher={Akad. Gemein. Wiss. Erfurt},
+     place={Erfurt},
+      date={1996},
+    review={\MR {1441082 (98a:20007)}},
+}
+
+\bib{borel-tits:reductive-groups}{article}{ % was borel-tits
+    author={Borel, Armand},
+    author={Tits, Jacques},
+     title={Groupes r\'eductifs},
+  language={French},
+   journal={Inst. Hautes \'Etudes Sci. Publ. Math.},
+    number={27},
+      date={1965},
+     pages={55\ndash 150},
+      issn={0073-8301},
+    review={\MR {0207712 (34 \#7527)}},
+}
+
+\bib{borel:linear-1st}{book}{ % was :lag
+    author={Borel, Armand},
+     title={Linear algebraic groups},
+    series={Notes taken by Hyman Bass},
+ publisher={W. A. Benjamin, Inc., New York-Amsterdam},
+      date={1969},
+     pages={xi+398},
+    review={\MR {0251042 (40 \#4273)}},
+}
+
+\bib{borel-springer:reductive-groups-2}{article}{
+   author={Borel, Armand},
+   author={Springer, Tonny A.},
+   title={Rationality properties of linear algebraic groups.
+II},
+   journal={T\^ohoku Math. J. (2)},
+   volume={20},
+   date={1968},
+   pages={443--497},
+   issn={0040-8735},
+   review={\MR{0244259 (39 \#5576)}},
+}
+
+\bib{borel-tits:reductive-groups-complements}{article}{ % was borel-tits2
+    author={Borel, Armand},
+    author={Tits, Jacques},
+     title={Compl\'ements \`a l'article: ``Groupes r\'eductifs''},
+  language={French},
+   journal={Inst. Hautes \'Etudes Sci. Publ. Math.},
+    number={41},
+      date={1972},
+     pages={253\ndash 276},
+      issn={0073-8301},
+    review={\MR {0315007 (47 \#3556)}},
+}
+
+\bib{borel-tits:homomorphismes}{article}{
+   author={Borel, Armand},
+   author={Tits, Jacques},
+   title={Homomorphismes ``abstraits'' de groupes
+alg\'ebriques simples},
+   language={French},
+   journal={Ann. of Math. (2)},
+   volume={97},
+   date={1973},
+   pages={499--571},
+   issn={0003-486X},
+   review={\MR{0316587 (47 \#5134)}},
+}
+\bib{borel:linear}{book}{
+    author={Borel, Armand},
+     title={Linear algebraic groups},
+    series={Graduate Texts in Mathematics},
+    volume={126},
+ publisher={Springer--Verlag},
+     place={New York},
+      date={1991},
+     pages={xii+288},
+      isbn={0-387-97370-2},
+    review={\MR {1102012 (92d:20001)}},
+}
+
+\bib{bosch-lutkebohmert-raynaud:neron}{book}{
+    author={Bosch, Siegfried},
+    author={L{\"u}tkebohmert, Werner},
+    author={Raynaud, Michel},
+     title={N\'eron models},
+    series={Ergebnisse der Mathematik und ihrer Grenzgebiete (3) [Results in
+            Mathematics and Related Areas (3)]},
+    volume={21},
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1990},
+     pages={x+325},
+      isbn={3-540-50587-3},
+    review={\MR {1045822 (91i:14034)}},
+}
+
+\bib{bourbaki:lie-gp+lie-alg_4-6}{book}{
+   author={Bourbaki, Nicolas},
+   title={Lie groups and Lie algebras. Chapters 4--6},
+   series={Elements of Mathematics (Berlin)},
+   publisher={Springer--Verlag},
+   place={Berlin},
+   date={2002},
+   pages={xii+300},
+   isbn={3-540-42650-7},
+   review={\MR{1890629 (2003a:17001)}},
+ language={English},
+}
+
+\bib{bruhat:thesis}{article}{
+    author={Bruhat, Fran{\c{c}}ois},
+     title={Sur les repr\'esentations induites des groupes de Lie},
+  language={French},
+   journal={Bull. Soc. Math. France},
+    volume={84},
+      date={1956},
+     pages={97\ndash 205},
+      issn={0037-9484},
+    review={\MR {0084713 (18,907i)}},
+}
+
+\bib{bruhat-tits:reductive-groups-1}{article}{ % was :one, or bruhat-tits1
+    author={Bruhat, Fran\c cois},
+    author={Tits, Jacques},
+     title={Groupes r\'eductifs sur un corps local},
+  language={French},
+   journal={Publ. Math. Inst. Hautes \'Etudes Sci.},
+    volume={41},
+      date={1972},
+     pages={5\ndash 251},
+      issn={0073-8301},
+    review={\MR {0327923 (48 \#6265)}},
+}
+
+\bib{bruhat-tits:reductive-groups-2}{article}{ % was :two, or bruhat-tits2
+    author={Bruhat, Fran\c cois},
+    author={Tits, Jacques},
+     title={Groupes r\'eductifs sur un corps local. II. Sch\'emas en
+            groupes. Existence d'une donn\'ee radicielle valu\'ee},
+  language={French},
+   journal={Publ. Math. Inst. Hautes \'Etudes Sci.},
+    volume={60},
+      date={1984},
+     pages={197\ndash 376},
+      issn={0073-8301},
+    review={\MR {756316 (86c:20042)}},
+}
+
+\bib{bruhat-tits:classical-1}{article}{
+    author={Bruhat, F.},
+    author={Tits, J.},
+     title={Sch\'emas en groupes et immeubles des groupes classiques sur un
+            corps local},
+  language={French},
+   journal={Bull. Soc. Math. France},
+    volume={112},
+      date={1984},
+    number={2},
+     pages={259\ndash 301},
+      issn={0037-9484},
+    review={\MR {788969 (86i:20064)}},
+}
+
+\bib{bruhat-tits:classical-1-errata}{article}{
+    author={Bruhat, F.},
+    author={Tits, J.},
+     title={Errata: ``Group schemes and buildings of classical groups over a
+            local field'' [Bull.\ Soc.\ Math.\ France {\bf 112} (1984), no.
+            2, 259--301;  MR0788969 (86i:20064)]},
+  language={French},
+   journal={Bull. Soc. Math. France},
+    volume={115},
+      date={1987},
+    number={2},
+     pages={194},
+      issn={0037-9484},
+    review={\MR {919422 (88k:20066)}},
+}
+
+\bib{bruhat-tits:classical-2}{article}{
+    author={Bruhat, F.},
+    author={Tits, J.},
+     title={Sch\'emas en groupes et immeubles des groupes classiques sur un
+            corps local. II. Groupes unitaires},
+  language={French, with English summary},
+   journal={Bull. Soc. Math. France},
+    volume={115},
+      date={1987},
+    number={2},
+     pages={141\ndash 195},
+      issn={0037-9484},
+    review={\MR {919421 (89b:20098)}},
+}
+
+\bib{bushnell-kutzko:gln-art}{article}{
+    author={Bushnell, Colin J.},
+    author={Kutzko, Philip C.},
+     title={The admissible dual of ${\rm GL}\sb N$ via restriction to
+            compact open subgroups},
+      book={proc:bowdoin}, % added JDA
+     pages={89\ndash 99},
+    review={\MR {1168479 (93h:22028)}},
+}
+
+\bib{bushnell-kutzko:gln-book}{book}{
+    author={Bushnell, Colin J.},
+    author={Kutzko, Philip C.},
+     title={The admissible dual of ${\rm GL}(N)$ via compact open subgroups},
+    series={Annals of Mathematics Studies},
+    volume={129},
+ publisher={Princeton University Press},
+     place={Princeton, NJ},
+      date={1993},
+     pages={xii+313},
+      isbn={0-691-03256-4},
+      isbn={0-691-02114-7},
+    review={\MR {1204652 (94h:22007)}},
+}
+
+\bib{bushnell-kutzko:sln-1}{article}{
+    author={Bushnell, Colin J.},
+    author={Kutzko, Philip C.},
+     title={The admissible dual of ${\rm SL}(N)$. I},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={26},
+      date={1993},
+    number={2},
+     pages={261\ndash 280},
+      issn={0012-9593},
+    review={\MR {1209709 (94a:22033)}},
+}
+
+\bib{bushnell-kutzko:sln-2}{article}{
+    author={Bushnell, Colin J.},
+    author={Kutzko, Philip C.},
+     title={The admissible dual of ${\rm SL}(N)$. II},
+   journal={Proc. London Math. Soc. (3)},
+    volume={68},
+      date={1994},
+    number={2},
+     pages={317\ndash 379},
+      issn={0024-6115},
+    review={\MR {1253507 (94k:22035)}},
+}
+
+\bib{bushnell-henniart:local-tame-1}{article}{
+    author={Bushnell, Colin J.},
+    author={Henniart, Guy},
+     title={Local tame lifting for ${\rm GL}(N)$. I. Simple characters},
+   journal={Inst. Hautes \'Etudes Sci. Publ. Math.},
+    number={83},
+      date={1996},
+     pages={105\ndash 233},
+      issn={0073-8301},
+    review={\MR {1423022 (98m:11129)}},
+}
+
+\bib{bushnell-kutzko:smooth}{article}{
+    author={Bushnell, Colin J.},
+    author={Kutzko, Philip C.},
+     title={Smooth representations of reductive $p$-adic groups: structure
+            theory via types},
+   journal={Proc. London Math. Soc. (3)},
+    volume={77},
+      date={1998},
+    number={3},
+     pages={582\ndash 634},
+      issn={0024-6115},
+    review={\MR {1643417 (2000c:22014)}},
+}
+
+\bib{bushnell-henniart:local-tame-2}{article}{
+    author={Bushnell, Colin J.},
+    author={Henniart, Guy},
+     title={Local tame lifting for ${\rm GL}(n)$. II. Wildly ramified
+            supercuspidals},
+  language={English, with English and French summaries},
+   journal={Ast\'erisque},
+    number={254},
+      date={1999},
+     pages={vi+105},
+      issn={0303-1179},
+    review={\MR {1685898 (2000d:11147)}},
+}
+
+\bib{bushnell-kutzko:gln-semisimple}{article}{
+    author={Bushnell, Colin J.},
+    author={Kutzko, Philip C.},
+     title={Semisimple types in ${\rm GL}\sb n$},
+   journal={Compositio Math.},
+    volume={119},
+      date={1999},
+    number={1},
+     pages={53\ndash 97},
+      issn={0010-437X},
+    review={\MR {1711578 (2000i:20072)}},
+}
+
+\bib{bushnell-henniart:jl2}{article}{
+    author={Bushnell, Colin J.},
+    author={Henniart, Guy},
+     title={Correspondance de Jacquet-Langlands explicite. II. Le cas de
+            degr\'e \'egal \`a la caract\'eristique r\'esiduelle},
+  language={French, with English summary},
+   journal={Manuscripta Math.},
+    volume={102},
+      date={2000},
+    number={2},
+     pages={211\ndash 225},
+      issn={0025-2611},
+    review={\MR {1771941 (2001j:22022)}},
+}
+
+\bib{bushnell-henniart:bc-glp}{article}{
+    author={Bushnell, Colin J.},
+    author={Henniart, Guy},
+     title={Explicit unramified base change: ${\rm GL}(p)$ of a $p$-adic
+            field},
+   journal={J. Number Theory},
+    volume={99},
+      date={2003},
+    number={1},
+     pages={74\ndash 89},
+      issn={0022-314X},
+    review={\MR {1957245 (2003m:22018)}},
+}
+
+\bib{bushnell-henniart:local-tame-4}{article}{
+    author={Bushnell, Colin J.},
+    author={Henniart, Guy},
+     title={Local tame lifting for ${\rm GL}(n)$. IV. Simple characters and
+            base change},
+   journal={Proc. London Math. Soc. (3)},
+    volume={87},
+      date={2003},
+    number={2},
+     pages={337\ndash 362},
+      issn={0024-6115},
+    review={\MR {1990931 (2004f:22017)}},
+}
+
+\bib{bushnell-henniart:local-tame-3}{article}{
+    author={Bushnell, Colin J.},
+    author={Henniart, Guy},
+     title={Local tame lifting for ${\rm GL}(n)$. III. Explicit base change
+            and Jacquet-Langlands correspondence},
+   journal={J. Reine Angew. Math.},
+    volume={580},
+      date={2005},
+     pages={39\ndash 100},
+      issn={0075-4102},
+    review={\MR {2130587 (2006a:11160)}},
+}
+
+\bib{carayol:cuspidal}{article}{ % was carayol
+    author={Carayol, H.},
+     title={Repr\'esentations cuspidales du groupe lin\'eaire},
+  language={French},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={17},
+      date={1984},
+    number={2},
+     pages={191\ndash 225},
+      issn={0012-9593},
+    review={\MR {760676 (86f:22019)}},
+}
+
+\bib{carter:simple}{book}{
+    author={Carter, Roger W.},
+     title={Simple groups of Lie type},
+    series={Wiley Classics Library},
+ publisher={John Wiley \& Sons Inc.},
+     place={New York},
+      date={1989},
+     pages={x+335},
+      isbn={0-471-50683-4},
+    review={\MR {1013112 (90g:20001)}},
+}
+
+\bib{carter:finite}{book}{
+    author={Carter, Roger W.},
+     title={Finite groups of Lie type},
+    series={Wiley Classics Library},
+ publisher={John Wiley \& Sons Ltd.},
+     place={Chichester},
+      date={1993},
+     pages={xii+544},
+      isbn={0-471-94109-3},
+    review={\MR {1266626 (94k:20020)}},
+}
+
+\bib{case-snaith:glauberman-brauer}{article}{
+    author={Case, Adam},
+    author={Snaith, Victor},
+     title={Explicit Brauer induction and the Glauberman correspondence},
+   journal={J. Algebra Appl.},
+    volume={2},
+      date={2003},
+    number={1},
+     pages={105\ndash 118},
+      issn={0219-4988},
+    review={\MR {1964769 (2004c:20016)}},
+}
+
+\bib{casselman:introduction}{article}{ % was casselman
+   author={Casselman, William},
+   title={Introduction to the theory of admissible
+		representations of $p$-adic reductive groups},
+   status={preprint},
+}
+
+\bib{casselman:sl2}{article}{
+    author={Casselman, William},
+     title={On the representations of ${\rm SL}\sb{2}(k)$ related to binary
+            quadratic forms},
+   journal={Amer. J. Math.},
+    volume={94},
+      date={1972},
+     pages={810\ndash 834},
+      issn={0002-9327},
+    review={\MR {0318401 (47 \#6948)}},
+}
+
+\bib{casselman:jacquet}{article}{
+   author={Casselman, William},
+   title={Characters and Jacquet modules},
+   journal={Math. Ann.},
+   volume={230},
+   date={1977},
+   number={2},
+   pages={101--105},
+   issn={0025-5831},
+   review={\MR{0492083 (58 \#11237)}},
+}
+
+\bib{chai-yu:neron-models}{article}{
+   author={Chai, Ching-Li},
+   author={Yu, Jiu-Kang},
+   title={Congruences of N\'eron models for tori and the
+Artin conductor},
+   journal={Ann. of Math. (2)},
+   volume={154},
+   date={2001},
+   number={2},
+   pages={347--382},
+   issn={0003-486X},
+   review={\MR{1865974 (2003e:11126)}},
+}
+
+
+\bib{clozel:real_bc}{article}{
+author={Clozel, Laurent},
+title={Changement de base pour les repr\'esentations temp\'er\'ees des
+	groupes r\'eductifs r\'eels},
+language={French},
+journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+volume={15},
+date={1982},
+number={1},
+pages={45--115},
+issn={0012-9593},
+review={\MR{672475 (84j:22015)}},
+}
+
+
+\bib{clozel:nonconnected}{article}{
+    author={Clozel, Laurent},
+     title={Characters of nonconnected, reductive $p$-adic groups},
+   journal={Canad. J. Math.},
+    volume={39},
+      date={1987},
+    number={1},
+     pages={149\ndash 167},
+      issn={0008-414X},
+    review={\MR {889110 (88i:22039)}},
+}
+
+\bib{cluckers-cunningham-gordon-spice:pos-depth}{article}{
+   author={Cluckers, Raf},
+   author={Cunningham, Clifton},
+   author={Gordon, Julia},
+   author={Spice, Loren},
+   title={On the computability of some positive-depth supercuspidal characters near the identity},
+   journal={Represent. Theory},
+   volume={15},
+   date={2011},
+   pages={531--567},
+   issn={1088-4165},
+   review={\MR{2833466}},
+   doi={10.1090/S1088-4165-2011-00403-9},
+}
+
+\bib{cogdell-kim-ps-shahidi:classical-gln}{article}{ % was :classical
+    author={Cogdell, J. W.},
+    author={Kim, H. H.},
+    author={Piatetski-Shapiro, I. I.},
+    author={Shahidi, F.},
+     title={On lifting from classical groups to ${\rm GL}\sb N$},
+   journal={Publ. Math. Inst. Hautes \'Etudes Sci.},
+    number={93},
+      date={2001},
+     pages={5\ndash 30},
+      issn={0073-8301},
+    review={\MR {1863734 (2002i:11048)}},
+}
+
+\bib{cohen:complete-local-rings}{article}{
+   author={Cohen, I. S.},
+   title={On the structure and ideal theory of complete
+local rings},
+   journal={Trans. Amer. Math. Soc.},
+   volume={59},
+   date={1946},
+   pages={54--106},
+   issn={0002-9947},
+   review={\MR{0016094 (7,509h)}},
+}
+
+\bib{conrad:finite-class-number}{article}{
+	author={Conrad, Brian},
+	title={Finiteness of class numbers for algebraic
+groups},
+	eprint={http://www.math.lsa.umich.edu/~bdconrad/papers/cosetfinite.pdf}
+}
+
+\bib{corwin:division-alg-tame}{article}{
+    author={Corwin, Lawrence},
+     title={Representations of division algebras over local fields},
+   journal={Advances in Math.},
+    volume={13},
+      date={1974},
+     pages={259\ndash 267},
+      issn={0001-8708},
+    review={\MR {0347780 (50 \#281)}},
+}
+
+\bib{corwin-howe:div-alg}{article}{
+    author={Corwin, Lawrence},
+    author={Howe, Roger E.},
+     title={Computing characters of tamely ramified $p$-adic division
+            algebras},
+   journal={Pacific J. Math.},
+    volume={73},
+      date={1977},
+    number={2},
+     pages={461\ndash 477},
+      issn={0030-8730},
+    review={\MR {0492084 (58 \#11238)}},
+}
+
+\bib{corwin:division-alg-wild}{article}{
+    author={Corwin, Lawrence},
+     title={Representations of division algebras over local fields. II},
+   journal={Pacific J. Math.},
+    volume={101},
+      date={1982},
+    number={1},
+     pages={49\ndash 70},
+      issn={0030-8730},
+    review={\MR {671839 (84b:12023)}},
+}
+
+\bib{corwin:division-alg-all}{article}{
+    author={Corwin, Lawrence},
+     title={The unitary dual for the multiplicative group of arbitrary
+            division algebras over local fields},
+   journal={J. Amer. Math. Soc.},
+    volume={2},
+      date={1989},
+    number={3},
+     pages={565\ndash 598},
+      issn={0894-0347},
+    review={\MR {984512 (90d:22021)}},
+}
+
+\bib{corwin-moy-sally:degrees}{article}{ % was corwin-moy-sally
+    author={Corwin, Lawrence},
+    author={Moy, Allen},
+    author={Sally, Paul J., Jr.},
+     title={Degrees and formal degrees for division algebras and ${\rm
+            GL}\sb n$ over a $p$-adic field},
+   journal={Pacific J. Math.},
+    volume={141},
+      date={1990},
+    number={1},
+     pages={21\ndash 45},
+      issn={0030-8730},
+    review={\MR {1028263 (90k:22025)}},
+}
+
+\bib{corwin:gln-exposition}{article}{
+    author={Corwin, Lawrence},
+     title={Constructing the supercuspidal representations of ${\rm GL}\sb
+            n(F),\; F\; p$-adic},
+      book={proc:bowdoin}, % added JDA
+     pages={123\ndash 179},
+    review={\MR {1168481 (93h:22021)}},
+}
+
+\bib{corwin:unipotent}{article}{
+    author={Corwin, Lawrence},
+     title={Inducing ``supercuspidal'' representations of unipotent $p$-adic
+            groups from compact-mod-center subgroups},
+   journal={Compositio Math.},
+    volume={84},
+      date={1992},
+    number={1},
+     pages={85\ndash 89},
+      issn={0010-437X},
+    review={\MR {1183565 (93j:22014)}},
+}
+
+\bib{corwin:gln}{article}{
+    author={Corwin, Lawrence},
+     title={A construction of the supercuspidal representations of ${\rm
+            GL}\sb n(F),\;F\;p$-adic},
+   journal={Trans. Amer. Math. Soc.},
+    volume={337},
+      date={1993},
+    number={1},
+     pages={1\ndash 58},
+      issn={0002-9947},
+    review={\MR {1079053 (93g:22017)}},
+}
+
+\bib{corwin-moy-sally:gll}{article}{ % was cms2
+    author={Corwin, Lawrence},
+    author={Moy, Allen},
+    author={Sally, Paul J., Jr.},
+     title={Supercuspidal character formulas for ${\rm GL}\sb\ell$},
+ booktitle={Representation theory and harmonic analysis (Cincinnati, OH,
+            1994)},
+    series={Contemporary Mathematics},
+    volume={191},
+     pages={1\ndash 11},
+ publisher={Amer. Math. Soc.},
+     place={Providence, RI},
+      date={1995},
+    review={\MR {1365530 (96m:22037)}},
+}
+
+\bib{cunningham:ell-exp}{article}{
+    author={Cunningham, Clifton},
+     title={Characters of depth-zero, supercuspidal representations of the
+            rank-2 symplectic group},
+   journal={Canad. J. Math.},
+    volume={52},
+      date={2000},
+    number={2},
+     pages={306\ndash 331},
+      issn={0008-414X},
+    review={\MR {1755780 (2001f:22055)}},
+}
+
+\bib{cunningham-hales:good}{article}{
+    author={Cunningham, Clifton},
+    author={Hales, Thomas C.},
+     title={Good orbital integrals},
+   journal={Represent. Theory},
+    volume={8},
+      date={2004},
+     pages={414\ndash 457 (electronic)},
+      issn={1088-4165},
+    review={\MR {2084489}},
+}
+
+\bib{cunningham-gordon:sl2-motivic}{article}{
+    author={Cunningham, Clifton},
+    author={Gordon, Julia},
+    title={Motivic proof of a character formula for $\mbox{SL}(2)$},
+   eprint={arXiv:math.RT/0609260},
+}
+
+
+\bib{dade:glauberman}{article}{
+    author={Dade, Everett C.},
+     title={A new approach to Glauberman's correspondence},
+   journal={J. Algebra},
+    volume={270},
+      date={2003},
+    number={2},
+     pages={583\ndash 628},
+      issn={0021-8693},
+    review={\MR {2019631 (2004j:20010)}},
+}
+
+\bib{debacker:thesis}{thesis}{
+	author={DeBacker, Stephen},
+	title={On supercuspidal characters of ${\rm GL}_\ell$,
+		$\ell$ a prime},
+	organization={The University of Chicago},
+	type={Ph. D. Thesis},
+	year={1997},
+}
+
+
+\bib{debacker-sally:germs}{article}{
+    author={DeBacker, Stephen},
+    author={Sally, Paul J., Jr.},
+     title={Germs, characters, and the Fourier transforms of nilpotent
+            orbits},
+      book={proc:hc}, % changed JDA
+     pages={191\ndash 221},
+    review={\MR {1767897 (2001i:22022)}},
+}
+
+\bib{debacker-spice:stability}{article}{
+	author={DeBacker, Stephen},
+	author={Spice, Loren},
+	title={Stability for positive-depth, supercuspidal
+representations},
+	status={in preparation}
+}
+
+\bib{debacker:homogeneity-gln}{article}{
+    author={DeBacker, Stephen},
+     title={Homogeneity of certain invariant distributions on the Lie
+            algebra of $p$-adic ${\rm GL}\sb n$},
+   journal={Compositio Math.},
+    volume={124},
+      date={2000},
+    number={1},
+     pages={11\ndash 16},
+      issn={0010-437X},
+    review={\MR {1797651 (2001k:22020)}},
+}
+
+\bib{debacker:homogeneity}{article}{
+    author={DeBacker, Stephen},
+     title={Homogeneity results for invariant distributions of a reductive
+            $p$-adic group},
+  language={English, with English and French summaries},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={35},
+      date={2002},
+    number={3},
+     pages={391\ndash 422},
+      issn={0012-9593},
+    review={\MR {1914003 (2003i:22019)}},
+}
+
+\bib{debacker:bt-group}{article}{  % was :Gp
+    author={DeBacker, Stephen},
+     title={Some applications of Bruhat--Tits theory to harmonic analysis on
+            a reductive $p$-adic group},
+   journal={Michigan Math. J.},
+    volume={50},
+      date={2002},
+    number={2},
+     pages={241\ndash 261},
+      issn={0026-2285},
+    review={\MR {1914064 (2003g:22018)}},
+}
+
+\bib{debacker:nilp}{article}{
+    author={DeBacker, Stephen},
+     title={Parametrizing nilpotent orbits via Bruhat--Tits theory},
+   journal={Ann. of Math. (2)},
+    volume={156},
+      date={2002},
+    number={1},
+     pages={295\ndash 332},
+      issn={0003-486X},
+    review={\MR {1935848 (2003i:20086)}},
+}
+
+\bib{debacker:singapore}{article}{
+    author={DeBacker, Stephen},
+     title={Lectures on harmonic analysis for reductive $p$-adic groups},
+      book={proc:singapore}, % added JDA
+     pages={47\ndash 94},
+    review={\MR {2090869 (2005g:22009)}},
+}
+
+\bib{debacker:homogeneity-intro}{article}{
+   author={DeBacker, Stephen},
+   title={Homogeneity for reductive $p$-adic groups: an introduction},
+   conference={
+      title={Harmonic analysis, the trace formula, and Shimura varieties},
+   },
+   book={
+      series={Clay Math. Proc.},
+      volume={4},
+      publisher={Amer. Math. Soc.},
+      place={Providence, RI},
+   },
+   date={2005},
+   pages={523--550},
+   review={\MR{2192015}},
+}
+
+
+\bib{debacker:fund-lem-intro}{article}{
+   author={DeBacker, Stephen},
+   title={The fundamental lemma: what is it and what do we know?},
+   journal={Current developments in mathematics},
+	year={2005},
+	pages={151\ndash 171},
+	publisher={International Press},
+	place={Somerville, MA},
+}
+
+
+\bib{debacker:tori-unram}{article}{
+   author={DeBacker, Stephen},
+   title={Parameterizing conjugacy classes of maximal unramified tori via
+   Bruhat--Tits theory},
+   journal={Michigan Math. J.},
+   volume={54},
+   date={2006},
+   number={1},
+   pages={157--178},
+   issn={0026-2285},
+   review={\MR{2214792}},
+}
+
+\bib{debacker-kazhdan:stable-g2}{article}{
+   author={DeBacker, Stephen},
+   author={Kazhdan, David},
+   title={Stable distributions supported on the nilpotent cone for the group
+   $G\sb 2$},
+   conference={
+      title={The unity of mathematics},
+   },
+   book={
+      series={Progr. Math.},
+      volume={244},
+      publisher={Birkh\"auser Boston},
+      place={Boston, MA},
+   },
+   date={2006},
+   pages={205--262},
+   review={\MR{2181807 (2006h:22012)}},
+}
+
+\bib{debacker-reeder:depth-zero-sc}{article}{
+	author={DeBacker, Stephen},
+	author={Reeder, Mark},
+	title={Depth-zero supercuspidal $L$-packets
+		and their stability},
+	journal={Ann. Math.},
+    volume={169},
+    year={2009},
+    number={3},
+    pages={795\ndash 901},
+}
+
+\bib{debacker-reeder:vcusp-generic}{article}{
+	author={DeBacker, Stephen},
+	author={Reeder, Mark},
+	title={On some generic very cuspidal representations},
+	date={2008-03-08},
+	status={preprint},
+}
+
+
+\bib{debacker-kazhdan:mk-zero}{article}{
+	author={DeBacker, Stephen},
+	author={Kazhdan, David},
+	title={Murnaghan-Kirillov theory for depth zero supercuspidal
+		representations: reduction to cuspidal local systems},
+	date={2006-04-07},
+	status={preprint},
+}
+
+
+
+\bib{deligne-lusztig:finite}{article}{
+    author={Deligne, Pierre},
+    author={Lusztig, George},
+     title={Representations of reductive groups over finite fields},
+   journal={Ann. of Math. (2)},
+    volume={103},
+      date={1976},
+    number={1},
+     pages={103\ndash 161},
+      issn={0003-486X},
+    review={\MR {0393266 (52 \#14076)}},
+}
+
+\bib{deligne:support}{article}{
+    author={Deligne, Pierre},
+     title={Le support du caract\`ere d'une repr\'esentation supercuspidale},
+  language={French, with English summary},
+   journal={C. R. Acad. Sci. Paris S\'er. A-B},
+    volume={283},
+      date={1976},
+    number={4},
+     pages={Aii, A155\ndash A157},
+    review={\MR {0425033 (54 \#12991)}},
+}
+
+\bib{dkv:amt}{article}{
+    author={Deligne, Pierre},
+    author={Kazhdan, David},
+    author={Vign{\'e}ras, Marie-France},
+     title={Repr\'esentations des alg\`ebres centrales simples $p$-adiques},
+ booktitle={Representations of reductive groups over a local field},
+  language={French},
+    series={Travaux en Cours},
+     pages={33\ndash 117},
+ publisher={Hermann},
+     place={Paris},
+      date={1984},
+    review={\MR {771672 (86h:11044)}},
+}
+
+
+\bib{digne:arcata}{article}{
+author={Digne, Fran{\c{c}}ois},
+title={Shintani descent and ${\scr L}$ functions on Deligne-Lusztig
+	varieties},
+conference={
+	    title={The Arcata Conference on Representations of Finite Groups
+	    (Arcata, Calif., 1986)},
+},
+book={
+	   series={Proc. Sympos. Pure Math.},
+	   volume={47},
+	   publisher={Amer. Math. Soc.},
+	   place={Providence, RI},
+},
+date={1987},
+pages={61--68},
+review={\MR{933350 (89b:20083)}},
+}
+
+\bib{digne-lehrer-michel:nonconnected-center}{article}{
+author={Digne, Fran{\c{c}}ois},
+author={Lehrer, G. I.},
+author={Michel, J.},
+title={The characters of the group of rational points of a reductive group with 
+nonconnected centre},
+journal={J. Reine Angew. Math.},
+volume={425},
+date={1992},
+pages={155--192},
+issn={0075-4102},
+review={\MR{1151318 (93c:20071)}},
+}
+
+\bib{digne:shintani}{article}{
+    author={Digne, Fran{\c{c}}ois},
+     title={Descente de Shintani et restriction des scalaires},
+  language={French, with English summary},
+   journal={J. London Math. Soc. (2)},
+    volume={59},
+      date={1999},
+    number={3},
+     pages={867\ndash 880},
+      issn={0024-6107},
+    review={\MR {1709085 (2001a:20081)}},
+}
+
+\bib{vandijk:induced}{article}{
+    author={van Dijk, G.},
+     title={Computation of certain induced characters of ${\germ p}$-adic
+            groups},
+   journal={Math. Ann.},
+    volume={199},
+      date={1972},
+     pages={229\ndash 240},
+      issn={0025-5831},
+    review={\MR {0338277 (49 \#3043)}},
+}
+
+\bib{vandijk:sq-int-unipotent}{article}{
+    author={van Dijk, G.},
+     title={Square-integrable representations mod $Z$ of unipotent groups},
+   journal={Compositio Math.},
+    volume={29},
+      date={1974},
+     pages={141\ndash 150},
+      issn={0010-437X},
+    review={\MR {0364560 (51 \#814)}},
+}
+
+\bib{edixhoven-liu-lorenzini:components-neron}{article}{ % was :neron
+    author={Edixhoven, Bas},
+    author={Liu, Qing},
+    author={Lorenzini, Dino},
+     title={The $p$-part of the group of components of a N\'eron model},
+   journal={J. Algebraic Geom.},
+    volume={5},
+      date={1996},
+    number={4},
+     pages={801\ndash 813},
+      issn={1056-3911},
+    review={\MR {1486989 (98m:14051)}},
+}
+
+\bib{ennola:u3}{article}{
+    author={Ennola, Veikko},
+     title={On the characters of the finite unitary groups},
+   journal={Ann. Acad. Sci. Fenn. Ser. A I No.},
+    volume={323},
+      date={1963},
+     pages={35},
+    review={\MR {0156900 (28 \#143)}},
+}
+
+
+\bib{flicker:gl3}{book}{
+    author={Flicker, Yuval Z.},
+     title={The trace formula and base change for ${\rm GL}(3)$},
+    series={Lecture Notes in Mathematics},
+    volume={927},
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1982},
+     pages={xii+204},
+      isbn={3-540-11500-5},
+    review={\MR {663002 (84d:10035)}},
+}
+
+\bib{flicker:sym-square}{article}{
+   author={Flicker, Yuval Z.},
+   title={On the symmetric square. Unit elements},
+   journal={Pacific J. Math.},
+   volume={175},
+   date={1996},
+   number={2},
+   pages={507--526},
+   issn={0030-8730},
+   review={\MR{1432842 (98a:11065)}},
+}
+
+\bib{frohlich:local-fields}{article}{
+   author={Fr{\"o}hlich, A.},
+   title={Local fields},
+   conference={
+      title={Algebraic Number Theory},
+      address={Proc. Instructional Conf., Brighton},
+      date={1965},
+   },
+   book={
+      publisher={Thompson, Washington, D.C.},
+   },
+   date={1967},
+   pages={1--41},
+   review={\MR{0236145 (38 \#4443)}},
+}
+
+\bib{fulton-harris:rep-theory}{book}{
+   author={Fulton, William},
+   author={Harris, Joe},
+   title={Representation theory},
+   series={Graduate Texts in Mathematics},
+   volume={129},
+   note={A first course;
+   Readings in Mathematics},
+   publisher={Springer--Verlag},
+   place={New York},
+   date={1991},
+   pages={xvi+551},
+   isbn={0-387-97527-6},
+   isbn={0-387-97495-4},
+   review={\MR{1153249 (93a:20069)}},
+}
+
+\bib{gallagher:characters}{article}{
+    author={Gallagher, P. X.},
+     title={Group characters and normal Hall subgroups},
+   journal={Nagoya Math. J.},
+    volume={21},
+      date={1962},
+     pages={223\ndash 230},
+      issn={0027-7630},
+    review={\MR {0142671 (26 \#240)}},
+}
+
+\bib{gan-takeda:llc-gsp4}{article}{
+    author={Gan, Wee-Teck},
+    author={Takeda, Shuichiro},
+     title={The local Langlands conjecture for {\rm GSp}(4)},
+    eprint={arXiv:0706.0952},
+     date={2007-06-07},
+}
+
+\bib{gan-takeda:llc-sp4}{article}{
+    author={Gan, Wee-Teck},
+    author={Takeda, Shuichiro},
+     title={The local Langlands conjecture for {\rm Sp}(4)},
+    eprint={arXiv:0805.2731},
+     date={2008-05-18},
+}
+
+\bib{gelbart-knapp:sl2}{article}{ % was gelbart-knapp
+    author={Gelbart, Stephen},
+    author={Knapp, Anthony W.},
+     title={$L$-indistinguishability and $R$ groups for the special linear
+            group},
+   journal={Adv. in Math.},
+    volume={43},
+      date={1982},
+    number={2},
+     pages={101\ndash 121},
+      issn={0001-8708},
+    review={\MR {644669 (83j:22009)}},
+}
+
+\bib{gelbart:intro}{article}{
+    author={Gelbart, Stephen},
+     title={An elementary introduction to the Langlands program},
+   journal={Bull. Amer. Math. Soc. (N.S.)},
+    volume={10},
+      date={1984},
+    number={2},
+     pages={177\ndash 219},
+      issn={0273-0979},
+    review={\MR {733692 (85e:11094)}},
+}
+
+\bib{gelfand-graev:sl2}{article}{ % was gelfand-graev
+    author={Gel{\cprime}fand, I. M.},
+    author={Graev, M. I.},
+     title={Representations of the group of second-order matrices with
+            elements in a locally compact field and special functions on
+            locally compact fields},
+  language={Russian},
+   journal={Uspehi Mat. Nauk},
+    volume={18},
+      date={1963},
+    number={4 (112)},
+     pages={29\ndash 99},
+      issn={0042-1316},
+    review={\MR {0155931 (27 \#5864)}},
+}
+
+\bib{gelfand-graev-piatetskii-shapiro}{book}{
+    author={Gel{\cprime}fand, I. M.},
+    author={Graev, M. I.},
+    author={Pyatetskii-Shapiro, I. I.},
+     title={Representation theory and automorphic functions},
+    series={Translated from the Russian by K. A. Hirsch},
+ publisher={W. B. Saunders Co.},
+     place={Philadelphia, Pa.},
+      date={1969},
+     pages={xvi+426},
+    review={\MR {0233772 (38 \#2093)}},
+}
+
+\bib{gelfand-kazhdan:gln}{article}{ % was gelfand-kazhdan
+    author={Gel{\cprime}fand, I. M.},
+    author={Kajdan, D. A.},
+     title={Representations of the group ${\rm GL}(n,K)$ where $K$ is a
+            local field},
+ booktitle={Lie groups and their representations (Proc. Summer School,
+            Bolyai J\'anos Math. Soc., Budapest, 1971)},
+     pages={95\ndash 118},
+ publisher={Halsted, New York},
+      date={1975},
+    review={\MR {0404534 (53 \#8334)}},
+}
+
+\bib{gerardin:gln}{article}{
+    author={G{\'e}rardin, Paul},
+     title={Sur les repr\'esentations du groupe lin\'eaire g\'en\'eral sur
+            un corps ${\germ p}$-adique},
+ booktitle={S\'eminaire Delange-Pisot-Poitou (14e ann\'ee: 1972/73),
+            Th\'eorie des nombres, Fasc. 1, Exp. No. 12},
+  language={French},
+     pages={24},
+ publisher={Secr\'etariat Math\'ematique},
+     place={Paris},
+      date={1973},
+    review={\MR {0396858 (53 \#718)}},
+}
+
+\bib{gerardin:discrete}{book}{
+    author={G{\'e}rardin, Paul},
+     title={Construction de s\'eries discr\`etes $p$-adiques},
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1975},
+     pages={iii+180},
+    review={\MR {0396859 (53 \#719)}},
+}
+
+\bib{gerardin:weil}{article}{
+    author={G{\'e}rardin, Paul},
+     title={Weil representations associated to finite fields},
+   journal={J. Algebra},
+    volume={46},
+      date={1977},
+    number={1},
+     pages={54\ndash 101},
+      issn={0021-8693},
+    review={\MR {0460477 (57 \#470)}},
+}
+
+\bib{gessel:fibonacci}{article}{
+        author={Gessel, Ira},
+        title={Problem H-187},
+        journal={The Fibonacci Quarterly},
+        volume={10},
+        number={4},
+        date={1972-10},
+        pages={417--419},
+}
+
+\bib{ginzburg-rallis-soudry:backward}{article}{
+    author={Ginzburg, David},
+    author={Rallis, Stephen},
+    author={Soudry, David},
+     title={Self-dual automorphic ${\rm GL}\sb n$ modules and construction
+            of a backward lifting from ${\rm GL}\sb n$ to classical groups},
+   journal={Internat. Math. Res. Notices},
+      date={1997},
+    number={14},
+     pages={687\ndash 701},
+      issn={1073-7928},
+    review={\MR {1460389 (98e:22013)}},
+}
+
+\bib{ginzburg-rallis-soudry:glm-classical}{article}{
+    author={Ginzburg, David},
+    author={Rallis, Stephen},
+    author={Soudry, David},
+     title={On explicit lifts of cusp forms from ${\rm GL}\sb m$ to
+            classical groups},
+   journal={Ann. of Math. (2)},
+    volume={150},
+      date={1999},
+    number={3},
+     pages={807\ndash 866},
+      issn={0003-486X},
+    review={\MR {1740991 (2001b:11040)}},
+}
+
+\bib{glauberman:correspondences}{article}{
+    author={Glauberman, George},
+     title={Correspondences of characters for relatively prime operator
+            groups. },
+   journal={Canad. J. Math.},
+    volume={20},
+      date={1968},
+     pages={1465\ndash 1488},
+      issn={0008-414X},
+    review={\MR {0232866 (38 \#1189)}},
+}
+
+\bib{goldberg:reducibility-unitary}{article}{
+    author={Goldberg, David},
+     title={Some results on reducibility for unitary groups and local Asai
+            $L$-functions},
+   journal={J. Reine Angew. Math.},
+    volume={448},
+      date={1994},
+     pages={65\ndash 95},
+      issn={0075-4102},
+    review={\MR {1266747 (95g:22031)}},
+}
+
+\bib{goldberg-herb:nonconnected}{article}{
+    author={Goldberg, David},
+    author={Herb, Rebecca},
+     title={Some results on the admissible representations of non-connected
+            reductive $p$-adic groups},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={30},
+      date={1997},
+    number={1},
+     pages={97\ndash 146},
+      issn={0012-9593},
+    review={\MR {1422314 (98b:22033)}},
+}
+
+\bib{goldberg-shahidi:tempered-classical-1}{article}{
+    author={Goldberg, David},
+    author={Shahidi, Freydoon},
+     title={On the tempered spectrum of quasi-split classical groups},
+   journal={Duke Math. J.},
+    volume={92},
+      date={1998},
+    number={2},
+     pages={255\ndash 294},
+      issn={0012-7094},
+    review={\MR {1612785 (99c:22024)}},
+}
+
+\bib{goldberg-shahidi:tempered-classical-2}{article}{
+    author={Goldberg, David},
+    author={Shahidi, Freydoon},
+     title={On the tempered spectrum of quasi-split classical groups. II},
+   journal={Canad. J. Math.},
+    volume={53},
+      date={2001},
+    number={2},
+     pages={244\ndash 277},
+      issn={0008-414X},
+    review={\MR {1820909 (2001m:22035)}},
+}
+
+\bib{goldberg-roche:sln}{article}{
+    author={Goldberg, David},
+    author={Roche, Alan},
+     title={Types in ${\rm SL}\sb n$},
+   journal={Proc. London Math. Soc. (3)},
+    volume={85},
+      date={2002},
+    number={1},
+     pages={119\ndash 138},
+      issn={0024-6115},
+    review={\MR {1901371 (2003d:22018)}},
+}
+
+\bib{goldberg-roche:sln-hecke}{article}{
+    author={Goldberg, David},
+    author={Roche, Alan},
+     title={Hecke algebras and ${\rm SL}\sb n$-types},
+   journal={Proc. London Math. Soc. (3)},
+    volume={90},
+      date={2005},
+    number={1},
+     pages={87\ndash 131},
+      issn={0024-6115},
+    review={\MR {2107039 (2005i:22017)}},
+}
+
+\bib{goresky-kottwitz-macpherson:purity}{article}{
+   author={Goresky, Mark},
+   author={Kottwitz, Robert},
+   author={MacPherson, Robert},
+   title={Purity of equivalued affine Springer fibers},
+   journal={Represent. Theory},
+   volume={10},
+   date={2006},
+   pages={130--146 (electronic)},
+   issn={1088-4165},
+   review={\MR{2209851}},
+}
+
+\bib{gross-prasad:decomposition}{article}{
+    author={Gross, Benedict H.},
+    author={Prasad, Dipendra},
+     title={On the decomposition of a representation of ${\rm SO}\sb n$ when
+            restricted to ${\rm SO}\sb {n-1}$},
+   journal={Canad. J. Math.},
+    volume={44},
+      date={1992},
+    number={5},
+     pages={974\ndash 1002},
+      issn={0008-414X},
+    review={\MR {1186476 (93j:22031)}},
+}
+
+\bib{grothendieck:EGA-IV}{article}{
+    author={Grothendieck, Alexander},
+     title={\'El\'ements de g\'eom\'etrie alg\'ebrique. IV.
+\'Etude locale
+            des sch\'emas et des morphismes de sch\'emas
+IV},
+  language={French},
+   journal={Inst. Hautes \'Etudes Sci. Publ. Math.},
+    number={32},
+      date={1967},
+      issn={0073-8301},
+    review={\MR {0238860 (39 \#220)}},
+}
+
+\bib{gyoja:liftings}{article}{
+    author={Gyoja, Akihiko},
+     title={Liftings of irreducible characters of finite reductive groups},
+   journal={Osaka J. Math.},
+    volume={16},
+      date={1979},
+    number={1},
+     pages={1\ndash 30},
+      issn={0030-6126},
+    review={\MR {527011 (80k:20044)}},
+}
+
+
+
+\bib{hakim-murnaghan:twotypes}{article}{
+    author={Hakim, Jeffrey},
+    author={Murnaghan, Fiona},
+     title={Two types of distinguished supercuspidal representations},
+   journal={Int. Math. Res. Not.},
+      date={2002},
+    number={35},
+     pages={1857\ndash 1889},
+      issn={1073-7928},
+    review={\MR {1920643 (2003f:22023)}},
+}
+
+\bib{hakim-murnaghan:distinguished}{article}{
+    author={Hakim, Jeffrey},
+    author={Murnaghan, Fiona},
+     title={Tame supercuspidal representations of ${\rm GL}(n)$
+            distinguished by a unitary group},
+   journal={Compositio Math.},
+    volume={133},
+      date={2002},
+    number={2},
+     pages={199\ndash 244},
+      issn={0010-437X},
+    review={\MR {1923582 (2003g:22019)}},
+}
+
+\bib{hakim-murnaghan:distinguished-tame-sc}{article}{
+   author={Hakim, Jeffrey},
+   author={Murnaghan, Fiona},
+   title={Distinguished tame supercuspidal representations},
+   journal={Int. Math. Res. Pap. IMRP},
+   date={2008},
+   number={2},
+   pages={Art. ID rpn005, 166},
+   issn={1687-3017},
+   review={\MR{2431732 (2010a:22022)}},
+}
+
+\bib{hales:simple-defn}{article}{
+    author={Hales, Thomas C.},
+     title={A simple definition of transfer factors for unramified groups},
+      book={proc:maryland1993}, % corrected JDA
+     pages={109\ndash 134},
+    review={\MR {1216184 (94e:22020)}},
+}
+
+\bib{hales:characters}{article}{
+    author={Hales, Thomas C.},
+     title={Hyperelliptic curves and harmonic analysis (why harmonic
+            analysis on reductive $p$-adic groups is not elementary)},
+      book={proc:corwin},  % corrected JDA
+     pages={137\ndash 169},
+    review={\MR {1303604 (96d:22024)}},
+}
+
+\bib{hc:disc-series-1}{article}{
+    author={Harish-Chandra},
+     title={Discrete series for semisimple Lie groups. I. Construction of
+            invariant eigendistributions},
+   journal={Acta Math.},
+    volume={113},
+      date={1965},
+     pages={241\ndash 318},
+      issn={0001-5962},
+    review={\MR {0219665 (36 \#2744)}},
+}
+
+\bib{hc:disc-series-2}{article}{
+    author={Harish-Chandra},
+     title={Discrete series for semisimple Lie groups. II. Explicit
+            determination of the characters},
+   journal={Acta Math.},
+    volume={116},
+      date={1966},
+     pages={1\ndash 111},
+      issn={0001-5962},
+    review={\MR {0219666 (36 \#2745)}},
+}
+
+\bib{hc:harmonic}{book}{  % was :vandijk
+    author={Harish-Chandra},
+     title={Harmonic analysis on reductive $p$-adic groups},
+contribution={notes by G. van Dijk},  % added by JDA
+series={Lecture Notes in Mathematics},
+volume={162},
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1970},
+     pages={iv+125},
+    review={\MR {0414797 (54 \#2889)}},
+}
+
+
+\bib{hc:harmonic-williamstown}{article}{
+    author={Harish-Chandra},
+     title={Harmonic analysis on reductive $p$-adic groups},
+      book={proc:homogeneous},
+     pages={167\ndash 192},
+    review={\MR {0340486 (49 \#5238)}},
+}
+
+
+\bib{hc:submersion}{article}{
+    author={Harish-Chandra},
+     title={A submersion principle and its applications},
+      book={
+        title={Geometry and analysis},
+     subtitle={Papers dedicated to the memory of V. K. Patodi},
+    publisher={Indian Academy of Sciences},
+        place={Bangalore},
+         date={1980},
+        pages={iv+166 pp. (1 plate)},
+       review={\MR {592246 (81i:58005)}},
+     },
+     pages={95\ndash 102},
+    review={\MR {592255 (82e:22032)}},
+}
+
+\bib{hc:queens}{book}{
+    author={Harish-Chandra},
+     title={Admissible invariant distributions on reductive $p$-adic groups},
+contribution={with a preface and notes by Stephen DeBacker
+              and Paul J. Sally, Jr.},	% added by JDA
+    series={University Lecture Series},
+    volume={16},
+ publisher={American Mathematical Society},
+     place={Providence, RI},
+      date={1999},
+     pages={xiv+97},
+      isbn={0-8218-2025-7},
+    review={\MR {1702257 (2001b:22015)}},
+}
+
+\bib{harris-taylor:shimura}{book}{
+    author={Harris, Michael},
+    author={Taylor, Richard},
+     title={The geometry and cohomology of some simple Shimura varieties},
+    series={Annals of Mathematics Studies},
+    volume={151},
+ publisher={Princeton University Press},
+     place={Princeton, NJ},
+      date={2001},
+     pages={viii+276},
+      isbn={0-691-09090-4},
+    review={\MR {1876802 (2002m:11050)}},
+}
+
+\bib{harris-linckelmann:glauberman-blocks}{article}{
+    author={Harris, M. E.},
+    author={Linckelmann, M.},
+     title={On the Glauberman and Watanabe correspondences for blocks of
+            finite $p$-solvable groups},
+   journal={Trans. Amer. Math. Soc.},
+    volume={354},
+      date={2002},
+    number={9},
+     pages={3435\ndash 3453 (electronic)},
+      issn={0002-9947},
+    review={\MR {1911507 (2003c:20008)}},
+}
+
+\bib{henniart:ll-cyclic}{article}{
+   author={Henniart, Guy},
+   title={On the local Langlands conjecture for ${\rm
+GL}(n)$: the cyclic
+   case},
+   journal={Ann. of Math. (2)},
+   volume={123},
+   date={1986},
+   number={1},
+   pages={145--203},
+   issn={0003-486X},
+   review={\MR{825841 (87k:11132)}},
+}
+
+\bib{henniart:jl1}{article}{
+    author={Henniart, Guy},
+     title={Correspondance de Jacquet-Langlands explicite. I. Le cas
+            mod\'er\'e de degr\'e premier},
+ booktitle={S\'eminaire de Th\'eorie des Nombres, Paris, 1990--91},
+  language={French},
+    series={Progr. Math.},
+    volume={108},
+     pages={85\ndash 114},
+ publisher={Birkh\"auser Boston},
+     place={Boston, MA},
+      date={1993},
+    review={\MR {1263525 (95d:11064)}},
+}
+
+\bib{henniart:langlands}{article}{
+    author={Henniart, Guy},
+     title={Une preuve simple des conjectures de Langlands pour ${\rm
+            GL}(n)$ sur un corps $p$-adique},
+  language={French, with English summary},
+   journal={Invent. Math.},
+    volume={139},
+      date={2000},
+    number={2},
+     pages={439\ndash 455},
+      issn={0020-9910},
+    review={\MR {1738446 (2001e:11052)}},
+}
+
+\bib{hijikata:supercuspidal}{article}{ % was hijikata
+    author={Hijikata, Hiroaki},
+     title={Some supercuspidal representations induced from parahoric
+            subgroups},
+ booktitle={Automorphic forms of several variables (Katata, 1983)},
+    series={Progr. Math.},
+    volume={46},
+     pages={160\ndash 178},
+ publisher={Birkh\"auser Boston},
+     place={Boston, MA},
+      date={1984},
+    review={\MR {763014 (86f:22021)}},
+}
+
+\bib{howe:div-alg}{article}{
+    author={Howe, Roger E.},
+     title={Representation theory for division algebras over local fields
+            (tamely ramified case)},
+   journal={Bull. Amer. Math. Soc.},
+    volume={77},
+      date={1971},
+     pages={1063\ndash 1066},
+    review={\MR {0286939 (44 \#4146)}},
+}
+
+\bib{howe:weil}{article}{
+    author={Howe, Roger E.},
+     title={On the character of Weil's representation},
+   journal={Trans. Amer. Math. Soc.},
+    volume={177},
+      date={1973},
+     pages={287\ndash 298},
+      issn={0002-9947},
+    review={\MR {0316633 (47 \#5180)}},
+}
+
+\bib{howe:two-conj}{article}{  % was :twoconj
+    author={Howe, Roger E.},
+     title={Two conjectures about reductive $p$-adic groups},
+      book={proc:homogeneous},
+     pages={377\ndash 380},
+    review={\MR {0338278 (49 \#3044)}},
+}
+
+\bib{howe:fourier}{article}{
+    author={Howe, Roger E.},
+     title={The Fourier transform and germs of characters (case of ${\rm
+            Gl}\sb{n}$ over a $p$-adic field)},
+   journal={Math. Ann.},
+    volume={208},
+      date={1974},
+     pages={305\ndash 322},
+      issn={0025-5831},
+    review={\MR {0342645 (49 \#7391)}},
+}
+
+\bib{howe:gln}{article}{
+    author={Howe, Roger E.},
+     title={Tamely ramified supercuspidal representations of ${\rm
+            Gl}\sb{n}$},
+   journal={Pacific J. Math.},
+    volume={73},
+      date={1977},
+    number={2},
+     pages={437\ndash 460},
+      issn={0030-8730},
+    review={\MR {0492087 (58 \#11241)}},
+}
+
+\bib{howe:qualitative}{article}{
+    author={Howe, Roger E.},
+     title={Some qualitative results on the representation theory of ${\rm
+            Gl}\sb{n}$ over a $p$-adic field},
+   journal={Pacific J. Math.},
+    volume={73},
+      date={1977},
+    number={2},
+     pages={479\ndash 538},
+      issn={0030-8730},
+    review={\MR {0492088 (58 \#11242)}},
+}
+
+\bib{howe:kirillov}{article}{
+    author={Howe, Roger E.},
+     title={Kirillov theory for compact $p$-adic groups},
+   journal={Pacific J. Math.},
+    volume={73},
+      date={1977},
+    number={2},
+     pages={365\ndash 381},
+      issn={0030-8730},
+    review={\MR {0579176 (58 \#28314)}},
+}
+
+\bib{howe-moy:harish-chandra}{book}{
+    author={Howe, Roger E.},
+     title={Harish-Chandra homomorphisms for ${\germ p}$-adic groups},
+    series={CBMS Regional Conference Series in Mathematics},
+contribution={with the collaboration of Allen Moy},  %% added by JDA
+    volume={59},
+ publisher={Published for the Conference Board of the Mathematical Sciences,
+            Washington, DC},
+      date={1985},
+     pages={xi+76},
+      isbn={0-8218-0709-9},
+    review={\MR {821216 (87h:22023)}},
+}
+
+\bib{howe-moy:k-types}{article}{  % was :K-types
+    author={Howe, Roger E.},
+    author={Moy, Allen},
+     title={Minimal $K$-types for ${\rm GL}\sb n$ over a $p$-adic field},
+   journal={Ast\'erisque},
+    number={171-172},
+      date={1989},
+     pages={257\ndash 273},
+      issn={0303-1179},
+    review={\MR {1021505 (90m:22040)}},
+}
+
+\bib{howe-moy:hecke-iso}{article}{  % was :gln
+    author={Howe, Roger E.},
+    author={Moy, Allen},
+     title={Hecke algebra isomorphisms for ${\rm GL}(n)$ over a $p$-adic
+            field},
+   journal={J. Algebra},
+    volume={131},
+      date={1990},
+    number={2},
+     pages={388\ndash 424},
+      issn={0021-8693},
+    review={\MR {1058553 (91f:22031)}},
+}
+
+\bib{howe:hc}{article}{
+    author={Howe, Roger E.},
+     title={Harish-Chandra homomorphisms},
+      book={proc:hc}, % added JDA
+     pages={321\ndash 332},
+    review={\MR {1767901 (2001d:22011)}},
+}
+
+\bib{howe:affine-like-hecke}{article}{
+   author={Howe, Roger E.},
+   title={Affine-like Hecke algebras and $p$-adic representation theory},
+   conference={
+      title={Iwahori-Hecke algebras and their representation theory
+      (Martina-Franca, 1999)},
+   },
+   book={
+      series={Lecture Notes in Math.},
+      volume={1804},
+      publisher={Springer},
+      place={Berlin},
+   },
+   date={2002},
+   pages={27--69},
+   review={\MR{1979924 (2004f:22018)}},
+}
+
+\bib{humphreys:linear}{book}{
+    author={Humphreys, James E.},
+     title={Linear algebraic groups},
+ publisher={Springer--Verlag},
+     place={New York},
+      date={1975},
+     pages={xiv+247},
+    review={\MR {0396773 (53 \#633)}},
+}
+
+\bib{humphreys:lie-alg}{book}{
+    author={Humphreys, James E.},
+     title={Introduction to Lie algebras and representation theory},
+    series={Graduate Texts in Mathematics},
+    volume={9},
+ publisher={Springer--Verlag},
+     place={New York},
+      date={1978},
+     pages={xii+171},
+      isbn={0-387-90053-5},
+    review={\MR {499562 (81b:17007)}},
+}
+
+\bib{humphreys:reflection}{book}{
+   author={Humphreys, James E.},
+   title={Reflection groups and Coxeter groups},
+   series={Cambridge Studies in Advanced Mathematics},
+   volume={29},
+   publisher={Cambridge University Press},
+   place={Cambridge},
+   date={1990},
+   pages={xii+204},
+   isbn={0-521-37510-X},
+   review={\MR{1066460 (92h:20002)}},
+}
+
+\bib{humphreys:conjugacy}{book}{
+    author={Humphreys, James E.},
+     title={Conjugacy classes in semisimple algebraic groups},
+    series={Mathematical Surveys and Monographs},
+    volume={43},
+ publisher={American Mathematical Society},
+     place={Providence, RI},
+      date={1995},
+     pages={xviii+196},
+      isbn={0-8218-0333-6},
+    review={\MR {1343976 (97i:20057)}},
+}
+
+\bib{huntsinger:vanishing}{article}{
+    author={Huntsinger, Reid C.},
+     title={Vanishing of the leading term in Harish-Chandra's local
+            character expansion},
+   journal={Proc. Amer. Math. Soc.},
+    volume={124},
+      date={1996},
+    number={7},
+     pages={2229\ndash 2234},
+      issn={0002-9939},
+    review={\MR {1307530 (96i:22025)}},
+}
+
+\bib{huntsinger:thesis}{thesis}{
+	author={Huntsinger, Reid},
+	title={Some aspects of invariant harmonic analysis on
+		the Lie algebra of a reductive $p$-adic group},
+	organization={The University of Chicago},
+	type={Ph. D. Thesis},
+	year={1997},
+}
+
+%%% Can't find year, or page numbers.
+\bib{ichino:integral-reps-gsp4}{article}{
+	author={Ichino, Atsushi},
+	title={On integral representations of automorphic $L$-functions
+		for ${\rm GSp}(4)$},
+	booktitle={Proceedings of the 9th Autumn Workshop on Number Theory,
+		Hakuba, Japan, 2006},
+	}
+
+\bib{isaacs:correspondence}{article}{
+    author={Isaacs, I. M.},
+     title={Characters of solvable and symplectic groups},
+   journal={Amer. J. Math.},
+    volume={95},
+      date={1973},
+     pages={594\ndash 635},
+      issn={0002-9327},
+    review={\MR {0332945 (48 \#11270)}},
+}
+
+\bib{iwahori-matsumoto}{article}{
+    author={Iwahori, N.},
+    author={Matsumoto, H.},
+     title={On some Bruhat decomposition and the structure of the Hecke
+            rings of ${\germ p}$-adic Chevalley groups},
+   journal={Inst. Hautes \'Etudes Sci. Publ. Math.},
+    number={25},
+      date={1965},
+     pages={5\ndash 48},
+      issn={0073-8301},
+    review={\MR {0185016 (32 \#2486)}},
+}
+
+\bib{jabon:thesis}{thesis}{
+   author={Jabon, David},
+   organization={The University of Chicago},
+   type={Ph. D. Thesis},
+   title={The supercuspidal representations
+		of ${\rm U}(2,1)$ and ${\rm GSp}_4$},
+   date={1989-08},
+}
+
+\bib{jabon-keys-moy:u21}{article}{
+    author={Jabon, David},
+    author={Keys, C. David},
+    author={Moy, Allen},
+     title={An explicit Plancherel formula for ${\rm U}(2,1)$},
+   journal={Trans. Amer. Math. Soc.},
+    volume={341},
+      date={1994},
+    number={1},
+     pages={157\ndash 171},
+      issn={0002-9947},
+    review={\MR {1106191 (94c:22016)}},
+}
+
+\bib{jacobson:ba1}{book}{
+    author={Jacobson, Nathan},
+     title={Basic algebra. I},
+ publisher={W. H. Freeman and Company},
+     place={New York},
+      date={1985},
+     pages={xviii+499},
+      isbn={0-7167-1480-9},
+    review={\MR {780184 (86d:00001)}},
+}
+
+\bib{jacobson:ba2}{book}{
+    author={Jacobson, Nathan},
+     title={Basic algebra. II},
+ publisher={W. H. Freeman and Company},
+     place={New York},
+      date={1989},
+     pages={xviii+686},
+      isbn={0-7167-1933-9},
+    review={\MR {1009787 (90m:00007)}},
+}
+
+\bib{jacquet-langlands}{book}{
+    author={Jacquet, H.},
+    author={Langlands, R. P.},
+     title={Automorphic forms on ${\rm GL}(2)$},
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1970},
+     pages={vii+548},
+    review={\MR {0401654 (53 \#5481)}},
+}
+
+\bib{jacquet:montecatini}{article}{
+    author={Jacquet, Herv{\'e}},
+     title={Repr\'esentations des groupes lin\'eaires $p$-adiques},
+ booktitle={Theory of group representations and Fourier analysis (Centro
+            Internaz. Mat. Estivo (C.I.M.E.), II Ciclo, Montecatini Terme,
+            1970)},
+  language={French},
+     pages={119\ndash 220},
+ publisher={Edizioni Cremonese},
+     place={Rome},
+      date={1971},
+    review={\MR {0291360 (45 \#453)}},
+}
+
+\bib{james-kerber:Sn-reps}{book}{
+   author={James, Gordon},
+   author={Kerber, Adalbert},
+   title={The representation theory of the symmetric group},
+   series={Encyclopedia of Mathematics and its
+Applications},
+   volume={16},
+   note={With a foreword by P. M. Cohn;
+   With an introduction by Gilbert de B. Robinson},
+   publisher={Addison-Wesley Publishing Co., Reading,
+Mass.},
+   date={1981},
+   pages={xxviii+510},
+   isbn={0-201-13515-9},
+   review={\MR{644144 (83k:20003)}},
+}
+ 
+\bib{jantzen:reducibility}{article}{
+    author={Jantzen, Chris},
+     title={Reducibility of certain representations for symplectic and
+            odd-orthogonal groups},
+   journal={Compositio Math.},
+    volume={104},
+      date={1996},
+    number={1},
+     pages={55\ndash 63},
+      issn={0010-437X},
+    review={\MR {1420710 (98d:22014)}},
+}
+
+\bib{jantzen:supports}{article}{
+    author={Jantzen, Chris},
+     title={On supports of induced representations for symplectic and
+            odd-orthogonal groups},
+   journal={Amer. J. Math.},
+    volume={119},
+      date={1997},
+    number={6},
+     pages={1213\ndash 1262},
+      issn={0002-9327},
+    review={\MR {1481814 (99b:22028)}},
+}
+
+\bib{jantzen:sq-int-classical}{article}{
+    author={Jantzen, Chris},
+     title={On square-integrable representations of classical $p$-adic
+            groups},
+   journal={Canad. J. Math.},
+    volume={52},
+      date={2000},
+    number={3},
+     pages={539\ndash 581},
+      issn={0008-414X},
+    review={\MR {1758232 (2001f:22056)}},
+}
+
+\bib{jantzen:sq-int-classical2}{article}{
+    author={Jantzen, Chris},
+     title={On square-integrable representations of classical $p$-adic
+            groups. II},
+   journal={Represent. Theory},
+    volume={4},
+      date={2000},
+     pages={127\ndash 180 (electronic)},
+      issn={1088-4165},
+    review={\MR {1789464 (2001j:22024)}},
+}
+
+\bib{jantzen-kim:intertwining}{article}{
+    author={Jantzen, Chris},
+    author={Kim, Henry H.},
+     title={Parametrization of the image of normalized intertwining
+            operators},
+   journal={Pacific J. Math.},
+    volume={199},
+      date={2001},
+    number={2},
+     pages={367\ndash 415},
+      issn={0030-8730},
+    review={\MR {1847139 (2002h:22025)}},
+}
+
+\bib{kariyama:tori}{article}{ % was kariyama
+    author={Kariyama, Kazutoshi},
+     title={On conjugacy classes of maximal tori in classical groups},
+   journal={J. Algebra},
+    volume={125},
+      date={1989},
+    number={1},
+     pages={133\ndash 149},
+      issn={0021-8693},
+    review={\MR {1012667 (90j:20090)}},
+}
+
+\bib{kariyama:strata}{article}{
+	author={Kariyama, Kazutoshi},
+	title={Split and non-split fundamental strata for split
+		classical groups},
+	status={preprint},
+}
+
+\bib{kariyama:types-unitary}{article}{
+	author={Kariyama, Kazutoshi},
+	title={On types for unramified $p$-adic groups},
+	journal={Canad. J. Math.},
+	volume={60},
+	number={5},
+	year={2008},
+	pages={1067\ndash 1107},
+	eprint={arXiv:0802.4308},
+}
+
+
+\bib{kawanaka:liftings-classical-1}{article}{
+    author={Kawanaka, Noriaki},
+     title={Liftings of irreducible characters of finite classical groups.
+            I},
+   journal={J. Fac. Sci. Univ. Tokyo Sect. IA Math.},
+    volume={28},
+      date={1981},
+    number={3},
+     pages={851\ndash 861 (1982)},
+      issn={0040-8980},
+    review={\MR {656060 (83g:20047)}},
+}
+
+\bib{kawanaka:liftings-classical-2}{article}{
+    author={Kawanaka, Noriaki},
+     title={Liftings of irreducible characters of finite classical groups.
+            II},
+   journal={J. Fac. Sci. Univ. Tokyo Sect. IA Math.},
+    volume={30},
+      date={1984},
+    number={3},
+     pages={499\ndash 516},
+      issn={0040-8980},
+    review={\MR {731514 (85f:20037)}},
+}
+
+\bib{kawanaka:shintani}{article}{
+    author={Kawanaka, Noriaki},
+     title={Shintani lifting and Gel\cprime fand-Graev representations},
+ booktitle={The Arcata Conference on Representations of Finite Groups
+            (Arcata, Calif., 1986)},
+    series={Proc. Sympos. Pure Math.},
+    volume={47},
+     pages={147\ndash 163},
+ publisher={Amer. Math. Soc.},
+     place={Providence, RI},
+      date={1987},
+    review={\MR {933357 (89h:22037)}},
+}
+
+\bib{kazhdan:lifting}{article}{
+    author={Kazhdan, David},
+     title={On lifting},
+      book={proc:maryland1984-2},
+     pages={209\ndash 249},
+}
+
+\bib{kazhdan:cuspidal}{article}{
+    author={Kazhdan, David},
+     title={Cuspidal geometry of $p$-adic groups},
+   journal={J. Analyse Math.},
+    volume={47},
+      date={1986},
+     pages={1\ndash 36},
+      issn={0021-7670},
+    review={\MR {874042 (88g:22017)}},
+}
+
+\bib{kazhdan-lusztig:fixed-point}{article}{
+    author={Kazhdan, David},
+    author={Lusztig, George},
+     title={Fixed point varieties on affine flag manifolds},
+   journal={Israel J. Math.},
+    volume={62},
+      date={1988},
+    number={2},
+     pages={129\ndash 168},
+      issn={0021-2172},
+    review={\MR {947819 (89m:14025)}},
+}
+
+\bib{kazhdan-varshavsky:depth-zero}{article}{
+	author={Kazhdan, David},
+	author={Varshavsky, Yakov},
+	title={On endoscopic decomposition of certain
+		depth zero representations},
+	eprint={arXiv:math.RT/0309307},
+}
+
+\bib{kempf:instability}{article}{
+    author={Kempf, George R.},
+     title={Instability in invariant theory},
+   journal={Ann. of Math. (2)},
+    volume={108},
+      date={1978},
+    number={2},
+     pages={299\ndash 316},
+      issn={0003-486X},
+    review={\MR {506989 (80c:20057)}},
+}
+
+\bib{keys:thesis}{article}{
+    author={Keys, Charles David},
+     title={On the decomposition of reducible principal series
+            representations of $p$-adic Chevalley groups},
+   journal={Pacific J. Math.},
+    volume={101},
+      date={1982},
+    number={2},
+     pages={351\ndash 388},
+      issn={0030-8730},
+    review={\MR {675406 (84d:22032)}},
+}
+
+\bib{kim-shahidi:cube}{article}{
+    author={Kim, Henry H.},
+    author={Shahidi, Freydoon},
+     title={Functorial products for ${\rm GL}\sb 2\times{\rm GL}\sb 3$ and
+            the symmetric cube for ${\rm GL}\sb 2$},
+      note={With an appendix by Colin J. Bushnell and Guy Henniart},
+   journal={Ann. of Math. (2)},
+    volume={155},
+      date={2002},
+    number={3},
+     pages={837\ndash 893},
+      issn={0003-486X},
+    review={\MR {1923967 (2003m:11075)}},
+}
+
+\bib{kim:exterior}{article}{
+    author={Kim, Henry H.},
+     title={Functoriality for the exterior square of ${\rm GL}\sb 4$ and the
+            symmetric fourth of ${\rm GL}\sb 2$},
+   journal={J. Amer. Math. Soc.},
+    volume={16},
+      date={2003},
+    number={1},
+     pages={139\ndash 183 (electronic)},
+      issn={0894-0347},
+    review={\MR {1937203 (2003k:11083)}},
+}
+
+\bib{jkim:thesis}{article}{
+    author={Kim, Ju-Lee},
+     title={Hecke algebras of classical groups over $p$-adic fields and
+            supercuspidal representations},
+   journal={Amer. J. Math.},
+    volume={121},
+      date={1999},
+    number={5},
+     pages={967\ndash 1029},
+      issn={0002-9327},
+    review={\MR {1713299 (2001g:11075)}},
+}
+
+\bib{jkim-ps:theta10}{article}{
+    author={Kim, Ju-Lee},
+    author={Piatetski-Shapiro, Ilya I.},
+     title={Quadratic base change of $\theta\sb {10}$},
+   journal={Israel J. Math.},
+    volume={123},
+      date={2001},
+     pages={317\ndash 340},
+      issn={0021-2172},
+    review={\MR {1835303 (2002f:11179)}},
+}
+
+\bib{jkim:hecke-2}{article}{
+    author={Kim, Ju-Lee},
+     title={Hecke algebras of classical groups over $p$-adic fields. II},
+   journal={Compositio Math.},
+    volume={127},
+      date={2001},
+    number={2},
+     pages={117\ndash 167},
+      issn={0010-437X},
+    review={\MR {1845898 (2002g:22034)}},
+}
+
+\bib{jkim-murnaghan:charexp}{article}{
+    author={Kim, Ju-Lee},
+    author={Murnaghan, Fiona},
+     title={Character expansions and unrefined minimal $K$-types},
+   journal={Amer. J. Math.},
+    volume={125},
+      date={2003},
+    number={6},
+     pages={1199\ndash 1234},
+      issn={0002-9327},
+    review={\MR {2018660 (2004k:22024)}},
+}
+
+\bib{jkim:blobs}{article}{
+    author={Kim, Ju-Lee},
+     title={Dual blobs and Plancherel formulas},
+  language={English, with English and French summaries},
+   journal={Bull. Soc. Math. France},
+    volume={132},
+      date={2004},
+    number={1},
+     pages={55\ndash 80},
+      issn={0037-9484},
+    review={\MR {2075916 (2005f:22025)}},
+}
+
+\bib{jkim-murnaghan:gamma-asymptotic}{article}{
+  author={Kim, Ju-Lee},
+  author={Murnaghan, Fiona},
+  title={$K$-types and $\Gamma$-asymptotic expansions},
+  journal={J. Reine Angew. Math.},
+  volume={592},
+  year={2006},
+  pages={189-236},
+}
+
+
+\bib{jkim:exhaustion}{article}{
+   author={Kim, Ju-Lee},
+   title={Supercuspidal representations: an exhaustion theorem},
+   journal={J. Amer. Math. Soc.},
+   volume={20},
+   date={2007},
+   number={2},
+   pages={273--320 (electronic)},
+   issn={0894-0347},
+   review={\MR{2276772}},
+}
+
+\bib{kirillov:merits}{article}{
+    author={Kirillov, A. A.},
+     title={Merits and demerits of the orbit method},
+   journal={Bull. Amer. Math. Soc. (N.S.)},
+    volume={36},
+      date={1999},
+    number={4},
+     pages={433\ndash 488},
+      issn={0273-0979},
+    review={\MR {1701415 (2000h:22001)}},
+}
+
+\bib{knapp:overview}{book}{
+   author={Knapp, Anthony W.},
+   title={Representation theory of semisimple groups},
+   series={Princeton Landmarks in Mathematics},
+   note={An overview based on examples;
+   Reprint of the 1986 original},
+   publisher={Princeton University Press},
+   place={Princeton, NJ},
+   date={2001},
+   pages={xx+773},
+   isbn={0-691-09089-0},
+   review={\MR{1880691 (2002k:22011)}},
+}
+
+\bib{koch:eisenstein}{article}{
+    author={Koch, Helmut},
+     title={Eisensteinsche Polynomfolgen und Arithmetik in Divisionsalgebren
+            \"uber lokalen K\"orpern},
+  language={German},
+   journal={Math. Nachr.},
+    volume={104},
+      date={1981},
+     pages={229\ndash 251},
+      issn={0025-584X},
+    review={\MR {657895 (84d:12015)}},
+}
+
+\bib{korman:local-constancy}{article}{
+    author={Korman, Jonathan},
+     title={On the local constancy of characters},
+   journal={J. Lie Theory},
+    volume={15},
+      date={2005},
+    number={2},
+     pages={561\ndash 573},
+      issn={0949-5932},
+    review={\MR {2147443}},
+}
+
+\bib{koshitani-michler:glauberman-blocks}{article}{
+    author={Koshitani, Shigeo},
+    author={Michler, Gerhard O.},
+     title={Glauberman correspondence of $p$-blocks of finite groups},
+   journal={J. Algebra},
+    volume={243},
+      date={2001},
+    number={2},
+     pages={504\ndash 517},
+      issn={0021-8693},
+    review={\MR {1850660 (2002g:20024)}},
+}
+
+\bib{kostant:lie-group-reps}{article}{
+    author={Kostant, Bertram},
+     title={Lie group representations on polynomial rings},
+   journal={Amer. J. Math.},
+    volume={85},
+      date={1963},
+     pages={327\ndash 404},
+      issn={0002-9327},
+    review={\MR {0158024 (28 \#1252)}},
+}
+
+\bib{kottwitz:sign-change}{article}{
+   author={Kottwitz, Robert E.},
+   title={Sign changes in harmonic analysis on reductive
+groups},
+   journal={Trans. Amer. Math. Soc.},
+   volume={278},
+   date={1983},
+   number={1},
+   pages={289--297},
+   issn={0002-9947},
+   review={\MR{697075 (84i:22012)}},
+   doi={10.2307/1999316},
+}
+
+\bib{kottwitz:stable-cusp}{article}{
+   author={Kottwitz, Robert E.},
+   title={Stable trace formula: cuspidal tempered terms},
+   journal={Duke Math. J.},
+   volume={51},
+   date={1984},
+   number={3},
+   pages={611--650},
+   issn={0012-7094},
+   review={\MR{757954 (85m:11080)}},
+}
+
+\bib{kottwitz:isocrystals-1}{article}{
+   author={Kottwitz, Robert E.},
+   title={Isocrystals with additional structure},
+   journal={Compositio Math.},
+   volume={56},
+   date={1985},
+   number={2},
+   pages={201--220},
+   issn={0010-437X},
+   review={\MR{809866 (87i:14040)}},
+}
+
+\bib{kottwitz:stable-ell}{article}{
+    author={Kottwitz, Robert E.},
+     title={Stable trace formula: elliptic singular terms},
+   journal={Math. Ann.},
+    volume={275},
+      date={1986},
+    number={3},
+     pages={365\ndash 399},
+      issn={0025-5831},
+    review={\MR {858284 (88d:22027)}},
+}
+
+\bib{kottwitz:l-adic}{article}{
+   author={Kottwitz, Robert E.},
+   title={Shimura varieties and $\lambda$-adic representations},
+   conference={
+      title={Automorphic forms, Shimura varieties, and $L$-functions,
+      Vol.\ I (Ann Arbor, MI, 1988)},
+   },
+   book={
+      series={Perspect. Math.},
+      volume={10},
+      publisher={Academic Press},
+      place={Boston, MA},
+   },
+   date={1990},
+   pages={161--209},
+   review={\MR{1044820 (92b:11038)}},
+}
+
+\bib{kottwitz:isocrystals-2}{article}{
+   author={Kottwitz, Robert E.},
+   title={Isocrystals with additional structure. II},
+   journal={Compositio Math.},
+   volume={109},
+   date={1997},
+   number={3},
+   pages={255--339},
+   issn={0010-437X},
+   review={\MR{1485921 (99e:20061)}},
+}
+
+\bib{kottwitz-shelstad:twisted-endoscopy}{article}{
+    author={Kottwitz, Robert E.},
+    author={Shelstad, Diana},
+     title={Foundations of twisted endoscopy},
+  language={English, with English and French summaries},
+   journal={Ast\'erisque},
+    number={255},
+      date={1999},
+     pages={vi+190},
+      issn={0303-1179},
+    review={\MR {1687096 (2000k:22024)}},
+}
+
+\bib{kottwitz:transfer-factors-lie}{article}{
+    author={Kottwitz, Robert E.},
+     title={Transfer factors for Lie algebras},
+   journal={Represent. Theory},
+    volume={3},
+      date={1999},
+     pages={127\ndash 138 (electronic)},
+      issn={1088-4165},
+    review={\MR {1703328 (2000g:22028)}},
+}
+
+\bib{krishnamurthy:gl4}{article}{
+    author={Krishnamurthy, M.},
+     title={The Asai transfer to $\rm GL\sb 4$ via the Langlands-Shahidi
+            method},
+   journal={Int. Math. Res. Not.},
+      date={2003},
+    number={41},
+     pages={2221\ndash 2254},
+      issn={1073-7928},
+    review={\MR {2000968 (2004i:11050)}},
+}
+
+\bib{kushnirsky:haar}{article}{
+   author={Kushnirsky, Eugene},
+   title={On some Haar measures on reductive groups},
+   journal={Amer. J. Math.},
+   volume={126},
+   date={2004},
+   number={3},
+   pages={649--670},
+   issn={0002-9327},
+   review={\MR{2058386 (2005d:22005)}},
+}
+
+\bib{kutzko:mackey}{article}{
+    author={Kutzko, Philip C.},
+     title={Mackey's theorem for nonunitary representations},
+   journal={Proc. Amer. Math. Soc.},
+    volume={64},
+      date={1977},
+    number={1},
+     pages={173\ndash 175},
+      issn={0002-9939},
+    review={\MR {0442145 (56 \#533)}},
+}
+
+\bib{kutzko:supercuspidal-gl2-1}{article}{ % was part of kutzko-78
+    author={Kutzko, Philip C.},
+     title={On the supercuspidal representations of ${\rm Gl}\sb{2}$},
+   journal={Amer. J. Math.},
+    volume={100},
+      date={1978},
+    number={1},
+     pages={43\ndash 60},
+      issn={0002-9327},
+    review={\MR {0507253 (58 \#22411a)}},
+}
+
+\bib{kutzko:supercuspidal-gl2-2}{article}{ % was part of kutzko-78
+    author={Kutzko, Philip C.},
+     title={On the supercuspidal representations of ${\rm Gl}\sb{2}$. II},
+   journal={Amer. J. Math.},
+    volume={100},
+      date={1978},
+    number={4},
+     pages={705\ndash 716},
+      issn={0002-9327},
+    review={\MR {0507254 (58 \#22411b)}},
+}
+
+\bib{kutzko:langlands-gl2}{article}{
+    author={Kutzko, Philip C.},
+     title={The Langlands conjecture for ${\rm Gl}\sb{2}$ of a local field},
+   journal={Ann. of Math. (2)},
+    volume={112},
+      date={1980},
+    number={2},
+     pages={381\ndash 412},
+      issn={0003-486X},
+    review={\MR {592296 (82e:12019)}},
+}
+
+\bib{kutzko-sally:sll}{article}{  % was kutzko-sally
+    author={Kutzko, Philip C.},
+    author={Sally, Paul J., Jr.},
+     title={All supercuspidal representations of ${\rm SL}\sb{l}$ over a
+            $p$-adic field are induced},
+ booktitle={Representation theory of reductive groups (Park City, Utah,
+            1982)},
+    series={Progr. Math.},
+    volume={40},
+     pages={185\ndash 196},
+ publisher={Birkh\"auser Boston},
+     place={Boston, MA},
+      date={1983},
+    review={\MR {733814 (85i:22029)}},
+}
+
+\bib{kutzko-moy:langlands-prime}{article}{ % was kutzko-moy
+    author={Kutzko, Philip C.},
+    author={Moy, Allen},
+     title={On the local Langlands conjecture in prime dimension},
+   journal={Ann. of Math. (2)},
+    volume={121},
+      date={1985},
+    number={3},
+     pages={495\ndash 517},
+      issn={0003-486X},
+    review={\MR {794371 (87d:11092)}},
+}
+
+\bib{kutzko:restriction}{article}{
+    author={Kutzko, Philip C.},
+     title={On the restriction of supercuspidal representations to compact,
+            open subgroups},
+   journal={Duke Math. J.},
+    volume={52},
+      date={1985},
+    number={3},
+     pages={753\ndash 764},
+      issn={0012-7094},
+    review={\MR {808102 (87e:22038)}},
+}
+
+\bib{kutzko-manderscheid:gl4}{article}{
+    author={Kutzko, Philip C.},
+    author={Manderscheid, David},
+     title={On the supercuspidal representations of ${\rm GL}\sb 4$. I},
+   journal={Duke Math. J.},
+    volume={52},
+      date={1985},
+    number={4},
+     pages={841\ndash 867},
+      issn={0012-7094},
+    review={\MR {816388 (87e:22039)}},
+}
+
+\bib{kutzko:char}{article}{
+    author={Kutzko, Philip C.},
+     title={Character formulas for supercuspidal representations of ${\rm
+            GL}\sb l,\;l$ a prime},
+   journal={Amer. J. Math.},
+    volume={109},
+      date={1987},
+    number={2},
+     pages={201\ndash 221},
+      issn={0002-9327},
+    review={\MR {882420 (88k:22003)}},
+}
+
+\bib{kutzko:gln}{article}{
+    author={Kutzko, Philip C.},
+     title={Towards a classification of the supercuspidal representations of
+            ${\rm GL}\sb N$},
+   journal={J. London Math. Soc. (2)},
+    volume={37},
+      date={1988},
+    number={2},
+     pages={265\ndash 274},
+      issn={0024-6107},
+    review={\MR {928523 (89e:22028)}},
+}
+
+\bib{kutzko-manderscheid:glpq}{article}{
+    author={Kutzko, Philip C.},
+    author={Manderscheid, David},
+     title={On the supercuspidal representations of ${\rm GL}\sb N,\;N$ the
+            product of two primes},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={23},
+      date={1990},
+    number={1},
+     pages={39\ndash 88},
+      issn={0012-9593},
+    review={\MR {1042387 (91b:22025)}},
+}
+
+\bib{kutzko-manderscheid:glpq-erratum}{article}{
+    author={Kutzko, Philip C.},
+    author={Manderscheid, David},
+     title={Erratum: ``On the supercuspidal representations of ${\rm GL}\sb
+            N,\ N$ the product of two primes'' [Ann.\ Sci.\ \'Ecole Norm.\
+            Sup.\ (4) {\bf 23} (1990), no.\ 1, 39--88; MR1042387
+            (91b:22025)]},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={24},
+      date={1991},
+    number={1},
+     pages={139\ndash 140},
+      issn={0012-9593},
+    review={\MR {1088273 (92b:22014)}},
+}
+
+
+\bib{labesse-langlands:sl2}{article}{
+   author={Labesse, J.-P.},
+   author={Langlands, R. P.},
+   title={$L$-indistinguishability for ${\rm SL}(2)$},
+   journal={Canad. J. Math.},
+   volume={31},
+   date={1979},
+   number={4},
+   pages={726--785},
+   issn={0008-414X},
+   review={\MR{540902 (81b:22017)}},
+}
+
+\bib{lafforgue:langlands}{article}{
+    author={Lafforgue, Laurent},
+     title={Chtoucas de Drinfeld et correspondance de Langlands},
+  language={French},
+   journal={Invent. Math.},
+    volume={147},
+      date={2002},
+    number={1},
+     pages={1\ndash 241},
+      issn={0020-9910},
+    review={\MR {1875184 (2002m:11039)}},
+}
+
+
+\bib{landherr}{article}{
+    author={Landherr, Walter},
+     title={\"{A}quivalenze Hermitscher formen \"{u}ber einem beliebigen algebraischen zahlk\"{o}rper},
+  language={German},
+   journal={Abh.~Math.~Sem.~Hamb.},
+    volume={11},
+      date={1936},
+    number={},
+     pages={245\ndash 248},
+      issn={},
+    review={},
+}
+
+\bib{landvogt:compactification}{book}{
+    author={Landvogt, Erasmus},
+     title={A compactification of the Bruhat--Tits building},
+    series={Lecture Notes in Mathematics},
+    volume={1619},
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1996},
+     pages={viii+152},
+      isbn={3-540-60427-8},
+    review={\MR {1441308 (98h:20081)}},
+}
+
+\bib{landvogt:functorial}{article}{
+    author={Landvogt, Erasmus},
+     title={Some functorial properties of the Bruhat--Tits building},
+   journal={J. Reine Angew. Math.},
+    volume={518},
+      date={2000},
+     pages={213\ndash 241},
+      issn={0075-4102},
+    review={\MR {1739403 (2001g:20029)}},
+}
+
+\bib{lang:quasi-alg-closure}{article}{
+   author={Lang, Serge},
+   title={On quasi algebraic closure},
+   journal={Ann. of Math. (2)},
+   volume={55},
+   date={1952},
+   pages={373--390},
+   issn={0003-486X},
+   review={\MR{0046388 (13,726d)}},
+} 
+
+\bib{lang:alg-gp-finite-field}{article}{
+   author={Lang, Serge},
+   title={Algebraic groups over finite fields},
+   journal={Amer. J. Math.},
+   volume={78},
+   date={1956},
+   pages={555--563},
+   issn={0002-9327},
+   review={\MR{0086367 (19,174a)}},
+}
+
+\bib{langlands:stab-conj}{article}{
+   author={Langlands, R. P.},
+   title={Stable conjugacy: definitions and lemmas},
+   journal={Canad. J. Math.},
+   volume={31},
+   date={1979},
+   number={4},
+   pages={700--725},
+   issn={0008-414X},
+   review={\MR{540901 (82j:10054)}},
+   doi={10.4153/CJM-1979-069-2},
+}
+
+\bib{langlands:gl2}{book}{
+    author={Langlands, Robert P.},
+     title={Base change for ${\rm GL}(2)$},
+    series={Annals of Mathematics Studies},
+    volume={96},
+ publisher={Princeton University Press},
+     place={Princeton, N.J.},
+      date={1980},
+     pages={vii+237},
+      isbn={0-691-08263-4},
+      isbn={0-691-08272-3},
+    review={\MR {574808 (82a:10032)}},
+}
+
+\bib{langlands-shelstad:defn}{article}{ % was langlands-shelstad
+    author={Langlands, R. P.},
+    author={Shelstad, Diana},
+     title={On the definition of transfer factors},
+   journal={Math. Ann.},
+    volume={278},
+      date={1987},
+    number={1-4},
+     pages={219\ndash 271},
+      issn={0025-5831},
+    review={\MR {909227 (89c:11172)}},
+}
+
+
+\bib{lansky-raghuram:depth}{article}{
+  author={Lansky, Joshua and Raghuram A.},
+  title={On the correspondence of representations between 
+                  {${\rm GL}(n)$} and division algebras},
+  journal={Proc.~Amer.~Math.~Soc.},
+  volume={131},
+  date={2003},
+  number={5},
+  pages={1641\ndash 1648},
+  issn={0-691-08263-4},
+  review={\MR {1950297 (2003m:22021)}},
+}
+
+
+\bib{laumon-rapoport-stuhler:langlands}{article}{
+    author={Laumon, G.},
+    author={Rapoport, M.},
+    author={Stuhler, U.},
+     title={${\scr D}$-elliptic sheaves and the Langlands correspondence},
+   journal={Invent. Math.},
+    volume={113},
+      date={1993},
+    number={2},
+     pages={217\ndash 338},
+      issn={0020-9910},
+    review={\MR {1228127 (96e:11077)}},
+}
+
+\bib{laumon-ngo:fundamental}{article}{
+    author={Laumon, G.},
+    author={Ngo, B. C.},
+    title={Le lemme fondamental pour les groupes unitaires},
+    eprint={arXiv:math.AG/0404454},
+}
+
+\bib{lidl-niederreiter:finite-fields}{book}{
+   author={Lidl, Rudolf},
+   author={Niederreiter, Harald},
+   title={Finite fields},
+   series={Encyclopedia of Mathematics and its
+Applications},
+   volume={20},
+   publisher={Cambridge University Press},
+   place={Cambridge},
+   date={1997},
+   pages={xiv+755},
+   isbn={0-521-39231-4},
+   review={\MR{1429394 (97i:11115)}},
+}
+
+\bib{lusztig:sq-int}{article}{
+    author={Lusztig, George},
+     title={Some examples of square integrable representations of semisimple
+            $p$-adic groups},
+   journal={Trans. Amer. Math. Soc.},
+    volume={277},
+      date={1983},
+    number={2},
+     pages={623\ndash 653},
+      issn={0002-9947},
+    review={\MR {694380 (84j:22023)}},
+}
+
+\bib{lusztig:chars-finite}{book}{
+    author={Lusztig, George},
+     title={Characters of reductive groups over a finite field},
+    series={Annals of Mathematics Studies},
+    volume={107},
+ publisher={Princeton University Press},
+     place={Princeton, NJ},
+      date={1984},
+     pages={xxi+384},
+      isbn={0-691-08350-9},
+      isbn={0-691-08351-7},
+    review={\MR {742472 (86j:20038)}},
+}
+
+\bib{lusztig:disconnected-centre}{article}{
+author={Lusztig, George},
+title={On the representations of reductive groups with disconnected centre},
+note={Orbites unipotentes et repr\'esentations, I},
+journal={Ast\'erisque},
+number={168},
+date={1988},
+pages={10, 157--166},
+issn={0303-1179},
+review={\MR{1021495 (90j:20083)}},
+}
+
+\bib{lusztig:unipotent1}{article}{
+author={Lusztig, George},
+title={Classification of unipotent representations of simple $p$-adic groups},
+journal={Internat. Math. Res. Notices},
+volume={1995},
+number={11},
+pages={517--589},
+}
+
+\bib{lusztig:unipotent2}{article}{
+author={Lusztig, George},
+title={Classification of unipotent representations of simple $p$-adic groups. II.},
+journal={Represent. Theory},
+volume={6},
+year={2002},
+pages={243--289},
+}
+
+
+\bib{mackey:frobenius}{article}{
+    author={Mackey, George W.},
+     title={Induced representations of locally compact groups. II.
+            The Frobenius reciprocity theorem},
+   journal={Ann. of Math. (2)},
+    volume={58},
+      date={1953},
+     pages={193\ndash 221},
+      issn={0003-486X},
+    review={\MR {0056611 (15,101a)}},
+}
+
+\bib{matsuyama:quasicoprime}{article}{
+    author={Matsuyama, Hiroshi},
+     title={Quasicoprime automorphisms and the Glauberman correspondence of
+            finite groups},
+   journal={Japan. J. Math. (N.S.)},
+    volume={9},
+      date={1983},
+    number={2},
+     pages={373\ndash 383},
+      issn={0289-2316},
+    review={\MR {884440 (88d:20016)}},
+}
+
+\bib{mautner:spherical-2}{article}{  % was mautner
+    author={Mautner, Friedrich I.},
+     title={Spherical functions over ${\germ P}$-adic fields. II},
+   journal={Amer. J. Math.},
+    volume={86},
+      date={1964},
+     pages={171\ndash 200},
+      issn={0002-9327},
+    review={\MR {0166305 (29 \#3582)}},
+}
+
+
+\bib{mcninch:nilpotent-orbits}{article}{
+   author={McNinch, George J.},
+   title={Nilpotent orbits over ground fields of good characteristic},
+   journal={Math. Ann.},
+   volume={329},
+   date={2004},
+   number={1},
+   pages={49--85},
+   issn={0025-5831},
+   review={\MR{2052869 (2005j:17018)}},
+}
+
+\bib{moeglin-waldspurger:whittaker}{article}{
+    author={M{\oe}glin, Colette},
+    author={Waldspurger, Jean-Loup},
+     title={Mod\`eles de Whittaker d\'eg\'en\'er\'es pour des groupes
+            $p$-adiques},
+  language={French},
+   journal={Math. Z.},
+    volume={196},
+      date={1987},
+    number={3},
+     pages={427\ndash 452},
+      issn={0025-5874},
+    review={\MR {913667 (89f:22024)}},
+}
+
+\bib{mvw}{book}{
+    author={M{\oe}glin, Colette},
+    author={Vign{\'e}ras, Marie-France},
+    author={Waldspurger, Jean-Loup},
+     title={Correspondances de Howe sur un corps $p$-adique},
+  language={French},
+    series={Lecture Notes in Mathematics},
+    volume={1291},
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1987},
+     pages={viii+163},
+      isbn={3-540-18699-9},
+    review={\MR {1041060 (91f:11040)}},
+}
+
+\bib{moeglin:discrete-spec}{article}{
+    author={M{\oe}glin, Colette},
+     title={Orbites unipotentes et spectre discret non ramifi\'e: le cas des
+            groupes classiques d\'eploy\'es},
+  language={French},
+   journal={Compositio Math.},
+    volume={77},
+      date={1991},
+    number={1},
+     pages={1\ndash 54},
+      issn={0010-437X},
+    review={\MR {1091891 (92d:11054)}},
+}
+
+\bib{moeglin-tadic:discrete-classical}{article}{
+    author={M{\oe}glin, Colette},
+    author={Tadi{\'c}, Marko},
+     title={Construction of discrete series for classical $p$-adic groups},
+   journal={J. Amer. Math. Soc.},
+    volume={15},
+      date={2002},
+    number={3},
+     pages={715\ndash 786 (electronic)},
+      issn={0894-0347},
+    review={\MR {1896238 (2003g:22020)}},
+}
+
+\bib{moeglin:discrete-classical}{article}{
+    author={M{\oe}glin, C.},
+     title={Sur la classification des s\'eries discr\`etes des groupes
+            classiques $p$-adiques: param\`etres de Langlands et
+            exhaustivit\'e},
+  language={French, with English summary},
+   journal={J. Eur. Math. Soc. (JEMS)},
+    volume={4},
+      date={2002},
+    number={2},
+     pages={143\ndash 200},
+      issn={1435-9855},
+    review={\MR {1913095 (2003g:22021)}},
+}
+
+
+\bib{morris:p-cuspidal}{article}{
+    author={Morris, Lawrence},
+     title={$P$-cuspidal representations},
+   journal={Proc. London Math. Soc. (3)},
+    volume={57},
+      date={1988},
+    number={2},
+     pages={329\ndash 356},
+      issn={0024-6115},
+    review={\MR {950594 (89j:22038)}},
+}
+
+\bib{morris:p-cuspidal1}{article}{
+    author={Morris, Lawrence},
+     title={$P$-cuspidal representations of level one},
+   journal={Proc. London Math. Soc. (3)},
+    volume={58},
+      date={1989},
+    number={3},
+     pages={550\ndash 558},
+      issn={0024-6115},
+    review={\MR {988102 (90c:22056)}},
+}
+
+\bib{morris:symplectic}{article}{ % was morris0
+    author={Morris, Lawrence},
+     title={Some tamely ramified supercuspidal representations of symplectic
+            groups},
+   journal={Proc. London Math. Soc. (3)},
+    volume={63},
+      date={1991},
+    number={3},
+     pages={519\ndash 551},
+      issn={0024-6115},
+    review={\MR {1127148 (92i:22017)}},
+}
+
+\bib{morris:strata-classical}{article}{
+    author={Morris, Lawrence},
+     title={Fundamental $G$-strata for classical groups},
+   journal={Duke Math. J.},
+    volume={64},
+      date={1991},
+    number={3},
+     pages={501\ndash 553},
+      issn={0012-7094},
+    review={\MR {1141284 (93b:22032)}},
+}
+
+\bib{morris:classical-1}{article}{ % was morris1
+    author={Morris, Lawrence},
+     title={Tamely ramified supercuspidal representations of classical
+            groups. I. Filtrations},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={24},
+      date={1991},
+    number={6},
+     pages={705\ndash 738},
+      issn={0012-9593},
+    review={\MR {1142907 (93c:22032)}},
+}
+
+\bib{morris:classical-2}{article}{ % was morris2
+    author={Morris, Lawrence},
+     title={Tamely ramified supercuspidal representations of classical
+            groups. II. Representation theory},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={25},
+      date={1992},
+    number={3},
+     pages={233\ndash 274},
+      issn={0012-9593},
+    review={\MR {1169131 (93h:22032)}},
+}
+
+\bib{morris:intertwining}{article}{
+    author={Morris, Lawrence},
+     title={Tamely ramified intertwining algebras},
+   journal={Invent. Math.},
+    volume={114},
+      date={1993},
+    number={1},
+     pages={1\ndash 54},
+      issn={0020-9910},
+    review={\MR {1235019 (94g:22035)}},
+}
+
+\bib{morris:level-zero}{article}{
+    author={Morris, Lawrence},
+     title={Level zero $\bf G$-types},
+   journal={Compositio Math.},
+    volume={118},
+      date={1999},
+    number={2},
+     pages={135\ndash 157},
+      issn={0010-437X},
+    review={\MR {1713308 (2000g:22029)}},
+}
+
+\bib{moy-sally:sln}{article}{ % was moy-sally
+    author={Moy, Allen},
+    author={Sally, Paul J., Jr.},
+     title={Supercuspidal representations of ${\rm SL}\sb{n}$ over a
+            $p$-adic field: the tame case},
+   journal={Duke Math. J.},
+    volume={51},
+      date={1984},
+    number={1},
+     pages={149\ndash 161},
+      issn={0012-7094},
+    review={\MR {744292 (86c:22029)}},
+}
+
+\bib{moy:displacement}{article}{
+    author={Moy, Allen},
+     title={Displacement functions on the Bruhat--Tits building},
+      book={proc:hc},  % changed: JDA
+     pages={483\ndash 499},
+    review={\MR {1767906 (2001h:22022)}},
+}
+
+\bib{moy:thesis-original}{thesis}{
+    author={Moy, Allen},
+     title={Local constants and the tame Langlands correspondence},
+organization={University of Chicago},
+type={Ph.D. thesis},
+year={1982},
+}
+
+
+\bib{moy:thesis}{article}{
+    author={Moy, Allen},
+     title={Local constants and the tame Langlands correspondence},
+   journal={Amer. J. Math.},
+    volume={108},
+      date={1986},
+    number={4},
+     pages={863\ndash 930},
+      issn={0002-9327},
+    review={\MR {853218 (88b:11081)}},
+}
+
+\bib{moy:u21}{article}{
+    author={Moy, Allen},
+     title={Representations of ${\rm U}(2,1)$ over a $p$-adic field},
+   journal={J. Reine Angew. Math.},
+    volume={372},
+      date={1986},
+     pages={178\ndash 208},
+      issn={0075-4102},
+    review={\MR {863523 (88a:22031)}},
+}
+
+\bib{moy:g2}{article}{
+    author={Moy, Allen},
+     title={Minimal $K$-types for $G\sb 2$ over a $p$-adic field},
+   journal={Trans. Amer. Math. Soc.},
+    volume={305},
+      date={1988},
+    number={2},
+     pages={517\ndash 529},
+      issn={0002-9947},
+    review={\MR {924768 (89c:22027)}},
+}
+
+\bib{moy:gsp4}{article}{
+    author={Moy, Allen},
+     title={Representations of $G\,{\rm Sp}(4)$ over a $p$-adic field. I,
+            II},
+   journal={Compositio Math.},
+    volume={66},
+      date={1988},
+    number={3},
+     pages={237\ndash 284, 285\ndash 328},
+      issn={0010-437X},
+    review={\MR {948308 (90d:22022)}},
+}
+
+\bib{moy-prasad:k-types}{article}{ % was :K-types
+    author={Moy, Allen},
+    author={Prasad, Gopal},
+     title={Unrefined minimal $K$-types for $p$-adic groups},
+   journal={Invent. Math.},
+    volume={116},
+      date={1994},
+    number={1--3},
+     pages={393\ndash 408},
+      issn={0020-9910},
+    review={\MR {1253198 (95f:22023)}},
+}
+
+\bib{moy-prasad:jacquet}{article}{
+    author={Moy, Allen},
+    author={Prasad, Gopal},
+     title={Jacquet functors and unrefined minimal $K$-types},
+   journal={Comment. Math. Helv.},
+    volume={71},
+      date={1996},
+    number={1},
+     pages={98\ndash 121},
+      issn={0010-2571},
+    review={\MR {1371680 (97c:22021)}},
+}
+
+\bib{muic:sq-int}{article}{
+    author={Mui{\'c}, Goran},
+     title={Some results on square integrable representations;
+            irreducibility of standard representations},
+   journal={Internat. Math. Res. Notices},
+      date={1998},
+    number={14},
+     pages={705\ndash 726},
+      issn={1073-7928},
+    review={\MR {1637097 (99f:22031)}},
+}
+
+\bib{murnaghan:chars-u3}{article}{
+    author={Murnaghan, Fiona},
+     title={Local character expansions for supercuspidal representations of
+            ${\rm U}(3)$},
+   journal={Canad. J. Math.},
+    volume={47},
+      date={1995},
+    number={3},
+     pages={606\ndash 640},
+      issn={0008-414X},
+    review={\MR {1346155 (96i:22026)}},
+}
+
+\bib{murnaghan:chars-sln}{article}{
+    author={Murnaghan, Fiona},
+     title={Characters of supercuspidal representations of ${\rm SL}(n)$},
+   journal={Pacific J. Math.},
+    volume={170},
+      date={1995},
+    number={1},
+     pages={217\ndash 235},
+      issn={0030-8730},
+    review={\MR {1359978 (96k:22030)}},
+}
+
+\bib{murnaghan:chars-classical}{article}{
+    author={Murnaghan, Fiona},
+     title={Characters of supercuspidal representations of classical groups},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={29},
+      date={1996},
+    number={1},
+     pages={49\ndash 105},
+      issn={0012-9593},
+    review={\MR {1368705 (98c:22016)}},
+}
+
+\bib{murnaghan:chars-gln}{article}{
+    author={Murnaghan, Fiona},
+     title={Local character expansions and Shalika germs for ${\rm GL}(n)$},
+   journal={Math. Ann.},
+    volume={304},
+      date={1996},
+    number={3},
+     pages={423\ndash 455},
+      issn={0025-5831},
+    review={\MR {1375619 (98b:22020)}},
+}
+
+\bib{murnaghan-repka:reducibility-split}{article}{
+    author={Murnaghan, Fiona},
+    author={Repka, Joe},
+     title={Reducibility of some induced representations of split classical
+            $p$-adic groups},
+   journal={Compositio Math.},
+    volume={114},
+      date={1998},
+    number={3},
+     pages={263\ndash 313},
+      issn={0010-437X},
+    review={\MR {1665768 (99m:22021)}},
+}
+
+\bib{murnaghan-repka:reducibility-unitary}{article}{
+    author={Murnaghan, Fiona},
+    author={Repka, Joe},
+     title={Reducibility of some induced representations of $p$-adic unitary
+            groups},
+   journal={Trans. Amer. Math. Soc.},
+    volume={351},
+      date={1999},
+    number={1},
+     pages={193\ndash 210},
+      issn={0002-9947},
+    review={\MR {1491871 (99g:22019)}},
+}
+
+\bib{murnaghan:hc}{article}{
+    author={Murnaghan, Fiona},
+     title={Germs of characters of admissible representations},
+      book={proc:hc}, % added JDA
+     pages={501\ndash 515},
+    review={\MR {1767907 (2001i:22023)}},
+}
+
+\bib{murnaghan:germs-admissible-gln}{article}{
+    author={Murnaghan, Fiona},
+     title={Germs of characters of admissible representations of $p$-adic
+            general linear groups},
+   journal={J. Inst. Math. Jussieu},
+    volume={2},
+      date={2003},
+    number={3},
+     pages={409\ndash 481},
+      issn={1474-7480},
+    review={\MR {1990222 (2004f:22020)}},
+}
+
+\bib{murnaghan:spherical}{article}{
+   author={Murnaghan, Fiona},
+   title={Spherical characters: the supercuspidal case},
+   conference={
+      title={Group representations, ergodic theory, and mathematical
+      physics: a tribute to George W. Mackey},
+   },
+   book={
+      editor={Robert S. Doran},
+      editor={Calvin C. Moore},
+      editor={Robert J. Zimmer},
+      series={Contemp. Math.},
+      volume={449},
+      publisher={Amer. Math. Soc.},
+      place={Providence, RI},
+   },
+   date={2008},
+   pages={301--313},
+   review={\MR{2391809}},
+}
+
+
+\bib{murnaghan:parametrization}{article}{
+    author={Murnaghan, Fiona},
+     title={Parametrization of tame supercuspidal representations},
+ year={2008},
+status={to appear in the proceedings of the Shahidi Conference},
+}
+
+\bib{nagao:correspondences}{article}{
+    author={Nagao, Hirosi},
+     title={Some correspondences in the representation theory of finite
+            groups},
+ booktitle={Proceedings of the International Mathematical Conference,
+            Singapore 1981 (Singapore, 1981)},
+    series={North-Holland Math. Stud.},
+    volume={74},
+     pages={35\ndash 41},
+ publisher={North-Holland},
+     place={Amsterdam},
+      date={1982},
+    review={\MR {690093 (84c:20018)}},
+}
+
+\bib{naimark:lorentz}{book}{
+    author={Na{\u\i}mark, M. A.},
+     title={Lineinye predstavleniya gruppy Lorentsa},
+  language={Russian},
+ publisher={Gosudarstv. Izdat. Fiz.-Mat. Lit., Moscow},
+      date={1958},
+     pages={376},
+    review={\MR {0106261 (21 \#4995)}},
+}
+
+\bib{navarro:glauberman}{article}{
+    author={Navarro, Gabriel},
+     title={On the Glauberman correspondence},
+   journal={Proc. Amer. Math. Soc.},
+    volume={105},
+      date={1989},
+    number={1},
+     pages={52\ndash 54},
+      issn={0002-9939},
+    review={\MR {929412 (89k:20013)}},
+}
+
+
+\bib{pan:theta-depth-zero}{article}{
+   author={Pan, Shu-Yen},
+   title={Local theta correspondence of depth zero representations and theta
+   dichotomy},
+   journal={J. Math. Soc. Japan},
+   volume={54},
+   date={2002},
+   number={4},
+   pages={793--845},
+   issn={0025-5645},
+   review={\MR{1921088 (2003f:11070)}},
+}
+
+\bib{pan:theta-small-unitary}{article}{
+    author={Pan, Shu-Yen},
+     title={Local theta correspondence for small unitary groups},
+   journal={Trans. Amer. Math. Soc.},
+    volume={358},
+      date={2006},
+    number={4},
+     pages={1511--1535 (electronic)},
+      issn={0002-9947},
+    review={\MR{2186984 (2006i:22020)}},
+}
+
+\bib{pan-yu:classical}{article}{
+	author={Pan, Shu-Yen},
+    author={Yu, Jiu-Kang},
+	title={Unrefined minimal $K$-types for $p$-adic classical groups},
+	status={preprint},
+	year={1997},
+% *not* in preparation; subsumed by later works
+}
+
+\bib{dprasad:theta-unitary}{article}{
+author={Prasad, Dipendra},
+title={Theta correspondence for unitary groups},
+journal={Pacific Journal of Mathematics},
+volume={194},
+number={2},
+year={2000},
+pages={427\ndash 438},
+}
+
+\bib{prasad-raghunathan:top-cent-extn-1}{article}{  % was :1
+    author={Prasad, Gopal},
+    author={Raghunathan, M. S.},
+     title={Topological central extensions of semisimple groups over local
+            fields},
+   journal={Ann. of Math. (2)},
+    volume={119},
+      date={1984},
+    number={1},
+     pages={143\ndash 201},
+      issn={0003-486X},
+    review={\MR {736564 (86e:20051a)}},
+}
+
+\bib{prasad-raghunathan:top-cent-extn-2}{article}{
+    author={Prasad, Gopal},
+    author={Raghunathan, M. S.},
+     title={Topological central extensions of semisimple groups over local
+            fields. II},
+   journal={Ann. of Math. (2)},
+    volume={119},
+      date={1984},
+    number={2},
+     pages={203\ndash 268},
+      issn={0003-486X},
+    review={\MR {740894 (86e:20051b)}},
+}
+
+\bib{prasad:bldg-desc}{article}{
+    author={Prasad, Gopal},
+     title={Galois-fixed points in the Bruhat--Tits building of a reductive
+            group},
+  language={English, with English and French summaries},
+   journal={Bull. Soc. Math. France},
+    volume={129},
+      date={2001},
+    number={2},
+     pages={169\ndash 174},
+      issn={0037-9484},
+    review={\MR {1871292 (2002j:20088)}},
+}
+
+\bib{prasad-yu:actions}{article}{
+    author={Prasad, Gopal},
+    author={Yu, Jiu-Kang},
+     title={On finite group actions on reductive groups and buildings},
+   journal={Invent. Math.},
+    volume={147},
+      date={2002},
+    number={3},
+     pages={545\ndash 560},
+      issn={0020-9910},
+    review={\MR {1893005 (2003e:20036)}},
+}
+
+\bib{przebinda:wavefront}{article}{
+    author={Przebinda, Tomasz},
+     title={The wave front set and the asymptotic support for $p$-adic
+            groups},
+   journal={Pacific J. Math.},
+    volume={141},
+      date={1990},
+    number={2},
+     pages={383\ndash 389},
+      issn={0030-8730},
+    review={\MR {1035450 (91d:22015)}},
+}
+
+\bib{rader-silberger:submersion}{article}{ % was rader-silberger
+    author={Rader, Cary},
+    author={Silberger, Allan},
+     title={Some consequences of Harish-Chandra's submersion principle},
+   journal={Proc. Amer. Math. Soc.},
+    volume={118},
+      date={1993},
+    number={4},
+     pages={1271\ndash 1279},
+      issn={0002-9939},
+    review={\MR {1169888 (93j:22032)}},
+}
+
+\bib{ramakrishnan:sl2}{article}{
+    author={Ramakrishnan, Dinakar},
+     title={Modularity of the Rankin-Selberg $L$-series, and multiplicity
+            one for ${\rm SL}(2)$},
+   journal={Ann. of Math. (2)},
+    volume={152},
+      date={2000},
+    number={1},
+     pages={45\ndash 111},
+      issn={0003-486X},
+    review={\MR {1792292 (2001g:11077)}},
+}
+
+\bib{ranga-rao:orbital}{article}{
+    author={Ranga Rao, R.},
+     title={Orbital integrals in reductive groups},
+   journal={Ann. of Math. (2)},
+    volume={96},
+      date={1972},
+     pages={505\ndash 510},
+      issn={0003-486X},
+    review={\MR {0320232 (47 \#8771)}},
+}
+
+\bib{rapoport:T1-is-T0}{article}{
+    author={Rapoport, Michael},
+     title={The reduction of the Shimura variety associated to a torus},
+      note={Unpublished}
+}
+
+\bib{reeder:discrete-chevalley}{article}{
+    author={Reeder, Mark},
+     title={On the Iwahori-spherical discrete series for $p$-adic Chevalley
+            groups; formal degrees and $L$-packets},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={27},
+      date={1994},
+    number={4},
+     pages={463\ndash 491},
+      issn={0012-9593},
+    review={\MR {1290396 (95g:22017)}},
+}
+
+\bib{reeder:hecke}{article}{
+    author={Reeder, Mark},
+     title={Hecke algebras and harmonic analysis on $p$-adic groups},
+   journal={Amer. J. Math.},
+    volume={119},
+      date={1997},
+    number={1},
+     pages={225\ndash 249},
+      issn={0002-9327},
+    review={\MR {1428064 (99c:22025)}},
+}
+
+\bib{reeder:deg-exceptional}{article}{
+    author={Reeder, Mark},
+     title={Formal degrees and $L$-packets of unipotent discrete series
+            representations of exceptional $p$-adic groups},
+   journal={J. Reine Angew. Math.},
+    volume={520},
+      date={2000},
+     pages={37\ndash 93},
+      issn={0075-4102},
+    review={\MR {1748271 (2001k:22039)}},
+}
+
+\bib{reeder:sc-pos-depth}{article}{
+   author={Reeder, Mark},
+   title={Supercuspidal $L$-packets of positive depth and twisted Coxeter
+   elements},
+   journal={J. Reine Angew. Math.},
+   volume={620},
+   date={2008},
+   pages={1--33},
+   issn={0075-4102},
+   review={\MR{2427973}},
+}
+
+
+\bib{roberts:similitudes}{article}{
+    author={Roberts, Brooks},
+     title={The theta correspondence for similitudes},
+   journal={Israel J. Math.},
+    volume={94},
+      date={1996},
+     pages={285\ndash 317},
+      issn={0021-2172},
+    review={\MR {1394579 (98a:22007)}},
+}
+
+\bib{roche:thesis}{article}{
+    author={Roche, Alan},
+     title={Types and Hecke algebras for principal series representations of
+            split reductive $p$-adic groups},
+  language={English, with English and French summaries},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={31},
+      date={1998},
+    number={3},
+     pages={361\ndash 413},
+      issn={0012-9593},
+    review={\MR {1621409 (99d:22028)}},
+}
+
+\bib{roche:parabolic}{article}{
+    author={Roche, Alan},
+     title={Parabolic induction and the Bernstein decomposition},
+   journal={Compositio Math.},
+    volume={134},
+      date={2002},
+    number={2},
+     pages={113\ndash 133},
+      issn={0010-437X},
+    review={\MR {1934305 (2003m:22022)}},
+}
+
+\bib{rodier:whittaker-split}{article}{ % was rodier
+    author={Rodier, Fran{\c{c}}ois},
+     title={Whittaker models for admissible representations of reductive
+            $p$-adic split groups},
+      book={proc:homogeneous}, % added JDA
+     pages={425\ndash 430},
+    review={\MR {0354942 (50 \#7419)}},
+}
+
+\bib{rodier:whittaker-chars}{article}{ % was :caracters
+    author={Rodier, Fran{\c{c}}ois},
+     title={Mod\`ele de Whittaker et caract\`eres de repr\'esentations},
+      book={proc:carmona-vergne}, % added JDA
+     pages={151\ndash 171}, % corrected JDA
+    review={\MR {0393355 (52 \#14165)}},
+}
+
+\bib{rodier:loc-int}{article}{
+    author={Rodier, Fran{\c{c}}ois},
+     title={Int\'egrabilit\'e locale des caract\`eres du groupe ${\rm
+            GL}(n,k)$ o\`u $k$ est un corps local de caract\'eristique
+            positive},
+  language={French},
+   journal={Duke Math. J.},
+    volume={52},
+      date={1985},
+    number={3},
+     pages={771\ndash 792},
+      issn={0012-7094},
+    review={\MR {808104 (87e:22042)}},
+}
+
+\bib{rogawski:amt}{article}{
+    author={Rogawski, Jonathan D.},
+     title={Representations of ${\rm GL}(n)$ and division algebras over a
+            $p$-adic field},
+   journal={Duke Math. J.},
+    volume={50},
+      date={1983},
+    number={1},
+     pages={161\ndash 196},
+      issn={0012-7094},
+    review={\MR {700135 (84j:12018)}},
+}
+
+\bib{rogawski:u3}{book}{
+    author={Rogawski, Jonathan D.},
+     title={Automorphic representations of unitary groups in three
+            variables},
+    series={Annals of Mathematics Studies},
+    volume={123},
+ publisher={Princeton University Press},
+     place={Princeton, NJ},
+      date={1990},
+     pages={xii+259},
+      isbn={0-691-08586-2},
+      isbn={0-691-08587-0},
+    review={\MR {1081540 (91k:22037)}},
+}
+
+\bib{rossmann:kirillov}{article}{
+    author={Rossmann, Wulf},
+     title={Kirillov's character formula for reductive Lie groups},
+   journal={Invent. Math.},
+    volume={48},
+      date={1978},
+    number={3},
+     pages={207\ndash 220},
+      issn={0020-9910},
+    review={\MR {508985 (81g:22012)}},
+}
+
+\bib{rousseau:thesis}{thesis}{
+	author={Rousseau, Guy},
+	title={Immeubles des groupes r\'eductifs sur les corps locaux},
+	organization={Univ. Paris XI},
+	type={Ph. D. Thesis},
+	year={1977},
+}
+
+\bib{rudin:fourier}{book}{
+    author={Rudin, Walter},
+     title={Fourier analysis on groups},
+    series={Wiley Classics Library},
+ publisher={John Wiley \& Sons Inc.},
+     place={New York},
+      date={1990},
+     pages={x+285},
+      isbn={0-471-52364-X},
+    review={\MR {1038803 (91b:43002)}},
+}
+
+\bib{saito:lifting}{book}{
+    author={Saito, Hiroshi},
+     title={Automorphic forms and algebraic extensions of number fields},
+ publisher={Kinokuniya Book-Store Co. Ltd.},
+     place={Tokyo},
+      date={1975},
+     pages={iv+183},
+    review={\MR {0406936 (53 \#10721)}},
+}
+
+\bib{sally-taibleson}{article}{
+    author={Sally, Paul J., Jr.},
+    author={Taibleson, M. H.},
+     title={Special functions on locally compact fields},
+   journal={Acta Math.},
+    volume={116},
+      date={1966},
+     pages={279\ndash 309},
+      issn={0001-5962},
+    review={\MR {0206349 (34 \#6168)}},
+}
+
+\bib{sally:bessel}{article}{
+    author={Sally, Paul J., Jr.},
+     title={Invariant subspaces and Fourier-Bessel transforms on the ${\germ
+            P}$-adic plane},
+   journal={Math. Ann.},
+    volume={174},
+      date={1967},
+     pages={247\ndash 264},
+      issn={0025-5831},
+    review={\MR {0579179 (58 \#28317)}},
+}
+
+\bib{sally:unimodular}{article}{
+    author={Sally, Paul J., Jr.},
+     title={Unitary and uniformly bounded representations of the two by two
+            unimodular group over local fields},
+   journal={Amer. J. Math.},
+    volume={90},
+      date={1968},
+     pages={406\ndash 443},
+      issn={0002-9327},
+    review={\MR {0229755 (37 \#5329)}},
+}
+
+\bib{sally-shalika:characters}{article}{
+    author={Sally, Paul J., Jr.},
+    author={Shalika, Joseph A.},
+     title={Characters of the discrete series of representations of ${\rm
+            SL}(2)$\ over a local field},
+   journal={Proc. Nat. Acad. Sci. U.S.A.},
+    volume={61},
+      date={1968},
+     pages={1231\ndash 1237},
+    review={\MR {0237713 (38 \#5994)}},
+}
+
+\bib{sally-shalika:plancherel}{article}{
+    author={Sally, Paul J., Jr.},
+    author={Shalika, Joseph A.},
+     title={The Plancherel formula for ${\rm SL}(2)$ over a local field},
+   journal={Proc. Nat. Acad. Sci. U.S.A.},
+    volume={63},
+      date={1969},
+     pages={661\ndash 667},
+    review={\MR {0364559 (51 \#813)}},
+}
+
+
+\bib{sally-shalika:orbital-integrals}{article}{
+    author={Sally, Paul J., Jr.},
+    author={Shalika, Joseph A.},
+     title={The Fourier transform of orbital integrals on ${\rm SL}\sb{2}$
+            over a $p$-adic field},
+      book={proc:maryland1984-2},
+     pages={303\ndash 340},
+}
+
+\bib{sally:remarks}{article}{
+    author={Sally, Paul J., Jr.},
+     title={Some remarks on discrete series characters for reductive
+            $p$-adic groups},
+ booktitle={Representations of Lie groups, Kyoto, Hiroshima, 1986},
+    series={Adv. Stud. Pure Math.},
+    volume={14},
+     pages={337\ndash 348},
+ publisher={Academic Press},
+     place={Boston, MA},
+      date={1988},
+    review={\MR {1039842 (91g:22026)}},
+}
+
+\bib{sally-tadic:sp2}{article}{
+    author={Sally, Paul J., Jr.},
+    author={Tadi{\'c}, Marko},
+     title={Induced representations and classifications for ${\rm GSp}(2,F)$
+            and ${\rm Sp}(2,F)$},
+  language={English, with English and French summaries},
+   journal={M\'em. Soc. Math. France (N.S.)},
+    number={52},
+      date={1993},
+     pages={75\ndash 133},
+      issn={0037-9484},
+    review={\MR {1212952 (94e:22030)}},
+}
+
+\bib{sally:corwin}{article}{
+    author={Sally, Paul J., Jr.},
+     title={The work of Lawrence Corwin on the representation theory of
+            reductive $p$-adic groups},
+      book={proc:corwin},
+     pages={59\ndash 64},
+    review={\MR {1303600}},
+}
+
+\bib{sally:intro-sl2}{article}{
+    author={Sally, Paul J., Jr.},
+	title={An introduction to $p$-adic fields, harmonic analysis
+		and the representation theory of $\mbox{SL}_2$},
+	journal={Letters in Mathematical Physics},
+	volume={46},
+	year={1998},
+	pages={1\ndash 47},
+}
+
+
+\bib{schmid-vilonen:character-formulas}{article}{
+    author={Schmid, Wilfried},
+    author={Vilonen, Kari},
+     title={Two geometric character formulas for reductive Lie groups},
+   journal={J. Amer. Math. Soc.},
+    volume={11},
+      date={1998},
+    number={4},
+     pages={799\ndash 867},
+      issn={0894-0347},
+    review={\MR {1612634 (2000g:22020)}},
+}
+
+\bib{schneider-stuhler:sheaves}{article}{
+    author={Schneider, Peter},
+    author={Stuhler, Ulrich},
+     title={Representation theory and sheaves on the Bruhat--Tits building},
+   journal={Inst. Hautes \'Etudes Sci. Publ. Math.},
+    number={85},
+      date={1997},
+     pages={97\ndash 191},
+      issn={0073-8301},
+    review={\MR {1471867 (98m:22023)}},
+}
+
+\bib{schneider-zink:tempered-gln}{article}{
+    author={Schneider, Peter},
+    author={Zink, Ernst-Wilhelm},
+     title={$K$-types for the tempered components of a $p$-adic general
+            linear group},
+   journal={J. Reine Angew. Math.},
+    volume={517},
+      date={1999},
+     pages={161\ndash 208},
+      issn={0075-4102},
+    review={\MR {1728541 (2001f:22029)}},
+}
+
+
+\bib{secherre:glnd-1}{article}{
+   author={S{\'e}cherre, Vincent},
+   title={Repr\'esentations lisses de ${\rm GL}(m,D)$. I. Caract\`eres
+   simples},
+   language={French, with English and French summaries},
+   journal={Bull. Soc. Math. France},
+   volume={132},
+   date={2004},
+   number={3},
+   pages={327--396},
+   issn={0037-9484},
+   review={\MR{2081220 (2005f:22027)}},
+}
+
+\bib{secherre:glnd-2}{article}{
+   author={S{\'e}cherre, Vincent},
+   title={Repr\'esentations lisses de ${\rm GL}(m,D)$. II.
+   $\beta$-extensions},
+   language={French, with English summary},
+   journal={Compos. Math.},
+   volume={141},
+   date={2005},
+   number={6},
+   pages={1531--1550},
+   issn={0010-437X},
+   review={\MR{2188448 (2006j:22018)}},
+}
+
+\bib{secherre:glnd-3}{article}{
+   author={S{\'e}cherre, Vincent},
+   title={Repr\'esentations lisses de ${\rm GL}\sb m(D)$. III. Types
+   simples},
+   language={French, with English and French summaries},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+   volume={38},
+   date={2005},
+   number={6},
+   pages={951--977},
+   issn={0012-9593},
+   review={\MR{2216835 (2007a:22010)}},
+}
+
+
+
+\bib{seligman:g2}{article}{
+    author={Seligman, George B.},
+     title={On automorphisms of Lie algebras of classical type. II},
+   journal={Trans. Amer. Math. Soc.},
+    volume={94},
+      date={1960},
+     pages={452\ndash 482},
+      issn={0002-9947},
+    review={\MR {0113969 (22 \#4800)}},
+}
+
+\bib{serre:arithmetic}{book}{
+    author={Serre, Jean-Pierre},
+     title={A course in arithmetic},
+ publisher={Springer--Verlag},
+     place={New York},
+      date={1973},
+     pages={viii+115},
+    review={\MR {0344216 (49 \#8956)}},
+}
+
+\bib{serre:finite}{book}{
+    author={Serre, Jean-Pierre},
+     title={Linear representations of finite groups},
+contribution={translated from the French by Leonard L. Scott}, % added JDA
+ publisher={Springer--Verlag},
+     place={New York},
+      date={1977},
+     pages={x+170},
+      isbn={0-387-90190-6},
+    review={\MR {0450380 (56 \#8675)}},
+}
+
+\bib{serre:local-fields}{book}{
+    author={Serre, Jean-Pierre},
+     title={Local fields},
+    series={Graduate Texts in Mathematics},
+    volume={67},
+ publisher={Springer--Verlag},
+     place={New York},
+      date={1979},
+     pages={viii+241},
+      isbn={0-387-90424-7},
+    review={\MR {554237 (82e:12016)}},
+  language={English}%LRS added
+}
+
+\bib{serre:lie-alg+lie-gp}{book}{
+    author={Serre, Jean-Pierre},
+     title={Lie algebras and Lie groups},
+    series={Lecture Notes in Mathematics},
+    volume={1500},
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1992},
+     pages={viii+168},
+      isbn={3-540-55008-9},
+    review={\MR {1176100 (93h:17001)}},
+}
+
+\bib{serre:galois}{book}{
+    author={Serre, Jean-Pierre},
+     title={Galois cohomology},
+    series={Springer Monographs in Mathematics},
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={2002},
+     pages={x+210},
+      isbn={3-540-42192-0},
+    review={\MR {1867431 (2002i:12004)}},
+  language={English}%LRS added
+}
+
+\bib{shahidi:langlands}{article}{
+    author={Shahidi, Freydoon},
+     title={A proof of Langlands' conjecture on Plancherel measures;
+            complementary series for $p$-adic groups},
+   journal={Ann. of Math. (2)},
+    volume={132},
+      date={1990},
+    number={2},
+     pages={273\ndash 330},
+      issn={0003-486X},
+    review={\MR {1070599 (91m:11095)}},
+}
+
+\bib{shahidi:twisted}{article}{
+    author={Shahidi, Freydoon},
+     title={Twisted endoscopy and reducibility of induced representations
+            for $p$-adic groups},
+   journal={Duke Math. J.},
+    volume={66},
+      date={1992},
+    number={1},
+     pages={1\ndash 41},
+      issn={0012-7094},
+    review={\MR {1159430 (93b:22034)}},
+}
+
+\bib{shahidi-spallone:residues-so6}{article}{
+    author={Shahidi, Freydoon},
+    author={Spallone, Steven},
+     title={Residues of intertwining operators for $\mathrm{SO}_6^*$},
+   status = {preprint},
+date = {2008},
+}
+
+
+\bib{shalika:germs}{article}{
+    author={Shalika, Joseph A.},
+     title={A theorem on semi-simple $\mathcal{P}$-adic groups},
+   journal={Ann. of Math. (2)},
+    volume={95},
+      date={1972},
+     pages={226\ndash 242},
+      issn={0003-486X},
+    review={\MR {0323957 (48 \#2310)}},
+}
+
+\bib{shalika:mult-one}{article}{
+    author={Shalika, Joseph A.},
+     title={The multiplicity one theorem for ${\rm GL}\sb{n}$},
+   journal={Ann. of Math. (2)},
+    volume={100},
+      date={1974},
+     pages={171\ndash 193},
+      issn={0003-486X},
+    review={\MR {0348047 (50 \#545)}},
+}
+
+\bib{shalika:thesis}{article}{
+    author={Shalika, Joseph A.},
+     title={Representation of the two by two unimodular group over local
+            fields},
+ booktitle={Contributions to automorphic forms, geometry, and number theory},
+     pages={1\ndash 38},
+ publisher={Johns Hopkins Univ. Press},
+     place={Baltimore, MD},
+      date={2004},
+    review={\MR {2058601 (2005f:22028)}},
+}
+ 
+\bib{shatz:profinite}{book}{
+   author={Shatz, Stephen S.},
+   title={Profinite groups, arithmetic, and geometry},
+   note={Annals of Mathematics Studies, No. 67},
+   publisher={Princeton University Press},
+   place={Princeton, N.J.},
+   date={1972},
+   pages={x+252},
+   review={\MR{0347778 (50 \#279)}},
+}
+
+\bib{shelstad:formula}{article}{
+    author={Shelstad, Diana},
+     title={A formula for regular unipotent germs},
+   journal={Ast\'erisque},
+    number={171-172},
+      date={1989},
+     pages={275\ndash 277},
+      issn={0303-1179},
+    review={\MR {1021506 (91b:22012)}},
+}
+
+\bib{shimizu:gl2}{article}{
+    author={Shimizu, Hideo},
+     title={Some examples of new forms},
+   journal={J. Fac. Sci. Univ. Tokyo Sect. IA Math.},
+    volume={24},
+      date={1977},
+    number={1},
+     pages={97\ndash 113},
+      issn={0040-8980},
+    review={\MR {0447121 (56 \#5436)}},
+}
+
+\bib{shintani:sq-int}{article}{  % was shintani
+    author={Shintani, Takuro},
+     title={On certain square-integrable irreducible unitary representations
+            of some ${\germ p}$-adic linear groups},
+   journal={J. Math. Soc. Japan},
+    volume={20},
+      date={1968},
+     pages={522\ndash 565},
+    review={\MR {0233931 (38 \#2252)}},
+}
+
+\bib{shintani:corvallis}{article}{ 
+    author={Shintani, Takuro},
+     title={On liftings of holomorphic cusp forms},
+      book={proc:corvallis1}, % added JDA
+     pages={97\ndash 110},
+    review={\MR {546611 (82e:10051)}},
+}
+
+\bib{silberger:pgl2}{book}{
+    author={Silberger, Allan J.},
+     title={${\rm PGL}\sb{2}$ over the $p$-adics: its representations,
+            spherical functions, and Fourier analysis},
+    series={Lecture Notes in Mathematics, Vol. 166},
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1970},
+     pages={vii+204},
+    review={\MR {0285673 (44 \#2891)}},
+}
+
+\bib{silberger:isogeny-restriction}{article}{
+    author={Silberger, Allan J.},
+     title={Isogeny restrictions of irreducible admissible representations
+            are finite direct sums of irreducible admissible
+            representations},
+   journal={Proc. Amer. Math. Soc.},
+    volume={73},
+      date={1979},
+    number={2},
+     pages={263\ndash 264},
+      issn={0002-9939},
+    review={\MR {516475 (80f:22017)}},
+}
+
+\bib{silberger:intro}{book}{
+    author={Silberger, Allan J.},
+     title={Introduction to harmonic analysis on reductive $p$-adic groups},
+    series={Mathematical Notes},
+    volume={23},
+ publisher={Princeton University Press},
+     place={Princeton, N.J.},
+      date={1979},
+     pages={iv+371},
+      isbn={0-691-08246-4},
+    review={\MR {544991 (81m:22025)}},
+}
+
+\bib{silberger-zink:level-zero-matching}{article}{
+    author={Silberger, Allan J.},
+    author={Zink, Ernst-Wilhelm},
+     title={An explicit matching theorem for level zero discrete series of
+            unit groups of $\germ p$-adic simple algebras},
+   journal={J. Reine Angew. Math.},
+    volume={585},
+      date={2005},
+     pages={173\ndash 235},
+      issn={0075-4102},
+    review={\MR {2164626}},
+}
+
+\bib{spice:thesis}{article}{
+    author={Spice, Loren},
+     title={Supercuspidal characters of ${\rm SL}\sb\ell$ over a $p$-adic
+            field, $\ell$ a prime},
+   journal={Amer. J. Math.},
+    volume={127},
+      date={2005},
+    number={1},
+     pages={51\ndash 100},
+      issn={0002-9327},
+    review={\MR {2115661 (2005k:22028)}},
+}
+
+\bib{spice:jordan}{article}{
+	author={Spice, Loren},
+	title={Topological Jordan decompositions},
+	journal={J. Algebra},
+	volume={319},
+	year={2008},
+	pages={3141--3163},
+        eprint={arXiv:math.GR/0612475},
+}
+
+\bib{spice:sl2-mu-hat}{article}{
+	author={Spice, Loren},
+	title={Fourier transforms of semisimple orbital integrals on the Lie algebra of ${\mathrm SL}_2$},
+	journal={Pacific J. Math.},
+	status={to appear},
+	eprint={arxiv:math.RT/1008.1592},
+}
+
+\bib{spice:coefficients}{article}{
+	author={Spice, Loren},
+	title={Inductive computations of asymptotic expansions},
+	status={in preparation},
+}
+
+\bib{springer:unipotent}{article}{
+    author={Springer, Tonny A.},
+     title={The unipotent variety of a semi-simple group},
+ booktitle={Algebraic Geometry (Internat. Colloq., Tata Inst. Fund. Res.,
+            Bombay, 1968)},
+     pages={373\ndash 391},
+ publisher={Oxford Univ. Press},
+     place={London},
+      date={1969},
+    review={\MR {0263830 (41 \#8429)}},
+}
+
+\bib{springer-steinberg:conj}{article}{
+    author={Springer, Tonny A.},
+    author={Steinberg, Robert},
+     title={Conjugacy classes},
+      book={seminar:alg-gps}, % added JDA
+     pages={167\ndash 266},
+    review={\MR {0268192 (42 \#3091)}},
+}
+
+\bib{springer:corvallis}{article}{
+    author={Springer, Tonny A.},
+     title={Reductive groups},
+      book={proc:corvallis1}, % added JDA
+     pages={3\ndash 27},
+    review={\MR {546587 (80h:20062)}},
+}
+
+\bib{springer:lag}{book}{
+    author={Springer, Tonny A.},
+     title={Linear algebraic groups},
+    series={Progress in Mathematics},
+    volume={9},
+ publisher={Birkh\"auser Boston Inc.},
+     place={Boston, MA},
+      date={1998},
+     pages={xiv+334},
+      isbn={0-8176-4021-5},
+    review={\MR {1642713 (99h:20075)}},
+}
+
+\bib{srinivasan:finite-book}{book}{
+    author={Srinivasan, Bhama},
+     title={Representations of finite Chevalley groups},
+    series={Lecture Notes in Mathematics},
+    volume={764},
+      note={A survey},
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1979},
+     pages={x+177},
+      isbn={3-540-09716-3},
+    review={\MR {551499 (83a:20054)}},
+}
+
+\bib{steinberg:regular}{article}{
+    author={Steinberg, Robert},
+     title={Regular elements of semisimple algebraic groups},
+   journal={Inst. Hautes \'Etudes Sci. Publ. Math.},
+    number={25},
+      date={1965},
+     pages={49\ndash 80},
+      issn={0073-8301},
+    review={\MR {0180554 (31 \#4788)}},
+}
+
+\bib{steinberg:endomorphisms}{book}{
+   author={Steinberg, Robert},
+   title={Endomorphisms of linear algebraic groups},
+   series={Memoirs of the American Mathematical Society, No.
+80},
+   publisher={American Mathematical Society},
+   place={Providence, R.I.},
+   date={1968},
+   pages={108},
+   review={\MR{0230728 (37 \#6288)}},
+} 
+
+\bib{steinberg:conjugacy}{book}{
+    author={Steinberg, Robert},
+     title={Conjugacy classes in algebraic groups},
+    series={Lecture Notes in Mathematics},  % added JDA
+    volume={366}, % added JDA
+contribution={notes by Vinay V. Deodhar}, % added JDA
+ publisher={Springer--Verlag},
+     place={Berlin},
+      date={1974},
+     pages={vi+159},
+    review={\MR {0352279 (50 \#4766)}},
+}
+
+\bib{steinberg:torsion}{article}{
+    author={Steinberg, Robert},
+     title={Torsion in reductive groups},
+   journal={Advances in Math.},
+    volume={15},
+      date={1975},
+     pages={63\ndash 92},
+      issn={0001-8708},
+    review={\MR {0354892 (50 \#7369)}},
+}
+
+\bib{steinberg:works}{book}{
+    author={Steinberg, Robert},
+contribution={edited and with a foreword by J.-P. Serre}, % added JDA
+     title={Robert Steinberg},
+    series={Collected Works},
+    volume={7},
+ publisher={American Mathematical Society},
+     place={Providence, RI},
+      date={1997},
+     pages={xx+599},
+      isbn={0-8218-0576-2},
+    review={\MR {1441544 (98j:01046)}},
+}
+
+\bib{nch-phase1report}{report}{ % was nch
+	author={Sterns, Anthony A.},
+        author={Adler, Jeffrey D.},
+	author={Kline, Douglas},
+	author={Collins, Scott},
+	title={The Neighborhood Covering Heuristic ({NCH}) Approach
+		for the General Mixed Integer Programming Problem},
+	organization={Office of Naval Research},
+	year={2004},
+	note={Final Report completed for the Navy Personnel Research,
+		Science, and Technology Division, Contract N00014-03-M-0254},
+}
+
+\bib{stevens:classical}{article}{
+    author={Stevens, Shaun},
+     title={Intertwining and supercuspidal types for $p$-adic classical
+            groups},
+   journal={Proc. London Math. Soc. (3)},
+    volume={83},
+      date={2001},
+    number={1},
+     pages={120\ndash 140},
+      issn={0024-6115},
+    review={\MR {1829562 (2002b:22031)}},
+}
+
+\bib{stevens:double}{article}{
+    author={Stevens, Shaun},
+     title={Double coset decompositions and intertwining},
+   journal={Manuscripta Math.},
+    volume={106},
+      date={2001},
+    number={3},
+     pages={349\ndash 364},
+      issn={0025-2611},
+    review={\MR {1869226 (2002i:22019)}},
+}
+
+\bib{stevens:classical-sc}{article}{
+    author={Stevens, Shaun},
+     title={The supercuspidal representations of $p$-adic
+	classical groups},
+    journal={Inventiones Math.},
+	volume={172},
+	pages={289\ndash 352},
+	year={2008},
+    eprint={arXiv:math.RT/0607622},
+}
+
+\bib{strichartz:self-similarity-nilpotent}{article}{
+   author={Strichartz, Robert S.},
+   title={Self-similarity on nilpotent Lie groups},
+   conference={
+      title={Geometric analysis},
+      address={Philadelphia, PA},
+      date={1991},
+   },
+   book={
+      series={Contemp. Math.},
+      volume={140},
+      publisher={Amer. Math. Soc.},
+      place={Providence, RI},
+   },
+   date={1992},
+   pages={123--157},
+   review={\MR{1197594 (94e:43011)}},
+}
+
+\bib{sylvestre:thesis}{thesis}{
+	author={Sylvestre, Jeremy},
+	title={Twisted characters of depth-zero supercuspidal
+		representations of ${\rm GL}(n)$},
+	organization={The University of Toronto},
+	type={Ph. D. Thesis},
+	year={2008},
+}
+
+
+\bib{tadic-sln}{article}{
+    author={Tadi{\'c}, Marko},
+     title={Notes on representations of non-Archimedean ${\rm SL}(n)$},
+   journal={Pacific J. Math.},
+    volume={152},
+      date={1992},
+    number={2},
+     pages={375\ndash 396},
+      issn={0030-8730},
+    review={\MR {1141803 (92k:22029)}},
+}
+
+
+\bib{tadic:external}{article}{
+   author={Tadi{\'c}, Marko},
+   title={An external approach to unitary representations},
+   journal={Bull. Amer. Math. Soc. (N.S.)},
+   volume={28},
+   date={1993},
+   number={2},
+   pages={215--252},
+   issn={0273-0979},
+   review={\MR{1181278 (93g:22020)}},
+}
+
+\bib{tadic:sq-int-regular}{article}{
+    author={Tadi{\'c}, Marko},
+     title={On regular square integrable representations of $p$-adic groups},
+   journal={Amer. J. Math.},
+    volume={120},
+      date={1998},
+    number={1},
+     pages={159\ndash 210},
+      issn={0002-9327},
+    review={\MR {1600280 (99h:22026)}},
+}
+
+\bib{tadic:reducibility}{article}{
+    author={Tadi{\'c}, Marko},
+     title={On reducibility of parabolic induction},
+   journal={Israel J. Math.},
+    volume={107},
+      date={1998},
+     pages={29\ndash 91},
+      issn={0021-2172},
+    review={\MR {1658535 (2001d:22012)}},
+}
+
+\bib{tadic:sq-int-classical}{article}{
+    author={Tadi{\'c}, Marko},
+     title={Square integrable representations of classical $p$-adic groups
+            corresponding to segments},
+   journal={Represent. Theory},
+    volume={3},
+      date={1999},
+     pages={58\ndash 89 (electronic)},
+      issn={1088-4165},
+    review={\MR {1698200 (2000d:22020)}},
+}
+
+\bib{takeda:theta-lifts-orthogonal}{article}{
+	author = {Takeda, Shuichiro},
+	title = {Some local-global non-vanishing results for
+		theta lifts from orthogonal groups},
+	date = {2006},
+	eprint={arXiv:math.NT/0603072},
+}
+
+\bib{tanaka:sl2}{article}{ % was tanaka
+    author={Tanaka, Shun'ichi},
+     title={On irreducible unitary representations of some special linear
+            groups of the second order. I, II},
+   journal={Osaka J. Math.},
+    volume={3},
+      date={1966},
+     pages={217\ndash 227; 229\ndash 242},
+      issn={0030-6126},
+    review={\MR {0223493 (36 \#6541)}},
+}
+
+\bib{tate:thesis}{article}{
+    author={Tate, J. T.},
+     title={Fourier analysis in number fields, and Hecke's zeta-functions},
+ booktitle={Algebraic Number Theory (Proc. Instructional Conf., Brighton,
+            1965)},
+     pages={305\ndash 347},
+ publisher={Thompson, Washington, D.C.},
+      date={1967},
+    review={\MR {0217026 (36 \#121)}},
+}
+
+\bib{tits:extended}{article}{
+   author={Tits, J.},
+   title={Normalisateurs de tores. I. Groupes de Coxeter \'etendus},
+   language={French},
+   journal={J. Algebra},
+   volume={4},
+   date={1966},
+   pages={96--116},
+   issn={0021-8693},
+   review={\MR{0206117 (34 \#5942)}},
+}
+
+\bib{tits:constants}{article}{
+   author={Tits, J.},
+   title={Sur les constantes de structure et le th\'eor\`eme d'existence des
+   alg\`ebres de Lie semi-simples},
+   language={French},
+   journal={Inst. Hautes \'Etudes Sci. Publ. Math.},
+   number={31},
+   date={1966},
+   pages={21--58},
+   issn={0073-8301},
+   review={\MR{0214638 (35 \#5487)}},
+}
+
+\bib{tits:alg-gp}{article}{
+	author={Tits, Jacques},
+	title={Lectures on algebraic groups},
+	note={notes from Yale University course, fall term,
+		1966--1967}
+}
+
+\bib{tits:corvallis}{article}{
+    author={Tits, Jacques},
+     title={Reductive groups over local fields},
+      book={proc:corvallis1}, % added JDA
+     pages={29\ndash 69},
+    review={\MR {546588 (80h:20064)}},
+}
+
+\bib{varadarajan:intro-harmonic}{book}{
+   author={Varadarajan, V. S.},
+   title={An introduction to harmonic analysis on semisimple
+Lie groups},
+   series={Cambridge Studies in Advanced Mathematics},
+   volume={16},
+   note={Corrected reprint of the 1989 original},
+   publisher={Cambridge University Press},
+   place={Cambridge},
+   date={1999},
+   pages={x+316},
+   isbn={0-521-34156-6},
+   isbn={0-521-66362-8},
+   review={\MR{1725738 (2000m:22011)}},
+}
+
+\bib{vergne:rossmann}{article}{
+    author={Vergne, M.},
+     title={On Rossmann's character formula for discrete series},
+   journal={Invent. Math.},
+    volume={54},
+      date={1979},
+    number={1},
+     pages={11\ndash 14},
+      issn={0020-9910},
+    review={\MR {549542 (81d:22017)}},
+}
+
+\bib{vinroot:orthogonal-similitudes}{article}{
+   author={Vinroot, C. Ryan},
+   title={A note on orthogonal similitude groups},
+   journal={Linear and Multilinear Algebra},
+   volume={54},
+   date={2006},
+   number={6},
+   pages={391--396},
+   issn={0308-1087},
+   review={\MR{2259595 (2007f:15014)}},
+}
+
+
+\bib{waldspurger:shalika}{article}{
+   author={Waldspurger, Jean-Loup},
+   title={Sur les germes de Shalika pour les groupes
+lin\'eaires},
+   language={French},
+   journal={Math. Ann.},
+   volume={284},
+   date={1989},
+   number={2},
+   pages={199--221},
+   issn={0025-5831},
+   review={\MR{1000107 (91d:22016)}},
+}
+
+\bib{waldspurger:loc-trace-form}{article}{
+    author={Waldspurger, Jean-Loup},
+     title={Une formule des traces locale pour les alg\`ebres de Lie
+            $p$-adiques},
+  language={French},
+   journal={J. Reine Angew. Math.},
+    volume={465},
+      date={1995},
+     pages={41\ndash 99},
+      issn={0075-4102},
+    review={\MR {1344131 (96i:22039)}},
+}
+
+\bib{waldspurger:homogeneite}{article}{
+    author={Waldspurger, Jean-Loup},
+     title={Homog\'en\'eit\'e de certaines distributions sur les groupes
+            $p$-adiques},
+  language={French},
+   journal={Inst. Hautes \'Etudes Sci. Publ. Math.},
+    number={81},
+      date={1995},
+     pages={25\ndash 72},
+      issn={0073-8301},
+    review={\MR {1361755 (98f:22023)}},
+}
+
+\bib{waldspurger:transfert}{article}{
+   author={Waldspurger, J.-L.},
+   title={Le lemme fondamental implique le transfert},
+   language={French},
+   journal={Compositio Math.},
+   volume={105},
+   date={1997},
+   number={2},
+   pages={153--236},
+   issn={0010-437X},
+   review={\MR{1440722 (98h:22023)}},
+   doi={10.1023/A:1000103112268},
+}
+
+\bib{waldspurger:fourier}{article}{
+    author={Waldspurger, Jean-Loup},
+     title={Transformation de Fourier et endoscopie},
+  language={French, with French summary},
+   journal={J. Lie Theory},
+    volume={10},
+      date={2000},
+    number={1},
+     pages={195\ndash 206},
+      issn={0949-5932},
+    review={\MR {1747840 (2001g:11078)}},
+}
+
+\bib{waldspurger:nilpotent}{article}{
+    author={Waldspurger, Jean-Loup},
+     title={Int\'egrales orbitales nilpotentes et endoscopie pour les
+            groupes classiques non ramifi\'es},
+  language={French},
+   journal={Ast\'erisque},
+    number={269},
+      date={2001},
+     pages={vi+449},
+      issn={0303-1179},
+    review={\MR {1817880 (2002h:22014)}},
+}
+
+\bib{waldspurger:plancherel}{article}{
+    author={Waldspurger, Jean-Loup},
+     title={La formule de Plancherel pour les groupes $p$-adiques (d'apr\`es
+            Harish-Chandra)},
+  language={French, with French summary},
+   journal={J. Inst. Math. Jussieu},
+    volume={2},
+      date={2003},
+    number={2},
+     pages={235\ndash 333},
+      issn={1474-7480},
+    review={\MR {1989693 (2004d:22009)}},
+}
+
+\bib{waldspurger:endoscopie}{article}{
+   author={Waldspurger, Jean-Loup},
+   title={Endoscopie et changement de caract\'eristique},
+   language={French, with English and French summaries},
+   journal={J. Inst. Math. Jussieu},
+   volume={5},
+   date={2006},
+   number={3},
+   pages={423--525},
+   issn={1474-7480},
+   review={\MR{2241929}},
+}
+		
+\bib{waldspurger:finitude}{article}{
+    author={Waldspurger, Jean-Loup},
+	title={Quelques r\'esultats de finitude concernant
+		les distributions invariantes sur les alg\`ebres
+		de Lie $p$-adiques},
+	status={preprint},
+}
+
+\bib{watanabe:glauberman-blocks}{article}{
+    author={Watanabe, Atumi},
+     title={The Glauberman character correspondence and perfect isometries
+            for blocks of finite groups},
+   journal={J. Algebra},
+    volume={216},
+      date={1999},
+    number={2},
+     pages={548\ndash 565},
+      issn={0021-8693},
+    review={\MR {1692989 (2000f:20015)}},
+}
+
+\bib{weil:weil}{article}{
+    author={Weil, Andr{\'e}},
+     title={Sur certains groupes d'op\'erateurs unitaires},
+  language={French},
+   journal={Acta Math.},
+    volume={111},
+      date={1964},
+     pages={143\ndash 211},
+      issn={0001-5962},
+    review={\MR {0165033 (29 \#2324)}},
+}
+
+\bib{weil:basic-2nd}{book}{ % was :bnt
+    author={Weil, Andr{\'e}},
+     title={Basic number theory},
+edition={2nd edition},
+ publisher={Springer--Verlag},
+     place={New York},
+      date={1973},
+}
+
+\bib{weil:basic}{book}{ % was :bnt
+    author={Weil, Andr{\'e}},
+     title={Basic number theory},
+ publisher={Springer--Verlag},
+     place={New York},
+      date={1974},
+     pages={xviii+325},
+    review={\MR {0427267 (55 \#302)}},
+}
+
+\bib{winarsky:thesis}{article}{
+    author={Winarsky, Norman},
+     title={Reducibility of principal series representations of $p$-adic
+            Chevalley groups},
+   journal={Amer. J. Math.},
+    volume={100},
+      date={1978},
+    number={5},
+     pages={941\ndash 956},
+      issn={0002-9327},
+    review={\MR {517138 (80f:22018)}},
+}
+
+\bib{winston:or}{book}{
+        author={Winston, Wayne L.},
+        title={Operations research: Applications and algorithms},
+        publisher={Duxbury Press},
+        edition={4th edition},
+        address={Boston},
+        year={2003},
+}
+
+\bib{wolf:correspondences}{article}{
+    author={Wolf, Thomas R.},
+     title={Character correspondences in solvable groups},
+   journal={Illinois J. Math.},
+    volume={22},
+      date={1978},
+    number={2},
+     pages={327\ndash 340},
+      issn={0019-2082},
+    review={\MR {0498821 (58 \#16858)}},
+}
+
+\bib{yu:supercuspidal}{article}{
+    author={Yu, Jiu-Kang},
+     title={Construction of tame supercuspidal representations},
+   journal={J. Amer. Math. Soc.},
+    volume={14},
+      date={2001},
+    number={3},
+     pages={579\ndash 622 (electronic)},
+      issn={0894-0347},
+    review={\MR {1824988 (2002f:22033)}},
+}
+
+\bib{yu:models}{article}{  % not in MathSciNet
+       author={Yu, Jiu-Kang},
+	title={Smooth models associated to concave functions
+		in Bruhat--Tits theory},
+	status={preprint},
+	year={2002},
+        note={Version 1.3}%LRS added
+}
+
+\bib{yu:k-types-classical}{article}{  % was yu:unrefined
+    author={Yu, Jiu-Kang},
+	title={Unrefined minimal $K$-types for $p$-adic classical groups},
+	status={in preparation},
+}
+
+\bib{yu:intro-explicit}{misc}{
+      author={Yu, Jiu-Kang},
+       title={An introduction to explicit Bruhat--Tits theory},
+        note={Notes available at
+		\texttt{http://www.math.purdue.edu/\textasciitilde jyu/notes/banff2001.pdf}
+	}
+}
+
+
+\bib{zelevinskii:induced}{article}{
+    author={Zelevinsky, A. V.},
+     title={Induced representations of reductive ${\germ p}$-adic groups.
+            II. On irreducible representations of ${\rm GL}(n)$},
+   journal={Ann. Sci. \'Ecole Norm. Sup. (4)},
+    volume={13},
+      date={1980},
+    number={2},
+     pages={165\ndash 210},
+      issn={0012-9593},
+    review={\MR {584084 (83g:22012)}},
+}
+
+
+
+
+
+%%%%%%
+
+%%%%
+
+\bib{MR748504}{article}{
+   author={Arthur, James},
+   title={On some problems suggested by the trace formula},
+   conference={
+      title={Lie group representations, II},
+      address={College Park, Md.},
+      date={1982/1983},
+   },
+   book={
+      series={Lecture Notes in Math.},
+      volume={1041},
+      publisher={Springer, Berlin},
+   },
+   date={1984},
+   pages={1--49},
+   review={\MR{748504 (85k:11025)}},
+   doi={10.1007/BFb0073144},
+}
+
+\bib{MR546608}{article}{
+   author={Borel, A.},
+   title={Automorphic $L$-functions},
+   conference={
+      title={Automorphic forms, representations and $L$-functions},
+      address={Proc. Sympos. Pure Math., Oregon State Univ., Corvallis,
+      Ore.},
+      date={1977},
+   },
+   book={
+      series={Proc. Sympos. Pure Math., XXXIII},
+      publisher={Amer. Math. Soc., Providence, R.I.},
+   },
+   date={1979},
+   pages={27--61},
+   review={\MR{546608 (81m:10056)}},
+}
+
+\bib{MR1266626}{book}{
+   author={Carter, Roger W.},
+   title={Finite groups of Lie type},
+   series={Wiley Classics Library},
+   note={Conjugacy classes and complex characters;
+   Reprint of the 1985 original;
+   A Wiley-Interscience Publication},
+   publisher={John Wiley \& Sons, Ltd., Chichester},
+   date={1993},
+   pages={xii+544},
+   isbn={0-471-94109-3},
+   review={\MR{1266626 (94k:20020)}},
+}
+
+\bib{MR0338284}{article}{
+   author={Golubitsky, Martin},
+   author={Rothschild, Bruce},
+   title={Primitive subalgebras of exceptional Lie algebras},
+   journal={Pacific J. Math.},
+   volume={39},
+   date={1971},
+   pages={371--393},
+   issn={0030-8730},
+   review={\MR{0338284 (49 \#3050)}},
+}
+
+\bib{MR0579175}{article}{
+   author={Harish-Chandra},
+   title={Admissible invariant distributions on reductive $p$-adic groups},
+   conference={
+      title={Lie theories and their applications},
+      address={Proc. Ann. Sem. Canad. Math. Congr., Queen's Univ., Kingston,
+      Ont.},
+      date={1977},
+   },
+   book={
+      publisher={Queen's Univ., Kingston, Ont.},
+   },
+   date={1978},
+   pages={281--347. Queen's Papers in Pure Appl. Math., No. 48},
+   review={\MR{0579175 (58 \#28313)}},
+}
+
+\bib{MR1124110}{article}{
+   author={Hales, Thomas C.},
+   title={The subregular germ of orbital integrals},
+   journal={Mem. Amer. Math. Soc.},
+   volume={99},
+   date={1992},
+   number={476},
+   pages={xii+142},
+   issn={0065-9266},
+   review={\MR{1124110 (93f:22011)}},
+   doi={10.1090/memo/0476},
+}
+
+\end{biblist}
+\end{bibdiv}
+\end{document}
+
+
+
+\endinput
