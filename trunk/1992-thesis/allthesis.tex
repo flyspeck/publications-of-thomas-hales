@@ -5,7 +5,7 @@
 %% XX issues.
 %% \definition ... \enddefinition marks many equations, comments, etc.
 %% unnumbered remarks throw off count.
-
+%% fix bibliography.
 
 \documentclass{memo-l}
 
@@ -13,6 +13,19 @@
 %\includeonly{}
 
 %    Include referenced packages here.
+\usepackage{amsrefs}
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage{longtable}
+
+%tikz graphics
+%\usepackage{xcolor} % to remove color.
+\usepackage{tikz} % Needs pgf version >= 2.10.
+\usetikzlibrary{chains,shapes,arrows,shadings,trees,matrix,positioning,intersections,decorations,
+  decorations.markings,backgrounds,fit,calc,fadings,decorations.pathreplacing}
+% fonts
+
+%\usepackage{mathrsfs}
 \usepackage{}
 
 \newtheorem{theorem}{Theorem}[section]
@@ -27,8 +40,14 @@
 
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
-\newtheorem{remark*}{Remark*} % unnumbered remark
-
+\newtheorem*{remark*}{Remark} % unnumbered remark
+\newtheorem*{eqn*}{Equation} % unnumbered eqn
+\newtheorem{eqn}[theorem]{Equation} 
+\newtheorem{assumption}[theorem]{Assumption} 
+\newtheorem{fact}{Fact}
+\newtheorem{rem}{Remark}
+\newtheorem{case}{Case}
+%\newtheorem{case*}{Case}
 
 \numberwithin{section}{chapter}
 \numberwithin{equation}{chapter}
@@ -47,13 +66,12 @@
 
 \title{The Subregular Germ of Orbital Integrals}
 \author{Thomas C. Hales}
-\address{}
-\curraddr{}
+\address{University of Pittsburgh 15260}
+%\curraddr{}
 \email{}
-\thanks{}
+\thanks{Memoirs of the AMS, Number 476. Copyright 1992, AMS}
 %    \date is required; it is the date received by the editor.
-\date{Received by the
-	editor February 20, 1989}
+\date{February 20, 1989}
 
 \subjclass[2010]{Primary }
 %    Recognition of the 2010 edition of the Mathematics Subject
@@ -130,12 +148,29 @@
 
 %Codes for references:
 
-\newcommand\A{1}                \newcommand\Ba{2}               \newcommand\Ca{3}               \newcommand\GR{4}
-\newcommand\HCa{5}              \newcommand\HCb{6}              \newcommand\Ha{7}               \newcommand\Hi{8}
-\newcommand\Hib{9}              \newcommand\Hu{{10}}        \newcommand\Ig{{11}}        \newcommand\Ko{{12}}
-\newcommand\Kn{{13}}        \newcommand\Lan{{14}}       \newcommand\LL{{15}}        \newcommand\LSa{{16}}
-\newcommand\LSb{{17}}       \newcommand\M{{18}}         \newcommand\Se{{19}}        \newcommand\Ser{{20}}
-\newcommand\Sl{{21}}        \newcommand\Spal{{22}}      \newcommand\St{{23}}
+%\newcommand\A{1}                % not found
+%\newcommand\Ba{2}               
+%\newcommand\Ca{3}               % not found
+%\newcommand\GR{4}
+\newcommand\HCa{5}              
+\newcommand\HCb{6}              
+\newcommand\Ha{7}               
+\newcommand\Hi{8}
+\newcommand\Hib{9}              
+\newcommand\Hu{{10}}        
+\newcommand\Ig{{11}}        
+\newcommand\Ko{{12}}
+\newcommand\Kn{{13}}        
+\newcommand\Lan{{14}}       
+\newcommand\LL{{15}}        
+\newcommand\LSa{{16}}
+\newcommand\LSb{{17}}       
+\newcommand\M{{18}}         
+\newcommand\Se{{19}}        
+\newcommand\Ser{{20}}
+\newcommand\Sl{{21}}        
+\newcommand\Spal{{22}}      
+\newcommand\St{{23}}
 
 \def\fitem#1{{\par\noindent$\bullet$\quad #1}}
 
@@ -158,7 +193,7 @@
 \newcommand\medpagebreak{}
 \newcommand\dsize{}
 \newcommand\etag{\quad}
-\newcommand\no{}
+%\newcommand\no{}
 \newcommand\by{}
 \newcommand\paper{}
 \newcommand\book{}
@@ -331,7 +366,7 @@ and for his continued encouragement and assistance.
 
 \mainmatter
 
-\chapter{I.  Basic\  Constructions} 
+\chapter{Basic\  Constructions} 
 
 Chapter I is concerned with preliminary constructions.  The groups are
 not assumed to be {quasi-split}.  The groups are taken over a
@@ -341,7 +376,7 @@ distinguishing a group {$G$} from its elements over {$\Fb$} so that
 expressions such as $g \in G$ should be interpreted as $g \in G(\Fb)$.
 
 
-\section{{1.\ Background\ Information}}  
+\section{{Background\ Information}}  
 
 {Igusa} has introduced a method of studying {asymptotic expansions} of
 integrals over a {local field}.  The expansion holds in the following
@@ -363,7 +398,7 @@ ${\kappa}$-orbital integral.  Chapter I is devoted to a study of the
 variety he constructs.  Some useful coordinates are defined that
 simplify computations in the variety.  \vskip .3in
 
-\section{{2.\  The\ Igusa\ Variety}} 
+\section{{The\ Igusa\ Variety}} 
 
 This section reviews the construction of the variety {$Y_{1}$}
 introduced in \cite{\LL}.  The variety $Y_{1}$ and its resolution
@@ -578,7 +613,7 @@ respectively.  The form ${\omega}_{X}$ is not defined over $F$
 in general but this is not a problem because there is always a
 constant $c \in \Fb^{\times}$ such that $c{\omega}_{X}$ is defined over $F$.
 
-\section{{3.\  The\ Variety\ $S^0$}}   
+\section{{The\ Variety\ $S^0$}}   
 
    It was mentioned in section $2$, that there is a relation among the
 variables $z(W,{\alpha})$ for every closed path $W_{+}=W_{0},\ldots ,
@@ -599,10 +634,10 @@ The rank two root systems occurring at the codimension two intersections of wall
 on a patch $S^{0}(B_{{\infty}},B_{0})$ of the variety of regular stars is
 a consequence of
 \vskip.15pt
-\begin{enumerate}
-\item{i){\phantom{i}}}\   $z(W,{\alpha})+z(W',{\alpha})=0$ where $W$ and $W'$ are adjacent walls 
+\begin{enumerate}[label=\roman*)]
+\item $z(W,{\alpha})+z(W',{\alpha})=0$ where $W$ and $W'$ are adjacent walls 
 separated by a wall of type ${\alpha}$, and
-\item{ii)}\   $\exp(z_{p}X_{-\alpha_p})\ldots
+\item $\exp(z_{p}X_{-\alpha_p})\ldots
 \exp(z_{1}X_{-\alpha_1}) = 1$ where $W_{1},W_{2},\ldots ,W_{p}$
 is the path around a node (so that $p=4,6,8,12$ according as the node is of
 type $A_{1}\times A_{1}$, $A_{2}$, $B_{2}$, $G_{2})$
@@ -611,7 +646,7 @@ corresponding wall variables.
 \end{enumerate}
 \end{lemma}
 
-\begin{proof} {Proof\ 1}   Consider any closed path $W_{1},\ldots ,W_{q+1} = W_{1}$.
+\begin{proof}[Proof\ 1]   Consider any closed path $W_{1},\ldots ,W_{q+1} = W_{1}$.
  The chambers are separated by walls $$(W_{1},{\alpha}_{1}) =
 (W_{2},{\alpha}_{1}),\ldots ,(W_{q},{\alpha}_{q})=(W_{1},{\alpha}_{q}).$$
  Reflection in these walls corresponds respectively to elements
@@ -623,17 +658,17 @@ ${\omega}_{q}\ldots {\omega}_{1}=1$.
 group is a consequence of the relations
 \vskip.15pt
 
-\begin{enumerate}
-\item{i'){\phantom{i}}}\   ${\omega}_{{\alpha}}^{2}=1$
-\item{ii')}\   $(\omega_{\alpha}\omega_{\beta})^{m_{\alpha\beta}} = 1$
+\begin{enumerate}[label=\roman*')]
+\item ${\omega}_{{\alpha}}^{2}=1$
+\item $(\omega_{\alpha}\omega_{\beta})^{m_{\alpha\beta}} = 1$
 where ${\pi}/m_{{\alpha}{\beta}}$ is the angle formed by the walls
 $(W_{+},{\alpha})$ and $(W_{+},{\beta})$ of the fundamental chamber.
 \end{enumerate}
 We have the products
-\begin{enumerate}
-\item{1)}\   $\exp(z_{q}X_{-q})\ldots \exp(z_{1}X_{-1})\quad
+\begin{enumerate}[label=\arabic*)]
+\item $\exp(z_{q}X_{-q})\ldots \exp(z_{1}X_{-1})\quad
 (X_{-i}\ {\mathrel{\mathop=^{def}}}\ X_{-\alpha_i})$\ and
-\item{2)}\ ${\omega}_{q}\ldots {\omega}_{1}$.
+\item ${\omega}_{q}\ldots {\omega}_{1}$.
 \end{enumerate}
 
 \noindent
@@ -646,7 +681,7 @@ identity.
 \end{proof} 
 
 
-\begin{proof} {Proof\ 2}\ The Weyl chambers lie in $P={\RR}^{n}$.  Let
+\begin{proof}[Proof\ 2] The Weyl chambers lie in $P={\RR}^{n}$.  Let
   $P^{0}$ be the points of $P$ lying in at most two walls.  Then
   $P-P^{0}$ has codimension three so that $P^{0}$ is simply connected
   and has no non-trivial connected covering spaces.  Construct a
@@ -668,7 +703,7 @@ identity.
   a consequence of $(i)$ and $(ii)$.
 \end{proof} 
 
-\section{{4.\  The\ Morphism\ $S_1 \to S$}}  
+\section{{The\ Morphism\ $S_1 \to S$}}  
 
 In this section we prove a proposition that will be used frequently
 and often implicitly in all that follows.  The proposition was proved
@@ -756,7 +791,7 @@ ring of $R$.
  The uniqueness of the morphism is clear.
 \end{proof} 
 
-\section{{5.\  Cocycles}}
+\section{{Cocycles}}
 
 The result of this section is essentially lemma 5.2 of \cite{\LL}.  We
 reproduce it here in a form more convenient for our applications.  For
@@ -768,8 +803,9 @@ given by ${\pi}_{1}^{*}(f)m_{{\kappa}}(e)$ where ${\pi}_{1}^{*}(f)$ is
 the pullback of a locally constant function of compact support on $G$
 and $m_{{\kappa}}(e) = {\kappa}({\sigma}(g)g^{-1})$.
 
+\addtocounter{theorem}{1} % counters are off by one in original!
 
-\begin{proposition}{Proposition\ 5.2}   Let $R$ be the field of rational functions
+\begin{proposition}   Let $R$ be the field of rational functions
 of the variety of stars $S$.
  Then $m_{{\kappa}}(e)$ has an expression on a Zariski open set of the
 variety of regular stars $S^{0}$
@@ -862,11 +898,11 @@ A_{{\sigma}}^{-1}
 \endaligned
 $$
 
-\definition{Equation 5.3}
+\begin{eqn}  %{Equation 5.3} 
 $A_{{\sigma}}{\nu}^{-1}n^{-1}
 w_{{\sigma}}^{-1}A_{{\sigma}}^{-1} \in
 N_{{\infty}qs}N_{qs}T_{{\sigma}}^{w_\sigma^{-1}A_\sigma^{-1}}$ .
-\enddefinition
+\end{eqn}
 
 These last two equations are the fundamental relation from which the
 function $m_{{\kappa}}(e)$ can be deduced for all reductive groups.
@@ -938,12 +974,12 @@ $$
  n_\alpha & 0 \\ 0 & 1/n_\alpha \end{pmatrix}}.
 $$
 
-\definition
-{Equation\ 5.5} $$\epsilon_\alpha(-n_{{\alpha}})
+\begin{eqn} % {Equation\ 5.5} 
+$$\epsilon_\alpha(-n_{{\alpha}})
 {\sigma}_{{\alpha}} = {\epsilon}_{-{\alpha}}(-1/n_{{\alpha}})
 {\epsilon}_{{\alpha}}(n_{{\alpha}})n_{{\alpha}}^{\alpha^v}$$
 where $\epsilon_{\pm\alpha}(X) = \exp(x X_{\pm\alpha})$.
-\enddefinition
+\end{eqn}
 
 \noindent
 From this it follows that $n^{-1}{\sigma}_{{\alpha}} \in
@@ -987,7 +1023,7 @@ $$A_{{\sigma}}\ {}^{{\alpha}}{\nu}^{-1}A_{{\sigma}}^{-1} \in N_{qs{\infty}}.$$
 \end{proof} 
 
 
-\section{{6.\  The\ Data}}
+\section{{The\ Data}}
 
    In this section we prove that the Igusa data exists for any reductive
 group, and show how to associate a unipotent conjugacy class to each divisor.
@@ -1176,7 +1212,7 @@ constant on the regular stars (cf. \cite{\LL}).
 %%%% start of bthis.tex
 
 
-\chapter{II. Coordinates and Coordinate Relations} 
+\chapter{Coordinates and Coordinate Relations} 
 
 %\showthe\topskip
 %\showthe\hoffset\showthe\voffset
@@ -1185,7 +1221,7 @@ constant on the regular stars (cf. \cite{\LL}).
 
 
 
-\section{ 1.\  The\ Coordinates\ $x(W,\beta)$ }
+\section{The\ Coordinates\ $x(W,\beta)$ }
 
 Before deriving any concrete results from the variety $Y_{{\Gamma}}$ it will 
 be necessary to develop coordinates charts on the variety. 
@@ -1214,7 +1250,7 @@ to the left in the product.
  Notice, however, that $x(W,{\alpha})$ for ${\alpha}$ simple is independent 
 of the order.
 
-\section{ 2.\ The\ Coordinates\ $w({\beta})$ }
+\section{The\ Coordinates\ $w({\beta})$ }
 
 This section defines a set of coordinates $w({\beta})$ on certain open 
 patches $Y''(B_{{\infty}})$ of the open set $Y''$ indexed by positive non-simple 
@@ -1276,7 +1312,7 @@ the coordinates $$z_{1}(W,{\alpha}) =^{def}
 z(W,{\alpha})/z({\alpha}).$$ 
  These topics are treated in the next few sections.
 
-\section{ 3.\  The\ Extension\ of\ $w({\beta})\ to\ Y''$}
+\section{The\ Extension\ of\ $w({\beta})\ to\ Y''$}
 
    This section shows that the coordinates $w({\beta})$ are regular on 
 $Y''(B_{{\infty}})$. 
@@ -1294,7 +1330,7 @@ product is taken over all ${\gamma}=r{\alpha}+s{\beta} \in \Psi$
 independent of $x$ and $y$. 
 \end{lemma}
 
-\begin{proof}    \cite{\Hu,32.5}. 
+\begin{proof}    \cite{\Hu}*{\S32.5}. 
 \end{proof} 
 
 {\medskip}
@@ -1387,7 +1423,8 @@ $$z_{1}(W,{\alpha}) = z(W,{\alpha})/z({\alpha})$$ and not on the coordinates
 $z({\alpha})$.
 \end{lemma}
 
-\begin{remark*}{Remark}    This lemma will complete the proof of lemma 3.2, for 
+\begin{remark*}  %{Remark}    
+This lemma will complete the proof of lemma 3.2, for 
 $$
 w({\beta}) = y({\beta})(\prod z({\alpha})^{m(\alpha)})/{\lambda} =
 \sum [c_{\beta_1\ldots \beta_n} (t)/{\lambda}]
@@ -1397,7 +1434,7 @@ where ${\beta}_{i}=\sum m_{i}({\alpha}){\alpha}$ and
 $c_{\beta_1\ldots \beta_n} (t)/{\lambda}$ is regular at ${\lambda} = 0$.
 \end{remark*}
 
-\begin{proof} {Proof\ of\ 3.4}    The matrices $n_{w}$ depend only on $(z(W,{\alpha}))$. 
+\begin{proof}[Proof\ of\ 3.4]    The matrices $n_{w}$ depend only on $(z(W,{\alpha}))$. 
  Since $z(W,{\alpha}) = z({\alpha})z_{1}(W,{\alpha})$ they depend on 
 $z_1(W,{\alpha})$ and $z({\alpha})$. 
  Recall that the matrix $n_{w}$ in $N_{{\infty}}$ is defined by the condition 
@@ -1465,7 +1502,7 @@ so that $n_{{\beta}} \prod z({\alpha})^{m({\alpha})}$ too is regular.
  The proofs of the lemmas 3.2 and 3.4 are now complete. 
  \end{proof} 
 
-\section{4.\ The\ Coordinate\ Ring}
+\section{The\ Coordinate\ Ring}
 
    For $(g,(B(W)))$ in $Y''(B_{{\infty}})$ write $(g,(B(W))) = 
 (b,(B_{0}^{n_w}))^\nu$  where $b \in B_{0}={\BB}(W_{+})$. 
@@ -1476,13 +1513,13 @@ to $Y_\Gamma$ (or any related variety) of a local parameter on $\Gamma$.
 \medpagebreak
 
 \begin{proposition}{Proposition  4.1}   
-\begin{enumerate}
-\item{a)}\   The subring of the coordinate ring of $Y^{\prime\prime}(B_\infty,\BB(W_+)$
+\begin{enumerate}[label={\alph*)}]
+\item The subring of the coordinate ring of $Y^{\prime\prime}(B_\infty,\BB(W_+)$
 generated by $\lambda$ and $\{z_{1}(W,{\alpha}): \ \forall\
 (W,\alpha)\}$\ is contained in the subring generated by the 
 coordinates $\{w({\gamma}) : {\gamma} > 0$, ${\gamma}$ not simple$\}$
 and\ ${\lambda}$.
-\item{b)}\  The coefficients of $b, \{z({\alpha}):{\alpha}\ {\text{simple}}\}$, 
+\item The coefficients of $b, \{z({\alpha}):{\alpha}\ {\text{simple}}\}$, 
 ${\lambda}$, 
 and $\{w({\gamma}):{\gamma}$ positive but not simple$\}$\ are regular and together generate 
 the coordinate ring of \hfil\break $Y''(B_{{\infty}},{\BB}(W_{+}))$.
@@ -1528,7 +1565,7 @@ ${\lambda}=0$ so that ${\lambda}/(1-{\beta}^{-1})$ is regular at ${\lambda} = 0$
 
    Now let $\tilde n  = \prod \epsilon_\beta(\tilde n_\beta)$. 
  There is a regular star given by $(B_{0}^{\omega\tilde n})$.
-\cite{\LL,3.1} gives an algorithm to solve for $n_{w}$ and hence for 
+\cite{\LL}*{\S3.1} gives an algorithm to solve for $n_{w}$ and hence for 
 $(z_{1}(W,{\alpha}))$ where $B_{0}^{n_{w}} = B_{0}^{\omega\tilde n}, 
 W = W({\omega})$ provided $B_{0}^{\omega\tilde n}$  is opposite 
 $B_{{\infty}}$ for all ${\omega}$. 
@@ -1572,7 +1609,7 @@ $$
 $x({\beta}) = y({\beta})$ because $b = t^{n}$ on $Y^{0}(B_{{\infty}},B_{0})$.
 \end{proof} 
 
-\section{5.\   A\ Computation\ of\  $t^{-1}n^{-1}tn$}
+\section{A\ Computation\ of\  $t^{-1}n^{-1}tn$}
 
 \nobreak
    This section continues the discussion of the variables $w({\gamma})$. 
@@ -1726,7 +1763,7 @@ $$
 $$
 \end{proof} 
 
-\section{ 6.\  A\ Technical\ Lemma }
+\section{A\ Technical\ Lemma }
 
    This section indicates how to calculate the coefficients $n_{{\gamma}}$ as 
 functions of the variables $\{z(W,{\alpha)\}. }$ The method presented here 
@@ -1741,7 +1778,7 @@ $G_{2}$ using this method.
 $w({\gamma})$ in terms of $t$ and $n$ to give expressions for $w({\gamma})$ 
 in terms of the variables $\{z_1(W,\alpha)\}$\  and  $t$.
 
-   We need a more precise formulation of \cite{\LL,5.3}. 
+   We need a more precise formulation of \cite{\LL}*{\S5.3}. 
  Let ${\omega} \in {\Omega}$ be the Weyl group element such that 
 $W = {\omega}^{-1}W_{+} = W({\omega})$. 
  Let ${\sigma}_{{\omega}}$ be a representative of ${\omega}$ in the normalizer 
@@ -1768,7 +1805,7 @@ unipotent radical
 of ${\BB}$. 
  For every root ${\gamma}$ fix a vector $X_{{\gamma}}$ in the root space of 
 ${\gamma}$. 
- Implicit in \cite{\LL,5.3} is a formula for $t$. 
+ Implicit in \cite{\LL}*{\S5.3} is a formula for $t$. 
  We need to compute $n_{0}$ as well. 
  Let $tv{\sigma}_{{\omega}}m =n_{w}$ and $t'v'{\sigma}_{{\omega}'}m' =n_{w'}$\ 
 where  
@@ -1822,8 +1859,10 @@ $$
 \end{lemma}
 
 
-\begin{remark*}{Remark}   The result is highly dependent on the order of the products, on
-the choices of root vectors, and the choices of Weyl group representatives.
+\begin{remark*}  %{Remark}   
+  The result is highly dependent on the order of the products, on the
+  choices of root vectors, and the choices of Weyl group
+  representatives.
 \end{remark*}
 
 
@@ -1907,7 +1946,7 @@ $$
 
 
 
-\section{ 7.\  Application\ to\ $G_2$}
+\section{Application\ to\ $G_2$}
 
 As an application of the lemma we compute the coefficients $n_{{\gamma}}$ for 
 the group $G_{2}$. 
@@ -2413,7 +2452,7 @@ result.
 \end{proof} 
 
 
-\section{8.\ The\ Functions\ $n_\gamma$}
+\section{The\ Functions\ $n_\gamma$}
 
    The functions $n_{{\gamma}}$ are much easier to compute for the classical 
 groups. 
@@ -2555,7 +2594,7 @@ reversed.
  This gives the result.	  
 \end{proof} 
 
-\section{9.\ The\  Fundamental\  Divisors\  on\ $Y_\Gamma$}
+\section{The\  Fundamental\  Divisors\  on\ $Y_\Gamma$}
 
    There is a morphism from each divisor $E$ in $Y_{{\Gamma}}$ to the variety 
 ${\xi}^{-1}(1)$ in $Y_{1}$. 
@@ -2563,7 +2602,7 @@ ${\xi}^{-1}(1)$ in $Y_{1}$.
 complement of $Y^{\prime\prime}$ is called a {\it spurious\ divisor}.  If there are walls 
 $(W,{\alpha})$ and $(W',{\alpha})$ such that $z(W,{\alpha})/z(W',{\alpha}) 
 (= z_{1}(W,{\alpha})/z_{1}(W',{\alpha})) = 0$ on $E$, then $E$ is a spurious divisor. 
- By \cite{\LL,3.8} the condition that $z(W,{\alpha})/z(W',{\alpha}) = 0$ is 
+ By \cite{\LL}*{\S3.8} the condition that $z(W,{\alpha})/z(W',{\alpha}) = 0$ is 
 independent of the coordinate patch. 
  All other irreducible divisors on $Y_{{\Gamma}}$ are called {\it  fundamental divisors}.  
 An open dense set of a fundamental divisor lies over $Y''$.
@@ -2620,12 +2659,12 @@ assuming appropriate regularity).
 ${\Sigma}^{c}$ be the other positive roots. 
  $E_{{\Sigma}}$ is the closure in $Y^{\prime\prime}$ of the subvariety defined by
 
-   i)\ \ \  ${\lambda}=0$   
-
-   ii)\ \    $x({\alpha})\ne 0$ for ${\alpha} \notin  {\Sigma} : {\alpha}$ 
+\begin{enumerate}[label=\roman*)]
+\item ${\lambda}=0$   
+\item $x({\alpha})\ne 0$ for ${\alpha} \notin  {\Sigma} : {\alpha}$ 
 simple
-
-   iii)\   $z({\alpha})\ne 0$ for ${\alpha} \in {\Sigma} : {\alpha}$ simple.
+\item $z({\alpha})\ne 0$ for ${\alpha} \in {\Sigma} : {\alpha}$ simple.
+\end{enumerate}
 
 
 
@@ -2664,7 +2703,7 @@ $O_{{\Sigma}}$ is the Richardson class of the parabolic $P_{{\Sigma}}$.
  We also see that the Igusa constant $a(E_{{\Sigma}})$, which is defined to 
 be the multiplicity with which ${\lambda}$ vanishes along $E$, equals one.
 
-   Spaltenstein \cite{\Spal,3.2} tells us that $\dim C_{G}(v) = \dim(M_{{\Sigma}})$ 
+   Spaltenstein \cite{\Spal}*{\S3.2} tells us that $\dim C_{G}(v) = \dim(M_{{\Sigma}})$ 
 where $M_{{\Sigma}}$ is a Levi component associated to the parabolic 
 $P_{{\Sigma}}$ and $v \in O_{{\Sigma}}$. 
  The form on $X^{0}$ is given by 
@@ -2749,7 +2788,7 @@ point, we have $B(W_{+})\ne B(W({\sigma}_{{\alpha}}))$, so that ${\alpha}
 codimension one in $Y''$.
 \end{lemma}
 
-\begin{proof}    This follows directly from \cite{\M,p.65}
+\begin{proof}    This follows directly from \cite{\M}*{p.65}
 \end{proof} 
 
 {\medskip}
@@ -2860,11 +2899,11 @@ with ${\Sigma} = {\Delta}\backslash R_{\min}$.
 %% start of cthis.tex
 
 %
-\chapter{III. Groups of Rank Two} 
+\chapter{Groups of Rank Two} 
 %
 
 
-\section{1.\  Zero\ Patterns}
+\section{Zero\ Patterns}
 
 
 
@@ -2913,11 +2952,11 @@ this chapter.
 $$
 \begin{matrix} 
 %\format \l &\qquad \qquad \l \\
-{\alpha}, {\beta}, {\g} = {\alpha}+{\beta}  &  A_{2} \\
+{\alpha}, {\beta}, {\g} = {\alpha}+{\beta}  &\ \  A_{2}\phantom{.} \\
 {\alpha}, {\beta}, {\g} = {\alpha}+{\beta},\ {\delta} = 2{\alpha}+{\beta} 
-&  B_{2} \\
+&\ \  B_{2}\phantom{.} \\
 {\alpha}, {\beta}, {\g} = {\alpha}+{\beta}, {\delta} = 2{\alpha}+{\beta}, 
-{\e} = 3{\alpha}+{\beta}, {\z} = 3{\alpha}+2{\beta} & G_{2} .
+{\e} = 3{\alpha}+{\beta}, {\z} = 3{\alpha}+2{\beta} &\ \ G_{2}.
 \end{matrix}
 $$
 
@@ -3003,17 +3042,22 @@ $$
 \end{proof}
 
 \begin{lemma}{Lemma 1.3}   Suppose 
-\begin{enumerate}
-\item{(*)}\   ${\e}_{\alpha}(x_{1}){\e}_{\beta}(y_{1})
+\[
+{(*)}\   
+{\e}_{\alpha}(x_{1}){\e}_{\beta}(y_{1})
 {\e}_{\alpha}(x_{2})\ldots {\e}_{\alpha}(x_{n})
-{\e}_{\beta}(y_{n}) = 1$, then
-\item{a)}\   if $n = 1, x_{1} = y_{1} = 0$;
-\item{b)}\ if  $n = 2, x_{1} = x_{2} = 0$ or $y_{1} = y_{2} = 0$;
-\item{c)}\   $(B_{2}, G_{2})$ if $n = 3, x_{1} = x_{2} = x_{3} = 0$, or 
+{\e}_{\beta}(y_{n}) = 1,
+\] 
+then
+
+\begin{enumerate}[label=\alph*)]
+\item if $n = 1, x_{1} = y_{1} = 0$;
+\item if  $n = 2, x_{1} = x_{2} = 0$ or $y_{1} = y_{2} = 0$;
+\item $(B_{2}, G_{2})$ if $n = 3, x_{1} = x_{2} = x_{3} = 0$, or 
 $y_{1} = y_{2} = y_{3} = 0$, 
 or $x_{i} = y_{i+1} = 0$ for some $i$, where the subscripts are 
 read modulo three.
-\item{d)}\  $(G_{2})$ if $n = 4, x_{i} = 0$ for some $i$, or $y_{i} = 0$ 
+\item $(G_{2})$ if $n = 4, x_{i} = 0$ for some $i$, or $y_{i} = 0$ 
 for some $i$, or  
 \newline
 $y_{1}+y_{3} = y_{2}+y_{4} = x_{1}+x_{4} = -x_{2}+x_{4} 
@@ -3029,7 +3073,7 @@ unipotent radical of a Borel subgroup of $B_{2}$.
  Similarly by dividing by ${\e}_{2{\alpha}+{\beta}}, 
 {\e}_{3{\alpha}+{\beta}}$, and ${\e}_{3{\alpha}+2{\beta}}$ we 
 obtain the unipotent radical of a Borel subgroup of $A_{2}$. 
- These facts follow by an examination of the structure constants \cite{\Hu,33.5}. 
+ These facts follow by an examination of the structure constants \cite{\Hu}*{\S33.5}. 
  It follows that we may work
 inside $G_{2}$ ignoring $e_{n},f_{n}$ of (1.2) for $B_{2}$ and $d_{n},e_{n},
 f_{n}$ for $A_{2}$.
@@ -3158,7 +3202,7 @@ arise, so that we have $x_{1}+x_{2} = y_{3} = 0$ (pattern $B.IV)$.
 are the only possibilities but I will make the results that follow independent 
 of this classification.
 
-\section{2.\  Coordinate\ Relations}
+\section{Coordinate\ Relations}
 
    As a next step in the proof of proposition 1.1 it is necessary to obtain 
 formulas relating the functions $w({\g})$ to the coordinates 
@@ -3480,21 +3524,21 @@ In the next lemma we gather together equations that will be used to prove
 the main result of this section.
 
 \begin{lemma}{Lemma 2.3}   The following equations hold on $Y''$.
-\begin{enumerate}
-\item{(a)}\   $w({\alpha}) = 1, w({\beta}) = 1$
-\item{(b)}\   $n_{\alpha} = 1/z(W_{+},{\alpha}), n_{\beta} = 
+\begin{enumerate}[label=(\alph*)]
+\item $w({\alpha}) = 1, w({\beta}) = 1$
+\item $n_{\alpha} = 1/z(W_{+},{\alpha}), n_{\beta} = 
 1/z(W_{+},{\beta})$,
-\item{(c)}\   ${\lambda} = x({\alpha})z({\alpha}), {\lambda} = 
+\item ${\lambda} = x({\alpha})z({\alpha}), {\lambda} = 
 x({\beta})z({\beta})$
-\item{(d)}\   $(1-{\alpha}^{-1}) = x({\alpha})z(W_{+},{\alpha}), 
+\item $(1-{\alpha}^{-1}) = x({\alpha})z(W_{+},{\alpha}), 
 (1-{\beta}^{-1}) = x({\beta})z(W_{+},{\beta})$
-\item{(e)}\   $z(W_{+},{\alpha})/z({\alpha}) = z_{1}(W_{+},{\alpha}) = 
+\item $z(W_{+},{\alpha})/z({\alpha}) = z_{1}(W_{+},{\alpha}) = 
 (1-{\alpha}^{-1})/{\lambda}$
-\item{{\phantom{(e)}}}\   $z(W_{+},{\beta})/z({\beta}) = z_{1}(W_{+},{\beta}) = 
+\item[] $z(W_{+},{\beta})/z({\beta}) = z_{1}(W_{+},{\beta}) = 
 (1-{\beta}^{-1})/{\lambda}$
-\item{(f)}\   $u_{2}'n_{{\g}} = -1/(z(W_{+},{\beta})z(W({\sigma}_{\beta}), 
+\item $u_{2}'n_{{\g}} = -1/(z(W_{+},{\beta})z(W({\sigma}_{\beta}), 
 {\alpha}))$ where ${\sigma}_{\beta}(X_{{\g}}) = u_{2}'X_{\alpha}$
-\item{(g)}\   $$\aligned
+\item $$\aligned
 {\lambda}w({\g}) &= z({\alpha})z({\beta})x({\g}) \\
 &= 
 z({\alpha})z({\beta})((1-{\g}^{-1})n_{{\g}} - {\beta}^{-1}
@@ -3571,7 +3615,7 @@ Thus every term of the sum vanishes to order at least $(a-a_{i}) + (a_{i}-1)
 = a-1$.
 \end{proof}
 
-\section{3.\  Exclusion\ of\ Spurious\ Divisors}
+\section{Exclusion\ of\ Spurious\ Divisors}
 
 
    The next few lemmas show that divisors with certain zero patterns make 
@@ -3626,14 +3670,11 @@ and ${\theta}_{1}(W({\sigma}_{\alpha_2}),{\alpha}_{1}) = 0$ on $E$.
 ${\alpha}_{2}$. 
  Then
 
-\noindent
-a)\   $1/w({\alpha}_{1}+{\alpha}_{2})$ is regular on $E$.
-
-\noindent
-b)\   $1/w({\alpha}_{1}+{\alpha}_{2})$ vanishes on $E$.
-
-\noindent
-c)\    $E$ makes no contribution to the subregular germ.
+\begin{enumerate}[label=\alph*)]
+\item $1/w({\alpha}_{1}+{\alpha}_{2})$ is regular on $E$.
+\item $1/w({\alpha}_{1}+{\alpha}_{2})$ vanishes on $E$.
+\item $E$ makes no contribution to the subregular germ.
+\end{enumerate}
 \end{lemma}
 
 \medpagebreak
@@ -3733,17 +3774,14 @@ chosen on $E$ so that ${\theta}_{1}(W_{+},{\alpha})\ne 0, {\theta}_{1}(W_{+},
 {\theta}_{1}(W({\sigma}_{\alpha}),{\beta}) = 0$. 
  Then
 
-\noindent
-a)    $w({\g})$ is regular on $E$,
-
-\noindent
-b)   $1/w({\delta})$ is regular on $E$ and in fact vanishes on $E$,
-
-\noindent
-c)   $E$ makes no contribution to the subregular germ.
+\begin{enumerate}[label=\alph*)]
+\item $w({\g})$ is regular on $E$,
+\item $1/w({\delta})$ is regular on $E$ and in fact vanishes on $E$,
+\item $E$ makes no contribution to the subregular germ.
+\end{enumerate}
 \end{lemma}
 
-\begin{remark*}{Remark}    This lemma treats the zero pattern $B.IV$.
+\begin{remark*} This lemma treats the zero pattern $B.IV$.
 \end{remark*}
 
 \medskip
@@ -3964,15 +4002,11 @@ z(W({\sigma}_{\beta}{\sigma}_{\alpha}),{\alpha})/z(W_{+},{\alpha}) \ne  -1
 $$ 
 
 on $E$ then
-
-\noindent
-a)   $w({\g})$ is regular on $E$
-
-\noindent
-b)   $1/w({\delta})$ is regular on $E$ and in fact vanishes.
-
-\noindent
-c)   $E$ makes no contribution to the subregular germ.
+\begin{enumerate}[label=\alph*)]
+\item $w({\g})$ is regular on $E$
+\item $1/w({\delta})$ is regular on $E$ and in fact vanishes.
+\item $E$ makes no contribution to the subregular germ.
+\end{enumerate}
 \end{lemma}
 
 \medskip
@@ -4019,13 +4053,11 @@ ${\theta}_{1}(W({\sigma}_{\alpha}{\sigma}_{\beta}),{\beta}) = 0$ on $E$.
  Then
 
 \noindent
-a)   $w({\g}), w({\delta})$, and $w({\e})$ are regular on $E$
-
-\noindent
-b)    $w'' = 1/w({\z})$ is regular and vanishes on $E$.
-
-\noindent
-c)   $E$ is not a subregular divisor.
+\begin{enumerate}[label=\alph*)]
+\item $w({\g}), w({\delta})$, and $w({\e})$ are regular on $E$
+\item $w'' = 1/w({\z})$ is regular and vanishes on $E$.
+\item $E$ is not a subregular divisor.
+\end{enumerate}
 \end{lemma}
 
 \medskip
@@ -4255,12 +4287,12 @@ invertible, $m({\beta}) > 0$, and $z({\beta})$ vanishes on $E$.
 %% start of dthis.tex
 
 
-\chapter{IV. The Subregular Spurious Divisor}
+\chapter{The Subregular Spurious Divisor}
 
 
 
 
-\section{ 1.\  Subregular\ Unipotent\ Conjugacy\ Classes}
+\section{Subregular\ Unipotent\ Conjugacy\ Classes}
 
 
    This section reviews well known results on the subregular conjugacy
@@ -4342,12 +4374,12 @@ $T(W,{\alpha}) = (1-{\gamma}^{-1})/{\lambda}$ and ${\pm}{\gamma}$ is
 the root such that ${\gamma} = 0$ defines the wall $(W,{\alpha})$.
 
 
-\definition{Equation\ 1.2}
+\begin{eqn}  %{Equation\ 1.2}
 $$
 \lambda T(W,{\alpha}) = z({\alpha})z_{1}(W,{\alpha})x(W,{\alpha}) =
 z(W,{\alpha})x(W,{\alpha})
 $$
-\enddefinition
+\end{eqn}
 
 $$
 \tilde {z} (W,{\alpha})x(W,{\alpha})T(W',{\alpha}) = T(W,{\alpha})\tilde z
@@ -4372,7 +4404,7 @@ two lines.
 \end{proof} 
 
 
-\section{{2.\  Exclusion\ of\ Spurious\ Divisors}}
+\section{{Exclusion\ of\ Spurious\ Divisors}}
 
 \begin{theorem}{Theorem 2.1}    Let $E$ be a subregular spurious divisor. 
  Then ${\beta}(E) > 2$.
@@ -4409,7 +4441,7 @@ This by definition is a special node.  Proposition III.1.1 now shows that
 ${\beta}(E) > 2$.
 \end{proof} 
 
-\section{ 3.\  The\ graph\ $\Gamma_0$}
+\section{The\ graph\ $\Gamma_0$}
 
 The remainder of this chapter discusses the structure of subregular spurious
 divisors and their zero patterns.  These structural results will not be
@@ -4424,10 +4456,11 @@ $(W,{\alpha})$ at the node.  We make the following assumption which remains
 in effect until section $8$.
 
 
-\definition{Assumption\ 3.1} $\vert S\vert \ge 2$ and if ${\alpha},
+\begin{assumption}  %{Assumption\ 3.1} 
+$\vert S\vert \ge 2$ and if ${\alpha},
 {\beta} \in S$ then there are no solid nodes of type
 $({\alpha},{\beta})$.
-\enddefinition
+\end{assumption}
 
    We will see in section $8$, that this assumption holds except in a few
 exceptional easily categorized cases.
@@ -4552,15 +4585,11 @@ vertices.  Thus ${\Gamma}_{0}$ must be a connected graph.  This proves part
 \medskip
 
 \begin{lemma}{Lemma 3.4}   
-
-\noindent
-a)   The graph ${\Gamma}_{0}$ is connected.
-
-\noindent
-b)   ${\Gamma}_{0}$ is a tree.
-
-\noindent
-c)   $S$ forms a connected Dynkin diagram.
+\begin{enumerate}[label=\alph*)]
+\item The graph ${\Gamma}_{0}$ is connected.
+\item ${\Gamma}_{0}$ is a tree.
+\item $S$ forms a connected Dynkin diagram.
+\end{enumerate}
 \end{lemma}
 
 \medskip
@@ -4657,20 +4686,20 @@ $v$.  This is completely evident from the following diagram.
 \sh{-15}{\box\boxP}\medskip
 \end{proof}
 
-\section{4.\  The\ Modified\ Star}
+\section{The\ Modified\ Star}
 
    Let $S_{2}$ be the affine variety generated by the variables $\hat
 z({\alpha})$ ${\ \forall\ } {\alpha}$, $\hat z(W,{\alpha})$ ${\ \forall\ }
 (W,{\alpha})$ subject to the relations:
-\begin{enumerate}
-\item{i)}\ $\hat z(W,{\alpha})+\hat z(W'{\alpha}) = 0$ where $W$ and $W'$ are
+\begin{enumerate}[label=\roman*)]
+\item $\hat z(W,{\alpha})+\hat z(W'{\alpha}) = 0$ where $W$ and $W'$ are
 adjacent walls separated by a wall of type ${\alpha}$, and
-\item{ii)}\ $\exp(\hat z_{p}X_{-{\alpha}_{p}})\ldots \exp(\hat z_{1}X_{-{\alpha}_{1}}) 
+\item $\exp(\hat z_{p}X_{-{\alpha}_{p}})\ldots \exp(\hat z_{1}X_{-{\alpha}_{1}}) 
 = 1$ where $W_{1},W_{2},\ldots ,W_{p}$ is the path around
 a node (so that $p = 4,6,8$ according as the node is of type $A_{1}xA_{1},
 A_{2}, B_{2})$ and $\hat z_{1},\ldots ,\hat z_{p}$ are the corresponding
 variables.
-\item{iii)}\ $\hat z(W_{{\alpha}},{\alpha}) = 1$ 
+\item $\hat z(W_{{\alpha}},{\alpha}) = 1$ 
 for some chamber $W_\alpha$ (unless $\hat z(W,\alpha)=0,\quad \forall W)$.
 \end{enumerate}
 
@@ -4699,7 +4728,7 @@ the definition of a vertex of ${\Gamma}_{0}$.
 \end{proof} 
 
 
-\subsection{4.2\   Modifications}
+\subsection{Modifications}
 
    We now modify the graph.  Every time a vertex is eliminated from the
 graph, we set all corresponding walls to zero in the star.  Doing so gives
@@ -4714,14 +4743,14 @@ Thus $S_{-}$ forms a connected
 Dynkin diagram with two extremal simple roots.
 
    Modify the graph as follows.
-\begin{enumerate}
-\item{1.}\  For every extremal simple root of the Dynkin diagram $S_{-}$ fix a
+\begin{enumerate}[label=\arabic*.]
+\item For every extremal simple root of the Dynkin diagram $S_{-}$ fix a
 vertex of that type in ${\Gamma}_{0}$.
-\item{2.}\  Let ${\Gamma}_{1}$ be the minimal tree containing these two vertices.
+\item Let ${\Gamma}_{1}$ be the minimal tree containing these two vertices.
 Eliminate the vertices not in ${\Gamma}_{1}$ and set the corresponding
 walls of the star equal to zero.  The resulting star will have graph
 ${\Gamma}_{1}$.
-\item{3.}\   ${\Gamma}_{1}$ is linear.  Let ${\alpha}_{1},\ldots ,{\alpha}_{n}$ be
+\item ${\Gamma}_{1}$ is linear.  Let ${\alpha}_{1},\ldots ,{\alpha}_{n}$ be
 the roots of $S_{-}$ ordered in such a way that if
 $({\alpha}_{i},{\alpha}_{j})\ne 0$ then $\vert i-j\vert \le 1$.  Let
 $v_{1}$ (resp.  $v_{n})$ be the extremal vertex in ${\Gamma}_{1}$
@@ -4773,7 +4802,7 @@ ${\alpha}$-regions have no {\it ``internal''} non-zero walls of type ${\alpha}$.
 
 
 
-\section{5.\ The\ Weyl\ Chambers}
+\section{The\ Weyl\ Chambers}
 
    To obtain more detailed information about the graph ${\Gamma}_{0}$ we
 must first study the Weyl chambers.  Weyl chambers are taken to be closed
@@ -4864,41 +4893,45 @@ ${\alpha}$-chambers in $L$ which contain an external wall.  $L^-$ is the
 union of all other ${\alpha}$-chambers in $L$.  The rest of the section
 establishes the following facts about the structure of $L$.
  
-\definition{Fact\  1} If $\bWW$ is an ${\alpha}$-chamber in
+\begin{fact} %{Fact\  1} 
+If $\bWW$ is an ${\alpha}$-chamber in
 $L^-$, then $\bWW$\ $ \cap  L^{+}$ contains a big wall.
-\enddefinition
+\end{fact}
 
 
-\definition{Fact\ 2}   (Assume ${\alpha}\ne {\alpha}_{+},{\alpha}_{-}$ for
+\begin{fact} %{Fact\ 2}   
+(Assume ${\alpha}\ne {\alpha}_{+},{\alpha}_{-}$ for
 $D_{n+1})$.  If $p > 1$, any two obtusely adjacent external walls which lie
 in the same ${\alpha}$-chamber $\bWW{\subseteq} L^{+}$ meet at a big
 node which contains a node of type $({\alpha}_{p},{\alpha}_{p-1})$.
 (Recall that a big node is a union of nodes).
-\enddefinition
+\end{fact}
 
-\definition{Fact\ 3}  (Assume $\alpha\ne\alpha_n$ for $B_{n},C_{n}; {\alpha} \ne
+\begin{fact} %{Fact\ 3}  
+(Assume $\alpha\ne\alpha_n$ for $B_{n},C_{n}; {\alpha} \ne
 {\alpha}_{+},{\alpha}_{-}$ for $D_{n+1})$.  The external walls of $L$ lying
 in a given ${\alpha}$-chamber $\bWW$ are connected in the following
 sense.  Given two external walls ${\xi},{\xi}'$ in $\bWW$ there exists a
 chain of external walls ${\xi} = {\xi}_{1},\ldots ,{\xi}_{t} = {\xi}'$ in 
 $\bWW$\  such that ${\xi}_{i},{\xi}_{i+1}$ are obtusely adjacent 
 for $i = 1,\ldots ,t-1$.
-\enddefinition
+\end{fact}
 
 
-\definition{Fact\ 4} (Assume $\alpha\ne\alpha_n$ for $B_n$,$C_n$;
+\begin{fact} %{Fact\ 4} 
+(Assume $\alpha\ne\alpha_n$ for $B_n$,$C_n$;
 ${\alpha}\ne {\alpha}_{+},{\alpha}_{-}$ for
 $D_{n+1})$.  Let $\bWW$ and $\bWW'$ be adjacent ${\alpha}$-chambers
 in $L^{+}$ separated by a big wall ${\xi''}$.  Then there are external walls
 ${\xi}$ in $\bWW$ and ${\xi}'$ in $\bWW'$ such that
 ${\xi},{\xi}',{\xi''}$ form a big node with angles $2{\pi}/3$.
-\enddefinition
+\end{fact}
 
 \medskip
 %DIAGRAM18
 \sh{-5}{\box\boxR}\medskip
 
-\section*{ The\ Weyl\ Chambers}
+\subsection*{The\ Weyl\ Chambers}
 
    In the following we must discuss particular cases.
 
@@ -5231,7 +5264,7 @@ $\bWW$\ ${\subseteq}\ K_{n}\ \cup\ L_{n}^{+}$.  This
 proves the lemma.
 \end{proof} 
 
-\section{6.\ A\ Lemma\ about\ Cells}
+\section{A\ Lemma\ about\ Cells}
 \medpagebreak
 
    The subregular point $p$ remains fixed through this section.  The same
@@ -5406,7 +5439,7 @@ $\bWW_{1}$ and $\bWW_{2}$ are equal, adjacent, or proximate.  The same
 proof applies leaving out $\bWW_{3}'$.
 \end{proof} 
 
-\section{{7.\ Contact}}
+\section{{Contact}}
 
    In this section we show that the graph ${\Gamma}'$ obtained in $(4.2)$
 is a subgraph of ${\Gamma}_{0}$.  In other words we show that no vertices
@@ -5613,7 +5646,7 @@ $Z^{-}$ are disjoint $Z$ is equal to the dual cell, and $Z^{-}$ is equal to
 $K$.  The result follows.
 \end{proof} 
 
-\section{8.\  The\ Assumption\ 3.1}
+\section{The\ Assumption\ 3.1}
 
    Assumption $3.1$ was made to simplify the arguments in section $3$.  The
 cases where the assumption fails to hold are easily managed.  We have for
@@ -5714,7 +5747,7 @@ these cases here.
 %% start of ethis.tex
 
 
-\chapter{V. The Subregular Fundamental Divisor}
+\chapter{The Subregular Fundamental Divisor}
 
 
 
@@ -5753,7 +5786,7 @@ Section $6$ develops some useful coordinate relations that will be used to
 study the rationality of the surface in chapter VI.
 
 
-\section{1. \ Regularity}
+\section{Regularity}
 
    Let $Y_{s}$ be the open subvariety of $Y''$ of elements $(b,B(W))$ such
 that $b$ is regular or subregular.  (b need not be $unipotent.)$ Let
@@ -5761,23 +5794,24 @@ ${\pi}$ denote the restriction to $Y_{s}$ of the morphism from $Y''$ to $G$
 described in chapter I.
 
 \begin{lemma}{Lemma 1.1} On $Y_{s}$
-\begin{enumerate}
-\item{a)}\ If ${\lambda}  =  0$ and ${\pi}(p)  =  u$ is subregular then either
+\begin{enumerate}[label=\alph*)]
+\item If ${\lambda}  =  0$ and ${\pi}(p)  =  u$ is subregular then either
 \itemitem{i)} there exists a simple root ${\alpha}'$ such that $x({\alpha})\ne 0$ for
 ${\alpha}\ne {\alpha}'$ and $x({\alpha}')  =  0$, or        
 \itemitem{ii)}\ there exist adjacent simple roots ${\alpha}',{\alpha''}$ such that
 $x({\alpha})\ne 0$ for ${\alpha}\ne {\alpha}',{\alpha''}$, and
 $x({\alpha}')  =  x({\alpha''})  =  0, x({\alpha}'+{\alpha''})\ne 0$.        
-\item{b)}\ $Y_{s}$ is regular and the divisors of ${\lambda}  =  0$ have normal
+\item $Y_{s}$ is regular and the divisors of ${\lambda}  =  0$ have normal
 crossings.
-\item{c)}\ The divisors on $Y_{s}$ are $E_{{\alpha}} {\ \forall\ } {\alpha}$, and
+\item The divisors on $Y_{s}$ are $E_{{\alpha}} {\ \forall\ } {\alpha}$, and
 $E_{0}$ the regular divisor.
-\item{d)}\ $E_{{\alpha}} \cap E_{{\alpha}'}$ is non-empty if and only if
+\item $E_{{\alpha}} \cap E_{{\alpha}'}$ is non-empty if and only if
 $({\alpha},{\alpha}') \ne 0$.  
 \end{enumerate}
 \end{lemma}
 
-\begin{remark*}{Remark} By the coordinate free
+\begin{remark*} %{Remark} 
+By the coordinate free
 description of $E_{{\Sigma}}$ given in $(II.9.3)$, it follows that
 $E_{{\Sigma}} \ne E_{{\Sigma}'}$ if ${\Sigma} \ne {\Sigma}'$.  Here $E_\alpha$
 denotes $E_\Sigma$, $\Sigma=\{\alpha\}$, and $E_0 = E_\Sigma$, $\Sigma=\emptyset$.
@@ -5880,12 +5914,12 @@ choice of opposite Borel subgroups $(B_{{\infty}},B_{0})$.
 irreducible component of $E_{{\alpha}}(u)$.
 
 \begin{lemma}{Lemma 1.2}
-\begin{enumerate}
-\item{a)}\ Suppose that $(u_{1},(B_{0}^{n_w}))^\nu$ and
+\begin{enumerate}[label=\alph*)]
+\item Suppose that $(u_{1},(B_{0}^{n_w}))^\nu$ and
 $(u_{2},(B_{0}^{n_w'}))^{\nu'}$ both lie in
 $E_{{\alpha}}(u)^{0}$.  Then ${\nu}{\nu}^{\prime-1} \in P_{{\alpha}}$ the
 parabolic of type ${\alpha}$ containing $B_{0}$.
-\item{b)} $E_{{\alpha}}(u)$ is a disjoint union of $\vert {\alpha}\vert ^{2}/\vert
+\item $E_{{\alpha}}(u)$ is a disjoint union of $\vert {\alpha}\vert ^{2}/\vert
 {\alpha}_{min}\vert ^{2}$ rational surfaces where ${\alpha}_{min}$ is any
 short root.
 \end{enumerate}
@@ -5922,7 +5956,7 @@ P_{{\alpha}}{\nu} )$.  Thus $E_{{\alpha}}(u)$ breaks up into a disjoint
 union of varieties according to which line of type ${\alpha}$ the $(B(W))$
 lie in.
 
-   By \cite{\Spal,p.146},  $C_{G}(u)$ acts transitively on the lines of a given
+   By \cite{\Spal}*{p.146},  $C_{G}(u)$ acts transitively on the lines of a given
 type in $(B\backslash G)_{u}$.  Thus there is a variety for each line of
 type ${\alpha}$ and they are isomorphic over $\Fb$. It remains to be
 seen that each is a rational surface.
@@ -5956,7 +5990,7 @@ surface.
 \end{proof} 
 
 
-\section{2.\  Igusa\ theory\ and\ measures}
+\section{Igusa\ theory\ and\ measures}
 
    Each divisor $E_{{\alpha}}$ projects to $G$.  The image of an open set
 in $E_{{\alpha}}$ is the set of subregular unipotent elements in $G$.  We
@@ -6032,13 +6066,13 @@ on $E({\ell}_{{\beta}},u)$ by matching their residues on
 $E({\ell}_{{\alpha}},u) \cap E({\ell}_{{\beta}},u)$.  The following
 equalities hold on $E_{{\alpha}} \cap E_{{\beta}}$:
 
-\definition{Equation\ 2.1}
+\begin{eqn} %{Equation\ 2.1}
 $$
 {\omega}_{Y}x({\alpha})x({\beta})/({\lambda}^{2}dx({\alpha})\wedge
 dx({\beta}))  =  {\omega}_{E_\alpha} x({\beta})/dx({\beta})  = 
 {\omega}_{E_\beta} x({\alpha})/dx({\alpha}) .
 $$
-\enddefinition
+\end{eqn}
 
 \noindent Of course any other local coordinates may be substituted for $x({\alpha})$
 and $x({\beta})$.  This last equality determines the relative normalization
@@ -6161,7 +6195,7 @@ $x({\beta})/{\xi}x({\gamma})  =  {\delta}({\xi})$.
 \end{proof} 
 
 
-\section{3.\ Principal\ value\ integrals\ at\ points\ of\
+\section{Principal\ value\ integrals\ at\ points\ of\
 $E_{{\alpha}} \cap E_\beta$}
 
 
@@ -6171,13 +6205,13 @@ ${\kappa}(E_{{\alpha}})  =  {\kappa}(E_{{\beta}})$, $a(E_{{\alpha}})  =
 a(E_{{\beta}})$ and $b(E_{{\alpha}})  =  b(E_{{\beta}})$ then we must use the
 formulas for principal value integrals of \cite{\LL}.
 
-   We follow \cite{\LL,p.469}.  The Igusa constants $a(E_{{\alpha}})$ and
+   We follow \cite{\LL}*{p.469}.  The Igusa constants $a(E_{{\alpha}})$ and
 $a(E_{{\beta}})$ are $1$.  The principal part of ${\dsize\prod^2_{i=1}}
 (1-t^{a_i})^{-1}$ at $t = 1$ is ${\dsize\sum^2_{j=1}}
 c_{j}(1-t)^{-j}$ with $c_{1} = 0, c_{2} = 1$.  The polynomial $A(x)$ defined to
 be ${\dsize\sum} c_{j}(x+1)\ldots (x+j-1)$ is $(x+1)$.  The polynomials
 $A_{r}(y)$ defined by $A(x-y)  =  A_{1}(y) + xA_{2}(y)$ are $A_{2}(y) = 1,
-A_{1}(y)  =  1-y$.  It follows from \cite{\LL,p.470} that the contribution
+A_{1}(y)  =  1-y$.  It follows from \cite{\LL}*{p.470} that the contribution
 to the term $F_{1}({\beta},{\theta},f), {\beta} = 2$ on a small patch with
 coordinates satisfying conditions the local conditions of \cite{\LL} is given
 by
@@ -6224,21 +6258,13 @@ $$
 of $E_{{\beta}}$.  We have
 
 \medskip
-\noindent
-A.i)\ \ \ $y_{1} = y_{2}$ on $U_{1} \cap U_{2}$
-
-\smallskip
-\noindent
-A.ii)\ \ $n_{1}  =  n_{2}$
-
-\smallskip
-\noindent
-A.iii)\  If $E_{0}$ intersects $U_{1}$ or $U_{2}$ then $x_{1} = 0$ defines
+\begin{enumerate}[label=A.\roman*)]
+\item $y_{1} = y_{2}$ on $U_{1} \cap U_{2}$
+\item $n_{1}  =  n_{2}$
+\item If $E_{0}$ intersects $U_{1}$ or $U_{2}$ then $x_{1} = 0$ defines
 $E_{0}$ in $U_{1}$ and $x_{2} = 0$ defines $E_{0}$ in $U_{2}$.
-
-\smallskip
-\noindent
-A.iv)\ \  $\vert {\alpha}\vert = q^{-m}$ on $U_{1} \cap U_{2}$.
+\item $\vert {\alpha}\vert = q^{-m}$ on $U_{1} \cap U_{2}$.
+\end{enumerate}
 
 \medskip
    We see that $M  =  m+m_{1}+m_{2}+am(y_{1})$.  We must exert caution at
@@ -6266,24 +6292,24 @@ ${\alpha}'$ on $U_{1} \cap U_{2}$ must then satisfy (Ai-iv) together with
 the following conditions on neighborhoods $U_{1}$ and $U_{2}$ of
 $E_{{\alpha}}(u,F)$ and $E_{{\beta}}(u,F) :$
 
-
-\noindent
-B.i)\ \ \  $x_{i}/x_{i}'  =  {\varphi}_{i}$ where ${\varphi}_{i}$ is regular and
+\begin{enumerate}[label=B.\roman*)]
+\item
+$x_{i}/x_{i}'  =  {\varphi}_{i}$ where ${\varphi}_{i}$ is regular and
 invertible on $U_{1} \cap U_{2}$.
 
-\noindent
-B.ii)\ \  $y_{i}/y_{i}'  =  \psi$ where $\psi$ is
+\item
+$y_{i}/y_{i}'  =  \psi$ where $\psi$ is
 regular and invertible on $U_{1} \cap U_{2}$.  (By A.i $\psi$
 is independent of i.)
 
-\noindent
-B.iii)\  $\vert\varphi_{i}\vert$ and $\vert \psi \vert$ are
+\item
+$\vert\varphi_{i}\vert$ and $\vert \psi \vert$ are
 constant on $U_{1} \cap U_{2}$,
 
-
-\noindent
-B.iv)\ \  ${\alpha}'/{\alpha}  =  {\varphi}_{1}{\varphi}_{2}{\psi}^{a}$ on 
+\item
+${\alpha}'/{\alpha}  =  {\varphi}_{1}{\varphi}_{2}{\psi}^{a}$ on 
 $U_{1} \cap U_{2}$.
+\end{enumerate}
 
 
 \noindent
@@ -6327,7 +6353,7 @@ E_{{\alpha}}(u,F) \cap E_{{\beta}}(u,F)$.  These canonical coordinates
 will thus provide us with a scale between $E_{{\alpha}}$ and $E_{{\beta}}$.
 \end{remark}
 
-\section{4.\ Igusa\ data\ for\ interchanged\ divisors}
+\section{Igusa\ data\ for\ interchanged\ divisors}
 
    It is possible for two divisors to contain $F$-rational points without
 themselves being defined over $F$.  This section develops a formula for the
@@ -6384,22 +6410,22 @@ over $F$-rational points in $E_{1} \cap E_{2}$.
 generality could be given using Mellin transforms.  I will settle for a
 direct proof in this special case.  As the size of the mesh goes to zero,
 the principal value integral on each region also goes to zero.  This is
-clear from formulas appearing in \cite{\LL,p.475}.  So by removing a
+clear from formulas appearing in \cite{\LL}*{p.475}.  So by removing a
 region with arbitrarily small integral we may work exclusively on patches
 of the underlying $p$-adic manifold $U(K)$ which satisfy the conditions:
-\begin{enumerate}
-\item{i)} $U$ does not intersect any divisors other than $E_{1}$ and $E_{2}$.
-\item{ii)} ${\mu}_{1} = 0$ defines $E_{1}$ and ${\mu}_{2} = 0$ defines $E_{2}$.
-\item{iii)} $f$ is locally constant on $U(F)$.
-\item{iv)} ${\omega}_{Y} =
+\begin{enumerate}[label=\roman*)]
+\item $U$ does not intersect any divisors other than $E_{1}$ and $E_{2}$.
+\item ${\mu}_{1} = 0$ defines $E_{1}$ and ${\mu}_{2} = 0$ defines $E_{2}$.
+\item $f$ is locally constant on $U(F)$.
+\item ${\omega}_{Y} =
 {\gamma}{\mu}_{1}^{b}{\mu}_{2}^{b}d{\mu}_{1}d{\mu}_{2}\ldots .d{\mu}_{n}$
 with $\vert {\gamma}\vert$ constant on $U$.
-\item{v)} $U(K) = \{({\mu}_{1},\ldots ,{\mu}_{n}): \vert {\mu}_{i}\vert \le
+\item $U(K) = \{({\mu}_{1},\ldots ,{\mu}_{n}): \vert {\mu}_{i}\vert \le
 q^{-m_{i}} \}$ and $m_{1} = m_{2}$.
-\item{vi)} $U(F) = \{({\mu}_{1},\ldots ,{\mu}_{n}) \in U(K) :
+\item $U(F) = \{({\mu}_{1},\ldots ,{\mu}_{n}) \in U(K) :
 {\sigma}({\mu}_{1}) = {\mu}_{2}, {\sigma}({\mu}_{i}) = {\mu}_{i} \ i \ge 3\} $
 $$({\sigma} \in \GalK, {\sigma}\ne 1).$$
-\item{vii)} ${\lambda} = {\alpha}{\mu}_{1}{\mu}_{2}$ with $\vert {\alpha}\vert$
+\item ${\lambda} = {\alpha}{\mu}_{1}{\mu}_{2}$ with $\vert {\alpha}\vert$
 constant on $U(K)$.
 \end{enumerate}
 
@@ -6474,7 +6500,7 @@ ${\omega}_{Y}x_{1}x_{2}/({\lambda}^{b+1}dx_{1}dx_{2})$.  This proves the
 lemma.
 \end{proof} 
 
-\section{ 5.\  Transition\ functions}
+\section{Transition\ functions}
 
    We have seen that on an open patch $U({\alpha},{\beta})$ we can
 introduce coordinates $w = w({\alpha}+{\beta})$ and ${\xi}$.  Fix two lines
@@ -6501,23 +6527,23 @@ $N_{{\alpha}}$.  Then the following statements are true on
 $E({\ell}_{{\alpha}},u)$.
 
 \medskip
-\begin{enumerate}
-\item{a)} ${\xi}'' = {\xi}/(y{\xi}+1)$
+\begin{enumerate}[label=\alph*)]
+\item ${\xi}'' = {\xi}/(y{\xi}+1)$
 \smallskip
-\item{b)} ${\delta}''w'' = {\delta}w/({\alpha}(X)y{\xi}{\delta}w + (1+y{\xi}))$
+\item ${\delta}''w'' = {\delta}w/({\alpha}(X)y{\xi}{\delta}w + (1+y{\xi}))$
 \smallskip
-\item{c)} ${\delta}''({\xi}'')^{-1}dw''d{\xi''}/(w^{\prime\prime2}{\xi''}) =
+\item ${\delta}''({\xi}'')^{-1}dw''d{\xi''}/(w^{\prime\prime2}{\xi''}) =
 {\delta}({\xi})^{-1}dwd{\xi}/(w^{2}{\xi})$
 \medskip
 Furthermore, the following statements hold on $E({\ell}_{{\alpha}},u)
 \cap E({\ell}_{{\beta}},u)$.
 \smallskip        
-\item{d)} ${\xi}''/{\xi} = 1$
+\item ${\xi}''/{\xi} = 1$
 \smallskip        
-\item{e)} $x''(W,{\alpha}')/x(W,{\alpha}') = 1$ for any simple root ${\alpha}'$ and
+\item $x''(W,{\alpha}')/x(W,{\alpha}') = 1$ for any simple root ${\alpha}'$ and
 any Weyl chamber $W$
 \smallskip
-\item{f)} $w''/w = 1$
+\item $w''/w = 1$
 \end{enumerate}
 \smallskip
 \noindent
@@ -6654,7 +6680,8 @@ reflection in the Weyl group of $T_{0}$ corresponding to the simple root
 ${\alpha}$.
 \end{lemma}
 
-\begin{remark*}{Remark}\ We will see in the proof that $T_{0}$ depends on the
+\begin{remark*} %{Remark}\ 
+We will see in the proof that $T_{0}$ depends on the
 choice of a Levi component $M_{{\alpha}}$ in $P_{{\alpha}}$ and that the
 various choices of $T_{0}$ are conjugate by $N_{{\alpha}}(F)$.
 \end{remark*}
@@ -6748,7 +6775,7 @@ where\ ${\nu}_{1}  \in  N_{-{\alpha}}$.  By the $2\times 2$ matrix calculation
 
 \medpagebreak
 
-\definition{Equation\ 5.4}
+\begin{eqn} %{Equation\ 5.4}
 $$
 {\begin{pmatrix} \prelax  1 & 0 \\ x & 1 \end{pmatrix}}\
 {\begin{pmatrix} \prelax  0 & a \\ b & 0 \end{pmatrix}}\ =\
@@ -6762,7 +6789,7 @@ $$
 %\format \c &\quad \c \\
  1 & 0 \\ b/(ax) & 1 \end{pmatrix}}
 $$
-\enddefinition
+\end{eqn}
 we see that $$\aligned 
 B_{0}n''_{w}{\nu''}{\omega}_{{\alpha}} =&
 B_{0}\exp((1/{\zeta}(a''_{w}+{\xi''}))X_{-{\alpha}}){\nu}_{1}\\
@@ -6790,7 +6817,7 @@ $$
 \end{proof} 
 
 
-\section{6.\  Coordinate\ Relations}
+\section{Coordinate\ Relations}
 
 
    For any two adjacent roots ${\alpha}_{1}$ and ${\alpha}_{2}$ we define a
@@ -6822,46 +6849,51 @@ coordinate ring of $E({\ell}_{{\alpha}},u)$.  They hold independent of
 the implicit ordering on the roots.
 
 \smallskip 
-a) If ${\alpha}'$ is longer than ${\alpha}$ and $({\alpha}',{\alpha}) \ne
+\begin{enumerate}[label=\alph*)]
+\item If ${\alpha}'$ is longer than ${\alpha}$ and $({\alpha}',{\alpha}) \ne
 0$, then ${\alpha}' = {\beta}$ and $x(2{\alpha}+{\beta}) = 0$.
 
-
-b) $x(W,{\alpha}+{\beta}) = x({\alpha}+{\beta}) = x_{{\alpha}+{\beta}}(u)\
+\item
+$x(W,{\alpha}+{\beta}) = x({\alpha}+{\beta}) = x_{{\alpha}+{\beta}}(u)\
 {\ \forall\ } W$.
 
+\item
+${\delta}({\xi}) = e({\alpha},{\beta})$.
 
-c) ${\delta}({\xi}) = e({\alpha},{\beta})$.
+\item
+$z(W_{+},{\alpha})/{\xi} = {\alpha}(X)we({\alpha},{\beta})$.
 
-
-d) $z(W_{+},{\alpha})/{\xi} = {\alpha}(X)we({\alpha},{\beta})$.
-
-e) If $w({\gamma})\ne 0$ and ${\gamma}$ is not simple then
+\item
+If $w({\gamma})\ne 0$ and ${\gamma}$ is not simple then
 ${\gamma} = {\alpha}+{\alpha}'$ where ${\alpha}' \ne {\beta}'$ if ${\beta}' \ne
 {\beta}$.
 
-      
-f) For any two simple roots ${\alpha}'$ and ${\alpha}''$ (not necessarily
+\item 
+For any two simple roots ${\alpha}'$ and ${\alpha}''$ (not necessarily
 distinct), $$x(W({\sigma}_{{\alpha}''}),{\alpha}')/x({\alpha}') =
 1+e({\alpha''},{\alpha}'){\alpha}''(X)w({\alpha}'+{\alpha}'')$$ (Set
 $w({\alpha}'+{\alpha}'') = 0$ if ${\alpha}'+{\alpha}''$ is not a root.)
 
-        
-g) $w$ and ${\xi}$ are independent of the order selected on the roots.  If
+\item   
+$w$ and ${\xi}$ are independent of the order selected on the roots.  If
 ${\ell}_{{\alpha}}$ intersects more than one line, $w$ and ${\xi}$ depend
 only on the choice of lines ${\ell}_{{\beta}}$ and $\tilde{\ell}
 _{{\beta}'}$ and not on the choice of $T_{0}$ satisfying the hypotheses of
 the lemma.
+\end{enumerate}
 \end{lemma}
 
-\begin{remark*}{Remark  1} By $(g) w$ and ${\xi}$ depend only on the choice of
+\begin{rem}  %{Remark  1} 
+By $(g) w$ and ${\xi}$ depend only on the choice of
 lines ${\ell}_{{\beta}}$ and $\tilde{\ell} _{{\beta}'}$ and are called
 {\it canonical} coordinates.
-\end{remark*}
+\end{rem}
 
-\begin{remark*}{Remark\ 2} It should be pointed out that despite the large
+\begin{rem} % {Remark\ 2} 
+It should be pointed out that despite the large
 number of hypotheses, given any line ${\ell}_{{\alpha}}$ (except the short
 line in $G_{2}$) $B_{0}$ and $T_{0}$ can be chosen to satisfy the hypotheses.
-\end{remark*}
+\end{rem}
 
 \begin{proof} \ First I show that the equations in $(a),(b)$ do not
 depend on the ordering on the roots.  By rearranging the order of the
@@ -7010,7 +7042,8 @@ $x({\alpha}+{\beta}') = 0$.
 W({\sigma}_{{\alpha''}})$.
  
 
-\definition{Case\ 1} ${\alpha}' = {\alpha''}$.  We appeal to the $2\times 2$ matrix
+\begin{case} %{Case\ 1} 
+${\alpha}' = {\alpha''}$.  We appeal to the $2\times 2$ matrix
 calculation
 $$
 {\begin{pmatrix} \prelax  1 & 0 \\ z & 1 \end{pmatrix}}\
@@ -7047,21 +7080,22 @@ where $x = x({\alpha})$ and $x'  =
 x(W({\sigma}_{{\alpha}'}),{\alpha}')$.  So that
 $x(W'',{\alpha}')/x({\alpha}')  =  t_{1}/t_{2}$ and upon restriction to
 $E_{{\alpha}}(u)$ $x(W'',{\alpha}')/x({\alpha}')  =  1$.
-\enddefinition
+\end{case}
 
-
-\definition{Case\ 2}\  $({\alpha}',{\alpha}'') = 0$.  $x({\alpha}')  = 
+\begin{case} %{Case\ 2}\  
+$({\alpha}',{\alpha}'') = 0$.  $x({\alpha}')  = 
 x_{{\alpha}'}(b)$, and $x(W,{\alpha}')  =  x_{{\alpha}'}{(b^{n_w''}})$.
 It is clear that on $Y^{0}$\quad $x(W'',{\alpha}')/x({\alpha}')  =  1$ so that the
 same holds true on $E_{{\alpha}}(u)$.
-\enddefinition
+\end{case}
 
-\definition{Case\ 3} ${\alpha}' \ne {\alpha}, {\alpha}'' \ne {\alpha}$.  The
+\begin{case} %{Case\ 3} 
+${\alpha}' \ne {\alpha}, {\alpha}'' \ne {\alpha}$.  The
 hypothesis that ${\alpha}'' \ne {\alpha}$ implies that $z = 0$ on
 $E_{{\alpha}}(u)$.  The hypothesis that ${\alpha}' \ne {\alpha}$ implies
 that $x({\alpha}')$ is not identically zero on $E_{{\alpha}}(u)$.  It
 follows easily that $x({\alpha}')  =  x(W'',{\alpha}')$ on $E_{{\alpha}}(u)$.
-\enddefinition
+\end{case}
 
 
    Before proceeding to the final cases we prove a preliminary result.
@@ -7165,16 +7199,12 @@ $T_{0}  =  B_{0}  \cap  B_{{\infty}}$.  Then the following relations hold for
 functions in the coordinate ring of
 $E({\ell}_{{\alpha}},u)(B_{{\infty}},B_{0})$.
 
-\noindent
-a)  $x({\alpha}+{\beta})  =  0$
-
-\noindent
-b) $x(W,{\alpha}')/x({\alpha}')  =  1$ for all simple roots ${\alpha}'$ and
+\begin{enumerate}[label=\alph*)]
+\item $x({\alpha}+{\beta})  =  0$
+\item $x(W,{\alpha}')/x({\alpha}')  =  1$ for all simple roots ${\alpha}'$ and
 all $W$.
-
-\noindent
-c) $w({\gamma})  =  0 : {\gamma}$ not simple.
-
+\item $w({\gamma})  =  0 : {\gamma}$ not simple.
+\end{enumerate}
 \noindent
 These relations hold independent of the implicit ordering on the roots.
 \end{lemma}
@@ -7247,13 +7277,13 @@ proof.
 
 %% start of fthis.tex
 
-\chapter {VI. Rationality and Characters} 
+\chapter{Rationality and Characters} 
  
 
 
 
 
-\section{1.\ Rationality}
+\section{Rationality}
 
    This section investigates the rationality structure of the variety
 $E({\ell}_{{\alpha}},u)$.  The variables $(w,{\xi})$ are not in general
@@ -7388,13 +7418,13 @@ $$(b,B_{0}^{n_{w}})^{{\nu}} ({\sigma}p)  =
 ({\sigma}(b),{\sigma}(B_{0})^{{\sigma}(n_{w'})})^{{\sigma}({\nu})} (p),$$ 
 $W' = {\sigma}^{-1}W$ or
 
-\definition{Equation\ 1.5}
+\begin{eqn} %{Equation\ 1.5}
 $$
 {\sigma}_{sp}^{-1}(b,B_{0}^{n_{w}})^{{\nu}} ({\sigma}p)  = 
 {\bold {ad}}\ 
 w_{{\sigma}}[(a_{{\sigma}}(b),B_{0}^{a_{{\sigma}}(n_{w'})})^{a_{{\sigma}}({\nu})}]. \etag *
 $$
-\enddefinition
+\end{eqn}
 
    We analyze two cases separately.  First suppose that all the roots are
 the same length.  Then there is only one line in $(B\backslash G)_{u}$
@@ -7450,11 +7480,11 @@ ${\ell}_{{\alpha}}$ intersecting only one line or three lines with no
 rational points.
  
 \medpagebreak
-\begin{enumerate}
-\item{a)}\ The isomorphism of $G$ with $G_{sp}$ described above can be chosen to be
+\begin{enumerate}[label=\alph*)]
+\item The isomorphism of $G$ with $G_{sp}$ described above can be chosen to be
 defined over the field of definition of $B_{+}$.
 \medpagebreak
-\item{b)}\ There are automorphisms indexed by $\tilde{\Omega}$ 
+\item There are automorphisms indexed by $\tilde{\Omega}$ 
 on the coordinate ring of
 $E_{{\alpha}}(u)$ which are independent of $T$ (but dependent on $u  \in 
 G(F))$ such that for any $T$ the action of $\Gal$ on the
@@ -7465,7 +7495,7 @@ of $E_{{\alpha}}(u)$, and $$p  \in  E_{{\alpha}}(u)(\Fb), \
 \Gal,\ {\varphi}: \Gal {\to} \tilde{\Omega} .$$ (Note that
 ${\varphi}$ depends on both $u$ and $T.)$
 \medpagebreak
-\item{c)}\ The automorphisms indexed by $\tilde{\Omega}$ on ${\xi}$ are given by:
+\item The automorphisms indexed by $\tilde{\Omega}$ on ${\xi}$ are given by:
  \newline
 ${\sigma}_{{\alpha}'}({\xi})  =  {\xi}, {\alpha}'  \ne {\alpha}, {\alpha}'$
 simple						  
@@ -7477,7 +7507,7 @@ depends on $u$.  If $K$ is the splitting field of $B_{+}$ then ${\zeta}$ is
 a norm of an element in $K^{\times}$ if and only if the line ${\ell}_{{\alpha}}$
 has rational points.
 \medpagebreak
-\item{d)}\ The automorphisms indexed by $\tilde{\Omega}$ on $w$ are given by:
+\item The automorphisms indexed by $\tilde{\Omega}$ on $w$ are given by:
  \newline
 ${\sigma}_{{\alpha}''}(w)  = 
 w/(w({\alpha}+{\alpha}''){\alpha}''(X)e({\alpha}'',{\alpha})+1) \quad
@@ -7658,7 +7688,7 @@ This forces $n_{x_0}  =  0$.
 \end{proof} 
 
 
-\section{ 2.\  The\ Characters\ ${\kappa}(E_\alpha)$}
+\section{The\ Characters\ ${\kappa}(E_\alpha)$}
 
 
    The results of this section assume that $G$ is quasi-split.  The
@@ -7685,7 +7715,7 @@ t({\alpha})z(W,{\alpha}): {\alpha  \in  \Sigma})
 $$
 where $t({\alpha})  \in  F_{{\alpha}}$ and
 ${\sigma}(t({\alpha})) = t({\sigma}_{*}{\alpha})$ for ${\sigma}  \in 
-\operatorname{Gal}(F_{{\alpha}}/F)$.  Then by \cite{\LL,5.4} and its generalization in
+\operatorname{Gal}(F_{{\alpha}}/F)$.  Then by \cite{\LL}*{\S5.4} and its generalization in
 \cite{\LSb} there is a character ${\kappa}^{{\alpha}}$ of $F_{{\alpha}}^{\times}$
 such that
 $m_{{\kappa}}(e') = {\kappa}^{{\alpha}}(t({\alpha}))m_{{\kappa}}(e)$.  With
@@ -7866,7 +7896,7 @@ g) For $E_{7}, {\kappa}_{0}  =  {\theta}$ where ${\theta}^{2} = 1$.
 \end{proof} 
 
 
-\section{3.\  $m_{{\kappa}}(e)$\ and\ Vanishing\ of\ Integrals}
+\section{$m_{{\kappa}}(e)$\ and\ Vanishing\ of\ Integrals}
 
 
 \begin{lemma}{Lemma 3.1}\ Fix a surface $E({\ell}_{{\alpha}},u)$.  Suppose
@@ -7912,10 +7942,10 @@ on $E_{0}$.
 \begin{proposition}{Proposition 3.2}\ Assume that ${\ell}_{{\alpha}}$ intersects
 one line ${\ell}_{{\beta}}$ and that ${\ell}_{{\alpha}}$ is fixed by
 $\Gal$.
-\begin{enumerate}
-\item{a)}\ If ${\kappa}(E_{{\alpha}})  \ne {\kappa}(E_{{\beta}})$ then
+\begin{enumerate}[label=\alph*)]
+\item If ${\kappa}(E_{{\alpha}})  \ne {\kappa}(E_{{\beta}})$ then
 $E({\ell}_{{\alpha}},u)$ makes no contribution to the subregular germ.
-\item{b)}\ If ${\kappa}(E_{{\alpha}})  =  {\kappa}(E_{{\beta}})$ then
+\item If ${\kappa}(E_{{\alpha}})  =  {\kappa}(E_{{\beta}})$ then
 ${\kappa}(E_{0})  =  {\kappa}(E_{{\alpha}})$ and
 $m_{{\kappa}}(e)/{\kappa}_{0}({\lambda})$ restricted to $E_{{\alpha}}(u)$
 depends only on $u  \in  G(F)$.  If we select coordinates as in $(V.6.2)$
@@ -7995,10 +8025,10 @@ $$
 intersects two lines ${\ell}_{{\beta}}$ and ${\ell}_{{\beta}'}$. Suppose also that
 $\Gal$ fixes these two points of intersection.  Pick canonical
 coordinates $(w,{\xi})$ on $U({\alpha},{\beta})$.  Fix $u  \in  G(F)$.
-\begin{enumerate}
-\item{a)}\ If ${\kappa}^{{\alpha}} \ne {\kappa}^{{\beta}}$ then $E_{{\alpha}}(u)$
+\begin{enumerate}[label=\alph*)]
+\item If ${\kappa}^{{\alpha}} \ne {\kappa}^{{\beta}}$ then $E_{{\alpha}}(u)$
 makes no contribution to the subregular germ.
-\item{b)}\ If ${\kappa}^{{\alpha}} = {\kappa}^{{\beta}}$ then ${\kappa}(E_{0})  = 
+\item If ${\kappa}^{{\alpha}} = {\kappa}^{{\beta}}$ then ${\kappa}(E_{0})  = 
 {\kappa}(E_{{\alpha}}),$
 ${\kappa}^{{\alpha}} ={\kappa}^{{\beta}} = {\kappa}^{{\beta}'} = 1$, and
 $$m_{{\kappa}}(e)/{\kappa}_{0}({\lambda})\vert _{E_\alpha}  = 
@@ -8114,7 +8144,7 @@ $E_{{\alpha}}$ because the characters ${\kappa}^{{\alpha}},
 
 %% start of gthis.tex
 
-\chapter{VII. Applications to Endoscopic Groups}
+\chapter{Applications to Endoscopic Groups}
 
 
 
@@ -8124,15 +8154,15 @@ $E_{{\alpha}}$ because the characters ${\kappa}^{{\alpha}},
 to endoscopic groups.  We will begin by listing the cuspidal endoscopic
 groups.
 
-\section{1.\  Endoscopic\ Groups}
+\section{Endoscopic\ Groups}
 
   Basic facts about endoscopic groups will be assumed.  For definitions see
 \cite{\Lan}.  For our purposes, the most important properties of endoscopic
 groups $H$ that will be used are:
-\begin{enumerate}
-\item{1)}\ The identity component of the dual $^{L}H^{0}$ of $H$ is the connected
+\begin{enumerate}[label=\arabic*)]
+\item The identity component of the dual $^{L}H^{0}$ of $H$ is the connected
 centralizer of a semisimple element $s  \in  {}^{L}G^{0}$.
-\item{2)}\  There is a homomorphism ${\rho }$ from $\Gal$ to the group
+\item There is a homomorphism ${\rho }$ from $\Gal$ to the group
 of outer automorphisms of $^{L}H^{0}$ which factors through
 $Cent(s,{}^{L}G)/^{L}H^{0}$.
 \end{enumerate}
@@ -8146,7 +8176,7 @@ This chapter will ignore the problem of embeddings of $L$-groups $\xi:{}^LH
 of endoscopy.  In particular we are not asserting the existence of $\xi:{}^LH\to
 {}^LG$.
 
-\subsection{ 1.1.\ The \ groups\  ${}^{1}A_{n}$\ and\ ${}^{2}A_n$}
+\subsection{The \ groups\  ${}^{1}A_{n}$\ and\ ${}^{2}A_n$}
 
    We do no compute all the endoscopic groups for groups of type $A_{n}$.
 Instead, for the transfer of the subregular germ, we will appeal to the
@@ -8220,7 +8250,7 @@ conclude that the cuspidal endoscopic groups of $U(n)$ are $U(j)\times
 U(n-j)$.
 
 
-\subsection{{1.2.\ Type\ $B_n$}}
+\subsection{Type\ $B_n$}
 
 
    The identity component of the $L$-group of the simply connected
@@ -8239,7 +8269,7 @@ If ${\rho }$ is nontrivial then $r = t$ and ${}^{L}H^{0}  =
 A_{q-1}\times C_{r}\times C_{r}$ and $H  =  {}^{2}A_{q-1}
 \times {}^{2}(B_{r}\times B_{r}), q+2r = n$.
 
-\subsection{{1.3.\  Type\ $C_n$} }
+\subsection{Type\ $C_n$}
 
 The connected component of the $L$-group of
 the simply connected semi-simple group of type $C_{n}$ is ${}^{L}G^{0}  = 
@@ -8253,7 +8283,7 @@ $$s = (-I_{m},I_{2r+1},-I_{m})$$  ${}^{L}H^{0} = D_{m}\times B_{r}, m+r = n$.
 $H = C_{r}\times D_{m}$ if ${\rho }$ is trivial and $C_{r}\times {}^{2}D_{m}$ if ${\rho }$
 is non-trivial $(m+r = n)$.
 
-\subsection{{1.4.\ Type\ $D_n$}}
+\subsection{Type\ $D_n$}
 
    The connected component of the $L$-group of the simply connected
 semisimple group of type $D_{n}$ is ${}^{L}G^{0} = PSO(2n)$.  We may assume
@@ -8288,7 +8318,7 @@ and $q$ is odd we obtain the endoscopic group ${}^{2}A_{q-1}$.  If $r = t = 0$
 and $q$ is even then ${\rho }$ cannot fix  $s$ and there is no endoscopic
 group.
 
-\subsection{{1.5.\  Type\ $G_2$}}
+\subsection{Type\ $G_2$}
 
    Let the roots of $G_{2}$ be $${\pm}{\alpha}, {\pm}{\beta},
 {\pm}({\alpha}+{\beta}), {\pm}(2{\alpha}+{\beta}),
@@ -8302,12 +8332,14 @@ leaves the case where all the roots of $H$ are long roots.  If this is to
 be a cuspidal group there must be at least two positive roots.  These will
 generate all the long roots.  We obtain $H  =  A_{2}$.
 
-\subsection{{1.6.\ Other\  exceptional\  groups}}
+\subsection{Other\  exceptional\  groups}
 
    We will not compute these.  It should be pointed out however that most
-of the cuspidal endoscopic groups can be deduced directly from \cite{\GR} where
+of the cuspidal endoscopic groups can be deduced directly from \cite{MR0338284} where
 primitive subalgebras of the exceptional groups are computed.
  
+\setcounter{theorem}{5} % It is misnumbered in original!
+
 \begin{lemma}{Lemma 1.6}\ Let $G  =  F_{4}, E_{s}$, \ $s = 6,7,8$.  Then the
 centralizer of a semisimple element in $G$ stabilizes one of the following
 subalgebras of $G$.
@@ -8331,14 +8363,14 @@ that center.
 \end{lemma}
 
 
-\begin{proof} \ This is proved in \cite{\GR}.  The algebra $A_{2}\oplus D_{5}$
+\begin{proof} \ This is proved in \cite{MR0338284}.  The algebra $A_{2}\oplus D_{5}$
 listed there as a subalgebra of $E_{7}$ is apparently a misprint for the
 subalgebra $A_{2}\oplus  A_{5}$.
 \end{proof} 
 
 
 
-\section{2.\ Characters,\ Centers,\ and\ Endoscopic\ Groups}
+\section{Characters,\ Centers,\ and\ Endoscopic\ Groups}
 
    The next lemma shows that we do not lose any endoscopic groups by
 passing to the simply connected cover of the derived group.
@@ -8358,7 +8390,7 @@ of ${}^{L}(G_{s})^{0}$.  Thus we have a surjection
 ${}^{L}{\varphi}^{0}:{}^{L}G^{0} {\to} \tilde K ^{0}$ which factors through
 ${}^{L}(G_{der})^{0}$.  Since ${\varphi}$ is defined over
 $F, {}^{L}{\varphi}^{0}$ extends to ${}^{L}{\varphi}: {}^{L}G {\to} \tilde K$
-\cite{\Ba}.  Let $\tilde x  =  {}^{L}{\varphi}(x) {\ \forall\ } x  \in 
+\cite{MR546608}.  Let $\tilde x  =  {}^{L}{\varphi}(x) {\ \forall\ } x  \in 
 {}^{L}G$.  The image of $Cent(s,{}^{L}G)$ under ${}^{L}{\varphi}$ lies in
 $Cent(\tilde s ,\tilde K )$ because $xsx^{-1}s^{-1}  = 1$ implies $\tilde x
 \tilde s \tilde x ^{-1}\tilde s ^{-1}  = 1$.  Similarly
@@ -8401,7 +8433,7 @@ endoscopic groups $H$ and $H_{s}$ corresponding to $G$ and $G_{s}$
 respectively.  Since we have a surjection 
 ${}^{L}H^{0} {\to} {}^{L}\tilde H^{0}$ with central kernel we 
 obtain a dual morphism $H_{s} {\to} H$ again
-with central kernel \cite{\Ba}.
+with central kernel \cite{MR546608}.
 \end{proof} 
 
 {\medskip}
@@ -8496,7 +8528,7 @@ group, and selecting characters which generate the dual of $H^{1}(Z')$.
 
 
 
-\section{3.\  Compatibility\ of\ Characters}
+\section{Compatibility\ of\ Characters}
 
    As an application of the formulas for the subregular germ we check the
 compatibility of characters for the subregular germ.  $A$ necessary
@@ -8575,17 +8607,17 @@ This proves that $X(^{2}A_{2n})  =  \{{\eta}_{K}\}$.
 
 {\medskip}
 
-\begin{proof} {Proof\ of\ 3.1}\ We work with the quasi-split groups.  We use
+\begin{proof}[Proof\ of\ 3.1] We work with the quasi-split groups.  We use
 $(VI.2.4)$ together with the previous section to determine the characters
 ${\theta}$.  We rely heavily on the vanishing theorems $(VI.3.2)$ and
 $(VI.3.3)$ to eliminate unwanted terms.  $(VI.3.2)$ and $(VI.3.3)$ tell us
 that if a component $E({\ell}_{{\alpha}},u)$ makes a contribution then one
 of the following conditions hold:
-\begin{enumerate}
-\item{1)}\ ${\ell}_{{\alpha}}$ intersects three other lines in the Dynkin curve
-\item{2)}\ ${\ell}_{{\alpha}}$ intersects two lines that are interchanged by
+\begin{enumerate}[label=\arabic*)]
+\item ${\ell}_{{\alpha}}$ intersects three other lines in the Dynkin curve
+\item ${\ell}_{{\alpha}}$ intersects two lines that are interchanged by
 $\Gal$.
-\item{3)}\ ${\ell}_{{\alpha}}$ intersects a line ${\ell}_{{\beta}}$ and
+\item ${\ell}_{{\alpha}}$ intersects a line ${\ell}_{{\beta}}$ and
 ${\kappa}^{{\alpha}} = {\kappa}^{{\beta}}$.
 \end{enumerate}
 
@@ -8596,15 +8628,15 @@ condition that $E({\ell}_{{\alpha}},u)$ contain rational points.  Using
 these criteria one can read off the irreducible components
 $E({\ell}_{{\alpha}},u)$ that contribute to the subregular germ.
 
-
-\definition{${}^{1}A_{n}$} If ${\theta} \ne 1$ then $Y(T,{\kappa})  =  {\phi}$.  Also if
+\begin{proof}[${}^{1}A_{n}$] If ${\theta} \ne 1$ then $Y(T,{\kappa})  =  {\phi}$.  Also if
 ${\theta} \ne 1$ then by $(1.1)$,  $X(H) = {\emptyset}$.  So if ${\theta} \ne 
 1$ $ X(H) = Y(T,{\kappa}) = {\emptyset}$.  If ${\theta} = 1$ then $Y(T,{\kappa}) = \{1\}$ and
 $X(H) = \{1\}$.
-\enddefinition
+\phantom\qedhere
+\end{proof}
 
 
-\definition{${}^{2}A_{n}$}  Assuming that $X(H)  \ne {\phi}$, we may take $G$ to
+\begin{proof}[${}^{2}A_{n}$]  Assuming that $X(H)  \ne {\phi}$, we may take $G$ to
 be $U(n)$ and $H$ to be $U(j) \times U(n-j)$ $(1.1)$.  If $n$ is odd then
 $X(H)  =  \{1,{\eta}_{K}\}$.  Up to isogeny the
 endoscopic group is an endoscopic group of the adjoint group $U(n)_{adj}$ so
@@ -8619,8 +8651,6 @@ the case that $n$ is even, $j$ and $n-j$ are odd.  Then $X(H)  =
 $U(n)_{adj}$ (up to isogeny).  The element $s  \in 
 GL(n,{\CC})$ defining the endoscopic group has odd determinant so that
 it does not pass to $SL(n,{\CC})$.
-\enddefinition
- 
 
    We show that ${\theta}_{1} = 1$, and ${\theta}_{2}  =  {\eta}_{K}$ in
 $(VI.2.3)$.  We have $\prod{\kappa}^{{\alpha}}({\alpha}(t'))  =  1$.  Let $t'
@@ -8632,23 +8662,33 @@ Now ${\theta}_{2} N  =  1$, so that ${\theta}_{2}$ is either the trivial
 character or ${\eta}_{K}$.  If ${\theta}_{2}$ were the trivial character
 then $H$ (up to isogeny) would be an endoscopic group
 of the adjoint group $U(n)_{adj} (2.2)$, so ${\theta}_{2}  =  {\eta}_{K}$.
+\phantom\qedhere
+\end{proof}
+ 
 
-\definition{$B_{n}$} If ${\theta} \ne 1$ then by $(VI.2.3)$ and section 2 
+\begin{proof}[$B_{n}$] If ${\theta} \ne 1$ then by $(VI.2.3)$ and section 2 
 $Y(T,{\kappa}) = \{{\eta}_{K}^{n}\}$ where $K$ is the splitting field of $H$.
 $H  =  {}^{2}A_{n-1-2j} \times {}^{2}(B_{j} \times B_{j})$.  The factor
 ${}^{2}(B_{j} \times B_{j})$ does not contain any $F$-rational subregular
 elements.  Thus the character comes from ${}^{2}A_{n-1-2j}$ and $X(H)  = 
 \{{\eta}_{K}^{n-2j}\}  =  \{{\eta}_{K}^{n}\}$.  So $X(H)  =  Y(T,{\kappa})$.
 If ${\theta} = 1$ then $Y(T,{\kappa}) = X(H) = \{1\}$.
-\enddefinition
+\phantom\qedhere
+\end{proof}
  
-\definition{$C_{n}$} $X(H)  =  Y(T,{\kappa})  =  \{1\}$.\enddefinition
+\begin{proof}[$C_{n}$] 
+$X(H)  =  Y(T,{\kappa})  =  \{1\}$.
+\phantom\qedhere
+\end{proof}
 
-\definition{$D_{n},{}^{2}D_{n}$}  $n$ even.  $Y(T,{\kappa})  =  \{1\}$ and we never
+
+\begin{proof}[$D_{n},{}^{2}D_{n}$  $n$ even]  $Y(T,{\kappa})  =  \{1\}$ and we never
 obtain an even rank unitary group.  
-\enddefinition
+\phantom\qedhere
+\end{proof}
 
-\definition{$D_{n},{}^{2}D_{n}$} $n$ odd.  $Y(T,{\kappa})  =  \{{\theta}^{2}\}$.
+
+\begin{proof}[$D_{n},{}^{2}D_{n}$ $n$ odd]  $Y(T,{\kappa})  =  \{{\theta}^{2}\}$.
 ${\theta}^{2} = 1$ if and only if $H$ descends to an endoscopic group of
 $SO(2n)$.  If ${\theta}^{2} = 1$ we see that ${\rho }$ is trivial.
 ${}^{L}SO(2n)^{0}  =  SO(2n)$ and the unitary piece drops out.  So $X(H)  = 
@@ -8656,11 +8696,14 @@ ${}^{L}SO(2n)^{0}  =  SO(2n)$ and the unitary piece drops out.  So $X(H)  =
 inside $SO(2n)$, \  ${\rho }({\sigma})(s)  =  -s$.  Thus the orthogonal factors
 will be interchanged and $A_{j}$ will be unitary (of even rank).  Thus
 $X(H)  =  \{{\eta}_{K}\}$, \  (${\eta}_{K}  =  {\theta}^{2}$).
-\enddefinition
+\phantom\qedhere
+\end{proof}
 
-\definition{Exceptional\ Groups\
-$E_{6},E_{7},E_{8},G_{2},F_{4},{}^{2}E_{6},{}^{3}D_{4},{}^{6}D_{4}$}
-\enddefinition
+\begin{proof}[Exceptional\ Groups\
+$E_{6},E_{7},E_{8},G_{2},F_{4},{}^{2}E_{6},{}^{3}D_{4},{}^{6}D_{4}$]
+\phantom\qedhere
+\end{proof}
+
 
 By examining $(VI.2.3)$ we see that $Y(T,{\kappa})  =  \{1\}$.  To prove
 compatibility of characters we must show that these exceptional groups do
@@ -8676,7 +8719,7 @@ Unfortunately, I know of no simple proof to show that their endoscopic
 groups do not contain any even rank unitary factors.  We sketch a case by
 case proof in the following paragraphs.
 
-\definition{$E_{7}$} We take the dual of $E_{7}$ to be the adjoint group of type
+\begin{proof}[$E_{7}$] We take the dual of $E_{7}$ to be the adjoint group of type
 $E_{7}$ over ${\CC}$.  By the result of Golubitsky and Rothschild
 $(1.7)$ the centralizer of $s$ in $E_{7}$ stabilizes one of the following
 subalgebras: $A_{1}\oplus D_{6}, A_{1}^{3}\oplus D_{4}, A_{1}^{7}, A_{2}\oplus A_{5},
@@ -8689,7 +8732,7 @@ automorphism of $A_{2}\oplus A_{5}$ which acts on both factors is realized in
 the group $E_{7}$.  We must show that this outer automorphism does not lie
 in the centralizer of $s$ where $Lie(Cent(s,E_{7}))  =  A_{2}\oplus A_{5}$.  The
 extended diagram of $E_{7}$ is
-\enddefinition
+
 
 \medskip
 %DIAGRAM32
@@ -8727,15 +8770,18 @@ even.
 
    $E_{6}\oplus T^{1}$ reduces to the case $E_{6}$ if $E_{7}$ does not contain
 the outer automorphism of $E_{6}$ or ${}^{2}E_{6}$ if it does.
+\phantom\qedhere
+\end{proof}
 
-\definition{${}^{2}E_{6}$}  We turn our attention to the group ${}^{2}E_{6}$.  I am
+
+\begin{proof}[${}^{2}E_{6}$]  We turn our attention to the group ${}^{2}E_{6}$.  I am
 forced to assume at this point that the list of primitive algebras for the
 connected group $E_{6}$ is the same as the list for the semidirect
 product of
 $E_{6}$ by $\{1,{\omega}\}$ 
 with two components.  Again we take the adjoint group over ${\CC}$ for the $L$-group.
 The extended Dynkin diagram is given by:
-\enddefinition
+
 
 \medskip
 %DIAGRAM33
@@ -8820,10 +8866,14 @@ we find that ${\alpha}_{6}(s)^{2}  =  1$ so that ${\alpha}_{6}(s)  =
 {\pm}1$.  Thus either ${\alpha}_{6}(s)$ or ${\alpha}_{6}{\alpha}_{7}(s)
  =  1$.  Neither is a root of $Cent(t,{}^{L}G^{0})^{0}$.  This contradicts the
 assumption that ${}^{L}H^{0}$ stabilizes $A_{1}\oplus A_{5}$.
+\phantom\qedhere
+\end{proof}
+
+
 \end{proof} 
 
 
-\section{4.\  Stable\ orbital\ integrals}
+\section{Stable\ orbital\ integrals}
 
 
    In this section we transfer the stable subregular germ on a group $G$ to its
@@ -8875,13 +8925,13 @@ is consequently the same for $G$ and $G_{in}$.  It was proved in $(VI.1.6)$
 that ${\zeta}$ is a norm if and only if $G$ is quasi-split.
 \end{proof}
 
-\section{5.\ Unitary\ Groups}
+\section{Unitary\ Groups}
 
    In this section we prove the transfer of the subregular germ of
 ${\kappa}$-orbital integrals from unitary groups to the endoscopic groups $H
  =  U(n-2h)\times U(2h)$.
 
-\subsection{5.1.\ Vanishing\ of\ Germs}
+\subsection{Vanishing\ of\ Germs}
 
    We begin by proving that the subregular germ of a ${\kappa}$-orbital
 integral is zero if the endoscopic group $H$ contains no $F$-rational
@@ -8892,6 +8942,8 @@ but calculates the action of $H^{1}(Z)$ on $F$-conjugacy classes in each
 adjoint conjugacy class.  We take the second approach.
 
 \medpagebreak
+
+\addtocounter{theorem}{1} % counter is wrong in the original!
 
 \begin{lemma}{Lemma 5.2}\ Let $G$ be a simply connected semi-simple group.
 The $F$-conjugacy classes in an adjoint class are in bijection with
@@ -8921,7 +8973,7 @@ $O^{g} = O$.  Adjusting by an element in $G(F)$, we may also assume that
 $x^{g} = x$ for some $x  \in  O$.  Thus ${\sigma}(g)g^{-1}$ is a
 boundary in $C_{G}(x)$, and $g$ lies in $C_{G}(x)$.  $C_{G}(x)$ is a
 semi-direct product of a reductive piece $C_{G}(x)_{red}$ and its unipotent
-radical \cite{\Sl,7.5}.  Write $g = g_{0}n$ according to this semi-direct
+radical \cite{\Sl}*{\S7.5}.  Write $g = g_{0}n$ according to this semi-direct
 product.
 $$
 {\sigma}(g)g^{-1} = {\sigma}(g_{0})g_{0}^{-1}\cdot 
@@ -9030,7 +9082,7 @@ pick $z$ such that ${\bold {ad}}zO  =  O$ and ${\kappa}({\sigma}(z^{-1})z) \ne
 1$.  Then ${\Gamma}_{O}  =  0$.
 \end{proof} 
 
-\begin{remark*}{Remark} This centralizer argument can be applied quite
+\begin{remark*} This centralizer argument can be applied quite
 generally to show that germs vanish.  One can show for instance for
 $G = A_{n}$ that if the splitting field of $H$ is cyclic of order ${\ell}$,
 then the only non-vanishing germs correspond to unipotent classes such that
@@ -9044,6 +9096,8 @@ $$
 where ${\beta}$ is a non-negative integer.  
 \end{remark*}
 
+\setcounter{subsection}{4} % [sic] wrong number is in original!
+
 \subsection{5.5.\ The\ stable\ germ\ of\ unitary\ groups}
 \vskip .2in
 
@@ -9052,13 +9106,13 @@ subregular germ of $G = U(n)$ to $H = U(n-2h) \times U(2h)$.  The general idea
 should not be obscured by the calculations that follow.  As was mentioned
 in chapter $V$, our expression of the subregular germ consists of the
 following data:
-\begin{enumerate}
-\item{1.}\   A surface $S$ (together with a description of its components and
+\begin{enumerate}[label=\arabic*.]
+\item A surface $S$ (together with a description of its components and
 rationality structure)
-\item{2.}\  a $2$-form on $S$ defined over $F$.
-\item{3.}\  a cocycle $b_{{\sigma}}$ in $T$ depending on $p  \in  S(F)$
-\item{4.}\  a character ${\kappa}$ on $T$
-\item{5.}\  canonical coordinates $(w,{\xi})$.
+\item a $2$-form on $S$ defined over $F$.
+\item a cocycle $b_{{\sigma}}$ in $T$ depending on $p  \in  S(F)$
+\item a character ${\kappa}$ on $T$
+\item canonical coordinates $(w,{\xi})$.
 \end{enumerate}
 
 \medpagebreak
@@ -9068,11 +9122,11 @@ dependence on ${\xi}$ at the expense of introducing a cocycle
 $a_{{\sigma}}$ in $H^{1}(U(1))$ depending on $w$.  Furthermore the cocycle
 in $T$ will be simplified to a cocycle in $H^{1}(U(1))$.  The data will
 then become:
-\begin{enumerate}
-\item{1.}\  a projective line ${\PP}^{1}$ with canonical coordinate $w$
-\item{2.}\  a $1$-form $dw/w^{2}$ on ${\PP}^{1}$
-\item{3.}\  cocycles $b$ and $a\cdot b$ in $H^{1}(U(1))$
-\item{4.}\  the non-trivial character ${\eta}_{K}$ of $H^{1}(U(1))$
+\begin{enumerate}[label=\arabic*.]
+\item a projective line ${\PP}^{1}$ with canonical coordinate $w$
+\item a $1$-form $dw/w^{2}$ on ${\PP}^{1}$
+\item cocycles $b$ and $a\cdot b$ in $H^{1}(U(1))$
+\item the non-trivial character ${\eta}_{K}$ of $H^{1}(U(1))$
 \end{enumerate}
 \medpagebreak
 
@@ -9091,10 +9145,10 @@ indicate this dependence ${\bold b}  =  b_{n,2h} (2h \le n)$.  In
 particular $b_{n,0}$ corresponds to the stable orbital integral (H $ = 
 U(n))$.  We also add subscripts to the variables $(w,{\xi})$ and to the
 form ${\nu}$.  The transfer will follow from the following three steps:
-\begin{enumerate}
-\item{1.}\  If ${\kappa}$ is trivial $(i.e$.  for stable orbital integrals)
+\begin{enumerate}[label=\arabic*.]
+\item If ${\kappa}$ is trivial $(i.e$.  for stable orbital integrals)
 $b_{n,0}  =  1$ and $$\int{\eta}_{K}(b_{n,o})\vert dw/w^{2}\vert  =  0.$$
-\item{2.}\  (Transfer to $U(2h))$\ There is a morphism ${\PP}^{1} {\to} 
+\item (Transfer to $U(2h))$\ There is a morphism ${\PP}^{1} {\to} 
 {\PP}^{1}$ over $F$ given by
 $$
 w_{n}/(R_{1}w_{n} + 1)  =  w_{2h}\ {\text{for\ some}}\  R_{1}  \in  K_X
@@ -9103,7 +9157,7 @@ carrying $b_{n,2h}$ to $a_{2h}$.
 (Note that ${\eta}_{K}^{2h}  =  1$
 and that $dw_{n}/w_{n}^{2}  =  dw_{2h}/w_{2h}^{2})$.
 \smallskip
-\item{3.}\   (Transfer to $U(n-2h))$\ There is a morphism ${\PP}^{1} {\to} 
+\item (Transfer to $U(n-2h))$\ There is a morphism ${\PP}^{1} {\to} 
 {\PP}^{1}$ over $F$ given by
 $$
 w_{n}/(R_{2}w_{n} + 1)  =  w_{n-2h}\ {\text{for\ some}}\  R_{2}  \in  K_X
@@ -9128,13 +9182,14 @@ the permutation $(j,-j)$.  The field $K_X$ introduced in $(V.2)$ is $\Fb
 
    We give a description of the stable subregular germ of $U(n)$.
 
+\setcounter{theorem}{5} % sic, error in original!
 
 \begin{theorem}{Theorem 5.6}\ Let ${\alpha}$ and ${\beta}$ be the simple
 roots ${\alpha}  =  T_{1}-T_{-{\epsilon}}, {\beta}  = 
 T_{-{\epsilon}}-T_{-{\epsilon}-1}$.  The stable subregular germ of $U(n)$
 is given by the following data
-        \begin{enumerate}
-\item{1.}\  The curve ${\PP}^1$ with canonical variable $w$.  The
+        \begin{enumerate}[label=\arabic*.]
+\item The curve ${\PP}^1$ with canonical variable $w$.  The
 action of $\tilde{\Omega}$ on $w$ is given by
 $$
 \aligned
@@ -9145,8 +9200,8 @@ $$
 -w/((T_{{\epsilon}}-T_{-{\epsilon}})e({\alpha},{\beta})w + 1) 
 \endaligned
 $$
-\item{2.}\  The $1$-form $dw/w^{2}$
-\item{3.}\  The cocycle $a$ of $\tilde{\Omega}$ with values in $U(1)$ given on
+\item The $1$-form $dw/w^{2}$
+\item The cocycle $a$ of $\tilde{\Omega}$ with values in $U(1)$ given on
 generators by 
 $$
 \aligned
@@ -9159,7 +9214,7 @@ $$
 \end{enumerate}
 \end{theorem}
 
-\begin{remark*}{Remark} We take $e({\alpha},{\beta}) = 1$,
+\begin{remark*} We take $e({\alpha},{\beta}) = 1$,
 $e({\alpha},{\beta}') = -1$, $e({\beta},{\alpha}) = -1$,\  
 (${\beta}'  =  T_{2}-T_{1}$).
 This is justified by the $3 \times 3$ calculations:
@@ -9364,6 +9419,8 @@ $$
 and the result follows by induction.
 \end{proof} 
 
+\setcounter{subsection}{10} % sic, error in original!
+
 \subsection{5.11.\  The\ $\kappa$-subregular\ germ\ on\ $U(2n)$}
 
 In this section we calculate a simple expression for $m_{{\kappa}}(e)$
@@ -9386,7 +9443,8 @@ the subgroups $\underline{H}$ exist over $F$.  If $H'$ is a subgroup of $G$ over
 $F$ which is stably conjugate to $\underline{H}$ then $\underline{H}^{g}  =  H'$ for some
 $g  \in  G_{der}(\Fb)$.  We find that ${\sigma}(g)g^{-1}$ is a cocycle
 in $\underline{H}$ which lies in $G_{der}$.
- 
+
+\setcounter{theorem}{11} % sic, error in original! 
 
 \begin{lemma}{Lemma 5.12}\ Let $det_{i}$ be the determinant on $\underline{H}_{i}$.
 Then $H'$ is stably conjugate to $\underline{H}$ if and only if
@@ -9421,12 +9479,12 @@ of $H^{1}(U(1))$.
 
 
 \begin{lemma}{Lemma 5.13}
-\begin{enumerate}
-\item{a)}\  The Cartan subgroups in $G$ which are identified with 
+\begin{enumerate}[label=\alph*)]
+\item The Cartan subgroups in $G$ which are identified with 
 Cartan subgroups
 in $H$ are precisely those which are stably conjugate to a Cartan subgroup
 in $\underline{H}$.
-\item{b)}\  Selecting a representative $T$ in $\underline{H}$ for each of these stable
+\item Selecting a representative $T$ in $\underline{H}$ for each of these stable
 conjugacy classes, if $g  \in  T\backslash G(F)$, then
 ${\kappa}({\sigma}(g)g^{-1})  =  {\eta}_{K}(det_{1}({\sigma}(g)g^{-1}))$
 where ${\eta}_{K}$ is the non-trivial character on $H^{1}(U(1))$.
@@ -9500,7 +9558,7 @@ where $n  = \prod {\epsilon}_{{\gamma}}(n_{{\gamma}})$ and $n^{-1}  =  m
 on the roots is that given in $(II.5)$.
 \end{lemma}
 
-\begin{proof} \ By lemma $(I.5.4), {\sigma}(g)g^{-1}  = 
+\begin{proof} \ By lemma (I.5.4), ${\sigma}(g)g^{-1}  = 
 z(W_{+},{\alpha})^{{\alpha}^{v}}$ for ${\sigma} {\to}
 {\sigma}_{{\alpha}}  =  (i,i+1)$ (up to a constant independent of the star).
 If $i \ne  k-h, -k+h-1$ then $det_{1}(b_{{\sigma}})  = 
@@ -9851,7 +9909,7 @@ everything checks out.  This completes the proof of the transfer.
 
 \medskip
 
-\begin{remark*}{Remark} We make a few observations about the transfer.
+\begin{remark*} We make a few observations about the transfer.
 First the arguments are independent of the Cartan subgroup.  Second the
 singularities of the variety $Y_{1}$ ultimately played no role in the
 expression for the subregular germ.  Finally we note that the transfer
@@ -9871,228 +9929,27 @@ way.
 \include{}
 
 
-\chapter*{ References}
+%\chapter*{References}
 	
+\nocite{MR748504} %arthur
+\nocite{MR1266626} %carter
+\nocite{MR1124110} %this
+
+\backmatter
+%    Bibliography styles amsplain or harvard are also acceptable.
+%\bibliographystyle{amsalpha}
+
+\begin{bibdiv}
+\begin{biblist}
+%\bibselect{hales-references} % need to debug.
+\end{biblist}
+\end{bibdiv}
+
+%\bibliography{}
+%    See note above about multiple indexes.
+%\printindex
 
 	
-\ref\no 1
-\by J. Arthur 
-\paper On some problems suggested by the Trace Formula. 
-\book Lie Group Representations II
-\inbook Lecture Notes in Math., vol. 1041
-\publ Springer-Verlag 
-\publaddr Berlin 
-\yr 1984 
-\sendref
- 
-\ref\no 2
-\by A. Borel 
-\paper Automorphic $L$-functions
-\inbook Automorphic Forms, Representations and $L$-functions 
-\bookinfo Proceedings of Symposia in Pure Mathematics, Volume XXXIII, Part 2 
-\publ  American Mathematical Society
-\publaddr Providence, Rhode Island  
-\yr 1979 
-\sendref
- 
-\ref\no 3
-\by R.W. Carter 
-\book Finite Groups of Lie Type:  Conjugacy Classes and Complex Characters 
-\publ Wiley-Interscience, John Wiley and Sons
-\publaddr  Chichester 
-\yr 1985 
-\sendref
- 
-\ref\no 4
-\by M. Golubitsky and B. Rothschild
-\paper Primitive Subalgebras of Exceptional Lie Algebras 
-\jour Pacific Journal of Mathematics
-\vol 39 No. 2
-\yr 1971
-\sendref
- 
-\ref\no 5
-\by Harish-Chandra
-\paper Admissible invariant distributions on reductive $p$-adic groups 
-\jour Queen's Papers in Pure and Applied Math.
-\vol   48
-\pages 281--347 
-\yr 1978
-\sendref
- 
-\ref\no 6
-\by Harish-Chandra
-\book Harmonic Analysis on Reductive $p$-adic Groups 
-\bookinfo Lecture Notes in Mathematics 
-\bookinfo Notes by G. van Dijk
-\publ Springer-Verlag 
-\publaddr Berlin  
-\yr 1970
-\sendref
- 
-\ref\no 7
-\by R. Hartshorne
-\book Algebraic Geometry
-\publ Springer-Verlag 
-\publaddr New York 
-\yr 1977 
-\sendref
-
-\ref\no 8
-\by H. Hironaka
-\book Algebraic Geometry
-\bookinfo J.J.  Sylvester Sympos. Johns Hopkins Univ. 1976
-\publaddr Baltimore, Md. 
-\yr 1977
-\pages 52--125.  
-\publ Johns Hopkins Univ. Press
-\sendref 
-
-\ref\no 9
-\by H. Hironaka
-\book Memorias de Matematica del Instituto ``Jorge Juan''
-\vol 29  
-\publ Consejo Superior de Investigaciones Cientificas
-\publaddr  Madrid 
-\yr 1975 
-\sendref
- 
-\ref\no 10
-\by J. E. Humphreys 
-\book Linear Algebraic Groups
-\publ Springer-Verlag 
-\publaddr New York
-\yr 1981 
-\sendref
- 
-\ref\no 11
-\by J.-I. Igusa 
-\book Lectures on forms of higher degree 
-\publ Tata Institute of  Fundamental Research
-\publaddr Bombay 
-\yr 1978 
-\sendref
- 
-\ref\no 12
-\by R. Kottwitz 
-\paper Rational Conjugacy Classes in Reductive Groups
-\jour  Duke Math.  Journal
-\vol 49, No. 4 
-\yr 1982
-\pages 785--806
-\sendref
- 
-\ref\no 13
-\by M. Kneser 
-\paper Galois-Kohomologie halbeinfacher algebraischer Gruppen 
-\"uber \hfil\break $p$-adischen K\"orpern  
-\jour Math. Z. 
-\vol 88
-\yr 1965 
-\pages 40--47 
-\vol 89 
-\yr 1965 
-\pages 250--272 
-\sendref 
-
-\ref\no 14
-\by R. Langlands
-\book Les debuts d'une formule des traces stable
-\publ  Publications math. de l'Univ. de Paris VII
-\vol 13
-\yr 1983
-\sendref 
-
-\ref\no 15
-\by R. Langlands
-\paper Orbital Integrals on Forms of $SL(3)$, I
-\jour American Journal of Mathematics 
-\vol 105
-\yr 1983
-\pages 465--506
-\sendref
- 
-\ref\no 16
-\by R. Langlands and D. Shelstad
-\paper On Principal Values on $p$-adic Manifolds
-\inbook Lie Group Representations II
-\bookinfo Lecture Notes in Math. 
-\vol 1041
-\publ Springer-Verlag
-\publaddr Berlin
-\yr 1984
-\sendref
- 
-\ref\no 17
-\by R. Langlands and D. Shelstad
-\paper On the Definition of the Transfer Factors
-\jour Math. Ann. 
-\vol 278
-\pages 219--271
-\yr 1987
-\sendref
- 
-\ref\no 18
-\by D. Mumford 
-\book The Red Book of Varieties and Schemes
-\bookinfo Lecture Notes in Math. 
-\vol 1358
-\publ Springer-Verlag 
-\publaddr Berlin 
-\yr 1988
-\sendref
- 
-\ref\no 19
-\by J.-P. Serre 
-\book Corps Locaux
-\bookinfo  Actualit\'es scientifiques et industrielles 
-\vol 1296
-\publ Hermann 
-\publaddr Paris 
-\yr 1962 
-\sendref
-
-\ref\no 20
-\by J.-P. Serre
-\book Cohomologie galoisienne
-\bookinfo Lecture Notes in Math.
-\vol 5
-\publ Springer- Verlag 
-\publaddr Berlin 
-\yr 1964
-\sendref
-
-\ref\no 21
-\by P. Slodowy 
-\book Simple Singularities and Simple Algebraic Groups
-\bookinfo Lecture Notes in Math.
-\vol 815
-\publ Springer-Verlag
-\publaddr Berlin
-\yr 1980
-\sendref
-
-\ref\no 22
-\by N. Spaltenstein
-\book Classes Unipotentes et Sous-groupes de Borel
-\bookinfo Lecture Notes in Math. 
-\vol 946.  
-\publ Springer-Verlag
-\publaddr Berlin
-\yr 1982 
-\sendref
-
-\ref\no 23
-\by R. Steinberg
-\book Conjugacy Classes in Algebraic Groups
-\bookinfo Lecture Notes in Math.
-\vol 366.  
-\publ Springer-Verlag
-\publaddr Berlin
-\yr 1974 
-\sendref 
-
-%% end jthis.tex
 
 %% start kthis.tex
 
@@ -10107,342 +9964,339 @@ way.
 \parindent=0pt
 % Feb 2015:
 %\def\lish#1#2#3{\line{\hbox to 1.25in{#1\hss}\hbox to .85in{#2\hss}\hbox to 1in{#3\hss}\hss}}
-\def\lish#1#2#3{\par{\centerline{#1\hss\hfill #2\hss\hfill #3}}}
-\newcommand\blank{\vskip.2in\medskip}
+%\def\lish#1#2#3{\par{\centerline{#1\hss\hfill #2\hss\hfill #3}}}
+\newcommand\lush{}
+%\newcommand\blank{\vskip.2in\medskip}
 
-\blank
-\lish{$\alpha$            }{  I.2      }{  simple root}
-\lish{$\alpha$            }{  IV.7      }{  root next in size to $\beta$ in $S_-$}
-\lish{$\alpha$-cell       }{  IV.5}
-\lish{$\alpha$-wall       }{  IV.4}
-\lish{$\alpha$-chamber    }{  IV.4}
-\lish{$\alpha$            }{  II.7      }{  short simple root of $G_2$}
-\lish{$\alpha$            }{  III.1     }{  positive simple root in a rank two group}
-\lish{$\alpha^v$          }{  I.5       }{  coroot associated to $\alpha$}
-\blank
-\lish{$\beta$             }{            }{  positive simple root}
-\lish{$\beta$             }{  II.7      }{  long simple root of $G_2$}
-\lish{$\beta$             }{  III.1     }{  positive simple root in a rank two group}
-\lish{$\beta$             }{  IV.7      }{  largest simple root of $S_-$}
-\lish{$\beta(E_\Sigma)$   }{  II.9      }{  Igusa constants}
-\lish{$\beta$             }{  V.3       }{  Igusa constant, see Langlands [\LL]}
-\blank
-\lish{$\gamma$            }{  III.1     }{  positive root in a rank two group}
-\lish{$\gamma$            }{  II.7      }{  root $\alpha+\beta$ of $G_2$}
-\lish{$\gamma_j$          }{  VII.5.13  }{  root $T_j-T_{-j}$}
-\lish{$\Gamma$            }{  I.1,I.6       }{  regular curve in $T$}
-\lish{$\Gamma$            }{  I.6       }{  $\Gamma\setminus \{0\}$}
-\lish{$\Gamma_O,\Gamma_{O'}$    }{      VII.4 }{         subregular germs}
-\lish{$\Gamma_0$          }{  IV.3.2    }{  a graph}
-\lish{$\Gamma_1$          }{  IV.4      }{  minimal tree in $\Gamma_0$ containing extremal }
-\lish{}{}{\quad $\alpha,\beta\in S_-$}
-\lish{$\Gamma'$           }{  IV.4      }{  pruned $\Gamma_1$, as a graph it equals $S_-$}
-\blank
-\lish{$\delta$            }{  III.1     }{  positive root in a rank two group}
-\lish{$\delta$            }{  II.7      }{  root $2\alpha+\beta$ of $G_2$}
-\lish{$\delta$            }{  V.2.3     }{  $\delta(\xi) = x(\beta)/\xi x(\gamma)$}
-\lish{$\Delta_\Gamma$     }{  VI.2      }{  $=m_\kappa(e')$, $e' = e(T(W,\alpha)$ : $\alpha$ simple}
-\lish{$\Delta'$           }{  VI.2      }{  representatives of orbits of simple roots }
-\lish{}{}{\quad under $\Gal$}
-\blank
-\lish{$\epsilon$          }{  III.1     }{  positive root in a rank two group}
-\lish{$\epsilon_{\pm\alpha}(x)$ }{      I.5   }{         $\exp(x\,X_{\pm\alpha})$, $X_{\pm\alpha}$ root vectors}
-\lish{$\epsilon$          }{  II.7      }{  root $3\alpha+\beta$ of $G_2$}
-\lish{$\epsilon$          }{  VII.5.5   }{  $\epsilon=1$ for $n$ even and $\epsilon=0$ for $n$ odd}
-\lish{$\epsilon_j$        }{  VII.5.5   }{  permutation $(j,-j)$ of $-k,\ldots,k$}
-\blank
-\lish{$\zeta$             }{  III.1     }{  positive root in a rank two group}
-\lish{$\zeta$             }{  II.7      }{  root $3\alpha+2\beta$ of $G_2$}
-\blank
-\lish{$\eta_K$            }{  V.4,VII.4       }{  nontrivial character of $H^1(\Gal,U(1))$}
-\lish{$\eta_K$            }{       }{  nontrivial quadratic character of $F^\times$}
-\blank
-\lish{$\kappa$            }{  I.1,I.5       }{  character on $H^1(\Gal,T)$}
-\lish{$\kappa^\alpha$     }{  VI.2      }{  character of $F_\alpha^\times$}
-\lish{$\kappa(E)$         }{  V.2       }{  character such that $f/\kappa(E)(\mu)$ extends}
-\lish{}{}{\quad generically to $E$}
-\lish{$\kappa(E)$         }{  VI.2      }{  $\prod (\kappa^\alpha)^{e(\alpha)}$, $e(\alpha)$ an integral multiplicity}
-\lish{$\kappa(E_0)$       }{  VI.2      }{  $=\kappa_0$}
-\lish{$\kappa_0$          }{  VI.2      }{  $\prod \kappa^\alpha$}
-\blank
-\lish{$\lambda$           }{  I.1       }{  local parameter on $\Gamma$ at $p$}
-\lish{$\lambda$           }{  II.4      }{  pullback of a local parameter on $\Gamma$ to $Y$}
-\blank
-\lish{$\nu$               }{  I.2,II.1       }{  an element of $N_\infty$}
-\lish{$\nu_2$             }{  V.3       }{  form on $E_\alpha\cap E_\beta$}
-\blank
-\lish{$\xi$  }{  I.5,V.1.2  }{  coordinate in $N_{qs\infty}/N_\alpha$ on $U(\alpha,\beta)\cap E_\alpha(u)^0$}
-\lish{$\xi$               }{  IV.5      }{  a wall of an $\alpha$-chamber}
-\lish{$\xi:X_1\to T$      }{  I.6       }{  a morphism}
-\lish{$\xi:{}^LH\to{}^LG$ }{            }{  an embedding of $L$-groups}
-\blank
-\lish{$\pi_1:X_1\to G$    }{  I.6       }{  a morphism}
-\lish{$\pi_1:Y_1\to G$    }{  I.5       }{  a morphism}
-\blank
-\lish{$\rho$              }{  VII.1     }{  homomorphism $\Gal\to\hbox{Outer}({}^LH^0)$}
-\blank
-\lish{$\sigma_\alpha$     }{  I.5,II.6,V.5.2     }{  simple reflection in the Weyl group}
-\lish{$\sigma_\omega$     }{  II.6      }{  representative of $\omega\in\Omega$ in $N_G(T_0)$}
-\lish{$\sigma_*$          }{  VI.1      }{  action of Galois group on simple roots in}
-\lish{}{}{\quad a quasisplit group}
-\lish{$\sigma_{sp}$       }{  VI.1      }{  action of the Galois group in $G_{sp}$}
-\lish{$\sigma_0$          }{  VI.1      }{  element of $\tilde \Omega$}
-\lish{$\sigma_T$          }{  III.1     }{  permutation of Weyl chambers associated }
-\lish{}{}{\quad to $\sigma\in\Gal$ and $T$}
-\lish{$\Sigma$            }{  VI.2      }{  an element of $\Delta'$}
-\blank
-\lish{$\phi:T^0\times T\back G\to X_1$      }{  I.6          }{      a morphism}
-\blank
-\lish{$\omega_\alpha$     }{  V.5.2     }{  $\omega_\alpha\in N_G(T_0)$}
-\lish{$\omega_\sigma$     }{  VI.1      }{  element of $N_{P_\alpha}(T_0)_{adj}$}
-\lish{$\omega_Z$          }{  I.2,V.2   }{  invariant form of top degree on $Z$,}
-\lish{}{}{\quad $Z=M,T,T\back G,X$ or $Y$}
-\lish{$\Omega$            }{  I.2       }{  Weyl group of $G$ with respect to $T$}
-\lish{$\tilde\Omega$      }{  VI.1      }{  the extended Weyl group or direct }
-\lish{}{}{\quad product $\Omega\times \ZZ/2\ZZ$}
-\lish{$\Omega'$           }{  III.1     }{  $\hbox{Image}(\Gal\to\tilde\Omega)$, $\tilde\Omega$ extended }
-\lish{}{}{\quad Weyl group}
-\blank
-\lish{adjacent walls      }{  IV.4      }{}
-\lish{adjoint conjugacy   }{  I.6       }{  a conjugacy class in the adjoint group}
-\lish{$a_\sigma$          }{  V.4       }{  cocycle in $H^1(\Gal,U(1))$}
-\lish{$a_\sigma$          }{  VI.1      }{  automorphism of $(G_{sp},B_{sp},T_{sp},\{X_\gamma\})$}
-\lish{$a_\sigma(w)$       }{  VI.2.3    }{  a cocycle}
-\lish{$a_n$               }{  VII.5.5   }{  the cocycle $a$ for the group $U(n)$}
-\lish{$a(E_\Sigma)$       }{  II.9      }{  Igusa constants}
-\lish{$A_\sigma$          }{  I.5       }{  a cocycle of $Z^1(\Gal,N_{G_{qs}}(T_{qs})_{ad})$}
-\lish{$A(X),A_r(X)$       }{  V.3       }{  Igusa data, see Langlands [\LL]}
-\lish{$A_n$               }{  I.3       }{  group or algebra of type $A_n$}
-\lish{$\AAA^r$             }{            }{  affine $r$-space}
-\blank
-\lish{big nodes           }{  IV.4      }{}
-\lish{big chamber         }{  IV.4         }{      }
-\lish{big wall            }{  IV.4      }{}
-\lish{$b$                 }{  II.1      }{  element of $B_0$}
-\lish{${\bold b}=b_{n,2h}$  }{  VII.5.5   }{  a cocycle in $H^1(U(1))$}
-\lish{$\BB$               }{  I.2       }{  Borel subgroup containing $T$}
-\lish{$\BB(W)$            }{  I.2       }{  $\BB^\omega$, $W = W(\omega)$.}
-\lish{$(B(W))$            }{  I.2       }{  star in $S$}
-\lish{$B_0,B_\infty$      }{  I.2       }{  a pair of opposite Borel subgroups}
-\lish{$B_{qs}$            }{  I.5       }{  Borel subgroup over $F$ containing $T_{qs}$}
-\lish{$B_{sp}$            }{  VI.1      }{  Borel subgroup in split form}
-\lish{$B_+$               }{  V.5       }{  intersection of lines $\ell_\alpha$, $\ell_\beta$}
-\lish{$B_-$               }{  V.5.1     }{  intersection of lines $\ell_\alpha$, $\ell_\alpha'$}
-\lish{B.I,$\ldots$,B.IV }{  III.1     }{  zero patterns}
-\lish{$B_n$               }{  I.3       }{  group or algebra of type $B_n$}
-\blank
-\lish{$\CC$               }{            }{  complex numbers}
-\lish{$C_G(x)$            }{            }{  centralizer in $G$ of $x$}
-\lish{$C_G(x)_{red}$      }{  VII.5     }{  the reductive part of the centralizer of $x$}
-\lish{$C_n$               }{  I.3       }{  group or algebra of type $C_n$}
-\blank
-\lish{divisor             }{  I.6       }{}
-\lish{--\ fundamental }{  II.9      }{}
-\lish{--\ $O$         }{  I.6       }{  a divisor over the unipotent class $O$}
-\lish{--\  regular   }{  I.6       }{  a divisor over a regular unipotent class}
-\lish{--\  spurious    }{  II.9      }{}
-\lish{--\ subregular}{  I.6       }{  a divisor over a subregular unipotent class}
-\lish{$D_n$               }{  I.3       }{  group or algebra of type $D_n$}
-\lish{Dynkin curve        }{  IV.1,VI.1      }{  $(B\back G)_u$}
-\blank
-\lish{external wall       }{  IV.5      }{   }
-\lish{$e$                 }{  I.5,II.1       }{  a star, element of $S$}
-\lish{$e(p)$              }{  VI.2      }{  a star depending on a point $p$}
-\lish{$e=e(\alpha_1,\alpha_2)$  }{      V.6   }{         constant defined by }
-\lish{}{}{\quad $\exp(X_{-\alpha_1})\exp(X_{\alpha_1+\alpha_2})\exp(-X_{-\alpha_1})=\ldots$}
-\lish{$e_\ell$            }{  VII.5.6   }{  constants in $F$}
-\lish{$E$                 }{  I.6       }{  a divisor}
-\lish{$E(u)$              }{  I.6       }{  the fibre in $E$ over $u\in G$}
-\lish{$E_\alpha$          }{  V.1       }{  a subregular divisor, $\alpha$-simple, $E_\alpha = E_\Sigma$,}
-\lish{}{}{\quad $\Sigma=\{\alpha\}$}
-\lish{$E_\alpha(u)$       }{  V.1.1     }{  $\pi^{-1}(u)\cap E_\alpha$, fibre over $u$ in $E_\alpha$}
-\lish{$E_\alpha(u)^0$     }{  V.1.1     }{  an irreducible component of $E_\alpha(u)$}
-\lish{$E(\ell_\alpha,u)$  }{  V.1.2     }{  a component of $E_\alpha(u)$ indexed by the line $\ell_\alpha$}
-\lish{$E_0$               }{  V.1       }{  the regular divisor, $E_0=E_\Sigma$, $\Sigma=\emptyset$}
-\lish{$E$                 }{  VII.5.14  }{  $E_{\alpha_k}\cap E_{\alpha_{k+1}}$ or $E_{\alpha_k}$}
-\lish{$E_n$               }{  I.3       }{  group or algebra of type $E_n$, $n=6,7,8$}
-\blank
-\lish{fundamental}{}{}
-\lish{--\ $\alpha$-cell }{      IV.5  }{          }
-\lish{--\ divisor }{  II.9      }{   }
-\lish{$f$                 }{  I.5       }{  a locally constant fuunction of compact }
-\lish{}{}{\quad support on $G$}
-\lish{$F$                 }{  I.        }{  $p$-adic field of characteristic 0.}
-\lish{$\Fb$               }{  I.        }{  algebraic closure of $F$}
-\lish{$F_\alpha$          }{  VI.2      }{  field extension of $F$ fixing $\alpha$}
-\lish{$F_4$               }{  I.3       }{  group or algebra of type $F_4$}
-\lish{$F_1(\beta,\theta,f)$     }{      V.3   }{ a term of the asymptotic expansion,}
-\lish{}{}{\quad see Langlands [\LL]}
-\blank
-\lish{$G$                 }{  I.        }{  reductive group defined over $F$}
-\lish{$G_{adj}$           }{  I.6       }{  the adjoint group of $G$}
-\lish{$G_{der}$           }{  II.5      }{  the derived group of $G$}
-\lish{$G_{in}$            }{  VII.4     }{  inner form of $G$}
-\lish{$G_{in}$            }{  I.5       }{  an inner form of $G_{qs}$}
-\lish{$G_{qs}$            }{  I.5       }{  a quasi-split group, a form of $G$}
-\lish{$G_{sp}$            }{  VI.1      }{  split form of $G$}
-\lish{$G_2$               }{  I.3       }{  group or algebra of type $G_2$}
-\blank
-\lish{$h_2$               }{  V.3       }{  function on $E_\alpha\cap E_\beta$}
-\lish{$H^1(T)$            }{  I.5       }{  $H^1(T)=H^1(\Gal,T)$ first }
-\lish{}{}{\quad cohomology group with coefficients in $T$}
-\lish{$H$                 }{  I.5,VII.1  }{  endoscopic group}
-\lish{$H$                 }{  VII.5     }{  the endoscopic group $U(n-2h)\times U(2h)$ }
-\lish{}{}{\quad of $U(n)$}
-\lish{$\underline{H}$     }{  VII.5.11  }{  subgroup $U(2h)\times U(n-2h)$ of $G=U(n)$}
-\lish{$H'$                }{  VII.5.11  }{  subgroup of $U(n)$ conjugate to $\underline{H}$}
-\blank
-\lish{$K$}{}{ field extension of $F$}
-\lish{$K_X$               }{  V.2.3     }{  field of rational functions on $Lie(T)$}
-\lish{$K_\alpha$          }{  IV.7      }{  an $\alpha$-cell in $Z_\alpha^-$}
-\blank
-\lish{$\ell_\alpha$       }{  V.1.2     }{  a projective line of type $\alpha$ in }
-\lish{}{}{\quad the flag variety}
-\lish{$L_p(W)$            }{  IV.1      }{  a set of simple roots}
-\lish{$L^- = L^-_{\beta_i}$     }{      IV.5,IV.7  }{         }
-\blank
-\lish{$m_\alpha$          }{  II.2      }{  $\beta = \sum m(\alpha)\alpha$}
-\lish{$m_\kappa(e)$       }{  I.5       }{  the function $g\to\kappa(\sigma(g)g^{-1})$,}
-\lish{}{}{\quad $\sigma\in \Gal$, $g\in (T\backslash G)(F)$}
-\lish{$M$                 }{  I.2       }{  Springer variety $B\times_B G$}
-\lish{$M$                 }{  V.3       }{  constant $m+m_1+m_2+am(\mu_3)$}
-\blank
-\lish{node                }{  I.3       }{  a node is an $\{i,j\}$-residue in the Coxeter }
-\lish{}{}{\quad complex of $\Omega$}
-\lish{--\ big            }{  IV.4      }{   }
-\lish{--\ solid           }{  IV.3      }{   }
-\lish{--\ special        }{  III.1     }{   }
-\lish{$n_w$               }{  II.1      }{  a coordinate in $N_\infty$: $B_0^{n_w} = B(W)$}
-\lish{$N_G(T)$            }{            }{  normalizer in $G$ of $T$}
-\lish{$N$                 }{  I.2       }{  unipotent radical of $\BB$}
-\lish{$N_\infty$          }{  I.2       }{  the unipotent radical of $B_\infty$}
-\lish{$N_{qs}$            }{  I.5       }{  unipotent radical of $B_{qs}$}
-\lish{$N_{qs\infty}$      }{  I.5       }{  unipotent radical of Borel opposite $B_{qs}$ }
-\lish{}{}{\quad through $T_{qs}$}
-\lish{$N_\alpha$          }{  I.5       }{  radical of the parabolic subgroup }
-\lish{}{}{\quad $B^{op}_{qs}\langle \sigma_\alpha\rangle B_{qs}^{op}$, $op=$ opposite}
-\lish{$N_\omega$          }{  II.6      }{  subgroup of $N_0$}
-\lish{$N$                 }{  VI.2.3    }{  the norm map from $K$ to $F$, $K$ a field}
-\blank
-\blank
-\lish{obtusely adjacent   }{  IV.4      }{   }
-\lish{$O$-divisor         }{  I.6       }{  a divisor over the unipotent class $O$}
-\lish{$O$                 }{  II.9      }{  unipotent class $O$}
-\blank
-\blank
-\lish{proximate chamber   }{  IV.4      }{   }
-\lish{$p$                 }{  I.1       }{  point on a curve $\Gamma$}
-\lish{$p$                 }{  II.1      }{  a point in $X_1$}
-\lish{$p$                 }{  I.        }{  residue characteristic of $F$}
-\lish{$\PP_\alpha$        }{  II.6      }{  parabolic subgroup containing $B_0$}
-\lish{$P_\alpha$          }{  IV.1,V.1.2     }{  a parabolic subgroup of type $\alpha$ }
-\lish{}{}{\quad containing $B_0$}
-\lish{$\PP^1$             }{  VII.4     }{  projective line}
-\blank
-\blank
-\blank
-\lish{$Q$-chamber         }{  IV.5      }{   }
-\blank
-\lish{regular divisor     }{  I.6       }{  a divisor over a regular unipotent class}
-\lish{$r$                 }{  I.2       }{  the semisimple rank of $G$}
-\lish{$R$                 }{  IV.3      }{  roots $\alpha$ such that $z(W,\alpha)\ne 0$ for some $W$}
-\lish{$R_\omega$          }{  II.7      }{  $\{\beta>0 | \omega\beta<0\}$}
-\lish{$R_1,R_2$           }{  VII.5.5   }{  elements of $K_X$}
-\blank
-\blank
-\lish{solid node          }{  IV.3      }{   }
-\lish{special node        }{  III.1     }{   }
-\lish{spurious divisor    }{  II.9      }{   }
-\lish{subregular}{}{}
-\lish{--\ divisor  }{  I.6       }{  a divisor over a subregular unipotent class}
-\lish{--\ conjugacy class }{  IV.1         }{       }
-\lish{--\ unipotent  }{      III.3 }{          }
-\lish{$S$                 }{  I.2       }{  variety of stars}
-\lish{$S'$                }{  I.2       }{  subvariety of $S$}
-\lish{$S''$               }{  I.2       }{  open subvariety of $S_1$}
-\lish{$S^0$               }{  I.2       }{  variety of regular stars}
-\lish{$S_1$               }{  I.2       }{  first resolution of $S$}
-\lish{$S(B_\infty)$       }{  I.2       }{  a coordinate patch on $S$}
-\lish{$S(B_\infty,B_0)$   }{  I.2       }{  a coordinate patch}
-\lish{$S_2$               }{  IV.4      }{   }
-\lish{$S$                 }{  IV.3      }{  roots $\alpha$ such that $z_1(W,\alpha)=0$ for some $W$}
-\lish{$S_-$               }{  IV.4      }{  $S_- = S$ except for $D_4,\ |S|\ge 4,\ldots$}
-\blank
-\lish{type of a vertex    }{  IV.3.2    }{   }
-\lish{$t_\sigma$          }{  I.5       }{  a cocycle on $T(R)$, $R$ the field of rational }
-\lish{}{}{\quad functions on $S$}
-\lish{$T$                 }{  I.2       }{  Cartan subgroup in $G$ over $F$}
-\lish{$T^0$               }{  I.2       }{  regular elements of $T$}
-\lish{$T_0$               }{  I.2       }{  intersection of opposite Borel }
-\lish{}{}{\quad subgroups $B_0$, $B_\infty$}
-\lish{$T_0$               }{  V.5.2     }{  Cartan subgroup in $B_+\cap B_-$}
-\lish{$T_{in}$            }{  I.5       }{  Cartan subgroup in $G_{in}$}
-\lish{$T_{qs}$            }{  I.5       }{  maximally split Cartan subgroup of $G_{qs}$}
-\lish{$T_{sp}$            }{  VI.1      }{  Cartan subgroup in split form}
-\lish{$T(W,\alpha)$       }{  IV.1      }{  $(1-\gamma^{-1})/\lambda$}
-\lish{$T_\sigma$          }{  I.5       }{  a twisted cocycle in $Z^1(T_{qs})$}
-\lish{$T_i$               }{  VII.5.5   }{  the $i$th character on the Cartan subalgebra}
-\blank
-\blank
-\lish{$U(1)$              }{  V.4       }{  unitary group in 1-variable}
-\lish{$U(\alpha',\alpha'')$     }{      V.1.1 }{         a coordinate patch in $Y_s$}
-\lish{$U_1,U_2$           }{  V.3       }{  coordinate patches}
-\blank
-\lish{$V^n$               }{  I.2       }{  $n=|\Omega|$-fold product of the flag variety}
-\blank
-\lish{$w=w(\alpha+\beta)$ }{  V.2       }{  a coordinate on $U(\alpha,\beta)\cap E_\alpha(u)^0$}
-\lish{$w_n$               }{  VII.5.5   }{  the variable $w$ for the group $U(n)$}
-\lish{$W_+$               }{  I.2       }{  positive Weyl chamber for $\BB$}
-\lish{$W(\omega)$         }{  I.2       }{  $\omega^{-1}W_+$, $\omega\in\Omega$}
-\lish{$\bWW$               }{  IV.4      }{  a big chamber}
-\lish{$\bW$               }{            }{  a $Q$-chamber}
-\blank
-\lish{$x_\beta$           }{  II.1      }{  $x_\beta(b)$ is the $\beta$th coefficient of $b\in B_0$}
-\lish{$x(W,\beta)$        }{  II.1      }{  a local coordinate}
-\lish{$(x_{-k},\ldots,x_{k})$   }{      VII.5.5            }{      element of a Cartan subalgebra for }
-\lish{}{}{\quad $U(n)$, $2k+1-\epsilon=n$}
-\lish{$X$                 }{  I.2       }{  closure of $X^0$ in $G\times S$}
-\lish{$X'$                }{  I.2       }{  closure of $X^0$ in $G\times S'$}
-\lish{$X''$               }{  I.2       }{  closure of $X^0$ in $G \times S''$}
-\lish{$X(B_\infty,B_0)$   }{  I.2       }{  a coordinate patch on $X$}
-\lish{$X^0$               }{  I.2       }{  subvariety of $G\times S^0$}
-\lish{$X_1$               }{  I.2       }{  closure of $X^0$ in $G \times S_1$}
-\lish{$X_{\pm\alpha}$          }{  I.2,VI.2      }{  root vectors}
-\lish{$X_{\pm\alpha},H_\alpha$  }{      II.1  }{         a Lie triple}
-\lish{$X(H)$              }{  VII.3     }{  a set of characters $\theta:F^\times\to\CC^\times$}
-\blank
-\blank
-\lish{$y_\beta$           }{  II.2      }{  $\beta$th coefficient of $t^n$}
-\lish{$Y$                 }{  I.2       }{  closure of $Y^0$ in $X$}
-\lish{$Y'$                }{  I.2       }{  closure of $Y^0$ in $X'$}
-\lish{$Y''$               }{  I.2       }{  closure of $Y^0$ in $X''$}
-\lish{$Y(B_\infty,B_0)$   }{  I.2       }{  a coordinate patch on $Y$}
-\lish{$Y_\Gamma$          }{  I.2       }{  resolution of singularities of $Y_1$}
-\lish{$Y_\Gamma$          }{  I.6       }{  resolution of $Y_1$}
-\lish{$Y^0$               }{  I.2       }{  restriction of $X^0$ to $\Gamma$}
-\lish{$Y_1$               }{  I.2       }{  closure of $Y^0$ in $X_1$}
-\lish{$Y_s$               }{  V.1       }{  an open subvariety of $Y''$}
-\lish{$Y(T,\kappa)$       }{  VII.3     }{  a set of characters $\theta:F^\times\CC^\times$}
-\blank
-\lish{zero pattern        }{  III.1     }{   }
-\lish{$\hat z(\alpha)$     }{  IV.4      }{  a variable in $S_2$}
-\lish{$\hat z(W,\alpha)$   }{  IV.4      }{  a variable in $S_2$}
-\lish{$\tilde z(W,\alpha)$      }{      IV.1  }{         $\tilde z(W,\alpha) = z(W,\alpha)/z(W_\alpha,\alpha)$}
-\lish{$z(W,\alpha)$       }{  I.2       }{  a coordinate on $S(B_\infty,B_0)$}
-\lish{$z_1(W,\alpha)$     }{  I.2       }{  homogeneous coordinate in $S_1(B_\infty,B_0)$}
-\lish{$z_1(W,\alpha)$     }{  II.2      }{  $z_1(W,\alpha)=z(W,\alpha)/z(\alpha)$}
-\lish{$\ZZ$               }{            }{  ring of integers}
-\lish{$Z$                 }{  VII.5     }{  center of $G$}
-\lish{$Z_\alpha^-$        }{  IV.7      }{  union of $\alpha$-chambers}
-\lish{$Z_\beta$           }{  IV.7      }{  union of $\beta$-chambers}
+%\blank
+\begin{longtable}{llr}
+{$\alpha$            }&{  I.2      }&{  simple root}\\
+{$\alpha$            }&{  IV.7      }&{  root next in size to $\beta$ in $S_-$}\\
+{$\alpha$-cell       }&{  IV.5}&\\
+{$\alpha$-wall       }&{  IV.4}&\\
+{$\alpha$-chamber    }&{  IV.4}&\\
+{$\alpha$            }&{  II.7      }&{  short simple root of $G_2$}\\
+{$\alpha$            }&{  III.1     }&{  positive simple root in a rank two group}\\
+{$\alpha^v$          }&{  I.5       }&{  coroot associated to $\alpha$}\\
+%\blank
+&&\\
+{$\beta$             }&{            }&{  positive simple root}\\
+{$\beta$             }&{  II.7      }&{  long simple root of $G_2$}\\
+{$\beta$             }&{  III.1     }&{  positive simple root in a rank two group}\\
+{$\beta$             }&{  IV.7      }&{  largest simple root of $S_-$}\\
+{$\beta(E_\Sigma)$   }&{  II.9      }&{  Igusa constants}\\
+{$\beta$             }&{  V.3       }&{  Igusa constant, see Langlands [\LL]}\\
+&&\\
+%\blank
+\lush{$\gamma$            }&{  III.1     }&{  positive root in a rank two group}\\
+\lush{$\gamma$            }&{  II.7      }&{  root $\alpha+\beta$ of $G_2$}\\
+\lush{$\gamma_j$          }&{  VII.5.13  }&{  root $T_j-T_{-j}$}\\
+\lush{$\Gamma$            }&{  I.1,I.6       }&{  regular curve in $T$}\\
+\lush{$\Gamma$            }&{  I.6       }&{  $\Gamma\setminus \{0\}$}\\
+\lush{$\Gamma_O,\Gamma_{O'}$    }&{      VII.4 }&{         subregular germs}\\
+\lush{$\Gamma_0$          }&{  IV.3.2    }&{  a graph}\\
+\lush{$\Gamma_1$          }&{  IV.4      }&{  minimal tree in $\Gamma_0$ containing extremal }\\
+\lush{}&{}&{\quad $\alpha,\beta\in S_-$}\\
+\lush{$\Gamma'$           }&{  IV.4      }&{  pruned $\Gamma_1$, as a graph it equals $S_-$}\\
+&&\\ %blank
+\lush{$\delta$            }&{  III.1     }&{  positive root in a rank two group}\\
+\lush{$\delta$            }&{  II.7      }&{  root $2\alpha+\beta$ of $G_2$}\\
+\lush{$\delta$            }&{  V.2.3     }&{  $\delta(\xi) = x(\beta)/\xi x(\gamma)$}\\
+\lush{$\Delta_\Gamma$     }&{  VI.2      }&{  $=m_\kappa(e')$, $e' = e(T(W,\alpha)$ : $\alpha$ simple}\\
+\lush{$\Delta'$           }&{  VI.2      }&{  representatives of orbits of simple roots }\\
+\lush{}&{}&{\quad under $\Gal$}\\
+&&\\ %blank
+\lush{$\epsilon$          }&{  III.1     }&{  positive root in a rank two group}\\
+\lush{$\epsilon_{\pm\alpha}(x)$ }&{      I.5   }&{         $\exp(x\,X_{\pm\alpha})$, $X_{\pm\alpha}$ root vectors}\\
+\lush{$\epsilon$          }&{  II.7      }&{  root $3\alpha+\beta$ of $G_2$}\\
+\lush{$\epsilon$          }&{  VII.5.5   }&{  $\epsilon=1$ for $n$ even and $\epsilon=0$ for $n$ odd}\\
+\lush{$\epsilon_j$        }&{  VII.5.5   }&{  permutation $(j,-j)$ of $-k,\ldots,k$}\\
+&&\\ %blank
+\lush{$\zeta$             }&{  III.1     }&{  positive root in a rank two group}\\
+\lush{$\zeta$             }&{  II.7      }&{  root $3\alpha+2\beta$ of $G_2$}\\
+&&\\ %blank
+\lush{$\eta_K$            }&{  V.4,VII.4       }&{  nontrivial character of $H^1(\Gal,U(1))$}\\
+\lush{$\eta_K$            }&{       }&{  nontrivial quadratic character of $F^\times$}\\
+&&\\ %blank
+\lush{$\kappa$            }&{  I.1,I.5       }&{  character on $H^1(\Gal,T)$}\\
+\lush{$\kappa^\alpha$     }&{  VI.2      }&{  character of $F_\alpha^\times$}\\
+\lush{$\kappa(E)$         }&{  V.2       }&{  character such that $f/\kappa(E)(\mu)$ extends}\\
+\lush{}&{}&{\quad generically to $E$}\\
+\lush{$\kappa(E)$         }&{  VI.2      }&{  $\prod (\kappa^\alpha)^{e(\alpha)}$, $e(\alpha)$ an integral multiplicity}\\
+\lush{$\kappa(E_0)$       }&{  VI.2      }&{  $=\kappa_0$}\\
+\lush{$\kappa_0$          }&{  VI.2      }&{  $\prod \kappa^\alpha$}\\
+&&\\ %blank
+\lush{$\lambda$           }&{  I.1       }&{  local parameter on $\Gamma$ at $p$}\\
+\lush{$\lambda$           }&{  II.4      }&{  pullback of a local parameter on $\Gamma$ to $Y$}\\
+&&\\ %blank
+\lush{$\nu$               }&{  I.2,II.1       }&{  an element of $N_\infty$}\\
+\lush{$\nu_2$             }&{  V.3       }&{  form on $E_\alpha\cap E_\beta$}\\
+&&\\ %blank
+\lush{$\xi$  }&{  I.5,V.1.2  }&{  coordinate in $N_{qs\infty}/N_\alpha$ on $U(\alpha,\beta)\cap E_\alpha(u)^0$}\\
+\lush{$\xi$               }&{  IV.5      }&{  a wall of an $\alpha$-chamber}\\
+\lush{$\xi:X_1\to T$      }&{  I.6       }&{  a morphism}\\
+\lush{$\xi:{}^LH\to{}^LG$ }&{            }&{  an embedding of $L$-groups}\\
+&&\\ %blank
+\lush{$\pi_1:X_1\to G$    }&{  I.6       }&{  a morphism}\\
+\lush{$\pi_1:Y_1\to G$    }&{  I.5       }&{  a morphism}\\
+&&\\ %blank
+\lush{$\rho$              }&{  VII.1     }&{  homomorphism $\Gal\to\hbox{Outer}({}^LH^0)$}\\
+&&\\ %blank
+\lush{$\sigma_\alpha$     }&{  I.5,II.6,V.5.2     }&{  simple reflection in the Weyl group}\\
+\lush{$\sigma_\omega$     }&{  II.6      }&{  representative of $\omega\in\Omega$ in $N_G(T_0)$}\\
+\lush{$\sigma_*$          }&{  VI.1      }&{  action of Galois group on simple roots in}\\
+\lush{}&{}&{\quad a quasisplit group}\\
+\lush{$\sigma_{sp}$       }&{  VI.1      }&{  action of the Galois group in $G_{sp}$}\\
+\lush{$\sigma_0$          }&{  VI.1      }&{  element of $\tilde \Omega$}\\
+\lush{$\sigma_T$          }&{  III.1     }&{  permutation of Weyl chambers associated }\\
+\lush{}&{}&{\quad to $\sigma\in\Gal$ and $T$}\\
+\lush{$\Sigma$            }&{  VI.2      }&{  an element of $\Delta'$}\\
+&&\\ %blank
+\lush{$\phi:T^0\times T\back G\to X_1$      }&{  I.6          }&{      a morphism}\\
+&&\\ %blank
+\lush{$\omega_\alpha$     }&{  V.5.2     }&{  $\omega_\alpha\in N_G(T_0)$}\\
+\lush{$\omega_\sigma$     }&{  VI.1      }&{  element of $N_{P_\alpha}(T_0)_{adj}$}\\
+\lush{$\omega_Z$          }&{  I.2,V.2   }&{  invariant form of top degree on $Z$,}\\
+\lush{}&{}&{\quad $Z=M,T,T\back G,X$ or $Y$}\\
+\lush{$\Omega$            }&{  I.2       }&{  Weyl group of $G$ with respect to $T$}\\
+\lush{$\tilde\Omega$      }&{  VI.1      }&{  the extended Weyl group or direct }\\
+\lush{}&{}&{\quad product $\Omega\times \ZZ/2\ZZ$}\\
+\lush{$\Omega'$           }&{  III.1     }&{  $\hbox{Image}(\Gal\to\tilde\Omega)$, $\tilde\Omega$ extended }\\
+\lush{}&{}&{\quad Weyl group}\\
+&&\\ %blank
+\lush{adjacent walls      }&{  IV.4      }&{}\\
+\lush{adjoint conjugacy   }&{  I.6       }&{  a conjugacy class in the adjoint group}\\
+\lush{$a_\sigma$          }&{  V.4       }&{  cocycle in $H^1(\Gal,U(1))$}\\
+\lush{$a_\sigma$          }&{  VI.1      }&{  automorphism of $(G_{sp},B_{sp},T_{sp},\{X_\gamma\})$}\\
+\lush{$a_\sigma(w)$       }&{  VI.2.3    }&{  a cocycle}\\
+\lush{$a_n$               }&{  VII.5.5   }&{  the cocycle $a$ for the group $U(n)$}\\
+\lush{$a(E_\Sigma)$       }&{  II.9      }&{  Igusa constants}\\
+\lush{$A_\sigma$          }&{  I.5       }&{  a cocycle of $Z^1(\Gal,N_{G_{qs}}(T_{qs})_{ad})$}\\
+\lush{$A(X),A_r(X)$       }&{  V.3       }&{  Igusa data, see Langlands [\LL]}\\
+\lush{$A_n$               }&{  I.3       }&{  group or algebra of type $A_n$}\\
+\lush{$\AAA^r$             }&{            }&{  affine $r$-space}\\
+&&\\ %blank
+\lush{big nodes           }&{  IV.4      }&{}\\
+\lush{big chamber         }&{  IV.4         }&{      }\\
+\lush{big wall            }&{  IV.4      }&{}\\
+\lush{$b$                 }&{  II.1      }&{  element of $B_0$}\\
+\lush{${\bold b}=b_{n,2h}$  }&{  VII.5.5   }&{  a cocycle in $H^1(U(1))$}\\
+\lush{$\BB$               }&{  I.2       }&{  Borel subgroup containing $T$}\\
+\lush{$\BB(W)$            }&{  I.2       }&{  $\BB^\omega$, $W = W(\omega)$.}\\
+\lush{$(B(W))$            }&{  I.2       }&{  star in $S$}\\
+\lush{$B_0,B_\infty$      }&{  I.2       }&{  a pair of opposite Borel subgroups}\\
+\lush{$B_{qs}$            }&{  I.5       }&{  Borel subgroup over $F$ containing $T_{qs}$}\\
+\lush{$B_{sp}$            }&{  VI.1      }&{  Borel subgroup in split form}\\
+\lush{$B_+$               }&{  V.5       }&{  intersection of lines $\ell_\alpha$, $\ell_\beta$}\\
+\lush{$B_-$               }&{  V.5.1     }&{  intersection of lines $\ell_\alpha$, $\ell_\alpha'$}\\
+\lush{B.I,$\ldots$,B.IV }&{  III.1     }&{  zero patterns}\\
+\lush{$B_n$               }&{  I.3       }&{  group or algebra of type $B_n$}\\
+&&\\ %blank
+\lush{$\CC$               }&{            }&{  complex numbers}\\
+\lush{$C_G(x)$            }&{            }&{  centralizer in $G$ of $x$}\\
+\lush{$C_G(x)_{red}$      }&{  VII.5     }&{  the reductive part of the centralizer of $x$}\\
+\lush{$C_n$               }&{  I.3       }&{  group or algebra of type $C_n$}\\
+&&\\ %blank
+\lush{divisor             }&{  I.6       }&{}\\
+\lush{--\ fundamental }&{  II.9      }&{}\\
+\lush{--\ $O$         }&{  I.6       }&{  a divisor over the unipotent class $O$}\\
+\lush{--\  regular   }&{  I.6       }&{  a divisor over a regular unipotent class}\\
+\lush{--\  spurious    }&{  II.9      }&{}\\
+\lush{--\ subregular}&{  I.6       }&{  a divisor over a subregular unipotent class}\\
+\lush{$D_n$               }&{  I.3       }&{  group or algebra of type $D_n$}\\
+\lush{Dynkin curve        }&{  IV.1,VI.1      }&{  $(B\back G)_u$}\\
+&&\\ %blank
+\lush{external wall       }&{  IV.5      }&{   }\\
+\lush{$e$                 }&{  I.5,II.1       }&{  a star, element of $S$}\\
+\lush{$e(p)$              }&{  VI.2      }&{  a star depending on a point $p$}\\
+\lush{$e=e(\alpha_1,\alpha_2)$  }&{      V.6   }&{         constant defined by }\\
+\lush{}&{}&{\quad $\exp(X_{-\alpha_1})\exp(X_{\alpha_1+\alpha_2})\exp(-X_{-\alpha_1})=\ldots$}\\
+\lush{$e_\ell$            }&{  VII.5.6   }&{  constants in $F$}\\
+\lush{$E$                 }&{  I.6       }&{  a divisor}\\
+\lush{$E(u)$              }&{  I.6       }&{  the fibre in $E$ over $u\in G$}\\
+\lush{$E_\alpha$          }&{  V.1       }&{  a subregular divisor, $\alpha$-simple, $E_\alpha = E_\Sigma$,}\\
+\lush{}&{}&{\quad $\Sigma=\{\alpha\}$}\\
+\lush{$E_\alpha(u)$       }&{  V.1.1     }&{  $\pi^{-1}(u)\cap E_\alpha$, fibre over $u$ in $E_\alpha$}\\
+\lush{$E_\alpha(u)^0$     }&{  V.1.1     }&{  an irreducible component of $E_\alpha(u)$}\\
+\lush{$E(\ell_\alpha,u)$  }&{  V.1.2     }&{  a component of $E_\alpha(u)$ indexed by the line $\ell_\alpha$}\\
+\lush{$E_0$               }&{  V.1       }&{  the regular divisor, $E_0=E_\Sigma$, $\Sigma=\emptyset$}\\
+\lush{$E$                 }&{  VII.5.14  }&{  $E_{\alpha_k}\cap E_{\alpha_{k+1}}$ or $E_{\alpha_k}$}\\
+\lush{$E_n$               }&{  I.3       }&{  group or algebra of type $E_n$, $n=6,7,8$}\\
+&&\\ %blank
+\lush{fundamental}&{}&{}\\
+\lush{--\ $\alpha$-cell }&{      IV.5  }&{          }\\
+\lush{--\ divisor }&{  II.9      }&{   }\\
+\lush{$f$                 }&{  I.5       }&{  a locally constant fuunction of compact }\\
+\lush{}&{}&{\quad support on $G$}\\
+\lush{$F$                 }&{  I.        }&{  $p$-adic field of characteristic 0.}\\
+\lush{$\Fb$               }&{  I.        }&{  algebraic closure of $F$}\\
+\lush{$F_\alpha$          }&{  VI.2      }&{  field extension of $F$ fixing $\alpha$}\\
+\lush{$F_4$               }&{  I.3       }&{  group or algebra of type $F_4$}\\
+\lush{$F_1(\beta,\theta,f)$     }&{      V.3   }&{ a term of the asymptotic expansion,}\\
+\lush{}&{}&{\quad see Langlands [\LL]}\\
+&&\\ %blank
+\lush{$G$                 }&{  I.        }&{  reductive group defined over $F$}\\
+\lush{$G_{adj}$           }&{  I.6       }&{  the adjoint group of $G$}\\
+\lush{$G_{der}$           }&{  II.5      }&{  the derived group of $G$}\\
+\lush{$G_{in}$            }&{  VII.4     }&{  inner form of $G$}\\
+\lush{$G_{in}$            }&{  I.5       }&{  an inner form of $G_{qs}$}\\
+\lush{$G_{qs}$            }&{  I.5       }&{  a quasi-split group, a form of $G$}\\
+\lush{$G_{sp}$            }&{  VI.1      }&{  split form of $G$}\\
+\lush{$G_2$               }&{  I.3       }&{  group or algebra of type $G_2$}\\
+&&\\ %blank
+\lush{$h_2$               }&{  V.3       }&{  function on $E_\alpha\cap E_\beta$}\\
+\lush{$H^1(T)$            }&{  I.5       }&{  $H^1(T)=H^1(\Gal,T)$ first }\\
+\lush{}&{}&{\quad cohomology group with coefficients in $T$}\\
+\lush{$H$                 }&{  I.5,VII.1  }&{  endoscopic group}\\
+\lush{$H$                 }&{  VII.5     }&{  the endoscopic group $U(n-2h)\times U(2h)$ }\\
+\lush{}&{}&{\quad of $U(n)$}\\
+\lush{$\underline{H}$     }&{  VII.5.11  }&{  subgroup $U(2h)\times U(n-2h)$ of $G=U(n)$}\\
+\lush{$H'$                }&{  VII.5.11  }&{  subgroup of $U(n)$ conjugate to $\underline{H}$}\\
+&&\\ %blank
+\lush{$K$}&{}&{ field extension of $F$}\\
+\lush{$K_X$               }&{  V.2.3     }&{  field of rational functions on $Lie(T)$}\\
+\lush{$K_\alpha$          }&{  IV.7      }&{  an $\alpha$-cell in $Z_\alpha^-$}\\
+&&\\ %blank
+\lush{$\ell_\alpha$       }&{  V.1.2     }&{  a projective line of type $\alpha$ in }\\
+\lush{}&{}&{\quad the flag variety}\\
+\lush{$L_p(W)$            }&{  IV.1      }&{  a set of simple roots}\\
+\lush{$L^- = L^-_{\beta_i}$     }&{      IV.5,IV.7  }&{         }\\
+&&\\ %blank
+\lush{$m_\alpha$          }&{  II.2      }&{  $\beta = \sum m(\alpha)\alpha$}\\
+\lush{$m_\kappa(e)$       }&{  I.5       }&{  the function $g\to\kappa(\sigma(g)g^{-1})$,}\\
+\lush{}&{}&{\quad $\sigma\in \Gal$, $g\in (T\backslash G)(F)$}\\
+\lush{$M$                 }&{  I.2       }&{  Springer variety $B\times_B G$}\\
+\lush{$M$                 }&{  V.3       }&{  constant $m+m_1+m_2+am(\mu_3)$}\\
+&&\\ %blank
+\lush{node                }&{  I.3       }&{  a node is an $\{i,j\}$-residue in the Coxeter }\\
+\lush{}&{}&{\quad complex of $\Omega$}\\
+\lush{--\ big            }&{  IV.4      }&{   }\\
+\lush{--\ solid           }&{  IV.3      }&{   }\\
+\lush{--\ special        }&{  III.1     }&{   }\\
+\lush{$n_w$               }&{  II.1      }&{  a coordinate in $N_\infty$: $B_0^{n_w} = B(W)$}\\
+\lush{$N_G(T)$            }&{            }&{  normalizer in $G$ of $T$}\\
+\lush{$N$                 }&{  I.2       }&{  unipotent radical of $\BB$}\\
+\lush{$N_\infty$          }&{  I.2       }&{  the unipotent radical of $B_\infty$}\\
+\lush{$N_{qs}$            }&{  I.5       }&{  unipotent radical of $B_{qs}$}\\
+\lush{$N_{qs\infty}$      }&{  I.5       }&{  unipotent radical of Borel opposite $B_{qs}$ }\\
+\lush{}&{}&{\quad through $T_{qs}$}\\
+\lush{$N_\alpha$          }&{  I.5       }&{  radical of the parabolic subgroup }\\
+\lush{}&{}&{\quad $B^{op}_{qs}\langle \sigma_\alpha\rangle B_{qs}^{op}$, $op=$ opposite}\\
+\lush{$N_\omega$          }&{  II.6      }&{  subgroup of $N_0$}\\
+\lush{$N$                 }&{  VI.2.3    }&{  the norm map from $K$ to $F$, $K$ a field}\\
+&&\\ %blank
+&&\\ %blank
+\lush{obtusely adjacent   }&{  IV.4      }&{   }\\
+\lush{$O$-divisor         }&{  I.6       }&{  a divisor over the unipotent class $O$}\\
+\lush{$O$                 }&{  II.9      }&{  unipotent class $O$}\\
+&&\\ %blank
+&&\\ %blank
+\lush{proximate chamber   }&{  IV.4      }&{   }\\
+\lush{$p$                 }&{  I.1       }&{  point on a curve $\Gamma$}\\
+\lush{$p$                 }&{  II.1      }&{  a point in $X_1$}\\
+\lush{$p$                 }&{  I.        }&{  residue characteristic of $F$}\\
+\lush{$\PP_\alpha$        }&{  II.6      }&{  parabolic subgroup containing $B_0$}\\
+\lush{$P_\alpha$          }&{  IV.1,V.1.2     }&{  a parabolic subgroup of type $\alpha$ }\\
+\lush{}&{}&{\quad containing $B_0$}\\
+\lush{$\PP^1$             }&{  VII.4     }&{  projective line}\\
+&&\\ %blank
+&&\\ %blank
+&&\\ %blank
+\lush{$Q$-chamber         }&{  IV.5      }&{   }\\
+&&\\ %blank
+\lush{regular divisor     }&{  I.6       }&{  a divisor over a regular unipotent class}\\
+\lush{$r$                 }&{  I.2       }&{  the semisimple rank of $G$}\\
+\lush{$R$                 }&{  IV.3      }&{  roots $\alpha$ such that $z(W,\alpha)\ne 0$ for some $W$}\\
+\lush{$R_\omega$          }&{  II.7      }&{  $\{\beta>0 | \omega\beta<0\}$}\\
+\lush{$R_1,R_2$           }&{  VII.5.5   }&{  elements of $K_X$}\\
+&&\\ %blank
+&&\\ %blank
+\lush{solid node          }&{  IV.3      }&{   }\\
+\lush{special node        }&{  III.1     }&{   }\\
+\lush{spurious divisor    }&{  II.9      }&{   }\\
+\lush{subregular}&{}&{}\\
+\lush{--\ divisor  }&{  I.6       }&{  a divisor over a subregular unipotent class}\\
+\lush{--\ conjugacy class }&{  IV.1         }&{       }\\
+\lush{--\ unipotent  }&{      III.3 }&{          }\\
+\lush{$S$                 }&{  I.2       }&{  variety of stars}\\
+\lush{$S'$                }&{  I.2       }&{  subvariety of $S$}\\
+\lush{$S''$               }&{  I.2       }&{  open subvariety of $S_1$}\\
+\lush{$S^0$               }&{  I.2       }&{  variety of regular stars}\\
+\lush{$S_1$               }&{  I.2       }&{  first resolution of $S$}\\
+\lush{$S(B_\infty)$       }&{  I.2       }&{  a coordinate patch on $S$}\\
+\lush{$S(B_\infty,B_0)$   }&{  I.2       }&{  a coordinate patch}\\
+\lush{$S_2$               }&{  IV.4      }&{   }\\
+\lush{$S$                 }&{  IV.3      }&{  roots $\alpha$ such that $z_1(W,\alpha)=0$ for some $W$}\\
+\lush{$S_-$               }&{  IV.4      }&{  $S_- = S$ except for $D_4,\ |S|\ge 4,\ldots$}\\
+&&\\ %blank
+\lush{type of a vertex    }&{  IV.3.2    }&{   }\\
+\lush{$t_\sigma$          }&{  I.5       }&{  a cocycle on $T(R)$, $R$ the field of rational }\\
+\lush{}&{}&{\quad functions on $S$}\\
+\lush{$T$                 }&{  I.2       }&{  Cartan subgroup in $G$ over $F$}\\
+\lush{$T^0$               }&{  I.2       }&{  regular elements of $T$}\\
+\lush{$T_0$               }&{  I.2       }&{  intersection of opposite Borel }\\
+\lush{}&{}&{\quad subgroups $B_0$, $B_\infty$}\\
+\lush{$T_0$               }&{  V.5.2     }&{  Cartan subgroup in $B_+\cap B_-$}\\
+\lush{$T_{in}$            }&{  I.5       }&{  Cartan subgroup in $G_{in}$}\\
+\lush{$T_{qs}$            }&{  I.5       }&{  maximally split Cartan subgroup of $G_{qs}$}\\
+\lush{$T_{sp}$            }&{  VI.1      }&{  Cartan subgroup in split form}\\
+\lush{$T(W,\alpha)$       }&{  IV.1      }&{  $(1-\gamma^{-1})/\lambda$}\\
+\lush{$T_\sigma$          }&{  I.5       }&{  a twisted cocycle in $Z^1(T_{qs})$}\\
+\lush{$T_i$               }&{  VII.5.5   }&{  the $i$th character on the Cartan subalgebra}\\
+&&\\ %blank
+&&\\ %blank
+\lush{$U(1)$              }&{  V.4       }&{  unitary group in 1-variable}\\
+\lush{$U(\alpha',\alpha'')$     }&{      V.1.1 }&{         a coordinate patch in $Y_s$}\\
+\lush{$U_1,U_2$           }&{  V.3       }&{  coordinate patches}\\
+&&\\ %blank
+\lush{$V^n$               }&{  I.2       }&{  $n=|\Omega|$-fold product of the flag variety}\\
+&&\\ %blank
+\lush{$w=w(\alpha+\beta)$ }&{  V.2       }&{  a coordinate on $U(\alpha,\beta)\cap E_\alpha(u)^0$}\\
+\lush{$w_n$               }&{  VII.5.5   }&{  the variable $w$ for the group $U(n)$}\\
+\lush{$W_+$               }&{  I.2       }&{  positive Weyl chamber for $\BB$}\\
+\lush{$W(\omega)$         }&{  I.2       }&{  $\omega^{-1}W_+$, $\omega\in\Omega$}\\
+\lush{$\bWW$               }&{  IV.4      }&{  a big chamber}\\
+\lush{$\bW$               }&{            }&{  a $Q$-chamber}\\
+&&\\ %blank
+\lush{$x_\beta$           }&{  II.1      }&{  $x_\beta(b)$ is the $\beta$th coefficient of $b\in B_0$}\\
+\lush{$x(W,\beta)$        }&{  II.1      }&{  a local coordinate}\\
+\lush{$(x_{-k},\ldots,x_{k})$   }&{      VII.5.5            }&{      element of a Cartan subalgebra for }\\
+\lush{}&{}&{\quad $U(n)$, $2k+1-\epsilon=n$}\\
+\lush{$X$                 }&{  I.2       }&{  closure of $X^0$ in $G\times S$}\\
+\lush{$X'$                }&{  I.2       }&{  closure of $X^0$ in $G\times S'$}\\
+\lush{$X''$               }&{  I.2       }&{  closure of $X^0$ in $G \times S''$}\\
+\lush{$X(B_\infty,B_0)$   }&{  I.2       }&{  a coordinate patch on $X$}\\
+\lush{$X^0$               }&{  I.2       }&{  subvariety of $G\times S^0$}\\
+\lush{$X_1$               }&{  I.2       }&{  closure of $X^0$ in $G \times S_1$}\\
+\lush{$X_{\pm\alpha}$          }&{  I.2,VI.2      }&{  root vectors}\\
+\lush{$X_{\pm\alpha},H_\alpha$  }&{      II.1  }&{         a Lie triple}\\
+\lush{$X(H)$              }&{  VII.3     }&{  a set of characters $\theta:F^\times\to\CC^\times$}\\
+&&\\ %blank
+&&\\ %blank
+\lush{$y_\beta$           }&{  II.2      }&{  $\beta$th coefficient of $t^n$}\\
+\lush{$Y$                 }&{  I.2       }&{  closure of $Y^0$ in $X$}\\
+\lush{$Y'$                }&{  I.2       }&{  closure of $Y^0$ in $X'$}\\
+\lush{$Y''$               }&{  I.2       }&{  closure of $Y^0$ in $X''$}\\
+\lush{$Y(B_\infty,B_0)$   }&{  I.2       }&{  a coordinate patch on $Y$}\\
+\lush{$Y_\Gamma$          }&{  I.2       }&{  resolution of singularities of $Y_1$}\\
+\lush{$Y_\Gamma$          }&{  I.6       }&{  resolution of $Y_1$}\\
+\lush{$Y^0$               }&{  I.2       }&{  restriction of $X^0$ to $\Gamma$}\\
+\lush{$Y_1$               }&{  I.2       }&{  closure of $Y^0$ in $X_1$}\\
+\lush{$Y_s$               }&{  V.1       }&{  an open subvariety of $Y''$}\\
+\lush{$Y(T,\kappa)$       }&{  VII.3     }&{  a set of characters $\theta:F^\times\CC^\times$}\\
+&&\\ %blank
+\lush{zero pattern        }&{  III.1     }&{   }\\
+\lush{$\hat z(\alpha)$     }&{  IV.4      }&{  a variable in $S_2$}\\
+\lush{$\hat z(W,\alpha)$   }&{  IV.4      }&{  a variable in $S_2$}\\
+\lush{$\tilde z(W,\alpha)$      }&{      IV.1  }&{         $\tilde z(W,\alpha) = z(W,\alpha)/z(W_\alpha,\alpha)$}\\
+\lush{$z(W,\alpha)$       }&{  I.2       }&{  a coordinate on $S(B_\infty,B_0)$}\\
+\lush{$z_1(W,\alpha)$     }&{  I.2       }&{  homogeneous coordinate in $S_1(B_\infty,B_0)$}\\
+\lush{$z_1(W,\alpha)$     }&{  II.2      }&{  $z_1(W,\alpha)=z(W,\alpha)/z(\alpha)$}\\
+\lush{$\ZZ$               }&{            }&{  ring of integers}\\
+\lush{$Z$                 }&{  VII.5     }&{  center of $G$}\\
+\lush{$Z_\alpha^-$        }&{  IV.7      }&{  union of $\alpha$-chambers}\\
+\lush{$Z_\beta$           }&{  IV.7      }&{  union of $\beta$-chambers}
+\end{longtable}
 
-
-
-\backmatter
-%    Bibliography styles amsplain or harvard are also acceptable.
-\bibliographystyle{amsalpha}
-\bibliography{}
-%    See note above about multiple indexes.
-\printindex
 
 \end{document}
