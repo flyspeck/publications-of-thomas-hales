@@ -5767,6 +5767,7 @@ edition={2nd edition},
    review={\MR{0338284 (49 \#3050)}},
 }
 
+%5
 \bib{MR0579175}{article}{
    author={Harish-Chandra},
    title={Admissible invariant distributions on reductive $p$-adic groups},
@@ -5784,6 +5785,7 @@ edition={2nd edition},
    review={\MR{0579175 (58 \#28313)}},
 }
 
+
 \bib{MR1124110}{article}{
    author={Hales, Thomas C.},
    title={The subregular germ of orbital integrals},
@@ -5796,6 +5798,300 @@ edition={2nd edition},
    review={\MR{1124110 (93f:22011)}},
    doi={10.1090/memo/0476},
 }
+
+%6.
+\bib{MR0340486}{article}{
+   author={Harish-Chandra},
+   title={Harmonic analysis on reductive $p$-adic groups},
+   conference={
+      title={Harmonic analysis on homogeneous spaces},
+      address={Proc. Sympos. Pure Math., Vol. XXVI, Williams Coll.,
+      Williamstown, Mass.},
+      date={1972},
+   },
+   book={
+      publisher={Amer. Math. Soc., Providence, R.I.},
+   },
+   date={1973},
+   pages={167--192},
+   review={\MR{0340486 (49 \#5238)}},
+}
+
+
+%7.
+\bib{MR0463157}{book}{
+   author={Hartshorne, Robin},
+   title={Algebraic geometry},
+   note={Graduate Texts in Mathematics, No. 52},
+   publisher={Springer-Verlag, New York-Heidelberg},
+   date={1977},
+   pages={xvi+496},
+   isbn={0-387-90244-9},
+   review={\MR{0463157 (57 \#3116)}},
+}
+
+
+
+%8.
+\bib{MR0102519}{article}{
+   author={Hironaka, Heisuke},
+   title={A note on algebraic geometry over ground rings. The invariance of
+   Hilbert characteristic functions under the specialization process},
+   journal={Illinois J. Math.},
+   volume={2},
+   date={1958},
+   pages={355--366},
+   issn={0019-2082},
+   review={\MR{0102519 (21 \#1310)}},
+}
+
+%9. 
+\bib{MR480502}{book}{
+   author={Aroca, Jos{\'e} M.},
+   author={Hironaka, Heisuke},
+   author={Vicente, Jos{\'e} L.},
+   title={Desingularization theorems},
+   series={Memorias de Matem\'atica del Instituto ``Jorge Juan''
+   [Mathematical Memoirs of the Jorge Juan Institute]},
+   volume={30},
+   publisher={Consejo Superior de Investigaciones Cient\'\i ficas, Madrid},
+   date={1977},
+   isbn={84-00-03602-6},
+   review={\MR{480502 (80h:32027)}},
+}
+
+
+
+%10.
+\bib{MR0396773}{book}{
+   author={Humphreys, James E.},
+   title={Linear algebraic groups},
+   note={Graduate Texts in Mathematics, No. 21},
+   publisher={Springer-Verlag, New York-Heidelberg},
+   date={1975},
+   pages={xiv+247},
+   review={\MR{0396773 (53 \#633)}},
+}
+
+	
+%11.
+\bib{MR546292}{book}{
+   author={Igusa, Jun-ichi},
+   title={Forms of higher degree},
+   series={Tata Institute of Fundamental Research Lectures on Mathematics
+   and Physics},
+   volume={59},
+   publisher={Tata Institute of Fundamental Research, Bombay; by the Narosa
+   Publishing House, New Delhi},
+   date={1978},
+   pages={iv+175},
+   isbn={0-387-08944-6},
+   review={\MR{546292 (80m:10020)}},
+}
+
+
+
+%12. 
+\bib{MR683003}{article}{
+   author={Kottwitz, Robert E.},
+   title={Rational conjugacy classes in reductive groups},
+   journal={Duke Math. J.},
+   volume={49},
+   date={1982},
+   number={4},
+   pages={785--806},
+   issn={0012-7094},
+   review={\MR{683003 (84k:20020)}},
+}
+
+
+
+%13.
+\bib{MR0188219}{article}{
+   author={Kneser, Martin},
+   title={Galois-Kohomologie halbeinfacher algebraischer Gruppen \"uber
+   ${\germ p}$-adischen K\"orpern. II},
+   language={German},
+   journal={Math. Z.},
+   volume={89},
+   date={1965},
+   pages={250--272},
+   issn={0025-5874},
+   review={\MR{0188219 (32 \#5658)}},
+}
+	
+
+\bib{MR0174559}{article}{
+   author={Kneser, Martin},
+   title={Galois-Kohomologie halbeinfacher algebraischer Gruppen \"uber
+   ${\germ p}$-adischen K\"orpern. I},
+   language={German},
+   journal={Math. Z.},
+   volume={88},
+   date={1965},
+   pages={40--47},
+   issn={0025-5874},
+   review={\MR{0174559 (30 \#4760)}},
+}
+
+
+
+%14. 
+\bib{MR697567}{book}{
+   author={Langlands, R. P.},
+   title={Les d\'ebuts d'une formule des traces stable},
+   language={French},
+   series={Publications Math\'ematiques de l'Universit\'e Paris VII
+   [Mathematical Publications of the University of Paris VII]},
+   volume={13},
+   publisher={Universit\'e de Paris VII, U.E.R. de Math\'ematiques, Paris},
+   date={1983},
+   pages={v+188},
+   review={\MR{697567 (85d:11058)}},
+}
+
+
+
+%15.
+\bib{MR701566}{article}{
+   author={Langlands, R. P.},
+   title={Orbital integrals on forms of ${\rm SL}(3)$. I},
+   journal={Amer. J. Math.},
+   volume={105},
+   date={1983},
+   number={2},
+   pages={465--506},
+   issn={0002-9327},
+   review={\MR{701566 (86d:22012)}},
+   doi={10.2307/2374265},
+}
+
+%16. 
+\bib{MR748510}{article}{
+   author={Langlands, R.},
+   author={Shelstad, D.},
+   title={On principal values on $p$-adic manifolds},
+   conference={
+      title={Lie group representations, II},
+      address={College Park, Md.},
+      date={1982/1983},
+   },
+   book={
+      series={Lecture Notes in Math.},
+      volume={1041},
+      publisher={Springer, Berlin},
+   },
+   date={1984},
+   pages={250--279},
+   review={\MR{748510 (86b:11082)}},
+   doi={10.1007/BFb0073150},
+}
+
+
+%17.
+\bib{MR909227}{article}{
+   author={Langlands, R. P.},
+   author={Shelstad, D.},
+   title={On the definition of transfer factors},
+   journal={Math. Ann.},
+   volume={278},
+   date={1987},
+   number={1-4},
+   pages={219--271},
+   issn={0025-5831},
+   review={\MR{909227 (89c:11172)}},
+   doi={10.1007/BF01458070},
+}
+		
+%18.
+\bib{MR971985}{book}{
+   author={Mumford, David},
+   title={The red book of varieties and schemes},
+   series={Lecture Notes in Mathematics},
+   volume={1358},
+   publisher={Springer-Verlag, Berlin},
+   date={1988},
+   pages={vi+309},
+   isbn={3-540-50497-4},
+   review={\MR{971985 (89k:14001)}},
+   doi={10.1007/978-3-662-21581-4},
+}
+
+
+		
+%19.
+\bib{MR0150130}{book}{
+   author={Serre, Jean-Pierre},
+   title={Corps locaux},
+   language={French},
+   series={Publications de l'Institut de Math\'ematique de l'Universit\'e de
+   Nancago, VIII},
+   publisher={Actualit\'es Sci. Indust., No. 1296. Hermann, Paris},
+   date={1962},
+   pages={243},
+   review={\MR{0150130 (27 \#133)}},
+}
+
+
+
+%20.
+\bib{MR0180551}{book}{
+   author={Serre, Jean-Pierre},
+   title={Cohomologie galoisienne},
+   language={French},
+   series={Cours au Coll\`ege de France},
+   volume={1962},
+   publisher={Springer-Verlag, Berlin-Heidelberg-New York},
+   date={1962/1963},
+   pages={vii+212 pp. (not consecutively paged)},
+   review={\MR{0180551 (31 \#4785)}},
+}
+
+
+
+%21.
+\bib{MR584445}{book}{
+   author={Slodowy, Peter},
+   title={Simple singularities and simple algebraic groups},
+   series={Lecture Notes in Mathematics},
+   volume={815},
+   publisher={Springer, Berlin},
+   date={1980},
+   pages={x+175},
+   isbn={3-540-10026-1},
+   review={\MR{584445 (82g:14037)}},
+}
+	
+
+
+%22.
+\bib{MR672610}{book}{
+   author={Spaltenstein, Nicolas},
+   title={Classes unipotentes et sous-groupes de Borel},
+   language={French},
+   series={Lecture Notes in Mathematics},
+   volume={946},
+   publisher={Springer-Verlag, Berlin-New York},
+   date={1982},
+   pages={ix+259},
+   isbn={3-540-11585-4},
+   review={\MR{672610 (84a:14024)}},
+}
+
+
+
+%23.
+\bib{MR0352279}{book}{
+   author={Steinberg, Robert},
+   title={Conjugacy classes in algebraic groups},
+   series={Lecture Notes in Mathematics, Vol. 366},
+   note={Notes by Vinay V. Deodhar},
+   publisher={Springer-Verlag, Berlin-New York},
+   date={1974},
+   pages={vi+159},
+   review={\MR{0352279 (50 \#4766)}},
+}
+
 
 \end{biblist}
 \end{bibdiv}
