@@ -1,0 +1,4184 @@
+% What:      Paper "Unipotent Representations and Unipotent Classes in SL(n)"
+% Author:    Thomas C. Hales
+% Where:     to appear in the AJM
+% Affil:     IAS School of Mathematics, 1989-90 Member
+% Current Affil: University of Chicago
+% Typist:    Cindy Ericksen
+% Filename:  sln.tex
+% TeXType:   AMS without amsppt (Used pre-compiled format)
+% Date:      October 19, 1989 (draft produced)
+% Revision:  003
+% Last Revision: July 23, 1992
+
+
+% The following changes were made in preparing the manuscript for AJM publishers Dec 92.
+% Dec 21, 1992 removed words "but unmistakable" from first page
+%              added punctuation to 6.3.
+%              inserted subscript {O} to first sum of the proof of Prop 1.4
+%              replaced -1 by \sqrt{-1} in 2.5
+%              added subscript 1 to first W in 2.5
+%              replaced t(s) by t(s,r') in 2.5 and reworded slightly
+%              changed reference to 2.1 to "beginning of the section"
+%              reworded the definition of t in the proof of 2.6 
+%              \xi removed in subscript of K in c4 term in the proof of 3.12
+%
+%
+\loadmsbm   
+\parindent=8mm 
+\font\smc=cmcsc10
+%\font\ff=cmfi10                         % used for script-like "a"
+\font\title=cmr17
+\font\name=cmr12
+\font\bigmath=cmmi10 scaled\magstep2    % used on title page
+\magnification=1200 
+\hsize=5.21in       % 6.25 true in 
+\hoffset=.166in     % 0.20 true in 
+\vsize=7.08in       % 8.50 true in 
+\voffset=.166in     % 0.20 true in 
+\parskip=\medskipamount 
+%
+% Definitions needed when not using amsppt:
+% =========================================
+%
+\def\proclaim #1.{\medbreak\noindent 
+  {\smc#1.\enspace}\sl} 
+\def\finishproclaim {\par\rm 
+  \ifdim\lastskip<\medskipamount\removelastskip 
+  \penalty55\medskip\fi} 
+\def\pproclaim #1:{\medbreak\noindent 
+  {\bf#1.\enspace}\rm}   % : changed to . 7/20/92
+\def\finishpproclaim{\par\rm 
+  \ifdim\lastskip<\medskipamount\removelastskip 
+  \penalty55\medskip\fi} 
+\def\vqedbox{%
+    \vbox{\hrule height .4pt%
+          \hbox{\vrule width .4pt%
+                      \hskip .15em%
+                      \vbox{\vskip .61em}%
+                      \hskip .15em%
+                      \vrule width .4pt%
+                }
+          \hrule height .4pt%
+          }}
+% This needs to be corrected so that there is no extra space, and it is right justified
+% even if it starts a new line.
+\def\qed{\hbox{}\nobreak\hfill\hbox{\vqedbox}}
+%
+%  Definitions specific to this paper: NONE
+%  ========================================
+%
+
+\document 
+\baselineskip=14pt
+\LimitsOnInts      % affects displayed int's only
+%
+
+
+% This is the beginning of the title page
+\footline={\hfill}
+\null
+\vskip .75in
+
+\centerline{{\title Unipotent Representations and }}
+\medskip
+\centerline{%
+  {\title Unipotent Classes in {\bigmath SL}({\bigmath n}) }}
+\vskip 1in
+\centerline{{\name Thomas C. Hales}}
+
+\medskip
+\centerline{University of Chicago}
+
+\bigskip
+\centerline{Revised July 23, 1992}
+\smallskip
+\centerline{Printed December 21, 1992}
+
+\newpage
+\footline={\hss\tenrm\folio\hss}
+\pageno=-1
+
+\centerline{{\bf Abstract}}
+\bigskip
+
+\noindent
+Each unipotent conjugacy class of 
+  $ SL(n,F)$
+ (where $F$ is a $p$-adic
+field of characteristic zero)
+defines an invariant distribution on
+  $ C_c^{\infty} 
+    \bigl(
+       SL(n,F)
+    \bigr) $
+and, by restriction, a linear functional on the Iwahori Hecke
+  algebra.
+Each tempered representation of
+  $ SL(n,F) $ with an Iwahori fixed vector
+defines an invariant distribution on
+  $ C_c^{\infty}
+    \bigl(
+       SL(n,F)
+    \bigr) $
+and, by a truncation to strongly compact elements, a linear
+  functional on the Iwahori Hecke algebra.
+We show that the vector spaces spanned by these two
+  different classes of functionals are equal.
+This gives a precise form for a bijection between  
+  certain combinations of unipotent classes in
+  $ SL(n,F) $
+and compact traces of representations with Iwahori fixed vectors of 
+  $ SL(n,F) $.  
+
+As a consequence, we deduce the existence of a uniform
+  Shalika germ expansion holding on all strongly compact elements
+  for functions in the Iwahori Hecke algebra.
+The uniform germ expansion is used to make a detailed
+study of orbital integrals on
+  $ SL(n,F) $.
+It is shown that the existence of an abstract matching
+of smooth functions
+  $ f \mapsto f^H $
+between
+  $ SL(n,F) $
+and its endoscopic groups implies the {\it fundamental lemma}
+for the unit element of the spherical Hecke algebra.
+
+\newpage
+\pageno=1
+\centerline{{\bf Unipotent Representations and Unipotent 
+     Classes in} $SL(n)$}
+
+\medskip
+\centerline{{\smc Thomas C. Hales}}
+
+\bigskip
+\noindent
+To achieve the stabilization of the trace formula for
+  a reductive group [{\bf 18}], there are two related  
+  problems that must first be solved.
+One is the matching of the
+    $ \kappa $-orbital 
+  integrals of smooth functions on a reductive group $G$ (over a 
+    $p$-adic field of characteristic zero)
+  with stable orbital integrals on its endoscopic
+  groups $H$.
+  Igusa theory clarifies the nature of this first problem
+  [{\bf 11}], [{\bf 12}], [{\bf 13}],  [{\bf 19}],
+  [{\bf 22}], [{\bf 23}].
+The second problem is the {\it fundamental lemma}, which 
+  asserts the compatibility of the matching of smooth functions
+  with the Hecke algebras on $G$ and $H$.  
+  Buildings have been used to study this problem
+  [{\bf 25}].
+The statements of the problems are closely related,
+and the main results of this paper give a method
+of reducing one problem to the other.
+ If the first problem (matching smooth functions)
+  is solved for $SL(n)$, then the second problem (the fundamental lemma
+  for the Hecke algebras) follows as a consequence,
+  at least for the identity of the algebra.
+The solutions of the two problems are linked by making
+  a detailed study of the unipotent representations and 
+  the unipotent classes of 
+    $SL(n)$.
+  Representations with Iwahori fixed vectors on
+  $SL(n,F)$ are called ``unipotent'' in this paper to emphasize
+  the close relationship between unipotent conjugacy classes and
+  these representations.
+
+Not long after this paper was written,
+Waldspurger refined, reformulated and greatly extended the results of this paper. 
+This paper made a modest contribution to this
+subsequent work of his.
+He eliminated the hypothesis that functions on $SL(n)$ have matching smooth
+functions, by making clever use of a strengthened version of Kazhdan's lemma.
+The opinion of the experts is still divided, will the solution of the fundamental
+lemma for other reductive groups come from the matching of smooth functions, 
+or will it come from even stronger
+versions of Kazhdan's lemma.  This much is clear: the fundamental lemma
+no longer needs to be viewed as an isolated combinatorial problem in buildings. 
+Howe's conjecture, uniform germ expansions, homogeneity of germs, compact traces, unipotent orbits,
+and Kazhdan's density theorem give us a framework through which the fundamental
+lemma may be understood.  
+
+In the final portion of the introduction, I would like to state a
+theorem that has considerable interest beyond its usefulness for the
+fundamental lemma.   This theorem will be used in Section 1 to produce
+a {\it uniform germ expansion}.   The theorem shows that the study of compact traces
+and the study of unipotent orbital integrals are in some sense
+equivalent questions.
+The endoscopic groups considered in this paper are the standard endoscopic groups
+of $SL(n,F)$, where $F$ is a $p$-adic field of characteristic zero.  
+However, simple arguments (Lemma 3.1) allow us to work instead with the group
+$G_1$, consisting of elements of $GL(n,F)$, whose
+determinant has a valuation which is a multiple of $n$.  
+
+To state the theorem we need the following notation.
+Let ${\Cal H}_1'$ denote the linear dual to the Iwahori Hecke algebra 
+${\Cal H}_1$  on $G_1$.  Let $\Pi^{\text{t}}$ denote the set of irreducible
+tempered representations of $G_1$. Let $\Omega$ denote the set
+of strongly compact elements in $G_1$.  More concretely, $\Omega$
+is the set of elements $GL(n,F)$-conjugate to $GL(n,O_F)$, where
+$O_F$ denotes the ring of integers in $F$.  
+If $1_\Omega$ is the characteristic function
+of $\Omega$, then the compact trace, denoted 
+$\text{trace}_\Omega\pi(f) $, is defined to be $\text{trace}
+(1_\Omega f)$, for $f\in C_c^\infty(G_1)$.  
+This is a trace on {\it strongly} compact elements, but for simplicity, it
+will just be called the compact trace.
+If ${\Cal O}$ is a unipotent
+conjugacy class, then we let $\mu_{\Cal O}$ denote the invariant distribution
+supported on ${\Cal O}$.  We also write $\Phi(\gamma,f)$ for the
+orbital integral of $f\in C_c^\infty(G)$, over the conjugacy class
+containing the strongly regular
+semisimple element $\gamma\in G_1$.  
+We let {\sl val} denote the normalized valuation on $F^\times$, and let $|\cdot|$
+denote the normalized absolute value on $F^\times$.  The notation $|S|$ will also be
+used for the cardinality of a set $S$.  The context should make the meaning of
+$|\cdot|$ clear.
+See the beginning of Section 2, and
+Section 3.4, for additional notation.
+
+\bigskip
+\proclaim Theorem 1.  
+  The following subspaces of 
+  $ {\Cal H}_1' $ are equal.
+\item{{\rm (a)}}
+  The image in 
+    $ {\Cal H}_1' $
+  of the space of invariant distributions on
+    $ C_c^{\infty}  (G_1) $
+  supported on the set of unipotent elements in $G_1$,
+\item{{\rm (b)}}
+  The span of 
+    $ \{ \mu_{\Cal O} \mid \Cal O \text{ unipotent}\} $,
+\item{{\rm (c)}}
+  The span of 
+    $ \{ \text{trace}_{\,\Omega}\,\pi \mid
+         \pi \in \Pi^{\text{t}} \} $,
+\item{{\rm (d)}} 
+  The span of
+    $ \{ \text{trace}_{\,\Omega}\,\pi \mid
+         \pi \in \Pi^{\text{t}} $, 
+    $ \pi $
+    has an Iwahori fixed vector $\}$,
+\item{{\rm (e)}}
+  The space spanned by orbital integrals:
+    $ f \mapsto \Phi (\gamma, f) $, for
+    $ f \in {\Cal H}_1 $,
+  as $\gamma$ runs over the strongly regular semisimple
+  elements of 
+  $ \Omega $.
+\finishproclaim
+
+\medskip
+\noindent
+The theorem is proved in the following steps.
+Denote the vector spaces described in (a)$,\dots,$(e) by
+  $ V_A,\ldots,V_E$.
+We have obvious inclusions
+  $ V_B \subseteq V_A$ and $V_D \subseteq V_C $.
+From Section 1, using arguments valid for an arbitrary
+  reductive group, we obtain
+  $ V_A \subseteq V_E \subseteq V_D = V_C $.
+In Section 2 we prove that the dimension of $V_D$ is less than or
+equal to a constant, which we will call $g(n)$.
+In Section 3 the proof is completed by proving that the dimension
+of $V_B$ is at least $g(n)$.
+This last inequality is the most difficult step of the proof.
+
+Also, it is shown below that the number of unipotent conjugacy classes of
+$G_1$ is 
+    $ g(n) $.
+    This number is also
+  equal to the cardinality of a basis of $GL(n,O_F)$-characters
+  of irreducible admissible representations with an Iwahori fixed vector.
+It would be interesting to have a direct geometric interpretation of 
+  this fact.
+
+By identifying these vector spaces in Theorem 1, the existence of
+  a uniform germ expansion is proved (Section 1).
+This uniform germ expansion is used to link the matching of 
+  smooth functions to the fundamental lemma.
+
+The strategy of the proof was developed during several conversations
+  with D.~Ramakrishnan.
+It is a pleasure to thank him for the important role he played in
+  the development of the ideas of this paper.
+The papers of Langlands--Shelstad~[{\bf 20}] and Waldspurger~[{\bf 31}]
+  also greatly influenced this work.
+I would also like to thank F.~Shahidi for his assistance, and D.~Joyner 
+  for some helpful comments.
+
+\newpage
+\noindent
+\line{{\bf 1@.  Uniform germ expansions.}\hfil}
+
+
+\medskip
+\noindent
+In this first section, we let $G$ be the $F$-points of a 
+  connected linear reductive group over $F$. Also, let $K$ 
+  be a maximal
+  compact subgroup containing an Iwahori subgroup $B$, and
+let
+   $ \Omega $
+denote the set of strongly compact elements.  In this paper, the term
+{\it strongly compact element} means an element lying in the
+intersection of the set of compact elements $\Omega_c$ with
+the intersections of the kernels of all unramified quasicharacters of $G$.
+Let 
+  $ {\Cal H} (B,G) $
+denote the Hecke algebra of functions on $G$ bi-invariant
+  by $B$.
+Otherwise we retain the notation of the introduction.
+
+\proclaim Theorem {1.1.} {\rm (Kazhdan)}.
+Let
+  $ f$ belong to $C_c^{\infty} (G) $.
+If \, {\rm trace}
+  $ \pi (f)$ is zero 
+for all irreducible tempered representations, then the orbital integral
+  $ \Phi (\gamma,f) $ is zero
+for all regular semisimple elements~$ \gamma $.
+\finishproclaim
+
+Let
+  $ I (\Omega) $
+denote the space of invariant distributions of
+  $ C_c^{\infty} (G) $
+supported on $\Omega$.
+Note that 
+  $ \text{trace}_{\,\Omega} \pi $ belongs to $I(\Omega) $.
+
+\proclaim Theorem {1.2.} {\rm (Clozel)}.
+  $ I (\Omega) \mid_{{\Cal H}(B,G)} $
+is finite dimensional.
+\finishproclaim
+
+\proclaim Corollary {1.3}.
+There is a finite set
+  $ \Pi_* $ (depending on $\Omega$)
+of irreducible tempered representations and functions
+  $ a_{\pi} (\gamma) $,
+for 
+  $ \pi \in \Pi_* $,
+defined on regular semisimple elements
+  $ \gamma $ 
+in
+  $ \Omega $,
+such that
+%
+$$
+  \Phi (\gamma, f) 
+=
+   \sum_{\pi \in \, \Pi_*}
+  a_{\pi} (\gamma) 
+  \text{trace}_\Omega{\pi} (f),
+$$
+%
+for all 
+regular semisimple elements $\gamma$ in 
+  $ \Omega $
+and all 
+  $ f \in {\Cal H} (B,G) $.
+\finishproclaim
+
+\pproclaim Proof:
+Pick $\Pi_*$ to be a finite set 
+  $ \{\pi_1, \dots , \pi_r \} $
+  of representations
+such that the set
+  $\{ \text{trace}_{\,\Omega} \, \pi_i \}$
+forms a basis for the span of
+  $ \{ \text{trace}_{\,\Omega} \, \pi \mid
+    \pi \,\, \text{tempered irreducible} \} $
+on 
+  $ {\Cal H} (B,G) $.
+If
+  $ \text{trace}_{\,\Omega} \, \pi_i (f) = 0 $, for all $\pi_i\in\Pi_*$,
+then for all irreducible tempered representations $\pi$ we have
+  $ \text{trace}_{\,\Omega} \, \pi (f) = 0 $.
+Hence,
+  $ \text{trace} \, \pi (1_{\Omega} f) = 0 $,
+and
+  $ \Phi (\gamma, 1_{\Omega} f) = 
+    \Phi (\gamma, f) = 0 $.
+Thus, by linear algebra,
+  $ \Phi (\gamma,f) = 
+    \sum_{\pi \in \,\Pi_*} 
+    a_{\pi} (\gamma) \text{trace}_{\,\Omega}\pi(f) $
+for constants
+  $ a_{\pi} $
+depending on
+  $ \gamma$, a regular
+  semisimple element of $\Omega$.
+\qed
+\finishpproclaim
+
+Let 
+  $ \{ \Cal O \} $
+denote the set of unipotent conjugacy classes of $G$.
+Let 
+  $ \Cal M $
+denote the space spanned by distributions
+  $ \mu_{\Cal O} $ 
+on
+  $ {\Cal H} (B,G) $,
+  for
+  $ \Cal O \in \{ \Cal O \} $.
+Let 
+  $ {\Cal M}_* $
+denote a basis of
+  ${\Cal M}$
+consisting of distributions of the form
+  $ \mu_{\Cal O} $.
+Let
+  $\text{tr}_{\,\Omega}\Pi_*$
+be the span of 
+  $ \{ \text{trace}_{\,\Omega} \pi \mid \pi
+     \in \Pi_* \} $.
+
+\proclaim Proposition {1.4}.
+If 
+  $ \dim {\Cal M} \geq \dim \text{tr}_{\,\Omega}\Pi_*$,
+then
+  $ {\Cal M} = \text{tr}_{\,\Omega}\Pi_*$.
+\finishproclaim
+
+\pproclaim Proof:
+It is enough to show that ${\Cal M}$ is contained in $\text{tr}_{\,\Omega}\Pi_*$.
+We have the Shalika germ expansion
+$$\Phi(\gamma,f) = \sum_{\{{\Cal O}\}}\Gamma_{\Cal O}(\gamma)\mu_{\Cal O}(f),
+	\quad \text { for } f\in {\Cal H}(B,G),$$
+valid for regular semisimple elements in some neighborhood 
+$\Omega'$ of $1$ [{\bf 27}].   Since the Shalika germs
+$\Gamma_{\Cal O}(\gamma)$ are linearly independent [{\bf 14}],
+each unipotent orbital integral $\mu_{\Cal O}$ may be written
+as a finite linear combination of integrals $\Phi(\gamma,f)$,
+for appropriate regular semisimple elements $\gamma$.  Each
+orbital integral $\Phi(\gamma,f)$, in turn, may be written
+as a linear combination of compact traces, by Corollary 1.3.
+The result follows.
+\qed
+\finishpproclaim
+
+\proclaim Theorem {1.5}.
+If 
+   $ \dim {\Cal M} \geq \dim \text{tr}_{\,\Omega}\Pi_*$,
+then there exist functions
+  $ \Gamma_{\Cal O} (\gamma) $, for ${\Cal O}\in{\Cal M}_*$,  defined on the
+  regular semisimple elements of
+  $ \Omega $,
+such that, for all
+  $ f \in {\Cal H} (B,G) $
+and all such 
+  $ \gamma  $, we have the equation
+%
+$$
+  \Phi (\gamma,f) =
+  \sum_{{\Cal O}\in{\Cal M}_*}
+  \Gamma_{\Cal O}
+  (\gamma) \mu_{\Cal O} (f).
+$$
+%
+\finishproclaim
+\noindent
+We call such an expansion a {\it uniform germ expansion}.
+
+\pproclaim Proof:
+Expand each
+  $ \text{trace}_{\,\Omega}\pi $, with  
+  $ \pi \in \Pi_* $,
+as a linear combination of
+  $ \mu_{\Cal O} \in {\Cal M}_* $,
+and substitute these linear combinations into the expansion
+%
+$$
+  \Phi(\gamma,f) =
+  \sum_{\pi\in\Pi_*}
+  a_{\pi}(\gamma) \,\, \text{trace}_{\,\Omega} \pi(f).
+$$
+%
+\qed
+\finishpproclaim
+
+\proclaim Lemma {1.6}.
+If
+  $ \text{trace}_{\,\Omega}\pi (f) $ is nonzero, 
+for some 
+  $ f \in \Cal H (B, G) $,
+then
+  $ \pi $
+has an Iwahori fixed vector.
+\finishproclaim
+
+\pproclaim Proof:
+We first prove the analogous result for $\Omega_c$, the set of 
+compact elements, instead of for $\Omega$.
+Waldspurger's proof for 
+  $ GL(n) $
+carries over directly to the general reductive group.
+We recall the argument.
+There are three ingredients to the proof:
+a formula expressing
+  $ \text{trace}_{\,\Omega} \pi $
+as a combination of ordinary traces, 
+the observation that the functions 
+  $ \bar f^P $
+are nearly in the Iwahori Hecke algebra on $M$,
+and the fact that if a Jacquet module of
+  $ \pi $
+has an Iwahori fixed vector then so does 
+  $ \pi $.
+
+If
+  $ P = MN $
+is a parabolic subgroup of $G$ and
+  $ f$ belongs to $C_c^{\infty} (G) $, then
+define 
+  $ \bar f^P \in C_c^{\infty} (M) $
+by
+%
+$$
+\align
+  \bar f^P (m) &=
+    \delta_P^{1/2} (m)
+    \int_{K,N}
+    f (kmnk^{-1}) dkdn, \\
+\vspace{4pt}
+  \delta_P(m) &=
+     \Bigl|
+       \det
+       \bigl(
+          Ad\,m \bigm|_{\text{Lie}\,N}
+       \bigr)
+     \Bigr|,
+     \quad\text { for }
+     m \in M.
+\endalign
+$$
+%
+Let $A_0$ be the split component of a minimal parabolic
+  subgroup $P_0 $.
+Assume that 
+  $ B, K$ and $P_0 $ 
+are compatibly chosen so that
+  $ M \cap B = B_M $
+is an Iwahori subgroup of $M$.
+Assume $K$ is adapted to 
+  $ A_0 $
+as in [{\bf 7}].
+
+Let $W (M)$ denote the Weyl group of $M$.
+Let $S$ be the set of shortest representatives (by length)
+of the cosets 
+  $ W/W(M) $.
+We may take them to be represented by fixed elements in $K$.
+Then there is a double coset decomposition
+  $ K = 
+    \coprod_{s \in S} 
+      B s K_P =
+    \coprod_{s \in S }
+      B s K_M K_N $,
+where 
+  $ K_M =
+    K \cap M $,
+  $ K_N = K \cap N $ and
+  $ K_P = K \cap P $.
+Refine the double coset decomposition to one of the form
+$K=\coprod_{S,T_S} B s\,t K_N$, where $T_S$ is a finite
+subset of $K_M$.   
+
+We define an action
+of $M$ on $C_c^\infty(M)$ by
+  $ (Ad\,m \cdot f) (m_0) = f (m^{-1} m_0 m) $.
+Following the notation introduced by Waldspurger, we let 
+  $ {\Cal H}^i (B_M, M) $
+denote the vector space spanned by the functions
+  $ Ad\,m \cdot f $, for
+  $ f \in {\Cal H} (B_M, M) $ and
+  $ m \in M $.
+Next we will prove that
+  $ \bar f^P \in {\Cal H}^i (B_M, M) $.
+We ignore the factor
+  $ \delta_P^{1/2} $, because
+it is bi-invariant by 
+  $ B_M $
+and its conjugates.
+The integral
+$$\int_{K,N} f(kmnk^{-1}) dk\,dn$$
+may be broken into a finite sum of integrals over the double cosets
+$BstK_N$ in $K$.   If $t\in K_M$, and if $s\in S$, then the double coset 
+$BstK_N$ is right invariant by $t^{-1}B_Mt$, because $Bs$ is right
+invariant by $B_M$  [{\bf 4}; prop\. 1.1.2] 
+and because both $t$ and $t^{-1}B_Mt$ normalize $K_N$.
+Hence, the contribution to $\bar f^P$ from the double coset $BstK_N$
+is a $t^{-1}B_Mt$-bi-invariant function.  Such a contribution
+lies in ${\Cal H}^i(B_M,B)$.  Hence $\bar f^P\in {\Cal H}^i(B_M,M)$.
+The same argument establishes the following lemma.
+
+\proclaim Lemma {1.7}. $\bar f^{P_1}$ belongs to ${\Cal H}^i(B_M,M)$, for
+every parabolic subgroup $P_1$ containing $P$.
+\finishproclaim
+
+To continue with Lemma 1.6, we recall
+a theorem of Clozel and Waldspurger [{\bf 8}]
+%
+$$
+  \text{trace}_{\,\Omega_c} \, \pi (f) =
+  \sum_{P \in {\Cal P}}
+  (-1)^{a_P-a_G}
+  \big\langle
+    \text{trace}\, \delta_P^{-1/2} 
+    \pi_N, 
+    \hat \chi_N
+    \bar f^P 
+  \big\rangle_M.
+\tag{1.8}
+$$
+%
+Here
+  $ {\Cal P} $
+is a set of representatives, modulo conjugation by $G$, for
+the parabolic subgroups of $G$.
+The unnormalized Jacquet module of
+  $ \pi $ is denoted here by $\pi_N$ 
+[{\bf 4}]. The Jacquet module
+is an admissible representation of $M$.
+The constants
+  $ a_P $
+and
+  $ a_G $
+do not concern us.
+The pairing
+  $ \langle , \rangle _M $
+is the usual pairing of characters of $M$,
+viewed as distributions, with locally constant compactly
+  supported functions on $M$.
+  The function
+  $ \hat {\chi}_N $
+is a function on $M$ factoring through the Harish-Chandra
+  map $H$ from $M$ to the
+real Lie algebra of the split center of $M$.
+The Harish-Chandra map $H$ and hence 
+  $ \hat {\chi}_N $ 
+are bi-invariant by every compact subgroup of $M$.
+Thus
+  $ \hat {\chi}_N \bar f^P$ belongs to  $\Cal H^i(B_M, M) $.
+
+Consider a function
+  $ f \in {\Cal H} (B,G) $.
+Suppose that 
+  $ \pi $
+does not have an Iwahori fixed vector.
+If 
+  $ \pi $
+does not have an Iwahori fixed vector, then neither does
+  $ \pi_N $.
+(This statement is an immediate consequence of [{\bf 5};prop 2.4].)
+From
+  $ \hat {\chi}_N \bar f^P \in {\Cal H}^i
+    (B_M,M) $,
+it follows that
+  $ \langle
+      \text{trace} \, \delta_P^{-1/2}
+      \pi_N,
+      \hat \chi_N
+      \bar f^P
+    \rangle_M \allowmathbreak$ is zero.
+Thus, by the theorem of Clozel-Waldspurger,
+$
+  \text{trace}_{\,\Omega_c}\, \pi (f)
+$ is zero.
+%
+This completes the proof of the analogue Lemma 1.6 for $\Omega_c$.
+Now to prove the result for $\Omega$, use the additional fact
+that if $\text{trace}_{\,\Omega_c}\,\pi\otimes\chi(f)$ is zero for all
+unramified quasicharacters $\chi$ of $G$, then 
+$\text{trace}_{\,\Omega}\,\pi(f)$ is also zero.
+\qed
+\finishpproclaim
+
+\newpage\noindent
+\line{{\bf 2@.  Some representations of $G_1$.}\hfil}
+
+\medskip\noindent
+We now return to the groups $ G=GL(n,F) $
+and 
+  $G_1=\{g\in G\mid \text{val\,}\det g\in n{\Bbb Z}\}$.
+In this section we study tempered, irreducible admissible
+  representations of $G_1$ with an Iwahori fixed vector.  Since our applications 
+  will truncate these representations on $\Omega$, we
+  may assume that the central character is trivial.
+Call 
+  $ \Pi_1$
+this set of representations of $G_1$
+  (listed up to equivalence).
+Every such representation of $G_1$ is a constituent
+  of the restriction of a representation of $G$ with 
+  the same properties (tempered, irreducible, trivial central character,
+   possessing an Iwahori fixed vector).
+Notice that the groups $G$ and $G_1$ have the same center:
+  $Z(G_1) = Z(G)$.
+First we consider such representations of 
+$G$, and then we consider their restrictions to $G_1$.
+
+We will use the following notation.  
+Let $\Lambda_n$ be
+  the set of ordered partitions of $n$.  Such a partition is a tuple
+  $ \lambda = (\lambda_1, \dots , \lambda_{\ell})$ satisfying
+    $\lambda_1 \geq \lambda_2 \geq \dots \geq\lambda_{\ell} > 0 $.
+    The letter $\ell$ will always be used for the number of
+    parts of the partition.
+  If 
+  $ \lambda \in \Lambda_n$, then define  $gcd (\lambda)$ to be the
+  greatest common divisor of the parts
+  $ \lambda_i$ of $\lambda$.
+  If $\lambda\in \Lambda_n$, then let $\lambda^t\in\Lambda_n$ 
+  denote the dual partition (or transpose), defined in the usual way.
+We let $g(n)$ denote the constant
+  $ \sum\limits_{\lambda \in \Lambda_n}
+  gcd (\lambda) $.
+%
+Let 
+$\varpi$ be
+  a uniformizing element.  Let $K$ denote the maximal
+  compact subgroup $GL(n,O_F)$.  Let
+$B$ be the standard Iwahori subgroup.  Explicitly, $B$ is the group
+  $ \{
+      (x_{ij}) \in K \mid
+       x_{ij} \in (\varpi), \,\,
+    \text{ if }  i > j
+    \} $.
+Let $P_0$ denote the 
+    Borel subgroup of upper triangular matrices
+      $ \{ (x_{ij}) \in G \mid x_{ij} = 0 $,\text { if }
+      $ i > j \} $.
+%
+For $\lambda\in \Lambda_n$, let $P_\lambda$ be the
+    standard parabolic subgroup.  It satisfies
+      $ P_0 \subseteq P_{\lambda} \subseteq G $.
+%
+We have a Levi decomposition
+$P_{\lambda}=M_{\lambda}N_{\lambda}$,
+and
+      $ M_{\lambda} $
+    is isomorphic to 
+      $ GL(\lambda_1, F)\times \dots \times 
+        GL(\lambda_{\ell}, F) $.
+%
+Let $\bar N_\lambda$ denote the transpose of the group
+$N_\lambda$ in $G$.  It is the unipotent radical of a
+parabolic subgroup opposite $P_\lambda$ containing $M_\lambda$.
+
+
+
+The classification of the given representations of $ GL (n,F) $
+is well known [{\bf 2}], [{\bf 32}].  For other split reductive
+groups see [{\bf 17}].  Let $\sigma_r$ denote the Steinberg
+representation of $GL(r,F)$.  For a partition 
+$\lambda=(\lambda_1,\ldots,\lambda_\ell)\in\Lambda_n$, let
+$\sigma_\lambda$ be the representation $\sigma_{\lambda_1}\otimes
+\cdots\otimes\sigma_{\lambda_\ell}$ of $M_\lambda  = 
+GL(\lambda_1,F)\times \cdots\times GL(\lambda_\ell,F)$.  For
+$s\in {\Bbb C}^\times$, let $\nu_s$ be the quasicharacter of
+$GL(r,F)$ given by $\nu_s(g) = s^a$, if the valuation of the determinant
+of $g$ is $a$.  For $s=(s_1,\ldots,s_\ell)\in {\Bbb C}^{\times\,\ell}$, let
+$\nu_s$ denote the quasicharacter $\nu_{s_1}\otimes\cdots\otimes
+\nu_{s_\ell}$ on $M_\lambda$.  Set $\sigma_{\lambda,s}=\sigma_\lambda
+\otimes \nu_s$.  Then the irreducible tempered representations 
+in question are the induced representations 
+$\pi_{\lambda,s} = \text{Ind}\,\sigma_{\lambda,s}$ (unitary
+induction), with $s\in {\Bbb C}_1^\ell$, where ${\Bbb C_1}= \{z\in {\Bbb C}\mid
+\ |z|=1\}$.
+
+Add ``$1$'' to notation to indicate quantities on 
+  $ G_1 : M_1 = M \cap G_1$,
+  $ \sigma_1 = \sigma \big|_{M_1} $,
+  $ \pi_1 = \pi \big|_{G_1} $, and so forth.
+Let $A_\lambda$ denote the center of $M_\lambda$.
+Set
+  $ W_1 (\lambda,s) =
+    \{ w \in N_G(A_{\lambda}) \mid
+       w \cdot \sigma_{\lambda,s,1} \approx
+       \sigma_{\lambda,s,1} 
+    \} $,
+and set
+  $ W(\lambda,s) =
+   \{ w \in N_G(A_{\lambda}) \mid
+       w \cdot \sigma_{\lambda,s} \approx
+       \sigma_{\lambda,s} 
+    \} \subseteq W_1(\lambda,s) $.
+Here
+  $ w \cdot \sigma (m)$ is the representation  $ \sigma(w^{-1} mw) $,
+  and ``$\approx$'' denotes equivalence.
+
+\proclaim Lemma {2.1}.
+For
+  $ w \in W_1(\lambda,s) $,
+there is a uniquely defined character
+  $ \omega_{w,0}: F^{\times} \to {\Bbb C}^{\times} $
+such that
+  $ w \cdot \sigma_{\lambda,s} $ is equivalent to
+   $\sigma_{\lambda,s} \otimes
+   \omega_{w,0} \cdot \det $.
+The map
+  $ w \mapsto \omega_{w,0} $
+is a group homomorphism from 
+  $ W_1(\lambda,s) $
+to the group of characters on 
+  $ F^{\times} $.
+The kernel of the homomorphism is
+  $ W(\lambda,s) $.
+\finishproclaim
+
+\pproclaim Proof: This result is contained in {\rm [{\bf 9}], [{\bf 10}] and [{\bf 26}]}.
+Note that
+  $ \omega_{w,0} $
+is trivial on
+  $ M_1 $.
+%
+\qed
+\finishpproclaim
+
+For any representation
+  $ \pi $,
+let
+  $ V(\pi)$
+denote its underlying vector space.
+Fix a complex number $t$, and let
+  $ \text{Ind}_t \, \sigma_{\lambda,s} $
+denote the representation obtained by right action on
+functions from
+  $ GL(n,F) $
+to 
+  $ V(\sigma_{\lambda,s}) $
+such that%
+$$
+  f(mng) =
+  \delta_P^{t+\frac12} (m)
+  \sigma_{\lambda,s} (m) f(g),
+  \quad\text { for }
+  m \in M_{\lambda} \text{ and }n \in N_{\lambda}.
+$$
+%
+For 
+  $ w \in W(s,\lambda) $,
+set
+  $ N_w = N_\lambda \cap w \bar N_\lambda w^{-1} $.
+For 
+  $ f \in  V
+    (\text{Ind}_t \, \sigma_{\lambda,s}) $,
+define the operator
+  $ A_{t,\lambda,s} (w) $
+by
+%
+$$
+  \bigl(
+    A_{t,\lambda,s} (w) f
+  \bigr)
+  (g) =
+  \int_{N_w}
+  f (w^{-1} ng) dn, 
+  \quad 
+  \text{for }g \in GL(n,F).
+$$
+%
+When the real part of $t$ is sufficiently large,
+this integral is absolutely convergent.  The integral has a meromorphic
+continuation to the complex $t$-plane.
+There is a meromorphic function of $t$ such that, when
+  the operator $ A_{t,\lambda,s} (w) $
+is multiplied by this scalar function, the resulting operator does not have
+a pole at
+  $ t = 0 $. 
+This construction yields a normalized intertwining operator
+  $ {\Cal A}_{\lambda,s} (w) $,
+which intertwines
+  $ \text{Ind} \, \sigma_{\lambda,s} $
+and
+  $ \text{Ind} \, w \cdot \sigma_{\lambda, s}  $.
+
+If 
+  $ w_1 $ and 
+  $ w_2$ belong to $W_1 (\lambda,s) $,
+and if
+  $ \omega_{w_1,0} =
+    \omega_{w_2,0} $,
+then we have
+  $ w_1 \cdot 
+    \sigma_{\lambda,s} \approx
+    \sigma_{\lambda,s} \otimes
+    \omega_{w_1,0} =
+    \sigma_{\lambda,s} \otimes
+    \omega_{w_2,0} \approx
+    w_2 \cdot 
+    \sigma_{\lambda,s} $.
+Thus, there is an operator 
+  $ \phi : 
+    V
+    (w_1 \cdot \sigma_{\lambda,s})
+    \to
+    V(w_2 \cdot \sigma_{\lambda,s}) $
+intertwining these irreducible representations.
+The intertwining operators depend only on the image of $w$
+in 
+  $ W_1(s,\lambda) /
+    W (s,\lambda) $
+in the following sense.
+
+\proclaim Lemma {2.2}.
+The operators
+  $ \phi {\Cal A}_{\lambda,s} (w_1) $
+and
+  $ {\Cal A}_{\lambda,s} (w_2) $
+are proportional.
+\finishproclaim
+
+\pproclaim Proof:
+They both intertwine
+  $ \text{Ind}\, \sigma_{\lambda,s} $
+and
+  $ \text{Ind}\, w_2 \cdot \sigma_{\lambda,s} $.
+Both representations are irreducible.
+Use Schur's lemma.
+\qed
+\finishpproclaim
+
+Now we restrict representations to
+  $ G_1 $.
+We may identify
+  $ \pi_{\lambda,s,1} $
+and
+  $ \text{Ind}_{P_1}^{G_1} \,
+     \sigma_{\lambda,s,1} $.
+For
+  $ w \in W_1 (\lambda,s) $,
+we may fix
+  $ \phi_w $
+intertwining
+  $ w \cdot \sigma_{\lambda,s,1} $
+and
+  $ \sigma_{\lambda,s,1} $.
+By a theorem of Harish-Chandra [{\bf 29}],
+the operators
+  $ \phi_w {\Cal A}_{\lambda,s} (w) $
+span the commuting algebra of 
+  $ \pi_{\lambda,s,1} $.
+This theorem, expressed in terms of distributions,
+implies the following proposition.
+
+\proclaim Proposition {2.3}.
+If 
+  $ \pi $
+is a constituent of
+  $ \pi_{\lambda,s,1} =
+    \text{{\rm Ind}}_{P_1}^{G_1} \,
+    \sigma_{\lambda,s,1} $,
+then 
+  $ \text{{\rm trace}}\,\pi $
+lies in the space spanned by
+%
+$$
+  \text{{\rm trace}} 
+  \left(
+    \phi_w 
+    {\Cal A}_{\lambda,s} (w)
+    \pi_{\lambda,s,1}
+  \right), \qquad\text{ for }
+   w \in W_1(\lambda,s).
+$$
+%
+\finishproclaim
+
+By Lemma 2.2,
+it is enough to let $w$ range over coset representatives in
+  $ W_1(\lambda,s)  $
+of
+  $ W_1(\lambda,s) / \allowmathbreak W (\lambda,s) $.
+A different choice of 
+  $ \phi_w $
+changes 
+  $ \text{trace}
+    \bigl(
+       \phi_w
+       {\Cal A}_{\lambda,s} (w) 
+       \pi_{\lambda,s,1} 
+    \bigr) $
+by a scalar.
+We fix the isomorphisms
+  $ \phi_w $
+and drop them from the notation.
+
+\proclaim Lemma {2.4}.
+If
+  $ h $ belongs to $G$,
+  and if $ f$ belongs to $C_c^{\infty} (G_1) $, then
+%
+$$
+  \text{{\rm trace}}
+  \bigl(
+    {\Cal A}_{\lambda,s} (w)
+    \pi_{\lambda,s,1}
+    (Ad\,h \cdot f)
+  \bigr) 
+=
+  \omega_{w,0} 
+  (\det h) \,
+  \text{{\rm trace}}
+  \bigl(
+    {\Cal A}_{\lambda,s} (w)
+    \pi_{\lambda,s,1}
+    (f)
+  \bigr) .
+$$
+%
+\finishproclaim
+
+\pproclaim Proof: Clearly,
+%
+$$
+\align
+  \pi_{\lambda,s,1} (Ad\,h \cdot f)
+&=
+  \pi_{\lambda,s}(h)
+  \pi_{\lambda,s,1} (f) 
+  \pi_{\lambda,s} (h^{-1}) ,
+\\
+  {\Cal A}_{\lambda,s} (w)
+  \pi_{\lambda,s} (h) 
+&=
+  \omega_{w,0} (\det h)
+  \pi_{\lambda,s} (h) 
+  {\Cal A}_{\lambda,s} (w).
+\endalign
+$$
+%
+The result follows.
+\qed
+\finishpproclaim
+
+\noindent
+\hbox to 8mm{{\bf 2.5}\hfil}
+Fix a partition $\lambda =(\lambda_1,\ldots,\lambda_\ell)\in \Lambda_n$. We
+define an element $$s(\lambda)=(s(\lambda)_1,\ldots,s(\lambda)_\ell)\in
+{\Bbb C}_1^\ell$$ as follows.  Let $r_i$ be the cardinality of the
+set $\{j\mid \lambda_j = i\}$, and let $r=r(\lambda)$ be the greatest
+common divisor of the integers $r_1,r_2,\ldots$.  Notice that $r(\lambda^t) = \text{gcd}(\lambda)$.
+Let $\zeta=\exp(2\pi\,\sqrt{-1}/r)$.  Set $s(\lambda)_i = \zeta^i$.
+
+Now fix an element
+  $s \in {\Bbb C}^\ell_1$.
+The characters 
+  $ \omega_{w,0} $, for
+  $w \in W_1(\lambda,s) $,
+are unramified characters
+  $ \omega_{w,0}: F^{\times} \to {\Bbb C}^{\times} $
+whose order $r'$ divides $r$.
+The representation $\pi_{\lambda,s}$ is equivalent to the representation
+$\pi_{\lambda,s'}$, if $s'$ is obtained from $s$ by interchanging
+$s_i$ and $s_j$, when $\lambda_i=\lambda_j$.  Call parameters $s$ and $s'$
+equivalent if they are related by a sequence of such permutations.
+There exist a primitive $r'$\,th root of unity $\zeta'$ and a
+tuple $t=(t_1,\ldots,t_{\ell/r'})\in {\Bbb C}^{\ell/r'}_1$ such that, after
+replacing $s$ with an equivalent parameter, we have
+$s_i = t_a\zeta^{\prime\,b}$, for all  $i,a,b$  satisfying 
+	$$\quad i = 1+(a-1)r'+b,\ \ 1\le a\le \ell/r',\ \  0\le b\le r'-1.$$
+Write $t = t(s,r')$ to indicate the dependence of $t$ on $s$ and $r'$.  As a particular
+example, for each $r'$ dividing $r$, we find that a parameter equivalent to $s(\lambda)$ has the
+form just described.
+We may assume that $w$ acts by a permutation $\epsilon$ of order $r'$,
+that the permutation carries the $i$th factor $GL(\lambda_i)$ of $M_\lambda$
+to the following factor $GL(\lambda_{i+1})$ if $i$ is not a multiple of $r'$, and finally
+that the permutation carries the $i$th factor $GL(\lambda_i)$ of $M_\lambda$
+to the factor $GL(\lambda_{i-r'+1})$ if $i$ is a multiple of $r'$.
+The conditions on $r(\lambda)$ and $r'$ insure that factors permuted by the
+permutation $\epsilon$ have the same rank.
+
+\proclaim Proposition {2.6}.
+For
+  $ f \in C_c^{\infty} (G_1) $ and
+  $ w \in W (\lambda,s) $,
+pick 
+  $ w' \in W (\lambda,s(\lambda)) $
+such that
+  $ \omega_{w,0}$ and $\omega_{w',0} $
+  are equal
+as characters of 
+  $F^{\times} $.
+Then
+%
+$$
+  \text{{\rm trace}} \, 
+    \bigl(
+      {\Cal A}_{\lambda,s} (w)
+      \pi_{\lambda,s,1} 
+      ( 1_{\Omega} f)
+    \bigr) 
+    \quad
+    \text{is proportional to}\quad
+  \text{{\rm trace}} \, 
+    \bigl(
+      {\Cal A}_{\lambda,s(\lambda)} (w')
+      \pi_{\lambda,s(\lambda),1} 
+      ( 1_{\Omega} f)
+    \bigr). 
+$$
+%
+\finishproclaim
+
+\proclaim Theorem {2.7}.
+The dimension of the span of
+  $ \{ \text{{\rm trace}}_{\, \Omega} \pi \} $
+on
+  $ {\Cal H} (B, G_1) $
+is at most
+  $ g(n) $.
+\finishproclaim
+
+\pproclaim Proof of Theorem 2.7:
+By the results of Section 1, we may assume
+  $ \pi $
+has an Iwahori fixed vector. 
+For a fixed 
+  $ \lambda $
+the distributions are combinations of
+the linear functionals of Proposition 2.6
+%
+$$
+  f \mapsto \text{ trace }
+  \bigl(
+    {\Cal A}_{\lambda,s(\lambda)} (w)
+    \pi_{\lambda,s(\lambda),1} (1_{\Omega} f)
+  \bigr),
+$$
+%
+with
+  $ w $
+ranging over representatives of 
+  $ W_1 (\lambda,s(\lambda)) /
+    W   (\lambda,s(\lambda)) $.
+Thus, the dimension of the span is at most
+%
+$$
+  \sum_{\lambda \in \Lambda_n}
+  r (\lambda) =
+  \sum_{\lambda \in \Lambda_n}
+  gcd (\lambda) = g(n).
+$$
+%
+\qed
+\finishpproclaim
+
+\pproclaim Proof of Proposition 2.6:
+By going to equivalent data we may assume that 
+  $s$ and 
+  $ s(\lambda) $
+have the form given in 2.5.
+By replacing $w$ with a different representative in
+  $ W_1(\lambda,s) $,
+we may assume it is given by the permutation matrix $\epsilon$
+described above.
+Similarly, we may assume that
+  $ w = w' $.
+
+Write
+  $ 1_{\Omega} f =
+   \sum Ad \, h_i \cdot f_i $,
+where
+  $ \text {supp} (f_i)$ is contained in $K$
+and
+  $ h_i$ belongs to $GL(n,F)$.
+Suppose that the proposition holds for functions supported in $K$.
+Then, for any 
+  $ f \in C_c^{\infty}(G) $,
+%
+$$
+  \text{trace}
+  \bigl(
+    {\Cal A}_{\lambda,s} (w)
+    \pi_{\lambda,s,1}
+    (1_{\Omega} f)
+  \bigr)
+=
+  \sum
+  \omega_{w,0}
+  (\det h_i) \,
+  \text{trace}
+  \bigl(
+    {\Cal A}_{\lambda,s} (w)
+    \pi_{\lambda,s,1}
+    (f_i)
+  \bigr)
+$$
+%
+is proportional to
+%
+$$
+  \sum  \omega_{w,0}
+  ( \det h_i)
+  \text{trace}
+  \bigl(
+    {\Cal A}_{\lambda,s(\lambda)} (w)
+    \pi_{\lambda,s(\lambda),1}
+    (f_i)
+  \bigr)
+=  
+  \text{trace}
+  \bigl(
+    {\Cal A}_{\lambda,s(\lambda)} (w)
+    \pi_{\lambda,s(\lambda),1}
+    (1_{\Omega}f)
+  \bigr).
+$$
+%
+Thus, we may assume that the support of $f$ lies in $K$.
+
+The restriction $V$ of 
+  $V(\pi_{\lambda,s,1})$
+to functions on $K$ is independent of $s$.
+It is
+%
+$$
+  V =
+  \{
+    f \in C_c^{\infty} (K) \mid
+    f (k_m k_n k ) =
+    \sigma_{\lambda} (k_m) f (k)
+  \}, \ \text{ for } k_m\in M\cap K
+  \ \text{and } k_n\in N\cap K.
+$$
+%
+For
+  $ f \in V $,
+let 
+  $ f_s $
+denote its unique extension to
+  $ V(\pi_{\lambda,s,1} ) $.
+Let
+  $ \xi_i = r'\lambda_{r'i} $,
+for
+  $i\in \{1,\dots,\ell'\}$ (where $\ell'=\ell/r'$),
+and let
+  $ \xi $
+be the partition 
+  $ ( \xi_1, \dots, \xi_{\ell'}) $.
+Notice that
+  $ P_{\xi} \supseteq P_{\lambda} $,
+  $ M_{\xi} \supseteq M_{\lambda} $ and
+  $ N_{\xi} \subseteq N_{\lambda} $.
+By construction,
+  $ w$ belongs to $M_{\xi} $.
+  The subgroup $N_w$ of $N_\lambda$ is defined in
+  at the beginning of the section.  It satisfies the condition
+%
+$$
+  w^{-1} N_w w = 
+  w^{-1} N_\lambda w \cap \bar N_\lambda \subseteq 
+  P_{\xi} \cap \bar N_\lambda \subseteq
+  M_{\xi}.
+$$
+%
+So
+  $ N_w $ is a subset of $ w M_{\xi} w^{-1} = M_{\xi} $.
+Let 
+  $ {}^{\circ}\! M_{\xi} = 
+    \{ m \in M_{\xi} \bigm|
+       |\chi(m)| = 1 $,
+for every character
+  $ \chi $
+of 
+  $ M_{\xi} \} $.
+Since
+  $ N_w $
+is unipotent,
+  $ N_w$ is contained in  
+    ${}^{\circ} \!M_{\xi} $.
+Also,
+  $ w \in 
+    {}^{\circ} \!M_{\xi} $,
+so
+  $ w^{-1} N_w$ is contained in 
+    ${}^{\circ} \!M_{\xi} $.
+For
+  $ w^{-1} n \in G $,
+write
+  $ w^{-1} n = m n_1 k_1 $
+according to the decomposition
+  $ G = M_{\lambda} N_{\lambda} K $.
+Since
+  $ w^{-1} n$ belongs to  ${}^{\circ} \!M_{\xi} $,
+we may also assume
+  $m$, $n_1$ and $k_1$ belong to
+    ${}^{\circ} \!M_{\xi} $.
+This decomposition is not unique, but our manipulations
+  will be well defined.  We find that
+%
+$$
+  f_s (w^{-1}nk) =
+  f_s (m n_1 k_1 k) =
+  \sigma_{\lambda,s}(m) f (k_1 k).
+$$
+%
+Set $t_i = t(s(\lambda),r')_i/t(s,r')_i$, and
+consider the element $t\in {\Bbb C}^\ell_1$ of the form
+$$t = (t_1,\ldots,t_1,\ldots ,t_{\ell'},\ldots,t_{\ell'}),$$ where
+each coordinate $t_i\in{\Bbb C}_1$ is repeated $r'$ times.
+If $m=(m_1,\ldots,m_\ell)\in M_\lambda \cap {}^{\circ}\!M_\xi$,
+then
+$$
+\align
+  \nu_t (m) &=
+   t_1^{%
+      \operatorname{val}
+      (\det m_1 \det m_2 \dots \det m_{r'}) } \;
+   t_2^{%
+      \operatorname{val}
+      (\det m_{r'+1} \dots) }
+    \dots
+    t_{\ell'}^{%
+      \operatorname{val}(\dots \det m_\ell)}
+\\
+\vspace{4pt}
+  &=
+   t_1^0
+   t_2^0 \dots = 1.
+\endalign
+$$
+%
+Thus, we find that
+%
+$$
+  \nu_s (m) =
+  \nu_s (m)
+  \nu_t(m) =
+  \nu_{s(\lambda)} (m), \; \text{ and } \;
+  \sigma_{\lambda,s} (m) =
+  \sigma_{\lambda,s(\lambda)} (m).
+$$
+%
+Thus,
+  $ f_s (w^{-1} nk) =
+    f_{s(\lambda)} (w^{-1} nk) $.
+Hence, 
+  $\Cal A_{s, \lambda} (w) =
+   \Cal A_{s(\lambda), \lambda} (w) $.
+%
+\qed\finishpproclaim
+
+\newpage\noindent
+\line{{\bf 3@.  Linear independence of unipotent classes.}\hfil}
+
+\medskip
+\noindent
+In this section we prove that the dimension of the span of
+%
+$$
+  \{ \mu_{\Cal O} \mid
+     {\Cal O} \text{ unipotent } \} 
+  \quad \text{on} \quad
+  {\Cal H} (B, G_1)
+$$
+%
+is equal to 
+  $ g(n) $.  Our justification for working with $G_1$ rather
+  than $SL(n,F)$ comes from the following lemma.
+  For any distribution $F_1$ and any $g\in G$, let $F^g_1$ be the distribution
+  $F^g_1(f) = F_1(\text{Ad}\,g\cdot f)$ (see Section 2).
+
+\proclaim Lemma {3.1}.
+If
+  $ {F}_1$ and ${F}_2 $
+are distributions on 
+  $ SL(n,F) $
+such that
+  $ {F}_1^g = 
+    {F}_2 $
+with $g\in G_1$, then
+  $ F_1$ and $F_2$ 
+are equal to each other on
+the Iwahori Hecke algebra of $SL(n,F)$.
+In particular, the distributions supported on two different conjugacy
+classes in $SL(n,F)$ are equal up to a scalar, if the classes are
+conjugate in $G_1$.
+\finishproclaim
+
+\pproclaim Proof:
+Let $B_s$ denote $B\cap SL(n,F)$.
+Take
+  $f$ to be the characteristic function of 
+  a double coset of $B_s$ in $SL(n,F)$.
+  Each coset of $SL(n,F)$ in $G_1$ is represented by a diagonal element
+  $g$ stabilizing the double coset.
+Then
+  $ Ad \, g \cdot f = f $,
+so that
+  $ F_2 (f) =
+    F_1^g (f) =
+    F_1 (Ad \, g \cdot f) =
+    F_1 (f) $.
+\qed
+\finishpproclaim
+
+Each $GL(n,F)$-conjugacy class
+  $ {\Cal O} $
+breaks into finitely many 
+  $ G_1 $-classes, the
+  number of classes in a stable conjugacy class
+  being equal to the cardinality of
+%
+$$
+  \bigl\{
+    \text{val det}(g):
+    g \in G
+  \bigr\}
+  \big/
+  \bigl\{
+    \text{val det}(g):
+    g \in C_{G} (u)
+  \bigr\},
+$$
+%
+where $u$ is an element of the conjugacy class.
+If 
+  $ {\Cal O}_{\lambda} $
+is a conjugacy class in $GL(n,F)$, and if the class is 
+the Richardson class of the
+  parabolic subgroup 
+  $ P_{\lambda} $
+(with Levi factor
+  $ GL (\lambda_1) \times \dots \times GL(\lambda_{\ell}) $),
+then the elementary divisors of an element in
+  $ {\Cal O}_{\lambda} $
+are given by the partition $\lambda^t$ dual to $\lambda$.  
+If $u$ belongs to ${\Cal O}_\lambda$, then it is easy to check that
+  $ \det C_G (u) = F^{\times\,r(\lambda)} $,
+with
+  $ r(\lambda) $
+defined as in the previous section.
+Then
+%
+$$
+  \mid 
+      {\Bbb Z} / \text{val}(F^{\times\,r(\lambda)})
+     \mid =
+  \mid 
+      {\Bbb Z} / r(\lambda) {\Bbb Z}
+      \mid
+     = r(\lambda) .
+$$
+%
+
+It is convenient to combine the $G_1$-unipotent classes in 
+  the same $GL(n,F)$-class as follows.
+Fix
+  $ \lambda \in \Lambda_n $,
+and let
+  $ \epsilon $
+be an unramified character of $F^\times$ 
+of finite order
+  $ r_{\epsilon} \in {\Bbb N}$.
+We assume
+  $ r_{\epsilon} $
+divides
+  $ r(\lambda) $.
+Fix a $G$-invariant measure $dg$
+on the $G$-conjugacy class
+  $ {\Cal O}_{\lambda} $.
+Then set
+%
+$$
+  \mu_{\lambda}^{\epsilon} (f) =
+  \int_{ C_G (u) \backslash GL(n,F) }
+  \epsilon \, (\det g) f
+  (g^{-1} ug)dg.
+$$
+%
+Selecting a different element
+ $ u \in {\Cal O}_{\lambda} $
+will alter
+  $ \mu_{\lambda}^{\epsilon} $
+by an
+  $ r_{\epsilon}$-root of unity.
+The assumption that
+  $ r_{\epsilon} $
+divides
+  $ r(\lambda) $
+is needed to insure that
+  $ \mu_{\lambda}^{\epsilon} $
+is nonzero. 
+This divisibility condition will be used throughout the paper.  A
+distribution such as $\mu^\epsilon_\lambda$ will be called
+$\epsilon$-invariant, because of its obvious transformation
+property under $GL(n,F)$.
+Each
+  $ \mu_{\lambda}^{\epsilon} $
+is a linear combination of invariant distributions
+  on the $G_1$-classes in
+  $ {\Cal O}_{\lambda} $.
+Conversely each invariant distribution on a unipotent class in $G_1$ 
+may be expressed as a linear combination of the distributions
+  $ \mu_{\lambda}^{\epsilon} $.
+As 
+   $ \epsilon $
+varies over unramified characters, the number of
+  distributions on
+  $ {\Cal H}(B, G)  $ associated with ${\Cal O}_\lambda$ is $r(\lambda)$.
+
+Notice that our integrals are now in 
+  $ GL (n,F) $
+instead of
+  $ SL(n,F)  $ or $G_1$.
+For the rest of the paper, we will work in the group
+  $ G = GL (n,F) $.
+
+\proclaim Theorem {3.2}.
+The distributions
+  $ \bigl\{
+      \mu_{\lambda}^{\epsilon} 
+    \bigr\}_{\lambda \in 
+             \Lambda_n ,
+             r_{\epsilon}
+            |r(\lambda) } $
+are linearly independent on \linebreak
+  $ {\Cal H}(B, G_1) $.
+\finishproclaim
+
+The proof of this theorem will occupy the remainder of this section.
+We note that this will complete the proof of Theorem 1.
+
+\proclaim Lemma {3.3}.
+Let $\{F_i\}$ be a collection of distributions on ${\Cal H}(B,G_1)$.
+For each $i$,
+suppose that there is a character $\epsilon_i$ of
+$GL(n,F)$ whose order divides $n$ and that $F_i$ is $\epsilon_i$-invariant.  For each
+such character $\epsilon$, let $\{F_i\}_\epsilon$ denote the
+set $\{F_i\mid \epsilon_i=\epsilon\}$.  Suppose that
+$\{F_i\}_\epsilon$ is a set of linearly independent distributions,
+for every character $\epsilon$.  Then $\{F_i\}$ is also a set
+of linearly
+independent distributions.
+\finishproclaim
+
+\pproclaim Proof:
+Let 
+  $ w_{\text{x}} $
+be the
+  $ n \times n $
+permutation matrix with
+%
+$$
+  (w_{\text{x}})_{i, j} =
+  \cases
+    1, \quad &\text{if } i + 1 = j, \quad \text{ (indices read modulo $n$)} \\
+    0, &\text{otherwise}.
+  \endcases
+$$
+%
+Then
+  $ (w_{\text{x}})^{-1} g_{ij} (w_{\text{x}}) =
+     h_{ij} $
+with
+  $ h_{ij} = g_{i-1, j-1} $
+(indices read modulo $n$).
+
+Let
+  $ p_0 =
+    w_{\text{x}} \,
+    \text{diag}
+    (\varpi,1, 1, \dots , 1, 1)
+    \in GL(n,F) $.
+    Then $p_0$ belongs to the normalizer of $B$.
+Also
+  $ p_0^n =
+    (\varpi, \dots , \varpi) 
+    \in Z (G) $.
+Thus, we obtain an action of
+  $ {\Bbb Z} / n {\Bbb Z} $
+on $B$, which extends to a linear action $R$ of
+  $ {\Bbb Z} / n {\Bbb Z} $
+on
+  $ {\Cal H} (B, G_1) $.
+Explicitly, $R(i)$ sends the characteristic
+function of $BwB$ to the characteristic function of
+  ${B w^{p_0^i} B} $.
+
+Set
+  $ R_{\epsilon} =
+    \frac1n\sum_{i = 1}^n 
+    \epsilon (\det p_0^i) R(i) $.
+Then $R_\epsilon$ projects the span of $\{F_i\}$ onto the
+span of $\{F_i\}_\epsilon$.  Similarly, $R_\epsilon$ projects
+a linear relation between the elements of $\{F_i\}$ to a linear relation
+between the elements of $\{F_i\}_\epsilon$.  The result
+follows easily.
+\qed\finishpproclaim
+
+\bigskip
+\noindent
+\hbox to 8mm{{\bf 3.4.}\hfil} 
+We will need the following notation.
+Fix a divisor $r$ of $n$.  Fix an unramified character $\epsilon:F^\times\to{\Bbb C}^\times$
+whose order $r_\epsilon$ is $r$. 
+Set $ rm = n $.
+Let $E$ be the unramified extension of $F$ of degree $r$.
+Assume that $e$ is a root of unity that generates $E$\ (see [{\bf 6}]),
+and that a prime-to-$p$ power of $e$ is $1$.  There is
+an embedding
+  $ j : E^{\times} \hookrightarrow GL(r,F) $
+determined by the basis
+  $ v_i = e^i $, 
+and by the condition
+  $ j(y) v_i = y e^i$, for $y \in E^{\times}$
+  and $ i \in\{ 0, \dots , n-1\}$.
+Let $H$ denote the group $GL(m,E)$.  The group $H$ will
+be identified with the centralizer of the image of $E^\times$
+under the ``diagonal'' embedding
+$$E^\times \longrightarrow GL(r,F)  \longrightarrow
+    \undersetbrace{m} \to{%
+     GL(r,F)\times\dots\times GL(r,F)}\subset GL(n,F).$$
+
+For $\lambda\in\Lambda_n$, we let $K_\lambda$ denote
+the standard parahoric subgroup of $G$.  It satisfies
+$B\subseteq K_\lambda\subseteq K$.  Let $\text{char}_\lambda$
+denote the characteristic function of $K_\lambda$.
+Fix a Haar measure $dg$ on $G$.  Then set
+$$f_{\lambda}
+     = \frac
+           { \text{char}_{\lambda} }
+           { \text{vol}(K_{\lambda}, dg) }.$$
+  In particular, 
+     $ f_{(n)} $ and $f^H_{(m)}$ denote the normalized
+     characteristic functions of $K$ and $K\cap H$.  I
+     hope that this will not create any confusion later,
+     when $f$ and $f^H$ will denote arbitrary 
+     smooth functions on $G$ and $H$ with matching
+     orbital integrals.
+   Define $\pmb\tau_r:\Lambda_m\to\Lambda_{mr}$,
+  and $\pmb\sigma_r:\Lambda_m\to\Lambda_{mr}$ by
+$$
+\align
+    \pmb\tau_r
+      (\lambda_1 \dots , \lambda_{\ell} ) &=
+      (r \lambda_1, \; r \lambda_2, \dots , r \lambda_{\ell} ), \;\;\;
+\\
+  \pmb\sigma_r
+     (\lambda_1 \dots , \lambda_{\ell} ) &=
+  ( \,
+    \undersetbrace{r} \to{%
+        \lambda_1, \dots, \lambda_1} , \;
+    \undersetbrace{r} \to{%
+        \lambda_2, \dots, \lambda_2} , \dots
+    \undersetbrace{r} \to{%
+        \lambda_{\ell}, \dots, \lambda_{\ell}} \, 
+  ).
+\endalign
+$$
+%
+The subscript $r$ will often be dropped.
+
+If $ x$ belongs to $G$, then let $ \Cal O_x $
+    denote the conjugacy class of $x$.
+%
+Let ${\Cal O}_{\lambda}$ denote the Richardson class of 
+      $ P_{\lambda} $.
+%
+  For example,  $ {\Cal O}_{(1^n)}$ is the 
+regular unipotent class, and $ {\Cal O}_{(n)} = \{1\} $.
+
+
+If $X$ is a set of 
+  $ n \times n $
+matrices with coefficients in $F$, then write
+  $ \tilde{X} \subseteq GL_n ({\Bbb F}_q) $
+for the set obtained by reduction of the coefficients of 
+  $ X \cap K $
+modulo the maximal ideal $(\varpi)$
+and let
+  $ K_X $ denote the intersection
+  $ X \cap K $.
+Write
+  $ \tilde{x} $
+for the reduction of
+  an element $ x \in K$
+modulo $(\varpi)$.
+Let
+  $ \text{Mat}_{ab} (F) $
+denote the set of 
+  $ a \times b $
+matrices with  $F$-coefficients, and let
+  $ \text{Mat}_a (F) = \text{Mat}_{aa} (F) $.
+
+\proclaim Lemma {3.5}.
+Suppose that $\lambda$ and $\xi$ belong to $\Lambda_n$.
+Then
+  $ \mu_{\lambda}^{\epsilon}
+    (\text{{\rm char}}_{\xi})$ is zero
+unless
+  $ \xi = \pmb\tau_r (\xi') $
+for some partition
+  $ \xi' \in \Lambda_m $.
+\finishproclaim
+
+\pproclaim Proof:
+Consider the parabolic subgroup
+  $P_{\lambda} = M_{\lambda} N_{\lambda} $.
+A function 
+  $ \beta_{\epsilon} (n) $ on
+  $ N_{\lambda} \cap {\Cal O}  _{\lambda} $ is
+determined up to a constant by the condition
+  $ \beta_{\epsilon} (n^m) =
+    \epsilon \, (\det m) 
+    \beta_{\epsilon} (n)$, for
+  $ m \in M_{\lambda} $.
+A precise formula for 
+  $ \beta_{\epsilon} $
+will be given in Section 3.6.
+There is a formula for unipotent orbital integrals
+given in [{\bf 15}], which will be referred to
+in this paper as {\it Howe's normalization} of measures.
+For some choice of nonzero constants 
+  $ c_{\lambda} $,
+depending on measures, we have
+%
+$$
+  \mu_{\lambda}^{\epsilon}
+  (\text{char}_{\xi}) =
+  c_{\lambda}
+  \int_{K,N_{\lambda}} 
+  \beta_{\epsilon} (n) 
+  \text{char}_{\xi} (n^k) dkdn.
+$$
+
+For a unipotent element $u$ in the reduction $\tilde G$ of $G$ modulo $(\varpi)$,
+let
+  $ N_{\lambda} [u]$ denote the set  
+    $\{ n \in N_{\lambda} \cap K \mid \tilde n = u \} $
+and let 
+  $ a_{\lambda} (u) = \int_{N_{\lambda}[u]}
+    \beta_{\epsilon} (n) dn $.
+The integral defining $\mu^\epsilon_\lambda(\text{char}_\xi)$ breaks
+into a sum
+%
+$$
+  \mu_{\lambda}^{\epsilon} (\text{char}_{\xi}) =
+  c_{\lambda}
+  \sum\Sb 
+     \text{unipotent} \\
+     u \in \tilde G \endSb
+  a_{\lambda} (u)
+  \int_K
+  \bigl[
+     \text{char}
+     \tilde P_{\xi}
+  \bigr]
+  (u^{\tilde k}) dk.
+$$
+%
+Furthermore, if $K(1)$ is defined to be the congruence subgroup
+$\{k\in K\mid \tilde k=1\}$, then we have the elementary formula
+%
+$$
+  \int_K
+  \bigl[
+    \text{char}\,\tilde P_\xi
+  \bigr]
+  ( u^{\tilde k})
+  dk =
+  \text{vol}
+  \bigl(
+    K(1), dk
+  \bigr)
+ \mid 
+  \{
+    g \in \tilde G \mid u^g \in \tilde P_{\xi}
+  \}\mid.
+$$
+
+If
+  $ \xi = (\xi_1, \xi_2, \dots ,\xi_{\ell} ) \in\Lambda_n$ is an
+  ordered partition,
+and if
+  $ \theta: \{ 1, \dots , \ell \} \to
+    \{ 1, \dots , \ell \} $
+is a permutation, then we use the nonstandard convention of denoting by
+  $ P_{\xi, \theta} $
+the parabolic subgroup associated with the sequence
+  $ (\xi_{\theta(1)},
+     \xi_{\theta(2)}, \dots ,
+     \xi_{\theta(\ell)} ) $.
+Similar conventions apply to 
+  $ K_{\xi,\theta} $.
+
+The cardinality of
+  $ \{ g \in \tilde G \mid u^g \in \tilde P_{\xi,\theta} \} $
+is known to be independent of the order
+  $ \theta $
+on the factors for all orderings
+  $ \theta $ (see [{\bf 3}]).
+The lemma now follows if we find 
+  $ g \in G $
+such that
+  $ K_{\xi}^g  = K_{\xi,\theta} $
+and
+  $ \epsilon \, (\det g) \neq 1 $.
+For then 
+%
+$
+   \mu_{\lambda}^{\epsilon} (\text{char}\,K_{\xi,\theta}) $
+equals
+    $ \epsilon \,(\det g) \mu_{\lambda}^{\epsilon} 
+      (\text{char}\, K_{\xi})$, and this forces
+    $\mu_{\lambda}^{\epsilon} (\text{char}\, K_{\xi})$ to be zero.
+Let
+  $ w_{\text{x}} $ be the permutation matrix defined in 
+  the proof of Lemma 3.3.
+Set
+  $ p_1 = w_{\text{x}}^{\xi_1} \; \text{diag} 
+     ( 
+      \oversetbrace{\xi_1}\to {\vphantom{1}
+         \varpi,\dots , \varpi,} \,1,\dots,1) $.
+Then
+  $ p_1 K_{\xi} p_1^{-1} $
+is the parahoric with ``Levi factor''
+  %
+$$
+  GL(\xi_2) \times \dots \times 
+  GL(\xi_n) \times
+  GL(\xi_1),
+$$
+%
+and the determinant of
+  $ p_1 $ is
+  $\pm\varpi^{\xi_1} $.
+In a similar manner, we form
+  $ p_i $,
+  for $ i = 1, \dots , \ell $.
+This gives the parahoric subgroups
+  $ p_i \dots p_1 \;
+    K_{\xi}
+   p_1^{-1} \dots p_i^{-1} $
+with corresponding factor
+%
+$$
+  GL(\xi_{i+1})
+  \times \dots \times
+  GL(\xi_n) \times
+  GL(\xi_1)
+  \times \dots \times GL(\xi_i).
+$$
+%
+Moreover, the determinant of 
+  $ p_i \dots p_1 $ is
+  $ \pm\varpi^{\xi_1 + \dots + \xi_i} $.
+Suppose that $\xi$ does not have the form $\pmb\tau_r(\xi')$, for any $\xi'\in \Lambda_m$.
+Then, for some $i$, the integer
+  $ r$ does not divide $\xi_1 + \dots + \xi_i $,
+and so
+  $ \epsilon \, (\det p_i \dots p_1) \neq 1 $.
+Then set
+  $ g^{-1} = p_i \dots p_1 $.
+%
+\qed
+\finishpproclaim
+
+\bigskip
+\noindent
+\hbox to 8mm{{\bf 3.6}\hfil}
+Next we specify a normalization of the distributions
+$ \mu_{\lambda}^{\epsilon} $,
+which we will denote
+  $ \mu_{\lambda}^{\epsilon, \text{alg}} $
+(for algebraic).
+Let
+  $d n $
+(resp\. $d \bar n $)
+denote the Haar measure on 
+  $ N_{\lambda} $
+(resp\. $\bar N_{\lambda} $)
+assigning mass $1$ to 
+  $ N_{\lambda} \cap K $
+(resp\. $ \bar N_{\lambda} \cap K $).
+
+
+For every $i$ define
+  $ x_i : N_{\lambda} \to 
+    \text{Mat}_{\lambda_i, \lambda_{i+1}} (F) $
+to be the projection onto the $i$th superdiagonal
+  $ \lambda_i \times \lambda_{i+1} $
+block of 
+  $ N_{\lambda} $.
+
+\noindent
+{\bf Example}.
+If 
+  $ \lambda = (3, 3, 2, 2, 2, 2) $,
+then
+there are five superdiagonal blocks $x_1,\ldots,x_5$ of shapes
+$3\times 3$, $3\times 2$, $2\times 2$, $2\times 2$ and $2\times 2$.
+There is a well-defined determinant on all but the second block.
+
+\noindent
+Set
+  $ \beta_{\epsilon} (n) =  
+    \prod_{i=1}^{\ell-1} \epsilon^{-i} 
+    \bigl(
+       \det x_i (n)
+    \bigr) $, for $n\in N_\lambda\cap{\Cal O}_\lambda$.
+Notice that $ \epsilon^i = 1 $,
+whenever
+  $ x_i $
+is not square
+  $ (\lambda_i \neq \lambda_{i+1} ) $, provided that
+  $r_\epsilon$ divides $r(\lambda)$.
+Consequently, the product giving
+  $ \beta_{\epsilon} (n) $
+is well defined.
+Also, if
+  $ m =
+     (m_1, \dots, m_{\ell}) \in M_{\lambda} $,
+then
+%
+$$
+\spreadlines{4pt}
+\align
+  \beta_{\epsilon} (n^m) &=
+    \prod_{i=1}^{\ell-1} 
+    \epsilon^{-i}
+    \bigl(
+      \det 
+         m_i^{-1} 
+            x_i (n)
+            m_{i+1}
+     \bigr)
+\\
+&=
+    \prod_{i=1}^{\ell} 
+    \epsilon^i
+    (\det m_i)
+    \prod_{i=1}^{\ell} 
+    \epsilon^{1-i} 
+    (\det m_i) 
+    \beta_{\epsilon} (n)
+\\
+&=
+   \epsilon
+   (\det m)
+   \beta_{\epsilon} (n).
+\endalign
+$$
+%
+   We have used the identity $\epsilon^{\ell} = 1 $.
+\noindent
+We now give the definition.
+%
+$$
+  \mu_{\lambda}^{\epsilon,\text{alg}}
+  (f) =
+  \int_{N_{\lambda},\bar N_{\lambda}}
+  \beta_{\epsilon} (n) 
+  f (n^{\bar n}) d nd \bar n.
+$$
+%
+The function $\beta_{\epsilon} (n) $ is undefined on 
+a set of measure zero.
+Similarly, for $ \lambda' \in \Lambda_m $,
+we define the integral
+%
+$$
+  \mu_{\lambda'}^{\text{st}, \text{alg}}
+  (f^H) =
+  \int_{ N_{\lambda'}, \bar N_{\lambda'} }
+  f^H(n^{\bar n}) d n d \bar n, \quad \text{ for }f^H\in C_c^\infty(H),
+$$
+%
+where
+  $ P_{\lambda'} = 
+    M_{\lambda'} 
+    N_{\lambda'} 
+    \subseteq
+    H$, \ 
+    $\int_{N_{\lambda'}\cap K_H}
+    d n = 1 $, and so forth.
+
+\proclaim Lemma {3.7}.
+  $ \int
+    \beta_{\epsilon} (n) f 
+    (n^{\bar n}) 
+    d n d \bar n $
+is an 
+  $ \epsilon$-invariant integral.
+\finishproclaim
+
+\pproclaim  Proof:
+We have already checked correct transformation of
+  $ \beta_{\epsilon} (n) $.
+It remains to be seen that
+  $ d n d \bar n$
+is an invariant measure on
+  $ {\Cal O}_{\lambda} $.
+The measure $dn\,d\bar n$ is clearly invariant
+by $M_\lambda$ and $\bar N_\lambda$.  The group
+$G$ is generated by $M_\lambda$, $\bar N_\lambda$ and
+the root spaces of the simple positive roots contained
+in $N_\lambda$.  The invariance of $dn\,d\bar n$
+by such a root space is an elementary calculation,
+which reduces quickly to a calculation inside a group of rank $1$.
+\qed
+\finishpproclaim
+
+For 
+  $ \zeta \in \Bbb C $,
+set
+  $ \phi_j (q,\zeta) =
+    ( 1 - \zeta q^{-j})
+    ( 1 - \zeta q^{-j+1}) \dots
+    ( 1 -  {\zeta}q^{-1}) $.
+For any partition
+  $ \lambda \in \Lambda_n $,
+set
+  $ \phi_{\lambda} (q, \zeta) = 
+    \prod_{i=1}^{\ell} \phi_{\lambda_i}
+    (q, \zeta) $.
+
+\proclaim Lemma {3.8}.
+Let
+  $ \epsilon_0 $
+be an unramified quasicharacter of $F^\times$ with
+  $ \epsilon_0 (\varpi) = \zeta $.  Let
+  $ d x $ be
+an additive Haar measure on 
+  $ \text{{\rm Mat}}_j (O_F) $
+of mass $1$.
+Then
+%
+$$
+  \int_{ \text{{\rm Mat}}_j (O_F)}
+  \epsilon_0 (\det x) d x =
+  \frac
+     {\phi_j (q, 1)}
+     {\phi_j (q, \zeta)}.
+$$
+%
+\finishproclaim
+
+\noindent
+The right-hand side is the principal value of the
+  left-hand side  whenever
+  $ \phi_j (q,\zeta) \neq 0 $.
+
+\pproclaim Proof:
+Expand the right-hand side, for small
+  $ \zeta  $, as
+%
+$$
+  \undersetbrace{\text{Factor $1$}} \to {%
+    \Bigl(
+       \frac {q^j -1}{q^j}
+    \Bigr)
+    \Bigl(
+      1 +
+      \frac {\zeta}{q^j} +
+      \frac {\zeta^2}{q^{2j}} + \dots
+    \Bigr)
+  } \;\;
+  \undersetbrace{\text{Factor $2$}} \to{%
+    \Bigl(
+       \frac {q^j -q}{q^j}
+    \Bigr)
+    \Bigl(
+      1 +
+      \frac {\zeta}{q^{j-1}} +
+      \frac {\zeta^2}{q^{2(j-1)}} + \dots
+    \Bigr)
+  }
+\dots
+    \undersetbrace{\text{Factor $j$}} \to {%
+       \Bigl( 
+          \hskip .5in
+       \Bigr).
+    } 
+$$
+%
+The result will follow immediately from the correct interpretation
+of each term.
+Factor $i$ is the contribution of the $i$th column of the matrix
+  $x$, given that the previous
+  $ i - 1 $ 
+columns have already been selected.
+For any vectors
+  $ v_1, \dots , v_i \in O_F^j $,
+let
+  $ \text{val}_i (v_1, \dots , v_i) $
+be the largest value of 
+  $ i' \in {\Bbb Z} $
+such that an 
+  $ i \times i $
+minor in the 
+  $ j \times i $ 
+matrix
+  $ [v_1, \dots , v_i ] $
+has valuation $i'$.  
+Then the volume (with respect to additive Haar measure
+  of mass  $1$ on
+  $ O_F^j $) of
+%
+  $$\{ v_{i+1} \in O_F^j \mid
+   \text{val}_{i+1} (v_1 , \dots, v_{i+1}) -
+    \text{val}_i (v_1 , \dots, v_i) = \ell\}$$
+is a constant independent of 
+  $ v_1, \dots , v_i \in O_F^j $.
+This volume is equal to
+  $ (q^j-1)/q^{(j-i)\ell + j}$.
+This is the coefficient of 
+  $ \zeta^{\ell} $
+in the 
+  $ (i+1)$st factor above.
+The result follows.
+\qed\finishpproclaim
+ 
+\proclaim Lemma {3.9}.
+If
+   $\pmb\sigma \, (\lambda') = \lambda $,
+then
+  $ \mu_{\lambda}^{\epsilon, \text{{\rm alg}} }
+      (f_{(n)}) =
+    \mu_{\lambda'}^{\text{{\rm st,alg}}}
+      (f^H_{(m)})$.
+\finishproclaim
+
+\pproclaim Proof:
+We compute both integrals.
+It is more convenient to work with a different normalization.
+By Howe [{\bf 15}],
+%
+$$
+  \mu_{\lambda}^{\epsilon,\text{x}}
+  (f) =
+  \int_{ K, N_{\lambda} }
+  \beta_{\epsilon} (n) 
+  f (k^{-1}nk) dkdn, \ \text{ for }
+  f \in 
+  C_c^{\infty} (G),
+$$
+%
+is an $\epsilon$-invariant distribution, and
+%
+$$
+  \mu_{\lambda'}^{\text{st,x}} (f^H) =
+  \int_{K_H,N_{\lambda'}}
+  f^H
+  (k^{-1}nk)
+  dkdn 
+$$
+%
+is an invariant distribution.
+Thus, they equal
+  $ \mu_{\lambda}^{\epsilon, \text{alg}}$ and
+    $\mu_{\lambda'}^{\text{st,alg}} $
+up to scalars.
+Assume that $dk$ on $K$ is normalized to give $K$ mass $1$, and
+that $dk$ on
+  $ K_H \subseteq H $
+is normalized to give 
+  $ K_H $
+mass $1$.
+(These are separate measures--one on $K$ and one on
+  $ K_H $
+--but the same notation is used for both.)
+
+To compute these scalars, we consider the characteristic function $\chi$
+ of 
+%
+$$
+   \{
+      n^{\bar n} \mid
+      n \in N_{\lambda} \cap K, \;
+      \bar n \in \bar N_{\lambda} \cap K 
+    \}.
+$$
+%
+Then 
+  $ \mu_{\lambda}^{\epsilon,\text{alg}}
+    (\chi) =
+    \int_{ N_{\lambda}\cap K }
+    \beta_{\epsilon} (n) d n $.
+
+If
+  $ \chi (n^k) = 1 $ and $n\in {\Cal O}_\lambda\cap N_\lambda$,
+then one easily checks that
+  $ n$ belongs to $N_{\lambda} \cap K $,
+and
+  $k$ belongs to  $(P_{\lambda} \cap K)
+          (\bar N_{\lambda} \cap K) $.
+Then 
+%
+$$
+  \mu_{\lambda}^{\epsilon,\text{x}} (\chi) =
+  \int_{N_{\lambda}\cap K}
+  \beta_{\epsilon} (n) d n
+  \int_{ (P_{\lambda}\cap K) 
+         (\bar N_{\lambda}\cap K) }
+  dk =
+  \mu_{\lambda}^{\epsilon,\text{alg}} (\chi) \,
+  \frac
+    { \phi_\lambda(q,1)} {\phi_n(q,1)}.
+$$
+Similarly, one finds
+%
+$$
+  \mu_{\lambda'}^{\text{st,x}} =
+  \mu_{\lambda'}^{\text{st,alg}} \,
+  \frac {\phi_{\lambda'}(q^r,1)} {\phi_m(q^r,1)}.
+$$
+Now we evaluate
+  $ \mu_{\lambda}^{\text{st,alg}} (f_{(n)})$. 
+%
+$$
+\spreadlines{4pt}
+\align
+  \mu_{\lambda}^{\epsilon,\text{alg}} (f_{(n)})
+&=
+  \frac {\phi_n(q,1)}{\phi_\lambda(q,1)}
+  \frac
+     {  \mu_{\lambda}^{\epsilon,\text{x}} (\text{char}_{(n)})  }
+     {  \phi_n (q,1)  },  \\
+  \mu_{\lambda}^{\epsilon,\text{x}} (\text{char}_{(n)})
+&=
+  \int_K dk 
+  \int_{ N_{\lambda} \cap K }
+  \beta_{\epsilon} (n)  d n =
+  \prod_{i=1}^{\ell} 
+  \int
+  \epsilon^{-i}
+  (\det x_i)
+  d x_i.
+\endalign
+$$
+%
+Here 
+  $ d x_i $
+is a measure of mass $1$ on
+ $ \text{Mat}_{\lambda_i} (O_F) $. By Lemma 3.8,
+%
+$$
+\spreadlines{7pt}
+\align
+  \prod_{i=1}^{\ell}
+  \int
+  \epsilon^{-i} (\det x_i)
+  d x_i 
+&=
+  \prod_{i=1}^{\ell}
+  \frac
+     { \phi_{\lambda_i} (q,1)  }
+     { \phi_{\lambda_i} (q,\zeta^{-i})  } 
+= 
+  \frac
+     { \phi_{\lambda} (q,1)  }
+     { \phi_{\lambda'} (q^r,1)  }. 
+\\
+\vspace{8pt}
+  \mu_{\lambda}^{\epsilon,\text{alg} }
+  (f_{(n)})
+&=
+  \frac{1} {\phi_{\lambda'}(q^r,1)}. 
+\endalign
+$$
+Similarly,
+$$
+  \mu_{\lambda}^{\text{st,alg}}
+  (f_{(m)}^H)
+=
+  \frac 
+  { \phi_m(q^r,1) } {\phi_{\lambda'}(q^r,1)
+        \text{vol}(K_H, dh)   } \;\;
+   \int_{  N_{\lambda'}\cap K_H }  
+   d n
+=
+   \frac 1
+       { \phi_{\lambda'} (q^r,1)   }.
+$$
+\qed\finishpproclaim
+\bigskip
+
+\proclaim Proposition {3.10}.
+If
+  $ \xi', \lambda' \in \Lambda_m $,
+  $ \pmb\tau_r (\xi') = \xi $, and
+  $ \pmb\sigma_r (\lambda') = \lambda$,
+then
+  $ \mu_{\lambda}^{\epsilon,\text{alg}}
+    (f_{\xi}) = \mu_{\lambda'}^{\text{st,alg}}
+    (f_{\xi'}^H) $.
+\finishproclaim
+
+\proclaim Corollary {3.11}.
+The distributions 
+  $ 
+      \mu_{\pmb\sigma (\lambda')}^{\epsilon}
+    $, for $\lambda'\in\Lambda_m$,
+are linearly independent on
+  $ {\Cal H} (B, G_1) $.
+\finishproclaim
+
+\pproclaim Proof of Corollary 3.11:
+If
+  $ 0 = 
+    \sum
+    a_{\lambda'}
+    \mu_{\pmb\sigma(\lambda')}^{\epsilon,\text{alg}}
+    (f_{\xi}) =
+    \sum
+    a_{\lambda'}
+    \mu_{\lambda'}^{\text{st,alg}}
+    (f_{\xi'}^H) $,
+then
+  $ a_{\lambda'} = 0 $,
+because 
+  $ \mu_{\lambda'}^{\text{st,alg}} $,
+  for $ \lambda' \in \Lambda_m $,
+are known to be linearly independent on the span of
+  $ f_{\xi'}^H $, for
+  $ \xi' \in \Lambda_m $
+(see Waldspurger [{\bf 31}]).
+\qed\finishpproclaim
+
+\pproclaim Proof of Proposition 3.10:
+If
+  $ r_{\epsilon} = r = n $, and 
+  $ \xi = \pmb\tau (\xi') $, then
+  $ \xi = (n) $
+and
+  $ \xi' = (1) $.
+The proposition in this case follows from
+Lemma 3.9.
+Thus, we assume 
+  $ r_{\epsilon} = r < n $ and 
+  $ m > 1 $.
+To avoid trivialities, also assume
+  $ r_{\epsilon} = r \neq 1 $.
+
+By induction we may assume that the proposition is true for
+  all linear groups of smaller rank, in particular for all of
+  the proper Levi factors of 
+  $ G = GL (n) $.
+The induction is started on 
+  $ GL(p') $, for 
+a prime $p'$.  In this case, either
+  $ r_{\epsilon} = 1 $,
+in which case the proposition is a tautology, or
+  $ r_{\epsilon} = p' = r = n $,
+a case the previous paragraph treats.
+We note that the corollary is the only remaining step of the
+  proof of Theorem 1, and that this theorem implies the existence
+  of a uniform germ expansion. 
+Thus, we may assume by induction that a uniform germ expansion holds
+  on all of the proper Levi subgroups of
+  $G$.
+
+Suppose it is shown that
+  $ \mu_{\lambda}^{\epsilon,\text{alg}} (f_{\xi}) =
+    \text{c}_{\lambda}
+    \mu_{\lambda'}^{\text{st,alg}}
+    (f_{\xi'}^H) $
+for some scalar 
+  $ \text{c}_{\lambda} $
+independent of
+  $ \xi' \in \Lambda_m $ but depending
+  possibly on $\lambda$.
+Then, setting
+  $ \xi'= (m) $,
+  $ \xi = (n) $
+and using Lemma 3.9, we find that
+  $ \mu_{\lambda}^{\epsilon,\text{alg}}
+    (f_{\xi}) = 
+    \mu_{\lambda'}^{\text{st,alg}} 
+    (f_{\xi'}^H) $.
+So it is enough to establish this weaker identity.
+
+Fix $\lambda'$, write $\lambda''=\pmb\tau(\lambda')$, and
+write $P=P_{\lambda''}=MN$.  Fix $\xi=\pmb\tau(\xi')$.  In order to
+prove the equality $\mu_\lambda^{\epsilon,\text{alg}}(f_\xi) = c
+\mu^{\text{st,alg}}_{\lambda'}(f^H_{\xi'})$, we show that for an
+appropriate element $z$, both
+sides equal $\bar f^P_\xi(z)$, up to a constant.
+In the following
+lemmas the constants $c_i$ will be independent of $\xi$, but
+will depend possibly on $\lambda$.  Lemmas 3.12, 3.13 and 3.14 tacitly assume
+that the residual characteristic is sufficiently large.  
+This is harmless, because Proposition 3.10 is an equality between
+two rational functions of $q$.  Now
+fix $z$ to be a regular element of finite order in $H\cap K$, 
+whose centralizer is $H$,
+and whose order is prime to $p$.
+
+\proclaim{Lemma 3.12}.  There is a nonzero constant $c_0$ such that
+$\mu_{\lambda'}^{\text{st,alg}}(f^H_{\xi'}) = c_0 \bar f_\xi^P(z)$.
+\finishproclaim
+
+\pproclaim{Proof}:  Set $N'=N\cap H$, and $K'=K\cap H$.  The unipotent
+class of $H$ dense in $N'$ is ${\Cal O}_{\lambda'}$.
+Use Howe's normalization
+of measures to write 
+$$
+\mu^{\text{st,alg}}_{\lambda'}(f^H_{\xi'}) = c_1\int_{N',K'} 
+	f_{\xi'}^H (k^{\prime\, -1}n'k')dn'\,dk' = c_1\int_{N',K'}
+	f_{\xi'}^H (k^{\prime\,-1}zn'k')dn'\,dk'.$$
+%
+Since $H\cap K_\xi=K'_{\xi'}$, the integral may be replaced with
+$$
+\align
+c_2\int_{N',K'}f_\xi(k^{\prime-1}zn'k')dn'dk' &=
+ c_3\int_{N',K',K_\xi} f_\xi(k^{-1}k^{\prime-1}zn'k'k) dn'dk'dk\\&=
+ c_4\int_{N',K} f_\xi(k^{-1}zn'k)dn'dk.\endalign$$
+By Kazhdan's lemma, as given in [{\bf 31}], 
+the integral over $K'$ and $K_\xi$ may be replaced  with
+an integral over $K$.  
+
+Kazhdan's lemma will be used several more times in this paper, and
+we make a digression to explain it in more detail.
+We say that an element in $GL(n,O_F)$ is {\it topologically unipotent} if
+$\lim_{i\to\infty}\gamma^{q^i} = 1$.  We say that an element in $GL(n,O_F)$
+is {\it absolutely semisimple} if $\gamma^c=1$, where $c = (q^n-1)\cdots (q-1)$.
+Any semisimple element in $K$ has a topological Jordan decomposition
+$\gamma=\gamma_s\gamma_u$ into commuting absolutely semisimple and topologically
+unipotent elements $\gamma_s$ and $\gamma_u$.  Kazhdan's lemma states
+that if $z$ is an absolutely semisimple element in $E^\times\cap K_\xi$
+(with the embedding of $E^\times$ given in Section 3.4), then $z^g\in K_\xi$
+if and only if $g\in C_G(z)K_\xi$.  For a proof see [{\bf 31}].
+
+The integral that results from the application of Kazhdan's lemma is nearly $\bar f_\xi^P(z)$,
+except that, in the integral defining $\bar f_\xi^P(z)$, integration
+extends over $N$, not merely over $N'=N\cap H$.  In view of the support
+of $f_\xi$, we must show that the integral over $N'$ and $K$ remains unchanged
+if we integrate over $N\cap K$ instead of $N\cap K\cap H$.  This
+is accomplished if we show the equality of two sets $X_0$ and $X_0'$:
+$$\align
+   	X'_0 &= \{(zn)^k \mid k\in K,\ n\in N'\cap K\},\\
+	X_0 &= \{ (zn)^k \mid k\in K, \ n\in N\cap K\}.\endalign$$
+%
+To see that $X_0'\subseteq X_0$, it is enough to observe that
+$N'\subseteq N$.  
+
+Now we show $X_0\subseteq X_0'$.  For this, it is enough to show
+that the map $$\varphi:(N'\cap K)\times (N\cap K)\to z(N\cap K),\qquad
+      \varphi(n',n) = (zn')^n$$
+is onto.  This calculation is best understood by considering the
+example $m=2$, and $\lambda'=(1,1)\in \Lambda_2$.
+We write a matrix in $\text{Mat}_{2r}(F)$ in the form
+$\pmatrix a&b\\c&d\endpmatrix$, with $a,b,c,d\in\text{Mat}_r(F)$.
+The $2\times2$ matrix calculation
+%
+$$\pmatrix 1&-X\\0&1\endpmatrix
+  \pmatrix z&y\\0&z\endpmatrix
+  \pmatrix 1&X\\0&1\endpmatrix =
+  \pmatrix z& zX-Xz+y\\0&z\endpmatrix,$$
+ %
+  with 
+  $n=\pmatrix1&X\\0&1\endpmatrix$ and 
+  $zn'=\pmatrix z&y\\0&z\endpmatrix$,
+%
+shows that the following lemma is needed for $\varphi$ to be onto.
+
+\proclaim Lemma {3.13}.
+Let $E$ be the unramified extension of $F$ of degree $r$.
+Select $e\in E$, as in Section 3.4.  Select an embedding
+  $ j : E \hookrightarrow \operatorname{Mat}_r (F) $ defined
+  over $O_F$,
+as in\/ {\rm 3.4}.
+Set $ j(e) = z$.
+Then the $F$-linear map
+  $ L :
+    E \oplus 
+    \bigl(
+      \operatorname{Mat}_r (F) \big/ j (E)
+    \bigr)
+    \to
+    \operatorname{Mat}_r (F) $
+given by 
+  $L (y,X) =z X - X z + j (y) $
+sends
+  $ O_E \oplus \operatorname{Mat}_r (O_F) $
+{\rm onto}
+  $ \operatorname{Mat}_r (O_F) $.
+\finishproclaim
+
+\pproclaim Proof:
+The linear map
+  $L$ is surjective by dimension counts, since
+  $ \ker (L) = 
+    \bigl(
+       0, j (E)
+    \bigr) $.
+The matrix of $L$ has entries in
+  $ O_F $.
+Thus, the claim follows if we show the determinant of $L$ is a unit.
+Fix a basis defined over $E$ such that 
+  $ z = (z_1,\ldots,z_r) $ 
+is diagonal.
+Then, for
+  $ X= (x_{ij}) \in \operatorname{Mat}_r (F) $,
+  we find $ L(0,x_{ij}) = (z_i - z_j) x_{ij} $.
+By the hypotheses of Section 3.4 on $e$, we have
+  $ |z_i - z_j| = 1 $.
+So 
+  $ \det (L) $
+is a unit.
+\qed
+\finishpproclaim
+
+Even when $m$ is not $2$, repeated application of this lemma
+proves that the map $\varphi$ is onto.  This completes the
+proof of Lemma 3.12.
+\qed
+\finishpproclaim
+
+The following lemma, combined with Lemma 3.12, completes the proof
+of Proposition 3.10.  Let $\lambda'$, $\lambda''$, $\xi'$, $\xi$, $P$,
+$M$ and $N$ retain their meaning from Lemma 3.12.
+
+\proclaim{Lemma 3.14}.  
+$$\mu_\lambda^{\epsilon\text{,alg}}(f_\xi) = c_5 \bar f^P_\xi(z),$$
+for some constant $c_5$.
+\finishproclaim
+
+\pproclaim{Proof}:  In addition to the parabolic subgroup
+$P=P_{\lambda''}=MN$ already introduced, we make use of the parabolic subgroup
+$P_{\lambda_0}=M_0N_0\subseteq P$, where $\lambda_0$ is the
+partition $(r,\ldots, r)\in \Lambda_n$.  The maximally split
+Cartan subgroup $T$ of $H$ is isomorphic to $(\text{Res}_{E/F}{\Bbb G}_m)^m$,
+and $T$ may be identified with a Cartan subgroup in $M_0$ containing $z$.
+Here, as in Lemma 3.12, $z$ is a prime-to-$p$ root of unity, considered
+as a central element of $H$ in $G$.  Note that $M_0$ may be identified
+with the centralizer of an appropriate element 
+$(x_1,\ldots,x_m)\in F^{\times\,m}\subseteq
+E^{\times\,m} = T(F)$.  Set $K_0 = K\cap M_0$.
+
+The support of $f_\xi$ is contained in $K$.  If $(z^mn)^k$ lies in $K$,
+with $m\in M_0$, $n\in N$, and $k\in K$, then $z^mn\in K$.  It also follows
+ that $z^m\in K_0$.  This implies, by the version of Kazhdan's lemma
+ described in the proof of Lemma 3.12,
+ that $m$ belongs to $T(F)K_0$ (since $T$ is the centralizer of $z$ in $M_0$).
+ Notice that $\det T(F)$ consists of norms from $E^\times$, so that
+ $\epsilon$ is trivial on the determinant of any $m\in M_0$ such that $z^m\in K_0$.
+ We conclude then from the definition of $\bar f_\xi^P$ that
+ $$\epsilon(\det m)\bar f_\xi^P(z^m) = \cases 
+	\bar f^P_\xi(z), & \text{ if }m\in T(F)K_0,\\
+	0, & \text{ otherwise. }\endcases
+	$$
+Thus $\bar f_\xi^P(z)$ is a constant independent of $\xi$ times
+$$\int_{T\backslash M_0} \epsilon(\det m) \bar f_\xi^P(z^m) dm.$$
+By the induction hypothesis made above, there exists a
+uniform germ expansion for $M_0$, for functions in ${\Cal H}(B_{M_0},M_0)$,
+and more generally for functions (such as $\bar f_\xi^P$) in ${\Cal H}^i
+(B_{M_0},M_0)$ (see Lemma 1.7).  
+Note that $M_0$ is a proper Levi subgroup of
+$GL(n,F)$ when $\epsilon\ne 1$.  
+
+In the germ expansion of this integral, all
+$\epsilon$-invariant orbital integrals vanish except for the one
+corresponding to the regular unipotent  class.  To see this, note that $M_0$
+is a product of factors $GL(r,F)$ and that $\epsilon$ has order
+$r=r_\epsilon$.  In the discussion following Lemma 3.1, it was observed
+that an $\epsilon$-invariant unipotent orbital integral, 
+associated with a partition
+$\lambda\in\Lambda_r$, is zero unless $r_\epsilon$ divides $r(\lambda)$.
+The only partition of $r$ with this property is $\lambda=(1,\ldots,1)$,
+and this corresponds to the regular unipotent class of $GL(r,F)$.
+We may choose to take the germ expansion about a diagonal central element $z_0$
+of $M_0$, whose centralizer is $M_0$.  Assume that
+a prime-to-$p$ power of $z_0$ is 1.  Again, the germ expansion has a single term.
+
+Using the definition of $\bar f_\xi^P(z)$ and Howe's normalization of
+the regular unipotent orbital integral on $M_0$, we find that
+$\bar f_\xi^P(z)$ is a constant times
+$$\int_{U,K_0} \beta^0_\epsilon(u)\bar f_\xi^P((z_0u)^{k_0}) du\,dk_0 =
+	c_6\int_{U,N,K} \beta_\epsilon^0(u) f_\xi((z_0un)^k) du\,dn\,dk.$$
+Here $U$ is the radical of the upper-triangular Borel subgroup
+in $M_0$, and $\beta_\epsilon^0$ is the equivalent of $\beta_\epsilon$,
+for the group $M_0$.
+
+We must introduce a third parabolic subgroup $P_{\pmb\sigma(\lambda')} =
+P_\sigma=M_\sigma N_\sigma$ (in addition to the parabolic subgroups
+$P$ and $P_{\lambda_0}$ already in use).  Note that the
+projection of $U$ to a factor $GL(r\lambda'_i,F)$ of $M$ has
+dense orbit ${\Cal O}_{\pmb\sigma(\lambda'_i)}$.  This projection
+of $U$ to $GL(r\lambda'_i,F)$ is conjugate under $GL(r\lambda'_i,F)$ to
+a subset of the projection of $M\cap N_\sigma$ to $GL(r\lambda'_i,F)$.  
+In fact,
+there exists a permutation matrix $x\in M\cap K$ such that $U^x$ is contained
+in $M\cap N_\sigma$.  Set
+$\hat N_\sigma = U^xN\subseteq N_\sigma$.  One can check that
+an open subset of $\hat N_\sigma$ belongs to ${\Cal O}_\lambda = {\Cal O}_{\pmb\sigma(\lambda')}$
+and that $\beta^0_\epsilon(u) = \beta(n)$, if $n$ is the element
+$u^xn_1\in U^xN \cap
+{\Cal O}_{\lambda} = \hat N_\sigma\cap {\Cal O}_\lambda$.
+
+To complete the proof, we must show that the value of the integral
+$$\int_{\hat N_{\sigma},K} \beta_\epsilon(n) f_\xi((z_0^xn)^k) dn\,dk$$
+is changed only by a constant, if $\hat N_\sigma$ is replaced with
+$N_\sigma$.  The argument is similar to the argument used in the
+proof of Lemma 3.12.  It relies on the equality of the two sets:
+$$z_0^x(N_\sigma\cap K)\ \text{ and } \{(z_0^xn)^k\mid n\in \hat N_\sigma\cap K,
+\quad \text{and } k\in N_\sigma\cap K\}.$$
+After $\hat N_\sigma$ is replaced by $N_\sigma$, Lemma 1.7 allows us to drop
+$z_0^x$ from the integral.  We omit the remaining details, which are routine.
+\qed\finishpproclaim
+
+\newpage
+\noindent
+\line{{\bf 4@.  An interpretation of descent and homogeneity.}\hfil}
+
+\medskip
+\noindent
+The work of Waldspurger gives an interpretation of the identity
+  $$ \mu_{\pmb\sigma(\lambda')}^{\epsilon,\text{alg}} 
+    (f_{\pmb\tau(\xi')}) =
+    \mu_{\lambda'}^{\text{st,alg}}(f_{\xi'}^{H}) $$
+in terms of the Hall algebra.
+Zelevinsky defines three bases
+  $ x_{\lambda} $,
+  $ y_{\lambda} $, and
+  $ z_{\lambda} $,
+  for $\lambda \in \cup_n \Lambda_n$,
+of the PSH-algebra $R\otimes_{\Bbb Z} {\Bbb Q}$.
+There is an inner product on the PSH-algebra depending on $q$. It comes
+from an identification of the PSH-algebra and the Hall algebra.
+We let
+  $ \langle \;,\; \rangle_q $
+denote this inner product.
+There exists an endomorphism
+  $ \pmb\tau $
+of 
+  $ R \otimes_{\Bbb Z} {\Bbb Q} $
+given on the basis
+  $ z_{\lambda} $
+by
+  $ \pmb\tau (z_{\lambda}) =
+    z_{\pmb\tau_r (\lambda) } $.
+See [{\bf 31}] and [{\bf 33}] for details.
+
+
+\proclaim Proposition {4.1}.
+%
+$$
+\alignat 2
+  \mu_{\pmb\tau(\lambda')}^{\epsilon, \text{{\rm alg}}} (f_{\xi})
+&=
+  \langle
+    x_{\xi}, \pmb\tau (y_{\lambda'}) 
+  \rangle_q, \quad
+&&\text{{\rm if}} \quad
+  \lambda' \in \Lambda_m \text{\rm \ and }
+  \xi \in \Lambda_n.
+\\
+  \mu_{\lambda'}^{\text{{\rm st,alg}}} (f^H_{\xi'})
+&=
+  \langle
+    x_{\xi'}, y_{\lambda'} 
+  \rangle_{q^r}, \quad
+&&\text{{\rm if}} \quad
+  \lambda', \xi' \in \Lambda_m.
+\endalignat
+$$
+%
+\finishproclaim
+
+\pproclaim Proof:
+  This follows easily from the results of
+  [{\bf 31}] combined with Proposition 3.10, adjusting
+for different normalizations of measures.
+\qed
+\finishproclaim
+
+Next we consider the homogeneity of germs on topologically 
+  unipotent elements.
+Write
+  $ \gamma = 1 + t^2 X  \in \operatorname{Mat}_n (O_F) $
+and
+  $ \gamma_0 = 1 + X \in \operatorname{Mat}_n (O_F) $.
+Write $\Gamma_\lambda^\epsilon(\gamma)$ for the Shalika germ
+corresponding to the unipotent distribution $\mu_\lambda^{\epsilon,\text{alg}}$.
+
+\proclaim Proposition {4.2}.
+Assume that 
+  $ \gamma =1+t^2X$
+and
+  $ \gamma_0 =1+X$
+are topologically unipotent elements in $K$ and that 
+  $ t \in O_F $.
+Then the germs satisfy
+  $ \Gamma_{\lambda}^{\epsilon} (\gamma) =
+    \Gamma_{\lambda}^{\epsilon} (\gamma_0) 
+    |t|^{2n (\lambda)} $,
+for appropriate integers
+  $ n(\lambda) $.
+\finishproclaim
+
+\pproclaim Proof:
+The proof of  [{\bf 31}] goes through with the following
+  modification.
+Since we include a factor
+  $ \epsilon $, 
+we replace $t$ with $t^2$ in both the statement of the 
+  proposition and in the proof.
+It is then easily verified that
+  $ \beta_{\epsilon} (1 + t^2 N) = 
+    \beta_{\epsilon} (1 + N) $, where
+  $ 1 + N $ is
+an element of the Richardson class of 
+  $ O_{\lambda} $.
+The character 
+  $ \epsilon $
+does not enter otherwise into the proof.
+\qed
+\finishpproclaim
+
+\newpage
+\noindent
+\line{{\bf 5@.  Transfer factors.}\hfil}
+
+\medskip
+\noindent
+We are concerned with the transfer factors only for strongly compact
+  elements in
+  $ GL (n) $.
+This permits a simplification of the general results of
+  Langlands and Shelstad on transfer factors [{\bf 20}], [{\bf 21}].
+
+Suppose that $f$ and $g$ are monic polynomials with roots
+  $ x_1, \dots , x_m $ 
+and
+  $ y_1, \dots , y_{m'} $,
+respectively.
+The resultant
+  $ R(f,g) $
+of $f$ and $g$ is the product
+  $ \prod_{i,j}^{m,m'} (x_i-y_j) $.
+If
+  $ \gamma_1, \gamma_2 $
+are elements of 
+  $ \operatorname{Mat}_{\ell} $, then
+let
+  $ R (\gamma_1, \gamma_2) =
+    R (f_{\gamma_1}, f_{\gamma_2} ) $,
+where 
+  $ f_{\gamma} $
+is the characteristic polynomial of 
+  $ \gamma $.
+Let 
+  $ E / F $ 
+be an unramified extension of $F$ of degree $r$.
+For
+  $ \gamma \in \operatorname{Mat}_m (O_E) $,
+define
+%
+$$  
+  \Delta_{E/F}^{m,1} (\gamma) =
+    \Bigl|
+      \prod\Sb 
+         \sigma \neq \tau \\
+         \sigma, \tau \in \text{Gal} (E/F)
+       \endSb
+       R 
+       \bigl(
+          \sigma (\gamma), \tau (\gamma)
+       \bigr)
+    \Bigr|^{\frac12} .
+$$
+%
+If $r$ is odd, then define
+  $ \Delta_{E/F}^{m,2} (\gamma) = 1 $.
+If $r$ is even,  then let
+  $ \sigma_+ $
+denote the element of order $2$ in 
+  $ \text{Gal} (E/F) $.
+Let
+  $ \eta_E $
+denote the unramified character of
+  $ E^{\times} $ 
+of order $2$.
+Define
+  $$ \Delta_{E/F}^{m,2}
+    (\gamma) =
+    \eta_E
+    \Bigl(
+      R 
+      \bigl(
+        \gamma,\sigma_+ (\gamma) 
+      \bigr)
+     \Bigr) .$$
+Then set
+  $ \Delta_{E/F}^m (\gamma) = 
+    \Delta_{E/F}^{m, 1} (\gamma) \,
+    \Delta_{E/F}^{m,2} (\gamma) $.
+It is a continuous function on
+  $ GL(m, O_E) $.
+Extend
+  $ | \cdot | $
+to extensions of $F$ as needed.
+
+\bigskip
+\proclaim Proposition {5.1} (Homogeneity).
+If
+  $ \gamma = 1 + t^2 X $,
+  $ \gamma_0 = 1 + X $,
+  $ t \in O_F $, and 
+  $ X \in \operatorname{Mat}_m (O_E) $,
+then
+  $ \Delta_{E/F}^m (\gamma) =
+     |t|^{m^2 (r^2-r) } 
+    \Delta_{E/F}^m (\gamma_0) $.
+\finishproclaim
+
+\pproclaim Proof:
+$  R 
+  \bigl(
+    \sigma (\gamma),\tau (\gamma) 
+  \bigr)
+=
+  R 
+  \bigl( 
+    \sigma (t^2 X), \tau (t^2 X)
+  \bigr) 
+=
+  t^{2m^2} R
+  \bigl(
+    \sigma (\gamma_0), \tau (\gamma_0)
+  \bigr)
+$.
+%
+The result follows easily.
+\qed
+\finishpproclaim
+
+\bigskip
+\proclaim Proposition {5.2} (Central Elements).
+Select 
+  $ e \in O_E $, as in Section 3.4.
+Set
+  $ z = 1 + e t\in O_E$, with $t\in O_F$.
+Consider $z$ as a central element in 
+  $ GL(m, O_E) $
+by the diagonal embedding.
+Then 
+%
+$$
+  \Delta_{E/F}^m (z) =
+  |t|^{ m^2 (r^2-r)/2 } \;
+  \epsilon^{ m (r^2-r)/2 }(t),
+$$
+%
+where
+  $ \epsilon: F^{\times} \to {\Bbb C} $
+is any unramified character 
+of order $r$.
+\finishproclaim
+
+\pproclaim Proof:
+  $\sigma (z)- \tau (z) = t (\sigma(e)-\tau(e))$,
+  and $\sigma(e)-\tau(e)$ is a unit (for $\sigma\ne\tau$).
+Hence,
+$R(\sigma(z),\tau(z))$ and $t^{m^2}$ are equal, up
+to a unit.
+%
+It is now clear that
+  $ \Delta_{E/F}^{m,1} (z) =
+    | t|^{ m^2 (r^2-r)/2 } $.
+If $r$ is odd, then
+  $ \epsilon^{(r^2-r)/2} = 1 $
+and the result follows.
+If $r$ is even, then
+  $ \epsilon^{(r^2-r)/2} $
+is the restriction to
+  $ F^{\times} $ 
+of
+  $ \eta_E $.
+Then
+  $ \Delta_{E/F}^{m,2} (z) =
+    \eta_E^{m^2} (t) =
+    \epsilon^{ m (r^2-r)/2 } (t) $.
+\qed
+\finishpproclaim 
+
+
+
+\bigskip
+\proclaim Proposition {5.3} (Compatibility).
+Suppose that the residual characteristic is sufficiently large.
+If $ \gamma $ is regular and sufficiently small in
+  $ H$, then 
+$\Delta^m_{E/F}(\gamma)$ coincides with the transfer factor of Langlands
+and Shelstad (up to a scalar independent of $\gamma$).
+\finishproclaim
+
+\pproclaim Proof:
+The proof of this lemma is somewhat technical, and relies on the paper [{\bf 21}].
+We adopt the notation of [{\bf 21}] and [{\bf 22}] without further notice, 
+and examine each of the terms defining the transfer factor.
+%
+Pick
+  $ \gamma = \gamma_H $
+in $H$, and let
+  $ \gamma_G $
+denote its image in $G$ with respect to our fixed embedding.
+Then we clearly have
+%
+$$
+  \Delta_{E/F}^{m,1} (\gamma) =
+  \Delta_{\text{IV}}
+  (\gamma_H, \gamma_G),\quad \text{ for }
+  \gamma \in GL_m (O_E).
+$$
+%
+The factor
+  $ \Delta_2 (\gamma_H, \gamma_G) $
+is trivial in a neighborhood of the identity. 
+The transfer factor 
+  $ \Delta_1 (\gamma_H, \gamma_G) $ is identically $1$
+on elements
+  $ (\gamma_H, \gamma_G ) $
+such that
+  $ \gamma_G $ 
+lies in the 
+  $G_1$-orbit of $H$.
+More generally,
+%
+$$
+  \Delta_1
+  (\gamma_H, \gamma_G^g) =
+  \epsilon \,(\det g) \Delta_1 (\gamma_H, \gamma_G),
+$$
+%
+for $ \gamma_G $ in the $GL(n,F)$-orbit of $ \gamma= \gamma_H $.
+We select $a$-data so that every 
+  $ a_{\lambda} $
+is a unit in an extension of $E$.
+When $r$ is odd, we take the
+  $ \chi $-data to be trivial so that
+  $ \Delta_{\text{II}}
+    (\gamma_H, \gamma_G) $
+is trivial.
+When $r$ is even,
+we shall choose
+  $ \chi $-data so that
+%
+$$
+  \Delta_{\text{II}} (\gamma_H, \gamma_G) =
+  \Delta_{E/F}^{m,2} (\gamma) .
+$$
+%
+We say that roots $\alpha$ and $\beta$ of $G$ belong
+to the same {\it block} if there is an element $w$ of
+the absolute Weyl group $(S_m\times\ldots\times S_m)$
+of $H$ with $w\cdot \alpha=\beta$. The Galois group
+$\text{Gal}(E/F)$ permutes the blocks.  
+Suppose that the equation $\tau(B_0) = -B_0$ holds for
+some $\tau\in \text{Gal}(E/F)$, and some block $B_0$ of roots
+that are not roots of $H$.  Then $r$ is even,
+and $\tau$ equals the element $\sigma_+$ of order 2 in $\text{Gal}(E/F)$.
+Furthermore, the $\text{Gal}(E/F)$-orbit of $B_0$ is uniquely determined.
+Fix such a block $B_0$, when $r$ is even.
+
+Let $\lambda$ be a root in $B_0$.  The fixed field $F_+$ of $\Gamma_+$
+contains $E$.  Similarly, the fixed field $F_\pm\subseteq F_+$
+of $\Gamma_\pm$ contains $E_\pm$, the fixed field of $\sigma_+$ in 
+$E$.  Let ${\Cal B}_0$ denote the set of $\text{Gal}(\overline F/F)$-orbits
+of roots in $B_0$. If $\lambda$ is a root in the block $B_0$, then we take
+%
+  $ \chi_{\lambda}  = \eta_E \circ \text{Norm}_{\, F_+/E} $, where
+  $ \eta_E $ is
+the unramified character of order 2 on $E^\times$. Otherwise, if
+$\lambda$ is not in the $\text{Gal}(\overline F/F)$-orbit of $B_0$, then
+set $\chi_\lambda=1$.
+It is straightforward to verify that
+  $ \chi_{\lambda} $
+gives
+  $ \chi $-data.
+Then, by definition,
+%
+$$
+\spreadlines{10pt}
+\align
+  \Delta_{\text{II}} (\gamma_H, \gamma_G)
+  &=
+  \prod_{\alpha\in{\Cal B}_0}
+  \chi_{\alpha}
+  \Bigl(
+    \frac
+      { \alpha (\gamma)-1 }
+      { a_{\alpha} }
+  \Bigr)
+=
+  \prod_{\alpha\in{\Cal B}_0}
+  \prod_{\sigma \in \text{Gal}(F_+/E)}
+  \eta_E
+  \Bigl(
+    \sigma
+    \Bigl(
+      \frac
+        { \alpha (\gamma)-1 }
+        { a_{\alpha} }
+    \Bigr)
+  \Bigr) 
+\\
+&=
+  \prod_{\alpha\in B_0}
+  \eta_E
+  \Bigl(
+    \frac
+      { \alpha (\gamma)-1 }
+      { a_{\alpha} }
+  \Bigr) =
+  \eta_E
+  \Bigl(
+    R \bigl( \gamma, \sigma_+ (\gamma) \bigr)
+  \Bigr).
+\endalign
+$$
+%
+This completes the proof that
+  $ \Delta_{E/F}^{m,2} (\gamma) =
+    \Delta_{\text{II}}
+    (\gamma_H, \gamma_G) $.
+
+By definition,
+  $ \Delta_{\text{I}} (\gamma_H, \gamma_G) = 
+    \big\langle
+      \lambda (T_{sc}), s_T
+    \big\rangle $.
+We must check that this is a constant independent of
+  $ \gamma_H,
+    \gamma_G \in  H \subseteq G $.
+We have shown that 
+    $\Delta_I
+     (\gamma_H, \gamma_G) ^{-1}
+    \Delta
+    (\gamma_H, \gamma_G) $ and
+  $ \Delta_{E/F}^m (\gamma)$  
+    are equal, up to a scalar.
+So
+%
+$$
+\spreadlines{8pt}
+  \frac
+     { \Delta_{E/F}^m (\gamma_1) }
+     { \Delta_{E/F}^m (\gamma_2) }
+  =
+  \frac
+     { \Delta_{\text{I}} (\gamma_H^2, \gamma_G^2) }
+     { \Delta_{\text{I}} (\gamma^{1}_H, \gamma^{1}_G) }
+  \Delta
+  ( \gamma^{1}_H, \gamma^{1}_G; \gamma_H^2, \gamma_G^2)
+  =
+  \frac
+    { \langle \lambda (T_{sc}^2), s_T \rangle }
+    { \langle \lambda (T^1_{sc}), s_T \rangle }
+  \Delta
+  ( \gamma^{1}_H, \gamma^{1}_G ; \gamma_H^2, \gamma_G^2) .
+\tag{$*$}
+$$
+%
+We consider the limit as the elements $\gamma_1$, $\gamma_2$,
+  $\gamma^{1}_H$, $\gamma^{1}_G$, $\gamma_H^2$, and $\gamma_G^2$ 
+tend
+to $z$.
+%
+By descent,
+  $ \Delta
+    (\gamma^{1}_H, \gamma^{1}_G ; \gamma_H^2, \gamma_G^2)
+    =
+    \Delta_{\epsilon} 
+    (\gamma^{1}_H, \gamma^{1}_G ; \gamma_H^2, \gamma_G^2) $,
+for
+  $ \gamma^{1}_H, \gamma^{1}_G , \gamma_H^2, \gamma_G^2 $
+near $z$ [{\bf 22}].
+%
+But 
+  $ \Delta_{\epsilon}
+    (\gamma^{1}_H, \gamma^{1}_G ; \gamma_H^2, \gamma_G^2) $
+is the transfer factor for the pair
+  $ (G_{\epsilon_G},  H_{\epsilon_H} ) =
+     (H, H) $,
+and so must be identically $1$.
+The left-hand side of ($*$) clearly tends to $1$ as
+  $ \gamma_1$ and $\gamma_2$ tend to  $z$.
+Every Cartan subgroup in
+  $ H $
+contains 
+  $ Z(H) $
+and hence $z$.
+So we conclude that
+  $ \Delta_{\text{I}}
+     (\gamma_H, \gamma_G ) =
+    \langle 
+      \lambda(T_{sc}), s_T 
+    \rangle $
+is independent of the Cartan subgroup $T$ in
+  $ H $.
+\qed\finishpproclaim
+
+Suppose that $\gamma$ belongs to a Levi factor $M$.  Let
+$H_M$ be the endoscopic group associated with $M$ by descent [{\bf 22}].
+Let $\Delta_{M,E/F}$ denote the transfer factor defined
+for $M$ and $H_M$.  In general, $M$ is a product of general
+linear groups, so that its transfer factor may be defined
+as the product of the transfer factors for its individual linear
+factors. Let $D_{G/M}(\gamma)$ and $D_{H/H_M}(\gamma)$
+denote the usual discriminant factors.  For instance,
+$D_{G/M}(\gamma)$ is equal to $D_G(\gamma)/D_M(\gamma)$, where
+$D_G(\gamma)$ is, for instance, given by
+$$D_G(\gamma) = \mid \Pi_\alpha (\alpha(\gamma) - 1)\mid^{1/2},$$
+with the product taken over roots $\alpha$ in $G$. 
+
+\bigskip
+\proclaim Proposition {5.4} (Levi Factors).
+$$D_{H/H_M}(\gamma)\Delta^m_{E/F}(\gamma) = D_{G/M}(\gamma) 
+\Delta_{M,E/F}(\gamma).$$
+\finishproclaim
+
+\pproclaim Proof:  This is verified without difficulty by making use of the
+identification of $\Delta^{m,1}_{E/F}$ with $\Delta_{\text{IV}}$ and 
+of $\Delta^{m,2}_{E/F}$ with $\Delta_{\text{II}}$ proved in Proposition
+5.3.  Note that a root of $G_1$, but not of $M_1$, is asymmetric,
+and such a root does not contribute to $\Delta_{\text{II}}$
+(see [{\bf 21},3.3.A]).
+\qed
+\finishpproclaim
+
+\bigskip
+\line{5.5. {\smc (Elliptic Descent).}\hfil}\nopagebreak
+\medskip
+\noindent
+In this subsection we assume that $\gamma$ is elliptic.
+Let
+  $ \gamma = \gamma_s \gamma_u \in H \subseteq G $ be
+  the topological Jordan decomposition of the element $\gamma$ (see Section 3.12).
+Let
+  $ G_s = C_G ( \gamma_s) $, and let $H_s =C_H(\gamma_s)$.
+Since $\gamma$ is elliptic, $H_s$ and $G_s$ must have the form
+$$
+\align
+  G_s &= GL(n_1,F_1),\quad \text{where } n_1[F_1:F] = n,\\
+  H_s &= GL(m_1,E_1),\quad \text{where } m_1[E_1:E] = m.
+\endalign
+$$
+%
+Furthermore, $E_1$ is an unramified extension of $F_1$.  Since
+$\gamma_s$ is absolutely semisimple, the eigenvalues of $\gamma_s$
+are roots of unity; it follows that $F_1$ is an unramified
+extension of $F$.
+
+\proclaim Theorem {5.5}.
+%
+$$
+  \Delta_{E/F}^m (\gamma) = \Delta_{E_1/F_1}^{m_1}(\gamma).$$
+%
+\finishproclaim
+
+\pproclaim Proof:
+The only roots present in the product defining $\Delta^{m,1}_{E/F}(\gamma)$,
+but absent in the product defining $\Delta^{m_1,1}_{E_1/F_1}$, are those
+for which $\alpha(\gamma_s)$ is not 1.  But such roots satisfy the condition
+$|\alpha(\gamma)-1| = 1$.  Each root of $H_s$ occurs $[F_1:F]$
+times in the product for $\Delta^{m,1}_{E/F}$.  But the different
+normalizations of absolute values compensates for this:
+$$\mid\cdot\mid_{F_1} = \mid\cdot\mid_{F}^{[F_1:F]}.$$
+Thus, $\Delta^{m,1}_{E/F}(\gamma) = \Delta^{m_1,1}_{E_1/F_1}(\gamma)$.
+
+Now we consider the factor $\Delta^{m,2}$.  As in the treatment
+of the factor $\Delta^{m,1}$, we may ignore the roots not
+in $G_s$, since $\eta_E$ (like $\mid\cdot\mid$) is an unramified
+character.  Suppose there is a root $\lambda$ of $G_s$ (but not of $H_s$)
+and $\tau\in \text{Gal}(\overline F/F)$, 
+such that $\tau(\lambda) = -\lambda$.  Clearly
+we must have $\tau\in\text{Gal}(\overline F_1/F_1)$.  The rest
+of this proof assumes some familiarity with the proof of Lemma 5.3.
+As in the proof of that lemma,
+the equation $\tau(\lambda) =-\lambda$ has no solutions
+unless $[E_1:F_1]$ is even.  If $[E_1:F_1]$ is odd (or more generally if
+$\lambda$ is asymmetric), then we may take the $\chi$-data to be trivial.
+Then, $\Delta^{m,2}_{E/F}(\gamma) = \Delta^{m_1,2}_{E_1/F_1}(\gamma) = 1$.
+
+Now assume that $[E_1:F_1]$ is even.  Let $v$ be the valuation of
+the product of the factors $(\alpha(\gamma)-1)$, taken over the
+roots in the $\text{Gal}(E/F)$-orbit of a block $B_0$.  Then by the
+proof of Lemma 5.3, $\Delta^{m,2}_{E/F}(\gamma) = (-1)^{v/[E:F]}$.
+Similarly, $\Delta^{m_1,2}_{E_1/F_1}(\gamma) = (-1)^{v_1/[E_1:F_1]}$,
+where $v_1$ is the valuation of the product of the corresponding
+factors in the $\text{Gal}(E_1/F_1)$-orbit of a corresponding
+block in $GL(n_1,F_1)$.  Each root in $GL(n_1,F_1)$ is counted
+$[F_1:F]$ times in $GL(n,F)$, so that $v=v_1[F_1:F]$.
+Hence,
+$$\frac v {[E:F]} = \frac {v_1[F_1:F]}{[E:F]} =
+   \frac {v_1[F_1:E\cap F_1]}{[E:E\cap F_1]} =
+   \frac {v_1[F_1:E\cap F_1]}{[E_1:F_1]}.$$
+Note that $[E_1:F_1]=[E:E\cap F_1]$  is even, and the unramified
+extensions $E$ and $F_1$ of $E\cap F_1$ are linearly disjoint.
+It follows that $[F_1:E\cap F_1]$ is odd.  Hence,
+$(-1)^{v/[E:F]} = (-1)^{v_1/[E_1:F_1]}$.
+\qed
+\finishpproclaim
+
+\newpage
+\noindent
+\line{{\bf 6@.  Local compatibility of unit in Hecke algebra.}\hfil}
+
+\medskip
+\noindent
+
+For the rest of this paper, we let 
+  $ \Phi_G^{F'\!/F}(\gamma,f)$
+denote the orbital integral
+%
+$$
+  \Phi_G^{F'\!/F}
+  (\gamma,f) =
+  \int_{ C_G(\gamma) \backslash G }
+  \epsilon_{F'\!/F}
+  (\det g) f (g^{-1} \gamma g) dg,
+$$
+%
+where
+  $ \epsilon_{F'\!/F} $
+is an unramified character of $F^\times$ of degree
+  $ [F':F] $.
+In particular
+  $ \Phi_{G}^{F'\!/F}$
+is a stable orbital integral, if $F'=F$.
+
+
+\medskip
+\noindent
+\proclaim Theorem {6.1}.
+The equality
+%
+$$
+  \Delta_{E/F}^m 
+  (\gamma) \Phi_G^{E/F}
+  (\gamma, f_{(n)}) =
+  \Phi_H^{E/E} (\gamma, f^H_{(m)} )
+$$
+%
+holds for regular
+  $ \gamma $
+in a sufficiently small neighborhood of the identity provided
+  that the abstract matching
+  $ f \mapsto f^H $
+of smooth functions holds between
+  $ \epsilon $-invariant integrals on
+  $ GL(n,F) $
+and stable orbital integrals on 
+  $ GL(m,E) $.
+\finishproclaim
+
+The proof will occupy the entire section.  Lemma 6.4 shows that a limit formula
+exists for certain orbital integrals.  Lemma 6.2 shows that if this limit formula has
+a certain form, then Theorem 6.1 holds.  An induction argument proves that this
+limit formula holds, provided that it holds for a particular conjugacy class in $G$.
+In this special case, an explicit expression for this limit
+formula is then obtained from Igusa theory.  This application of Igusa theory 
+is closely related to the application to the regular unipotent germs described
+by Langlands and Shelstad.  
+
+Assume that $z$ is an element in $G$ with $C_G(z) = H$.  For $\lambda'\in\Lambda_m$,
+let $f^H\mapsto \mu_{z,\lambda'}^{\text{st,alg}}(f^H)$ be the linear
+functional on $C_c^\infty(H)$ given by 
+	$\mu_{z,\lambda'}^{\text{st,alg}}(f^H)=
+\mu_{\lambda'}^{\text{st,alg}}(f^H_z)$, where $f^H_z(x) = f^H(zx)$.
+Let $\Gamma^{\text{st,alg}}_{z,\lambda'}(\gamma)$ be the stable germ
+on $H$, for the conjugacy class in $H$ whose semisimple part is
+conjugate to $z$ and whose unipotent part is conjugate
+to ${\Cal O}_{\lambda'}$.  Assume that the germ is normalized
+so that
+$$D_H(z\gamma)\Phi^{E/E}_H(z\gamma,f^H) = \sum \Gamma^{\text{st,alg}}_{z,\lambda'}
+(\gamma)\mu_{z,\lambda'}^{\text{st,alg}}(f^H).$$
+Here $D_H$ denotes the usual discriminant factor (see Section 5.4).
+Define linear functionals $I^{\epsilon}_{z,\lambda'}$ on 
+$C_c^\infty(G)$ by the condition
+$$D_H(z\gamma)\Delta^m_{E/F}(z\gamma)\Phi^{E/F}_G(z\gamma,f) = 
+	\sum\Gamma^{\text{st,alg}}_{z,\lambda'}(\gamma)\Delta^{m,2}_{E/F}(z)
+	I^{\epsilon}_{z,\lambda'}(f),$$
+for $\gamma$ strongly $G$-regular and sufficiently small in $H$.
+Such linear functionals $I^{\epsilon}_{z,\lambda'}$ exist
+and are unique when $C_G(z) = H$, by the theory of descent of
+orbital integrals.  (See, for instance [{\bf 25}].)
+We suppose throughout this section that $z_0,z_1,\ldots$ is a sequence
+of elements in $H$, with $C_G(z_i) = H$, which tend to the identity
+element $1\in H$.  
+
+\proclaim{Lemma 6.2}.  
+Suppose that, for all $f\in C_c^\infty (G)$, there exists
+an integer $i_f$ for which
+$$\Delta^{m,2}_{E/F}(z_i)I^{\epsilon}_{z_i,\lambda'}(f)
+	= \mu^{\epsilon,\text{alg}}_{\pmb\sigma(\lambda')}(f),\ \ \text{ for }
+	i>i_f.\hss$$
+Then Theorem 6.1 holds.
+\finishproclaim
+
+\pproclaim{Proof}:  Suppose that $f^H$ exists and that $z\in \{z_i\}$.
+Then, for $\gamma$ small and $i>i_f$, we have
+$$
+\align
+D_H(z\gamma)\Delta^m_{E/F}(z\gamma)\Phi^{E/F}_G(z\gamma,f) =
+	D_H(z\gamma)\Phi^{E/E}_H(z\gamma,f^H) &= 
+ 	\sum\Gamma^{\text{st,alg}}_{z,\lambda'}(\gamma)\mu^{\text{st,alg}}_
+	{z,\lambda'}(f^H)\\
+	\vspace{8pt}
+	= \sum\Gamma^{\text{st,alg}}_{z,\lambda'}(\gamma)
+	\Delta^{m,2}_{E/F}(z)
+	I^{\epsilon}_{z,\lambda'}(f) &= \sum\Gamma^{\text{st,alg}}_
+	{z,\lambda'}(\gamma)\mu^{\epsilon,\text{alg}}_{\pmb\sigma(\lambda')}
+	(f).\endalign
+$$
+By the linear independence of germs, we have  $\mu^{\epsilon,\text{alg}}_%
+	{\pmb\sigma(\lambda')}(f)
+	=\mu^{\text{st,alg}}_{z,\lambda'}(f^H)$, for $z=z_i$ and $i>i_f$.
+Let $z$ tend to $1$, to obtain $\mu^{\epsilon,{\text{alg}}}_{\pmb\sigma(\lambda')}
+(f) = \mu^{\text{st,alg}}_{\lambda'}(f^H)$.  If we let $f=f_{(n)}$,
+then, by Proposition 3.10,
+$$\mu^{\epsilon,{\text{alg}}}_{\pmb\sigma(\lambda')}(f_{(n)}) =
+  \mu^{\text{st,alg}}_{\lambda'}(f^H_{(m)}) = 
+  \mu^{\text{st,alg}}_{\lambda'}(f^H),$$
+for all partitions $\lambda'\in \Lambda_m$.  Hence, we may
+take $f^H = f^H_{(m)}$, the normalized unit of the Hecke algebra.
+\qed
+\finishproclaim
+
+The group $H$ contains the conjugacy class with semisimple part $z$ and
+unipotent part ${\Cal O}_{\lambda'}$.  Write ${\Cal O}_{z,\lambda'}$ for
+the conjugacy class in $G$ that meets this class of $H\subset G$.
+
+\proclaim{Lemma 6.3}.  $I^{\epsilon}_{z,\lambda'}$ is an
+$\epsilon$-invariant distribution on the conjugacy class ${\Cal O}_{\lambda'}$.
+\finishproclaim
+
+\pproclaim{Proof}:  The $\epsilon$-invariance results from the
+$\epsilon$-invariance of the integral $\Phi^{E/F}_G(\gamma,\cdot)$
+and the uniqueness of the germ expansion.  From the explicit description
+of descent given in [{\bf 13}], we see that $I^{\epsilon}_{z,\lambda}$
+is supported on ${\Cal O}_{z,\lambda'}$.
+\qed\finishpproclaim
+
+\proclaim{Lemma 6.4}.  There exists a function $\rho^\epsilon_{\lambda'}(z_i)$
+on $\{z_i\}$ with the property that,
+for $f\in C_c^\infty(G)$ and for $i>i_f$, we have
+$$I^{\epsilon}_{z_i,\lambda'}(f) = 
+	\rho^\epsilon_{\lambda'}(z_i)\mu^{\epsilon,\text{alg}}_{\pmb
+	\sigma(\lambda')}(f).$$
+\finishproclaim
+
+\pproclaim{Proof}:   Set $P=P_{\pmb\tau(\lambda')} = MN$.  Let $C = C_M(z)$,
+and let $dm$ be an invariant measure on $C\backslash M$.  It is easy to
+check that
+$$f\mapsto I_{z,\lambda'}(f) = \int_{C\backslash M}\epsilon(\det m )\bar f^P(z^m)dm$$
+is an $\epsilon$-invariant distribution supported on the conjugacy
+class ${\Cal O}_{z,\lambda'}$. It is enough to prove the
+result for $I_{z,\lambda'}$, instead of $I^{\epsilon}_{z,\lambda'}$.
+
+Expand the orbital integral $\int_{C\backslash M}\epsilon(\det m) \bar f^P(z^m) dm$
+by its Shalika germ expansion.  (Although $z$ is not regular, 
+a Shalika germ expansion exists by {[\bf 30]}.)
+The sum runs over unipotent classes in the closure of the conjugacy 
+classes of $z_i$ in $M$.  Over the field extension $E$ splitting $C$,
+the group $C$ becomes isomorphic to a Levi subgroup $M_\eta$ of a parabolic
+subgroup in $M$, a parabolic subgroup we denote by $P_\eta = M_\eta N_\eta$.
+By the Iwasawa decomposition in 
+  $ M $,
+%
+$$
+  z^g =
+  z^{pk}=
+  z^{nk} =
+ (zn')^k \in 
+  (z N_{\eta})^k,
+ $$
+  for $g \in M$, 
+  $p \in P_{\eta}$, $n, \, n' \in N_{\eta}$, and
+  $k \in K \cap M$.
+Thus, a class obtained in the limit as $z$ tends to $1$ must be conjugate to a unipotent element in
+  $ N_{\eta} $.
+Work momentarily with a single factor of $M$.
+If $ M$
+consists of a single factor, then the dense class in $ N_{\eta} $ 
+is 
+  $ {\Cal O}_{\eta} $, where $ \eta = ( m, m,\dots ,  m) $.
+So the sum in the Shalika germ expansion
+runs over only those classes whose partition is dominated 
+  by $ (m, m, \dots , m) $
+in the
+  natural partial order on partitions.
+
+Next we use the fact that both sides are
+  $ \epsilon $-invariant.
+  By the discussion in Section 3.1, the
+only
+  $ \epsilon $-invariant 
+integrals
+on unipotent classes are on classes
+  $ \Cal O_{\eta'} $,
+where $r=r_\epsilon$ divides 
+  $ r(\eta') $.
+This, together with the condition that
+  $ \eta $
+dominates
+  $ \eta' $,
+forces the sum to collapse to a single term.
+We call the $ \epsilon $-invariant integral over this class
+  $ \mu_1^{\epsilon} $, and denote the germ by $ \rho_1 (z) $.  
+  Thus $I_{z,\lambda'}(f) = \rho_1(z)\mu_1^\epsilon(\bar f^P)$.
+
+It is easy to see, by expanding
+by the definition of
+  $ \bar f^{P} $,
+that
+  $ \mu_1^{\epsilon} 
+    \left(
+      \bar f^{P} 
+    \right) $
+is an integral over the conjugacy class of ${\Cal O}_{\pmb\sigma(\lambda')}$
+(compare the end of 3.14).
+Since the left-hand side is $\epsilon$-invariant, the right-hand
+side is as well.  This completes the proof.
+\qed\finishpproclaim
+\bigskip
+
+
+It is now clear what the strategy of the proof will be.  Theorem 6.1 will follow from
+the identity $\Delta^{m,2}_{E/F}(z)\rho^\epsilon_{\lambda'}(z)=1$.  This identity will
+be established in two steps.  First, an induction argument on the rank of $G$  will be used to
+reduce us to the case $\lambda'=(m)$.   Second, a simple form of Igusa theory
+will be used to compute the germ $\rho^\epsilon_{(m)}(z)$ explicitly.
+
+To prepare for the induction argument, we must specify a normalization
+of measures.
+Let $P=MN$ be a standard parabolic subgroup, and as usual let $\bar N$
+denote the transpose of $N$.
+Let $dm$, $dn$  and $d\bar n$ be Haar measures on $M$, $N$ and $\bar N$.
+A Haar measure $dg$ on $G$ is given by $dg=dm\,dn\,d\bar n$, where $g = (mn)^{\bar n}$.
+Suppose that $f$ belongs to $C_c^\infty(G)$.  Define $f^M\in C_c^\infty(M)$ by
+$$f^M(m) = \int_{N,\bar N} f((mn)^{\bar n}) dn\,d\bar n.$$
+Similarly, define compatible Haar measures $dm$, $dn$, $d\bar n$ and $dh = dm\,dn\,d\bar n$ on
+$H_M$, $N\cap H$, $\bar N\cap H$ and $H$,
+where $h=(mn)^{\bar n}$.  The notation for coordinates $m$, $n$ and $\bar n$
+is the same for
+different choices of Levi subgroups $M$, 
+and the same for $H$ as for $G$.
+I hope this does not create any confusion.
+Here, as in Section 5.4, $H_M$ is a Levi factor of $H$, viewed as
+an endoscopic group of $M$.
+For $f^H\in C_c^\infty(H)$, define
+$$f^{H_M}(m) = \int_{N\cap H,\bar N\cap H} f^H((mn)^{\bar n}) dn\,d\bar n.$$
+
+
+Until now, notation such as $dn$ has referred to a measure.  But in
+this paragraph, it will denote the corresponding differential form.
+This shift in convention allows us to work over the field extension
+$E$.  A form defined over $F$ will determine a measure on the
+$F$-points of the appropriate variety.
+Set $P_\sigma = P_{\pmb\sigma(\lambda')} = M_\sigma N_\sigma$, and set 
+$\bar N_\sigma= \bar N_{\pmb\sigma(\lambda')}$, for 
+$\lambda'\in \Lambda_m$.   
+Over $E$, we may assume that $z$ lies in the center of $M_\sigma$.
+A Zariski open subset of ${\Cal O}_{z,\lambda'}$ and a Zariski open subset
+of $(zn)^{\bar n}$ coincide, for $n\in N_\sigma$ and $\bar n\in \bar N_\sigma$.
+Then $dn\,d\bar n$ is an invariant form on ${\Cal O}_{z,\lambda'}$.
+Define $f\mapsto I^{\epsilon,\text{alg}}_{z,\lambda'}(f)$ as $I^{\epsilon}_{z,\lambda'}$,
+but replacing the positive measure implicit in the definition of $I^{\epsilon}_{z,\lambda'}$
+with the positive measure associated to $dn\,d\bar n$.  
+Thus $I^{\epsilon,\text{alg}}_{z,\lambda'}$
+and $I^\epsilon_{z,\lambda'}$ are equal, up to positive scalar.
+As a short calculation will show, the differential form $dn\,d\bar n$ 
+is defined over $F$
+(although the coordinates
+$n$ and $\bar n$ are not defined over $F$)
+and gives a measure on the $F$-conjugacy class ${\Cal O}_{z,\lambda'}$.
+
+
+All of the Levi factors of $GL(n)$ are products of linear groups.  This
+allows us to extend the constructions of the previous sections to Levi factors.
+In the next set of equations, we apply descent to a Levi factor and take
+a germ expansion.  Using what I hope is an obvious extension of notation,
+we have by Proposition 5.4 and descent
+$$\align
+  D_{H}(z\gamma)\Delta^m_{E/F}(z\gamma)\Phi^{E/F}_G(z\gamma,f)
+  &=
+    D_{H_M}(z\gamma)\Delta_{M,E/F}(z\gamma)\Phi^{E/F}_M(z\gamma,f^M) \\
+\vspace{4pt}
+  &=
+    \sum_{\eta'} \Gamma^{\text{st,alg}}_{H_M,z,\eta'}(\gamma)
+                 I^{\epsilon}_{M,z,\eta'}(f^M) \Delta_{M,E/F}^{2}(z),\tag{6.5}\\
+%
+D_{H}(z\gamma)\Phi^{E/E}_H(z\gamma,f^H)
+  &=
+     D_{H_M}(z\gamma)\Phi^{E/E}_{H_M}(z\gamma,f^{H_M}) \\
+\vspace{4pt}
+    &=
+     \sum_{\eta'}\Gamma^{\text{st,alg}}_{H_M,z,\eta'}(\gamma)
+                 \mu^{\text{st,alg}}_{H_M,z,\eta'}(f^{H_M}).\tag{6.6}
+\endalign
+$$
+Here $\eta'$ indexes unipotent conjugacy classes of the endoscopic group $H_M$,
+obtained by descent, of the Levi subgroup $M$.  If
+$H_M = M_{\lambda'} = GL(\lambda'_1,E)\times\cdots\times GL(\lambda'_\ell,E)$, then
+$\eta' = (\eta^1,\ldots,\eta^\ell)\in
+   \Lambda_{\lambda'_1}\times\cdots\times \Lambda_{\lambda'_\ell}$.
+
+There are two hypotheses that we will prove inductively.  They
+are
+$$I^{\epsilon,\text{alg}}_{z,\lambda'} = I^{\epsilon}_{z,\lambda'},\tag{$1$}$$
+and
+$$\Delta^{m,2}_{E/F}(z)I^{\epsilon,\text{alg}}_{z,\lambda'} =
+  \mu^{\epsilon,\text{alg}}_{\pmb\sigma(\lambda')}.\tag{$2$}$$
+(Compare Lemma 6.2.)
+Now we fix $\lambda'\in\Lambda_m$ and set $M=M_{\lambda''}$ and  $H_M = M_{\lambda'}$,
+where $\lambda'' = \pmb\tau(\lambda')$.  We assume that $\lambda'\ne(m)$, or
+equivalently that $M\ne G$.  By induction we may assume (using what I hope
+is an obvious extension of notation) that
+$$I^{\epsilon,\text{alg}}_{M,z,\eta'} = I^{\epsilon}_{M,z,\eta'},\tag{$1'$}$$
+and
+$$\Delta^{2}_{M,E/F}(z)I^\epsilon_{M,z,\eta'} = \mu^{\epsilon,\text{alg}}_{M,\eta},\tag{$2'$}$$
+where $\eta =(\pmb\sigma_r(\eta^1),\ldots,\pmb\sigma_r(\eta^\ell))\in
+   \Lambda_{r\lambda'_1}\times\cdots\times \Lambda_{r\lambda'_\ell}$.
+
+Given $\eta' = (\eta^1,\ldots,\eta^\ell)$, let $\eta''\in\Lambda_m$ be the
+partition obtained by combining all of the parts $(\eta^i)_j$ of all the
+partitions $\eta^i\in\Lambda_{\lambda'_i}$.  In particular, if each
+$\eta^i = (\lambda'_i)\in\Lambda_{\lambda'_i}$ is a partition with one part,
+then $\eta''=\lambda'$.  Moreover, this is the only way for $\eta''$ to
+equal the partition $\lambda'$.  Write $\eta'_0$ for this sequence of partitions.
+The sequence of partitions $\eta_0'$ corresponds to the trivial unipotent class $\{1\}$ in $H_M$.
+Set 
+$\eta_0 = (\pmb\sigma(\eta^1_0),\ldots,\pmb\sigma(\eta_0^\ell))\in
+  \Lambda_{r\lambda'_1}\times\cdots\times \Lambda_{r\lambda'_\ell}$.
+It is easy to check, by using our explicit normalization of measures, that
+$$
+\align
+  \mu^{\text{st,alg}}_{H_M,z,\eta'}(f^{H_M}) &= \mu^{\text{st,alg}}_{z,\eta''}(f^H),\\
+  I^{\epsilon,\text{alg}}_{M,z,\eta_0'}(f^M) &= I^{\epsilon,\text{alg}}_{z,\lambda'}(f),
+         \tag{6.7}\\
+  \mu^{\epsilon,\text{alg}}_{M,\eta_0}(f^M)
+     &= \mu^{\epsilon,\text{alg}}_{\sigma(\lambda')}(f).
+\endalign
+$$
+The first of these equations, together with Equation 6.6, implies that
+$$\Gamma^{\text{st,alg}}_{H_M,z,\eta'_0} (\gamma)
+         = \Gamma^{\text{st,alg}}_{z,\lambda'}(\gamma).$$
+This equation, Equation 6.5, the linear independence of germs on $H_M$, and the
+definition of $I^\epsilon_{z,\lambda'}$ give:
+$$I^\epsilon_{M,z,\eta'_0}(f^M)\Delta^{2}_{M,E/F}(z)
+      = I^\epsilon_{z,\lambda'}(f)\Delta^{m,2}_{E/F}(z).\tag{6.8}$$
+%
+By Proposition 5.4, we find $\Delta^{2}_{M,E/F}(z) = \Delta^{m,2}_{E/F}(z)$.
+By the induction hypothesis ($1'$) and Equation 6.7, 
+the integral $I^\epsilon_{M,z,\eta'_0}(f^M)$ may be replaced
+with $I^{\epsilon,\text{alg}}_{M,z,\eta'_0}(f^M)$,
+and hence with $I^{\epsilon,\text{alg}}_{z,\lambda'}(f)$.
+Hence, Equation 6.8 implies that ($1$) holds.  By the second induction hypothesis ($2'$), and by 
+Equation 6.7,
+the left-hand side of Equation 6.8 may be replaced with
+$\mu^{\epsilon,\text{alg}}_{\pmb\sigma(\lambda')}(f)$.  Hence, (2) holds.
+This completes the reduction of the identities (1) and (2) to the case $\lambda'=(m)$.
+\bigskip
+
+When $\lambda'=(m)$, it is a simple comparison of normalizations of measures that leads to the
+identity (1).  For instance, $\mu^{\text{st,alg}}_{z,(m)}(f^H) =
+f^H(z)$. Over $E$ we may identify $H$ and $M_\sigma$, and
+descent to $H$ or $M_\sigma$ is obtained by integrating $dn\,d\bar n$ over
+$N_\sigma$ and $\bar N_\sigma$.  This, by definition, is the measure used
+in the definition of $I^{\epsilon,\text{alg}}_{z,(m)}$.  This gives the result.
+
+\bigskip
+In the remainder of this section, we will prove (2) for $\lambda'=(m)$ by applying a simple
+form of Igusa theory.  The construction is extremely close to one used by
+Langlands and Shelstad to compute the regular germ [{\bf 19}],[{\bf 21}],
+[{\bf 28}].  Since they explain their
+argument and method carefully, we will omit many of the details.  It will be a simple
+matter to work out the leading term of the expansion of $I^\epsilon_{z,\lambda'}$,
+once the leading term of the corresponding stable orbital integral has been
+calculated.
+
+Fix the parabolic subgroup $P_0 = P_{(m,\ldots,m)} = M_0N_0$.  Let ${\Cal P}$
+denote the variety of parabolic subgroups conjugate to $P_0$, and let
+$P$ denote a generic element of $\Cal P$.  The
+symmetric group on $r$ letters $S_r$ acts naturally on $M_0$, permuting the
+parabolic subgroups having Levi subgroup $M_0$.  Let $T$ be a torus defined over $F$
+in $G$ of rank $r$ that is conjugate over $\overline F$ to the center of $M_0$.
+Identify $T$ with the center of $M_0$.
+We
+construct a diagram similar to that of [{\bf 12}].  (Also see [{\bf 19}].)
+This gives maps
+$$\align \phi:T'\times C_G(T)\backslash G &\to G\times {\Cal P}^{r!},
+     \quad \phi(\gamma,g) = (\gamma^g,(P_0(W))^g), \\
+%
+      \pi_1: G\times {\Cal P}^{r!} &\to G,\quad
+      \pi_1(x,(P(W))) = x,\\
+%
+      \xi: X &\to T,\quad
+      \xi(\gamma^g,(P_0(W))^g) = \gamma.
+\endalign
+$$
+The variety $X$ is the
+closure of the image of $\phi$, and $W$ indexes the factors $\Cal P$
+in ${\Cal P}^{r!}$.  
+Here $T'$ denotes the maximally regular elements of $T$.
+By a maximally regular element
+in $G$ we mean an element
+$x$ such that $\dim C_G(x) =\dim C_G(T)$.
+
+We now proceed as in Langlands and Shelstad using $T$ and $\Cal P$, rather
+than a Cartan subgroup and the variety of Borel subgroups.  With this small
+difference, their argument goes through almost without any modifications.
+Let $Y_\Gamma$ be the variety constructed from
+a maximally regular curve $\Gamma\subset T$ instead of $T$.  In general,
+$\pi_1(Y_\Gamma)$ does not contain regular elements, but the image of $\Gamma'\times C_G(T)\backslash G$
+in $G$ consists of elements that are maximally regular.  On the set of maximally regular
+semisimple elements (that is, on the image of $\phi$), 
+the map $\pi_1$ is an $r!$-to-$1$ map.  The Richardson class
+of $P_0$ is also in the image of $\pi_1$, and the elements of this class are 
+maximally regular.  Such a
+unipotent element is contained in a unique parabolic subgroup of type
+$(m,\ldots,m)$, so that $\pi_1$ becomes bijective when restricted to this
+conjugacy class.  By the regularity of $\Gamma$, the only maximally regular
+classes in $\pi_1(Y_\Gamma)$ are semisimple or unipotent.  The only such unipotent class is
+the Richardson class just described.  The map from $X$ to the partial
+Springer variety [{\bf 19}] obtained by projecting to the first parabolic subgroup,
+$$(x,(P(W))) \mapsto (x,P(W_+)),$$
+is one-to-one on maximally regular elements (see [{\bf 21},5]).
+We use the twisted $F$-structure
+on $X$ determined by $T$. This twisted structure is defined in [{\bf 19}].  We use this bijection
+to define a twisted $F$-structure on the partial Springer variety
+$$\{(x,P)\mid x\in P\in{\Cal P}, \quad x \in Z(M)N_P,\quad x\text{ is maximally regular }\}.$$
+Here $N_P$ is the radical of $N$, and $Z(M)$ is the center of $M$.
+This variety is smooth.  With respect to this
+twisted structure, the maps $\phi$, $\pi_1$ and $\xi$ are defined over $F$.
+As in the calculation of Langlands and Shelstad, there
+is a single irreducible divisor supported on maximally regular elements.
+In fact, in local coordinates
+on an open set,
+points have the form $(\gamma n,P_0)^{\bar n}$, for $n\in N_0$, $\bar n\in \bar N_0$,
+and $\gamma\in T'\subset Z(M)$.
+%
+The divisor over $1\in\Gamma\subset T$ is obtained when $\gamma=1$, and is
+isomorphic to the Richardson class of $P_0$.  It is now clear that, with
+a compatible
+normalization of measures, the germ for the leading term of the expansion
+of stable orbital integrals on ${\Cal O}_{z,(m)}$ is
+identically $1$.  Compare [{\bf 28}].
+
+This stable  germ is identically $1$ for the normalization of measures
+arising naturally in Igusa theory.  This differs from the normalization
+implicit in $\Phi$
+by the discriminant [{\bf 19},2.12].  
+Referring to the definition of $I^\epsilon_{z,\lambda'}$, we
+see that the discriminant $\Delta^{m,1}_{E/F}(z)$ is built into
+its normalization.
+We conclude that
+$\rho^{\text{st}}_{(m)}(z)$ is equal to 1,
+for $z$ sufficiently close to 1.
+
+We now turn to the $\epsilon$-germ.
+We must prove that $\Delta^{m,2}_{E/F}(z)\rho^\epsilon_{(m)}(z) = 1$, or equivalently that
+$$\Delta^{m,2}_{E/F}(z)\rho^\epsilon_{(m)}(z) = \rho^{\text{st}}_{(m)}(z).$$
+This has a simple geometric interpretation.  We will find a unipotent $u$
+in the class of $(m,\ldots,m)=\pmb\sigma(m)$, with $\beta_\epsilon(u) = 1$, and a small
+neighborhood $U$ of $u$ such that, if $z^g$ lies in $U$, then
+$$\epsilon(\det g)\Delta^{m,2}_{E/F}(z) = 1.\tag{6.9}$$
+Then, for functions supported on $U$, the $\epsilon$-germ $\rho^\epsilon_{(m)}(z)$
+is $\epsilon(\det g)$ (or $\Delta^{m,2}_{E/F}(z)^{-1}$) times the stable germ.
+The result follows.
+
+Small neighborhoods of $u$ are obtained by taking a transversal slice $S_u$
+at $u$ to the unipotent orbit of $u$ and then translating $S_u$ by a small
+amount along the orbit.
+Translation of $g$ by an element of $G$ in a small neighborhood
+of $1$ will leave $\epsilon(\det g)$ unchanged.
+Therefore, if we know that Equation 6.9 holds for all $x$ in $S_u\cap {\Cal O}_{z,(m)}$,
+then we will know that Equation 6.9 holds for all elements
+in a neighborhood of $u$.  In such a transversal slice $S_u$, there is only
+one element of ${\Cal O}_{z,(m)}$ near $u$.  This follows from the
+Igusa theory described above.  In fact, $\pi_1$ is an $r!$-to-$1$ map on 
+points over ${\Cal O}_{z,(m)}$
+and a one-to-one map on the class of $u$.  In $X$ there are $r!$ points
+ over ${\Cal O}_{z,(m)}$ near $u$
+in a given slice.
+Explicitly, these points are given by
+$(\gamma^wu,P_0)$ with $w\in S_r$, $\gamma^w\in T'\subset Z(M_0)$ and $u\in N_0$.
+Hence in the image there is only one element of ${\Cal O}_{z,(m)}$
+near $u$ in a given slice.
+
+The next lemma calculates $\epsilon(\det g)$ for such an element.  This lemma
+will complete the proof of Theorem 6.1.
+
+% end
+
+\proclaim{Lemma 6.10}.  Fix $u\in {\Cal O_{\pmb\sigma(\lambda')}}\cap 
+N_{\pmb\sigma(\lambda')}$.  Assume that $\beta_\epsilon(u) = 1$.
+There exist an analytic curve $\Gamma(t)$ in $G_1$, a $G_1$-conjugate
+$u_1$ of $u$, a $G$-conjugate $z(t)= \Gamma(t)^{g(t)}$ of $\Gamma(t)$, and a
+neighborhood $U$ of $u_1$ in $G$,
+with the following properties:
+\item{1.}  $\Gamma(0) =u_1$.
+\item{2.}  For $t\ne 0$, $z(t)$ is an element in $H$ satisfying
+                  $C_G(z(t)) = H$.
+\item{3.}  If $t\in F$ is sufficiently small but nonzero,
+       then $\Gamma(t)\in U$ and 
+       $$\epsilon(\det g(t))\Delta^{m,2}_{E/F}(z(t))=1.$$
+\finishproclaim
+
+\pproclaim{Proof}:  We construct $\Gamma(t)$ explicitly.  Identify
+$\text{Mat}_n(F)$ with $\text{Mat}_m(R)$, where $R = \text{Mat}_r(F)$
+and $rm=n$.  Write $D(t_1,\ldots,t_r)$ for the matrix in $R$ of the
+form
+$$\pmatrix 1& t_1& 0 & . & . \\
+	   0& 1  & t_2&. &.  \\
+	   .& .  & .  &. &t_{r-1}\\
+	   t_r&0 & . & 0 &1\endpmatrix.$$
+Set $h(t) = \text{diag}(t^{r-1},\ldots,t,1)\in R$.  Then
+$$h(t)^{-1}D(t,t,\ldots,t,tx)h(t) = D(1,1,\ldots,1,t^rx).$$  This
+matrix tends to the unipotent matrix
+  $d = D(1,1,\ldots,1,0)$, as $t$ tends to $0$.  For an
+appropriate choice of embedding $E\hookrightarrow \text{Mat}_r(F)$, 
+and appropriate
+choice of $x$, we may assume that $d_t=D(t,t,\ldots,t,tx)$ lies in $E$,
+and is regular in $\text{Mat}_r(F)$, if $t\ne 0$.
+
+Consider the element $z(t) \in \text{Mat}_m(R)$ given by
+$z(t) = \text{diag}(d_t,\ldots,d_t)$.
+Consider also the element $g(t) \in \text{Mat}_m(R)$ given by
+$$g(t)^{-1} = \text{diag}(h(t),\ldots,h(t)),\ \text{($m$ copies)}.$$
+Then define $\Gamma(t)$ by
+  $\Gamma(t)^{g(t)}= z(t)$.  It follows easily that
+$u_1 = \Gamma(0)$ has the same form as $z(t)$, but with $d_t$ replaced
+with $d$.  From this explicit description it follows that $u_1\in
+{\Cal O}_{\pmb\sigma(\lambda')}$ and $\beta_\epsilon(u_1^y)=1$, for
+some $y\in G_1$.
+%
+Clearly, $z(t) = \text{diag}(d_t,\ldots,d_t) \in \text{Mat}_m(E) \subseteq
+\text{Mat}_m(R)$.  Also $\det g(t) = t^{mr(r-1)/2}$, so, by Lemma 5.2,
+$$\epsilon(\det g(t)) = \epsilon(t^{mr(r-1)/2}) = 
+\Delta^{m,2}_{E/F}(z(t)).$$
+Since these factors are $\pm1$, the result follows.
+\qed
+\finishpproclaim
+
+\newpage\noindent
+\line{{\bf 7@.  Unit of Hecke algebra.}\hfil}
+
+\medskip
+\noindent
+Now we state and prove the main theorem of this paper.
+We say that local matching occurs for
+  $ (F, n ) $
+if the following condition holds
+  $ LM(F,n) $: 
+For every
+  $ f \in C_c^{\infty}
+    \bigl(
+      GL(n, F)
+    \bigr) $
+and every divisor $r$ of $n$
+there is a function
+  $ f^H $
+on
+  $ C_c^{\infty}
+    \bigl(
+        GL ( n / r, E )
+    \bigr) $
+(where $E$ is the unramified extension of degree
+  $ r $)
+such that
+%
+$$
+  \Delta_{E/F}^{n/r}
+  (\gamma) \,
+  \Phi_{GL(n, F)}^{E/F} \,
+  (\gamma, f) =
+  \Phi_{GL(n/r, E)}^{E/E} \,
+  (\gamma, f^H)
+$$
+%
+for all strongly $G$-regular semisimple elements
+  $ \gamma $
+in a neighborhood of the identity in
+  $ GL (n/r, E) $.
+The neighborhood is allowed to depend on $f$.
+
+\proclaim Theorem {7.1}.
+Suppose that for every
+  $ n_0 \leq n $
+and unramified extensions $F_0$ of $F$ of degree at most $n$ that
+local matching
+  $ LM(F_0, n_0 ) $
+holds.
+Then
+%
+$$
+  \Delta_{E/F}^{m}
+  (\gamma) \,
+  \Phi_{GL(n, F)}^{E/F} \,
+  (\gamma, f_{(n)}) =
+  \Phi_{GL(m, E)}^{E/E} \,
+  (\gamma, f^H_{(m)})
+$$
+%
+for all
+  $ \gamma $
+in
+  $ GL(m, O_E )$.
+\finishproclaim
+
+\pproclaim Proof:
+We argue by
+induction on $n$.
+First, suppose that $\gamma\in GL(m,O_E)$ lies in a proper Levi
+subgroup $H_M=M_{\lambda'}$ of $H$.  We may identify $M_{\lambda'}$ with
+an endoscopic group of the Levi subgroup $M = M_{\pmb\tau(\lambda')}$.
+Compatibly normalized, the orbital integrals satisfy  the descent conditions
+$$D_{G/M}(\gamma)\Phi^{E/F}_G(\gamma,f_G) = \Phi^{E/F}_{M}(\gamma,f_M),\quad
+  D_{H/H_M}(\gamma)\Phi^{E/E}_H(\gamma,f_H) = \Phi^{E/E}_{H_M}(\gamma,
+  f_{H_M}).$$
+We have shifted notation slightly to let $f_A$ denote the normalized unit
+of the Hecke algebra in any reductive group $A$.  Also $D_*(\gamma)$ is the
+usual discriminant factor introduced in Section 5.
+%
+The induction hypothesis and Lemma 5.4 show that we have
+$$
+\align
+D_{H/H_M}(\gamma)\Delta^m_{E/F}(\gamma)\Phi^{E/F}_G(\gamma,f_G) &=
+	\Delta_{M,E/F}(\gamma) D_{G/M}(\gamma)\Phi^{E/F}_G(\gamma,f_G)\\
+	&= \Delta_{M,E/F}(\gamma) \Phi^{E/F}_M(\gamma,f_M)\\
+	&=  \Phi^{E/E}_{H_M}(\gamma,f_{H_M}) \\
+	&= D_{H/H_M}(\gamma)\Phi^{E/E}_H(\gamma,f_H).
+\endalign
+$$
+
+Now assume that $\gamma\in GL(m,O_E)$ is elliptic.
+Let
+  $ \gamma = \gamma_s \gamma_u $
+(topological Jordan decomposition).
+If
+  $ \gamma^g \in K $,
+then, by Kazhdan's lemma,
+  $g$ belongs to $G_s K$, where (as in Section 5.5)
+%
+$$
+  G_s = C_G(\gamma_s) 
+  \overset \sim \to \to
+  GL (n_1, F_1).
+$$
+Similarly, if $\gamma^h\in K\cap H$, with $h\in H$, then $h$ belongs
+to $H_s(K\cap H)$.
+%
+This, together with Theorem 5.5, gives the identities
+%
+$$
+\align
+  \Delta_{E/F}^m \,
+  (\gamma) \,
+  \Phi_G^{E/F} \,
+  (\gamma, f_G ) &=
+  \Delta_{E_1/F_1}^{m_1} \,
+  (\gamma) \,
+  \Phi_{G_s}^{E_1/F_1} \,
+  (\gamma, f_{G_s}),\\ 
+  \vspace{4pt}
+  \Phi^{E/E}_H(\gamma,f_H) &= \Phi^{E_1/E_1}_{H_s}(\gamma_,f_{H_s}).
+\tag{$*$}
+\endalign
+$$
+%
+To justify the appearance of the superscript
+  $ E_1 / F_1 $
+to
+  $ \Phi $
+in the rightmost term of ($*$), we argue as follows.
+We have   $ \epsilon \, (\det g) =
+    \epsilon (\text{Norm}_{F_1/F}\det_1
+    g$),
+where $g$ belongs to $GL(n_1,F_1)$, $\det_1$ denotes the
+determinant on $GL(n_1,F_1)$, and $\det g$ is the determinant
+of $g$ viewed as an element of $G$.
+Extend
+  $ \epsilon $
+to the unramified character of degree
+  $ r_{\epsilon} = r $
+on 
+  $ F_1 $.
+Set $\epsilon_1 = 
+   \epsilon \circ \text{Norm}_{F_1/F} =
+    \epsilon^{\,[F_1:F]}$.
+The order of
+  $ \epsilon_1 $
+is 
+  $ [E: E\cap F_1] = [E_1 : F_1 ] $.
+Thus, the character
+  $ \epsilon_1 $ 
+on 
+  $ F_1 $
+is associated with the extension 
+  $ E_1 $ of
+  $ F_1 $.
+
+
+Consider the case
+  $ F_1 \neq F $.
+Then we have reduced to the situation of a smaller $n$.
+By induction,
+%
+$$
+  \Delta_{E_1/F_1}^{m_1} (\gamma) \,
+  \Phi_{G_s}^{E_1/F_1} (\gamma, f_{G_s} ) =
+  \Phi_{H_s}^{E_1/E_1}  (\gamma, f_{H_s} ) .
+$$
+%
+This and the identities $(*)$ prove Theorem 7.1 in this case.
+%
+
+Finally, if
+  $ F_1 = F $,
+then the absolutely semisimple part
+  $ \gamma_s $
+of
+  $ \gamma $
+is central in
+  $ GL(n,F) $.
+Hence,
+%
+$$
+\spreadlines{4pt}
+\align
+  \Delta_{E/F}^m \,
+  (\gamma) \,
+  \Phi_G^{E/F} \,
+  (\gamma, f_G)
+&=
+  \Delta_{E/F}^m \,
+  (\gamma_u) \,
+  \Phi_G^{E/F} \,
+  (\gamma_u, f_G )
+\\
+&=
+  \Phi_H^{E/E} \,
+  (\gamma_u, f_H ) 
+\tag{$**$}
+\\
+&=
+  \Phi_H^{E/E}
+  (\gamma, f_H).
+\endalign
+$$
+%
+The next to last step ($**$) requires some explanation.
+First, the matching of smooth functions
+  $ f \mapsto f^H $
+implies the matching 
+of the unit
+  $ f_G \mapsto f_H$
+near the identity (Theorem 6.1).
+Also, both the transfer factor and the germs on both sides are
+  homogeneous by Proposition 4.2.
+Extending by homogeneity, we see finally that
+  ($**$) holds for all topologically unipotent elements.
+This completes the proof.
+\qed
+\finishpproclaim
+
+% References
+\newpage
+\noindent
+\centerline{ {\smc References} }
+\bigskip
+\parindent=11mm
+\baselineskip=12pt
+
+%
+\item{[{\bf 1}]}
+  D. Barbasch and A. Moy,
+  ``A Unitary Criterion for $p$-adic Groups,'' Invent. Math\. {\bf 98}
+  (1989), no. 1, pp\.~19@--37.
+%
+\item{[{\bf 2}]}
+  J. Bernstein and A.V. Zelevinski,
+  ``Induced representations of reductive $p$-adic groups, I,''
+  Ann\. Sci\. E.N.S. {\bf 10}
+  pp\.~441@--472 (1977).
+%
+\item{[{\bf 3}]}
+  R. W. Carter,
+  {\sl Finite Groups of Lie Type: Conjugacy Classes and Complex
+     Characters},
+  John Wiley and Sons, 1985.
+%
+\item{[{\bf 4}]}
+  W. Casselman,
+  ``Introduction to the Theory of Admissible Representations
+     of $p$-adic Reductive Groups,'' preprint.
+%
+\item{[{\bf 5}]}
+  W. Casselman,
+  ``The unramified principal series of $p$-adic groups I@. 
+    The spherical function,'' Compositio-- Math\. {\bf 40}
+    (1980), no. 3, pp\.~387@--406.
+%
+\item{[{\bf 6}]}
+  J.W.H. Cassels,
+  {\sl Local fields}, London Math\. Soc\. {\bf 3}, Cambridge
+  University Press, 1986.
+%
+\item{[{\bf 7}]}
+  L. Clozel,
+  ``Orbital integrals on $p$-adic groups:  A proof of 
+     the Howe conjecture,''  Ann\. of Math\. {\bf 129} (1989),
+     no. 2, pp\.~237@--251.
+%
+\item{[{\bf 8}]}
+  L. Clozel,
+  ``The Fundamental Lemma for Stable Base Change,''
+  Duke Math\. Jour\. {\bf 61} (1990), no. 1, pp\.~255@--302.
+%
+\item{[{\bf 9}]}
+  S. S. Gelbart, and A. W. Knapp,
+  ``Irreducible constituents of principal series of $SL_n(k)$,''
+  Duke Math\. Jour\. {\bf 48} pp\.~313@--326 (1981).
+%
+\item{[{\bf 10}]}
+  S. S. Gelbart, and A. W. Knapp,
+  ``$L$-indistinguishability and $R$-groups for the
+     special linear group,''
+  Advances in Math\. {\bf 43} pp\.~101@--121 (1982).
+%
+\item{[{\bf 11}]}
+  T. C. Hales,
+  ``The Subregular Germ of Orbital Integrals,''
+  thesis, Princeton University, (1986).
+%
+\item{[{\bf 12}]}
+  T. C. Hales,\enspace%
+  ``Shalika Germs on $GSp(4)$,''
+  {\sl Orbites Uni\-po\-tentes et Repr\'e\-sen\-ta\-tions}, 
+  Ast\'erisque {\bf 171-172} (1989).
+%
+\item{[{\bf 13}]}
+  T. C. Hales,
+  ``Orbital Integrals on $U(3)$,''
+  {\sl The Zeta Function of Picard Modular Surfaces},
+  Les Publications CRM, eds\. R\. P\. Langlands and
+  D\. Ramakrishnan, (1992).
+%
+\item{[{\bf 14}]}
+  Harish-Chandra\hbox{,\kern-.15em``}Admissible invariant distributions on reductive $p$-adic 
+    groups,''
+  Queen's Papers in Pure and Applied Math\. No\. {\bf 48}, pp\.~281@--347
+  (1978).
+%
+\item{[{\bf 15}]}
+  R. Howe,
+  ``The Fourier Transform and Germs of Characters (Case of $GL_n$ 
+    over a $p$-adic field),''
+  Math\. Ann\. {\bf 208}, pp\.~305@--322 (1974).
+%
+\item{[{\bf 16}]}
+  D. Kazhdan,
+  ``On Lifting,'' {\sl Lie Group Representations, II},
+  Lecture Notes in Math\. {\bf 1041} (1984).
+%
+\item{[{\bf 17}]}
+  D. Kazhdan and G. Lusztig,
+  ``Proof of the Deligne--Langlands conjecture for Hecke algebras,''
+  Invent\. Math\. {\bf 87} (1987), no. 1, pp\.~153@--215.
+%
+\item{[{\bf 18}]}
+  R. P. Langlands,
+  {\sl Les d\'ebuts d'une formule des traces stables},
+  Pub\. math\. de~l'univ\. de~Paris~VII, {\bf 13}.
+%
+\item{[{\bf 19}]}
+  R. P. Langlands,
+  ``Orbital Integrals on Forms of $SL(3)$, I,''
+  Amer\. Jour\. Math\., {\bf 105} pp\. 465@--506
+  (1983).
+%
+\item{[{\bf 20}]}
+  R. P. Langlands and D. Shelstad,
+  ``On Principal Values on $p$-adic Manifolds,''
+  {\sl Lie Group Representations~II}, Lecture Notes in Math\.
+  {\bf 1041}, Springer-Verlag, Berlin (1984).
+%
+\item{[{\bf 21}]}
+  R. P. Langlands and D. Shelstad,
+  ``On the Definition of Transfer Factors,''
+  Math\. Ann\. {\bf 278}, pp\.~219@--217 (1987).
+%
+\item{[{\bf 22}]}
+  R. P. Langlands and D. Shelstad,
+  ``Descent for Transfer Factors,''
+  {\sl Grothendieck Festschrift}, Vol II,
+  Progress in Math\. {\bf 87} (1990), pp\.~485@--563.
+%
+\item{[{\bf 23}]}
+  R. P. Langlands and D. Shelstad,
+  ``Orbital Integrals on Forms of $SL(3)$, II,''
+  Canad\. J\. Math\. {\bf 41} (1989), no. 3, pp.~480@--507.
+%  
+\item{[{\bf 24}]}
+  R. Ranga Rao,
+  ``Orbital Integrals in reductive groups,''
+  Annals of Mathematics {\bf 96} (1972).
+%
+\item{[{\bf 25}]}
+  J. Rogawski,
+  ``Applications of the Building to Orbital Integrals'',
+  thesis, Princeton University, 1980.
+%
+\item{[{\bf 26}]}
+  F. Shahidi,
+  ``Some Results on $L$-indistinguishability for $SL(r)$,''
+  Canadian Journal of Mathematics, Vol\.~35, No\.~6,
+  pp\.~1075@--1109 (1983).
+%
+\item{[{\bf 27}]}
+  T. A. Shalika,
+  ``A theorem on semi-simple $p$-adic groups,''
+  Annals of Mathematics {\bf 95} (1972).
+%
+\item{[{\bf 28}]}
+  D. Shelstad,
+  ``A Formula for Regular Unipotent Germs,''
+  {\sl Orbites Unipotentes et Repr\'esentations},
+  Ast\'erisque {\bf 171-172}, (1989).
+%
+\item{[{\bf 29}]}
+  A. J. Silberger,
+  {\sl Introduction to Harmonic Analysis on Reductive $p$-adic Groups},
+  Princeton University Press, 1979.
+%
+\item{[{\bf 30}]}
+  M-F. Vign\'eras,
+  ``Caract\'erisation des int\'egrales orbitales sur un
+     groupe r\'eductif $p$-adique,''
+     J\. Fac\. Sci\. Univ\. Tokyo,
+     Sect\. 1A,
+     {\bf 28} (1981), no. 3, pp\.~945@--961.
+%
+\item{[{\bf 31}]}
+  J-L. Waldspurger,
+  ``Sur les germes de Shalika pour les groupes lin\'eaires,''
+  Math\. Ann\. {\bf 284} (1989), no. 2, pp\.~199@--221.
+%
+\item{[{\bf 32}]}
+  A. V. Zelevinsky,
+  ``Induced representations of reductive $p$-adic groups II@.
+     On irreducible representations of $GL_n$,''
+  Ann\. Sci\., E.N.S.~{\bf 13}
+  pp\.~165@--210 (1980).
+%
+\item{[{\bf 33}]}
+  A. V. Zelevinsky,
+  {\sl Representations of Finite Classical Groups},
+  SLN~869, Springer-Verlag, 1981.
+
+\enddocument
