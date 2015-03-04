@@ -9,7 +9,12 @@
 % Date:      October 19, 1989 (draft produced)
 % Revision:  003
 % Last Revision: July 23, 1992
+% Retypeset March 4, 2015.
 
+% Issues 2015. 
+% Labeled equations with tags have been
+% removed. References need updating.
+% enumerates and itemizes.
 
 % The following changes were made in preparing the manuscript for AJM publishers Dec 92.
 % Dec 21, 1992 removed words "but unmistakable" from first page
@@ -23,19 +28,33 @@
 %              \xi removed in subscript of K in c4 term in the proof of 3.12
 %
 %
-\loadmsbm   
+
+\documentclass{amsart}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\begin{document}
+
+\title{Unipotent Representations and Unipotent Classes in $\text{SL}(n)$}
+\author{Thomas C. Hales}
+\address{University of Chicago}
+\date{Revised July 23, 1992; Printed December 21, 1992}
+
+
+%\loadmsbm   
 \parindent=8mm 
 \font\smc=cmcsc10
-%\font\ff=cmfi10                         % used for script-like "a"
-\font\title=cmr17
-\font\name=cmr12
-\font\bigmath=cmmi10 scaled\magstep2    % used on title page
-\magnification=1200 
-\hsize=5.21in       % 6.25 true in 
-\hoffset=.166in     % 0.20 true in 
-\vsize=7.08in       % 8.50 true in 
-\voffset=.166in     % 0.20 true in 
-\parskip=\medskipamount 
+%\font\title=cmr17
+%\font\name=cmr12
+%\font\bigmath=cmmi10 scaled\magstep2    % used on title page
+%\magnification=1200 
+%\hsize=5.21in       % 6.25 true in 
+%\hoffset=.166in     % 0.20 true in 
+%\vsize=7.08in       % 8.50 true in 
+%\voffset=.166in     % 0.20 true in 
+%\parskip=\medskipamount 
+
 %
 % Definitions needed when not using amsppt:
 % =========================================
@@ -68,92 +87,48 @@
 %  ========================================
 %
 
-\document 
+%\document 
 \baselineskip=14pt
-\LimitsOnInts      % affects displayed int's only
+%\LimitsOnInts      % affects displayed int's only
 %
 
 
 % This is the beginning of the title page
-\footline={\hfill}
-\null
-\vskip .75in
+%\footline={\hfill}
+%\null
+%\vskip .75in
 
-\centerline{{\title Unipotent Representations and }}
-\medskip
-\centerline{%
-  {\title Unipotent Classes in {\bigmath SL}({\bigmath n}) }}
-\vskip 1in
-\centerline{{\name Thomas C. Hales}}
 
-\medskip
-\centerline{University of Chicago}
+%\newpage
+%\footline={\hss\tenrm\folio\hss}
+%\pageno=-1
 
-\bigskip
-\centerline{Revised July 23, 1992}
-\smallskip
-\centerline{Printed December 21, 1992}
+\begin{abstract}
+Each unipotent conjugacy class of $ SL(n,F)$ (where $F$ is a $p$-adic
+  field of characteristic zero) defines an invariant distribution on $
+  C_c^{\infty} \bigl( SL(n,F) \bigr) $ and, by restriction, a linear
+  functional on the Iwahori Hecke algebra.  Each tempered
+  representation of $ SL(n,F) $ with an Iwahori fixed vector defines
+  an invariant distribution on $ C_c^{\infty} \bigl( SL(n,F) \bigr) $
+  and, by a truncation to strongly compact elements, a linear
+  functional on the Iwahori Hecke algebra.  We show that the vector
+  spaces spanned by these two different classes of functionals are
+  equal.  This gives a precise form for a bijection between certain
+  combinations of unipotent classes in $ SL(n,F) $ and compact traces
+  of representations with Iwahori fixed vectors of $ SL(n,F) $.
 
-\newpage
-\footline={\hss\tenrm\folio\hss}
-\pageno=-1
+As a consequence, we deduce the existence of a uniform Shalika germ
+  expansion holding on all strongly compact elements for functions in
+  the Iwahori Hecke algebra.  The uniform germ expansion is used to
+  make a detailed study of orbital integrals on $ SL(n,F) $.  It is
+  shown that the existence of an abstract matching of smooth functions
+  $ f \mapsto f^H $ between $ SL(n,F) $ and its endoscopic groups
+  implies the {\it fundamental lemma} for the unit element of the
+  spherical Hecke algebra.
+\end{abstract}
 
-\centerline{{\bf Abstract}}
-\bigskip
+\maketitle
 
-\noindent
-Each unipotent conjugacy class of 
-  $ SL(n,F)$
- (where $F$ is a $p$-adic
-field of characteristic zero)
-defines an invariant distribution on
-  $ C_c^{\infty} 
-    \bigl(
-       SL(n,F)
-    \bigr) $
-and, by restriction, a linear functional on the Iwahori Hecke
-  algebra.
-Each tempered representation of
-  $ SL(n,F) $ with an Iwahori fixed vector
-defines an invariant distribution on
-  $ C_c^{\infty}
-    \bigl(
-       SL(n,F)
-    \bigr) $
-and, by a truncation to strongly compact elements, a linear
-  functional on the Iwahori Hecke algebra.
-We show that the vector spaces spanned by these two
-  different classes of functionals are equal.
-This gives a precise form for a bijection between  
-  certain combinations of unipotent classes in
-  $ SL(n,F) $
-and compact traces of representations with Iwahori fixed vectors of 
-  $ SL(n,F) $.  
-
-As a consequence, we deduce the existence of a uniform
-  Shalika germ expansion holding on all strongly compact elements
-  for functions in the Iwahori Hecke algebra.
-The uniform germ expansion is used to make a detailed
-study of orbital integrals on
-  $ SL(n,F) $.
-It is shown that the existence of an abstract matching
-of smooth functions
-  $ f \mapsto f^H $
-between
-  $ SL(n,F) $
-and its endoscopic groups implies the {\it fundamental lemma}
-for the unit element of the spherical Hecke algebra.
-
-\newpage
-\pageno=1
-\centerline{{\bf Unipotent Representations and Unipotent 
-     Classes in} $SL(n)$}
-
-\medskip
-\centerline{{\smc Thomas C. Hales}}
-
-\bigskip
-\noindent
 To achieve the stabilization of the trace formula for
   a reductive group [{\bf 18}], there are two related  
   problems that must first be solved.
@@ -215,8 +190,8 @@ $G_1$, consisting of elements of $GL(n,F)$, whose
 determinant has a valuation which is a multiple of $n$.  
 
 To state the theorem we need the following notation.
-Let ${\Cal H}_1'$ denote the linear dual to the Iwahori Hecke algebra 
-${\Cal H}_1$  on $G_1$.  Let $\Pi^{\text{t}}$ denote the set of irreducible
+Let ${\mathcal H}_1'$ denote the linear dual to the Iwahori Hecke algebra 
+${\mathcal H}_1$  on $G_1$.  Let $\Pi^{\text{t}}$ denote the set of irreducible
 tempered representations of $G_1$. Let $\Omega$ denote the set
 of strongly compact elements in $G_1$.  More concretely, $\Omega$
 is the set of elements $GL(n,F)$-conjugate to $GL(n,O_F)$, where
@@ -227,9 +202,9 @@ $\text{trace}_\Omega\pi(f) $, is defined to be $\text{trace}
 (1_\Omega f)$, for $f\in C_c^\infty(G_1)$.  
 This is a trace on {\it strongly} compact elements, but for simplicity, it
 will just be called the compact trace.
-If ${\Cal O}$ is a unipotent
-conjugacy class, then we let $\mu_{\Cal O}$ denote the invariant distribution
-supported on ${\Cal O}$.  We also write $\Phi(\gamma,f)$ for the
+If ${\mathcal O}$ is a unipotent
+conjugacy class, then we let $\mu_{\mathcal O}$ denote the invariant distribution
+supported on ${\mathcal O}$.  We also write $\Phi(\gamma,f)$ for the
 orbital integral of $f\in C_c^\infty(G)$, over the conjugacy class
 containing the strongly regular
 semisimple element $\gamma\in G_1$.  
@@ -243,16 +218,17 @@ Section 3.4, for additional notation.
 \bigskip
 \proclaim Theorem 1.  
   The following subspaces of 
-  $ {\Cal H}_1' $ are equal.
+  $ {\mathcal H}_1' $ are equal.
+\begin{itemize}
 \item{{\rm (a)}}
   The image in 
-    $ {\Cal H}_1' $
+    $ {\mathcal H}_1' $
   of the space of invariant distributions on
     $ C_c^{\infty}  (G_1) $
   supported on the set of unipotent elements in $G_1$,
 \item{{\rm (b)}}
   The span of 
-    $ \{ \mu_{\Cal O} \mid \Cal O \text{ unipotent}\} $,
+    $ \{ \mu_{\mathcal O} \mid \mathcal O \text{ unipotent}\} $,
 \item{{\rm (c)}}
   The span of 
     $ \{ \text{trace}_{\,\Omega}\,\pi \mid
@@ -266,10 +242,11 @@ Section 3.4, for additional notation.
 \item{{\rm (e)}}
   The space spanned by orbital integrals:
     $ f \mapsto \Phi (\gamma, f) $, for
-    $ f \in {\Cal H}_1 $,
+    $ f \in {\mathcal H}_1 $,
   as $\gamma$ runs over the strongly regular semisimple
   elements of 
   $ \Omega $.
+\end{itemize}
 \finishproclaim
 
 \medskip
@@ -311,9 +288,7 @@ The papers of Langlands--Shelstad~[{\bf 20}] and Waldspurger~[{\bf 31}]
 I would also like to thank F.~Shahidi for his assistance, and D.~Joyner 
   for some helpful comments.
 
-\newpage
-\noindent
-\line{{\bf 1@.  Uniform germ expansions.}\hfil}
+\section{{{\bf 1@.  Uniform germ expansions.}}}
 
 
 \medskip
@@ -329,7 +304,7 @@ denote the set of strongly compact elements.  In this paper, the term
 intersection of the set of compact elements $\Omega_c$ with
 the intersections of the kernels of all unramified quasicharacters of $G$.
 Let 
-  $ {\Cal H} (B,G) $
+  $ {\mathcal H} (B,G) $
 denote the Hecke algebra of functions on $G$ bi-invariant
   by $B$.
 Otherwise we retain the notation of the introduction.
@@ -353,7 +328,7 @@ Note that
   $ \text{trace}_{\,\Omega} \pi $ belongs to $I(\Omega) $.
 
 \proclaim Theorem {1.2.} {\rm (Clozel)}.
-  $ I (\Omega) \mid_{{\Cal H}(B,G)} $
+  $ I (\Omega) \mid_{{\mathcal H}(B,G)} $
 is finite dimensional.
 \finishproclaim
 
@@ -382,7 +357,7 @@ for all
 regular semisimple elements $\gamma$ in 
   $ \Omega $
 and all 
-  $ f \in {\Cal H} (B,G) $.
+  $ f \in {\mathcal H} (B,G) $.
 \finishproclaim
 
 \pproclaim Proof:
@@ -395,7 +370,7 @@ forms a basis for the span of
   $ \{ \text{trace}_{\,\Omega} \, \pi \mid
     \pi \,\, \text{tempered irreducible} \} $
 on 
-  $ {\Cal H} (B,G) $.
+  $ {\mathcal H} (B,G) $.
 If
   $ \text{trace}_{\,\Omega} \, \pi_i (f) = 0 $, for all $\pi_i\in\Pi_*$,
 then for all irreducible tempered representations $\pi$ we have
@@ -418,22 +393,22 @@ depending on
 \finishpproclaim
 
 Let 
-  $ \{ \Cal O \} $
+  $ \{ \mathcal O \} $
 denote the set of unipotent conjugacy classes of $G$.
 Let 
-  $ \Cal M $
+  $ \mathcal M $
 denote the space spanned by distributions
-  $ \mu_{\Cal O} $ 
+  $ \mu_{\mathcal O} $ 
 on
-  $ {\Cal H} (B,G) $,
+  $ {\mathcal H} (B,G) $,
   for
-  $ \Cal O \in \{ \Cal O \} $.
+  $ \mathcal O \in \{ \mathcal O \} $.
 Let 
-  $ {\Cal M}_* $
+  $ {\mathcal M}_* $
 denote a basis of
-  ${\Cal M}$
+  ${\mathcal M}$
 consisting of distributions of the form
-  $ \mu_{\Cal O} $.
+  $ \mu_{\mathcal O} $.
 Let
   $\text{tr}_{\,\Omega}\Pi_*$
 be the span of 
@@ -442,20 +417,20 @@ be the span of
 
 \proclaim Proposition {1.4}.
 If 
-  $ \dim {\Cal M} \geq \dim \text{tr}_{\,\Omega}\Pi_*$,
+  $ \dim {\mathcal M} \geq \dim \text{tr}_{\,\Omega}\Pi_*$,
 then
-  $ {\Cal M} = \text{tr}_{\,\Omega}\Pi_*$.
+  $ {\mathcal M} = \text{tr}_{\,\Omega}\Pi_*$.
 \finishproclaim
 
 \pproclaim Proof:
-It is enough to show that ${\Cal M}$ is contained in $\text{tr}_{\,\Omega}\Pi_*$.
+It is enough to show that ${\mathcal M}$ is contained in $\text{tr}_{\,\Omega}\Pi_*$.
 We have the Shalika germ expansion
-$$\Phi(\gamma,f) = \sum_{\{{\Cal O}\}}\Gamma_{\Cal O}(\gamma)\mu_{\Cal O}(f),
-	\quad \text { for } f\in {\Cal H}(B,G),$$
+$$\Phi(\gamma,f) = \sum_{\{{\mathcal O}\}}\Gamma_{\mathcal O}(\gamma)\mu_{\mathcal O}(f),
+	\quad \text { for } f\in {\mathcal H}(B,G),$$
 valid for regular semisimple elements in some neighborhood 
 $\Omega'$ of $1$ [{\bf 27}].   Since the Shalika germs
-$\Gamma_{\Cal O}(\gamma)$ are linearly independent [{\bf 14}],
-each unipotent orbital integral $\mu_{\Cal O}$ may be written
+$\Gamma_{\mathcal O}(\gamma)$ are linearly independent [{\bf 14}],
+each unipotent orbital integral $\mu_{\mathcal O}$ may be written
 as a finite linear combination of integrals $\Phi(\gamma,f)$,
 for appropriate regular semisimple elements $\gamma$.  Each
 orbital integral $\Phi(\gamma,f)$, in turn, may be written
@@ -466,21 +441,21 @@ The result follows.
 
 \proclaim Theorem {1.5}.
 If 
-   $ \dim {\Cal M} \geq \dim \text{tr}_{\,\Omega}\Pi_*$,
+   $ \dim {\mathcal M} \geq \dim \text{tr}_{\,\Omega}\Pi_*$,
 then there exist functions
-  $ \Gamma_{\Cal O} (\gamma) $, for ${\Cal O}\in{\Cal M}_*$,  defined on the
+  $ \Gamma_{\mathcal O} (\gamma) $, for ${\mathcal O}\in{\mathcal M}_*$,  defined on the
   regular semisimple elements of
   $ \Omega $,
 such that, for all
-  $ f \in {\Cal H} (B,G) $
+  $ f \in {\mathcal H} (B,G) $
 and all such 
   $ \gamma  $, we have the equation
 %
 $$
   \Phi (\gamma,f) =
-  \sum_{{\Cal O}\in{\Cal M}_*}
-  \Gamma_{\Cal O}
-  (\gamma) \mu_{\Cal O} (f).
+  \sum_{{\mathcal O}\in{\mathcal M}_*}
+  \Gamma_{\mathcal O}
+  (\gamma) \mu_{\mathcal O} (f).
 $$
 %
 \finishproclaim
@@ -492,7 +467,7 @@ Expand each
   $ \text{trace}_{\,\Omega}\pi $, with  
   $ \pi \in \Pi_* $,
 as a linear combination of
-  $ \mu_{\Cal O} \in {\Cal M}_* $,
+  $ \mu_{\mathcal O} \in {\mathcal M}_* $,
 and substitute these linear combinations into the expansion
 %
 $$
@@ -508,7 +483,7 @@ $$
 If
   $ \text{trace}_{\,\Omega}\pi (f) $ is nonzero, 
 for some 
-  $ f \in \Cal H (B, G) $,
+  $ f \in \mathcal H (B, G) $,
 then
   $ \pi $
 has an Iwahori fixed vector.
@@ -541,8 +516,8 @@ define
   $ \bar f^P \in C_c^{\infty} (M) $
 by
 %
-$$
-\align
+\begin{align*}
+%\align
   \bar f^P (m) &=
     \delta_P^{1/2} (m)
     \int_{K,N}
@@ -557,19 +532,13 @@ $$
      \Bigr|,
      \quad\text { for }
      m \in M.
-\endalign
-$$
+%\endalign
+\end{align*}
 %
-Let $A_0$ be the split component of a minimal parabolic
-  subgroup $P_0 $.
-Assume that 
-  $ B, K$ and $P_0 $ 
-are compatibly chosen so that
-  $ M \cap B = B_M $
-is an Iwahori subgroup of $M$.
-Assume $K$ is adapted to 
-  $ A_0 $
-as in [{\bf 7}].
+Let $A_0$ be the split component of a minimal parabolic subgroup
+  $P_0$.  Assume that $ B, K$ and $P_0 $ are compatibly chosen so that
+  $ M \cap B = B_M $ is an Iwahori subgroup of $M$.  Assume $K$ is
+  adapted to $ A_0 $ as in [{\bf 7}].
 
 Let $W (M)$ denote the Weyl group of $M$.
 Let $S$ be the set of shortest representatives (by length)
@@ -595,13 +564,13 @@ We define an action
 of $M$ on $C_c^\infty(M)$ by
   $ (Ad\,m \cdot f) (m_0) = f (m^{-1} m_0 m) $.
 Following the notation introduced by Waldspurger, we let 
-  $ {\Cal H}^i (B_M, M) $
+  $ {\mathcal H}^i (B_M, M) $
 denote the vector space spanned by the functions
   $ Ad\,m \cdot f $, for
-  $ f \in {\Cal H} (B_M, M) $ and
+  $ f \in {\mathcal H} (B_M, M) $ and
   $ m \in M $.
 Next we will prove that
-  $ \bar f^P \in {\Cal H}^i (B_M, M) $.
+  $ \bar f^P \in {\mathcal H}^i (B_M, M) $.
 We ignore the factor
   $ \delta_P^{1/2} $, because
 it is bi-invariant by 
@@ -616,19 +585,19 @@ invariant by $B_M$  [{\bf 4}; prop\. 1.1.2]
 and because both $t$ and $t^{-1}B_Mt$ normalize $K_N$.
 Hence, the contribution to $\bar f^P$ from the double coset $BstK_N$
 is a $t^{-1}B_Mt$-bi-invariant function.  Such a contribution
-lies in ${\Cal H}^i(B_M,B)$.  Hence $\bar f^P\in {\Cal H}^i(B_M,M)$.
+lies in ${\mathcal H}^i(B_M,B)$.  Hence $\bar f^P\in {\mathcal H}^i(B_M,M)$.
 The same argument establishes the following lemma.
 
-\proclaim Lemma {1.7}. $\bar f^{P_1}$ belongs to ${\Cal H}^i(B_M,M)$, for
+\proclaim Lemma {1.7}. $\bar f^{P_1}$ belongs to ${\mathcal H}^i(B_M,M)$, for
 every parabolic subgroup $P_1$ containing $P$.
 \finishproclaim
 
 To continue with Lemma 1.6, we recall
 a theorem of Clozel and Waldspurger [{\bf 8}]
 %
-$$
+\begin{equation}\label{eqn:1.8}
   \text{trace}_{\,\Omega_c} \, \pi (f) =
-  \sum_{P \in {\Cal P}}
+  \sum_{P \in {\mathcal P}}
   (-1)^{a_P-a_G}
   \big\langle
     \text{trace}\, \delta_P^{-1/2} 
@@ -636,11 +605,11 @@ $$
     \hat \chi_N
     \bar f^P 
   \big\rangle_M.
-\tag{1.8}
-$$
+%XX \tag{1.8}
+\end{equation}
 %
 Here
-  $ {\Cal P} $
+  $ {\mathcal P} $
 is a set of representatives, modulo conjugation by $G$, for
 the parabolic subgroups of $G$.
 The unnormalized Jacquet module of
@@ -666,10 +635,10 @@ The Harish-Chandra map $H$ and hence
   $ \hat {\chi}_N $ 
 are bi-invariant by every compact subgroup of $M$.
 Thus
-  $ \hat {\chi}_N \bar f^P$ belongs to  $\Cal H^i(B_M, M) $.
+  $ \hat {\chi}_N \bar f^P$ belongs to  $\mathcal H^i(B_M, M) $.
 
 Consider a function
-  $ f \in {\Cal H} (B,G) $.
+  $ f \in {\mathcal H} (B,G) $.
 Suppose that 
   $ \pi $
 does not have an Iwahori fixed vector.
@@ -679,7 +648,7 @@ does not have an Iwahori fixed vector, then neither does
   $ \pi_N $.
 (This statement is an immediate consequence of [{\bf 5};prop 2.4].)
 From
-  $ \hat {\chi}_N \bar f^P \in {\Cal H}^i
+  $ \hat {\chi}_N \bar f^P \in {\mathcal H}^i
     (B_M,M) $,
 it follows that
   $ \langle
@@ -687,7 +656,8 @@ it follows that
       \pi_N,
       \hat \chi_N
       \bar f^P
-    \rangle_M \allowmathbreak$ is zero.
+    \rangle_M$ %\allowmathbreak$ 
+is zero.
 Thus, by the theorem of Clozel-Waldspurger,
 $
   \text{trace}_{\,\Omega_c}\, \pi (f)
@@ -701,8 +671,7 @@ $\text{trace}_{\,\Omega}\,\pi(f)$ is also zero.
 \qed
 \finishpproclaim
 
-\newpage\noindent
-\line{{\bf 2@.  Some representations of $G_1$.}\hfil}
+\section{{\bf 2@.  Some representations of $G_1$.}}
 
 \medskip\noindent
 We now return to the groups $ G=GL(n,F) $
@@ -895,7 +864,7 @@ is multiplied by this scalar function, the resulting operator does not have
 a pole at
   $ t = 0 $. 
 This construction yields a normalized intertwining operator
-  $ {\Cal A}_{\lambda,s} (w) $,
+  $ {\mathcal A}_{\lambda,s} (w) $,
 which intertwines
   $ \text{Ind} \, \sigma_{\lambda,s} $
 and
@@ -931,9 +900,9 @@ in the following sense.
 
 \proclaim Lemma {2.2}.
 The operators
-  $ \phi {\Cal A}_{\lambda,s} (w_1) $
+  $ \phi {\mathcal A}_{\lambda,s} (w_1) $
 and
-  $ {\Cal A}_{\lambda,s} (w_2) $
+  $ {\mathcal A}_{\lambda,s} (w_2) $
 are proportional.
 \finishproclaim
 
@@ -964,7 +933,7 @@ and
   $ \sigma_{\lambda,s,1} $.
 By a theorem of Harish-Chandra [{\bf 29}],
 the operators
-  $ \phi_w {\Cal A}_{\lambda,s} (w) $
+  $ \phi_w {\mathcal A}_{\lambda,s} (w) $
 span the commuting algebra of 
   $ \pi_{\lambda,s,1} $.
 This theorem, expressed in terms of distributions,
@@ -985,7 +954,7 @@ $$
   \text{{\rm trace}} 
   \left(
     \phi_w 
-    {\Cal A}_{\lambda,s} (w)
+    {\mathcal A}_{\lambda,s} (w)
     \pi_{\lambda,s,1}
   \right), \qquad\text{ for }
    w \in W_1(\lambda,s).
@@ -997,14 +966,14 @@ By Lemma 2.2,
 it is enough to let $w$ range over coset representatives in
   $ W_1(\lambda,s)  $
 of
-  $ W_1(\lambda,s) / \allowmathbreak W (\lambda,s) $.
+  $ W_1(\lambda,s) / W (\lambda,s) $.
 A different choice of 
   $ \phi_w $
 changes 
   $ \text{trace}
     \bigl(
        \phi_w
-       {\Cal A}_{\lambda,s} (w) 
+       {\mathcal A}_{\lambda,s} (w) 
        \pi_{\lambda,s,1} 
     \bigr) $
 by a scalar.
@@ -1020,7 +989,7 @@ If
 $$
   \text{{\rm trace}}
   \bigl(
-    {\Cal A}_{\lambda,s} (w)
+    {\mathcal A}_{\lambda,s} (w)
     \pi_{\lambda,s,1}
     (Ad\,h \cdot f)
   \bigr) 
@@ -1029,7 +998,7 @@ $$
   (\det h) \,
   \text{{\rm trace}}
   \bigl(
-    {\Cal A}_{\lambda,s} (w)
+    {\mathcal A}_{\lambda,s} (w)
     \pi_{\lambda,s,1}
     (f)
   \bigr) .
@@ -1039,22 +1008,20 @@ $$
 
 \pproclaim Proof: Clearly,
 %
-$$
-\align
+\begin{align*}
   \pi_{\lambda,s,1} (Ad\,h \cdot f)
 &=
   \pi_{\lambda,s}(h)
   \pi_{\lambda,s,1} (f) 
   \pi_{\lambda,s} (h^{-1}) ,
 \\
-  {\Cal A}_{\lambda,s} (w)
+  {\mathcal A}_{\lambda,s} (w)
   \pi_{\lambda,s} (h) 
 &=
   \omega_{w,0} (\det h)
   \pi_{\lambda,s} (h) 
-  {\Cal A}_{\lambda,s} (w).
-\endalign
-$$
+  {\mathcal A}_{\lambda,s} (w).
+\end{align*}
 %
 The result follows.
 \qed
@@ -1113,7 +1080,7 @@ Then
 $$
   \text{{\rm trace}} \, 
     \bigl(
-      {\Cal A}_{\lambda,s} (w)
+      {\mathcal A}_{\lambda,s} (w)
       \pi_{\lambda,s,1} 
       ( 1_{\Omega} f)
     \bigr) 
@@ -1121,7 +1088,7 @@ $$
     \text{is proportional to}\quad
   \text{{\rm trace}} \, 
     \bigl(
-      {\Cal A}_{\lambda,s(\lambda)} (w')
+      {\mathcal A}_{\lambda,s(\lambda)} (w')
       \pi_{\lambda,s(\lambda),1} 
       ( 1_{\Omega} f)
     \bigr). 
@@ -1133,7 +1100,7 @@ $$
 The dimension of the span of
   $ \{ \text{{\rm trace}}_{\, \Omega} \pi \} $
 on
-  $ {\Cal H} (B, G_1) $
+  $ {\mathcal H} (B, G_1) $
 is at most
   $ g(n) $.
 \finishproclaim
@@ -1150,7 +1117,7 @@ the linear functionals of Proposition 2.6
 $$
   f \mapsto \text{ trace }
   \bigl(
-    {\Cal A}_{\lambda,s(\lambda)} (w)
+    {\mathcal A}_{\lambda,s(\lambda)} (w)
     \pi_{\lambda,s(\lambda),1} (1_{\Omega} f)
   \bigr),
 $$
@@ -1198,7 +1165,7 @@ Then, for any
 $$
   \text{trace}
   \bigl(
-    {\Cal A}_{\lambda,s} (w)
+    {\mathcal A}_{\lambda,s} (w)
     \pi_{\lambda,s,1}
     (1_{\Omega} f)
   \bigr)
@@ -1208,7 +1175,7 @@ $$
   (\det h_i) \,
   \text{trace}
   \bigl(
-    {\Cal A}_{\lambda,s} (w)
+    {\mathcal A}_{\lambda,s} (w)
     \pi_{\lambda,s,1}
     (f_i)
   \bigr)
@@ -1221,14 +1188,14 @@ $$
   ( \det h_i)
   \text{trace}
   \bigl(
-    {\Cal A}_{\lambda,s(\lambda)} (w)
+    {\mathcal A}_{\lambda,s(\lambda)} (w)
     \pi_{\lambda,s(\lambda),1}
     (f_i)
   \bigr)
 =  
   \text{trace}
   \bigl(
-    {\Cal A}_{\lambda,s(\lambda)} (w)
+    {\mathcal A}_{\lambda,s(\lambda)} (w)
     \pi_{\lambda,s(\lambda),1}
     (1_{\Omega}f)
   \bigr).
@@ -1328,9 +1295,8 @@ $$t = (t_1,\ldots,t_1,\ldots ,t_{\ell'},\ldots,t_{\ell'}),$$ where
 each coordinate $t_i\in{\Bbb C}_1$ is repeated $r'$ times.
 If $m=(m_1,\ldots,m_\ell)\in M_\lambda \cap {}^{\circ}\!M_\xi$,
 then
-$$
-\align
-  \nu_t (m) &=
+\begin{align*}
+ \nu_t (m) &=
    t_1^{%
       \operatorname{val}
       (\det m_1 \det m_2 \dots \det m_{r'}) } \;
@@ -1345,8 +1311,7 @@ $$
   &=
    t_1^0
    t_2^0 \dots = 1.
-\endalign
-$$
+\end{align*}
 %
 Thus, we find that
 %
@@ -1363,23 +1328,23 @@ Thus,
   $ f_s (w^{-1} nk) =
     f_{s(\lambda)} (w^{-1} nk) $.
 Hence, 
-  $\Cal A_{s, \lambda} (w) =
-   \Cal A_{s(\lambda), \lambda} (w) $.
+  $\mathcal A_{s, \lambda} (w) =
+   \mathcal A_{s(\lambda), \lambda} (w) $.
 %
 \qed\finishpproclaim
 
-\newpage\noindent
-\line{{\bf 3@.  Linear independence of unipotent classes.}\hfil}
+
+\section{{\bf 3@.  Linear independence of unipotent classes.}}
 
 \medskip
 \noindent
 In this section we prove that the dimension of the span of
 %
 $$
-  \{ \mu_{\Cal O} \mid
-     {\Cal O} \text{ unipotent } \} 
+  \{ \mu_{\mathcal O} \mid
+     {\mathcal O} \text{ unipotent } \} 
   \quad \text{on} \quad
-  {\Cal H} (B, G_1)
+  {\mathcal H} (B, G_1)
 $$
 %
 is equal to 
@@ -1423,7 +1388,7 @@ so that
 \finishpproclaim
 
 Each $GL(n,F)$-conjugacy class
-  $ {\Cal O} $
+  $ {\mathcal O} $
 breaks into finitely many 
   $ G_1 $-classes, the
   number of classes in a stable conjugacy class
@@ -1443,7 +1408,7 @@ $$
 %
 where $u$ is an element of the conjugacy class.
 If 
-  $ {\Cal O}_{\lambda} $
+  $ {\mathcal O}_{\lambda} $
 is a conjugacy class in $GL(n,F)$, and if the class is 
 the Richardson class of the
   parabolic subgroup 
@@ -1451,9 +1416,9 @@ the Richardson class of the
 (with Levi factor
   $ GL (\lambda_1) \times \dots \times GL(\lambda_{\ell}) $),
 then the elementary divisors of an element in
-  $ {\Cal O}_{\lambda} $
+  $ {\mathcal O}_{\lambda} $
 are given by the partition $\lambda^t$ dual to $\lambda$.  
-If $u$ belongs to ${\Cal O}_\lambda$, then it is easy to check that
+If $u$ belongs to ${\mathcal O}_\lambda$, then it is easy to check that
   $ \det C_G (u) = F^{\times\,r(\lambda)} $,
 with
   $ r(\lambda) $
@@ -1486,7 +1451,7 @@ divides
   $ r(\lambda) $.
 Fix a $G$-invariant measure $dg$
 on the $G$-conjugacy class
-  $ {\Cal O}_{\lambda} $.
+  $ {\mathcal O}_{\lambda} $.
 Then set
 %
 $$
@@ -1497,7 +1462,7 @@ $$
 $$
 %
 Selecting a different element
- $ u \in {\Cal O}_{\lambda} $
+ $ u \in {\mathcal O}_{\lambda} $
 will alter
   $ \mu_{\lambda}^{\epsilon} $
 by an
@@ -1517,7 +1482,7 @@ Each
   $ \mu_{\lambda}^{\epsilon} $
 is a linear combination of invariant distributions
   on the $G_1$-classes in
-  $ {\Cal O}_{\lambda} $.
+  $ {\mathcal O}_{\lambda} $.
 Conversely each invariant distribution on a unipotent class in $G_1$ 
 may be expressed as a linear combination of the distributions
   $ \mu_{\lambda}^{\epsilon} $.
@@ -1525,7 +1490,7 @@ As
    $ \epsilon $
 varies over unramified characters, the number of
   distributions on
-  $ {\Cal H}(B, G)  $ associated with ${\Cal O}_\lambda$ is $r(\lambda)$.
+  $ {\mathcal H}(B, G)  $ associated with ${\mathcal O}_\lambda$ is $r(\lambda)$.
 
 Notice that our integrals are now in 
   $ GL (n,F) $
@@ -1543,14 +1508,14 @@ The distributions
              r_{\epsilon}
             |r(\lambda) } $
 are linearly independent on \linebreak
-  $ {\Cal H}(B, G_1) $.
+  $ {\mathcal H}(B, G_1) $.
 \finishproclaim
 
 The proof of this theorem will occupy the remainder of this section.
 We note that this will complete the proof of Theorem 1.
 
 \proclaim Lemma {3.3}.
-Let $\{F_i\}$ be a collection of distributions on ${\Cal H}(B,G_1)$.
+Let $\{F_i\}$ be a collection of distributions on ${\mathcal H}(B,G_1)$.
 For each $i$,
 suppose that there is a character $\epsilon_i$ of
 $GL(n,F)$ whose order divides $n$ and that $F_i$ is $\epsilon_i$-invariant.  For each
@@ -1571,10 +1536,10 @@ permutation matrix with
 %
 $$
   (w_{\text{x}})_{i, j} =
-  \cases
+  \begin{cases}
     1, \quad &\text{if } i + 1 = j, \quad \text{ (indices read modulo $n$)} \\
     0, &\text{otherwise}.
-  \endcases
+  \end{cases}
 $$
 %
 Then
@@ -1600,7 +1565,7 @@ Thus, we obtain an action of
 on $B$, which extends to a linear action $R$ of
   $ {\Bbb Z} / n {\Bbb Z} $
 on
-  $ {\Cal H} (B, G_1) $.
+  $ {\mathcal H} (B, G_1) $.
 Explicitly, $R(i)$ sends the characteristic
 function of $BwB$ to the characteristic function of
   ${B w^{p_0^i} B} $.
@@ -1636,9 +1601,13 @@ and by the condition
 Let $H$ denote the group $GL(m,E)$.  The group $H$ will
 be identified with the centralizer of the image of $E^\times$
 under the ``diagonal'' embedding
-$$E^\times \longrightarrow GL(r,F)  \longrightarrow
-    \undersetbrace{m} \to{%
-     GL(r,F)\times\dots\times GL(r,F)}\subset GL(n,F).$$
+%% XX check this comes out ok.
+\[
+E^\times \longrightarrow GL(r,F)  \longrightarrow
+    %\underbrace{m} 
+%\to{%
+     \underbrace{GL(r,F)\times\dots\times GL(r,F)}_\text{m}\subset GL(n,F).
+\]
 
 For $\lambda\in\Lambda_n$, we let $K_\lambda$ denote
 the standard parahoric subgroup of $G$.  It satisfies
@@ -1658,8 +1627,8 @@ $$f_{\lambda}
      orbital integrals.
    Define $\pmb\tau_r:\Lambda_m\to\Lambda_{mr}$,
   and $\pmb\sigma_r:\Lambda_m\to\Lambda_{mr}$ by
-$$
-\align
+%% XX check this.
+\begin{align*}
     \pmb\tau_r
       (\lambda_1 \dots , \lambda_{\ell} ) &=
       (r \lambda_1, \; r \lambda_2, \dots , r \lambda_{\ell} ), \;\;\;
@@ -1667,26 +1636,25 @@ $$
   \pmb\sigma_r
      (\lambda_1 \dots , \lambda_{\ell} ) &=
   ( \,
-    \undersetbrace{r} \to{%
-        \lambda_1, \dots, \lambda_1} , \;
-    \undersetbrace{r} \to{%
-        \lambda_2, \dots, \lambda_2} , \dots
-    \undersetbrace{r} \to{%
-        \lambda_{\ell}, \dots, \lambda_{\ell}} \, 
+%    \undersetbrace{r} \to{%
+        \underbrace{\lambda_1, \dots, \lambda_1}_\text{r} , \;
+%    \undersetbrace{r} \to{%
+        \underbrace{\lambda_2, \dots, \lambda_2}_\text{r} , \dots
+%    \undersetbrace{r} \to{%
+        \underbrace{\lambda_{\ell}, \dots, \lambda_{\ell}}_\text{r} \, 
   ).
-\endalign
-$$
+\end{align*}
 %
 The subscript $r$ will often be dropped.
 
-If $ x$ belongs to $G$, then let $ \Cal O_x $
+If $ x$ belongs to $G$, then let $ \mathcal O_x $
     denote the conjugacy class of $x$.
 %
-Let ${\Cal O}_{\lambda}$ denote the Richardson class of 
+Let ${\mathcal O}_{\lambda}$ denote the Richardson class of 
       $ P_{\lambda} $.
 %
-  For example,  $ {\Cal O}_{(1^n)}$ is the 
-regular unipotent class, and $ {\Cal O}_{(n)} = \{1\} $.
+  For example,  $ {\mathcal O}_{(1^n)}$ is the 
+regular unipotent class, and $ {\mathcal O}_{(n)} = \{1\} $.
 
 
 If $X$ is a set of 
@@ -1727,7 +1695,7 @@ Consider the parabolic subgroup
   $P_{\lambda} = M_{\lambda} N_{\lambda} $.
 A function 
   $ \beta_{\epsilon} (n) $ on
-  $ N_{\lambda} \cap {\Cal O}  _{\lambda} $ is
+  $ N_{\lambda} \cap {\mathcal O}  _{\lambda} $ is
 determined up to a constant by the condition
   $ \beta_{\epsilon} (n^m) =
     \epsilon \, (\det m) 
@@ -1765,9 +1733,9 @@ into a sum
 $$
   \mu_{\lambda}^{\epsilon} (\text{char}_{\xi}) =
   c_{\lambda}
-  \sum\Sb 
+  \sum_{\substack{
      \text{unipotent} \\
-     u \in \tilde G \endSb
+     u \in \tilde G}}
   a_{\lambda} (u)
   \int_K
   \bigl[
@@ -1836,10 +1804,11 @@ Let
   $ w_{\text{x}} $ be the permutation matrix defined in 
   the proof of Lemma 3.3.
 Set
+%% XX check this converted properly
   $ p_1 = w_{\text{x}}^{\xi_1} \; \text{diag} 
      ( 
-      \oversetbrace{\xi_1}\to {\vphantom{1}
-         \varpi,\dots , \varpi,} \,1,\dots,1) $.
+      \overbrace{\vphantom{1}
+         \varpi,\dots , \varpi,}^{\xi_1} \,1,\dots,1) $.
 Then
   $ p_1 K_{\xi} p_1^{-1} $
 is the parahoric with ``Levi factor''
@@ -1894,13 +1863,13 @@ which we will denote
 (for algebraic).
 Let
   $d n $
-(resp\. $d \bar n $)
+(resp. $d \bar n $)
 denote the Haar measure on 
   $ N_{\lambda} $
-(resp\. $\bar N_{\lambda} $)
+(resp. $\bar N_{\lambda} $)
 assigning mass $1$ to 
   $ N_{\lambda} \cap K $
-(resp\. $ \bar N_{\lambda} \cap K $).
+(resp. $ \bar N_{\lambda} \cap K $).
 
 
 For every $i$ define
@@ -1926,7 +1895,7 @@ Set
     \prod_{i=1}^{\ell-1} \epsilon^{-i} 
     \bigl(
        \det x_i (n)
-    \bigr) $, for $n\in N_\lambda\cap{\Cal O}_\lambda$.
+    \bigr) $, for $n\in N_\lambda\cap{\mathcal O}_\lambda$.
 Notice that $ \epsilon^i = 1 $,
 whenever
   $ x_i $
@@ -1941,10 +1910,9 @@ Also, if
      (m_1, \dots, m_{\ell}) \in M_{\lambda} $,
 then
 %
-$$
-\spreadlines{4pt}
-\align
-  \beta_{\epsilon} (n^m) &=
+%XX check formatting
+\begin{align*}
+\beta_{\epsilon} (n^m) &=
     \prod_{i=1}^{\ell-1} 
     \epsilon^{-i}
     \bigl(
@@ -1954,6 +1922,7 @@ $$
             m_{i+1}
      \bigr)
 \\
+\vspace{4pt}
 &=
     \prod_{i=1}^{\ell} 
     \epsilon^i
@@ -1963,12 +1932,12 @@ $$
     (\det m_i) 
     \beta_{\epsilon} (n)
 \\
+\vspace{4pt}
 &=
    \epsilon
    (\det m)
    \beta_{\epsilon} (n).
-\endalign
-$$
+\end{align*}
 %
    We have used the identity $\epsilon^{\ell} = 1 $.
 \noindent
@@ -2018,7 +1987,7 @@ We have already checked correct transformation of
 It remains to be seen that
   $ d n d \bar n$
 is an invariant measure on
-  $ {\Cal O}_{\lambda} $.
+  $ {\mathcal O}_{\lambda} $.
 The measure $dn\,d\bar n$ is clearly invariant
 by $M_\lambda$ and $\bar N_\lambda$.  The group
 $G$ is generated by $M_\lambda$, $\bar N_\lambda$ and
@@ -2074,8 +2043,8 @@ Expand the right-hand side, for small
   $ \zeta  $, as
 %
 $$
-  \undersetbrace{\text{Factor $1$}} \to {%
-    \Bigl(
+%  \undersetbrace \to {%
+    \underbrace{\Bigl(
        \frac {q^j -1}{q^j}
     \Bigr)
     \Bigl(
@@ -2083,9 +2052,9 @@ $$
       \frac {\zeta}{q^j} +
       \frac {\zeta^2}{q^{2j}} + \dots
     \Bigr)
-  } \;\;
-  \undersetbrace{\text{Factor $2$}} \to{%
-    \Bigl(
+  }_{\text{Factor $1$}} \;\;
+  \underbrace %\to{%
+    {\Bigl(
        \frac {q^j -q}{q^j}
     \Bigr)
     \Bigl(
@@ -2093,13 +2062,13 @@ $$
       \frac {\zeta}{q^{j-1}} +
       \frac {\zeta^2}{q^{2(j-1)}} + \dots
     \Bigr)
-  }
+  }_{\text{Factor $2$}}
 \dots
-    \undersetbrace{\text{Factor $j$}} \to {%
-       \Bigl( 
+    \underbrace %\to {%
+       {\Bigl( 
           \hskip .5in
        \Bigr).
-    } 
+    }_{\text{Factor $j$}}
 $$
 %
 The result will follow immediately from the correct interpretation
@@ -2207,7 +2176,7 @@ Then
     \beta_{\epsilon} (n) d n $.
 
 If
-  $ \chi (n^k) = 1 $ and $n\in {\Cal O}_\lambda\cap N_\lambda$,
+  $ \chi (n^k) = 1 $ and $n\in {\mathcal O}_\lambda\cap N_\lambda$,
 then one easily checks that
   $ n$ belongs to $N_{\lambda} \cap K $,
 and
@@ -2236,15 +2205,14 @@ $$
 Now we evaluate
   $ \mu_{\lambda}^{\text{st,alg}} (f_{(n)})$. 
 %
-$$
-\spreadlines{4pt}
-\align
-  \mu_{\lambda}^{\epsilon,\text{alg}} (f_{(n)})
+\begin{align*}
+ \mu_{\lambda}^{\epsilon,\text{alg}} (f_{(n)})
 &=
   \frac {\phi_n(q,1)}{\phi_\lambda(q,1)}
   \frac
      {  \mu_{\lambda}^{\epsilon,\text{x}} (\text{char}_{(n)})  }
      {  \phi_n (q,1)  },  \\
+\vspace{4pt}
   \mu_{\lambda}^{\epsilon,\text{x}} (\text{char}_{(n)})
 &=
   \int_K dk 
@@ -2255,17 +2223,15 @@ $$
   \epsilon^{-i}
   (\det x_i)
   d x_i.
-\endalign
-$$
+\end{align*}
 %
 Here 
   $ d x_i $
 is a measure of mass $1$ on
  $ \text{Mat}_{\lambda_i} (O_F) $. By Lemma 3.8,
 %
-$$
-\spreadlines{7pt}
-\align
+\begin{align*}
+%\spreadlines{7pt}
   \prod_{i=1}^{\ell}
   \int
   \epsilon^{-i} (\det x_i)
@@ -2285,8 +2251,7 @@ $$
   (f_{(n)})
 &=
   \frac{1} {\phi_{\lambda'}(q^r,1)}. 
-\endalign
-$$
+\end{align*}
 Similarly,
 $$
   \mu_{\lambda}^{\text{st,alg}}
@@ -2321,7 +2286,7 @@ The distributions
       \mu_{\pmb\sigma (\lambda')}^{\epsilon}
     $, for $\lambda'\in\Lambda_m$,
 are linearly independent on
-  $ {\Cal H} (B, G_1) $.
+  $ {\mathcal H} (B, G_1) $.
 \finishproclaim
 
 \pproclaim Proof of Corollary 3.11:
@@ -2420,7 +2385,7 @@ $\mu_{\lambda'}^{\text{st,alg}}(f^H_{\xi'}) = c_0 \bar f_\xi^P(z)$.
 \finishproclaim
 
 \pproclaim{Proof}:  Set $N'=N\cap H$, and $K'=K\cap H$.  The unipotent
-class of $H$ dense in $N'$ is ${\Cal O}_{\lambda'}$.
+class of $H$ dense in $N'$ is ${\mathcal O}_{\lambda'}$.
 Use Howe's normalization
 of measures to write 
 $$
@@ -2429,11 +2394,11 @@ $$
 	f_{\xi'}^H (k^{\prime\,-1}zn'k')dn'\,dk'.$$
 %
 Since $H\cap K_\xi=K'_{\xi'}$, the integral may be replaced with
-$$
-\align
+\begin{align*}
 c_2\int_{N',K'}f_\xi(k^{\prime-1}zn'k')dn'dk' &=
  c_3\int_{N',K',K_\xi} f_\xi(k^{-1}k^{\prime-1}zn'k'k) dn'dk'dk\\&=
- c_4\int_{N',K} f_\xi(k^{-1}zn'k)dn'dk.\endalign$$
+ c_4\int_{N',K} f_\xi(k^{-1}zn'k)dn'dk.
+\end{align*}
 By Kazhdan's lemma, as given in [{\bf 31}], 
 the integral over $K'$ and $K_\xi$ may be replaced  with
 an integral over $K$.  
@@ -2456,9 +2421,10 @@ extends over $N$, not merely over $N'=N\cap H$.  In view of the support
 of $f_\xi$, we must show that the integral over $N'$ and $K$ remains unchanged
 if we integrate over $N\cap K$ instead of $N\cap K\cap H$.  This
 is accomplished if we show the equality of two sets $X_0$ and $X_0'$:
-$$\align
+\begin{align*}
    	X'_0 &= \{(zn)^k \mid k\in K,\ n\in N'\cap K\},\\
-	X_0 &= \{ (zn)^k \mid k\in K, \ n\in N\cap K\}.\endalign$$
+	X_0 &= \{ (zn)^k \mid k\in K, \ n\in N\cap K\}.
+\end{align*}
 %
 To see that $X_0'\subseteq X_0$, it is enough to observe that
 $N'\subseteq N$.  
@@ -2469,17 +2435,17 @@ that the map $$\varphi:(N'\cap K)\times (N\cap K)\to z(N\cap K),\qquad
 is onto.  This calculation is best understood by considering the
 example $m=2$, and $\lambda'=(1,1)\in \Lambda_2$.
 We write a matrix in $\text{Mat}_{2r}(F)$ in the form
-$\pmatrix a&b\\c&d\endpmatrix$, with $a,b,c,d\in\text{Mat}_r(F)$.
+$\begin{pmatrix}  a&b\\c&d\end{pmatrix}$, with $a,b,c,d\in\text{Mat}_r(F)$.
 The $2\times2$ matrix calculation
 %
-$$\pmatrix 1&-X\\0&1\endpmatrix
-  \pmatrix z&y\\0&z\endpmatrix
-  \pmatrix 1&X\\0&1\endpmatrix =
-  \pmatrix z& zX-Xz+y\\0&z\endpmatrix,$$
+$$\begin{pmatrix}  1&-X\\0&1\end{pmatrix}
+  \begin{pmatrix}  z&y\\0&z\end{pmatrix}
+  \begin{pmatrix}  1&X\\0&1\end{pmatrix} =
+  \begin{pmatrix}  z& zX-Xz+y\\0&z\end{pmatrix},$$
  %
   with 
-  $n=\pmatrix1&X\\0&1\endpmatrix$ and 
-  $zn'=\pmatrix z&y\\0&z\endpmatrix$,
+  $n=\begin{pmatrix} 1&X\\0&1\end{pmatrix}$ and 
+  $zn'=\begin{pmatrix}  z&y\\0&z\end{pmatrix}$,
 %
 shows that the following lemma is needed for $\varphi$ to be onto.
 
@@ -2565,15 +2531,16 @@ with $m\in M_0$, $n\in N$, and $k\in K$, then $z^mn\in K$.  It also follows
  Notice that $\det T(F)$ consists of norms from $E^\times$, so that
  $\epsilon$ is trivial on the determinant of any $m\in M_0$ such that $z^m\in K_0$.
  We conclude then from the definition of $\bar f_\xi^P$ that
- $$\epsilon(\det m)\bar f_\xi^P(z^m) = \cases 
+ $$\epsilon(\det m)\bar f_\xi^P(z^m) = 
+  \begin{cases} 
 	\bar f^P_\xi(z), & \text{ if }m\in T(F)K_0,\\
-	0, & \text{ otherwise. }\endcases
+	0, & \text{ otherwise. }\end{cases}
 	$$
 Thus $\bar f_\xi^P(z)$ is a constant independent of $\xi$ times
 $$\int_{T\backslash M_0} \epsilon(\det m) \bar f_\xi^P(z^m) dm.$$
 By the induction hypothesis made above, there exists a
-uniform germ expansion for $M_0$, for functions in ${\Cal H}(B_{M_0},M_0)$,
-and more generally for functions (such as $\bar f_\xi^P$) in ${\Cal H}^i
+uniform germ expansion for $M_0$, for functions in ${\mathcal H}(B_{M_0},M_0)$,
+and more generally for functions (such as $\bar f_\xi^P$) in ${\mathcal H}^i
 (B_{M_0},M_0)$ (see Lemma 1.7).  
 Note that $M_0$ is a proper Levi subgroup of
 $GL(n,F)$ when $\epsilon\ne 1$.  
@@ -2605,17 +2572,17 @@ We must introduce a third parabolic subgroup $P_{\pmb\sigma(\lambda')} =
 P_\sigma=M_\sigma N_\sigma$ (in addition to the parabolic subgroups
 $P$ and $P_{\lambda_0}$ already in use).  Note that the
 projection of $U$ to a factor $GL(r\lambda'_i,F)$ of $M$ has
-dense orbit ${\Cal O}_{\pmb\sigma(\lambda'_i)}$.  This projection
+dense orbit ${\mathcal O}_{\pmb\sigma(\lambda'_i)}$.  This projection
 of $U$ to $GL(r\lambda'_i,F)$ is conjugate under $GL(r\lambda'_i,F)$ to
 a subset of the projection of $M\cap N_\sigma$ to $GL(r\lambda'_i,F)$.  
 In fact,
 there exists a permutation matrix $x\in M\cap K$ such that $U^x$ is contained
 in $M\cap N_\sigma$.  Set
 $\hat N_\sigma = U^xN\subseteq N_\sigma$.  One can check that
-an open subset of $\hat N_\sigma$ belongs to ${\Cal O}_\lambda = {\Cal O}_{\pmb\sigma(\lambda')}$
+an open subset of $\hat N_\sigma$ belongs to ${\mathcal O}_\lambda = {\mathcal O}_{\pmb\sigma(\lambda')}$
 and that $\beta^0_\epsilon(u) = \beta(n)$, if $n$ is the element
 $u^xn_1\in U^xN \cap
-{\Cal O}_{\lambda} = \hat N_\sigma\cap {\Cal O}_\lambda$.
+{\mathcal O}_{\lambda} = \hat N_\sigma\cap {\mathcal O}_\lambda$.
 
 To complete the proof, we must show that the value of the integral
 $$\int_{\hat N_{\sigma},K} \beta_\epsilon(n) f_\xi((z_0^xn)^k) dn\,dk$$
@@ -2628,9 +2595,7 @@ After $\hat N_\sigma$ is replaced by $N_\sigma$, Lemma 1.7 allows us to drop
 $z_0^x$ from the integral.  We omit the remaining details, which are routine.
 \qed\finishpproclaim
 
-\newpage
-\noindent
-\line{{\bf 4@.  An interpretation of descent and homogeneity.}\hfil}
+\section{{\bf 4@.  An interpretation of descent and homogeneity.}}
 
 \medskip
 \noindent
@@ -2664,8 +2629,7 @@ See [{\bf 31}] and [{\bf 33}] for details.
 
 \proclaim Proposition {4.1}.
 %
-$$
-\alignat 2
+\begin{alignat*}{2}
   \mu_{\pmb\tau(\lambda')}^{\epsilon, \text{{\rm alg}}} (f_{\xi})
 &=
   \langle
@@ -2682,8 +2646,7 @@ $$
   \rangle_{q^r}, \quad
 &&\text{{\rm if}} \quad
   \lambda', \xi' \in \Lambda_m.
-\endalignat
-$$
+\end{alignat*}
 %
 \finishproclaim
 
@@ -2737,9 +2700,7 @@ does not enter otherwise into the proof.
 \qed
 \finishpproclaim
 
-\newpage
-\noindent
-\line{{\bf 5@.  Transfer factors.}\hfil}
+\section{{\bf 5@.  Transfer factors.}}
 
 \medskip
 \noindent
@@ -2779,10 +2740,10 @@ define
 $$  
   \Delta_{E/F}^{m,1} (\gamma) =
     \Bigl|
-      \prod\Sb 
+      \prod_{\substack{
          \sigma \neq \tau \\
          \sigma, \tau \in \text{Gal} (E/F)
-       \endSb
+       }}
        R 
        \bigl(
           \sigma (\gamma), \tau (\gamma)
@@ -2986,7 +2947,7 @@ Fix such a block $B_0$, when $r$ is even.
 Let $\lambda$ be a root in $B_0$.  The fixed field $F_+$ of $\Gamma_+$
 contains $E$.  Similarly, the fixed field $F_\pm\subseteq F_+$
 of $\Gamma_\pm$ contains $E_\pm$, the fixed field of $\sigma_+$ in 
-$E$.  Let ${\Cal B}_0$ denote the set of $\text{Gal}(\overline F/F)$-orbits
+$E$.  Let ${\mathcal B}_0$ denote the set of $\text{Gal}(\overline F/F)$-orbits
 of roots in $B_0$. If $\lambda$ is a root in the block $B_0$, then we take
 %
   $ \chi_{\lambda}  = \eta_E \circ \text{Norm}_{\, F_+/E} $, where
@@ -3000,12 +2961,11 @@ gives
   $ \chi $-data.
 Then, by definition,
 %
-$$
-\spreadlines{10pt}
-\align
+\begin{align*}
+%\spreadlines{10pt}
   \Delta_{\text{II}} (\gamma_H, \gamma_G)
   &=
-  \prod_{\alpha\in{\Cal B}_0}
+  \prod_{\alpha\in{\mathcal B}_0}
   \chi_{\alpha}
   \Bigl(
     \frac
@@ -3013,7 +2973,7 @@ $$
       { a_{\alpha} }
   \Bigr)
 =
-  \prod_{\alpha\in{\Cal B}_0}
+  \prod_{\alpha\in{\mathcal B}_0}
   \prod_{\sigma \in \text{Gal}(F_+/E)}
   \eta_E
   \Bigl(
@@ -3025,6 +2985,7 @@ $$
     \Bigr)
   \Bigr) 
 \\
+\vspace{10pt}
 &=
   \prod_{\alpha\in B_0}
   \eta_E
@@ -3037,8 +2998,7 @@ $$
   \Bigl(
     R \bigl( \gamma, \sigma_+ (\gamma) \bigr)
   \Bigr).
-\endalign
-$$
+\end{align*}
 %
 This completes the proof that
   $ \Delta_{E/F}^{m,2} (\gamma) =
@@ -3062,8 +3022,9 @@ We have shown that
     are equal, up to a scalar.
 So
 %
-$$
-\spreadlines{8pt}
+\medskip
+\begin{equation}\label{eqn:star}
+%\spreadlines{8pt}
   \frac
      { \Delta_{E/F}^m (\gamma_1) }
      { \Delta_{E/F}^m (\gamma_2) }
@@ -3080,7 +3041,8 @@ $$
   \Delta
   ( \gamma^{1}_H, \gamma^{1}_G ; \gamma_H^2, \gamma_G^2) .
 \tag{$*$}
-$$
+\end{equation}
+\medskip
 %
 We consider the limit as the elements $\gamma_1$, $\gamma_2$,
   $\gamma^{1}_H$, $\gamma^{1}_G$, $\gamma_H^2$, and $\gamma_G^2$ 
@@ -3150,7 +3112,7 @@ and such a root does not contribute to $\Delta_{\text{II}}$
 \finishpproclaim
 
 \bigskip
-\line{5.5. {\smc (Elliptic Descent).}\hfil}\nopagebreak
+\subsection{5.5. {\smc (Elliptic Descent).}}\nopagebreak
 \medskip
 \noindent
 In this subsection we assume that $\gamma$ is elliptic.
@@ -3160,12 +3122,10 @@ Let
 Let
   $ G_s = C_G ( \gamma_s) $, and let $H_s =C_H(\gamma_s)$.
 Since $\gamma$ is elliptic, $H_s$ and $G_s$ must have the form
-$$
-\align
+\begin{align*}
   G_s &= GL(n_1,F_1),\quad \text{where } n_1[F_1:F] = n,\\
   H_s &= GL(m_1,E_1),\quad \text{where } m_1[E_1:E] = m.
-\endalign
-$$
+\end{align*}
 %
 Furthermore, $E_1$ is an unramified extension of $F_1$.  Since
 $\gamma_s$ is absolutely semisimple, the eigenvalues of $\gamma_s$
@@ -3223,9 +3183,7 @@ $(-1)^{v/[E:F]} = (-1)^{v_1/[E_1:F_1]}$.
 \qed
 \finishpproclaim
 
-\newpage
-\noindent
-\line{{\bf 6@.  Local compatibility of unit in Hecke algebra.}\hfil}
+\subsection{{\bf 6@.  Local compatibility of unit in Hecke algebra.}}
 
 \medskip
 \noindent
@@ -3292,7 +3250,7 @@ functional on $C_c^\infty(H)$ given by
 Let $\Gamma^{\text{st,alg}}_{z,\lambda'}(\gamma)$ be the stable germ
 on $H$, for the conjugacy class in $H$ whose semisimple part is
 conjugate to $z$ and whose unipotent part is conjugate
-to ${\Cal O}_{\lambda'}$.  Assume that the germ is normalized
+to ${\mathcal O}_{\lambda'}$.  Assume that the germ is normalized
 so that
 $$D_H(z\gamma)\Phi^{E/E}_H(z\gamma,f^H) = \sum \Gamma^{\text{st,alg}}_{z,\lambda'}
 (\gamma)\mu_{z,\lambda'}^{\text{st,alg}}(f^H).$$
@@ -3321,8 +3279,7 @@ Then Theorem 6.1 holds.
 
 \pproclaim{Proof}:  Suppose that $f^H$ exists and that $z\in \{z_i\}$.
 Then, for $\gamma$ small and $i>i_f$, we have
-$$
-\align
+\begin{align*}
 D_H(z\gamma)\Delta^m_{E/F}(z\gamma)\Phi^{E/F}_G(z\gamma,f) =
 	D_H(z\gamma)\Phi^{E/E}_H(z\gamma,f^H) &= 
  	\sum\Gamma^{\text{st,alg}}_{z,\lambda'}(\gamma)\mu^{\text{st,alg}}_
@@ -3332,8 +3289,8 @@ D_H(z\gamma)\Delta^m_{E/F}(z\gamma)\Phi^{E/F}_G(z\gamma,f) =
 	\Delta^{m,2}_{E/F}(z)
 	I^{\epsilon}_{z,\lambda'}(f) &= \sum\Gamma^{\text{st,alg}}_
 	{z,\lambda'}(\gamma)\mu^{\epsilon,\text{alg}}_{\pmb\sigma(\lambda')}
-	(f).\endalign
-$$
+	(f).
+\end{align*}
 By the linear independence of germs, we have  $\mu^{\epsilon,\text{alg}}_%
 	{\pmb\sigma(\lambda')}(f)
 	=\mu^{\text{st,alg}}_{z,\lambda'}(f^H)$, for $z=z_i$ and $i>i_f$.
@@ -3349,18 +3306,18 @@ take $f^H = f^H_{(m)}$, the normalized unit of the Hecke algebra.
 \finishproclaim
 
 The group $H$ contains the conjugacy class with semisimple part $z$ and
-unipotent part ${\Cal O}_{\lambda'}$.  Write ${\Cal O}_{z,\lambda'}$ for
+unipotent part ${\mathcal O}_{\lambda'}$.  Write ${\mathcal O}_{z,\lambda'}$ for
 the conjugacy class in $G$ that meets this class of $H\subset G$.
 
 \proclaim{Lemma 6.3}.  $I^{\epsilon}_{z,\lambda'}$ is an
-$\epsilon$-invariant distribution on the conjugacy class ${\Cal O}_{\lambda'}$.
+$\epsilon$-invariant distribution on the conjugacy class ${\mathcal O}_{\lambda'}$.
 \finishproclaim
 
 \pproclaim{Proof}:  The $\epsilon$-invariance results from the
 $\epsilon$-invariance of the integral $\Phi^{E/F}_G(\gamma,\cdot)$
 and the uniqueness of the germ expansion.  From the explicit description
 of descent given in [{\bf 13}], we see that $I^{\epsilon}_{z,\lambda}$
-is supported on ${\Cal O}_{z,\lambda'}$.
+is supported on ${\mathcal O}_{z,\lambda'}$.
 \qed\finishpproclaim
 
 \proclaim{Lemma 6.4}.  There exists a function $\rho^\epsilon_{\lambda'}(z_i)$
@@ -3376,7 +3333,7 @@ and let $dm$ be an invariant measure on $C\backslash M$.  It is easy to
 check that
 $$f\mapsto I_{z,\lambda'}(f) = \int_{C\backslash M}\epsilon(\det m )\bar f^P(z^m)dm$$
 is an $\epsilon$-invariant distribution supported on the conjugacy
-class ${\Cal O}_{z,\lambda'}$. It is enough to prove the
+class ${\mathcal O}_{z,\lambda'}$. It is enough to prove the
 result for $I_{z,\lambda'}$, instead of $I^{\epsilon}_{z,\lambda'}$.
 
 Expand the orbital integral $\int_{C\backslash M}\epsilon(\det m) \bar f^P(z^m) dm$
@@ -3405,7 +3362,7 @@ Work momentarily with a single factor of $M$.
 If $ M$
 consists of a single factor, then the dense class in $ N_{\eta} $ 
 is 
-  $ {\Cal O}_{\eta} $, where $ \eta = ( m, m,\dots ,  m) $.
+  $ {\mathcal O}_{\eta} $, where $ \eta = ( m, m,\dots ,  m) $.
 So the sum in the Shalika germ expansion
 runs over only those classes whose partition is dominated 
   by $ (m, m, \dots , m) $
@@ -3419,7 +3376,7 @@ only
   $ \epsilon $-invariant 
 integrals
 on unipotent classes are on classes
-  $ \Cal O_{\eta'} $,
+  $ \mathcal O_{\eta'} $,
 where $r=r_\epsilon$ divides 
   $ r(\eta') $.
 This, together with the condition that
@@ -3439,7 +3396,7 @@ that
     \left(
       \bar f^{P} 
     \right) $
-is an integral over the conjugacy class of ${\Cal O}_{\pmb\sigma(\lambda')}$
+is an integral over the conjugacy class of ${\mathcal O}_{\pmb\sigma(\lambda')}$
 (compare the end of 3.14).
 Since the left-hand side is $\epsilon$-invariant, the right-hand
 side is as well.  This completes the proof.
@@ -3483,9 +3440,9 @@ Set $P_\sigma = P_{\pmb\sigma(\lambda')} = M_\sigma N_\sigma$, and set
 $\bar N_\sigma= \bar N_{\pmb\sigma(\lambda')}$, for 
 $\lambda'\in \Lambda_m$.   
 Over $E$, we may assume that $z$ lies in the center of $M_\sigma$.
-A Zariski open subset of ${\Cal O}_{z,\lambda'}$ and a Zariski open subset
+A Zariski open subset of ${\mathcal O}_{z,\lambda'}$ and a Zariski open subset
 of $(zn)^{\bar n}$ coincide, for $n\in N_\sigma$ and $\bar n\in \bar N_\sigma$.
-Then $dn\,d\bar n$ is an invariant form on ${\Cal O}_{z,\lambda'}$.
+Then $dn\,d\bar n$ is an invariant form on ${\mathcal O}_{z,\lambda'}$.
 Define $f\mapsto I^{\epsilon,\text{alg}}_{z,\lambda'}(f)$ as $I^{\epsilon}_{z,\lambda'}$,
 but replacing the positive measure implicit in the definition of $I^{\epsilon}_{z,\lambda'}$
 with the positive measure associated to $dn\,d\bar n$.  
@@ -3495,7 +3452,7 @@ As a short calculation will show, the differential form $dn\,d\bar n$
 is defined over $F$
 (although the coordinates
 $n$ and $\bar n$ are not defined over $F$)
-and gives a measure on the $F$-conjugacy class ${\Cal O}_{z,\lambda'}$.
+and gives a measure on the $F$-conjugacy class ${\mathcal O}_{z,\lambda'}$.
 
 
 All of the Levi factors of $GL(n)$ are products of linear groups.  This
@@ -3503,14 +3460,15 @@ allows us to extend the constructions of the previous sections to Levi factors.
 In the next set of equations, we apply descent to a Levi factor and take
 a germ expansion.  Using what I hope is an obvious extension of notation,
 we have by Proposition 5.4 and descent
-$$\align
+\begin{align}
   D_{H}(z\gamma)\Delta^m_{E/F}(z\gamma)\Phi^{E/F}_G(z\gamma,f)
   &=
     D_{H_M}(z\gamma)\Delta_{M,E/F}(z\gamma)\Phi^{E/F}_M(z\gamma,f^M) \\
 \vspace{4pt}
   &=
     \sum_{\eta'} \Gamma^{\text{st,alg}}_{H_M,z,\eta'}(\gamma)
-                 I^{\epsilon}_{M,z,\eta'}(f^M) \Delta_{M,E/F}^{2}(z),\tag{6.5}\\
+                 I^{\epsilon}_{M,z,\eta'}(f^M)
+  \Delta_{M,E/F}^{2}(z),\label{eqn:6.5} \\ %%\tag{6.5}
 %
 D_{H}(z\gamma)\Phi^{E/E}_H(z\gamma,f^H)
   &=
@@ -3518,9 +3476,9 @@ D_{H}(z\gamma)\Phi^{E/E}_H(z\gamma,f^H)
 \vspace{4pt}
     &=
      \sum_{\eta'}\Gamma^{\text{st,alg}}_{H_M,z,\eta'}(\gamma)
-                 \mu^{\text{st,alg}}_{H_M,z,\eta'}(f^{H_M}).\tag{6.6}
-\endalign
-$$
+                 \mu^{\text{st,alg}}_{H_M,z,\eta'}(f^{H_M}). \label{eqn:6.6}
+  %XX \tag{6.6}
+\end{align}
 Here $\eta'$ indexes unipotent conjugacy classes of the endoscopic group $H_M$,
 obtained by descent, of the Levi subgroup $M$.  If
 $H_M = M_{\lambda'} = GL(\lambda'_1,E)\times\cdots\times GL(\lambda'_\ell,E)$, then
@@ -3529,18 +3487,29 @@ $\eta' = (\eta^1,\ldots,\eta^\ell)\in
 
 There are two hypotheses that we will prove inductively.  They
 are
-$$I^{\epsilon,\text{alg}}_{z,\lambda'} = I^{\epsilon}_{z,\lambda'},\tag{$1$}$$
+\begin{equation}\label{eqn:tag1}
+I^{\epsilon,\text{alg}}_{z,\lambda'} =
+I^{\epsilon}_{z,\lambda'},%\tag{$1$}
+\end{equation}
 and
-$$\Delta^{m,2}_{E/F}(z)I^{\epsilon,\text{alg}}_{z,\lambda'} =
-  \mu^{\epsilon,\text{alg}}_{\pmb\sigma(\lambda')}.\tag{$2$}$$
+\begin{equation}\label{eqn:tag2}
+\Delta^{m,2}_{E/F}(z)I^{\epsilon,\text{alg}}_{z,\lambda'} =
+  \mu^{\epsilon,\text{alg}}_{\pmb\sigma(\lambda')}. % XX \tag{$2$}
+\end{equation}
 (Compare Lemma 6.2.)
 Now we fix $\lambda'\in\Lambda_m$ and set $M=M_{\lambda''}$ and  $H_M = M_{\lambda'}$,
 where $\lambda'' = \pmb\tau(\lambda')$.  We assume that $\lambda'\ne(m)$, or
 equivalently that $M\ne G$.  By induction we may assume (using what I hope
 is an obvious extension of notation) that
-$$I^{\epsilon,\text{alg}}_{M,z,\eta'} = I^{\epsilon}_{M,z,\eta'},\tag{$1'$}$$
+\begin{equation}\label{eqn:tag1'}
+I^{\epsilon,\text{alg}}_{M,z,\eta'} =
+I^{\epsilon}_{M,z,\eta'}, %\tag{$1'$}
+\end{equation}
 and
-$$\Delta^{2}_{M,E/F}(z)I^\epsilon_{M,z,\eta'} = \mu^{\epsilon,\text{alg}}_{M,\eta},\tag{$2'$}$$
+\begin{equation}\label{eqn:tag2'}
+\Delta^{2}_{M,E/F}(z)I^\epsilon_{M,z,\eta'} =
+\mu^{\epsilon,\text{alg}}_{M,\eta},%\tag{$2'$}
+\end{equation}
 where $\eta =(\pmb\sigma_r(\eta^1),\ldots,\pmb\sigma_r(\eta^\ell))\in
    \Lambda_{r\lambda'_1}\times\cdots\times \Lambda_{r\lambda'_\ell}$.
 
@@ -3555,22 +3524,22 @@ Set
 $\eta_0 = (\pmb\sigma(\eta^1_0),\ldots,\pmb\sigma(\eta_0^\ell))\in
   \Lambda_{r\lambda'_1}\times\cdots\times \Lambda_{r\lambda'_\ell}$.
 It is easy to check, by using our explicit normalization of measures, that
-$$
-\align
+\begin{align}\label{eqn:6.7}
   \mu^{\text{st,alg}}_{H_M,z,\eta'}(f^{H_M}) &= \mu^{\text{st,alg}}_{z,\eta''}(f^H),\\
-  I^{\epsilon,\text{alg}}_{M,z,\eta_0'}(f^M) &= I^{\epsilon,\text{alg}}_{z,\lambda'}(f),
-         \tag{6.7}\\
+  I^{\epsilon,\text{alg}}_{M,z,\eta_0'}(f^M) &= I^{\epsilon,\text{alg}}_{z,\lambda'}(f),\\
+         %%\tag{6.7}\\
   \mu^{\epsilon,\text{alg}}_{M,\eta_0}(f^M)
      &= \mu^{\epsilon,\text{alg}}_{\sigma(\lambda')}(f).
-\endalign
-$$
+\end{align}
 The first of these equations, together with Equation 6.6, implies that
 $$\Gamma^{\text{st,alg}}_{H_M,z,\eta'_0} (\gamma)
          = \Gamma^{\text{st,alg}}_{z,\lambda'}(\gamma).$$
 This equation, Equation 6.5, the linear independence of germs on $H_M$, and the
 definition of $I^\epsilon_{z,\lambda'}$ give:
-$$I^\epsilon_{M,z,\eta'_0}(f^M)\Delta^{2}_{M,E/F}(z)
-      = I^\epsilon_{z,\lambda'}(f)\Delta^{m,2}_{E/F}(z).\tag{6.8}$$
+\begin{equation}\label{eqn:6.8}
+I^\epsilon_{M,z,\eta'_0}(f^M)\Delta^{2}_{M,E/F}(z)
+      = I^\epsilon_{z,\lambda'}(f)\Delta^{m,2}_{E/F}(z).%\tag{6.8}
+\end{equation}
 %
 By Proposition 5.4, we find $\Delta^{2}_{M,E/F}(z) = \Delta^{m,2}_{E/F}(z)$.
 By the induction hypothesis ($1'$) and Equation 6.7, 
@@ -3601,9 +3570,9 @@ matter to work out the leading term of the expansion of $I^\epsilon_{z,\lambda'}
 once the leading term of the corresponding stable orbital integral has been
 calculated.
 
-Fix the parabolic subgroup $P_0 = P_{(m,\ldots,m)} = M_0N_0$.  Let ${\Cal P}$
+Fix the parabolic subgroup $P_0 = P_{(m,\ldots,m)} = M_0N_0$.  Let ${\mathcal P}$
 denote the variety of parabolic subgroups conjugate to $P_0$, and let
-$P$ denote a generic element of $\Cal P$.  The
+$P$ denote a generic element of $\mathcal P$.  The
 symmetric group on $r$ letters $S_r$ acts naturally on $M_0$, permuting the
 parabolic subgroups having Levi subgroup $M_0$.  Let $T$ be a torus defined over $F$
 in $G$ of rank $r$ that is conjugate over $\overline F$ to the center of $M_0$.
@@ -3611,25 +3580,24 @@ Identify $T$ with the center of $M_0$.
 We
 construct a diagram similar to that of [{\bf 12}].  (Also see [{\bf 19}].)
 This gives maps
-$$\align \phi:T'\times C_G(T)\backslash G &\to G\times {\Cal P}^{r!},
+\begin{align*} \phi:T'\times C_G(T)\backslash G &\to G\times {\mathcal P}^{r!},
      \quad \phi(\gamma,g) = (\gamma^g,(P_0(W))^g), \\
 %
-      \pi_1: G\times {\Cal P}^{r!} &\to G,\quad
+      \pi_1: G\times {\mathcal P}^{r!} &\to G,\quad
       \pi_1(x,(P(W))) = x,\\
 %
       \xi: X &\to T,\quad
       \xi(\gamma^g,(P_0(W))^g) = \gamma.
-\endalign
-$$
+\end{align*}
 The variety $X$ is the
-closure of the image of $\phi$, and $W$ indexes the factors $\Cal P$
-in ${\Cal P}^{r!}$.  
+closure of the image of $\phi$, and $W$ indexes the factors $\mathcal P$
+in ${\mathcal P}^{r!}$.  
 Here $T'$ denotes the maximally regular elements of $T$.
 By a maximally regular element
 in $G$ we mean an element
 $x$ such that $\dim C_G(x) =\dim C_G(T)$.
 
-We now proceed as in Langlands and Shelstad using $T$ and $\Cal P$, rather
+We now proceed as in Langlands and Shelstad using $T$ and $\mathcal P$, rather
 than a Cartan subgroup and the variety of Borel subgroups.  With this small
 difference, their argument goes through almost without any modifications.
 Let $Y_\Gamma$ be the variety constructed from
@@ -3651,7 +3619,7 @@ is one-to-one on maximally regular elements (see [{\bf 21},5]).
 We use the twisted $F$-structure
 on $X$ determined by $T$. This twisted structure is defined in [{\bf 19}].  We use this bijection
 to define a twisted $F$-structure on the partial Springer variety
-$$\{(x,P)\mid x\in P\in{\Cal P}, \quad x \in Z(M)N_P,\quad x\text{ is maximally regular }\}.$$
+$$\{(x,P)\mid x\in P\in{\mathcal P}, \quad x \in Z(M)N_P,\quad x\text{ is maximally regular }\}.$$
 Here $N_P$ is the radical of $N$, and $Z(M)$ is the center of $M$.
 This variety is smooth.  With respect to this
 twisted structure, the maps $\phi$, $\pi_1$ and $\xi$ are defined over $F$.
@@ -3666,7 +3634,7 @@ The divisor over $1\in\Gamma\subset T$ is obtained when $\gamma=1$, and is
 isomorphic to the Richardson class of $P_0$.  It is now clear that, with
 a compatible
 normalization of measures, the germ for the leading term of the expansion
-of stable orbital integrals on ${\Cal O}_{z,(m)}$ is
+of stable orbital integrals on ${\mathcal O}_{z,(m)}$ is
 identically $1$.  Compare [{\bf 28}].
 
 This stable  germ is identically $1$ for the normalization of measures
@@ -3686,7 +3654,9 @@ $$\Delta^{m,2}_{E/F}(z)\rho^\epsilon_{(m)}(z) = \rho^{\text{st}}_{(m)}(z).$$
 This has a simple geometric interpretation.  We will find a unipotent $u$
 in the class of $(m,\ldots,m)=\pmb\sigma(m)$, with $\beta_\epsilon(u) = 1$, and a small
 neighborhood $U$ of $u$ such that, if $z^g$ lies in $U$, then
-$$\epsilon(\det g)\Delta^{m,2}_{E/F}(z) = 1.\tag{6.9}$$
+\begin{equation}\label{eqn:6.9}
+\epsilon(\det g)\Delta^{m,2}_{E/F}(z) = 1.%\tag{6.9}
+\end{equation}
 Then, for functions supported on $U$, the $\epsilon$-germ $\rho^\epsilon_{(m)}(z)$
 is $\epsilon(\det g)$ (or $\Delta^{m,2}_{E/F}(z)^{-1}$) times the stable germ.
 The result follows.
@@ -3696,18 +3666,18 @@ at $u$ to the unipotent orbit of $u$ and then translating $S_u$ by a small
 amount along the orbit.
 Translation of $g$ by an element of $G$ in a small neighborhood
 of $1$ will leave $\epsilon(\det g)$ unchanged.
-Therefore, if we know that Equation 6.9 holds for all $x$ in $S_u\cap {\Cal O}_{z,(m)}$,
+Therefore, if we know that Equation 6.9 holds for all $x$ in $S_u\cap {\mathcal O}_{z,(m)}$,
 then we will know that Equation 6.9 holds for all elements
 in a neighborhood of $u$.  In such a transversal slice $S_u$, there is only
-one element of ${\Cal O}_{z,(m)}$ near $u$.  This follows from the
+one element of ${\mathcal O}_{z,(m)}$ near $u$.  This follows from the
 Igusa theory described above.  In fact, $\pi_1$ is an $r!$-to-$1$ map on 
-points over ${\Cal O}_{z,(m)}$
+points over ${\mathcal O}_{z,(m)}$
 and a one-to-one map on the class of $u$.  In $X$ there are $r!$ points
- over ${\Cal O}_{z,(m)}$ near $u$
+ over ${\mathcal O}_{z,(m)}$ near $u$
 in a given slice.
 Explicitly, these points are given by
 $(\gamma^wu,P_0)$ with $w\in S_r$, $\gamma^w\in T'\subset Z(M_0)$ and $u\in N_0$.
-Hence in the image there is only one element of ${\Cal O}_{z,(m)}$
+Hence in the image there is only one element of ${\mathcal O}_{z,(m)}$
 near $u$ in a given slice.
 
 The next lemma calculates $\epsilon(\det g)$ for such an element.  This lemma
@@ -3715,28 +3685,30 @@ will complete the proof of Theorem 6.1.
 
 % end
 
-\proclaim{Lemma 6.10}.  Fix $u\in {\Cal O_{\pmb\sigma(\lambda')}}\cap 
+\proclaim{Lemma 6.10}.  Fix $u\in {\mathcal O_{\pmb\sigma(\lambda')}}\cap 
 N_{\pmb\sigma(\lambda')}$.  Assume that $\beta_\epsilon(u) = 1$.
 There exist an analytic curve $\Gamma(t)$ in $G_1$, a $G_1$-conjugate
 $u_1$ of $u$, a $G$-conjugate $z(t)= \Gamma(t)^{g(t)}$ of $\Gamma(t)$, and a
 neighborhood $U$ of $u_1$ in $G$,
 with the following properties:
+\begin{enumerate}
 \item{1.}  $\Gamma(0) =u_1$.
 \item{2.}  For $t\ne 0$, $z(t)$ is an element in $H$ satisfying
                   $C_G(z(t)) = H$.
 \item{3.}  If $t\in F$ is sufficiently small but nonzero,
        then $\Gamma(t)\in U$ and 
        $$\epsilon(\det g(t))\Delta^{m,2}_{E/F}(z(t))=1.$$
+\end{enumerate}
 \finishproclaim
 
 \pproclaim{Proof}:  We construct $\Gamma(t)$ explicitly.  Identify
 $\text{Mat}_n(F)$ with $\text{Mat}_m(R)$, where $R = \text{Mat}_r(F)$
 and $rm=n$.  Write $D(t_1,\ldots,t_r)$ for the matrix in $R$ of the
 form
-$$\pmatrix 1& t_1& 0 & . & . \\
+$$\begin{pmatrix} 1& t_1& 0 & . & . \\
 	   0& 1  & t_2&. &.  \\
 	   .& .  & .  &. &t_{r-1}\\
-	   t_r&0 & . & 0 &1\endpmatrix.$$
+	   t_r&0 & . & 0 &1\end{pmatrix}.$$
 Set $h(t) = \text{diag}(t^{r-1},\ldots,t,1)\in R$.  Then
 $$h(t)^{-1}D(t,t,\ldots,t,tx)h(t) = D(1,1,\ldots,1,t^rx).$$  This
 matrix tends to the unipotent matrix
@@ -3754,7 +3726,7 @@ Then define $\Gamma(t)$ by
   $\Gamma(t)^{g(t)}= z(t)$.  It follows easily that
 $u_1 = \Gamma(0)$ has the same form as $z(t)$, but with $d_t$ replaced
 with $d$.  From this explicit description it follows that $u_1\in
-{\Cal O}_{\pmb\sigma(\lambda')}$ and $\beta_\epsilon(u_1^y)=1$, for
+{\mathcal O}_{\pmb\sigma(\lambda')}$ and $\beta_\epsilon(u_1^y)=1$, for
 some $y\in G_1$.
 %
 Clearly, $z(t) = \text{diag}(d_t,\ldots,d_t) \in \text{Mat}_m(E) \subseteq
@@ -3765,8 +3737,7 @@ Since these factors are $\pm1$, the result follows.
 \qed
 \finishpproclaim
 
-\newpage\noindent
-\line{{\bf 7@.  Unit of Hecke algebra.}\hfil}
+\subsection{{\bf 7@.  Unit of Hecke algebra.}}
 
 \medskip
 \noindent
@@ -3846,15 +3817,13 @@ of the Hecke algebra in any reductive group $A$.  Also $D_*(\gamma)$ is the
 usual discriminant factor introduced in Section 5.
 %
 The induction hypothesis and Lemma 5.4 show that we have
-$$
-\align
+\begin{align*}
 D_{H/H_M}(\gamma)\Delta^m_{E/F}(\gamma)\Phi^{E/F}_G(\gamma,f_G) &=
 	\Delta_{M,E/F}(\gamma) D_{G/M}(\gamma)\Phi^{E/F}_G(\gamma,f_G)\\
 	&= \Delta_{M,E/F}(\gamma) \Phi^{E/F}_M(\gamma,f_M)\\
 	&=  \Phi^{E/E}_{H_M}(\gamma,f_{H_M}) \\
 	&= D_{H/H_M}(\gamma)\Phi^{E/E}_H(\gamma,f_H).
-\endalign
-$$
+\end{align*}
 
 Now assume that $\gamma\in GL(m,O_E)$ is elliptic.
 Let
@@ -3875,9 +3844,8 @@ to $H_s(K\cap H)$.
 %
 This, together with Theorem 5.5, gives the identities
 %
-$$
-\align
-  \Delta_{E/F}^m \,
+\begin{align}\label{eqn:star2}
+ \Delta_{E/F}^m \,
   (\gamma) \,
   \Phi_G^{E/F} \,
   (\gamma, f_G ) &=
@@ -3887,9 +3855,8 @@ $$
   (\gamma, f_{G_s}),\\ 
   \vspace{4pt}
   \Phi^{E/E}_H(\gamma,f_H) &= \Phi^{E_1/E_1}_{H_s}(\gamma_,f_{H_s}).
-\tag{$*$}
-\endalign
-$$
+%\tag{$*$}
+\end{align}
 %
 To justify the appearance of the superscript
   $ E_1 / F_1 $
@@ -3948,10 +3915,9 @@ is central in
   $ GL(n,F) $.
 Hence,
 %
-$$
-\spreadlines{4pt}
-\align
-  \Delta_{E/F}^m \,
+\begin{align}\label{eqn:double-star}
+%\spreadlines{4pt}
+ \Delta_{E/F}^m \,
   (\gamma) \,
   \Phi_G^{E/F} \,
   (\gamma, f_G)
@@ -3961,16 +3927,16 @@ $$
   \Phi_G^{E/F} \,
   (\gamma_u, f_G )
 \\
+\vspace{4pt}
 &=
   \Phi_H^{E/E} \,
   (\gamma_u, f_H ) 
-\tag{$**$}
+%\tag{$**$}
 \\
 &=
   \Phi_H^{E/E}
   (\gamma, f_H).
-\endalign
-$$
+\end{align}
 %
 The next to last step ($**$) requires some explanation.
 First, the matching of smooth functions
@@ -3996,6 +3962,7 @@ This completes the proof.
 \baselineskip=12pt
 
 %
+\begin{enumerate}
 \item{[{\bf 1}]}
   D. Barbasch and A. Moy,
   ``A Unitary Criterion for $p$-adic Groups,'' Invent. Math\. {\bf 98}
@@ -4180,5 +4147,6 @@ This completes the proof.
   A. V. Zelevinsky,
   {\sl Representations of Finite Classical Groups},
   SLN~869, Springer-Verlag, 1981.
+\end{enumerate}
 
-\enddocument
+\end{document}
