@@ -15,16 +15,17 @@
 \documentclass{amsart}
 
 \usepackage{amssymb}
+\usepackage{amsthm}
 
 %\loadmsbm
 %\loadeufm
 
-\newcommand\L{{\Cal L}}
-\def\g{{\frak g}}
-\def\h{{\frak h}}
-\def\H{{\Cal H}}
-\def\G{{\Bbb G}}
-\def\qed{{\it q.e.d.}}
+\newcommand\cL{{\mathcal L}}
+\newcommand\g{{\mathfrak g}}
+\newcommand\h{{\mathfrak h}}
+\newcommand\cH{{\mathcal H}}
+\newcommand\G{{\Bbb G}}
+%\newcommand\qed{{\it q.e.d.}}
 
 \parskip=1.15\baselineskip
 
@@ -32,32 +33,38 @@
 \raggedbottom
 
 
-\rightheadtext{The fundamental lemma}
-\leftheadtext{Thomas C. Hales}
+%\rightheadtext{The fundamental lemma}
+%\leftheadtext{Thomas C. Hales}
 
+\begin{document}
 %\topmatter\
-\title{The Fundamental Lemma for $Sp(4)$}\endtitle
-\author Thomas C. Hales \endauthor
-\affil University of Michigan, Ann Arbor, Michigan\endaffil
-\address Ann Arbor, Michigan\endaddress
+\title{The Fundamental Lemma for $Sp(4)$}
+%\endtitle
+\author{Thomas C. Hales}
+%\affil University of Michigan, Ann Arbor, Michigan\endaffil
+\address{Ann Arbor, Michigan}
+\thanks{Research supported by the National Science Foundation}
+\date{final version: 3/20/1995}
 
-\abstract
-The fundamental lemma is a conjectural identity between the
-orbital integrals on two reductive groups.  The fundamental lemma is
-required for the stabilization of the trace formula and for
-various applications to automorphic forms.
-This paper proves the fundamental lemma for the group
-$Sp(4)$ and its endoscopic groups.
-\endabstract
 
-\subjclass 22E50, 22E35, 20G25 \endsubjclass
+\begin{abstract}
+The fundamental lemma is a conjectural identity between the orbital
+integrals on two reductive groups.  The fundamental lemma is required
+for the stabilization of the trace formula and for various
+applications to automorphic forms.  This paper proves the fundamental
+lemma for the group $Sp(4)$ and its endoscopic groups.
+\end{abstract}
+
+\subjclass[2000]{22E50, 22E35, 20G25}
 
 %\endtopmatter
 
-\document
-\vsize=0.85\vsize
-\parskip=0.4\baselineskip
-\parindent=0pt
+
+\maketitle
+
+%\vsize=0.85\vsize
+%\parskip=0.4\baselineskip
+%\parindent=0pt
 
 
 
@@ -72,8 +79,8 @@ Fix an embedding $\xi: {}^LH\to {}^LG$ of $L$-groups, which
 satisfies the hypotheses for unramified endoscopic data
 in [H6,1].
 The embedding $\xi$, by the Satake transform, determines a map
-$b: \H_G \to \H_H$ between the spherical Hecke algebras $\H_G$
-and $\H_H$ on $G$ and $H$.  We may assume that $\H_G$ and $\H_H$
+$b: \cH_G \to \cH_H$ between the spherical Hecke algebras $\cH_G$
+and $\cH_H$ on $G$ and $H$.  We may assume that $\cH_G$ and $\cH_H$
 are defined relative to the hyperspecial maximal compact subgroups
 $G(O_F)$ and $H(O_F)$.
 
@@ -98,8 +105,10 @@ $\bar F$ of $F$.  We make similar selections of measures on $H$.
 Let $\Delta(\gamma_H,\gamma_G)$ be the Langlands-Shelstad transfer
 factor [LS2] with the canonical normalization of [H4,7].
 We form the expression
-$$\Lambda(\gamma_H,f) = \sum_{\gamma_G}\Delta(\gamma_H,\gamma_G)
-\Phi(\gamma_G,f) - \sum_{\gamma'_H} \Phi(\gamma_H',b(f)).\tag1$$
+\begin{equation}
+\Lambda(\gamma_H,f) = \sum_{\gamma_G}\Delta(\gamma_H,\gamma_G)
+\Phi(\gamma_G,f) - \sum_{\gamma'_H} \Phi(\gamma_H',b(f)). % \tag1
+\end{equation}
 The first sum runs over representatives of all regular
 semisimple conjugacy classes in $G$ and the second sum runs
 over representatives of the conjugacy classes in $H$ that are
@@ -111,7 +120,7 @@ The measures on $G$ and $H$ must be compatible. This is
 achieved by fixing a
 strongly $G$-regular element $\gamma_H\in H(F)$ such that both
 terms of the sum defining $\Lambda(\gamma_H,f)$ are nonzero for
-some $f_0\in \H_G$.  Rescale $|\omega_H|$, so as to modify the
+some $f_0\in \cH_G$.  Rescale $|\omega_H|$, so as to modify the
 second sum of 
 (1) by a scalar so that $\Lambda(\gamma_H,f_0)=0$.  Equivalently, 
 we may use the normalizations of [H4,14.2].
@@ -123,7 +132,7 @@ It is indispensable
 to various applications of the trace formula. 
 
 {\bf Theorem.}  Suppose $G = Sp(4)$.  Then $\Lambda(\gamma_H,f)=0$
-for all $f\in \H_G$ and all strongly $G$-regular elements $\gamma_H\in H(F)$.
+for all $f\in \cH_G$ and all strongly $G$-regular elements $\gamma_H\in H(F)$.
 
 {\bf Remark.}  The fundamental lemma for $GSp(4)$ follows from this
 theorem together with a series of reductions made in [H6,3.6].
@@ -186,9 +195,9 @@ In particular,
 we may assume that the residual characteristic of $F$ is as large
 as we please.  It also follows from [H6] that it is sufficient to
 prove that $\Lambda(\gamma_H,1_G)=0$, where $1_G$ is the unit element
-of the Hecke algebra $\H_G$.  Of course, $b(1_G)$ is then
+of the Hecke algebra $\cH_G$.  Of course, $b(1_G)$ is then
 the  unit element
-of $\H_H$.  
+of $\cH_H$.  
 
 By applying descent to Levi factors, we may assume that
 $H$ is elliptic [H4,12].
@@ -289,15 +298,18 @@ required for the fundamental lemma.
 For each $X_H$, the right-hand side of the identity of Hypothesis 3
 defines an invariant distribution on $C_c^\infty(H)$, which is supported on the
 unipotent set, namely
-$$f^H \mapsto \sum_{O'} \Gamma^H_{O'}(X_H)\mu_{O'}(f^H).\tag2$$
-Let $\L$ be the span of these distributions.
+\begin{equation}
+f^H \mapsto \sum_{O'} \Gamma^H_{O'}(X_H)\mu_{O'}(f^H).
+%\tag2
+\end{equation}
+Let $\cL$ be the span of these distributions.
 The linear map $b_0$ gives, by duality, a linear map 
-$\mu\mapsto\mu^G$ from $\L$ 
+$\mu\mapsto\mu^G$ from $\cL$ 
 to invariant distributions
-supported on the unipotent set of $G$.  Specifically, for $\mu\in\L$,
+supported on the unipotent set of $G$.  Specifically, for $\mu\in\cL$,
 define $\mu^G$ by $\mu^G(f) = \mu(b_0(f))$, for $f\in C_c^\infty(G)$.
 
-{\bf Hypothesis 4.}  $\mu^G(1_G) = \mu(b(1_G))$, for all $\mu \in \L$.
+{\bf Hypothesis 4.}  $\mu^G(1_G) = \mu(b(1_G))$, for all $\mu \in \cL$.
 
 If $X_H$ is not elliptic, the unipotent distribution $\mu$
  on $C^\infty_c(H)$ defined by
@@ -323,7 +335,7 @@ the first two hypotheses reduce the fundamental lemma
 to a statement in a small neighborhood of the identity.
 We must verify that $b_0(1_G)$ has the same stable
 germ expansion as $b(1_G)$, that is, that $\mu(b_0(1_G))=
-\mu(b(1_G))$ for all $\mu\in\L$.  Hypothesis 4 asserts
+\mu(b(1_G))$ for all $\mu\in\cL$.  Hypothesis 4 asserts
 this, and the result follows. \qed
 
 A unipotent class $O$ is $r$-{\it regular} if $2r=\dim(C_G(u))-
@@ -341,7 +353,7 @@ distinction between {\it term\/} and {\it germ\/} is
 crucial. To verify Hypothesis
 4, we must show that the $r$-regular terms on $G$ and $H$
 coincide for a finite set of elements $\{X_H\}\subset \h'$ whose
-distributions (2) span $\L$.
+distributions (2) span $\cL$.
 
 \bigskip
 
@@ -381,14 +393,16 @@ is a product of three factors:
 relative to the measure 
 $|\omega|=|z\,dz\,dy_1\,dy_2\,dy_3|$ with coordinates
 on an open set of $O$:
-$$\pmatrix 1&0&0&0\\ y_1&1&0&0 \\
-          y_2&0&1&0 \\ y_3&y_2&-y_1&1 \endpmatrix
-\pmatrix 1&0&0&z\\ 0&1&0&0 \\
-          0&0&1&0 \\ 0&0&0&1 \endpmatrix
-\pmatrix 1&0&0&0\\ -y_1&1&0&0 \\
-          -y_2&0&1&0 \\ -y_3&-y_2&y_1&1 \endpmatrix
-\subseteq O.\tag3
-$$
+\begin{equation}
+\begin{pmatrix} 1&0&0&0\\ y_1&1&0&0 \\
+          y_2&0&1&0 \\ y_3&y_2&-y_1&1 \end{pmatrix}
+\begin{pmatrix} 1&0&0&z\\ 0&1&0&0 \\
+          0&0&1&0 \\ 0&0&0&1 \end{pmatrix}
+\begin{pmatrix} 1&0&0&0\\ -y_1&1&0&0 \\
+          -y_2&0&1&0 \\ -y_3&-y_2&y_1&1 \end{pmatrix}
+\subseteq O.
+%\tag3
+\end{equation}
 Here $Sp(4)$ is represented as $4\times4$ matrices preserving
 the form $x_1\wedge x_4 + x_2\wedge x_3$.
 
@@ -417,7 +431,7 @@ germ
 and the subregular orbital integral. The subregular
 orbital integral is merely
 $f\mapsto f(1)$.  Let $t=t(X)$ be an eigenvalue of 
-$X\in {\frak sl}(2)$.
+$X\in {\mathfrak sl}(2)$.
 By [LS1], the subregular term evaluated at $X$ is then
 $$|t|I_F/[SL(2)],$$
 where the constant $I_F$ is expressed as a principal-value
@@ -431,26 +445,35 @@ Cartan subalgebra containing $X$,
 although
 the notation does not show this.  
 
-Since ${\frak so}(4)$ is isomorphic to a direct sum of
-two copies of ${\frak sl}(2)$, we may also conclude from
+Since ${\mathfrak so}(4)$ is isomorphic to a direct sum of
+two copies of ${\mathfrak sl}(2)$, we may also conclude from
 the $SL(2)$ calculation that
 the stable two-regular term of $SO(4)$, evaluated at
-$X_H\in {\frak so}(4) '$, is
-$$|t_1^2 -t_2^2| I_F^2/[SO(4)].\tag4$$
-Similarly, since ${\frak so}^*(4)$ is a restriction of
-scalars of ${\frak sl}(2)$ over $E$, we conclude that the
+$X_H\in {\mathfrak so}(4) '$, is
+\begin{equation}
+|t_1^2 -t_2^2| I_F^2/[SO(4)].
+%\tag4
+\end{equation}
+Similarly, since ${\mathfrak so}^*(4)$ is a restriction of
+scalars of ${\mathfrak sl}(2)$ over $E$, we conclude that the
 stable
 two-regular term of $SO^*(4)$, evaluated at 
-$X_H\in {\frak so}^*(4)'$,
+$X_H\in {\mathfrak so}^*(4)'$,
 is
-$$|t_1^2 -t_2^2| I_E/[SO^*(4)].\tag5$$ 
+\begin{equation}
+|t_1^2 -t_2^2| I_E/[SO^*(4)].
+%\tag5
+\end{equation}
 ($t_1-t_2$ and $t_1+t_2$ are to be identified with the
-positive roots of ${\frak so}(4)$.)
+positive roots of ${\mathfrak so}(4)$.)
 For similar reasons the stable subregular term of
 $SL(2)\times U_E(1)$ at $X_H$ is
-$$|t_2| I_F/[SL(2)\times U_E(1)].\tag6$$
-($2t_2$ is to be identified with the positive root of ${\frak sl}(2)
-\times {\frak u}_E(1)$.)
+\begin{equation}
+|t_2| I_F/[SL(2)\times U_E(1)].
+%\tag6
+\end{equation}
+($2t_2$ is to be identified with the positive root of ${\mathfrak sl}(2)
+\times {\mathfrak u}_E(1)$.)
 
 To prove Hypothesis 4 we must show that these expressions
 coincide with the corresponding terms in $Sp(4)$.
@@ -551,8 +574,11 @@ we note that with a different normalization of measures, they
 have already been evaluated by Assem [A,2.3.17].  We add primes to
 the distributions (and the characteristic function $1_G$) to
 indicate Assem's normalizations.  Assem's result is
-$$\mu'_{O_+}(1_G') - \mu'_{O_-}(1_G') = {1-q^{-1}\over 2(1+q^{-1})} =
-{[\G_m]\over 2[U_E(1)]}.\tag7$$
+\begin{equation}
+\mu'_{O_+}(1_G') - \mu'_{O_-}(1_G') = {1-q^{-1}\over 2(1+q^{-1})} =
+{[\G_m]\over 2[U_E(1)]}.
+%\tag7
+\end{equation}
 (The orbits $O_+$ and $O_-$ are denoted $(\epsilon,1)$
 and $(\epsilon,-1)$ in [A].)
 To compare the normalizations of measures, we work with a linear
@@ -560,9 +586,12 @@ combination that is easier to treat.  The sum over all the subregular
 unipotent classes is the Richardson orbit of a parabolic subgroup.
 The corresponding distribution $\sum \mu_O$ is easy to compute.
 We have
-$${\sum \mu_O (1_G)\over \sum \mu'_O(1'_G)} =
+\begin{equation}
+{\sum \mu_O (1_G)\over \sum \mu'_O(1'_G)} =
   {\mu_{O_+}(1_G) - \mu_{O_-}(1_G) \over 
-   \mu'_{O_+} (1'_G) - \mu'_{O_-} (1'_G)}.\tag8$$
+   \mu'_{O_+} (1'_G) - \mu'_{O_-} (1'_G)}.
+%\tag8
+\end{equation}
 Assem finds that $\sum\mu_O'(1_G') = 1$.
 By parabolic descent we find $\sum\mu_O(f) = \bar f^P(1)$, where
 $\bar f^P$ is the usual function on the Levi of $P=MN$ obtained by
@@ -652,9 +681,6 @@ for $Sp(4)$ is complete. \qed
 
 }
 
-Research supported by the National Science Foundation
 
-final version: 3/20/1995
+\end{document}
 
-
-\bye
