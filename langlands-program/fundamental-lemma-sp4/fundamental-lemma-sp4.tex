@@ -2,49 +2,38 @@
 % Author: Thomas C. Hales
 % Date: July 10, 1995
 % Format: Ams-Tex, amsppt
-% to be published by the Proc. of the AMS
+% published by the Proc. of the AMS, Vol 125, No 1, Jan 1997, 301--308
+% Copyright 1997, AMS.
 % Reference Number:  PROC3546.
+% March 3, 2015 converted to amsart document class.
 
-
-%\magnification=\magstep1
-%\parskip=\baselineskip
-%\baselineskip=1.15\baselineskip
-
-
-%\input amstex
 \documentclass{amsart}
 
 \usepackage{amssymb}
 \usepackage{amsthm}
 
-%\loadmsbm
-%\loadeufm
 
 \newcommand\cL{{\mathcal L}}
 \newcommand\g{{\mathfrak g}}
 \newcommand\h{{\mathfrak h}}
 \newcommand\cH{{\mathcal H}}
 \newcommand\G{{\Bbb G}}
-%\newcommand\qed{{\it q.e.d.}}
-
-\parskip=1.15\baselineskip
 
 \pretolerance=10000
 \raggedbottom
 
 
-%\rightheadtext{The fundamental lemma}
-%\leftheadtext{Thomas C. Hales}
-
 \begin{document}
-%\topmatter\
+
 \title{The Fundamental Lemma for $Sp(4)$}
-%\endtitle
 \author{Thomas C. Hales}
-%\affil University of Michigan, Ann Arbor, Michigan\endaffil
 \address{Ann Arbor, Michigan}
 \thanks{Research supported by the National Science Foundation}
-\date{final version: 3/20/1995}
+\date{Recieved by the editors February 14, 1995 and, in revised form,
+  July 21, 1995.}
+\thanks{final version: 3/20/1995.}
+\thanks{Copyright 1997, AMS.
+  Proc. AMS. Vol 125, No 1, Jan 1997, pages 301--308.}
 
 
 \begin{abstract}
@@ -57,221 +46,177 @@ lemma for the group $Sp(4)$ and its endoscopic groups.
 
 \subjclass[2000]{22E50, 22E35, 20G25}
 
-%\endtopmatter
-
-
 \maketitle
 
-%\vsize=0.85\vsize
-%\parskip=0.4\baselineskip
-%\parindent=0pt
+Let $F$ be a $p$-adic field of characteristic zero with ring of
+integers $O_F$.  Let $G$ be an unramified reductive group defined over
+$O_F$, and let $H$ be a standard (i.e., untwisted) unramified
+endoscopic group of $G$ (also defined over $O_F$).  Fix an embedding
+$\xi: {}^LH\to {}^LG$ of $L$-groups, which satisfies the hypotheses
+for unramified endoscopic data in [H6,1].  The embedding $\xi$, by the
+Satake transform, determines a map $b: \cH_G \to \cH_H$ between the
+spherical Hecke algebras $\cH_G$ and $\cH_H$ on $G$ and $H$.  We may
+assume that $\cH_G$ and $\cH_H$ are defined relative to the
+hyperspecial maximal compact subgroups $G(O_F)$ and $H(O_F)$.
 
-
-
-
-Let $F$ be a $p$-adic field of characteristic zero with
-ring of integers $O_F$.  Let $G$ be an 
- unramified reductive
-group defined over $O_F$, and let $H$ be a standard
-(i.e., untwisted) unramified
-endoscopic group of $G$ (also defined over $O_F$). 
-Fix an embedding $\xi: {}^LH\to {}^LG$ of $L$-groups, which
-satisfies the hypotheses for unramified endoscopic data
-in [H6,1].
-The embedding $\xi$, by the Satake transform, determines a map
-$b: \cH_G \to \cH_H$ between the spherical Hecke algebras $\cH_G$
-and $\cH_H$ on $G$ and $H$.  We may assume that $\cH_G$ and $\cH_H$
-are defined relative to the hyperspecial maximal compact subgroups
-$G(O_F)$ and $H(O_F)$.
-
-If $f\in C_c^\infty(G)$ 
-and $\gamma_G$ is a strongly regular element of $G$,
-we form the orbital integral $\Phi(\gamma_G,f)$ over the conjugacy
-class of $\gamma_G$.  Similarly, for $f^H\in C_c^\infty(H)$ 
-and strongly
-$G$-regular elements $\gamma_H\in H(F)$, we form the orbital integral
-$\Phi(\gamma_H,f^H)$.  Various normalizations of measures
-enter into the definition of orbital integrals.  
-Fixing invariant 
-differential forms $\omega_G$
-on $G$ and $\omega_T$ on $T=C_G(\gamma_G)$ (the centralizer
-of $\gamma_G$) that are defined over $F$,
-we may form the orbital integrals $\Phi(\gamma_G,f)$ with
-respect to the measure $|\omega_G/\omega_T|$ on the orbit of $\gamma_G$.
-We assume that the choices $\omega_T$ and $\omega_{T'}$ for various
-Cartan subgroups $T$, $T'$ are conjugate over the algebraic closure
-$\bar F$ of $F$.  We make similar selections of measures on $H$.
+If $f\in C_c^\infty(G)$ and $\gamma_G$ is a strongly regular element
+of $G$, we form the orbital integral $\Phi(\gamma_G,f)$ over the
+conjugacy class of $\gamma_G$.  Similarly, for $f^H\in C_c^\infty(H)$
+and strongly $G$-regular elements $\gamma_H\in H(F)$, we form the
+orbital integral $\Phi(\gamma_H,f^H)$.  Various normalizations of
+measures enter into the definition of orbital integrals.  Fixing
+invariant differential forms $\omega_G$ on $G$ and $\omega_T$ on
+$T=C_G(\gamma_G)$ (the centralizer of $\gamma_G$) that are defined
+over $F$, we may form the orbital integrals $\Phi(\gamma_G,f)$ with
+respect to the measure $|\omega_G/\omega_T|$ on the orbit of
+$\gamma_G$.  We assume that the choices $\omega_T$ and $\omega_{T'}$
+for various Cartan subgroups $T$, $T'$ are conjugate over the
+algebraic closure $\bar F$ of $F$.  We make similar selections of
+measures on $H$.
 
 Let $\Delta(\gamma_H,\gamma_G)$ be the Langlands-Shelstad transfer
 factor [LS2] with the canonical normalization of [H4,7].
 We form the expression
-\begin{equation}
+\begin{equation}\label{eqn:1}
 \Lambda(\gamma_H,f) = \sum_{\gamma_G}\Delta(\gamma_H,\gamma_G)
 \Phi(\gamma_G,f) - \sum_{\gamma'_H} \Phi(\gamma_H',b(f)). % \tag1
 \end{equation}
-The first sum runs over representatives of all regular
-semisimple conjugacy classes in $G$ and the second sum runs
-over representatives of the conjugacy classes in $H$ that are
-stably conjugate to the class of $\gamma_H$.  Both sums have
-only finitely many nonzero terms.  Both $b$ and $\Delta$ depend
-on the choice of embedding $\xi$.
+The first sum runs over representatives of all regular semisimple
+conjugacy classes in $G$ and the second sum runs over representatives
+of the conjugacy classes in $H$ that are stably conjugate to the class
+of $\gamma_H$.  Both sums have only finitely many nonzero terms.  Both
+$b$ and $\Delta$ depend on the choice of embedding $\xi$.
 
-The measures on $G$ and $H$ must be compatible. This is
-achieved by fixing a
-strongly $G$-regular element $\gamma_H\in H(F)$ such that both
-terms of the sum defining $\Lambda(\gamma_H,f)$ are nonzero for
-some $f_0\in \cH_G$.  Rescale $|\omega_H|$, so as to modify the
-second sum of 
-(1) by a scalar so that $\Lambda(\gamma_H,f_0)=0$.  Equivalently, 
-we may use the normalizations of [H4,14.2].
+The measures on $G$ and $H$ must be compatible. This is achieved by
+fixing a strongly $G$-regular element $\gamma_H\in H(F)$ such that
+both terms of the sum defining $\Lambda(\gamma_H,f)$ are nonzero for
+some $f_0\in \cH_G$.  Rescale $|\omega_H|$, so as to modify the second
+sum of (1) by a scalar so that $\Lambda(\gamma_H,f_0)=0$.
+Equivalently, we may use the normalizations of [H4,14.2].
 
 The following result, known as the fundamental lemma, is conjectured
-to hold for any unramified 
-reductive group $G$ in the setting described above.  
-It is indispensable
-to various applications of the trace formula. 
+to hold for any unramified reductive group $G$ in the setting
+described above.  It is indispensable to various applications of the
+trace formula.
 
 {\bf Theorem.}  Suppose $G = Sp(4)$.  Then $\Lambda(\gamma_H,f)=0$
 for all $f\in \cH_G$ and all strongly $G$-regular elements $\gamma_H\in H(F)$.
 
 {\bf Remark.}  The fundamental lemma for $GSp(4)$ follows from this
-theorem together with a series of reductions made in [H6,3.6].
-  The fundamental lemma for $GSp(4)$
-was described in a lecture 
-I gave at Luminy in 1992 as a consequence of the
-results of J.-L.
-Waldspurger on the homogeneity of Shalika germs and
-my earlier work on $GSp(4)$ [H1], [Wa1], [Wa2].  We require
-the more recent matching results of [H5] for $Sp(4)$.
-A double coset argument discovered by M. Schr\"oder makes
-it possible to give another proof of the fundamental lemma
-for $GSp(4)$ [S1], [S2].  The details of this approach have been
-carried out in a series of preprints by R. Weissauer [We].
+theorem together with a series of reductions made in [H6,3.6].  The
+fundamental lemma for $GSp(4)$ was described in a lecture I gave at
+Luminy in 1992 as a consequence of the results of J.-L.  Waldspurger
+on the homogeneity of Shalika germs and my earlier work on $GSp(4)$
+[H1], [Wa1], [Wa2].  We require the more recent matching results of
+[H5] for $Sp(4)$.  A double coset argument discovered by M. Schr\"oder
+makes it possible to give another proof of the fundamental lemma for
+$GSp(4)$ [S1], [S2].  The details of this approach have been carried
+out in a series of preprints by R. Weissauer [We].
 
-A slightly stronger form of the theorem actually holds.
-A general argument of Langlands and Shelstad shows that
-$\gamma_H$ can be taken to be any $(G,H)$-regular element
-[LS3,2.4].
+A slightly stronger form of the theorem actually holds.  A general
+argument of Langlands and Shelstad shows that $\gamma_H$ can be taken
+to be any $(G,H)$-regular element [LS3,2.4].
 
 {\bf Proof.}  We will begin with a general reductive group $G$ and
 will introduce as hypotheses the parts of the proof of the fundamental
-lemma that have been verified only in special cases.  Our approach
-to the fundamental lemma is by induction on the dimension
-of the group.  It
-is therefore natural to assume that the fundamental
-lemma is known for groups of smaller dimension.
+lemma that have been verified only in special cases.  Our approach to
+the fundamental lemma is by induction on the dimension of the group.
+It is therefore natural to assume that the fundamental lemma is known
+for groups of smaller dimension.
 
-Let $K$ be any number field that has a completion at some
-place $v$ isomorphic to $F$.  Let $G'$ be any reductive
-group over $K$ with endoscopic group $H'$ such that at
-$v$ the pair $(G',H')$ is equivalent to a proper Levi factor of
-$G$ together with the endoscopic group obtained from $H$
-by descent, or to the connected centralizer of a noncentral
-absolutely semisimple element in $G$ together with the
-endoscopic group obtained from $H$ by descent.  
-Absolutely semisimple elements, also called ${\Bbb F_q}$-semisimple
-elements, are defined in [K].
-See also [H4,3].
+Let $K$ be any number field that has a completion at some place $v$
+isomorphic to $F$.  Let $G'$ be any reductive group over $K$ with
+endoscopic group $H'$ such that at $v$ the pair $(G',H')$ is
+equivalent to a proper Levi factor of $G$ together with the endoscopic
+group obtained from $H$ by descent, or to the connected centralizer of
+a noncentral absolutely semisimple element in $G$ together with the
+endoscopic group obtained from $H$ by descent.  Absolutely semisimple
+elements, also called ${\Bbb F_q}$-semisimple elements, are defined in
+[K].  See also [H4,3].
 
-{\bf Hypothesis 1.}  For any of the reductive groups $G'$
-and endoscopic groups $H'$ obtained as above,
-the fundamental lemma is true at almost all places of $K$.
+{\bf Hypothesis 1.}  For any of the reductive groups $G'$ and
+endoscopic groups $H'$ obtained as above, the fundamental lemma is
+true at almost all places of $K$.
 
-A narrower formulation of this hypothesis is possible.  It
-is sufficient to verify the hypothesis for a single
-carefully chosen number field $K$ (depending on $F$, $G$, and $H$).
-Further, 
-the fundamental lemma can be reduced to the adjoint
-group of $G'$, provided unramified quasicharacters
-of $G'_{adj}$ are introduced.  See [H6,3.6].
-In the case of $Sp(4)$ the centralizers and Levi factors all have
-ranks at most one, so the adjoint group, if not trivial, is $PGL(2)$.
-This special case of the
-fundamental lemma has several proofs,  for example, [K].
+A narrower formulation of this hypothesis is possible.  It is
+sufficient to verify the hypothesis for a single carefully chosen
+number field $K$ (depending on $F$, $G$, and $H$).  Further, the
+fundamental lemma can be reduced to the adjoint group of $G'$,
+provided unramified quasicharacters of $G'_{adj}$ are introduced.  See
+[H6,3.6].  In the case of $Sp(4)$ the centralizers and Levi factors
+all have ranks at most one, so the adjoint group, if not trivial, is
+$PGL(2)$.  This special case of the fundamental lemma has several
+proofs, for example, [K].
 
-Hypothesis 1 allows us
-to apply the results of [H6].  
-In particular,
-we may assume that the residual characteristic of $F$ is as large
-as we please.  It also follows from [H6] that it is sufficient to
-prove that $\Lambda(\gamma_H,1_G)=0$, where $1_G$ is the unit element
-of the Hecke algebra $\cH_G$.  Of course, $b(1_G)$ is then
-the  unit element
-of $\cH_H$.  
+Hypothesis 1 allows us to apply the results of [H6].  In particular,
+we may assume that the residual characteristic of $F$ is as large as
+we please.  It also follows from [H6] that it is sufficient to prove
+that $\Lambda(\gamma_H,1_G)=0$, where $1_G$ is the unit element of the
+Hecke algebra $\cH_G$.  Of course, $b(1_G)$ is then the unit element
+of $\cH_H$.
 
-By applying descent to Levi factors, we may assume that
-$H$ is elliptic [H4,12].
+By applying descent to Levi factors, we may assume that $H$ is
+elliptic [H4,12].
 
 Consider a strongly $G$-regular element $\gamma_H \in G(F)$.  If
 $\gamma_H$ is not topologically unipotent, Kazhdan's lemma may be
-invoked to reduce to a lower-rank case.  
-The proof of this in [H4,13] makes the assumption that $G_{der}$ is
-simply connected.  This restriction is unnecessary:
-the result is proved in [Ko,7.1] without that restriction. 
-Thus, we assume
-that $\gamma_H$ is topologically unipotent.
+invoked to reduce to a lower-rank case.  The proof of this in [H4,13]
+makes the assumption that $G_{der}$ is simply connected.  This
+restriction is unnecessary: the result is proved in [Ko,7.1] without
+that restriction.  Thus, we assume that $\gamma_H$ is topologically
+unipotent.
 
 Let $\g_{tn}$ be the set of topologically nilpotent elements of the
-Lie algebra of $G$.  Let $G_{tu}$ be the set of topologically unipotent
-elements of $G$.  Similarly, we consider $\h_{tn} = \text{Lie}(H)_{tn}$ and $H_{tu}$.
-If the residual characteristic is sufficiently large,
-then the exponential map gives an analytic isomorphism between
-$\g_{tn}$ and $G_{tu}$.
+Lie algebra of $G$.  Let $G_{tu}$ be the set of topologically
+unipotent elements of $G$.  Similarly, we consider $\h_{tn} =
+\text{Lie}(H)_{tn}$ and $H_{tu}$.  If the residual characteristic is
+sufficiently large, then the exponential map gives an analytic
+isomorphism between $\g_{tn}$ and $G_{tu}$.
 
-Let $\h'\subset \h$ be the set of strongly $G$-regular elements
-in $\h$.  In everything that follows, it is understood
-that $X_H\in \h'$.  
-If $X_H\in \h'_{tn} = \h'\cap \h_{tn}$, the
-transfer factor
-$\Delta(\exp(X_H),\gamma_G)$ is zero unless $\gamma_G$ is
-also topologically unipotent.  So we may pass to the
-Lie algebras of $G$ and $H$.
+Let $\h'\subset \h$ be the set of strongly $G$-regular elements in
+$\h$.  In everything that follows, it is understood that $X_H\in \h'$.
+If $X_H\in \h'_{tn} = \h'\cap \h_{tn}$, the transfer factor
+$\Delta(\exp(X_H),\gamma_G)$ is zero unless $\gamma_G$ is also
+topologically unipotent.  So we may pass to the Lie algebras of $G$
+and $H$.
 
 {\bf Hypothesis 2.}  Suppose that the residual characteristic is
 sufficiently large.  For $|t|\le 1$, and $X_H\in \h'_{tn}$ fixed,
-$\Lambda(\exp(t^2 X_H),1_G)$ is
-a polynomial in $|t|$. 
+$\Lambda(\exp(t^2 X_H),1_G)$ is a polynomial in $|t|$.
 
-It is known that for $X_H$ fixed, the transfer factor 
-for $\exp(t^2 X_H)$ is a constant
-times a power of $|t|$, if the residual characteristic is not two [H4].
-Hypothesis 2 is then true for the classical groups by the results
-of Waldspurger, which express orbital integrals 
-of the unit element on the topologically
-unipotent set as a sum of terms, each of which is homogeneous, that is,
-a monomial in $|t|$.  See [Wa1], [Wa2,V]
- for a precise description of the
-class of groups treated and the restrictions on the residual characteristic.
-As a very special case of Waldspurger's results, 
-we obtain Hypothesis
+It is known that for $X_H$ fixed, the transfer factor for $\exp(t^2
+X_H)$ is a constant times a power of $|t|$, if the residual
+characteristic is not two [H4].  Hypothesis 2 is then true for the
+classical groups by the results of Waldspurger, which express orbital
+integrals of the unit element on the topologically unipotent set as a
+sum of terms, each of which is homogeneous, that is, a monomial in
+$|t|$.  See [Wa1], [Wa2,V] for a precise description of the class of
+groups treated and the restrictions on the residual characteristic.
+As a very special case of Waldspurger's results, we obtain Hypothesis
 2 for $Sp(4)$.
 
 Any polynomial in $|t|$ is zero if it is zero for $|t|$ sufficiently
 small.  Hypothesis 2 allows us to restrict our attention to a small
-neighborhood of the identity where the Shalika germ expansion is valid. 
-Consider the Shalika germ expansion of the first sum defining $\Lambda$ when $X_H$ is sufficiently small in $\h'$.
-Set $D(X_H) = |\prod_\alpha \alpha(X_H)|^{1/2}$, with the
-sum running over the roots of $\h$ with respect to a Cartan
-subalgebra containing $X_H$.
-We have for $f\in C_c^\infty(G)$,
+neighborhood of the identity where the Shalika germ expansion is
+valid.  Consider the Shalika germ expansion of the first sum defining
+$\Lambda$ when $X_H$ is sufficiently small in $\h'$.  Set $D(X_H) =
+|\prod_\alpha \alpha(X_H)|^{1/2}$, with the sum running over the roots
+of $\h$ with respect to a Cartan subalgebra containing $X_H$.  We have
+for $f\in C_c^\infty(G)$,
 $$D(X_H)\sum_{X_G} \Delta(\exp(X_H),\exp(X_G))\Phi(\exp(X_G),f)=
- \sum_{O} \Gamma^G_O(X_H)\mu_O(f),$$
-for some collection
-of functions $\Gamma_{O}^G(X_H)$ defined in a suitable
-neighborhood of $0$ in
-$\h'_{tn}$.  Up to the factor $D$, 
-the left-hand side is the first sum in (1) defining
-$\Lambda$.
-The functions $\Gamma^G_O$ are combinations
-of Shalika germs on $G$.
-The sum on the right runs over unipotent
-classes in $G$.  We consider this as an identity which
-defines $\Gamma_O^G$ in a small neighborhood of $0$ in $\h'$,
-and then we extend the functions $\Gamma_O^G$ to all of $\h'$ by homogeneity.
+\sum_{O} \Gamma^G_O(X_H)\mu_O(f),$$ 
+for some collection of functions
+$\Gamma_{O}^G(X_H)$ defined in a suitable neighborhood of $0$ in
+$\h'_{tn}$.  Up to the factor $D$, the left-hand side is the first sum
+in (1) defining $\Lambda$.  The functions $\Gamma^G_O$ are
+combinations of Shalika germs on $G$.  The sum on the right runs over
+unipotent classes in $G$.  We consider this as an identity which
+defines $\Gamma_O^G$ in a small neighborhood of $0$ in $\h'$, and then
+we extend the functions $\Gamma_O^G$ to all of $\h'$ by homogeneity.
 
-Similarly, we consider a {\it stable} Shalika germ expansion 
-on $\h'_{tn}$.  For $X_H$ sufficiently small, 
-and $f^H\in C_c^\infty(H)$, write the second sum in (1) in the form
+Similarly, we consider a {\it stable} Shalika germ expansion on
+$\h'_{tn}$.  For $X_H$ sufficiently small, and $f^H\in C_c^\infty(H)$,
+write the second sum in (1) in the form
 $$D(X_H)\sum_{X_H'} \Phi(\exp(X_H'),f^H) = \sum_{O'}
 \Gamma_{O'}^H (X_H)\mu_{O'} (f^H),$$
 where the sum on the right
@@ -280,25 +225,22 @@ The functions $\Gamma_{O'}^H$ are stable versions of
 Shalika germs.
 We extend these functions by homogeneity to $\h'$.
 
-{\bf Hypothesis 3.}  There exists a linear map 
-$b_0:C_c^\infty(G) \to C_c^\infty(H)$,
-$f\mapsto b_0(f)$ satisfying
+{\bf Hypothesis 3.}  There exists a linear map $b_0:C_c^\infty(G) \to
+C_c^\infty(H)$, $f\mapsto b_0(f)$ satisfying
 $$\sum_{O} \Gamma^G_O (X_H) \mu_O(f) = \sum_{O'}\Gamma^H_{O'}(X_H)
 \mu_{O'}(b_0(f)),$$
 for all $X_H\in \h'$.
 
-This hypothesis is called {\it local $\Delta$-transfer
-at the identity\/}
- in [LS3].  It has
-been verified for $GSp(4)$ in [H1] and for $Sp(4)$ in [H5]
-when the residual characteristic is odd.
-Hypothesis 3 is stronger than what is
-required for the fundamental lemma. 
+This hypothesis is called {\it local $\Delta$-transfer at the
+  identity\/} in [LS3].  It has been verified for $GSp(4)$ in [H1] and
+for $Sp(4)$ in [H5] when the residual characteristic is odd.
+Hypothesis 3 is stronger than what is required for the fundamental
+lemma.
 
 For each $X_H$, the right-hand side of the identity of Hypothesis 3
-defines an invariant distribution on $C_c^\infty(H)$, which is supported on the
-unipotent set, namely
-\begin{equation}
+defines an invariant distribution on $C_c^\infty(H)$, which is
+supported on the unipotent set, namely
+\begin{equation}\label{eqn:2}
 f^H \mapsto \sum_{O'} \Gamma^H_{O'}(X_H)\mu_{O'}(f^H).
 %\tag2
 \end{equation}
@@ -311,15 +253,13 @@ define $\mu^G$ by $\mu^G(f) = \mu(b_0(f))$, for $f\in C_c^\infty(G)$.
 
 {\bf Hypothesis 4.}  $\mu^G(1_G) = \mu(b(1_G))$, for all $\mu \in \cL$.
 
-If $X_H$ is not elliptic, the unipotent distribution $\mu$
- on $C^\infty_c(H)$ defined by
- (2) satisfies the condition of Hypothesis 4 by
-descent and induction (Hypothesis 1). See [H4,12].
-Call these distributions {\it stably induced.}
+If $X_H$ is not elliptic, the unipotent distribution $\mu$ on
+$C^\infty_c(H)$ defined by (2) satisfies the condition of Hypothesis 4
+by descent and induction (Hypothesis 1). See [H4,12].  Call these
+distributions {\it stably induced.}
 
-{\bf Proposition.}  If Hypotheses 1, 2, 3, and 4 
-hold, then the fundamental lemma is true for $G$ and the
-endoscopic group $H$.
+{\bf Proposition.}  If Hypotheses 1, 2, 3, and 4 hold, then the
+fundamental lemma is true for $G$ and the endoscopic group $H$.
 
 We emphasize that all four hypotheses are assertions
 about what happens almost everywhere for various number
@@ -357,33 +297,26 @@ distributions (2) span $\cL$.
 
 \bigskip
 
-Now we restrict our attention to the group $G=Sp(4)$.  
-We may assume that the residual characteristic is odd.
-The elliptic unramified endoscopic groups
-of $G$ are $SO(4)$, the quasisplit form $SO^*(4)$ of $SO(4)$ 
-that splits over
-an unramified quadratic extension $E/F$, and the product
-$SL(2)\times U_E(1)$, where $U_E(1)$ denotes a one-dimensional
-nonsplit torus that is split by $E$,
-again with $E/F$ an unramified quadratic extension.
-When $H=SO(4)$, the regular and both subregular classes give stably
-induced distributions $\mu$, so that, by our earlier
-comment, Hypothesis 4 is satisfied for
-them.  The remaining unipotent conjugacy class of $SO(4)$ is treated
-in Lemma 1.  When $H=SO^*(4)$, the regular class is stably
-induced. There is no subregular class with
-rational points. Again, it is enough to consider the two-regular
-class.  If $H=SL(2)\times U_E(1)$, the regular class is
-stably induced. It is necessary to consider
-the subregular unipotent class.  (In this case, the two-regular
-germs vanish [H5].)
+Now we restrict our attention to the group $G=Sp(4)$.  We may assume
+that the residual characteristic is odd.  The elliptic unramified
+endoscopic groups of $G$ are $SO(4)$, the quasisplit form $SO^*(4)$ of
+$SO(4)$ that splits over an unramified quadratic extension $E/F$, and
+the product $SL(2)\times U_E(1)$, where $U_E(1)$ denotes a
+one-dimensional nonsplit torus that is split by $E$, again with $E/F$
+an unramified quadratic extension.  When $H=SO(4)$, the regular and
+both subregular classes give stably induced distributions $\mu$, so
+that, by our earlier comment, Hypothesis 4 is satisfied for them.  The
+remaining unipotent conjugacy class of $SO(4)$ is treated in Lemma 1.
+When $H=SO^*(4)$, the regular class is stably induced. There is no
+subregular class with rational points. Again, it is enough to consider
+the two-regular class.  If $H=SL(2)\times U_E(1)$, the regular class
+is stably induced. It is necessary to consider the subregular
+unipotent class.  (In this case, the two-regular germs vanish [H5].)
 
-We take an image of $X_H$ in $Sp(4)$
-and let $\pm t_1$ and $\pm t_2$ in $\bar F$ be the eigenvalues
-of the image in $Sp(4)\subset GL(4)$.
+We take an image of $X_H$ in $Sp(4)$ and let $\pm t_1$ and $\pm t_2$
+in $\bar F$ be the eigenvalues of the image in $Sp(4)\subset GL(4)$.
 
-The two-regular term in $GSp(4)$
-is a product of three factors:
+The two-regular term in $GSp(4)$ is a product of three factors:
 
 (i)  The constant $A_1(M)$ of Langlands [L,page 470]
 
@@ -393,7 +326,7 @@ is a product of three factors:
 relative to the measure 
 $|\omega|=|z\,dz\,dy_1\,dy_2\,dy_3|$ with coordinates
 on an open set of $O$:
-\begin{equation}
+\begin{equation}\label{eqn:3}
 \begin{pmatrix} 1&0&0&0\\ y_1&1&0&0 \\
           y_2&0&1&0 \\ y_3&y_2&-y_1&1 \end{pmatrix}
 \begin{pmatrix} 1&0&0&z\\ 0&1&0&0 \\
@@ -437,20 +370,17 @@ $$|t|I_F/[SL(2)],$$
 where the constant $I_F$ is expressed as a principal-value
 integral
 $$I_F = \int_{Q(F)} |\omega_Q|.$$
-The surface $Q$ is a twisted form of a product of two projective lines.
-The volume form $\omega_Q$ is $da\wedge db/(a-b)^2$, for
-an appropriate choice of coordinate $a$, $b$.  See [LS1] for details.
-The surface $Q$ and integral depend on a choice of 
-Cartan subalgebra containing $X$,
-although
-the notation does not show this.  
+The surface $Q$ is a twisted form of a product of two projective
+lines.  The volume form $\omega_Q$ is $da\wedge db/(a-b)^2$, for an
+appropriate choice of coordinate $a$, $b$.  See [LS1] for details.
+The surface $Q$ and integral depend on a choice of Cartan subalgebra
+containing $X$, although the notation does not show this.
 
-Since ${\mathfrak so}(4)$ is isomorphic to a direct sum of
-two copies of ${\mathfrak sl}(2)$, we may also conclude from
-the $SL(2)$ calculation that
-the stable two-regular term of $SO(4)$, evaluated at
+Since ${\mathfrak so}(4)$ is isomorphic to a direct sum of two copies
+of ${\mathfrak sl}(2)$, we may also conclude from the $SL(2)$
+calculation that the stable two-regular term of $SO(4)$, evaluated at
 $X_H\in {\mathfrak so}(4) '$, is
-\begin{equation}
+\begin{equation}\label{eqn:4}
 |t_1^2 -t_2^2| I_F^2/[SO(4)].
 %\tag4
 \end{equation}
@@ -460,7 +390,7 @@ stable
 two-regular term of $SO^*(4)$, evaluated at 
 $X_H\in {\mathfrak so}^*(4)'$,
 is
-\begin{equation}
+\begin{equation}\label{eqn:5}
 |t_1^2 -t_2^2| I_E/[SO^*(4)].
 %\tag5
 \end{equation}
@@ -468,33 +398,30 @@ is
 positive roots of ${\mathfrak so}(4)$.)
 For similar reasons the stable subregular term of
 $SL(2)\times U_E(1)$ at $X_H$ is
-\begin{equation}
+\begin{equation}\label{eqn:6}
 |t_2| I_F/[SL(2)\times U_E(1)].
 %\tag6
 \end{equation}
 ($2t_2$ is to be identified with the positive root of ${\mathfrak sl}(2)
 \times {\mathfrak u}_E(1)$.)
 
-To prove Hypothesis 4 we must show that these expressions
-coincide with the corresponding terms in $Sp(4)$.
-We begin with the endoscopic group $SO(4)$.
+To prove Hypothesis 4 we must show that these expressions coincide
+with the corresponding terms in $Sp(4)$.  We begin with the endoscopic
+group $SO(4)$.
 
 {\bf Lemma 1.}  If $H=SO(4)$, then the two-regular term of
 $G$, for $X_H$ elliptic, is
 $|t_1^2 -t_2^2| I_F^2/[SO(4)]$.
 
-{\bf Proof.}   For
-this endoscopic
-group we may rely
-on the results of [H1].  In $GSp(4)$ there is a single
-two-regular unipotent conjugacy class.  
+{\bf Proof.}  For this endoscopic group we may rely on the results of
+[H1].  In $GSp(4)$ there is a single two-regular unipotent conjugacy
+class.
 
 It follows from Hypothesis 3 and Expression 4 that the formula is
-correct up to a nonzero scalar. To check the scalar,
-we pick any convenient elliptic element $X_H$.
-Consider the Cartan subgroup $(U_E(1)\times U_E(1))/\{\pm1\}$ 
-in $H$,
-with $E/F$ unramified. Fix $X_H$ in its Lie algebra.
+correct up to a nonzero scalar. To check the scalar, we pick any
+convenient elliptic element $X_H$.  Consider the Cartan subgroup
+$(U_E(1)\times U_E(1))/\{\pm1\}$ in $H$, with $E/F$ unramified. Fix
+$X_H$ in its Lie algebra.
 
 In the notation of [H1,6], we set
 $w' = w_2 \xi_1 \epsilon/f$, where $\epsilon$ is a unit in $E$ of
@@ -515,8 +442,7 @@ first integral is equal to $2I_F$.
 The germ is then $2I_F^2|t_1^2 -t_2^2|$.
 
 The integral $\mu_O(1_G)$ is computed by the method of [H2,12].
-Details of closely related calculations are 
-also found in [H3,3.9], so
+Details of closely related calculations are also found in [H3,3.9], so
 we will simply state the result.  We find
 $$\mu_O(1_G) = (1-q^{-2})^{-2} = 1/[SO(4)].$$
 The product of the factors (i), (ii), and (iii)
@@ -548,20 +474,15 @@ This is precisely the stable two-regular
 term (5) on $SO^*(4)$.
 
 Finally, we turn to the endoscopic group $H = SL(2) \times U_E(1)$.
-We must compare the subregular terms of $G$ and $H$.
-The subregular term on $Sp(4)$ comes from
-a single $GSp(4)$-orbit (which breaks into two orbits in $Sp(4)$).
-Recall that the subregular 
-unipotent orbits in $GSp(4)$ are parametrized
-by quadratic extensions.
-The $GSp(4)$-orbit that enters here is 
-the one that corresponds to the unramified quadratic
-extension $E/F$.  We label the two orbits in $Sp(4)$ as
-$O_+$ and $O_-$.  We consider the germ for the Cartan subgroup
-$U_E(1)\times U_E(1)$ of $Sp(4)$.  In the notation of [H1,page
- 230],
-the Shalika germ
-is
+We must compare the subregular terms of $G$ and $H$.  The subregular
+term on $Sp(4)$ comes from a single $GSp(4)$-orbit (which breaks into
+two orbits in $Sp(4)$).  Recall that the subregular unipotent orbits
+in $GSp(4)$ are parametrized by quadratic extensions.  The
+$GSp(4)$-orbit that enters here is the one that corresponds to the
+unramified quadratic extension $E/F$.  We label the two orbits in
+$Sp(4)$ as $O_+$ and $O_-$.  We consider the germ for the Cartan
+subgroup $U_E(1)\times U_E(1)$ of $Sp(4)$.  In the notation of
+[H1,page 230], the Shalika germ is
 $$\int|d\xi/\xi| \int \eta(w^2/w_B)|dw/w^2|.$$
 Under the substitution $w = x/(t_2 x+t_2)$, this becomes
 $$|t_2| \int |d\xi/\xi| 
@@ -574,7 +495,7 @@ we note that with a different normalization of measures, they
 have already been evaluated by Assem [A,2.3.17].  We add primes to
 the distributions (and the characteristic function $1_G$) to
 indicate Assem's normalizations.  Assem's result is
-\begin{equation}
+\begin{equation}\label{eqn:7}
 \mu'_{O_+}(1_G') - \mu'_{O_-}(1_G') = {1-q^{-1}\over 2(1+q^{-1})} =
 {[\G_m]\over 2[U_E(1)]}.
 %\tag7
@@ -586,7 +507,7 @@ combination that is easier to treat.  The sum over all the subregular
 unipotent classes is the Richardson orbit of a parabolic subgroup.
 The corresponding distribution $\sum \mu_O$ is easy to compute.
 We have
-\begin{equation}
+\begin{equation}\label{eqn:8}
 {\sum \mu_O (1_G)\over \sum \mu'_O(1'_G)} =
   {\mu_{O_+}(1_G) - \mu_{O_-}(1_G) \over 
    \mu'_{O_+} (1'_G) - \mu'_{O_-} (1'_G)}.
