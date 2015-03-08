@@ -14,7 +14,7 @@
 % Issues 2015. 
 % Labeled equations with tags have been
 % removed. References need updating.
-% enumerates and itemizes.
+% section heads and theorem numbers.
 
 % The following changes were made in preparing the manuscript for AJM publishers Dec 92.
 % Dec 21, 1992 removed words "but unmistakable" from first page
@@ -33,6 +33,8 @@
 
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amsrefs}
 
 \begin{document}
 
@@ -64,24 +66,24 @@
 \def\finishproclaim {\par\rm 
   \ifdim\lastskip<\medskipamount\removelastskip 
   \penalty55\medskip\fi} 
-\def\pproclaim #1:{\medbreak\noindent 
-  {\bf#1.\enspace}\rm}   % : changed to . 7/20/92
-\def\finishpproclaim{\par\rm 
-  \ifdim\lastskip<\medskipamount\removelastskip 
-  \penalty55\medskip\fi} 
-\def\vqedbox{%
-    \vbox{\hrule height .4pt%
-          \hbox{\vrule width .4pt%
-                      \hskip .15em%
-                      \vbox{\vskip .61em}%
-                      \hskip .15em%
-                      \vrule width .4pt%
-                }
-          \hrule height .4pt%
-          }}
+%\def\pproclaim #1:{\medbreak\noindent 
+%  {\bf#1.\enspace}\rm}   % : changed to . 7/20/92
+%\def\finishpproclaim{\par\rm 
+%  \ifdim\lastskip<\medskipamount\removelastskip 
+%  \penalty55\medskip\fi} 
+%\def\vqedbox{%
+%    \vbox{\hrule height .4pt%
+%          \hbox{\vrule width .4pt%
+%                      \hskip .15em%
+%                      \vbox{\vskip .61em}%
+%                      \hskip .15em%
+%                      \vrule width .4pt%
+%                }
+%          \hrule height .4pt%
+%          }}
 % This needs to be corrected so that there is no extra space, and it is right justified
 % even if it starts a new line.
-\def\qed{\hbox{}\nobreak\hfill\hbox{\vqedbox}}
+%\def\qed{\hbox{}\nobreak\hfill\hbox{\vqedbox}}
 %
 %  Definitions specific to this paper: NONE
 %  ========================================
@@ -219,34 +221,34 @@ Section 3.4, for additional notation.
 \proclaim Theorem 1.  
   The following subspaces of 
   $ {\mathcal H}_1' $ are equal.
-\begin{itemize}
-\item{{\rm (a)}}
+\begin{enumerate}[label=(\alph*)]
+\item 
   The image in 
     $ {\mathcal H}_1' $
   of the space of invariant distributions on
     $ C_c^{\infty}  (G_1) $
   supported on the set of unipotent elements in $G_1$,
-\item{{\rm (b)}}
+\item 
   The span of 
     $ \{ \mu_{\mathcal O} \mid \mathcal O \text{ unipotent}\} $,
-\item{{\rm (c)}}
+\item 
   The span of 
     $ \{ \text{trace}_{\,\Omega}\,\pi \mid
          \pi \in \Pi^{\text{t}} \} $,
-\item{{\rm (d)}} 
+\item 
   The span of
     $ \{ \text{trace}_{\,\Omega}\,\pi \mid
          \pi \in \Pi^{\text{t}} $, 
     $ \pi $
     has an Iwahori fixed vector $\}$,
-\item{{\rm (e)}}
+\item 
   The space spanned by orbital integrals:
     $ f \mapsto \Phi (\gamma, f) $, for
     $ f \in {\mathcal H}_1 $,
   as $\gamma$ runs over the strongly regular semisimple
   elements of 
   $ \Omega $.
-\end{itemize}
+\end{enumerate}
 \finishproclaim
 
 \medskip
@@ -288,7 +290,7 @@ The papers of Langlands--Shelstad~[{\bf 20}] and Waldspurger~[{\bf 31}]
 I would also like to thank F.~Shahidi for his assistance, and D.~Joyner 
   for some helpful comments.
 
-\section{{{\bf 1@.  Uniform germ expansions.}}}
+\section{{{Uniform germ expansions.}}}
 
 
 \medskip
@@ -360,7 +362,7 @@ and all
   $ f \in {\mathcal H} (B,G) $.
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof} 
 Pick $\Pi_*$ to be a finite set 
   $ \{\pi_1, \dots , \pi_r \} $
   of representations
@@ -389,8 +391,7 @@ for constants
 depending on
   $ \gamma$, a regular
   semisimple element of $\Omega$.
-\qed
-\finishpproclaim
+\end{proof}
 
 Let 
   $ \{ \mathcal O \} $
@@ -422,7 +423,7 @@ then
   $ {\mathcal M} = \text{tr}_{\,\Omega}\Pi_*$.
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof} 
 It is enough to show that ${\mathcal M}$ is contained in $\text{tr}_{\,\Omega}\Pi_*$.
 We have the Shalika germ expansion
 $$\Phi(\gamma,f) = \sum_{\{{\mathcal O}\}}\Gamma_{\mathcal O}(\gamma)\mu_{\mathcal O}(f),
@@ -436,8 +437,8 @@ for appropriate regular semisimple elements $\gamma$.  Each
 orbital integral $\Phi(\gamma,f)$, in turn, may be written
 as a linear combination of compact traces, by Corollary 1.3.
 The result follows.
-\qed
-\finishpproclaim
+\end{proof}
+
 
 \proclaim Theorem {1.5}.
 If 
@@ -462,7 +463,7 @@ $$
 \noindent
 We call such an expansion a {\it uniform germ expansion}.
 
-\pproclaim Proof:
+\begin{proof}
 Expand each
   $ \text{trace}_{\,\Omega}\pi $, with  
   $ \pi \in \Pi_* $,
@@ -475,9 +476,7 @@ $$
   \sum_{\pi\in\Pi_*}
   a_{\pi}(\gamma) \,\, \text{trace}_{\,\Omega} \pi(f).
 $$
-%
-\qed
-\finishpproclaim
+\end{proof}
 
 \proclaim Lemma {1.6}.
 If
@@ -489,7 +488,7 @@ then
 has an Iwahori fixed vector.
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
 We first prove the analogous result for $\Omega_c$, the set of 
 compact elements, instead of for $\Omega$.
 Waldspurger's proof for 
@@ -595,7 +594,7 @@ every parabolic subgroup $P_1$ containing $P$.
 To continue with Lemma 1.6, we recall
 a theorem of Clozel and Waldspurger [{\bf 8}]
 %
-\begin{equation}\label{eqn:1.8}
+\begin{equation}\label{eqn:1.8}\tag{1.8}
   \text{trace}_{\,\Omega_c} \, \pi (f) =
   \sum_{P \in {\mathcal P}}
   (-1)^{a_P-a_G}
@@ -605,7 +604,6 @@ a theorem of Clozel and Waldspurger [{\bf 8}]
     \hat \chi_N
     \bar f^P 
   \big\rangle_M.
-%XX \tag{1.8}
 \end{equation}
 %
 Here
@@ -668,10 +666,10 @@ Now to prove the result for $\Omega$, use the additional fact
 that if $\text{trace}_{\,\Omega_c}\,\pi\otimes\chi(f)$ is zero for all
 unramified quasicharacters $\chi$ of $G$, then 
 $\text{trace}_{\,\Omega}\,\pi(f)$ is also zero.
-\qed
-\finishpproclaim
+\end{proof}
 
-\section{{\bf 2@.  Some representations of $G_1$.}}
+
+\section{{Some representations of $G_1$.}}
 
 \medskip\noindent
 We now return to the groups $ G=GL(n,F) $
@@ -803,14 +801,13 @@ The kernel of the homomorphism is
   $ W(\lambda,s) $.
 \finishproclaim
 
-\pproclaim Proof: This result is contained in {\rm [{\bf 9}], [{\bf 10}] and [{\bf 26}]}.
+\begin{proof}
+This result is contained in {\rm [{\bf 9}], [{\bf 10}] and [{\bf 26}]}.
 Note that
   $ \omega_{w,0} $
 is trivial on
   $ M_1 $.
-%
-\qed
-\finishpproclaim
+\end{proof}
 
 For any representation
   $ \pi $,
@@ -906,15 +903,14 @@ and
 are proportional.
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
 They both intertwine
   $ \text{Ind}\, \sigma_{\lambda,s} $
 and
   $ \text{Ind}\, w_2 \cdot \sigma_{\lambda,s} $.
 Both representations are irreducible.
 Use Schur's lemma.
-\qed
-\finishpproclaim
+\end{proof}
 
 Now we restrict representations to
   $ G_1 $.
@@ -1006,7 +1002,8 @@ $$
 %
 \finishproclaim
 
-\pproclaim Proof: Clearly,
+\begin{proof}
+Clearly,
 %
 \begin{align*}
   \pi_{\lambda,s,1} (Ad\,h \cdot f)
@@ -1024,11 +1021,10 @@ $$
 \end{align*}
 %
 The result follows.
-\qed
-\finishpproclaim
+\end{proof}
 
 \noindent
-\hbox to 8mm{{\bf 2.5}\hfil}
+\hbox to 8mm{{\bf 2.5.}\hfil}
 Fix a partition $\lambda =(\lambda_1,\ldots,\lambda_\ell)\in \Lambda_n$. We
 define an element $$s(\lambda)=(s(\lambda)_1,\ldots,s(\lambda)_\ell)\in
 {\Bbb C}_1^\ell$$ as follows.  Let $r_i$ be the cardinality of the
@@ -1105,7 +1101,7 @@ is at most
   $ g(n) $.
 \finishproclaim
 
-\pproclaim Proof of Theorem 2.7:
+\begin{proof}[Proof of Theorem 2.7]
 By the results of Section 1, we may assume
   $ \pi $
 has an Iwahori fixed vector. 
@@ -1136,10 +1132,10 @@ $$
   gcd (\lambda) = g(n).
 $$
 %
-\qed
-\finishpproclaim
+\end{proof}
 
-\pproclaim Proof of Proposition 2.6:
+
+\begin{proof}[Proof of Proposition 2.6]
 By going to equivalent data we may assume that 
   $s$ and 
   $ s(\lambda) $
@@ -1331,10 +1327,10 @@ Hence,
   $\mathcal A_{s, \lambda} (w) =
    \mathcal A_{s(\lambda), \lambda} (w) $.
 %
-\qed\finishpproclaim
+\end{proof}
 
 
-\section{{\bf 3@.  Linear independence of unipotent classes.}}
+\section{{Linear independence of unipotent classes.}}
 
 \medskip
 \noindent
@@ -1370,7 +1366,7 @@ classes in $SL(n,F)$ are equal up to a scalar, if the classes are
 conjugate in $G_1$.
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
 Let $B_s$ denote $B\cap SL(n,F)$.
 Take
   $f$ to be the characteristic function of 
@@ -1384,8 +1380,7 @@ so that
     F_1^g (f) =
     F_1 (Ad \, g \cdot f) =
     F_1 (f) $.
-\qed
-\finishpproclaim
+\end{proof}
 
 Each $GL(n,F)$-conjugacy class
   $ {\mathcal O} $
@@ -1527,7 +1522,7 @@ of linearly
 independent distributions.
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
 Let 
   $ w_{\text{x}} $
 be the
@@ -1579,7 +1574,7 @@ span of $\{F_i\}_\epsilon$.  Similarly, $R_\epsilon$ projects
 a linear relation between the elements of $\{F_i\}$ to a linear relation
 between the elements of $\{F_i\}_\epsilon$.  The result
 follows easily.
-\qed\finishpproclaim
+\end{proof}
 
 \bigskip
 \noindent
@@ -1606,7 +1601,7 @@ under the ``diagonal'' embedding
 E^\times \longrightarrow GL(r,F)  \longrightarrow
     %\underbrace{m} 
 %\to{%
-     \underbrace{GL(r,F)\times\dots\times GL(r,F)}_\text{m}\subset GL(n,F).
+     \underbrace{GL(r,F)\times\dots\times GL(r,F)}_{m}\subset GL(n,F).
 \]
 
 For $\lambda\in\Lambda_n$, we let $K_\lambda$ denote
@@ -1637,11 +1632,11 @@ $$f_{\lambda}
      (\lambda_1 \dots , \lambda_{\ell} ) &=
   ( \,
 %    \undersetbrace{r} \to{%
-        \underbrace{\lambda_1, \dots, \lambda_1}_\text{r} , \;
+        \underbrace{\lambda_1, \dots, \lambda_1}_{r} , \;
 %    \undersetbrace{r} \to{%
-        \underbrace{\lambda_2, \dots, \lambda_2}_\text{r} , \dots
+        \underbrace{\lambda_2, \dots, \lambda_2}_{r} , \dots
 %    \undersetbrace{r} \to{%
-        \underbrace{\lambda_{\ell}, \dots, \lambda_{\ell}}_\text{r} \, 
+        \underbrace{\lambda_{\ell}, \dots, \lambda_{\ell}}_{r} \, 
   ).
 \end{align*}
 %
@@ -1690,7 +1685,7 @@ for some partition
   $ \xi' \in \Lambda_m $.
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
 Consider the parabolic subgroup
   $P_{\lambda} = M_{\lambda} N_{\lambda} $.
 A function 
@@ -1804,11 +1799,11 @@ Let
   $ w_{\text{x}} $ be the permutation matrix defined in 
   the proof of Lemma 3.3.
 Set
-%% XX check this converted properly
-  $ p_1 = w_{\text{x}}^{\xi_1} \; \text{diag} 
+\[ 
+  p_1 = w_{\text{x}}^{\xi_1} \; \text{diag} 
      ( 
       \overbrace{\vphantom{1}
-         \varpi,\dots , \varpi,}^{\xi_1} \,1,\dots,1) $.
+         \varpi,\dots , \varpi,}^{\xi_1} \,1,\dots,1).\]
 Then
   $ p_1 K_{\xi} p_1^{-1} $
 is the parahoric with ``Levi factor''
@@ -1850,12 +1845,11 @@ and so
 Then set
   $ g^{-1} = p_i \dots p_1 $.
 %
-\qed
-\finishpproclaim
+\end{proof}
 
 \bigskip
 \noindent
-\hbox to 8mm{{\bf 3.6}\hfil}
+\hbox to 8mm{{\bf 3.6.}\hfil}
 Next we specify a normalization of the distributions
 $ \mu_{\lambda}^{\epsilon} $,
 which we will denote
@@ -1981,7 +1975,7 @@ is an
   $ \epsilon$-invariant integral.
 \finishproclaim
 
-\pproclaim  Proof:
+\begin{proof}
 We have already checked correct transformation of
   $ \beta_{\epsilon} (n) $.
 It remains to be seen that
@@ -1995,8 +1989,7 @@ the root spaces of the simple positive roots contained
 in $N_\lambda$.  The invariance of $dn\,d\bar n$
 by such a root space is an elementary calculation,
 which reduces quickly to a calculation inside a group of rank $1$.
-\qed
-\finishpproclaim
+\end{proof}
 
 For 
   $ \zeta \in \Bbb C $,
@@ -2038,7 +2031,7 @@ The right-hand side is the principal value of the
   left-hand side  whenever
   $ \phi_j (q,\zeta) \neq 0 $.
 
-\pproclaim Proof:
+\begin{proof}
 Expand the right-hand side, for small
   $ \zeta  $, as
 %
@@ -2106,7 +2099,7 @@ This is the coefficient of
 in the 
   $ (i+1)$st factor above.
 The result follows.
-\qed\finishpproclaim
+\end{proof}
  
 \proclaim Lemma {3.9}.
 If
@@ -2118,7 +2111,7 @@ then
       (f^H_{(m)})$.
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
 We compute both integrals.
 It is more convenient to work with a different normalization.
 By Howe [{\bf 15}],
@@ -2266,7 +2259,7 @@ $$
    \frac 1
        { \phi_{\lambda'} (q^r,1)   }.
 $$
-\qed\finishpproclaim
+\end{proof}
 \bigskip
 
 \proclaim Proposition {3.10}.
@@ -2289,7 +2282,7 @@ are linearly independent on
   $ {\mathcal H} (B, G_1) $.
 \finishproclaim
 
-\pproclaim Proof of Corollary 3.11:
+\begin{proof}[Proof of Corollary 3.11]
 If
   $ 0 = 
     \sum
@@ -2309,9 +2302,9 @@ are known to be linearly independent on the span of
   $ f_{\xi'}^H $, for
   $ \xi' \in \Lambda_m $
 (see Waldspurger [{\bf 31}]).
-\qed\finishpproclaim
+\end{proof}
 
-\pproclaim Proof of Proposition 3.10:
+\begin{proof}[Proof of Proposition 3.10]
 If
   $ r_{\epsilon} = r = n $, and 
   $ \xi = \pmb\tau (\xi') $, then
@@ -2384,7 +2377,7 @@ and whose order is prime to $p$.
 $\mu_{\lambda'}^{\text{st,alg}}(f^H_{\xi'}) = c_0 \bar f_\xi^P(z)$.
 \finishproclaim
 
-\pproclaim{Proof}:  Set $N'=N\cap H$, and $K'=K\cap H$.  The unipotent
+\begin{proof}  Set $N'=N\cap H$, and $K'=K\cap H$.  The unipotent
 class of $H$ dense in $N'$ is ${\mathcal O}_{\lambda'}$.
 Use Howe's normalization
 of measures to write 
@@ -2472,7 +2465,7 @@ sends
   $ \operatorname{Mat}_r (O_F) $.
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
 The linear map
   $L$ is surjective by dimension counts, since
   $ \ker (L) = 
@@ -2493,25 +2486,24 @@ By the hypotheses of Section 3.4 on $e$, we have
 So 
   $ \det (L) $
 is a unit.
-\qed
-\finishpproclaim
+\end{proof}
 
 Even when $m$ is not $2$, repeated application of this lemma
 proves that the map $\varphi$ is onto.  This completes the
 proof of Lemma 3.12.
-\qed
-\finishpproclaim
+\end{proof}
+
 
 The following lemma, combined with Lemma 3.12, completes the proof
 of Proposition 3.10.  Let $\lambda'$, $\lambda''$, $\xi'$, $\xi$, $P$,
-$M$ and $N$ retain their meaning from Lemma 3.12.
+$M$ and $N$ retain their meaning from Lemma 3.12.\end{proof}
 
 \proclaim{Lemma 3.14}.  
 $$\mu_\lambda^{\epsilon\text{,alg}}(f_\xi) = c_5 \bar f^P_\xi(z),$$
 for some constant $c_5$.
 \finishproclaim
 
-\pproclaim{Proof}:  In addition to the parabolic subgroup
+\begin{proof}  In addition to the parabolic subgroup
 $P=P_{\lambda''}=MN$ already introduced, we make use of the parabolic subgroup
 $P_{\lambda_0}=M_0N_0\subseteq P$, where $\lambda_0$ is the
 partition $(r,\ldots, r)\in \Lambda_n$.  The maximally split
@@ -2593,9 +2585,9 @@ $$z_0^x(N_\sigma\cap K)\ \text{ and } \{(z_0^xn)^k\mid n\in \hat N_\sigma\cap K,
 \quad \text{and } k\in N_\sigma\cap K\}.$$
 After $\hat N_\sigma$ is replaced by $N_\sigma$, Lemma 1.7 allows us to drop
 $z_0^x$ from the integral.  We omit the remaining details, which are routine.
-\qed\finishpproclaim
+\end{proof}
 
-\section{{\bf 4@.  An interpretation of descent and homogeneity.}}
+\section{{An interpretation of descent and homogeneity.}}
 
 \medskip
 \noindent
@@ -2650,12 +2642,11 @@ See [{\bf 31}] and [{\bf 33}] for details.
 %
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
   This follows easily from the results of
   [{\bf 31}] combined with Proposition 3.10, adjusting
 for different normalizations of measures.
-\qed
-\finishproclaim
+\end{proof}
 
 Next we consider the homogeneity of germs on topologically 
   unipotent elements.
@@ -2681,7 +2672,7 @@ for appropriate integers
   $ n(\lambda) $.
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
 The proof of  [{\bf 31}] goes through with the following
   modification.
 Since we include a factor
@@ -2697,10 +2688,9 @@ an element of the Richardson class of
 The character 
   $ \epsilon $
 does not enter otherwise into the proof.
-\qed
-\finishpproclaim
+\end{proof}
 
-\section{{\bf 5@.  Transfer factors.}}
+\section{{Transfer factors.}}
 
 \medskip
 \noindent
@@ -2795,7 +2785,7 @@ then
     \Delta_{E/F}^m (\gamma_0) $.
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
 $  R 
   \bigl(
     \sigma (\gamma),\tau (\gamma) 
@@ -2813,8 +2803,8 @@ $  R
 $.
 %
 The result follows easily.
-\qed
-\finishpproclaim
+\end{proof}
+
 
 \bigskip
 \proclaim Proposition {5.2} (Central Elements).
@@ -2839,7 +2829,7 @@ is any unramified character
 of order $r$.
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
   $\sigma (z)- \tau (z) = t (\sigma(e)-\tau(e))$,
   and $\sigma(e)-\tau(e)$ is a unit (for $\sigma\ne\tau$).
 Hence,
@@ -2862,9 +2852,7 @@ Then
   $ \Delta_{E/F}^{m,2} (z) =
     \eta_E^{m^2} (t) =
     \epsilon^{ m (r^2-r)/2 } (t) $.
-\qed
-\finishpproclaim 
-
+\end{proof}
 
 
 \bigskip
@@ -2876,7 +2864,7 @@ $\Delta^m_{E/F}(\gamma)$ coincides with the transfer factor of Langlands
 and Shelstad (up to a scalar independent of $\gamma$).
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
 The proof of this lemma is somewhat technical, and relies on the paper [{\bf 21}].
 We adopt the notation of [{\bf 21}] and [{\bf 22}] without further notice, 
 and examine each of the terms defining the transfer factor.
@@ -3081,7 +3069,7 @@ So we conclude that
     \rangle $
 is independent of the Cartan subgroup $T$ in
   $ H $.
-\qed\finishpproclaim
+\end{proof}
 
 Suppose that $\gamma$ belongs to a Levi factor $M$.  Let
 $H_M$ be the endoscopic group associated with $M$ by descent [{\bf 22}].
@@ -3102,17 +3090,17 @@ $$D_{H/H_M}(\gamma)\Delta^m_{E/F}(\gamma) = D_{G/M}(\gamma)
 \Delta_{M,E/F}(\gamma).$$
 \finishproclaim
 
-\pproclaim Proof:  This is verified without difficulty by making use of the
+\begin{proof}  This is verified without difficulty by making use of the
 identification of $\Delta^{m,1}_{E/F}$ with $\Delta_{\text{IV}}$ and 
 of $\Delta^{m,2}_{E/F}$ with $\Delta_{\text{II}}$ proved in Proposition
 5.3.  Note that a root of $G_1$, but not of $M_1$, is asymmetric,
 and such a root does not contribute to $\Delta_{\text{II}}$
 (see [{\bf 21},3.3.A]).
-\qed
-\finishpproclaim
+\end{proof}
 
 \bigskip
-\subsection{5.5. {\smc (Elliptic Descent).}}\nopagebreak
+\setcounter{subsection}{4}
+\subsection{(Elliptic Descent).}
 \medskip
 \noindent
 In this subsection we assume that $\gamma$ is elliptic.
@@ -3139,7 +3127,7 @@ $$
 %
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
 The only roots present in the product defining $\Delta^{m,1}_{E/F}(\gamma)$,
 but absent in the product defining $\Delta^{m_1,1}_{E_1/F_1}$, are those
 for which $\alpha(\gamma_s)$ is not 1.  But such roots satisfy the condition
@@ -3180,10 +3168,9 @@ Note that $[E_1:F_1]=[E:E\cap F_1]$  is even, and the unramified
 extensions $E$ and $F_1$ of $E\cap F_1$ are linearly disjoint.
 It follows that $[F_1:E\cap F_1]$ is odd.  Hence,
 $(-1)^{v/[E:F]} = (-1)^{v_1/[E_1:F_1]}$.
-\qed
-\finishpproclaim
+\end{proof}
 
-\subsection{{\bf 6@.  Local compatibility of unit in Hecke algebra.}}
+\section{{Local compatibility of unit in Hecke algebra.}}
 
 \medskip
 \noindent
@@ -3277,7 +3264,7 @@ $$\Delta^{m,2}_{E/F}(z_i)I^{\epsilon}_{z_i,\lambda'}(f)
 Then Theorem 6.1 holds.
 \finishproclaim
 
-\pproclaim{Proof}:  Suppose that $f^H$ exists and that $z\in \{z_i\}$.
+\begin{proof}  Suppose that $f^H$ exists and that $z\in \{z_i\}$.
 Then, for $\gamma$ small and $i>i_f$, we have
 \begin{align*}
 D_H(z\gamma)\Delta^m_{E/F}(z\gamma)\Phi^{E/F}_G(z\gamma,f) =
@@ -3302,8 +3289,7 @@ $$\mu^{\epsilon,{\text{alg}}}_{\pmb\sigma(\lambda')}(f_{(n)}) =
   \mu^{\text{st,alg}}_{\lambda'}(f^H),$$
 for all partitions $\lambda'\in \Lambda_m$.  Hence, we may
 take $f^H = f^H_{(m)}$, the normalized unit of the Hecke algebra.
-\qed
-\finishproclaim
+\end{proof}
 
 The group $H$ contains the conjugacy class with semisimple part $z$ and
 unipotent part ${\mathcal O}_{\lambda'}$.  Write ${\mathcal O}_{z,\lambda'}$ for
@@ -3313,12 +3299,12 @@ the conjugacy class in $G$ that meets this class of $H\subset G$.
 $\epsilon$-invariant distribution on the conjugacy class ${\mathcal O}_{\lambda'}$.
 \finishproclaim
 
-\pproclaim{Proof}:  The $\epsilon$-invariance results from the
+\begin{proof}  The $\epsilon$-invariance results from the
 $\epsilon$-invariance of the integral $\Phi^{E/F}_G(\gamma,\cdot)$
 and the uniqueness of the germ expansion.  From the explicit description
 of descent given in [{\bf 13}], we see that $I^{\epsilon}_{z,\lambda}$
 is supported on ${\mathcal O}_{z,\lambda'}$.
-\qed\finishpproclaim
+\end{proof}
 
 \proclaim{Lemma 6.4}.  There exists a function $\rho^\epsilon_{\lambda'}(z_i)$
 on $\{z_i\}$ with the property that,
@@ -3328,7 +3314,7 @@ $$I^{\epsilon}_{z_i,\lambda'}(f) =
 	\sigma(\lambda')}(f).$$
 \finishproclaim
 
-\pproclaim{Proof}:   Set $P=P_{\pmb\tau(\lambda')} = MN$.  Let $C = C_M(z)$,
+\begin{proof}   Set $P=P_{\pmb\tau(\lambda')} = MN$.  Let $C = C_M(z)$,
 and let $dm$ be an invariant measure on $C\backslash M$.  It is easy to
 check that
 $$f\mapsto I_{z,\lambda'}(f) = \int_{C\backslash M}\epsilon(\det m )\bar f^P(z^m)dm$$
@@ -3400,7 +3386,7 @@ is an integral over the conjugacy class of ${\mathcal O}_{\pmb\sigma(\lambda')}$
 (compare the end of 3.14).
 Since the left-hand side is $\epsilon$-invariant, the right-hand
 side is as well.  This completes the proof.
-\qed\finishpproclaim
+\end{proof}
 \bigskip
 
 
@@ -3460,7 +3446,7 @@ allows us to extend the constructions of the previous sections to Levi factors.
 In the next set of equations, we apply descent to a Levi factor and take
 a germ expansion.  Using what I hope is an obvious extension of notation,
 we have by Proposition 5.4 and descent
-\begin{align}
+\begin{align*}\tag{6.5}
   D_{H}(z\gamma)\Delta^m_{E/F}(z\gamma)\Phi^{E/F}_G(z\gamma,f)
   &=
     D_{H_M}(z\gamma)\Delta_{M,E/F}(z\gamma)\Phi^{E/F}_M(z\gamma,f^M) \\
@@ -3470,6 +3456,7 @@ we have by Proposition 5.4 and descent
                  I^{\epsilon}_{M,z,\eta'}(f^M)
   \Delta_{M,E/F}^{2}(z),\label{eqn:6.5} \\ %%\tag{6.5}
 %
+\tag{6.6}
 D_{H}(z\gamma)\Phi^{E/E}_H(z\gamma,f^H)
   &=
      D_{H_M}(z\gamma)\Phi^{E/E}_{H_M}(z\gamma,f^{H_M}) \\
@@ -3478,7 +3465,7 @@ D_{H}(z\gamma)\Phi^{E/E}_H(z\gamma,f^H)
      \sum_{\eta'}\Gamma^{\text{st,alg}}_{H_M,z,\eta'}(\gamma)
                  \mu^{\text{st,alg}}_{H_M,z,\eta'}(f^{H_M}). \label{eqn:6.6}
   %XX \tag{6.6}
-\end{align}
+\end{align*}
 Here $\eta'$ indexes unipotent conjugacy classes of the endoscopic group $H_M$,
 obtained by descent, of the Levi subgroup $M$.  If
 $H_M = M_{\lambda'} = GL(\lambda'_1,E)\times\cdots\times GL(\lambda'_\ell,E)$, then
@@ -3487,26 +3474,26 @@ $\eta' = (\eta^1,\ldots,\eta^\ell)\in
 
 There are two hypotheses that we will prove inductively.  They
 are
-\begin{equation}\label{eqn:tag1}
+\begin{equation}\label{eqn:tag1}\tag{1}
 I^{\epsilon,\text{alg}}_{z,\lambda'} =
 I^{\epsilon}_{z,\lambda'},%\tag{$1$}
 \end{equation}
 and
-\begin{equation}\label{eqn:tag2}
+\begin{equation}\label{eqn:tag2}\tag{2}
 \Delta^{m,2}_{E/F}(z)I^{\epsilon,\text{alg}}_{z,\lambda'} =
-  \mu^{\epsilon,\text{alg}}_{\pmb\sigma(\lambda')}. % XX \tag{$2$}
+  \mu^{\epsilon,\text{alg}}_{\pmb\sigma(\lambda')}. 
 \end{equation}
 (Compare Lemma 6.2.)
 Now we fix $\lambda'\in\Lambda_m$ and set $M=M_{\lambda''}$ and  $H_M = M_{\lambda'}$,
 where $\lambda'' = \pmb\tau(\lambda')$.  We assume that $\lambda'\ne(m)$, or
 equivalently that $M\ne G$.  By induction we may assume (using what I hope
 is an obvious extension of notation) that
-\begin{equation}\label{eqn:tag1'}
+\begin{equation}\label{eqn:tag1'}\tag{$1'$}
 I^{\epsilon,\text{alg}}_{M,z,\eta'} =
 I^{\epsilon}_{M,z,\eta'}, %\tag{$1'$}
 \end{equation}
 and
-\begin{equation}\label{eqn:tag2'}
+\begin{equation}\label{eqn:tag2'}\tag{$2'$}
 \Delta^{2}_{M,E/F}(z)I^\epsilon_{M,z,\eta'} =
 \mu^{\epsilon,\text{alg}}_{M,\eta},%\tag{$2'$}
 \end{equation}
@@ -3524,19 +3511,19 @@ Set
 $\eta_0 = (\pmb\sigma(\eta^1_0),\ldots,\pmb\sigma(\eta_0^\ell))\in
   \Lambda_{r\lambda'_1}\times\cdots\times \Lambda_{r\lambda'_\ell}$.
 It is easy to check, by using our explicit normalization of measures, that
-\begin{align}\label{eqn:6.7}
+\begin{align*}\label{eqn:6.7}\tag{6.7}
   \mu^{\text{st,alg}}_{H_M,z,\eta'}(f^{H_M}) &= \mu^{\text{st,alg}}_{z,\eta''}(f^H),\\
   I^{\epsilon,\text{alg}}_{M,z,\eta_0'}(f^M) &= I^{\epsilon,\text{alg}}_{z,\lambda'}(f),\\
          %%\tag{6.7}\\
   \mu^{\epsilon,\text{alg}}_{M,\eta_0}(f^M)
      &= \mu^{\epsilon,\text{alg}}_{\sigma(\lambda')}(f).
-\end{align}
+\end{align*}
 The first of these equations, together with Equation 6.6, implies that
 $$\Gamma^{\text{st,alg}}_{H_M,z,\eta'_0} (\gamma)
          = \Gamma^{\text{st,alg}}_{z,\lambda'}(\gamma).$$
 This equation, Equation 6.5, the linear independence of germs on $H_M$, and the
 definition of $I^\epsilon_{z,\lambda'}$ give:
-\begin{equation}\label{eqn:6.8}
+\begin{equation}\label{eqn:6.8}\tag{6.8}
 I^\epsilon_{M,z,\eta'_0}(f^M)\Delta^{2}_{M,E/F}(z)
       = I^\epsilon_{z,\lambda'}(f)\Delta^{m,2}_{E/F}(z).%\tag{6.8}
 \end{equation}
@@ -3654,8 +3641,8 @@ $$\Delta^{m,2}_{E/F}(z)\rho^\epsilon_{(m)}(z) = \rho^{\text{st}}_{(m)}(z).$$
 This has a simple geometric interpretation.  We will find a unipotent $u$
 in the class of $(m,\ldots,m)=\pmb\sigma(m)$, with $\beta_\epsilon(u) = 1$, and a small
 neighborhood $U$ of $u$ such that, if $z^g$ lies in $U$, then
-\begin{equation}\label{eqn:6.9}
-\epsilon(\det g)\Delta^{m,2}_{E/F}(z) = 1.%\tag{6.9}
+\begin{equation}\label{eqn:6.9}\tag{6.9}
+\epsilon(\det g)\Delta^{m,2}_{E/F}(z) = 1.
 \end{equation}
 Then, for functions supported on $U$, the $\epsilon$-germ $\rho^\epsilon_{(m)}(z)$
 is $\epsilon(\det g)$ (or $\Delta^{m,2}_{E/F}(z)^{-1}$) times the stable germ.
@@ -3691,17 +3678,17 @@ There exist an analytic curve $\Gamma(t)$ in $G_1$, a $G_1$-conjugate
 $u_1$ of $u$, a $G$-conjugate $z(t)= \Gamma(t)^{g(t)}$ of $\Gamma(t)$, and a
 neighborhood $U$ of $u_1$ in $G$,
 with the following properties:
-\begin{enumerate}
-\item{1.}  $\Gamma(0) =u_1$.
-\item{2.}  For $t\ne 0$, $z(t)$ is an element in $H$ satisfying
+\begin{enumerate}[label=(\arabic*)]
+\item $\Gamma(0) =u_1$.
+\item For $t\ne 0$, $z(t)$ is an element in $H$ satisfying
                   $C_G(z(t)) = H$.
-\item{3.}  If $t\in F$ is sufficiently small but nonzero,
+\item If $t\in F$ is sufficiently small but nonzero,
        then $\Gamma(t)\in U$ and 
        $$\epsilon(\det g(t))\Delta^{m,2}_{E/F}(z(t))=1.$$
 \end{enumerate}
 \finishproclaim
 
-\pproclaim{Proof}:  We construct $\Gamma(t)$ explicitly.  Identify
+\begin{proof}  We construct $\Gamma(t)$ explicitly.  Identify
 $\text{Mat}_n(F)$ with $\text{Mat}_m(R)$, where $R = \text{Mat}_r(F)$
 and $rm=n$.  Write $D(t_1,\ldots,t_r)$ for the matrix in $R$ of the
 form
@@ -3734,10 +3721,10 @@ Clearly, $z(t) = \text{diag}(d_t,\ldots,d_t) \in \text{Mat}_m(E) \subseteq
 $$\epsilon(\det g(t)) = \epsilon(t^{mr(r-1)/2}) = 
 \Delta^{m,2}_{E/F}(z(t)).$$
 Since these factors are $\pm1$, the result follows.
-\qed
-\finishpproclaim
+\end{proof}
 
-\subsection{{\bf 7@.  Unit of Hecke algebra.}}
+
+\section{{Unit of Hecke algebra.}}
 
 \medskip
 \noindent
@@ -3802,7 +3789,7 @@ in
   $ GL(m, O_E )$.
 \finishproclaim
 
-\pproclaim Proof:
+\begin{proof}
 We argue by
 induction on $n$.
 First, suppose that $\gamma\in GL(m,O_E)$ lies in a proper Levi
@@ -3836,7 +3823,7 @@ then, by Kazhdan's lemma,
 %
 $$
   G_s = C_G(\gamma_s) 
-  \overset \sim \to \to
+  \overset \sim \to %\to
   GL (n_1, F_1).
 $$
 Similarly, if $\gamma^h\in K\cap H$, with $h\in H$, then $h$ belongs
@@ -3844,7 +3831,7 @@ to $H_s(K\cap H)$.
 %
 This, together with Theorem 5.5, gives the identities
 %
-\begin{align}\label{eqn:star2}
+\begin{align*}\label{eqn:star2}
  \Delta_{E/F}^m \,
   (\gamma) \,
   \Phi_G^{E/F} \,
@@ -3854,9 +3841,10 @@ This, together with Theorem 5.5, gives the identities
   \Phi_{G_s}^{E_1/F_1} \,
   (\gamma, f_{G_s}),\\ 
   \vspace{4pt}
+  \tag{$*$}
   \Phi^{E/E}_H(\gamma,f_H) &= \Phi^{E_1/E_1}_{H_s}(\gamma_,f_{H_s}).
 %\tag{$*$}
-\end{align}
+\end{align*}
 %
 To justify the appearance of the superscript
   $ E_1 / F_1 $
@@ -3915,7 +3903,7 @@ is central in
   $ GL(n,F) $.
 Hence,
 %
-\begin{align}\label{eqn:double-star}
+\begin{align*}\label{eqn:double-star}
 %\spreadlines{4pt}
  \Delta_{E/F}^m \,
   (\gamma) \,
@@ -3928,15 +3916,15 @@ Hence,
   (\gamma_u, f_G )
 \\
 \vspace{4pt}
+\tag{$**$}
 &=
   \Phi_H^{E/E} \,
   (\gamma_u, f_H ) 
-%\tag{$**$}
 \\
 &=
   \Phi_H^{E/E}
   (\gamma, f_H).
-\end{align}
+\end{align*}
 %
 The next to last step ($**$) requires some explanation.
 First, the matching of smooth functions
@@ -3950,29 +3938,28 @@ Also, both the transfer factor and the germs on both sides are
 Extending by homogeneity, we see finally that
   ($**$) holds for all topologically unipotent elements.
 This completes the proof.
-\qed
-\finishpproclaim
+\end{proof}
 
 % References
 \newpage
 \noindent
 \centerline{ {\smc References} }
 \bigskip
-\parindent=11mm
+%\parindent=11mm
 \baselineskip=12pt
 
 %
-\begin{enumerate}
+\begin{enumerate}[label=]
 \item{[{\bf 1}]}
   D. Barbasch and A. Moy,
-  ``A Unitary Criterion for $p$-adic Groups,'' Invent. Math\. {\bf 98}
-  (1989), no. 1, pp\.~19@--37.
+  ``A Unitary Criterion for $p$-adic Groups,'' Invent. Math. {\bf 98}
+  (1989), no. 1, pp.~19--37.
 %
 \item{[{\bf 2}]}
   J. Bernstein and A.V. Zelevinski,
   ``Induced representations of reductive $p$-adic groups, I,''
-  Ann\. Sci\. E.N.S. {\bf 10}
-  pp\.~441@--472 (1977).
+  Ann. Sci. E.N.S. {\bf 10}
+  pp.~441--472 (1977).
 %
 \item{[{\bf 3}]}
   R. W. Carter,
@@ -3987,36 +3974,36 @@ This completes the proof.
 %
 \item{[{\bf 5}]}
   W. Casselman,
-  ``The unramified principal series of $p$-adic groups I@. 
-    The spherical function,'' Compositio-- Math\. {\bf 40}
-    (1980), no. 3, pp\.~387@--406.
+  ``The unramified principal series of $p$-adic groups I. 
+    The spherical function,'' Compositio-- Math. {\bf 40}
+    (1980), no. 3, pp.~387--406.
 %
 \item{[{\bf 6}]}
   J.W.H. Cassels,
-  {\sl Local fields}, London Math\. Soc\. {\bf 3}, Cambridge
+  {\sl Local fields}, London Math. Soc. {\bf 3}, Cambridge
   University Press, 1986.
 %
 \item{[{\bf 7}]}
   L. Clozel,
   ``Orbital integrals on $p$-adic groups:  A proof of 
-     the Howe conjecture,''  Ann\. of Math\. {\bf 129} (1989),
-     no. 2, pp\.~237@--251.
+     the Howe conjecture,''  Ann. of Math. {\bf 129} (1989),
+     no. 2, pp.~237--251.
 %
 \item{[{\bf 8}]}
   L. Clozel,
   ``The Fundamental Lemma for Stable Base Change,''
-  Duke Math\. Jour\. {\bf 61} (1990), no. 1, pp\.~255@--302.
+  Duke Math. Jour. {\bf 61} (1990), no. 1, pp.~255--302.
 %
 \item{[{\bf 9}]}
   S. S. Gelbart, and A. W. Knapp,
   ``Irreducible constituents of principal series of $SL_n(k)$,''
-  Duke Math\. Jour\. {\bf 48} pp\.~313@--326 (1981).
+  Duke Math. Jour. {\bf 48} pp.~313--326 (1981).
 %
 \item{[{\bf 10}]}
   S. S. Gelbart, and A. W. Knapp,
   ``$L$-indistinguishability and $R$-groups for the
      special linear group,''
-  Advances in Math\. {\bf 43} pp\.~101@--121 (1982).
+  Advances in Math. {\bf 43} pp.~101--121 (1982).
 %
 \item{[{\bf 11}]}
   T. C. Hales,
@@ -4033,63 +4020,63 @@ This completes the proof.
   T. C. Hales,
   ``Orbital Integrals on $U(3)$,''
   {\sl The Zeta Function of Picard Modular Surfaces},
-  Les Publications CRM, eds\. R\. P\. Langlands and
-  D\. Ramakrishnan, (1992).
+  Les Publications CRM, eds. R. P. Langlands and
+  D. Ramakrishnan, (1992).
 %
 \item{[{\bf 14}]}
   Harish-Chandra\hbox{,\kern-.15em``}Admissible invariant distributions on reductive $p$-adic 
     groups,''
-  Queen's Papers in Pure and Applied Math\. No\. {\bf 48}, pp\.~281@--347
+  Queen's Papers in Pure and Applied Math. No. {\bf 48}, pp.~281--347
   (1978).
 %
 \item{[{\bf 15}]}
   R. Howe,
   ``The Fourier Transform and Germs of Characters (Case of $GL_n$ 
     over a $p$-adic field),''
-  Math\. Ann\. {\bf 208}, pp\.~305@--322 (1974).
+  Math. Ann. {\bf 208}, pp.~305--322 (1974).
 %
 \item{[{\bf 16}]}
   D. Kazhdan,
   ``On Lifting,'' {\sl Lie Group Representations, II},
-  Lecture Notes in Math\. {\bf 1041} (1984).
+  Lecture Notes in Math. {\bf 1041} (1984).
 %
 \item{[{\bf 17}]}
   D. Kazhdan and G. Lusztig,
   ``Proof of the Deligne--Langlands conjecture for Hecke algebras,''
-  Invent\. Math\. {\bf 87} (1987), no. 1, pp\.~153@--215.
+  Invent. Math. {\bf 87} (1987), no. 1, pp.~153--215.
 %
 \item{[{\bf 18}]}
   R. P. Langlands,
   {\sl Les d\'ebuts d'une formule des traces stables},
-  Pub\. math\. de~l'univ\. de~Paris~VII, {\bf 13}.
+  Pub. math. de~l'univ. de~Paris~VII, {\bf 13}.
 %
 \item{[{\bf 19}]}
   R. P. Langlands,
   ``Orbital Integrals on Forms of $SL(3)$, I,''
-  Amer\. Jour\. Math\., {\bf 105} pp\. 465@--506
+  Amer. Jour. Math., {\bf 105} pp. 465--506
   (1983).
 %
 \item{[{\bf 20}]}
   R. P. Langlands and D. Shelstad,
   ``On Principal Values on $p$-adic Manifolds,''
-  {\sl Lie Group Representations~II}, Lecture Notes in Math\.
+  {\sl Lie Group Representations~II}, Lecture Notes in Math.
   {\bf 1041}, Springer-Verlag, Berlin (1984).
 %
 \item{[{\bf 21}]}
   R. P. Langlands and D. Shelstad,
   ``On the Definition of Transfer Factors,''
-  Math\. Ann\. {\bf 278}, pp\.~219@--217 (1987).
+  Math. Ann. {\bf 278}, pp.~219--217 (1987).
 %
 \item{[{\bf 22}]}
   R. P. Langlands and D. Shelstad,
   ``Descent for Transfer Factors,''
   {\sl Grothendieck Festschrift}, Vol II,
-  Progress in Math\. {\bf 87} (1990), pp\.~485@--563.
+  Progress in Math. {\bf 87} (1990), pp.~485--563.
 %
 \item{[{\bf 23}]}
   R. P. Langlands and D. Shelstad,
   ``Orbital Integrals on Forms of $SL(3)$, II,''
-  Canad\. J\. Math\. {\bf 41} (1989), no. 3, pp.~480@--507.
+  Canad. J. Math. {\bf 41} (1989), no. 3, pp.~480--507.
 %  
 \item{[{\bf 24}]}
   R. Ranga Rao,
@@ -4104,8 +4091,8 @@ This completes the proof.
 \item{[{\bf 26}]}
   F. Shahidi,
   ``Some Results on $L$-indistinguishability for $SL(r)$,''
-  Canadian Journal of Mathematics, Vol\.~35, No\.~6,
-  pp\.~1075@--1109 (1983).
+  Canadian Journal of Mathematics, Vol.~35, No.~6,
+  pp.~1075--1109 (1983).
 %
 \item{[{\bf 27}]}
   T. A. Shalika,
@@ -4127,21 +4114,21 @@ This completes the proof.
   M-F. Vign\'eras,
   ``Caract\'erisation des int\'egrales orbitales sur un
      groupe r\'eductif $p$-adique,''
-     J\. Fac\. Sci\. Univ\. Tokyo,
-     Sect\. 1A,
-     {\bf 28} (1981), no. 3, pp\.~945@--961.
+     J. Fac. Sci. Univ. Tokyo,
+     Sect. 1A,
+     {\bf 28} (1981), no. 3, pp.~945--961.
 %
 \item{[{\bf 31}]}
   J-L. Waldspurger,
   ``Sur les germes de Shalika pour les groupes lin\'eaires,''
-  Math\. Ann\. {\bf 284} (1989), no. 2, pp\.~199@--221.
+  Math. Ann. {\bf 284} (1989), no. 2, pp.~199--221.
 %
 \item{[{\bf 32}]}
   A. V. Zelevinsky,
-  ``Induced representations of reductive $p$-adic groups II@.
+  ``Induced representations of reductive $p$-adic groups II.
      On irreducible representations of $GL_n$,''
-  Ann\. Sci\., E.N.S.~{\bf 13}
-  pp\.~165@--210 (1980).
+  Ann. Sci., E.N.S.~{\bf 13}
+  pp.~165--210 (1980).
 %
 \item{[{\bf 33}]}
   A. V. Zelevinsky,
