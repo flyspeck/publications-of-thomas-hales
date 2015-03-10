@@ -4,6 +4,7 @@
 % First Draft: February 1991
 % Corrected: July 7, 1992  (using errata of July 7, 1992)
 % June 11, 2007 converted to LaTex.
+% March 2015. LaTeX formatting updated.
 
 % This file does not input any documents
 % This is an AMS-TEX document.  
@@ -21,24 +22,39 @@
 % Format Instructions 
 
 
-\documentclass[11pt]{amsart}
+\documentclass{amsart}
 
 %Packages
 \usepackage{graphicx}
 \usepackage{amsfonts}
+\usepackage{enumitem}
 \usepackage{amscd}
 \usepackage{amssymb}
 \usepackage{alltt}
 \usepackage{txfonts}
+%tikz graphics
+%\usepackage{xcolor} % to remove color.
+\usepackage{tikz} 
+\usetikzlibrary{chains,shapes,arrows,shadings,trees,matrix,%
+  positioning,intersections,decorations,%
+  decorations.markings,decorations.pathmorphing,backgrounds,%
+  fit,calc,fadings,decorations.pathreplacing}
 
-\theoremstyle{plain}
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{problem}[theorem]{Problem}
 
-\theoremstyle{definition}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{definition}[theorem]{Definition}
+%\theoremstyle{plain}
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{problem}[theorem]{Problem}
+
+%\theoremstyle{definition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{definition}[theorem]{Definition}
+
+\newtheorem{thm}{}
+\newenvironment{cthm}[1]
+  {\renewcommand\thethm{\bf #1}\thm}
+  {\endthm}
+
 
 \newcommand{\ring}[1]{\mathbb{#1}}
 \def\taglet#1{\text{\tt (#1)}}
@@ -55,7 +71,7 @@
 \def\Com{{\Bbb C}}                         %Blackboard-bold C
 \def\suchthat{\ {\vrule width1truept height.3truecm depth.1truecm}\ }
 \def\Hom{\operatorname{Hom}}         %Operator Hom
-\def\Def{\overset{\operatorname{def}}\to=}   %Symbol = by def
+\def\Def{\overset{\operatorname{def}}=}   %Symbol = by def
 \def\varep{\varepsilon}
 \def\Char{\operatorname{char}}               %Operator char
 \def\what#1{\widehat#1}
@@ -115,59 +131,64 @@
 \begin{document}
 
 
-\centerline{\bf A SIMPLE DEFINITION OF TRANSFER FACTORS}
-\centerline{\bf FOR UNRAMIFIED GROUPS}\vskip6pc
-\baselineskip=10pt
-\centerline{\bf Thomas C. Hales}\vskip1pc
-\centerline{\bf University of Chicago}\vskip1pc
-\centerline{\bf February 5, 1991}\vskip1pc
-\centerline{\bf Corrected July 7, 1992}\vskip6pc
+%\centerline{\bf A SIMPLE DEFINITION OF TRANSFER FACTORS}
+%\centerline{\bf FOR UNRAMIFIED GROUPS}\vskip6pc
+%\baselineskip=10pt
+%\centerline{\bf Thomas C. Hales}\vskip1pc
+%\centerline{\bf University of Chicago}\vskip1pc
+%\centerline{\bf February 5, 1991}\vskip1pc
+%\centerline{\bf Corrected July 7, 1992}\vskip6pc
 
 
-{
-\narrower
-\baselineskip=1.5\baselineskip
-\noindent{\bf Abstract}\qquad  This paper gives simple characterization
+\begin{abstract}
+This paper gives simple characterization
 of transfer factors for unramified groups which is shown to be equivalent
 to the definition of Langlands and Shelstad  under mild restrictions on the
 residual field characteristic.
-}
-\vfil\eject
+\end{abstract}
 
-\baselineskip=2\baselineskip
+%\vfil\eject
+\title{A Simple definition of transfer factors for unramified groups}
+\author{Thomas C. Hales}
+\address{University of Chicago}
+\date{February 5, 1991; corrected July 7, 1992}
+\thanks{CONTEMPORARY MATHEMATICS 145 (1993): 109-134.}
+\maketitle
+
+%\baselineskip=2\baselineskip
 
 \noindent PART I PRELIMINARIES\smallskip
-\begin{itemize}
+\begin{enumerate}[label=]
 \item{1.}  Introduction
 \item{2.}  Compact Elements
 \item{3.}  Topological Jordan Decomposition
 \item{4.}  Centralizers of Semisimple Elements
 \item{5.}  Abelian Class Field Theory
 \item{6.}  Embeddings of $L$-Groups\medskip
-\end{itemize}
+\end{enumerate}
 
 \noindent PART II  TRANSFER FACTORS\smallskip
 
-\begin{itemize}
+\begin{enumerate}[label=]
 \item{7.}  Canonical Normalization of Transfer Factors
 \item{8.}  Coherence of Canonical Normalization
 \item{9.}  Descent for Levi Factors
 \item{10.}  Homogeneity and General Descent
 \item{11.}  Central Characters\medskip
-\end{itemize}
+\end{enumerate}
 
 
 \noindent PART III  ORBITAL INTEGRALS\smallskip
 
-\begin{itemize}
+\begin{enumerate}[label=]
 \item{12.}  Harish-Chandra Descent
 \item{13.}  Descent for Absolutely Semisimple Elements
 \item{14.}  Regular Unipotent Orbital Integrals
-\end{itemize}
+\end{enumerate}
 \vfil\eject
 
 \centerline{\bf PART I.\ \  PRELIMINARIES}\vskip3pc
-\section{1.  Introduction}
+\section{Introduction} %1
 
 Transfer factors have been defined for arbitrary
 reductive groups in \cite{\LANGLANDSO}. When the group $G$ and the endoscopic
@@ -310,7 +331,7 @@ group $H$ of $G$.  If $H$ splits over an unramified extension then $\Bbb T_H$
 is also unramified.  We often identify $\Bbb T_H$ with an isomorphic
 Cartan subgroup of $G$.
 
-\section{2. Compact Elements}
+\section{Compact Elements} %2.
 
 We say that $g\in G(F)$ is {\it strongly compact\/} if
 the following equivalent conditions hold:
@@ -332,7 +353,7 @@ Every strongly compact element is compact.
 If an element is not compact then it is not elliptic and we may select a Levi factor
 $M$ of $G$ such that it is elliptic in $M$.
 
-\section{3. Topological Jordan Decomposition}
+\section{Topological Jordan Decomposition} %3.
 
 This section reviews some properties of the topological Jordan
 decomposition \cite{{\KAZHDAN,\WALDSPURGERL}}.  If $K$ is a 
@@ -409,10 +430,10 @@ reductive group, define $e_G$ to be the maximum of $e_T$ as $T$ ranges over all
 Cartan subgroups defined over the ground field.  Also write $U(F)$ for the topologically
 unipotent elements of $F^\times$.
 
-\begin{lemma}{Lemma 3.1}  Suppose $p> e_F+1$ and $x$ is topologically
+\begin{cthm}{Lemma 3.1}  Suppose $p> e_F+1$ and $x$ is topologically
 unipotent in $F^\times$.
 If $Q=p^\ell$, $\ell>0$, then $(x^Q-1)/Q(x-1)$ is topologically unipotent.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}
 By the binomial theorem, $(1+y)^Q-1 = yQ(1+\sum_{i=2}^Q 
@@ -428,10 +449,10 @@ behaves as $\pi^{p^r-1-er}$.  The worst case is $r=1$. So we need
 $|\pi^{p-1-e}|<1$ or $p>e_F+1$.
 \end{proof}
 
-\begin{proof}{Remark 3.2}  The condition for the exponential power series
+\begin{cthm}{Remark 3.2}  The condition for the exponential power series
 to converge on $U(F)-1$ is $p>e_F+1$. Also the
 logarithmic power series  converges on $U(F)$ to an element of $U(F)-1$ if $p>e_F$.
-\end{proof}
+\end{cthm}
 
 The topological Jordan decomposition leads to the
 following decomposition of a field.
@@ -441,26 +462,30 @@ $A_E$ absolutely semisimple, and
 $U(E)$ topologically unipotent.
 If the ramification degree of $E$ over $F$ is $e$ then
 we take $\pi=\pi_E^e$ as a uniformizer of $F$.
-Then $F^\times@>\sim>> \langle\pi\rangle\times A\times U(F)$, where 
+Then 
+\[
+\begin{CD} F^\times@>\sim>> \langle\pi\rangle\times A\times U(F)\end{CD},
+\]
+where 
 $A\subseteq A_E$ absolutely semisimple,
 $\langle\pi\rangle\subseteq\langle\pi_E\rangle$, and 
 $U(F)\subseteq U(E)$ is topologically unipotent.
 
-\begin{lemma}{Definition}  We say a character $\theta$ on $F^\times$
+\begin{cthm}{Definition}  We say a character $\theta$ on $F^\times$
 is tamely ramified if $\theta(U(F)) = 1$.
-\end{lemma}
+\end{cthm}
 
-\begin{lemma}{Lemma 3.3}  Let $\theta$ be a tamely ramified character
+\begin{cthm}{Lemma 3.3}  Let $\theta$ be a tamely ramified character
 of $F^\times$ and let $E$ be a finite extension of $F$.  Then
 there is a tamely ramified character on $E^\times$ extending $\theta$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  
 Take the extension to be trivial on $U(E)$ and arbitrary extensions 
 on $A_E$, $\langle\pi_E\rangle$.
 \end{proof}
 
-\section{4. Centralizers of Semisimple Elements}
+\section{Centralizers of Semisimple Elements} %4.
 
 In this section, let $G$ be a complex semisimple group.
 Let $T$ be a maximal torus of $G$ with Lie
@@ -488,20 +513,20 @@ $$
 $$
 
 For the next few lemmas set $s=\exp(Y)$, $Y\in \CurlyC$.
-\begin{lemma}{Lemma 4.1}    The inclusion $C_{N_G(T)}(s)\subseteq
+\begin{cthm}{Lemma 4.1}    The inclusion $C_{N_G(T)}(s)\subseteq
 C_G(s)$ induces an isomorphism between
 $
 C_{N_G(T)}(s)/(C_{N_G(T)}(s)\cap C_G(s)^0)$ and $C_G(s)/C_G(s)^0$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof} \cite{\CARTER}
 \end{proof}
 
-\begin{lemma}{Lemma 4.2} 
+\begin{cthm}{Lemma 4.2} 
 $
 C_{N_G(T)}(s)\cap C_G(s)^0/T\map C_{\Waffsc}(Y)
 $.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  If $n\in C_G(s)^0\cap C_{N_G(T)}(s)$ then
 lift $n$ to $\widehat n\in G_{\sc}$, and $s$ to $\widehat s$.  Then 
@@ -522,13 +547,13 @@ $C_{N_{G_{\sc}}(T_{\sc})}(\widehat s)\to C_{\Waffsc}(Y)$.
 The isomorphism follows easily.
 \end{proof}
 Similarly,
-\begin{lemma}{Lemma 4.3}$C_{N_G(T)}(s)/T\map C_{\Waff}(Y)$.
-\end{lemma}
+\begin{cthm}{Lemma 4.3}$C_{N_G(T)}(s)/T\map C_{\Waff}(Y)$.
+\end{cthm}
 
 Thus,
-\begin{lemma}{Corollary 4.4} $C_G(s)/C_G(s)^0\map
+\begin{cthm}{Corollary 4.4} $C_G(s)/C_G(s)^0\map
 C_{\Waff}(Y)/C_{\Waffsc}(Y)$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  Lemmas 4.2 and 4.3.
 \end{proof}
@@ -545,21 +570,21 @@ $\Omega^\prime = \{w\in W_{\operatorname{aff}}^\prime
 Assume that $I$ acts in such a way to stabilize $\CurlyC$, so that $I\subseteq\Omega'$. We obtain as in the 
 connected case
 
-\begin{lemma}{Lemma 4.5}
+\begin{cthm}{Lemma 4.5}
 $
 C_{G^\prime}(s)/C_{G^\prime}(s)^0
 \map C_{\Waff^\prime}(Y)/C_{\Waffsc}(Y)
 \map\Omega_Y^\prime\subseteq\Omega^\prime.
 $
-\end{lemma}
+\end{cthm}
 
-\begin{lemma}{Lemma 4.6} The following exact sequence splits.
+\begin{cthm}{Lemma 4.6} The following exact sequence splits.
 $$
 1\to C_{\Waffsc}(Y)\to
 C_{\Waff^\prime}(Y)
 \to \Omega_Y^\prime\to 1.
 $$
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  $C_{\Waffsc}(Y)$ is
 the Weyl group of reflections stabilizing
@@ -584,15 +609,15 @@ Combining all of the previous results we obtain the following theorem.  It
 tells us that the components of $C_{G^\prime}(s)$ are represented by elements
 $n_\omega$ independent of $s$.
 
-\begin{lemma}{Theorem 4.7} Let $s=\exp(Y)$, $Y\in \CurlyC$, be 
+\begin{cthm}{Theorem 4.7} Let $s=\exp(Y)$, $Y\in \CurlyC$, be 
 semisimple.  
 Then
 $$
 C_{G^\prime}(s) = C_G(s)^0\{n_\omega\}_{\omega\in\Omega_Y^\prime}.
 $$
-\end{lemma}
+\end{cthm}
 
-\section{5.  Abelian Class Field Theory}
+\section{Abelian Class Field Theory} %5
 
 In this section, we recall Labesse's version \cite{\LABESSEC} of the isomorphism
 between
@@ -607,8 +632,10 @@ viewed as a $\Gamma$-module, $W_{E/F}$ the Weil group, $\widehat T$ the
 complex dual of $T$. We start with the 
 surjective corestriction map:
 $$
+\begin{CD}
 H_c^1(E^\times,\widehat T)@>{\text{Cor}}>> H_c^1(W_{E/F},
 \widehat T)\taglet{1}
+\end{CD}
 $$
 corresponding to the short exact sequence
 $
@@ -646,7 +673,7 @@ $\Hom_c(T(F),\Com^\times)$.  For proofs see \cite{\LABESSEC}.
 By the explicit form of the isomorphism in lines
 2--6 we see 
 
-\begin{lemma}{Lemma 5.1}  Suppose that
+\begin{cthm}{Lemma 5.1}  Suppose that
 $\varphi\in Z_c^1(E^\times,\widehat T)
 =H_c^1(E^\times,\widehat T)
 =\Hom_c(E^\times,\widehat T)$
@@ -654,9 +681,9 @@ is tamely ramified.  Then the corresponding homomorphism in
 $\Hom_c(T(F),\Com^\times)$
 (obtained by the maps in lines 2--6) is
 also tamely ramified.
-\end{lemma}
+\end{cthm}
 
-\section{6.  Embeddings of $L$-Groups}
+\section{Embeddings of $L$-Groups} %6
 
 Let $(H,\mathcal{ H},s,\xi)$ be endoscopic data for $G$
 (see \cite{\LANGLANDSO}).  
@@ -676,12 +703,12 @@ and $H$ splits over an unramified extension of $F$.
 extension $E/F$.  
 In other words we have a commutative diagram
 $$
-\CD
+\begin{CD}
 {}^LH @>\xi>> {}^LG\\
 @V\varphi_H VV    @V\varphi_GVV\\
 \widehat H\rtimes\Gal(E/F) @>{\xi_0}>> 
 \widehat G\rtimes \Gal(E/F)
-\endCD
+\end{CD}
 $$
 The maps $\varphi_H,\varphi_G$ are induced by the canonical projection
 $\varphi:W_F\to \Gal(E/F)$.
@@ -695,15 +722,15 @@ is an element $\omega(\sigma)\rtimes\theta$ in ${}^LG$ such that the action
 of $\sigma$ as an outer automorphism of $\widehat H$ coincides with the
 outer automorphism defined by conjugation by $\omega(\sigma)\rtimes\theta$.
 
-\begin{lemma}{Lemma 6.1}  Under the assumptions above, there exists an embedding
+\begin{cthm}{Lemma 6.1}  Under the assumptions above, there exists an embedding
 $\xi:{}^LH\to{}^LG$ that makes $(H,{}^LH,s,\xi)$ into
 unramified endoscopic data.
-\end{lemma}
+\end{cthm}
 
-\begin{lemma}{Remark}  This lemma is not true without the assumption that $H$ is
+\begin{cthm}{Remark}  This lemma is not true without the assumption that $H$ is
 unramified.  In fact the purpose of \cite{\LANGLANDSCAN} is to circumvent
 this lemma in the ramified case.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  The group ${}^LH$ is
 defined by some $\widehat H\rtimes\Gal(E/F)$,
@@ -738,7 +765,7 @@ by $\xi_0(\sigma') =w^\prime$.  This gives $\xi$.
 
 \centerline{\bf PART II.  TRANSFER FACTORS}\bigskip
 
-\section{7.  Canonical Normalization of Transfer Factors}
+\section{Canonical Normalization of Transfer Factors} %7
 
 By our assumptions on $G$ we may assume $G=G^*$ (quasi-split
 inner form) and that the inner twist $\psi:G\to G^*$ to the
@@ -749,22 +776,22 @@ Recall that the transfer factor $\Delta_0$ of \cite{\LANGLANDSO}
 depends on a choice of splitting.  We will use the
 subgroup $G(O_F)$ to determine a splitting.
 
-\begin{lemma}{Definition 7.1}  We say that a splitting 
+\begin{cthm}{Definition 7.1}  We say that a splitting 
 $(B,T,\{X_\alpha\})$ is admissible if the following conditions hold:
 {1.}  $B$ and $T$ are Cartan subgroups over $F$.
 {2.}  If $u_\alpha$ is the homomorphism
 $u_\alpha:\Bbb G_a\to G$ determined by $X_\alpha$ then
 $u_\alpha$ is defined over $O_{F^u}$ and $\tilde u_\alpha(1)$
 is not the identity element in $G(\overline{\Bbb F}_q)$.
-\end{lemma}
+\end{cthm}
 
 We define $\Delta_0(\gamma_H,\gamma_G)$ to be the transfer
 factor $\Delta_0(\gamma_H,\gamma_G)$ of \cite{\LANGLANDSO} defined
 relative to an admissible splitting of $G$.
 
-\begin{lemma}{Lemma 7.2}  $\Delta_0(\gamma_H,\gamma_G)$ is independent
+\begin{cthm}{Lemma 7.2}  $\Delta_0(\gamma_H,\gamma_G)$ is independent
 of the admissible splitting of $G$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  $\Delta_I(\gamma_H,\gamma_G)$ is the only term
 of the transfer factor depending on a splitting and
@@ -782,14 +809,12 @@ unramified extension of $F$.  Since $u_\alpha$ is defined over
 $O_{F^u}$ and $\tilde u_\alpha(1)\ne1$, the coroots $\alpha^v:\Bbb G_m\to G$
 and negative roots $u_{-\alpha}:\Bbb G_a\to G$ are also defined
 over $O_{F^u}$.  Hence \cite{\LANGLANDSO}	%p231,228
-$$
-\gather
+\begin{gather*}
 x(\sigma_T)\Def\prod_{1,\sigma}^p
 a_\alpha^{\alpha^v}\in G(O_{F^u})\\
 n(\alpha)\Def\exp(X_\alpha)\exp(-X_{-\alpha})
 \exp(X_\alpha)\in G(O_{F^u}).
-\endgather
-$$
+\end{gather*}
 Similarly $n(\omega)$ and $m(\sigma_T) = x(\sigma_T)n(\omega_T(\sigma))$ belong
 to $G(O_{F^u})$.
 
@@ -812,7 +837,7 @@ $\Delta_I(\gamma_H,\gamma_G)
 it is independent of our choice of admissible splitting.
 \end{proof}
 
-\section{8. Coherence of Canonical Normalization}
+\section{Coherence of Canonical Normalization} %8
 
 Fix $\gamma_H\in H(O_F)$. We will assume that this element is
 strongly compact and strongly $G$-regular. Set $\varep_H=\gamma_{H,s}$
@@ -825,10 +850,10 @@ elements $\gamma_H, \gamma_G$ and the Cartan subgroups $T_H$
 containing $\gamma_H$ for $\gamma_H$ near $\varep_H$, 
 $\gamma_G$ near $\varep_G$.  We need the refinement:
 
-\begin{lemma}{Lemma 8.1} $\Delta_0(\gamma_H,\gamma_G) =
+\begin{cthm}{Lemma 8.1} $\Delta_0(\gamma_H,\gamma_G) =
 \Delta_{\varep,0}(\gamma_H,\gamma_G)$ for
 $\gamma_H$ near $\varep_H$, $\gamma_G$ near $\varep_G$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  Since the constant $c_\varep$ 
 is independent of the choice of $\gamma_H,\gamma_G$
@@ -908,12 +933,12 @@ So the product of $|\alpha(\gamma)-1|$ over
 roots in $G$ outside $H$ coincides with the 
 product over roots in $G_\varep$ outside $H_\varep$.
 
-\section{9.  Descent for Levi Factors}
+\section{Descent for Levi Factors} %9
 
-\begin{lemma}{Lemma 9.1}  Suppose that $M$ is a
+\begin{cthm}{Lemma 9.1}  Suppose that $M$ is a
 Levi factor of a parabolic subgroup $P$ of $G$.
 Then $M$  is quasisplit and $M\cap G(O_F)$ is hyperspecial.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  See \cite{\KOTTWITZS}. \end{proof}
 
@@ -921,7 +946,7 @@ Let $\Delta_0^M$ and $\Delta_0^G$ denote
 the canonical transfer factors for $M,G$.  Let $H_M$ be the endoscopic
 group associated to $M$ by descent \cite{\LANGLANDSD}.
 
-\begin{lemma}{Lemma 9.2}  If $\gamma_G\in M(F)$
+\begin{cthm}{Lemma 9.2}  If $\gamma_G\in M(F)$
 $\gamma_H\in H_M(F)$ then
 $$
 \Delta_0^G(\gamma_H,\gamma_G)
@@ -929,7 +954,7 @@ $$
 |\prod_\alpha(\alpha(\gamma)-1)|^{1/2}
 $$
 (product over roots of $G$ outside $M$ and $H$).
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  We may pick the same $a$-data
 and $\chi$-data for $M$ and $G$. We may choose
@@ -948,40 +973,52 @@ We have a commutative diagram (identifying
 ${}^LT$ and ${}^LT_H$).\par
 \bigskip
 
-%%FIXX fill in the arrows (there are 8 arrows to be drawn)
-%%FIXX They must be hand drawn.
-%%FIXX The commutative diagram contains 5 objects ^LH,^LG,^LM,^LT,^LH_M
-%%FIXX \xi labels various arrows
-%%FIXX [n] labels various commutative triangles
 
-%%FIXX   Four diagonal arrows emanate from ^LT, with heads at
-%%FIXX      ^LH, ^LG, ^LM, ^LH_M
-%%FIXX   Four arrows form a commutative square
-%%FIXX      ^LH   to ^LG
-%%FIXX      ^LH_M to ^LH
-%%FIXX      ^LH_M to ^LM
-%%FIXX      ^LM   to ^LG
+%\vbox{
+%        \offinterlineskip
+%        \def\hx#1{\hbox to 0pt{#1\hss}}
+%        \def\hs#1{\hskip#1}
+%        \hbox to\hsize {\hs3in\hx{$\xi$}\hss}
+%        \vskip5pt
+%        \hbox to\hsize {\hs2in\hx{${}^LH$}\hs2in\hx{${}^LG$}\hss}
+%        \vskip15pt
+%        \hbox to\hsize {\hs2.3in\hx{$\xi_{T_H}$}\hs.7in\hx{[2]}
+%                \hs.7in\hx{$\xi_T$}\hss}
+%        \vskip15pt
+%        \hbox to\hsize {\hs1.5in\hx{[1]}\hs1.5in\hx{${}^LT$}\hs1.5in
+%                \hx{[3]}\hss}
+%        \vskip15pt
+%        \hbox to\hsize {\hs2.3in\hx{$\xi^M_{T_H}$}\hs.7in\hx{[4]}
+%                \hs.7in\hx{$\xi^M_T$}\hss}
+%        \vskip15pt
+%        \hbox to\hsize {\hs2in\hx{${}^LH_M$}\hs2in\hx{${}^LM$}\hss}
+%        }
+%\bigskip
 
-\vbox{
-        \offinterlineskip
-        \def\hx#1{\hbox to 0pt{#1\hss}}
-        \def\hs#1{\hskip#1}
-        \hbox to\hsize {\hs3in\hx{$\xi$}\hss}
-        \vskip5pt
-        \hbox to\hsize {\hs2in\hx{${}^LH$}\hs2in\hx{${}^LG$}\hss}
-        \vskip15pt
-        \hbox to\hsize {\hs2.3in\hx{$\xi_{T_H}$}\hs.7in\hx{[2]}
-                \hs.7in\hx{$\xi_T$}\hss}
-        \vskip15pt
-        \hbox to\hsize {\hs1.5in\hx{[1]}\hs1.5in\hx{${}^LT$}\hs1.5in
-                \hx{[3]}\hss}
-        \vskip15pt
-        \hbox to\hsize {\hs2.3in\hx{$\xi^M_{T_H}$}\hs.7in\hx{[4]}
-                \hs.7in\hx{$\xi^M_T$}\hss}
-        \vskip15pt
-        \hbox to\hsize {\hs2in\hx{${}^LH_M$}\hs2in\hx{${}^LM$}\hss}
-        }
-\bigskip
+
+%% tikz
+
+% commutative diagram following Milne: www.jmilne.org/not/Mtikz.pdf.
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[>=angle 90]
+\matrix(a)[matrix of math nodes,
+row sep=4em, column sep=4em,
+text height=1.5ex, text depth=0.25ex]
+{&{}^LG&\\
+ {}^LH&{}^LT&{}^LM\\
+ &{}^LH_M&\\};
+\path[->](a-2-1) edge node[left,above]{[2]} (a-1-2);
+\path[->](a-2-2) edge node[left]{$\xi_T$} (a-1-2);
+\path[->](a-2-3) edge node[right,above]{[3]} (a-1-2);
+\path[->](a-2-2) edge node[above,near start]{$\xi_{T_H}$} (a-2-1);
+\path[->](a-2-2) edge node[left,above,near start]{$\xi_{T}^M$} (a-2-3);
+\path[->](a-2-2) edge node[above,left,near start]{$\xi_{T_H}^M$} (a-3-2);
+\path[->](a-3-2) edge node[left,below]{[1]} (a-2-1);
+\path[->](a-3-2) edge node[right,below]{[4]} (a-2-3);
+\end{tikzpicture}
+\end{figure}
+
 
 \noindent The triangles [1] and [3] as well as the outside square 
 are commutative.
@@ -992,7 +1029,7 @@ $a^G = a^M$ so that
 $\Delta_{\text{III}_2}^M =\Delta_{\text{III}_2}^G$.
 \end{proof}
 
-\section{10.  Homogeneity and General Descent}
+\section{Homogeneity and General Descent} %10
 
 We fix in this section an integer $Q$ satisfying $Q=p^\ell$, $\ell>0$, $Q\equiv 1
 \mod c$, $c=c_G$.
@@ -1022,7 +1059,7 @@ Write $\prod_{G/H}$ (resp. $\prod_{G/H}^{\circ}$) for the product of roots
 in $G$ but not $H$.  Define $\prod_{G/H}^\varep$, and $\prod_{G/H}^{\varep,\circ}$
 similarly with respect to the roots in $G_\varep$ but not $H_\varep$.
 
-\begin{lemma}{Lemma 10.1}  If $p>e_G+1$, 
+\begin{cthm}{Lemma 10.1}  If $p>e_G+1$, 
 $$
 \begin{array}{lll}
 \Delta_{\text{IV}}(\hgam^Q,\ggam^Q) 
@@ -1035,7 +1072,7 @@ $$
 where $m$ is the number of roots in $G_\varep$
 but not in $H_\varep$ and $\varep$ is the absolutely semisimple part 
 of $\ggam$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  $\Delta_{\text{IV}}(\hgam,\ggam)
 =|\prod_{G/H}(\alpha(\gamma)-1)|^{1/2}$. If
@@ -1065,19 +1102,19 @@ $\Delta_{IV,\varep}(\hgam^Q,\ggam^Q)
 By (3.3), we may assume the $\chi$-data are selected to
 be tamely ramified characters.
 
-\begin{lemma}{Lemma 10.2}  If $p>e_G+1$,
+\begin{cthm}{Lemma 10.2}  If $p>e_G+1$,
 $\Delta_{\text{II}}(\hgam^Q,\ggam^Q)=
 \Delta_{\text{II}}(\hgam,\ggam)
 \prod_{G/H}^{\varep,\circ}\chi_\alpha(Q)
 $.
-\end{lemma}
+\end{cthm}
 
-\begin{lemma}{Corollary 10.3}  Under the same conditions,
+\begin{cthm}{Corollary 10.3}  Under the same conditions,
 $
 \Delta_{\text{II}}(\hgam^{Q^2},\ggam^{Q^2})
 =\Delta_{\text{II}}(\hgam,\ggam)
 $.
-\end{lemma}
+\end{cthm}
 
 \begin{proof} $\chi_\alpha$ on $F_\pm\owns Q$
 has order 2.
@@ -1115,10 +1152,10 @@ and the result follows.
 Before turning to the factor $\Delta_{\text{III}_2}$
 we state a few preparatory lemmas.
 
-\begin{lemma}{Lemma 10.4}  Suppose $p > e_G+1$.   If
+\begin{cthm}{Lemma 10.4}  Suppose $p > e_G+1$.   If
 $a^{2^r}$ is a tamely ramified character on $T(F)$ for some $r>0$ then $a$
 is a tamely ramified character.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  If $\reschar\ne 2$ every topologically unipotent
 element is a square, and hence a $2^r$-power.  So if $\gamma$ is 
@@ -1129,15 +1166,15 @@ $
 $
 \end{proof}
 
-\begin{lemma}{Lemma 10.5} $r_q^2$ is independent of the gauge $q$.
-\end{lemma}
+\begin{cthm}{Lemma 10.5} $r_q^2$ is independent of the gauge $q$.
+\end{cthm}
 
 \begin{proof}  $r_q = s_{q/p}r_p$ and $s_{q/p}^2 = 1$.
 \cite{\LANGLANDSO, 2.4}.
 \end{proof}
 
-\begin{lemma}{Lemma 10.6}  $r_q^2$ is a cocycle.
-\end{lemma}
+\begin{cthm}{Lemma 10.6}  $r_q^2$ is a cocycle.
+\end{cthm}
 
 \begin{proof}  The coboundary of $r_q$ is
 $t_q$ and $t_q^2 = 1$ \cite{\LANGLANDSO,2.1.B,2.5.A}.
@@ -1207,10 +1244,10 @@ $\lambda_0(\sigma)$, $r_p(w)^{-1}$ will each be cocycles
 when raised to the fourth power.
 
 
-\begin{lemma}{Lemma 10.8}  $n_G(\omega_1\omega_2\cdots\omega_r)
+\begin{cthm}{Lemma 10.8}  $n_G(\omega_1\omega_2\cdots\omega_r)
 = t\,n_G(\omega_1)\cdots n_G(\omega_r)$ for some $t=t(\omega_1,\ldots,\omega_r)$ satisfying 
 $t^2 = 1$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  Clear from \cite{\LANGLANDSO,2.1.A}.
 \end{proof}
@@ -1219,13 +1256,13 @@ By \cite{\DERIZIOTIS} we may assume that the simple roots
 of $\what H$ are a subset of the extended set of simple roots $\Delta\cup\{-r_0\}=
 \tild\Delta$ of $\what G$.
 
-\begin{lemma}{Lemma 10.9}  There is a choice of root vectors  $X_\alpha^H$,
+\begin{cthm}{Lemma 10.9}  There is a choice of root vectors  $X_\alpha^H$,
 $X_\alpha^G$ such that 
 {\rm(i)} $n_G(\omega_\alpha) = n_H(\omega_\alpha)$ if
 $\alpha$ is a simple root of $H$ in $\Delta$.
 {\rm(ii)}  $n_G(\omega_{-r_0}) = t_0n_H(\omega_{-r_0})$
 where $t_0^4 = 1$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  The first statement is obvious by definition
 if the root vectors are chosen to be the same: 
@@ -1264,26 +1301,26 @@ Then $t_0^\omega t_0 = t_0^2 = t_G(\omega,\omega)/t_H(\omega,\omega)$, which
 has order 2.
 \end{proof}
 
-\begin{lemma}{Corollary 10.10}  $a^4= \overline r_p^4 \lambda_0^4/r_p^4$.
-\end{lemma}
+\begin{cthm}{Corollary 10.10}  $a^4= \overline r_p^4 \lambda_0^4/r_p^4$.
+\end{cthm}
 
 \begin{proof}  By (10.8), (10.9) The 4th powers of the terms 
 $n_H(\omega_{T_H}(\sigma))n_G^{-1}(\omega_{T_H}(\sigma))$
 and $t(\omega_{T_H}(\sigma),\omega_H(\sigma))$ in (10.7) are 1.
 \end{proof}
 
-\begin{lemma}{Corollary 10.11}  $\lambda_0^4$ is a cocycle.
-\end{lemma}
+\begin{cthm}{Corollary 10.11}  $\lambda_0^4$ is a cocycle.
+\end{cthm}
 
 \begin{proof}  The other terms of (10.10) are.
 \end{proof}
 
-\begin{proof}{Remark 10.12}  $(\overline r_p/r_p)^2$
+\begin{cthm}{Remark 10.12}  $(\overline r_p/r_p)^2$
 is independent of the choice of $\xi:{}^LH\to {}^LG$.
-\end{proof}
+\end{cthm}
 
-\begin{lemma}{Lemma 10.13}  $\lambda_0^4$ depends on $T_H$ only through $H$.
-\end{lemma}
+\begin{cthm}{Lemma 10.13}  $\lambda_0^4$ depends on $T_H$ only through $H$.
+\end{cthm}
 
 \begin{proof}  
 Write $\lambda_0^4 = \lambda_{T_H}$ to make the possible dependence on $T_H$
@@ -1306,9 +1343,9 @@ $$
 which is independent of $T_H$. Hence $\lambda_{T_H}$ is independent of $T_H$.
 \end{proof}
 
-\begin{lemma}{Corollary 10.14}  $\lambda_0^4$ gives an unramified
+\begin{cthm}{Corollary 10.14}  $\lambda_0^4$ gives an unramified
 character on the maximally split Cartan subgroup $\Bbb T_H(F)$ of $H$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  The cocycle $\lambda_0^4$ of the Weil group is
 clearly the inflation of a cocycle on $\Gal(E/F)$ for an
@@ -1318,12 +1355,12 @@ and $m_0(\sigma)$ factor through an unramified extension.  By \cite{\LABESSEC},
 characters on the $\Bbb T_H(F)$.  
 \end{proof}
 
-\begin{lemma}{Proposition 10.15}  If the $\chi$-data is 
+\begin{cthm}{Proposition 10.15}  If the $\chi$-data is 
 tamely ramified then the character
 $\langle a,\gamma\rangle$ given in the term 
 $\Delta_{III_2}$ is also  tamely ramified.
 (As always $\reschar \ne 2$.)
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  By the construction of Labesse, it is 
 enough to show that $a^4\in H^1(W_{E/F},\widehat T(\Com))$
@@ -1338,10 +1375,10 @@ define
 $\varphi_\lambda\in \Hom_c(E^\times,\widehat T)$ by
 $\varphi_\lambda(u) = \chi_{\lambda,E}(u)^\lambda$.
 
-\begin{lemma}{Lemma 10.16}  
+\begin{cthm}{Lemma 10.16}  
 $\operatorname{Cor}\left[\prod_{G/H}^\circ\varphi_\lambda\right]$
 is cohomologous to $r_p^2/\overline r_p^2$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  $r_p$ itself is a product of terms $r_p^\lambda$ indexed by orbits
 of roots $\lambda$. 
@@ -1405,7 +1442,7 @@ The result follows.
 Now finally, we turn to $\Delta_{III_2}(\gamma_H,\gamma_G)$
 and the completion of the results of this section.
 
-\begin{lemma}{Theorem 10.17}  For $p>e_G+1$ 
+\begin{cthm}{Theorem 10.17}  For $p>e_G+1$ 
 and $\gamma_H,\gamma_G$
 strongly compact
 $$
@@ -1414,7 +1451,7 @@ $$
 $$
 where $m$ is the number of roots outside $H_{\varep}$
 but in $G_{\varep}$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof} By the preceding results, it is enough
 to check that 
@@ -1435,9 +1472,9 @@ $$
 since $\gamma_s^Q=\gamma_s$ and $a$ is tamely ramified by (10.15).
 \end{proof}
 
-\begin{lemma}{Theorem 10.18}  For $p > e_G+1$, $\Delta_0(\gamma_H,
+\begin{cthm}{Theorem 10.18}  For $p > e_G+1$, $\Delta_0(\gamma_H,
 \gamma_G) = \Delta_{0,\varep}(	\gamma_H,\gamma_G)$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof} $\Delta_0(\gamma_H,\gamma_G) =
 {\Delta_0(\gamma_H^{Q^2},\gamma_G^{Q^2})}/{|Q|^m}$.
@@ -1456,20 +1493,20 @@ semisimple part of $\gamma_G$ (or $\gamma_H$).
 
 
 
-\section{11. Central Characters}
+\section{Central Characters} %11
 
 We identify $Z^0 = Z^0_G$ canonically with a subgroup of
 $Z_H$.
-\begin{lemma}{Lemma 11.1} For $z\in Z^0$, we have $\Delta(z\hgam,z\ggam)
+\begin{cthm}{Lemma 11.1} For $z\in Z^0$, we have $\Delta(z\hgam,z\ggam)
 =\langle a,z\rangle\Delta(\hgam,\ggam)$,
  where $a\in H^1(W_F,\widehat T(\Com))$ is computed
 relative to any $\hgam,T_H\to T$, etc.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  \cite{\LANGLANDSO}.\end{proof}
 
-\begin{lemma}{Lemma 11.2}  $\langle a,\cdot \rangle$ is an unramified
-character on every unramified Cartan subgroup $T_H$ of $H$.\end{lemma}
+\begin{cthm}{Lemma 11.2}  $\langle a,\cdot \rangle$ is an unramified
+character on every unramified Cartan subgroup $T_H$ of $H$.\end{cthm}
 
 \begin{proof}  %By (11.1) we may 
 %compute $\langle a,z\rangle$  using the maximally split Cartan subgroup of $H$. 
@@ -1505,11 +1542,11 @@ $E^\times$ is trivial.
 %\qquad
 %\what T_{der} =\what T_H\cap(\what G)_{der}$
 
-%\begin{lemma}{Lemma 11.2}  If $a_1,a_2$ are unramified 
+%\begin{cthm}{Lemma 11.2}  If $a_1,a_2$ are unramified 
 %cocycles in $H^1(W_{E/F},\what T)$ with
 %equal images in $H^1(W_{E/F},\what S)$, then
 %they are equal in $H^1(W_{E/F},\what Z_G)$.
-%\end{lemma}
+%\end{cthm}
 
 %\begin{proof} Let $\what G$  be a semisimple group with $L$-group
 %$\what G_{der}$, and let $\tild T$ be a torus in
@@ -1570,9 +1607,9 @@ Pick $z\in \Bbb T_d(F) \cap Z_G^0$.
 Define $R^G_z$ for $z\in Z_G(F)$ by $(R^G_zf)(x) = f(xz)$, and
 define $R_z^H$ analogously on $C_c^\infty(H)$.
 
-\begin{lemma}{Lemma 11.3}  For $z\in\Bbb T_d(F) \cap Z_G^0$,
+\begin{cthm}{Lemma 11.3}  For $z\in\Bbb T_d(F) \cap Z_G^0$,
 we have $R_z^H\mathcal{ H}(f) = \langle a,z\rangle\mathcal{ H}(R_z^Gf)$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}
 Tracing the identifications through using \cite{\MACDONALD}
@@ -1621,15 +1658,15 @@ $r_p$, $n_G$).  Hence $a_G = a_Ha$ in $H^1_{un}(W_{E/F},\what Z_G)$.
 
 \vfil\eject
 \centerline{\bf PART III.  ORBITAL INTEGRALS}\vskip3pc
-\section{12.  Harish-Chandra Descent}
+\section{Harish-Chandra Descent} %12
 
 Suppose we have a commutative diagram
 $$
-\CD
+\begin{CD}
 {}^LH @>\xi>> {}^LG\\
 @AAA  @AAA\\
 {}^L{H_M} @>{\xi_M}>> {}^LM
-\endCD
+\end{CD}
 $$
 where $M$ is a Levi factor of a parabolic subgroup 
 of $G$.  Let $\mathcal{ H}_B^A$ be the map from the Hecke algebra of A to the Hecke algebra
@@ -1670,7 +1707,7 @@ for $z\hgam$ from the
 fundamental lemma for $\hgam$. 
 
 \vskip3pc
-\section{13. Descent for Absolutely Semisimple Elements}
+\section{Descent for Absolutely Semisimple Elements} %13
 
 We will apply descent arguments to $\gamma=\gamma_s\gamma_u$
 noting that every element is either topologically unipotent ($\gamma_s=1$) 
@@ -1678,13 +1715,13 @@ or contained in the centralizer $C_G(\gamma_s)^0$
 of a nontrivial semisimple element.  The following version of Kazhdan's lemma,
 found in
 Kottwitz \cite{\KOTTWITZS}, is essential. 
-\begin{lemma}{Lemma 13.1}  Let $\varepsilon\in G(O_F)$ be
+\begin{cthm}{Lemma 13.1}  Let $\varepsilon\in G(O_F)$ be
 absolutely semisimple. Then $G_{\varepsilon}$ is quasi-split
 and splits over an unramified extension.  Also $G_{\varepsilon}$
 is naturally defined over $O_F$ as well as the inclusion $G_\varepsilon\subseteq G$.
 $G_{\varepsilon}(O_F)$ is hyperspecial.  Finally, if $\varepsilon^h\in G(O_F)$ then
 $h\in G_\varepsilon(\overline F) G(O_F)$.
-\end{lemma}
+\end{cthm}
 
 Let $\gamma\in G(O_F)$ be a strongly
 regular element with absolutely semisimple part $\varepsilon$.  
@@ -1703,11 +1740,11 @@ Let $dh$ be an invariant measure on $G_{\varepsilon}$, and suppose
 that $dt\ d\dot h = dh$ (same $dt$ as above). Set
 $f_2=\frac{\Char G_{\varepsilon}(O_F)}{\Vol(G_{\varepsilon}(O_F),dh)}$.
 Let $\kappa_\varepsilon$ be the restriction of $\kappa$ to $G_\varepsilon$.  Then
-\begin{lemma}{Lemma 13.2}  Under the assumptions given above,
+\begin{cthm}{Lemma 13.2}  Under the assumptions given above,
 $$
 \Phi_{T,G}^\kappa(\gamma,f_1) = \Phi_{T,G_\varepsilon}^{\kappa_\varepsilon}(\gamma,f_2).
 $$
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  Same as \cite{\HALESU}, replacing Kazhdan's lemma by (13.1).
 \end{proof}
@@ -1716,7 +1753,7 @@ Combined with (10.18), this shows that the fundamental lemma for the identity of
 Hecke algebra follows from the fundamental lemma for topologically unipotent elements.
 
 \vskip3pc
-\section{14. Regular Unipotent Orbital Integrals}
+\section{Regular Unipotent Orbital Integrals} %14
 
 It can be easily seen that the canonical normalization of transfer factors is the
 correct normalization for the fundamental lemma by comparing the orbital integrals
@@ -1741,17 +1778,21 @@ root $\alpha$ a character $\kappa^\alpha:F_\alpha\to\Com^\times$
 where $F_\alpha$ is the field extension of $F$ over which
 the root $\alpha$ becomes fixed by the Galois group.
 We recall the definition.  We have a sequence
-$$
+\begin{align*}
+\begin{CD}
 F^\alpha
 @>{\varphi_\alpha}>>
 \Bbb T_{G,\adj}(F) @>>>
 \Bbb T_{G,\adj}(F)/\Bbb T_G(F)
-@>\delta>>
+\end{CD}\qquad\qquad\qquad\qquad\qquad\qquad\\
+\begin{CD}
+\text{}\qquad\qquad @>\delta>>
 H^1(\Gal(E/F),Z_G)
 @>>>
 H^1(\Gal(E/F),\Bbb T_H)
 @>\kappa>> \Com^\times.
-$$
+\end{CD}
+\end{align*}
 The composite of these maps is $\kappa^\alpha$.  Here
 $\varphi_\alpha$ is defined by
 $$
@@ -1839,7 +1880,7 @@ Then integrating $f$ as in \cite{{\HALESU,\HALESO}} we obtain:
 %$$
 %Thus we have proved:
 
-\begin{lemma}{Lemma 14.1}
+\begin{cthm}{Lemma 14.1}
 $$
 \mu_{\reg}^\kappa(\Char(K))=
 \frac{|\tild G|}{|\tild B||\tild N|}
@@ -1853,15 +1894,15 @@ $$
 (q_\alpha-1)}
 {(q_\alpha-\zeta_\alpha)}.
 $$
-\end{lemma}
+\end{cthm}
 
 Set $1_G={\Char(G(O_F))}/{[G]}$ for any
 unramified group $G$ over $O_F$.  The main result of this section
 is
 
-\begin{lemma}{Proposition 14.2} $\mu_{\reg}^\kappa(1_G)
+\begin{cthm}{Proposition 14.2} $\mu_{\reg}^\kappa(1_G)
 = {[\Bbb T_H]}^{-1} =\mu_{\reg}^{st}(1_H)$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  If $\kappa = 1$, $H = G$ then by 
 (14.1), $\mu_{\reg}^\kappa(1_G)=
@@ -1872,21 +1913,21 @@ $$
 \frac{(q_\alpha-1)}{(q_\alpha-\zeta_\alpha)}.
 $$
 Thus it is enough to show that
-$$
+\begin{equation}\tag{14.3}
 [\Bbb T_G]/[\Bbb T_H]
-=\prod_\CurlyS(q_\alpha-1)/\prod_\CurlyS(q_\alpha-\zeta_\alpha).\taglet{14.3}
-$$
+=\prod_\CurlyS(q_\alpha-1)/\prod_\CurlyS(q_\alpha-\zeta_\alpha).
+\end{equation}
 \end{proof}
 
 The possibilities for $F_{\alpha}$, $\kappa^\alpha$ 
 were calculated in \cite{\HALEST,VI-2,3}.
 We begin with a special case:
 
-\begin{lemma}{Lemma 14.4}  If the connected dual $\what G$ of $G$ 
+\begin{cthm}{Lemma 14.4}  If the connected dual $\what G$ of $G$ 
 is simply connected, 
 then $[\Bbb T_G] = [\Bbb T_H]$, and
 $\kappa^\alpha =1$ for all $\alpha$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof}  
 In this case $\Bbb T_G = \Bbb T_H$.  By the formula
@@ -1897,7 +1938,7 @@ for all $\alpha$.
 We let $Fr$ be the Frobenius map $G\to G$ for $G$ a reductive group over $\Bbb F_q$.
 According to  \cite{\CARTER,3.3.5}:
 
-\begin{lemma}{Lemma 14.5}  Let $T$ be an $Fr$-stable maximal torus of
+\begin{cthm}{Lemma 14.5}  Let $T$ be an $Fr$-stable maximal torus of
 $G/\Bbb F_q$ obtained from the maximally split torus $T_0$ by
 twisting with the Weyl group element $\omega$.  
 Then the order of $T^{Fr}$ is given by
@@ -1910,13 +1951,13 @@ ${}^{Fr_0}(\chi)(t) =\chi(Fr_0(t))$, $\chi\in Y$.)
 Moreover, if we write $Fr=qFr_0$ where $q>1$ and $Fr_0$ has 
 finite order then $|T^{Fr}| = \chi(q)$ where $\chi$ is the 
 characteristic polynomial of $Fr_0^{-1}\omega$ on $Y_0\otimes \Re$.
-\end{lemma}
+\end{cthm}
 
 Now to prove (14.3) we may work with adjoint groups.
 
-\begin{lemma}{Lemma 14.6} $[\Bbb T_G] =\prod_\CurlyS(q_\alpha -1)$ for adjoint groups
+\begin{cthm}{Lemma 14.6} $[\Bbb T_G] =\prod_\CurlyS(q_\alpha -1)$ for adjoint groups
 $G$.
-\end{lemma}
+\end{cthm}
 
 \begin{proof} In the general case $[\Bbb T_G]=
 \prod_\alpha(q-\lambda_\alpha)$ where $\lambda_\alpha$
@@ -1951,16 +1992,18 @@ diagrams and the extended diagrams of the dual.  These diagrams are
 described below completing
 the proof of (14.2).
 \bigskip
-\centerline{\bf Split Groups}\bigskip
 
-\section{Type $A_n$}
+\centerline{\bf Split Groups}
+\bigskip
+
+\subsection{Type $A_n$}
 The extended Dynkin diagram of the Langlands dual to $A_n$ is an
 $n+1$-gon.  The automorphism $\omega$ acts by rotation of the $n+1$-gon.
 The characteristic polynomial is $X^{n+1}-1$.  The vertices of the
 Dynkin diagram of $A_n$ are labelled $\zeta$, $\zeta^2,\ldots,\zeta^n$.
 This gives the polynomial $$\prod_{i=1}^n(X-\zeta^i) = (X^{n+1}-1)/(X-1).$$
 
-\section{Type $B_n$}
+\subsection{Type $B_n$}
 The extended Dynkin diagram of the dual to $B_n$ is $C_n^{\aff}$.  This extended
 dual
 diagram has an automorphism of order two interchanging the long roots
@@ -1972,7 +2015,7 @@ the polynomial
 $$\prod_{i=1}^n (X-\zeta^i) = \begin{cases} (X^2-1)^{(n+1)/2}/(X-1) & \text{if $n$ is odd}\\
 				(X^2-1)^{n/2}& \text{if $n$ is even.}\end{cases}
 $$
-\section{Type $C_n$}
+\subsection{Type $C_n$}
 The extended Dynkin diagram of the dual to $C_n$ is $B_n^{\aff}$.  The
 extended dual
 diagram has an automorphism of order 2 interchanging two vertices
@@ -1982,7 +2025,7 @@ The short vertices of the Dynkin diagram of $C_n$ are all labelled $1$.
 The long vertex is labelled $\zeta=-1$.  This gives the polynomial
 $(X^2-1)(X-1)^{n-2}$.
 
-\section{Type $D_n$}
+\subsection{Type $D_n$}
 The extended Dynkin diagram of the dual to $D_n$ is $D_n^{\aff}$.  Here there
 are several choices of automorphisms of the dual diagram.  Not all possibilities
 are realizable for the split group and we refer the reader below to
@@ -1992,7 +2035,7 @@ we may distinguish the automorphisms by whether they interchange the two
 $D_k$ subdiagrams, and by whether they act as outer automorphisms on the
 individual $D_k$ subdiagrams.
 
-\section{Type $D_n$, Automorphism I}
+\subsection{Type $D_n$, Automorphism I}
 The extended diagram $D_n^{\aff}$ has an automorphism of order two
 preserving each $D_k$ subdiagram but acting as an outer automorphism on 
 each factor.  This gives the characteristic polynomial $(X^2-1)^2(X-1)^{n-3}$.
@@ -2001,7 +2044,7 @@ $1$.  The remaining two vertices are labelled $\zeta=-1$.  This gives
 the polynomial
 $(X^2-1)^2(X-1)^{n-3}/(X-1)$.
 
-\section{Type $D_n$, Automorphism II, ($n=2\ell+1$ is odd)}
+\subsection{Type $D_n$, Automorphism II, ($n=2\ell+1$ is odd)}
 The extended diagram $D_n^{\aff}$ has an automorphism of order four
 interchanging the $D_k$ subdiagrams; the square of the automorphism is
 the automorphism described in the previous case.  This gives the characteristic
@@ -2010,7 +2053,7 @@ of $D_n$ of type $A_{n-2}$ are labelled $\zeta^i$, $\zeta=-1$.  The
 remaining two vertices are labelled $\zeta=i,-i$.  This gives the polynomial
 $(X^4-1)(X^2-1)^{\ell-1}/(X-1)$.
 
-\section {Type $D_n$, Automorphism III, ($n=2\ell$ is even)}
+\subsection {Type $D_n$, Automorphism III, ($n=2\ell$ is even)}
 The extended diagram $D_n^{\aff}$ has an automorphism of order two
 interchanging the $D_k$ subdiagrams.  This gives the characteristic
 polynomial $(X^2-1)^\ell(X-1)$.  The vertices of the subdiagram of $D_n$
@@ -2018,7 +2061,7 @@ of type $A_{n-2}$ are labelled $\zeta^i$, $\zeta=-1$.  The remaining
 two vertices are labelled $\zeta=1,-1$.  This gives the polynomial
 $(X^2-1)^\ell$.
 
-\section {Type $E_6$}
+\subsection {Type $E_6$}
 The extended dual
 diagram $E_6^{\aff}$  has an automorphism of order 3, fixing one vertex.  This gives
 the characteristic polynomial $(X^3-1)^2(X-1)$.  The vertices of the
@@ -2026,7 +2069,7 @@ Dynkin diagram of $E_6$ are labelled $\zeta,\zeta^2,1,\zeta,\zeta^2,1$
 where $\zeta$ is a cube root of unity.  This gives the polynomial
 $(X^3-1)^2$.
 
-\section {Type $E_7$}
+\subsection {Type $E_7$}
 The extended dual
 diagram has an automorphism of order two.  This gives the characteristic
 polynomial $(X^2-1)^3(X-1)^2$.    The vertices of the Dynkin diagram of
@@ -2041,7 +2084,7 @@ no automorphisms.
 
 \centerline{\bf Quasisplit Groups}
 
-\section{Type ${}^2A_{2n}$}
+\subsection{Type ${}^2A_{2n}$}
 The extended dual diagram is a $2n+1$-gon and 
 has an automorphism acting by reflection.  This gives the
 characteristic polynomial $(X^2-1)^n(X-1)$.   The diagram for ${}^2A_{2n}$
@@ -2049,11 +2092,11 @@ has $2n$ vertices arranged into $n$ orbits of two vertices each.  The
 labels on all the vertices are 1.  This gives the polynomial
 $(X^2-1)^n$.
 
-\section{Type ${}^2A_{2n+1}$}
+\subsection{Type ${}^2A_{2n+1}$}
 The extended Dynkin diagram of the dual to $A_{2n+1}$ is a $2n+2$-gon.
 There are two possibilities.
 
-\section{Type ${}^2A_{2n+1}$, Automorphism I}
+\subsection{Type ${}^2A_{2n+1}$, Automorphism I}
 The extended dual diagram has an automorphism of order two acting by
 reflection whose axis passes through two opposite vertices.  This
 gives the characteristic polynomial $(X^2-1)^n(X-1)^2$.    The diagram
@@ -2062,7 +2105,7 @@ into $n$ orbits of two vertices each, and a final vertex belongs to
 an orbit of its own.   The labels on all the vertices are $1$.  This
 gives the polynomial $(X^2-1)^n(X-1)$.
 
-\section{Type ${}^2A_{2n+1}$ Automorphism II}
+\subsection{Type ${}^2A_{2n+1}$ Automorphism II}
 The extended dual diagram has an automorphism of order two acting
 by a reflection whose axis passes through the midpoints of two opposite
 edges.  This gives the characteristic polynomial $(X^2-1)^{n+1}$.
@@ -2070,7 +2113,7 @@ The diagram for ${}^2A_{2n+1}$ is as in the previous case, except that
 the label on the solitary vertex is $\zeta=-1$.  This gives the
 polynomial $(X^2-1)^{n+1}/(X-1)$
 
-\section{Type ${}^2D_{2n}$}
+\subsection{Type ${}^2D_{2n}$}
 The extended dual diagram has an automorphism of order four similar
 to that in Type $D_n$, Automorphism II described above.  This gives
 the characteristic polynomial $(X^4-1)(X^2-1)^{n-2}(X-1)$.  The
@@ -2081,7 +2124,7 @@ The label on the orbit with two vertices is $-1$.  This gives the
 polynomial
 $(X^4-1)(X^2-1)^{n-2}$.
 
-\section{Type ${}^2D_{2n+1}$}
+\subsection{Type ${}^2D_{2n+1}$}
 The extended dual diagram has an automorphism of order two described
 above in Type $D_n$, Automorphism III.  This gives the characteristic
 polynomial $(X^2-1)^{n+1}$.  The Dynkin diagram is the same as in the
@@ -2089,7 +2132,7 @@ previous case, except that the label on the orbit of two vertices is
 $\zeta=1$.  This gives the polynomial
 $(X^2-1)^{n+1}/(X-1)$.
 
-\section{Type ${}^3D_4$}
+\subsection{Type ${}^3D_4$}
 The automorphism of order three on the extended dual 
 diagram $D_4^{\aff}$ fixes
 two vertices and permutes the remaining three.  This gives
@@ -2098,7 +2141,7 @@ of ${}^3D_4$ has 4 vertices arranged into two orbits of one and three
 vertices.  The labels are all one.  This gives the polynomial
 $(X^3-1)(X-1)$.
 
-\section{Type ${}^2E_6$}
+\subsection{Type ${}^2E_6$}
 The automorphism of order two on the extended dual diagram $E_6^{\aff}$
 has characteristic polynomial $(X^2-1)^2(X-1)^3$.  The diagram
 ${}^2E_6$ has six vertices broken into four orbits of one, one, two and
@@ -2107,7 +2150,7 @@ $(X^2-1)^2(X-1)^2$.
 
 \bigskip
 
-\end{document}
+
 
 \Refs
 

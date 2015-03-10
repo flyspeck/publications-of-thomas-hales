@@ -2,7 +2,7 @@
 % The Subregular Germ of Orbital Integrals
 % Thomas C. Hales
 
-%% XX issues.
+%% XX issues:
 %% \definition ... \enddefinition marks many equations, comments, etc.
 %% unnumbered remarks throw off count.
 %% fix bibliography.
@@ -21,9 +21,11 @@
 
 %tikz graphics
 %\usepackage{xcolor} % to remove color.
-\usepackage{tikz} % Needs pgf version >= 2.10.
-\usetikzlibrary{chains,shapes,arrows,shadings,trees,matrix,positioning,intersections,decorations,
-  decorations.markings,decorations.pathmorphing,backgrounds,fit,calc,fadings,decorations.pathreplacing}
+\usepackage{tikz} 
+\usetikzlibrary{chains,shapes,arrows,shadings,trees,matrix,%
+  positioning,intersections,decorations,%
+  decorations.markings,decorations.pathmorphing,backgrounds,%
+  fit,calc,fadings,decorations.pathreplacing}
 %\usepackage{tikz-cd} % commutative diagrams.
 
 % fonts
@@ -2338,10 +2340,10 @@ z_1' = z(W_+,\beta)&\qquad z_2' = z(W(\sigma_\beta),\alpha)& z_3' = z(W(\sigma_\
 (0,0) 
 -- ++(0:0.5)
 -- node[above]{$W(\sigma_\beta\sigma_\alpha\sigma_\beta)$} ++(0:0.5) node[below,right]{$z_3'$} 
--- node[left,above]{$W(\sigma_\alpha\sigma_\beta)$\phantom{XXXXX}} ++(60:0.5) node[below,right]{$z_2'$} 
+-- node[left,above]{$W(\sigma_\alpha\sigma_\beta)$\phantom{UUUUU}} ++(60:0.5) node[below,right]{$z_2'$} 
 -- node[above,left]{$W(\sigma_\beta)$} ++(60:0.5) node[right]{$z_1'$} 
 -- node[below,left]{$W_+$} ++(120:0.5) node[above,right]{$z_1$}
--- node[left,below]{$W(\sigma_\alpha)$\phantom{XXXl}} ++(120:0.5) node[above]{$z_2$}
+-- node[left,below]{$W(\sigma_\alpha)$\phantom{UUUl}} ++(120:0.5) node[above]{$z_2$}
 -- node[below]{$W(\sigma_\beta\sigma_\alpha)$} ++(180:0.5) node[above]{$z_3$}
 -- node[below]{$W(\sigma_\alpha\sigma_\beta\sigma_\alpha)$} ++(180:0.5) 
 -- ++(240:1) --cycle;
@@ -4807,7 +4809,7 @@ There are $\langle{-\beta},{\alpha}\rangle$ lines of type ${\beta}$ intersecting
 each line of type
 ${\alpha}$.
 
-%XXD
+%
 \begin{figure}[htb]
 \centering
 \begin{tikzpicture}[>=angle 90,scale=1]
