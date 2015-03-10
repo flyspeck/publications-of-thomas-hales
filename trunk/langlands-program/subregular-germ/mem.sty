@@ -1,0 +1,156 @@
+%-----------------------------------------------------------------------------
+% Beginning of mem.sty
+%-----------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This file is designed to work with AMS-TeX version 2.0.
+%
+% The TeX code defined here will modify the AMS-TeX 2.0 preprint style to
+% the Memoirs style.  It sets up the correct page size,
+% puts a logo and a copyrightline on the first page, and formats the
+% top matter, headings and references appropriately.
+%
+%
+% Instructions:
+%
+%  1. Create a file named  mem.sty containing the data in the lines
+%     from  %%% mem.sty %%%  through  \endinput .  Install the file
+%     in the same directory as amsppt.sty .
+%
+%  2. In a data file, include the line, \documentstyle{mem}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%  First input the preprint style
+
+\def\next{AMSPPT}\ifx\styname\next \endinput
+  \else\input amsppt.sty\fi
+
+
+\catcode`\@=11
+
+
+%  Set the page size 
+
+\pagewidth{29pc}
+
+\def\curraddr{\nofrills@{\eightpoint{\it Current address\/}:\enspace}\curraddr@
+  \DNii@##1\endcurraddr{%
+  \expandafter\gdef\csname curraddr\number\addresscount@\endcsname
+  {\def\usualspace{{\it\enspace}}\smallskip\noindent\eightpoint\curraddr@
+  \ignorespaces##1\par}}%
+ \FN@\next@}
+
+
+\def\author#1\endauthor{\global\setbox\authorbox@
+  \vbox{\titless\baselineskip2\baselineskip\noindent\ignorespaces#1\endgraf}
+}
+
+\font\titless=cmss17
+\font\smss=cmss12
+\def\titlepage{\def\\{\hfill\break}
+  \def\title##1\endtitle{\global\setbox\titlebox@\vtop{\titless
+    \noindent\ignorespaces
+    \baselineskip2\baselineskip{##1}\endgraf}}}
+
+\outer\def\endtitlepage{%
+ {\smss Memoirs of the American Mathematical Society}
+  \vskip1in
+  \preauthor
+  \ifvoid\authorbox@\else \vskip1pc plus1pc \unvbox\authorbox@\fi
+  \vskip2pc
+  \box\titlebox@
+  \vfill\end
+}
+
+\def\chapterno@{\the\chaptercount@}
+
+\def\thanks#1\endthanks{\vskip2pc\noindent\ignorespaces#1.\unskip}
+\def\keywords{\nofrills@{\vskip2pc\noindent{\it Key words and 
+  phrases.\enspace}}\keywords@
+  \DNii@##1\endkeywords{\keywords@\ignorespaces##1\unskip.}%
+  \FN@\next@}
+\def\subjclass{\nofrills@{\vskip2pc\noindent{\rm1991 {\it Mathematics Subject
+   Classification}.\enspace}}\subjclass@
+ \DNii@##1\endsubjclass{\subjclass@\ignorespaces##1\unskip.}%
+ \FN@\next@}
+
+\outer\def\endtopmatter{\runaway@{abstract}%
+ \edef\next{\the\leftheadtoks}\ifx\next\empty
+  \expandafter\leftheadtext\expandafter{\the\rightheadtoks}\fi
+  \pretitle
+  \box\titlebox@
+  \prepaper
+  \vskip2pc plus1pc
+  \topskip10pt% reset to normal value
+}
+{\def\title#1\endtitle{\relax}
+ \def\chapter#1{\relax}\def\specialhead{\relax}\def\head#1\endhead{\relax}
+ \def\subhead{\relax}\def\subsubhead{\relax}
+\gdef\newtocdefs{%
+   \def \title##1\endtitle
+       {\penaltyandskip@\z@\smallskipamount
+        \hangindent\wd\tocheadbox@\noindent{##1}}%
+   \def \chapter##1{%
+        Chapter {##1.\unskip}\enspace}%
+   \def \specialhead##1\endspecialhead
+       {\par\hangindent\wd\tocheadbox@ \noindent##1\par}%
+   \def \head##1 ##2\endhead
+       {\par\hangindent\wd\tocheadbox@ \noindent
+        \if\notempty{##1}\hbox to\wd\tocheadbox@{\hfil##1\enspace}\fi
+        ##2\par}%
+   \def \subhead##1 ##2\endsubhead
+       {\par\vskip-\parskip {\normalbaselines
+        \advance\leftskip\wd\tocheadbox@
+        \hangindent\wd\tocsubheadbox@ \noindent
+        \if\notempty{##1}\hbox to\wd\tocsubheadbox@{##1\unskip\hfil}\fi
+         ##2\par}}%
+   \def \subsubhead##1 ##2\endsubsubhead
+       {\par\vskip-\parskip {\normalbaselines
+        \advance\leftskip\wd\tocheadbox@
+        \hangindent\wd\tocsubheadbox@ \noindent
+        \if\notempty{##1}\hbox to\wd\tocsubheadbox@{##1\unskip\hfil}\fi
+        ##2\par}}}
+}
+
+\outer\def\subhead{\nofrills@{.\enspace}\subhead@
+ \DNii@##1\endsubhead{\par\penaltyandskip@{-100}\subheadskip
+  {\usualspace@{{\subheadfont@\enspace}}%
+ \subheadfont@\ignorespaces##1\unskip\subhead@}\ignorespaces}%
+ \FN@\next@}
+    
+\def\Monograph{\monograph@true% \let\headmark\rightheadtext
+  \let\varindent@\indent \def\headfont@{\bf}\def\proclaimheadfont@{\smc}%
+  \def\demoheadfont@{\smc} \topskip7pc}
+
+%  Roman type is needed within the statement of theorems for numerals,
+%  fences, labels, etc.  This definition should ultimately be in amsppt.sty.
+
+\def\rom#1{{\rm #1}}
+
+\outer\def\enddocument{%
+ \runaway@{proclaim}%
+\ifmonograph@  \count@\z@ \loop\ifnum\count@<\addresscount@\advance\count@\@ne
+ \csname address\number\count@\endcsname
+ \csname email\number\count@\endcsname
+ \repeat
+\else
+ \nobreak
+ \thetranslator@
+ \count@\z@ \loop\ifnum\count@<\addresscount@\advance\count@\@ne
+ \csname address\number\count@\endcsname
+ \csname email\number\count@\endcsname
+ \repeat
+\fi
+ \vfill\supereject\end}
+\catcode`\@=13
+
+
+\def\amsversion{2.0}
+\Monograph
+\endinput                                 
+
+%-----------------------------------------------------------------------------
+% End of mem.sty
+%-----------------------------------------------------------------------------

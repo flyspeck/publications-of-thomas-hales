@@ -1,28 +1,70 @@
-\input vanilla.sty
-\scaletype{\magstep1}
-\overfullrule=0pt
-\pagewidth{6.9 truein}
-\pageheight{9.875 truein}
-\hcorrection{-.2in}
-\vcorrection{-.5in}
-\nopagenumbers
+% Paper "Shalika Germs on GSp(4)"
+% Author: Thomas C. Hales
+% Hales, Thomas C. "Shalika germs on GSp (4)." Astérisque 171-72 (1989): 195-256.
+%
+
+\documentclass{amsart}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amsrefs}
+\usepackage{tikz} 
+\usetikzlibrary{chains,shapes,arrows,shadings,trees,matrix,%
+  positioning,intersections,decorations,%
+  decorations.markings,decorations.pathmorphing,backgrounds,%
+  fit,calc,fadings,decorations.pathreplacing}
+
+\begin{document}
+
+\newcommand{\dsize}{\displaystyle} 
+\newcommand{\wasacaption}[1]{#1}
+
+\font\smc=cmcsc10
+\def\proclaim#1{\medbreak\medskip\noindent 
+  {\smc#1.\enspace}\sl} 
+\def\endproclaim{\par\rm 
+  \ifdim\lastskip<\medskipamount\removelastskip 
+  \penalty55\medskip\fi} 
+
+
+\def\smalldot#1{\draw[fill=black] (#1) node [inner sep=1.3pt,shape=circle,fill=black] {}}
+\def\graydot#1{\draw[fill=gray] (#1) node [inner sep=1.3pt,shape=circle,fill=gray] {}}
+\def\whitedot#1{\draw[fill=gray] (#1) node [inner sep=1.3pt,shape=circle,fill=white,draw=black] {}}
+
+
+\title{Shalika Germs on $GSp(4)$}
+\author{Thomas C. Hales}
+\address{Harvard University}
+\thanks{Ast\'erisque 171-72 (1989): 195--256.}
+\thanks{This preprint version differs slightly from the published version.}
+
+
+%\input vanilla.sty
+%\scaletype{\magstep1}
+%\overfullrule=0pt
+%\pagewidth{6.9 truein}
+%\pageheight{9.875 truein}
+%\hcorrection{-.2in}
+%\vcorrection{-.5in}
+%\nopagenumbers
 \baselineskip = 18pt
+%\hrule height0pt width6true in
+%\vskip 1.3true in
 
-\hrule height0pt width6true in
-\vskip 1.3true in
-
-\heading
+%\heading
 %\title 
-Shalika Germs on $GSp(4)$
+%Shalika Germs on $GSp(4)$
 %\endtitle
-\endheading
+%\endheading
 
-\heading
-Thomas C. Hales
-\endheading
+%\heading
+%Thomas C. Hales
+%\endheading
 
-\vskip .8in
+%\vskip .8in
 
+\begin{abstract}
 This paper calculates all of the Shalika germs of the group  $GSp(4)$  and its
 inner forms over a local $p$-adic field of characteristic zero.  As a 
 consequence we conclude that the conjectures of  Langlands and Shelstad [LS2],
@@ -32,6 +74,9 @@ forms.  A further consequence is that all stable germs associated to the non-spe
 unipotent class are identically zero.  More generally, when  $G = Sp(4)$  or one
 of its inner forms we show that the germs associated to the regular and subregular
 unipotent classes satisfy the conjectures of Langlands and Shelstad.
+\end{abstract}
+
+\maketitle
 
 \S 1 \quad A Review of Igusa Theory
 
@@ -51,9 +96,8 @@ unipotent classes satisfy the conjectures of Langlands and Shelstad.
 %\pagebreak
 \vskip .4in
 
-\heading
-\S 1.~~ A Review of Igusa Theory
-\endheading
+\section{A Review of Igusa Theory}
+
 
 The approach to calculating Shalika germs used here was introduced by R.P. Langlands
 in [L].  This paper fixes the group\ $GSp(4)$\   and studies all of its germs.  This should
@@ -72,15 +116,15 @@ over a local $p$-adic field $F$ of characteristic zero.
 $X$  is smooth outside\ $\varphi^{-1}(x_0)$\  and  $\varphi^{-1}(x_0)$\ is a
 divisor with normal crossings with the property that any irreducible component
 of  $\varphi^{-1}(x_0)$\ with an $F$-rational point is defined over  $F$.  Let
-$\Cal E$ be the set of irreducible components of  $\varphi^{-1}(x_0)$\ defined
-over  $F$.  Let\ $a(E)$\ for\ $E\in {\Cal E}$\ be the multiplicity of $E$  in\
+$\mathcal E$ be the set of irreducible components of  $\varphi^{-1}(x_0)$\ defined
+over  $F$.  Let\ $a(E)$\ for\ $E\in {\mathcal E}$\ be the multiplicity of $E$  in\
 $\varphi^{-1}(x_0)$.
 \vskip .2in
 
 \noindent 3.~~ Let  $\omega$  be a form of maximal degree on  $X$  which is 
 defined over the algebraic closure  $\overline{F}$  of $F$  which is nonvanishing
 and regular outside\ $\varphi^{-1}(x_0)$.\ Write the divisor of $\omega$ as
-$D + \dsize\sum_{E\in{\Cal E}} (b(E)-1)E$\ with\ $b(E)\in{\bold Z}$.  We may
+$D + \dsize\sum_{E\in{\mathcal E}} (b(E)-1)E$\ with\ $b(E)\in{\bold Z}$.  We may
 ignore the term $D$ having no $F$-rational points.
 \vskip .2in
 
@@ -91,20 +135,20 @@ $X \times_{Spec(F)} Spec(E)$.\ Suppose that $t_\sigma$\ defines a cohomology
 class\  $[t_\sigma]_p$\  of  $H^1(Gal(E/F), T(E))$\  for $F$-rational points
 $p$  in a Zariski open set of  $X$  and that\ $p\mapsto [t_\sigma]_p$\ extends to
 a locally constant function on the $F$-rational points of  $X\setminus \varphi^{-1}(x_0)$.
-For any character $\kappa$ of\ $H^1(Gal(E/F), T(E))$\ and divisor  $D\in{\Cal E}$\ we
+For any character $\kappa$ of\ $H^1(Gal(E/F), T(E))$\ and divisor  $D\in{\mathcal E}$\ we
 define a character  $\kappa_D$  of  $F^\times$ ~~ $(\kappa_D:  F^\times \to {\bold C}^\times)$\ as follows.
 Pick local $p$-adic coordinates  $\mu_1,\ldots ,\mu_n$\  over  $F$  at
 $p_0\in D(F)$\ such that\ $\mu_1 = 0$\ defines $D$  locally.  Choose, if possible,
 $\kappa_D$  so that  $\kappa(t_\sigma)/\kappa_D(\mu_1)$\  extends to a function
 constant in a neighborhood of  $p_0$.  If  $p_0$\ lies in no other divisor of
-${\Cal E}$\ then such a character exists and is independent of  $p_0\ \in D(F)$\
+${\mathcal E}$\ then such a character exists and is independent of  $p_0\ \in D(F)$\
 and the choice of local coordinates.
 \vskip .2in
 
 \noindent 5.~~ If $\theta$  is a character of finite order of  $F^\times$ and
-$\beta \in {\bold Q}$  let  ${\Cal E}(\theta,\beta)$\ be the set of divisors in ${\Cal E}$
+$\beta \in {\bold Q}$  let  ${\mathcal E}(\theta,\beta)$\ be the set of divisors in ${\mathcal E}$
 such that  $\theta^{a(E)} = \kappa_E$  and  $b(E)/a(E) = \beta$.  Let  $e(\theta,\beta)$\
-be the maximum number of divisors of  ${\Cal E}(\theta,\beta)$\ with non-empty
+be the maximum number of divisors of  ${\mathcal E}(\theta,\beta)$\ with non-empty
 intersection.
 \vskip .2in
 
@@ -121,44 +165,43 @@ $F$-parameter on $\Gamma$  such that\ $\lambda = 0$\ defines the point
 $x_0$.
 \vskip .2in
 		      
-\pagebreak
+%\pagebreak
 \proclaim{Proposition\ \ 1.1}  In the above situation, for  $|\lambda |$ sufficiently
 small there is an expansion
-
 $$
 F(\lambda)\ {\mathrel{\mathop=^{def}}}\ \int_{\varphi^{-1}(\lambda)} \kappa(t_\sigma)f 
 {\frac{|\omega|}{|\varphi^*(d\lambda)|}} = \sum \theta (\lambda )|\lambda |^{\beta -1}
 \sum^{e(\theta,\beta)}_{r=1} m(\lambda)^{r-1} F_r(\theta,\beta) .
 $$
-The first sum runs over  $(\theta,\beta)$\ with  ${\Cal E}(\theta,\beta)$\
+The first sum runs over  $(\theta,\beta)$\ with  ${\mathcal E}(\theta,\beta)$\
 nonempty.  $F_r(\theta,\beta)$\ is independent of $\lambda$  but depends on
 $r,\theta,\beta,f,\kappa$.
 \endproclaim
 
 
 
-\demo{Proof}  See [L] for a proof and details.  The only difference in our
+\begin{proof}  See [L] for a proof and details.  The only difference in our
 presentation is that [L] incorporates  $\kappa(t_\sigma)$\ directly into the definition
 of  $f$  which is not assumed to be locally constant.  
-\enddemo
+\end{proof}
 
 We also need the explicit
 formula for  $F_r(\theta ,\beta)$\ when\ $e(\theta ,\beta ) = 1,2$.  Begin
 with  $e(\theta ,\beta ) = 1$.  By construction  $\kappa(t_\sigma)/\theta(\lambda)$
-extends generically to  $E \in {\Cal E}$.  Let  $m_{\theta,E}$  be its restriction to
+extends generically to  $E \in {\mathcal E}$.  Let  $m_{\theta,E}$  be its restriction to
 $E$.  By construction $\omega/(\lambda^{\beta -1}d\lambda)$
 extends generically to  $E$.  Let  $\omega_E$  be its restriction.  Since  $\beta$
 is rational  $\omega_E$  is defined up to a root of unity.  Then we have
+\begin{equation}\tag{1.2}
+F_1(\theta,\beta) = \sum_{E\in{\mathcal E}(\theta,\beta)} PV \int_E m_{\theta,E} f |\omega_E|.
+%\tag 1.2
+\end{equation}
 
-$$
-F_1(\theta,\beta) = \sum_{E\in{\Cal E}(\theta,\beta)} PV \int_E m_{\theta,E} f |\omega_E|.
-\tag 1.2
-$$
 
 \noindent A principal value integral is required since  $\omega_E$  may have poles
 and  $m_{\theta,E}$  might not be locally constant.  Now let  $e(\theta,\beta) = 2$.
 We proceed as before but along the intersection of two divisors  $E,E'$  in
-${\Cal E}(\theta,\beta)$\ the forms  $\omega_E$  and  $\omega_{E'}$\  have simple
+${\mathcal E}(\theta,\beta)$\ the forms  $\omega_E$  and  $\omega_{E'}$\  have simple
 poles, and the principal value integrals  $PV \int_E m_{\theta,E} f |\omega_E|$  
 diverge.  The difficulty stems from the fact that the form  $dx/x$  is scale
 invariant.  The problem is overcome by truncating the integral on  $E$  and  $E'$
@@ -170,14 +213,12 @@ $e(\theta,\beta) = 2$  the integrals must be regularized in this manner.
 \proclaim{Lemma\ \ 1.3}  Suppose that  $\lambda = \alpha\mu_1^{a_1} \ldots \mu_n^{a_n}$
 in local $p$-adic $F$-coordinates on a patch $U$ containing\ $p\in D(F), D = E_1 \cap E_2$,
 that  $\mu_i = 0$\ defines $E_i, ~ i = 1,2$, $a_1 = a_2 = 1$, $b_1 = b_2$, and\ 
-$E_i \in {\Cal E}(\theta,\beta)$\, $i = 1,2$,\  for some  $(\theta,\beta)$.  Set
-
+$E_i \in {\mathcal E}(\theta,\beta)$\, $i = 1,2$,\  for some  $(\theta,\beta)$.  Set
 $$
 \omega_D =  Residue_D \omega_{E_1} = \left. {\frac{\omega_{E_1}}{{\frac{d\mu_2}{\mu_2}}}}
 \right|_D = Residue_D \omega_{E_2},~~{\text and}~~m_{\theta,D} = \left. m_{\theta,E_1}\right|_D =
 \left. m_{\theta,E_2}\right|_D.
 $$
-
 \noindent Suppose that  $U$  is chosen small enough that  $m_{\theta,D}f$\ is
 independent of  $\mu_1$  and  $\mu_2$  on\ $U \cap D_1$,\ and\ $|\alpha|$\ is
 constant on  $U$.\ Suppose that the integrals on  $E_i$  are truncated by  $|\mu_i| \ge
@@ -187,18 +228,18 @@ $$
 (1 - {\frac{1}{q}}) \int_U  m_{\theta,D} (1-M) f |\omega_D| .
 $$
 
-\pagebreak
+%\pagebreak
 where  $M = m(\alpha) + a_1m_1 + a_2m_2 + \sum_{i>2} 
 a_im(\mu_i)$.
 \endproclaim
 
-\demo{Proof}  This is a special case of the general formula found in [L].
-\enddemo
+\begin{proof}  This is a special case of the general formula found in [L].
+\end{proof}
 \vskip .4in
 
-\heading
-\S 2.~~ Background on Shalika Germs
-\endheading
+%2
+\section{Background on Shalika Germs}
+
 
 Let $G$  be a reductive group over a $p$-adic local field $F$ of characteristic
 zero, and let  $T$ be a Cartan subgroup over $F$.  For every unipotent orbit
@@ -209,7 +250,6 @@ elements of  $T(F)$  for all unipotent classes $O$  in  $G(F)$  such that for
 every  $f\in C^\infty_c(G)$\ , the space of locally constant functions of
 compact support on  $G(F)$,  there is a neighborhood  $V_f$  of the identity
 element in  $T(F)$  in which the expansion
-
 $$
 \int_{T(F)\setminus G(F)} f(x^{-1}\gamma x)dg = \sum_0 \mu_0(f)\Gamma_0(x)~~
 {\text{holds~for}}~~\gamma~~{\text{regular~in}}~~V_f.
@@ -226,7 +266,6 @@ $f_h$  by  $f_h(x) = f(h^{-1}xh)$.  Let  $\kappa$  be a character on
 $H^1(Gal(\overline{F}/F), T)$. 
 
 We form a $\kappa$-orbital integral and take its germ expansion:
-
 $$
 \Phi^{T,\kappa}(\gamma,f)\ {\mathrel{\mathop =^{def}}}\  \int_{(T\setminus G)(F)}
 \kappa(\sigma(g)g^{-1})f(g^{-1}\gamma g)dg  = \sum_0 \mu_0(f)\Gamma_0^{T,\kappa}(\gamma)
@@ -234,11 +273,10 @@ $$
 $$
 
 \noindent  Comparing the $\kappa$-orbital integrals of  $f$  and  $f_h$  it follows
-easily that
-		     
-$$
-\Gamma^{T,\kappa}_{0^h} = \Gamma_0^{T,\kappa} \kappa(\sigma(h)h^{-1}) . \tag 2.1
-$$
+easily that		     
+\begin{equation}\tag{2.1}
+\Gamma^{T,\kappa}_{0^h} = \Gamma_0^{T,\kappa} \kappa(\sigma(h)h^{-1}) . %\tag 2.1
+\end{equation}
 
 The character  $\kappa$  restricted to  $H^1(Gal(\overline{F}/F),Z)$\ depends only on
 the endoscopic group  $H$  defined by  $(T,\kappa)$  and not directly on  $T$~~(see
@@ -246,21 +284,18 @@ for instance [H]).  For
 background on endoscopic groups see [L2].  We may therefore write 
 for an {\it adjoint} conjugacy class  $O$ (that is, the inverse image of an
 F-orbit in the adjoint group)
-
-$$
+\begin{equation}\tag{2.2}
 \mu^H_{O}\ {\mathrel{\mathop=^{def}}}\ 
-\sum  \mu_{0'} \kappa(\sigma (h) h^{-1})     \tag 2.2
-$$
-
+\sum  \mu_{0'} \kappa(\sigma (h) h^{-1})     %\tag 2.2
+\end{equation}
 \noindent The sum runs over all $F$-classes  $O'$  in the adjoint class, and  $h$  is
 determined by  $O'\ = O_1^h$\ for a fixed $F$-class $O_1$ in $O$.  Using this fixed choice
 $O_1 \subseteq O$\ write  $\Gamma_{O}^{T,\kappa}$  for  $\Gamma_{O_1}^{T,\kappa}$.  
 Then the germ expansion becomes
-
-$$
+\begin{equation}\tag{2.3}
 \Phi^{T,\kappa} (\gamma,f) = \sum_{O~{\text adjoint}} \mu^H_{O}(f)
-\Gamma_{O}^{T,\kappa} (\gamma).  \tag 2.3
-$$
+\Gamma_{O}^{T,\kappa} (\gamma).  %\tag 2.3
+\end{equation}
 
 \noindent  All ordinary orbital integrals may be recovered as linear combinations of
 $\kappa$-orbital integrals.  One advantage of considering $\kappa$-orbital interals instead
@@ -275,30 +310,29 @@ $u\in O$.  If\ $r = 0,1$  the classes are also called regular and
 subregular respectively.  Let  $Z^0_G$  be the connected center of  $G$.   For
 details on normalizations of measures and proofs we refer to [H-Ch] and [R].
 
-\proclaim{Proposition\ \ 2.4}\  (1)~~ If  $z\in Z^0_G(F)$  and  $\gamma\in T(F)$
+\proclaim{Proposition\ \ 2.4}\  
+\begin{enumerate}[label=(\arabic*)]
+\item If  $z\in Z^0_G(F)$  and  $\gamma\in T(F)$
 lie sufficiently close to the identity then\ $\Gamma^{T,\kappa}_{O}(z\gamma)
 = \Gamma^{T,\kappa}_{O}(\gamma)$.
 
-\noindent (2)~~ If  $X\in Lie~G(F)$\  is regular and  $exp(X)$\ is sufficiently
+\item If  $X\in Lie~G(F)$\  is regular and  $\exp(X)$\ is sufficiently
 close to the identity then
-
 $$
-\Gamma^{T,\kappa}_{O} (exp(t^2X)) = |t|^{2(r-r_0)} \Gamma_{O}^{T,\kappa}(exp(X))
+\Gamma^{T,\kappa}_{O} (\exp(t^2X)) = |t|^{2(r-r_0)} \Gamma_{O}^{T,\kappa}(\exp(X))
 $$
-
 \noindent for  $t\in F^\times$  sufficiently small for every  $r$-regular class
 $O$,  $r_0 = (\dim~ G-rank~ G)/2$.
 
-\noindent  (3)~~ Let $M$  be the connected centralizer of a semisimple element
+\item  Let $M$  be the connected centralizer of a semisimple element
 $\gamma_0$  in $T$.  Then for every   $f\in C^\infty_c(G)$\ there exists\
 $f^M \in C_c^\infty(M)$\ such that
-
 $$
 \Phi^T_G(\gamma,f) = \Phi^T_M(\gamma,f^M)
 $$
-
 \noindent for regular elements $\gamma$ in a sufficiently small neighborhood $V_f$
 of $\gamma_0$ in  $T(F)$.
+\end{enumerate}
 \endproclaim
 \vskip .2in
 
@@ -318,7 +352,6 @@ more endoscopic groups associated to the simply connected groups.
 $T_1 \subseteq M_{der}$  for sufficiently small  $\gamma_1\in T_1(F)$,  and
 sufficiently small
 $z_1,z_0 \in Z^0_M(F)$\ we have
-
 $$
 \Phi^T_G(\gamma_1 z_1z_0,f) = \Phi^T_G(\gamma_1 z_0,f)
 $$
@@ -331,19 +364,19 @@ alone instead of $T$.
 and have conjectured that for every\ $f\ \in C_c^\infty(G)$\ there exists a
 function  $f^H\in C_c^\infty(H)$  on the endoscopic group $H$ associated to  $(T,\kappa)$ such that
 identifying Cartan subgroups in $H$ and $G$ we have
-$$
+\begin{equation}\tag{2.8}
 \Delta_G^{T,\kappa} \Phi^{T,\kappa}(\gamma,f)\ {\mathrel{\mathop=^?}}\ 
 \Delta_H^{T,st}\Phi^{T,st}(\gamma,f^H) 
-\tag 2.8
-$$
+%\tag 2.8
+\end{equation}
 
 \noindent for all $(T,\kappa)$  associated to  $H$.  The integral on the right is a
 {\it stable} orbital integral on  $H$  (that is, the character $\kappa$ is trivial).
 We define  $\Delta^{T,\kappa}_G$  for  $\gamma$  regular and sufficiently close
 to $1$  for  $G$  quasi-split by the condition
-$$ 
-\Delta_G^{T,\kappa} \Phi_G^{T,\kappa}(\gamma ,f) = \mu_0^H(f)  \tag 2.9
-$$
+\begin{equation}
+\Delta_G^{T,\kappa} \Phi_G^{T,\kappa}(\gamma ,f) = \mu_0^H(f)  \tag{2.9}
+\end{equation}
 for $0$  the regular adjoint unipotent class and  $f$  supported on regular elements
 of  $G$.  The factor  $\Delta_H^{T,st}$\ is defined similarly.  Implicit in our
 definition of transfer factors is a choice of measure  $\mu_0^H$.\ In [LS2] the
@@ -399,12 +432,10 @@ $G$.
 $S$  torus over  $F$, $T$ Cartan subgroup over $F$, $\kappa$ character on
 $H^1(Gal(\overline{F}/F),T)$\ and for every function\ $f\in C^\infty_c(C(S))$\
 there exists a function\ $f_{qs} \in C^\infty_c(C(S)_{qs})$\ such that
-
 $$
 \Phi^{(T,\kappa)}_{C(S)}(\gamma,f) = \Phi^{(T_{qs},\kappa)}_{C(S)_{qs}}(\gamma_{qs},
 f_{qs})
 $$
-
 \noindent for every  $\gamma\in T'(F)$  (the regular elements of $T$).  We note
 that this condition is independent of the choice of  $T_{qs}$.
 \vskip .2in
@@ -416,7 +447,6 @@ close to the identity such that
 $C_G(s) = C(S)$.  Then there exists a neighborhood $V$ (depending on $f$) of $s$ in
 $T(F)$  and a function $f_{qs}$  in  $C^\infty_c(C(S)_{qs})$\ (depending on  $s$)
 such that
-
 $$
 \Delta_G^{T,\kappa} \Phi^{(T,\kappa)}_G (\gamma,f) = \Delta^{T_{qs},\kappa}_{C(s)_{qs}}
 \Phi^{(T_{qs},\kappa)}_{C(S)_{qs}} (\gamma_{qs},f_{qs})
@@ -424,9 +454,9 @@ $$
 $$
 \endproclaim
 
-\demo{Proof}  This is no more than (2.4.3)  combined with the 
+\begin{proof}  This is no more than (2.4.3)  combined with the 
 definition of  $QSR$.  A few details will make this clear.
-\enddemo
+\end{proof}
 
 Set  $M = C(S)$.        The map  $i:  T \hookrightarrow M$  gives
 $i_*:  H^1(Gal(\overline{F}/F),T) \to H^1(Gal(\overline{F}/F),M)$.  If
@@ -443,7 +473,6 @@ integral on  $G$  is an integral over  $(T\setminus G)(F)$  which breaks up
 as a sum of integrals over the  $X_i$.  First we prove a version of
 the proposition for each  $X_i$, i.e., that there exists $(f_i)_{qs} \in
 C^\infty_c(M_{qs})$  such that
-
 $$
 \int_{(g_i^{-1}X_i)} \kappa_i(\sigma gg^{-1})f(g^{-1}\gamma_ig)dg = 
 \Phi^{T_{qs},\kappa}_{M_{qs}} (\gamma_i, (f_i)_{qs})
@@ -458,8 +487,7 @@ m^i_t$  be representatives in$(T_i\setminus M_i)(F)$.  Then dropping super and
 subscript  $i$'s on  $m^i_j\ \epsilon^i_j,  T_i$  we have, using the definition
 of  $X_i$
 
-$$
-\align
+\begin{align*}
 \int_{g_i^{-1}X_i} & = \sum_j \kappa_i(\epsilon_j) 
 \int_{T^{m_j}(F)\setminus G(F)} f(g^{-1}\gamma_i^{m_j}g)dg\\
 &= \sum_j \kappa_i(\epsilon_j) \int_{T^{m_j}(F)\setminus M_i(F)} 
@@ -467,8 +495,7 @@ f_i(m^{-1} \gamma_i^{m_j}m)dm\qquad (\text{by~2.4.3})\\
 &= \Phi^{T,\kappa}_{M_i} (\gamma_i,f_i)\\
 &= \Phi^{T_{qs},\kappa}_{M_{qs}} (\gamma_{qs},(f_i)_{qs})\qquad {\text{by~the~
 definition~of}}~~QSR  ~~ .
-\endalign
-$$
+\end{align*}
 
 \noindent Thus	 combining the  $X_i$ and  $(f_i)_{qs}$
 $$
@@ -502,7 +529,7 @@ $G = Sp(2n),\ H = Sp(2i)\times SO(2(n-i)),$\ then\ $M = Sp(2i)\times Sp(2(n-i))$
 \proclaim{Lemma\ \ 2.12}  $M_{qs}$  is independent of the choice of  $T\subseteq H$.
 \endproclaim
 
-\demo{Proof}  It is enough to check that  $T$  and  $T' = T_1T'_2$  give the same
+\begin{proof}  It is enough to check that  $T$  and  $T' = T_1T'_2$  give the same
 $M_{qs}$.  Select  $g\in Q(\overline{F})$\ such that\ $T_2^g = T'_2$\quad
 where  $Q =\ C_G(T_1).$\ $C_{C_G(T_2)}(T_1T_2) =
 C_G(T_1T_2) = T_1T_2$\  so  $T_1T_2$  is a Cartan subgroup of  $C_G(T_2)$.
@@ -517,19 +544,19 @@ Since  $T_{der}$  is a Cartan subgroup, $w_\sigma \in T_{der}(\overline{F})$ so 
 $C_G(T_2)_{der}$  and  $C_G(T'_2)_{der}$  are inner forms.  Using
 $TC_G(T_2)_{der} = C_G(T_2),\ \quad TC_G(T'_2)_{der} = C_G(T'_2)$\  the result
 follows easily.
-\enddemo
+\end{proof}
 \vskip .2in
 
 The following simple lemma is the key to what follows.
 
 \proclaim{Lemma\ \ 2.13}  Let  $k$  be any field.  Let  $X,Y$  be sets endowed with
 decreasing filtrations  $X = X_0 \supseteq X_1 \supseteq \ldots , 
-Y = Y_0 \supseteq Y_1 \supseteq \ldots$.  Let  ${\Cal F}_X,{\Cal F}_Y$  be
+Y = Y_0 \supseteq Y_1 \supseteq \ldots$.  Let  ${\mathcal F}_X,{\mathcal F}_Y$  be
 $k$-vector spaces of  $k$-valued functions on  $X$  and  $Y$  respectively.
 Suppose a function  $\varphi$  on  $X\times Y$  has the form
-$\varphi = \sum^p_{i=1} a_ib_i,  a_i\in {\Cal F}_X,  b_i \in {\Cal F}_Y,~~
+$\varphi = \sum^p_{i=1} a_ib_i,  a_i\in {\mathcal F}_X,  b_i \in {\mathcal F}_Y,~~
 i = 1,\ldots ,p$.  Suppose further that there exist functions
-$a'_i \in    {\Cal F}_X,  b'_i \in {\Cal F}_Y,~~i = 1,\ldots ,q$  and an
+$a'_i \in    {\mathcal F}_X,  b'_i \in {\mathcal F}_Y,~~i = 1,\ldots ,q$  and an
 integer $n \ge 0$  such that for every  $x\in X_n$  there is a  $j_x$  such that
 
 $$
@@ -551,7 +578,7 @@ X_{N'} \times Y_{N'} .
 $$
 \endproclaim
 
-\demo{Proof}  Choose  $n_1 \ge n$  so that the dimension of the span of the functions
+\begin{proof}  Choose  $n_1 \ge n$  so that the dimension of the span of the functions
 $\{ a_i\}^p_{i=1}$\ or\ $\{ a'_i\}^q_{i=1}$\ (resp.\ $\{ b_i\}$\  or\ $\{ b'_i\}$)\
 is constant on  $X_i$  (resp.  $Y_i$)  for  $i\ge n_1$.  By combining    terms
 in the sum we may assume that the  $\{ b_i\}$  (resp. the  $\{ a'_i\}$)  are 
@@ -565,11 +592,12 @@ $S = \{ x_1\ldots x_q\}$\  or that\ $b' = A'^{-1}Ab$.\ Set
 $a = (a_1,\ldots ,a_p), \quad a' = (a'_1,\ldots ,a'_q)$.  Suppose there exists
 $x\in X_{n_1}$  such that\ $a(x)-a'(x)A'^{-1}A\ne 0$.\
 Then by the assumed linear independence of the  $b$'s we have on  $Y_j$,\
-~$j\ge max(j_x,n_2)~~0\ne (a(x)-a'(x)A'^{-1}A)b = a(x)b-a'(x)b' = 0$.  This
+~$j\ge \max(j_x,n_2)~~0\ne (a(x)-a'(x)A'^{-1}A)b = a(x)b-a'(x)b' = 0$.  This
 contradiction shows that  $a = a'A'^{-1}A$\ on  $X_{n_1}$.\  Consequently for
-$N = max(n_1,n_2)$\  and on  $X_N\times X_N$,\ $\varphi = \sum a_ib_i = ab =
+$N = \max(n_1,n_2)$\  and on  $X_N\times X_N$,\ $\varphi = \sum a_ib_i = ab =
 a'A'^{-1}Ab = a'b' = \sum a'_ib'_i$.\  For the second statement of the lemma we
 take  $e_{ij} = (A'^{-1}A)_{ij}$.\		     
+\end{proof}
 \vskip .2in
 
 Suppose that up to finite center  $H$  is equal to  $H_1\times H_2$.  Let
@@ -583,31 +611,28 @@ $C(T_1)_{qs}$, again  considered as functions on  $T_2$.
 \proclaim{Proposition\ \ 2.14}\   Suppose G is quasi-split and that the $\kappa$-orbital integrals on  $G$  have
 quasi-split reduction.  Suppose further that $\kappa$-orbital integrals have
 the form
-
 $$
 \varphi\ {\mathrel{\mathop=^{def}}}\ \Delta_G^{T,\kappa}\Phi^{(T,\kappa)}_G(\gamma,f)\ =\
 \sum a_i(\gamma_1)b_i(\gamma_2) \qquad  \gamma = \gamma_1\gamma_2 \qquad 
 \gamma_i \in T_i 
 $$
-
 \noindent in a small neighborhood of the identity  $1 \in T(F)$.  
 
-\noindent (1)\  There exist constants  $e_{ij}$  such that
-
+\begin{enumerate}[label=(\arabic*)]
+\item There exist constants  $e_{ij}$  such that
 $$
 \varphi = \sum_{i,j} A_i (\gamma_1)e_{ij} B_j (\gamma_2)
 $$
+in some possibly smaller neighborhood of the identity.
 
-\noindent  in some possibly smaller neighborhood of the identity.
-
-\noindent (2)\ $\varphi = \Delta^{T,\kappa}_{M_{qs}} \Phi^{T,\kappa}_{M_{qs}}(f^M)$\
+\item $\varphi = \Delta^{T,\kappa}_{M_{qs}} \Phi^{T,\kappa}_{M_{qs}}(f^M)$\
 for some function\ $f^M\in C^\infty_c(M_{qs})$\  on a sufficiently small
 neighborhood of the identity.
-
+\end{enumerate}
 \endproclaim 
 
-\pagebreak
-\demo{Proof}  (1)\ Proposition 2.11 shows that for every  $\gamma_1\in T_1(F)$\ 
+%\pagebreak
+\begin{proof}  (1)\ Proposition 2.11 shows that for every  $\gamma_1\in T_1(F)$\ 
 such that $C_G(\gamma_1) = C(T_1)$ there exists
 a function  $F = F_{\gamma_1}$  such that
 $$
@@ -644,9 +669,11 @@ $$
 \noindent to obtain $\varphi = \sum A_i e_{ij} B_j$\ in some neighborhood
 of the identity.
 
-\noindent (2)\ The germs on  $M_{qs}$  are  $A_iB_j$.\  The result is immediate.\heading
-\S 3.~~ A variety which computes Shalika germs
-\endheading
+\noindent (2)\ The germs on  $M_{qs}$  are  $A_iB_j$.\  The result is immediate.
+\end{proof}
+
+\section{A variety which computes Shalika germs}
+
 
 This section reviews a geometric approach to Shalika germs.
 If  $X$  is a variety over $F$ we often write $x\in X$ instead of $x\in X(\overline{F})$.
@@ -659,12 +686,12 @@ $\Gamma(\lambda)$  is regular for  $\lambda\ne 0$, and let  $\Gamma^0 =
 fits into the diagram
 
 $$
-\matrix	\format \c &\quad\c &\quad\l &\quad\c &\quad\c \\
+\begin{matrix}	%\format \c &\quad\c &\quad\l &\quad\c &\quad\c \\
 \Gamma_0\times T\setminus G & ^{\underrightarrow{i}} & Y_\Gamma &
 ^{\underrightarrow{\pi}} & G \\
 &&\downarrow\varphi \\
 &&\Gamma .
-\endmatrix
+\end{matrix}
 $$
 \vskip .2in
 
@@ -702,22 +729,22 @@ let  $p = |\Phi^+|$  be the number of positive roots and let  $\Delta$  be the
 set of positive simple roots.  Consider the affine space  $\bold{A}^{2p+1}$  the
 coordinates being labelled
 $$
-\matrix \format \c &\quad\l \\
+\begin{matrix} % \format \c &\quad\l \\
 w(\gamma) &  \gamma \in \Phi^+  \\ \vspace{1\jot}
 z(\alpha) & \alpha \in \Delta \\ \vspace{1\jot}
 x(\gamma) & \gamma\in \Phi^+ \\ \vspace{1\jot}
 \lambda & (\text{identifying} ~\lambda~ \text{with~its~ pull-back~to}~Y_\Gamma).
-\endmatrix
+\end{matrix}
 $$
 There is an open set $Y_U = Y_U(B_\infty,B_0)$ of  $Y_\Gamma$  which is isomorphic to an open set of the
 product\ ${\bold A}^p\times Z$\ where\ $Z = Z_\Phi$\ is the Zariski closure in
 ${\bold A}^{2p+1}$\ of the variety defined for $\lambda\ne 0$  by the
 equations
 
-$$\aligned w(\alpha)  &= 1 \quad \alpha\in\Delta,\\
+$$\begin{aligned} w(\alpha)  &= 1 \quad \alpha\in\Delta,\\
 \lambda w(\gamma) &= x(\gamma)\Pi z(\alpha)^{m(\alpha)} \quad \gamma = \sum m(\alpha)\alpha
 \quad \alpha\in \Delta .
-\endaligned
+\end{aligned}
 $$
 We write  $v(\gamma)\quad \gamma\in \Phi^+$  for coordinates on the factor
 ${\bold A}^p$  of  ${\bold A}^p\times Z$.\
@@ -744,12 +771,11 @@ $$
 $$
 with $O$ the unique adjoint regular unipotent class and 
 $\mu^H_{O}$\ determined as in (2.2).
-
-$$
+\begin{equation}
 F(\lambda) = \int_{\varphi^{-1}(\lambda)} \pi^*(f)\kappa(t_\sigma) {\frac{|\omega_Y|}
 {|\varphi^*(d\lambda)|}}\ =\ \Delta^{T,\kappa} \Phi^{T,\kappa}(\Gamma(\lambda),f)
-\tag 3.10
-$$
+\tag{3.10}
+\end{equation}
 for $\lambda$  sufficiently small and non-zero.
 \vskip .2in
 
@@ -760,7 +786,7 @@ $\varphi^{-1}(0)$\ are not in general divisors with normal crossings.  By
 blowing up $Y_\Gamma$  one obtains a variety  $\widetilde{Y}_\Gamma$  proper
 over  $Y_\Gamma$  for which all of the conditions of Proposition 1.1  are met.
 
-\medpagebreak
+%\medpagebreak
 
 It is often convenient to consider all possible tangent directions at the
 identity in  $T$  simultaneously rather than fixing one direction.  We introduce
@@ -775,20 +801,20 @@ K_E \otimes_E R$.
 
 (3.12)\  Another system of coordinate patches are  $Y_1(B_\infty,B_0,\Sigma)$\
 parametrized by pairs  $(B_\infty,B_0)$\ of opposite Borel subgroups together with
-a map  $\Sigma: \Delta\to  {\Cal W}$  where  $\Cal W$  is the set of Weyl chambers.
+a map  $\Sigma: \Delta\to  {\mathcal W}$  where  $\mathcal W$  is the set of Weyl chambers.
 As  $B_\infty,B_0$ and $\Sigma$  vary,  the patches  $Y_1(B_\infty,B_0,\Sigma)$  cover
 $Y_\Gamma$.  We also let $Y_1(B_\infty)$ denote the union of these patches
 for a fixed $B_\infty$. The coordinates on  $Y_1(B_\infty, B_0,\Sigma)$\  are 
 $$
-\matrix \format \c & \quad\c & \quad\c &\quad \c \\
-z_1(W,\alpha)  & w\in {\Cal W} & \alpha\in \Delta &  {\text where}~ z_1(\Sigma(\alpha),\alpha)
+\begin{matrix} % \format \c & \quad\c & \quad\c &\quad \c \\
+z_1(W,\alpha)  & w\in {\mathcal W} & \alpha\in \Delta &  {\text {where}}~ z_1(\Sigma(\alpha),\alpha)
 = {\frac{\alpha(\gamma)-1}{\lambda}},\quad \gamma = \Gamma(\lambda).  \\
 \vspace{1\jot}
 z(\alpha) & \alpha\in\Delta \\ \vspace{1\jot}
 x(\gamma) & \gamma\in\Phi^+ \\ \vspace{1\jot}
 v(\gamma) & \gamma\in \Phi^+ \\ \vspace{1\jot}
 \lambda
-\endmatrix
+\end{matrix}
 $$
 The relation between  $\Gamma^0\times T\setminus G$,\  $Y_U$  and  
 $Y_1(B_\infty,B_0,\Sigma)$
@@ -796,7 +822,7 @@ is the following. Let $T_0$ be the intersection of $B_0$ and $B_\infty$.
 Let $N_0$ and $N_\infty$ be the unipotent radicals of $B_0$ and $B_\infty$.
 Fix a Borel subgroup  $B$  containing  $T$.  The other Borel
 subgroups containing $T$ are then\ $B(W)\ {\dsize \mathrel{\mathop=^{def}}}\ B^\omega$,  where
-$W = \omega^{-1}W_+ \in {\Cal W}$\  and  $W_+$  is the positive Weyl chamber with
+$W = \omega^{-1}W_+ \in {\mathcal W}$\  and  $W_+$  is the positive Weyl chamber with
 respect to $B$.  Then for  $g\in T\backslash G(\overline{F})$\ such that $B(W)^g$  is opposite  $B_\infty$
 for all $W$  we may write for $t = \Gamma(\lambda)$ regular
 $$
@@ -805,10 +831,10 @@ t_0 \in T_0, \quad n \in N_0.
 $$
 Fixing an order on root vectors  $X_\gamma$  we may write
 $$
-n = \Pi exp(x(\gamma)X_\gamma),  v = \Pi exp(v(\gamma)X_{-\gamma})
+n = \Pi \exp(x(\gamma)X_\gamma),  v = \Pi \exp(v(\gamma)X_{-\gamma})
 $$
 $$
-n_W = exp(z(\alpha_k)z_1(W_k,\alpha_k)X_{-\alpha_k}) \cdots exp(z(\alpha_1)z_1
+n_W = \exp(z(\alpha_k)z_1(W_k,\alpha_k)X_{-\alpha_k}) \cdots \exp(z(\alpha_1)z_1
 (W_1,\alpha_1)X_{-\alpha_1}) 
 $$
 where  $W = \omega^{-1}W_+$  with  $\omega = \sigma_{\alpha_k}\cdots \sigma_{\alpha_1}$,
@@ -816,7 +842,7 @@ a wall of type  $\alpha_j$  separates the chambers $W_{i+1}$  and  $W_i$
 and  $W_1 = W_+$.  This gives the relation to $\Gamma^0 \times T\backslash G$.
 
 To relate this to the patch $Y_U$, pick the function
-$\Sigma: \Delta\to {\Cal W}$ \quad $\Sigma(\alpha) = W_+ \quad \forall \alpha\in
+$\Sigma: \Delta\to {\mathcal W}$ \quad $\Sigma(\alpha) = W_+ \quad \forall \alpha\in
 \Delta$.  Select $g_0$ so that $T^{g_0} = T_0,\ B(W_+)^{g_0} = B_0, \
 B(W)^{g_0} = B_0(W),$\ and set $t^{g_0}
 = t_0$.  
@@ -826,8 +852,8 @@ $$
 (t_0\cdot n, B_0^{n_W})^v\ =\ (t_0^{n'}, B_0(W)^{n'})^v .
 $$
 \noindent Define  $x(\gamma)$, $z(\alpha)$  and $v(\gamma)$  as above and set
-$t^{-1}t^{n'} = \Pi\ exp((w(\gamma)\lambda)/(\Pi z(\alpha)^{m(\alpha)})
-X_\gamma)$  where  \linebreak
+$t^{-1}t^{n'} = \Pi\ \exp((w(\gamma)\lambda)/(\Pi z(\alpha)^{m(\alpha)})
+X_\gamma)$  where  %\linebreak
 $\gamma = \Sigma  m(\alpha)\alpha$.  By the relation
 $B_0^{n_W} = B(W)^{n'}$  we may consider the  $w(\gamma)$ as rational functions
 of the variables  $z_1(W,\alpha)$.   The variables  $w(\gamma)$  turn out to be
@@ -849,14 +875,12 @@ $$
 where $p$ is a point of our variety.  If $\sigma_*$ denotes the action for  a split
 Cartan subgroup, and for a choice of  $B_0$ over $F$,  then there are representatives
 $A_\sigma$ of the Weyl group in  $N_G(T_0)$\ such that
-$$
-\align
+\begin{align*}
 \sigma_*^{-1}(b,B_0^{n_W})^v(\sigma p) &= 
 (b, B_0^{n_{\sigma^{-1}_TW}})^{v A_{\sigma_{}}} \\
 &= (b^{n^{-1}_{\sigma_T^{-1}W_+}}, 
 B_0^{n_{\sigma_T^{-1}W}n^{-1}_{\sigma_T^{-1}W_+}})^{n_{\sigma_T^{-1}W_+}v A_\sigma} .
-\endalign
-$$
+\end{align*}
 The actions of  $W$  through $\sigma_T$  on Weyl chambers and\ $N_G(T_0)$\ via
 $A_\sigma$  commute so that we obtain an action of  $W\times A$  on the variety
 depending on the Cartan subgroup $T$ and the choice of Borel subgroup  $B_0$,
@@ -869,7 +893,7 @@ $$\sigma_{\alpha'}:  x_{\gamma'}(b) \mapsto x_{\gamma'}(b') \quad
 b' = b^{n^{-1}_{W(\sigma_{\alpha'})}} \quad \gamma' \text{\quad a~positive~root}.
 $$
 $$
-n_{W(\sigma_{\alpha'})}\ =\ exp(z(\alpha')z_1(W_+,\alpha')X_{-\alpha'}) .
+n_{W(\sigma_{\alpha'})}\ =\ \exp(z(\alpha')z_1(W_+,\alpha')X_{-\alpha'}) .
 $$
 This together with $\sigma(\lambda) = \lambda~\text{and}~(3.7)$\ determines the
 action of\ $Gal(\overline{F}/F)$  on  $Y_U$.  
@@ -894,7 +918,7 @@ $$
 where  $A_{\alpha'}$  is an element of  $A$  in the normalizer of  $T_0$
 which maps to the simple reflection  $\sigma_{\alpha'}$  in the Weyl group.
 Here $\xi_{\alpha'}$  is the element such that  $v =   
-exp(\xi_{\alpha'}X_{-\alpha'})v^{\alpha'}$,\quad $v^{\alpha'} \in N_{-\alpha'}$
+\exp(\xi_{\alpha'}X_{-\alpha'})v^{\alpha'}$,\quad $v^{\alpha'} \in N_{-\alpha'}$
 the unipotent radical of the parabolic subgroup containing  $B_\infty$ associated to the root
 $-\alpha'$ .  Also  $\alpha'(T)$ is the root evaluated
 on the tangent direction.
@@ -917,7 +941,7 @@ Then there is a factor  $b''_\sigma$\ which is independent of $\lambda$ with
 values in $T(E)$ such that\ $b'_\sigma b''_\sigma t''_\sigma = t_\sigma$.\
 \endproclaim
 
-\demo{Proof}  $t''_\sigma b'_\sigma$  is given by  $$ \sigma_{\alpha'}  \mapsto  (1/x(\alpha'))^{\alpha'^v},\
+\begin{proof}  $t''_\sigma b'_\sigma$  is given by  $$ \sigma_{\alpha'}  \mapsto  (1/x(\alpha'))^{\alpha'^v},\
 A_{\alpha'}  \mapsto  (\xi_{\alpha'})^{\alpha'^v} \qquad \alpha' \text{\quad simple}.
 $$
 
@@ -931,26 +955,28 @@ of  $A$  is given by (3.13) as\ $(b,B_0)^v\ \mapsto\ (b,B_0)^{v A_\sigma}$\
 where  $A_\sigma$  is an element of the normalizer of  $T_0$  independent of the
 tangent direction.  So on  $E_0$  we have\ $(u,B_0)^v\ \mapsto\ (u,B_0)^{v A_\sigma}$\
 which is clearly independent of the tangent direction.  
-\enddemo
+\end{proof}
 \vskip .1in
 
-A factor\ $b''_\sigma\in
-T(E)$\ may be needed to make  $t_\sigma$  agree with the cocycles of the 
-transfer factor [LS2]  for various reasons.  The boundary of\ $t''_\sigma\in T(K_R)$\
-lies in $T(E)$  but is   not necessarily     zero. Thus  $b_\sigma''$ is needed
-to make\ $b_\sigma' b_\sigma'' t''_\sigma$\ a cocycle.  Also the choice of measure  $\mu^H_O$\
-is made by selecting an $F$-class $O_1$ in $O$ the regular class unipotent orbit
-for split groups.  A factor  $b''_\sigma$  will be needed to insure that\
-$\kappa(t''_\sigma b'_\sigma b''_\sigma) = 1$\ on\ $O_1\subseteq O \cap E_0$.\  Finally when  $G$ is
-not quasi-split, our analysis has not been complete:  the factor  $b''_\sigma$  will be chosen by the normalization of measures
-$\mu^H_O$\ for an orbit $O$ which contains an $F$-rational element.  At any rate,
-to prove the transfer of orbital integrals to an endoscopic group all that is
-needed is that  $b''_\sigma$  is constant which has been shown.
+A factor\ $b''_\sigma\in T(E)$\ may be needed to make $t_\sigma$ agree
+with the cocycles of the transfer factor [LS2] for various reasons.
+The boundary of\ $t''_\sigma\in T(K_R)$\ lies in $T(E)$ but is not
+necessarily zero. Thus $b_\sigma''$ is needed to make\ $b_\sigma'
+b_\sigma'' t''_\sigma$\ a cocycle.  Also the choice of measure
+$\mu^H_O$\ is made by selecting an $F$-class $O_1$ in $O$ the regular
+class unipotent orbit for split groups.  A factor $b''_\sigma$ will be
+needed to insure that\ $\kappa(t''_\sigma b'_\sigma b''_\sigma) = 1$\
+on\ $O_1\subseteq O \cap E_0$.\ Finally when $G$ is not quasi-split,
+our analysis has not been complete: the factor $b''_\sigma$ will be
+chosen by the normalization of measures $\mu^H_O$\ for an orbit $O$
+which contains an $F$-rational element.  At any rate, to prove the
+transfer of orbital integrals to an endoscopic group all that is
+needed is that $b''_\sigma$ is constant which has been shown.  
 \vskip .4in
 
-\heading
-\S 4.\ \ Symplectic Groups
-\endheading
+%4
+\section{Symplectic Groups}
+
 
 The argument in the remainder of the paper is divided into the following steps.
 
@@ -969,12 +995,14 @@ meeting $Y_U$  which are $O$-divisors.  By looking at the data defining the prin
 value integral 
 $$
 PV \int_E   f\,  m_{\theta ,E}|\omega_E|
-$$
-on $E$ either show that the principal value integral is zero or show that there
-is a decomposition on $Y_U \cap E$ of the type described in the hypotheses of (2.14).  The following 
-simple implication of (1.1) and (2.2) is often used.  If $E$ is an $O$-divisor, $O$ is $r$-regular, and if  $b(E)/a(E) - 1
-\ne r$\ then $E$ makes no contribution to the germ of $O$.   Also by (2.4.2) no
-logarithmic terms appear in the expansion so that  $F_r(\theta,\beta) = 0$ for $r > 1$.
+$$ on $E$ either show that the principal value integral is zero or
+show that there is a decomposition on $Y_U \cap E$ of the type
+described in the hypotheses of (2.14).  The following simple
+implication of (1.1) and (2.2) is often used.  If $E$ is an
+$O$-divisor, $O$ is $r$-regular, and if $b(E)/a(E) - 1 \ne r$\ then
+$E$ makes no contribution to the germ of $O$.  Also by (2.4.2) no
+logarithmic terms appear in the expansion so that $F_r(\theta,\beta) =
+0$ for $r > 1$.
 
 \noindent (5)\ Show that the decomposition on $Y_U $ of step (4) extends to all points of the
 divisor $E$.
@@ -1008,12 +1036,10 @@ $\kappa$-orbital integrals on $G$ may be realized inside $M$ (since $M_{der}$ is
 then also simply connected).  We may then inductively assume that  $H$  is
 {\it cuspidal}, that is, the $L$-group of $H$ is not contained in a parabolic
 subgroup of  ${}^LG$.  The possibilities for $H$ have been computed [H]. They are:
-$$
-\align
-{}^FH_i &=Sp(2i) \times O(2(n-i))  \tag 4.1 \\ \vspace{1.5\jot}
+\begin{align*}
+{}^FH_i &=Sp(2i) \times O(2(n-i))  \tag {4.1} \\ \vspace{1.5\jot}
 {}^EH_i &=Sp(2i) \times {}^EO(2(n-i)) .
-\endalign
-$$
+\end{align*}
 Here  $E$  is the quadratic field extension which splits the endoscopic group.
 Fixing $i$, the Cartan subgroups $T$ in $G_{qs}$  associated to  ${}^FH_i$  are all
 conjugate to a Cartan subgroup of 
@@ -1024,6 +1050,7 @@ and every Cartan subgroup $T$ in $M_i \subseteq Sp(2n)$ is associated to an
 endoscopic group ${}^EH_i$ for an appropriate choice of quadratic field 
 extension $E$.  Given $T$, $E$ is determined as follows.
 %\pageno=17
+
 Identify $W_{H_i}$\ with the product of\ $W_{Sp(2i)}$\ and the subgroup of\
 $W_{Sp(2(n-i))}$\ generated by {\it short} reflections.  Then if\
 $T\subseteq M_i$\ and $\bold{T}$\ is a split group in  $M_i$, pick
@@ -1044,12 +1071,22 @@ $U_E(1)$ is a one dimensional torus.
 
 Next we determine some prime divisors of $\varphi^{-1}(\lambda)$ in $Z = Z_\Phi$\
 for $\Phi = C_n$.  See (3.7).  Label the simple roots $\Delta$ of $\Phi$ by
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[>=angle 90,scale=1.5]
+\draw[] (0,0) circle(0.04) node[above]{$\alpha_1$};
+\draw[] (1,0) circle(0.04) node[above]{$\alpha_2$};
+\draw[] (5,0) circle(0.04) node[above]{$\alpha_n$};
+\draw[] (4,0) circle(0.04);
+\draw[] (2,0) circle(0.04);
+\draw (3,0) node {$\cdots$};
+\draw[thick] (0.1,0)  -- (0.9,0);
+\draw[thick] (1.1,0) -- (1.9,0);
+\draw[thick] (4.1,0.03) -- (4.9,0.03);
+\draw[thick] (4.1,-0.03) -- (4.9,-0.03);
+\end{tikzpicture}
+\end{figure}
 
-$$
-\alpha_1 \qquad \qquad \alpha_2 \qquad \qquad \qquad \qquad \qquad \qquad \qquad
-\qquad \alpha_n
-$$
-\vskip .3in
 
 \noindent Recall that the positive roots have the form
 $\gamma(k,\ell)\ {\dsize \mathrel{\mathop =^{def}}}\ \alpha_k + \alpha_{k+1} +\cdots + 
@@ -1057,11 +1094,11 @@ $\gamma(k,\ell)\ {\dsize \mathrel{\mathop =^{def}}}\ \alpha_k + \alpha_{k+1} +\c
 $\gamma^+(k,\ell)\ {\dsize \mathrel{\mathop =^{def}}}\ \alpha_k + \alpha_{k+1} +\cdots +
 \alpha_{n-1} + \alpha_n + \alpha_{n-1} + \alpha_{n-1} + \cdots + \alpha_\ell$
 \quad $\ell \ge k$.
-Let ${\Cal S}$  be the set of possibly empty pairs\ $(S_1,S_2)\subseteq
+Let ${\mathcal S}$  be the set of possibly empty pairs\ $(S_1,S_2)\subseteq
 \Delta\times\Delta$, $S_1 = \{ \alpha_{i_1},\ldots ,\alpha_{i_p}\}$\ \quad 
 $(i_1 < i_2 <\cdots < i_p)$,\ 
 $S_2 = \{ \alpha_{j_1},\ldots ,\alpha_{j_q}\}  \quad (j_1 < \cdots < j_q)$
-satisfying\ $i_p < j_1$\ and $j_q \ne n$.\ For each\ $(S_1,S_2)\in {\Cal S}$\ we
+satisfying\ $i_p < j_1$\ and $j_q \ne n$.\ For each\ $(S_1,S_2)\in {\mathcal S}$\ we
 define an open patch $Z_{(S_1,S_2)}$ of  $Z$  by
 
 (i)\qquad $z(\alpha) \ne 0$ \quad if \quad $\alpha \notin S_1 \cup  S_2$ 
@@ -1099,7 +1136,7 @@ m(\alpha) \ge 0$
 (iii)\quad $\lambda = \dsize{\frac{x_q}{w_q}} z^2_q(\Pi z(\alpha)^{m(\alpha)})
 \qquad  2\alpha_{j_q} + \Sigma m(\alpha)\alpha = \gamma^+(j_q,j_q)$
 
-\pagebreak
+%\pagebreak
 \qquad (notice that~$x_q\ne 0, \Pi z(\alpha)^{m(\alpha)} \ne 0$,~~so~
 $\lambda = 0$~~if and only if~~$z_q = 0$).
 \vskip .2in
@@ -1144,8 +1181,38 @@ on $Z_{(S_1,S_2)}$  has the form\ $(\lambda) = a(E_{(S_1,S_2)})E_{(S_1,S_2)}$\
 with\ $a(E_{(S_1,S_2)}) = 2$\ where\ $E_{(S_1,S_2)}$\ is the prime divisor given
 by  $z_q = 0$.
 
-\midspace {3.5in} \caption {\noindent This diagram illustrates the $p$ equations for  $S_1 = \emptyset$ and
-$|S_2| = 2$}. 
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[>=angle 90,scale=2.2]
+\draw[thick] (3,0)--(6-0.2,3-0.2)--(6-0.2,3)--(0,3)--cycle;
+\draw[thick] (1,3)--(1,2)--(4,2)--(4,1)--(2,1)--(2,3);
+\draw[thick,dotted] (0.95,3)--(0.95,2+0.05);
+\draw[thick,dotted] (1.05,2-0.05)--(4-0.05,2-0.05)--(4-0.05,1-0.05);
+\draw[thick,dotted] (4-0.05,0.95)--(2+0.05,0.95);
+\draw[thick,dotted] (2-0.05,1.05)--(2-0.05,3);
+\draw (0.1,2.9) node[right]{$\alpha_1$};
+\draw (2.2,0.8) node[right]{$\alpha_{n-2}$};
+\draw (2.55,0.55) node[right]{$\alpha_{n-1}$};
+\draw (2.9,0.3) node[right]{$\alpha_{n}$};
+\draw (3.5,2.8) node {(i)};
+\draw (0.5,2.8) node {(ii)};
+\draw (1.5,2.8) node {(vi)};
+\draw (1.5,1.8) node {(ii)};
+\draw (3.5,1.8) node {(vi)};
+\draw (3.5,0.8) node {(ii)};
+\draw[fill,white] (2,2) circle (0.2);
+\draw[fill,white] (4,1) circle (0.2);
+\draw (2,2) circle (0.2);
+\draw (4,1) circle (0.2);
+\draw (2,2) node {iv};
+\draw (4,1) node {iii};
+\draw (4.6,1) node {$\gamma^+(j_2,j_2)$};
+\draw (2.5,2) node[right,above] {$\gamma(j_1,j_2)$};
+\end{tikzpicture}
+\caption{{\noindent This diagram illustrates the $p$ equations for  $S_1 = \emptyset$ and
+$|S_2| = 2$}}
+\end{figure}
+
 
 If  $S_2 = \emptyset$ then on $Z_{(S_1,\emptyset)}$\ we have by (3.7)
 
@@ -1173,28 +1240,30 @@ and\ $E_{(S_1,\emptyset)}$\ prime.
 We extend the prime divisors  $E_{(S_1,S_2)}$\ to all of $Z$ by taking their
 closures.
 
-\pagebreak\proclaim{Lemma\ \ 4.2}\ (1)\ The codimension of the complement of $\dsize\bigcup_{(S_1,S_2)\in {\Cal S}}
+%\pagebreak
+\proclaim{Lemma\ \ 4.2}\ (1)\ 
+The codimension of the complement of $\dsize\bigcup_{(S_1,S_2)\in {\mathcal S}}
 Z_{(S_1,S_2)}$\ in\ $Z$  is at least two.
 
-\flushpar
+\noindent %flushpar
 (2)\ $Z$\ is regular in  codimension one.
 
-\flushpar
+\noindent %flushpar
 (3)\ The divisor $(\lambda)$\ on $Z$ is given by
 $$
 (\lambda) = \sum_{(S_1,S_2)} a(E_{(S_1,S_2)})E_{(S_1,S_2)}
 $$
-$${\text{with}} \quad  a(E_{(S_1,S_2)}) =  \cases
+$${\text{with}} \quad  a(E_{(S_1,S_2)}) =  \begin{cases}
 1 & S_2 = \emptyset \\
 2 & \text{otherwise.}
-\endcases
+\end{cases}
 $$
 \endproclaim
 
-\demo{Proof}  By the preceding remarks (2) and (3) follow immediately from (1).
+\begin{proof}  By the preceding remarks (2) and (3) follow immediately from (1).
 $Z$ is clearly regular for $\lambda\ne 0$\ so we study $\lambda$  near points
 of  $\lambda = 0$.
-\enddemo
+%
 
 Consider a point $p$ in $Z$ where $\lambda = 0$.  Let  $S_1$  be the set of simple
 roots such that\ $x(\alpha)\ne 0$.  Let  $S_{\text{min}}$\  be the set of 
@@ -1203,7 +1272,7 @@ $\gamma = \beta + \Sigma m(\alpha)\alpha$,
 $m(\alpha)\ge 0$\, $\alpha +\beta$, then\ $x(\beta) = 0$.\ Clearly\ $S_1\subseteq S_{\text{min}}$.
 We may write\ $\Phi^+ = S_{\text{min}} \cup S^+ \cup S^-$, where
 $S^+ = \{ \delta:  \delta = \gamma + \Sigma m(\alpha)\alpha \quad m(\alpha)\ge 0$
-for some\  $\gamma \in S_{min}$,\ $\delta \notin S_{min}\}$\.
+for some\  $\gamma \in S_{min}$,\ $\delta \notin S_{min}\}$.
 $S^- = \{ \beta:  x(\beta) = 0 \}$.\ We have equations
 
 (i)\qquad  $x(\beta) = 0 \qquad  \beta\in S^-$ 
@@ -1213,7 +1282,7 @@ $S^- = \{ \beta:  x(\beta) = 0 \}$.\ We have equations
 {x(\gamma)}}$ \qquad $\delta  \in  S^+,~ \gamma\in S_{\text{min}}$,\  
 $\delta  =  \gamma + \Sigma m(\alpha)\alpha\quad m(\alpha) \ge 0$.
 
-\bigpagebreak
+%\bigpagebreak
 \vskip .2in
 
 
@@ -1231,7 +1300,7 @@ $$
 
 (v)\qquad   $\lambda = 0$.
 
-\flushpar
+\noindent %flushpar
 Counting the number of equations we have at least  $p+1$  independent equations.
 For the proof of (1)  we may exclude sets of codimension 2.  Thus we may assume that
 (i)-(v)	 give exactly  $p+1$  independent solutions.  In particular, we may assume
@@ -1280,7 +1349,7 @@ S_1$,\ $j_q\notin n$.\ Since (i)-(v) give all equations which
 hold identically at $p$  (excluding sets of codimension 2) the inequalities 
 defining\ $Z_{(S_1,S_2)}$\ hold at the generic point of the variety defined by
 (i)-(v) together with\ $x(\gamma) \ne 0$, \quad $\gamma\in S_{min}$.
-This completes the proof.
+This completes the proof.\end{proof}
 
 \vskip .2in
 
@@ -1290,7 +1359,7 @@ $\alpha = \alpha_1$, $\beta = \alpha_2$.
 
 \noindent (4.3)
 $$
-\matrix \format \c & \quad \c &\quad \c & \qquad \qquad \l \\
+\begin{matrix} % \format \c & \quad \c &\quad \c & \qquad \qquad \l \\
 \underline{S_1} & \underline{S_2} & \underline{E_{(S_1,S_2)}} & 
 \underline{\pi(E_{(S_1,S_2)})} \\ \vspace{2\jot}
 \{\alpha,\beta\} & \phi & E_0 & {\text{regular}} \\
@@ -1300,7 +1369,7 @@ $$
 & & & {\text{Richardson~class~of}}~P_\alpha \\
 \phi & \{\alpha\} & E_2 & 2{\text{-regular}} \\
 \phi & \phi & E_{id} & {\text{identity}}.
-\endmatrix
+\end{matrix}
 $$
 \vskip .2in
 
@@ -1320,17 +1389,17 @@ associated to a subregular unipotent element  $u\in G(F)$,   conjugate  $u$  by 
 element of  $G(F)$  so that it has the form
 
 $$
-\pmatrix \format \l \quad& \l \\
+\begin{pmatrix} %\format \l \quad& \l \\
 I_2 & X \\
-0 & I_2 \endpmatrix 
-\qquad \qquad \qquad I_2 = \pmatrix 1 & 0 \\ 0 & 1\endpmatrix \qquad
+0 & I_2 \end{pmatrix} 
+\qquad \qquad \qquad I_2 = \begin{pmatrix} 1 & 0 \\ 0 & 1\end{pmatrix} \qquad
 X\in M_2(F) ,
 $$
-where   Sp$(4)$  is defined using the skew form  $J_0 = \pmatrix 0 & J \\
--J & 0\endpmatrix$,\  $J = \pmatrix 0&1 \\ 1&0 \endpmatrix$.  Then \linebreak
+where   Sp$(4)$  is defined using the skew form  $J_0 = \begin{pmatrix} 0 & J \\
+-J & 0\end{pmatrix}$,\  $J = \begin{pmatrix} 0&1 \\ 1&0 \end{pmatrix}$.  Then %\linebreak
  $\det\, X \in
 F^\times/F^{\times 2}$\  depends only on the adjoint conjugacy class of $u$.
-Equivalently,  ${\Cal B}_u$, the variety of Borel subgroups containing $u$, is a union of 
+Equivalently,  ${\mathcal B}_u$, the variety of Borel subgroups containing $u$, is a union of 
 three projective lines.  The lines of type $\beta$  are defined over a 
 quadratic extension of  $F$  depending only on the adjoint conjugacy class
 of  $u$.
@@ -1340,11 +1409,11 @@ adjoint class associated to the trivial quadratic extension
 $F^{\times 2} \subseteq F^\times/F^{\times 2})$\  do not exist.  If  $u\in G(F)$\ is unipotent
 regular then there is a unique Borel subgroup over $F$  containing $u$.  If
 $u\in G(F)$\ is 2-regular unipotent, then the line of type $\beta$ in
-${\Cal B}_u$  is defined over $F$  giving a parabolic of type $\beta$ over $F$;
+${\mathcal B}_u$  is defined over $F$  giving a parabolic of type $\beta$ over $F$;
 but the minimal parabolic of  $G$  is of type $\alpha$.  If  $u\in G(F)$  is
 1-regular corresponding to the trivial extension then the Borel subgroup
 corresponding to the intersection of a line of type $\alpha$ and a line of type
-$\beta$ in  ${\Cal B}_u$  is defined over $F$.  Thus such unipotent classes do 
+$\beta$ in  ${\mathcal B}_u$  is defined over $F$.  Thus such unipotent classes do 
 not exist for the inner form $G$.
 
 \proclaim{Lemma\ \ 4.4}  (1)  The variety  $Z_\Phi \quad \Phi = C_2$  is regular
@@ -1355,20 +1424,20 @@ $$
 z(\alpha) = z(\beta) = 0.
 $$
 
-\flushpar
+\noindent % flushpar
 (2)  The singularity at $\lambda = x(\alpha) = x(\beta) = x(\gamma) = w(\gamma)
 = w(\delta) = z(\alpha) = z(\beta) = 0$  may be resolved by blowing up once along
 the subvariety  $x(\alpha) = x(\beta) = x(\gamma) = w(\gamma) = w(\delta) =
 z(\alpha) = z(\beta) = 0$.  Let  $E_B$  be the divisor introduced by blowing up.
 
-\flushpar
+\noindent %flushpar
 (3)  The divisors on the desingularized variety and their Igusa constants are given
 as follows (assume $\pi(p) \ne$ identity).
 \endproclaim
 
 
 $$
-\matrix \format \l & \qquad \c & \qquad \c & \qquad \c &\qquad \c   \\
+\begin{matrix} % \format \l & \qquad \c & \qquad \c & \qquad \c &\qquad \c   \\
 \underline{E} & \underline{a(E)} & \underline{b(E)} & \underline{\pi(E)^\cdot}
 & \underline{\beta(E)-1} \\
 E_0 & 1 & 1 & 0{\text{-reg}} & 0 \\
@@ -1376,11 +1445,11 @@ E_\alpha & 1 & 2 & 1{\text{-reg}} & 1 \\
 E_\beta & 1 & 2 & 1{\text{-reg}} & 1 \\
 E_2 & 2 & 6 & 2{\text{-reg}} & 2 \\
 E_B & 2 & 5 & 2{\text{-reg}} & 3/2
-\endmatrix
+\end{matrix}
 $$
 \vskip .2in
 
-\demo{Proof}  The divisors $E_0,E_\alpha,E_\beta,E_{\text{id}}$\ are defined by
+\begin{proof}  The divisors $E_0,E_\alpha,E_\beta,E_{\text{id}}$\ are defined by
 
 $E_0:  z(\alpha) = z(\beta) = w(\gamma) = w(\delta) = 0$
 
@@ -1396,110 +1465,117 @@ $E_{\text{id}}:  x(\alpha) = x(\beta) = x(\gamma) = x(\delta) = 0.$
 
 \vskip .2in
 
-\flushpar
+\noindent %flushpar
 We consider several patches, showing that the coordinate ring on each is regular,
 and at the same time we identify the divisors on each patch. The defining relations
 (3.7) of $Z$  are used repeatedly.
 
-\medpagebreak
-
-\flushpar
+%\medpagebreak
+\bigskip
+\noindent %flushpar
 (If   $x(\alpha) \ne 0) \qquad  \lambda = z(\beta)x(\beta)~~(E_0E_\beta) \quad
 z(\alpha) = z(\beta)x(\beta)/x(\alpha),$ 
 
-\flushpar
+\noindent %flushpar
 $w(\gamma) = x(\gamma)z(\beta)/x(\alpha),
 w(\delta) = x(\delta)z(\alpha)z(\beta)/x(\alpha)$  
 
-\flushpar
+\noindent %flushpar
 generators of local ring:
 $z(\beta), x(\beta), x(\gamma), x(\delta), x(\alpha)$.
 
-\medpagebreak
+\bigskip
+%\medpagebreak
 
-\flushpar
+\noindent %flushpar
 (If   $x(\beta) \ne 0) \quad  \lambda = z(\alpha)x(\alpha) \quad (E_0E_\alpha)
 \quad z(\beta) = z(\alpha)x(\alpha)/x(\beta),$  
 
-\flushpar
+\noindent %flushpar
 $w(\gamma) = 
 x(\gamma)z(\alpha)/x(\beta),  w(\delta) = x(\delta)z(\alpha)^2/x(\beta)$\
 
-\flushpar
+\noindent %flushpar
 generators of local ring:\ $z(\alpha), x(\alpha), x(\beta), x(\gamma), x(\delta)$.
 
-\medpagebreak
+\bigskip
+%\medpagebreak
 
-\flushpar
+\noindent %flushpar
 (If  $x(\gamma) \ne 0$) $\lambda = x(\alpha)x(\beta) w(\gamma)/x(\gamma)$
 $(E_\alpha E_0E_\beta)$,  $z(\alpha) = w(\gamma),x(\beta)/x(\gamma)$, 
 
-\flushpar
+\noindent %flushpar
 $z(\beta) = w(\gamma)x(\alpha)/x(\gamma)$, $w(\delta) = w(\gamma)x(\delta)z(\alpha)/x(\gamma)$
 
-\flushpar
+\noindent %flushpar
 generators:~  $x(\beta), x(\alpha), w(\gamma),x(\gamma), x(\delta)$.
 
-\medpagebreak
+\bigskip
+%\medpagebreak
 
-\flushpar
+\noindent %flushpar
 (If $z(\alpha)\ne 0$) $\lambda = z(\beta)x(\beta)$ $(E_\alpha E_{\text{id}})$
 $x(\alpha) = z(\beta)x(\beta)/z(\alpha)$, 
 
-\flushpar
+\noindent %flushpar
 $x(\gamma) = w(\gamma)x(\beta)/z(\alpha), x(\delta) = x(\beta)w(\delta)/z(\alpha)^2$,
 
-\flushpar
+\noindent %flushpar
 generators:~  $x(\beta),z(\beta), w(\gamma), z(\alpha), w(\delta)$
 
-\medpagebreak
+\bigskip
+%\medpagebreak
 
-\flushpar
-(If $w(\delta)\ne 0)$ $\lambda = z(\alpha)^2 z(\beta)x(\delta)/w(\delta)$ $(E^2_2E_\alpha E_{\text{id}})$
+\noindent %flushpar
+(If $w(\delta)\ne 0)$ $\lambda = 
+z(\alpha)^2 z(\beta)x(\delta)/w(\delta)$ $(E^2_2E_\alpha E_{\text{id}})$
 
-\flushpar
+\noindent %flushpar
 $x(\alpha) = z(\alpha)z(\beta)x(\delta)/w(\delta)$, $x(\beta) = 
 z(\alpha)^2x(\delta)/w(\delta)$, $x(\gamma) = z(\alpha)w(\gamma)x(\delta)/w(\delta)$
 
-\flushpar
+\noindent %flushpar
 generators:~$z(\alpha), z(\beta), x(\delta) w(\gamma), w(\delta)$
 \vskip .2in
 
-\flushpar
+\noindent %flushpar
 Since we are assuming  $\pi(p)\ne 1$  and since the variety has now been shown to be
 nonsingular for  $x(\alpha), x(\beta)$  or  $x(\gamma)\ne 0$,  we may assume in 
 the remaining cases that  $x(\delta)\ne 0$.
 
-\medpagebreak
+\bigskip
+%\medpagebreak
 
-\flushpar
+\noindent %flushpar
 (If  $w(\gamma)\ne 0$) $\lambda = x(\gamma)^2w(\delta)z(\beta)/(w(\gamma)^2x(\delta))$
 $(E^2_2E_\beta E_\alpha)$ 
 
-\flushpar
+\noindent %flushpar
 $z(\alpha) = w(\delta)x(\gamma)/(w(\gamma)x(\delta))$,
 $x(\alpha) = z(\beta)x(\gamma)/w(\gamma)$,\ $x(\beta) = 
 x(\gamma)^2w(\delta)/(w(\gamma)^2x(\delta))$
 
-\flushpar
+\noindent %flushpar
 generators:~ $x(\gamma),x(\delta),z(\beta),w(\gamma),w(\delta)$.
 
-\medpagebreak
+\bigskip
+%\medpagebreak
 
-\flushpar
+\noindent %flushpar
 (If  $z(\beta) \ne 0)$ $\lambda = w(\delta)x(\alpha)^2/(z(\beta)x(\delta))$ $(E_\beta E^2_2)$ 
 $x(\beta) = w(\delta)x(\alpha)^2/(z(\beta)^2x(\delta))$,  
 
-\flushpar
+\noindent %flushpar
 $x(\gamma) =
 w(\gamma)x(\alpha)/z(\beta)$, $z(\alpha) = w(\delta)x(\alpha)/(x(\delta)z(\beta))$~
 
-\flushpar
+\noindent %flushpar
 generators:~ $x(\alpha), x(\delta), z(\beta), w(\gamma), w(\delta)$.
 
 \vskip .2in
 
-\flushpar
+\noindent %flushpar
 This completes the proof of (1).  The validity of (2) is easily checked using the
 same seven patches.  Details are omitted.
 
@@ -1520,7 +1596,7 @@ d(1/w(\gamma))dw(\delta)dx(\delta)dv\quad
 (E_2^{6-1}E_\beta^{2-1}E_\alpha^{2-1)}.
 $$
 
-\flushpar
+\noindent %flushpar
 Thus   $b(E_2) = 6, b(E_\beta) = 2, b(E_\alpha) = 2$.  The Igusa constants
 $b(E)$  for  $E = E_B,E_0$  are similarly calculated using a blown up region.
 Introduce projective coordinates  $X_\alpha,X_\beta,X_\gamma,Z_\alpha,W_\delta,Z_\beta,W_\gamma$.
@@ -1541,10 +1617,11 @@ $$
 $$
 {\text{so~that}}~~b(E_B) = 5,~~ b(E_0) = 1,~~ b(E_\beta) = 2 .
 $$
-This completes the proof.
-\heading
-\S 5.~~ The subregular germs on $G =$~Sp(4)
-\endheading
+This completes the proof.\end{proof}
+
+%5
+\section{The subregular germs on $G =$~Sp(4)}
+
 \vskip .2in
 
 We begin with a summary of the results of this section.  Let  $G$  be Sp(4) or
@@ -1570,7 +1647,7 @@ endoscopic groups\ $H$\ (4.1)
 
 \noindent (5.1)
 $$
-\matrix \format \l & \qquad\l & \qquad\l & \quad\l \\
+\begin{matrix} % \format \l & \qquad\l & \qquad\l & \quad\l \\
 \underline{H} & \underline{T} & \underline{{\text{Germ~of}}~O_{E'}\ E'\ne F}  
 & \underline{{\text{Germ~of}}~O_F}   \\  \vspace{2\jot}
 {}^{E}{H_1}\ E\ne F & U_{E''}(1)\times U_E(1) & \delta(E,E')\delta_G\Gamma_1(E',E'',\beta)
@@ -1586,7 +1663,7 @@ $$
 \vspace {1.5\jot}
 {}^F{H_2} & arbitrary & {\epsilon}_G\Gamma_{O_{E'}}^{T_{qs},st} & 
 \delta_G \Gamma_{O_F}^{T_{qs},st} .
-\endmatrix
+\end{matrix}
 $$
 \vskip .2in
 		     
@@ -1614,7 +1691,7 @@ associated to the quadratic extension  $E'$  for the pair  $(T,\kappa)$  is zero
 unless $E' = E$.
 \endproclaim
 
-\demo{Proof} Let $Z$ be the center of $G$.  Let $u \in O(F)$ and let $C_G(u)_{red}$
+\begin{proof} Let $Z$ be the center of $G$.  Let $u \in O(F)$ and let $C_G(u)_{red}$
 be the reductive centralizer of $u$.
 If  $\kappa$  is nontrivial on  ker$(H^1(Gal(\overline{F}/F),Z)\to 
 H^1(Gal(\overline{F}/F),  C_G(u)_{red}))$\
@@ -1638,20 +1715,21 @@ of norms of nonzero elements of  $E$.  To complete the proof it is sufficient
 to show that  ker$(H^1(Gal(\overline{F}/F),Z) \to H^1(Gal(\overline{F}/F),\
 C_G(u)_{red}))$\ is\ $NE'/F^{\times 2} \subseteq F^\times/F^{\times 2}$. 
 
-The reductive centralizer is computed when  $G$  is split as follows.  Let  $B$  be a Borel subgroup over
+The reductive centralizer is computed when  $G$  is split as follows.  
+Let  $B$  be a Borel subgroup over
 $F$  in the line of type $\alpha$  in the Dynkin curve of $u$.  Conjugating $B$
 to the upper triangular matrices we see that
 $$
-u = \pmatrix I_2 & XJ \\
+u = \begin{pmatrix} I_2 & XJ \\
 0 & I_2
-\endpmatrix
+\end{pmatrix}
 $$
-where  $X = {}^tX \in {\text{GL}}_2(F)$\ and  $J = \pmatrix 0&1 \\ 1&0 \endpmatrix$.  It
+where  $X = {}^tX \in {\text{GL}}_2(F)$\ and  $J = \begin{pmatrix} 0&1 \\ 1&0 \end{pmatrix}$.  It
 follows immediately that  
 $$
-C_G(u) = \pmatrix {}^tA & B \\ 0 & JA^{-1}J \endpmatrix\
+C_G(u) = \begin{pmatrix} {}^tA & B \\ 0 & JA^{-1}J \end{pmatrix}\
 \quad {\text{and}}\quad  C_G (u)_{\text{red}} = 
-\pmatrix {}^tA & 0 \\ 0 & JA^{-1}J \endpmatrix
+\begin{pmatrix} {}^tA & 0 \\ 0 & JA^{-1}J \end{pmatrix}
 $$
 where  ${}^tAXA = X$.  Thus\  $C_G(u)_{\text{red}}\ 
 {\dsize \mathrel{\mathop \to^{\sim}}}\
@@ -1667,22 +1745,21 @@ same form.  Over the quadratic extension  $E'$  of  $F$~~ $G$ splits and $u$
 becomes distinguished so that over  $E'$\ it follows that $C_G(u)_{\text{red}}~
 {\dsize \mathrel{\mathop\to^{\sim}}}\ {\bold G}_m$.  But if  $C_G(u)_{\text{red}}$\
 were isomorphic to  ${\bold G}_m$  over  $F$  we would have a split torus in
-$\pmatrix {}^tM & 0 \\ 0 & JM^{-1}J \endpmatrix$,\ \ where $det~M = 1$,  which would
+$\begin{pmatrix} {}^tM & 0 \\ 0 & JM^{-1}J \end{pmatrix}$,\ \ where $det~M = 1$,  which would
 contradict the hypothesis that  $G$ is not split.  Thus\ $C_G(u)_{\text{red}}\
 {\dsize \mathrel{\mathop\to^{\sim}}}\ U_{E'}(1)$\  as before, and  $E' \ne F$. 
 This completes the proof of (5.2).
-\vskip .2in
+\end{proof}
+\bigskip
 
 We have seen there are two divisors which contribute to the subregular germ.  
 On the patch  $Y_U$   given by (3.7)
-$$
-\align
+\begin{align*}
 \lambda &= z(\alpha)x(\alpha)\\
 \lambda &= z(\beta)x(\beta)\\
 \lambda w(\gamma) &= z(\alpha)z(\beta)x(\gamma) \\
 \lambda w(\delta) &= z(\alpha)^2z(\beta)x(\delta).
-\endalign
-$$
+\end{align*}
 $E_\alpha$  is described by the equations\ $x(\alpha) = z(\beta) = x(\beta)w(\gamma) 
 - z(\alpha)x(\gamma) = x(\beta)w(\delta) - z(\alpha)^2x(\delta) = 0$\ and  $E_\beta$\
 is described by the equations\ $x(\beta) = z(\alpha) = w(\delta) = x(\alpha)w(\gamma)
@@ -1693,22 +1770,22 @@ $F$-rational points over  $u_0$  and consequently makes no contribution to the
 germ associated to  $u_0$.
 \endproclaim
 
-\demo{Proof}  The lemma is an immediate consequence of two facts.  First, if
+\begin{proof}  The lemma is an immediate consequence of two facts.  First, if
 $(u_0, (B(W))) \in E_\beta$\  then every Borel subgroup  $B(W)$  lies in the same
 line  $\ell_\beta$  of type $\beta$  in the Dynkin curve.  For select local
 coordinates as in (3.12) such that  $B_0$  lies in  $\ell_\beta$  and  $\ell_\beta$  contains
 $B(W_+)$.  Then  $B(W) = B_0^{n_Wv}$\  where  $n_W$  has the form
-$$
-n_W = exp(z(\alpha)z_kX_{-\alpha})exp(z(\beta)z_{k-1}X_{-\beta})\cdots 
-exp(z(\alpha)z_1X_{-\alpha}) \tag 5.4
-$$
+\begin{equation}
+n_W = \exp(z(\alpha)z_kX_{-\alpha})\exp(z(\beta)z_{k-1}X_{-\beta})\cdots 
+\exp(z(\alpha)z_1X_{-\alpha}) \tag {5.4}
+\end{equation}
 for appropriate values of\ $z_1,\ldots ,z_k$.  So  $z(\alpha) = 0$\   implies that
-the product (5.4) collapses to\ $n_W = exp(z(\beta)z'X_{-\beta})$\  
+the product (5.4) collapses to\ $n_W = \exp(z(\beta)z'X_{-\beta})$\  
 for some  $z'$.  Also\ $B_0^v = B(W_+)\in \ell_\beta$\  
 and\ $B_0,\quad B(W_+)\subseteq P_\beta$\ where\
 $B\backslash P_\beta = \ell_\beta$\  so\  $P_\beta^v = P_\beta$\  
 which implies that\  $v\in N_\infty \cap P_\beta$\  or 
-$v = exp(\xi\ X_{-\beta})$\  for some $\xi$, where  $N_\infty$ is the unipotent
+$v = \exp(\xi\ X_{-\beta})$\  for some $\xi$, where  $N_\infty$ is the unipotent
 radical of  $B_\infty$.  Thus  $n_wv\in P_\beta$\  and  $B(w) = B_0^{n_wv} \in P_\beta$.  Thus
 if $\ell_\beta$ and $\ell'_\beta$  are the lines of the Dynkin curve of  $u_0$
 we may separate points $(u_0, (B(W)))$\ of $E_\beta$ 
@@ -1721,6 +1798,7 @@ then  $B(\sigma_T^{-1}W)$\  lies in  $\ell_\beta$  and  $\sigma(B(\sigma_T^{-1}W
 lies in\  $\sigma(\ell_\beta) = \ell'_\beta$\  provided $\sigma$  has nontrivial
 image in  Gal$(E/F)$\  where  $E$  is the quadratic extension trivializing the
 action on the lines  $\ell_\beta, \ell'_\beta$.
+\end{proof}
 \vskip .2in
 
 We now devote our attention to the divisor  $E_\alpha$.  We fix  $u_0$  a subregular
@@ -1729,7 +1807,7 @@ intersection of the line of type $\alpha$  and a line of type $\beta$ in the
 Dynkin curve of  $u_0$.   As in the discussion of the divisor  $E_\beta$  we find that
 if  $(u, B_0^{n_W})^v$\  lies in  $E_\alpha$  over the subregular element
 $u_0$  then  $u^v = u_0$\  and  $v\in P_\alpha \cap N_\infty$\  so that\
-$v = exp(\xi X_{-\alpha})$\  for some  $\xi$.
+$v = \exp(\xi X_{-\alpha})$\  for some  $\xi$.
 
 Select a Cartan subgroup\  $T_0\subseteq B_0$\  over  $F$  such that if
 $\sigma_\alpha$\  is the simple reflection associated to the simple root $\alpha$,
@@ -1742,40 +1820,38 @@ opposite  $B_0$  through  $T_0$.  We consider the patch\ $Y_U = Y_U(B_\infty,B_0
 for this choice of  $(B_\infty, B_0)$.
 
 The choice of  $B_0$  forces  $u_0$  to have the form 
-$u_0 = \pmatrix I_2 & X \\ 0 & I_2 \endpmatrix$, 
-\quad  $X = \pmatrix x&y\\ 0&x \endpmatrix .$\  The choice of  $B_\infty$  
+$u_0 = \begin{pmatrix} I_2 & X \\ 0 & I_2 \end{pmatrix}$, 
+\quad  $X = \begin{pmatrix} x&y\\ 0&x \end{pmatrix} .$\  The choice of  $B_\infty$  
 forces\ $\sigma_\alpha u_0\sigma_\alpha^{-1}$\ to have the
 same form which implies that  $y = 0$  so that
-$$
-u_0 = \pmatrix I_2 & xI_2 \\ 0 & I_2 \endpmatrix \tag 5.5
-$$
+\begin{equation}
+u_0 = \begin{pmatrix} I_2 & xI_2 \\ 0 & I_2 \end{pmatrix} \tag {5.5}
+\end{equation}
 
 We choose a Haar measure on  $O_{u_0}$  as follows.  We select coordinates
-$v' = \pmatrix I_2 & 0 \\ N&I_2 \endpmatrix$, \quad $y =
-\pmatrix I_2 & Y \\ 0 & I_2 \endpmatrix$,\ 
-$N = \pmatrix n_\gamma & n_\beta \\ n_\delta & n_\gamma \endpmatrix ,$\
+$v' = \begin{pmatrix} I_2 & 0 \\ N&I_2 \end{pmatrix}$, \quad $y =
+\begin{pmatrix} I_2 & Y \\ 0 & I_2 \end{pmatrix}$,\ 
+$N = \begin{pmatrix} n_\gamma & n_\beta \\ n_\delta & n_\gamma \end{pmatrix} ,$\
  \quad
-$Y = \pmatrix y_\gamma & y_\delta \\ y_\beta & y_\gamma \endpmatrix$\
+$Y = \begin{pmatrix} y_\gamma & y_\delta \\ y_\beta & y_\gamma \end{pmatrix}$\
 so that  $y^{v'}$  describes points on an open set of  $O_{u_0}$.
 Then  
-
-$${\frac{1}{2}}\ dy\ dv'\ {\mathrel{\mathop=^{def}}}\ {\frac{1}{2}}\
-dy_\beta dy_\gamma dy_\delta dn_\beta dn_\gamma dn_\delta    \tag 5.6
-$$  
+\begin{equation}
+{\frac{1}{2}}\ dy\ dv'\ {\mathrel{\mathop=^{def}}}\ {\frac{1}{2}}\
+dy_\beta dy_\gamma dy_\delta dn_\beta dn_\gamma dn_\delta    \tag {5.6}
+\end{equation}
 is an invariant measure on\  $O_{u_0}$.
 
 We consider the patch  $x(\gamma) \ne 0$  on  $Y_U$\  so that the
 equations (3.7) take the form
-$$
+\begin{equation}
 \lambda = {\frac{x(\alpha)x(\beta)w(\gamma)}{x(\gamma)}}, \quad 
 z(\alpha) = {\frac{x(\beta)w(\gamma)}{x(\gamma)}}, \quad 
 z(\beta) = {\frac{x(\alpha)w(\gamma)}{x(\gamma)}}, \quad
 w(\delta) = {\frac{x(\beta)w(\gamma)^2x(\delta)}{x(\gamma)^2}}
-\tag 5.7
-$$
-\vskip 4in
-
-\pagebreak
+\tag {5.7}
+\end{equation}
+%\pagebreak
 \noindent
 By (1.1), (3.8), and a change of variables
 $$
@@ -1787,27 +1863,28 @@ We divide by the Haar measure  $\omega_{O_{u_0}} = (1/2)dx\ dv' =  (1/2)dy\ dv'$
 $(dx = dx(\beta)\ dx(\gamma)\ dx(\delta))$
 to obtain a differential form\ $\omega_{E_\alpha(u_0)}$\ on the fibre  
 $E_\alpha(u_0)$ over  $u_0$.  Making
-use of the fact that  $v = exp(\xi X_{-\alpha})$\ on  $E_\alpha(u_0)$\  this gives
-$$
+use of the fact that  $v = \exp(\xi X_{-\alpha})$\ on  $E_\alpha(u_0)$\  this gives
+\begin{equation}
 \omega_{E_\alpha(u_0)} = {\frac{2x(\gamma)}{x(\beta)}}\ {\frac{dx}{w^2}} d\xi
 \qquad \qquad  w = w(\gamma).
-\tag 5.8
-$$
+\tag {5.8}
+\end{equation}
 
 Next we note that if  $(u, B(w))^v$  is a point of  $E_\alpha(u_0)$\
 with  coefficients $x_\beta(u) = x(\beta) \quad x_\gamma(u) = x(\gamma), ~x_\delta(u) =
-x(\delta)$\ we must have  $u^v = u_0$\ with $v = exp(\xi X_{-\alpha})$.
+x(\delta)$\ we must have  $u^v = u_0$\ with $v = \exp(\xi X_{-\alpha})$.
 By (5.5) this implies that  $x(\delta) = 0$,  and $x(\gamma)/x(\beta)
 = 1/2\xi$\  so that (5.8) becomes
-$$
-\omega_{E_\alpha(u_0)} = {\frac{dw}{w^2}}\ {\frac{d\xi}{\xi}}  \tag 5.9
-$$
+\begin{equation}
+\omega_{E_\alpha(u_0)} = {\frac{dw}{w^2}}\ {\frac{d\xi}{\xi}}  \tag {5.9}
+\end{equation}
 Note that it is always possible to recover the action of  Gal$(\overline{F}/F)$\
 from the action of  $W\times A$  and the action  $\sigma_*$  for a split Cartan
 subgroup and  $B_0$  over  $F$.\  The equation\ $\sigma_{\alpha'}(x_\gamma(b)) =
 x_\gamma(b')$\  of (3.13) gives for an {\it arbitrary} divisor.
 \vskip .2in
 \noindent (5.10)
+\begin{enumerate}[label=]
 \item{}\qquad  $\sigma_\alpha(x(\alpha))/x(\alpha)\ =\ 1$
 \item{}\qquad  $\sigma_\alpha(x(\beta))/x(\beta)\ =\ 1+2(T_1-T_2)w(\gamma) +
 (T_1-T_2)^2w(\delta)$
@@ -1821,6 +1898,7 @@ w(\delta)/w(\gamma)$
 \item{}\qquad $\sigma_\beta(x(\beta))/x(\beta)\ =\ 1$
 \item{}\qquad $\sigma_\beta(x(\gamma))/x(\gamma)\ =\ 1$
 \item{}\qquad $\sigma_\beta(x(\delta))/x(\delta)\ =\ 1$.
+\end{enumerate}
 \vskip .2in
 \noindent Here $T_1,\ T_2$ represents the tangent direction of the curve
 $\Gamma$ in $T$ at the identity and $\sigma_\alpha$ and $\sigma_\beta$ are simple
@@ -1830,33 +1908,28 @@ Weyl group is the
 subgroup     of order two generated by the reflection  $\sigma_\alpha$.  Let
 $\sigma_0$  be the representative of\ $\sigma_\alpha$\ in  $A$.  Then  
 (3.13) and (5.10) 
-
-\pagebreak
-\noindent specializing to
+specializing to
 the divisor  $E_\alpha$  give
-$$
-\align
-\sigma_\beta(\xi) &= \xi  \tag 5.11 \\
+\begin{align*}
+\sigma_\beta(\xi) &= \xi  \tag {5.11} \\
 \sigma_\alpha(\xi) &= 1/\zeta \xi \\
 \sigma_\beta(w) &= w/(-2T_2w+1) = w/w_B \\
 \sigma_\alpha(w) &= w/w_A \\
 \sigma_0(w) &= -w/w_A 
-\endalign
-$$
+\end{align*}
 where we introduce abbreviations
-$$
-\align
-w_A &= (T_1-T_2)w + 1 \tag 5.12 \\
+\begin{align*}
+w_A &= (T_1-T_2)w + 1 \tag {5.12} \\
 w_B &= -2T_2w + 1 \\
 w_D &= 2T_1w + 1 .
-\endalign
-$$
-and $\zeta$\ is an element of  $F^\times$.  Since  $\sigma_0,\sigma_\alpha$ and $\sigma_\beta$  generate  $W\times A$ we easily
+\end{align*}
+and $\zeta$\ is an element of  $F^\times$.  Since  $\sigma_0,\sigma_\alpha$ and $\sigma_\beta$  
+generate  $W\times A$ we easily
 deduce the following charts:
 \noindent (5.13)
 $$
-\matrix \format \c\quad & \c\quad & \c\quad  & \c\quad &\c\quad 
-& \c\quad  & \c\quad \\
+\begin{matrix} 
+% \format \c\quad & \c\quad & \c\quad  & \c\quad &\c\quad & \c\quad  & \c\quad \\
 \underline{\sigma} & \underline{\sigma(w)} & \underline{\sigma(w_A)} &
 \underline{\sigma(w_B)} & \underline{\sigma(w_D)} & \underline{\sigma(\xi)}
 & \underline{t_\sigma} \\
@@ -1887,15 +1960,13 @@ $$
 \vspace{1.5\jot}
 \sigma_\beta & {\dsize\frac{w}{w_B}} & {\dsize\frac{w_D}{w_B}} & {\dsize\frac{1}{w_B}} &
 {\dsize\frac{w_A}{w_B}} & \xi & (1,\ {\dsize\frac{1}{\xi x(\gamma)}} ) 
-\endmatrix
+\end{matrix}
 $$
-
-\medpagebreak
-
 
 \noindent (5.13)  (cont.)
 $$
-\matrix \format \c\quad & \c\quad & \c\quad  & \c\quad &\c\quad 
+\begin{matrix}
+%\format \c\quad & \c\quad & \c\quad  & \c\quad &\c\quad 
 & \c\quad  & \c\quad \\
 \underline{\sigma} & \underline{\sigma(w)} & \underline{\sigma(w_A)} &
 \underline{\sigma(w_B)} & \underline{\sigma(w_D)} & \underline{\sigma(\xi)}
@@ -1928,10 +1999,10 @@ $$
 \vspace{1.5\jot}
 \sigma_\beta\sigma_0 & {\dsize\frac{-w}{w_D}} & {\dsize\frac{w_B}{w_D}} & {\dsize\frac{w_A}{w_D}} &
 {\dsize\frac{1}{w_D}} & {\dsize\frac{1}{\zeta\xi}} & (\xi, {\dsize\frac{1}{x(\gamma)}})
-\endmatrix
+\end{matrix}
 $$
 
-\flushpar
+\noindent %flushpar
 $\zeta$ is a constant in $F^\times$.  It is a norm of an element in the quadratic
 extension  $E$  (associated to the unitpotent element  $u_0$) if and only if
 $G$ is split.
@@ -1939,11 +2010,11 @@ $G$ is split.
 
 
 It is shown in [H] that  $\kappa$  is trivial on the cocycle 
-$$
+\begin{equation}
 \sigma_\alpha  \mapsto ~ \lambda^{\alpha^v} \quad 
 \sigma_\beta \mapsto~ 1 \quad
-\sigma_0 \mapsto~ 1   .\tag 5.14
-$$
+\sigma_0 \mapsto~ 1   .\tag {5.14}
+\end{equation}
 
 \noindent and $\kappa$ is trivial on the cocycle~~$\sigma_\alpha\mapsto 1$~~
 $\sigma_\beta~\mapsto~ \lambda^{\beta^v}$~~$\sigma_0~\mapsto~1$~~ if and only if
@@ -1955,21 +2026,21 @@ torus\ $U_E(1)$\ split by E
 as follows.  For a fixed\ $w = w_0$,\ the fibre over  $w$,  which is isomorphic
 over  $\overline{F}$  to  ${\bold P}^1$, does not necessarily have any $F$-rational
 points.  $H$  does if and only if the cocycle depending on  $w$
-$$
-a_\sigma:  \sigma ~ \mapsto ~ \sigma[\xi][\xi]^{-1} \in U_E(1)  \tag 5.15
-$$
+\begin{equation}
+a_\sigma:  \sigma ~ \mapsto ~ \sigma[\xi][\xi]^{-1} \in U_E(1)  \tag {5.15}
+\end{equation}
 is a coboundary when evaluated at $w = w_0$.  The germ, being a principal value integral over
 $E_\alpha(u_0)$\ may be expressed as a double integral over $\xi$  and then $w$ if we
 integrate only over those points for which (5.15) is a coboundary.  Let  $\eta_E$\
 be the non-trivial character on\ $H^1(Gal(\overline{F}/F), U_E(1))$.\  Then the
 subregular germ is equal to
-$$
+\begin{equation}
 |\lambda| \int_{E_\alpha(u_0)} \left| {\frac{dw}{w^2}}~ 
 {\frac{d{\xi}}{\xi}} \right| \kappa(t_\sigma) =
 |\lambda| \int_{Nm1} {\frac{d\overline{\xi}}{|\overline{\xi}|}} \int_{{\bold P}^1(F)}
 \left( {\frac{1+\eta_E(a_\sigma)}{2}} \right) {\frac{dw}{|w|^2}}~\kappa(t_\sigma)
-\tag 5.16
-$$
+\tag {5.16}
+\end{equation}
 $$
 = {\frac{|\lambda|}{2}} \int_{Nm1}  {\frac{d\overline{\xi}}{|\overline{\xi}|}} 
 \int_{{\bold P}^1(F)} \kappa(t_\sigma) {\frac{dw}{|w|^2}} + {\frac{|\lambda|}{2}}
@@ -1997,20 +2068,21 @@ group\ ${}^{E}SO(4)$.\  Then the subregular germs on  $G$  for the pair  $(T,\ka
 are zero.
 \endproclaim
 
-\demo{Remark}  The group  ${}^{E}SO(4)$\  has no $F$-rational subregular elements.  
+\proclaim{Remark}  The group  ${}^{E}SO(4)$\  has no $F$-rational subregular elements.  
 Proposition 5.17 gives the transfer of the subregular germ in this case.
-\enddemo
+\endproclaim
 
-\demo{Proof}  By (5.2) we may assume that  ${}^{E}SO(4)$  is split by the quadratic 
+\begin{proof}  By (5.2) we may assume that  ${}^{E}SO(4)$  is split by the quadratic 
 extension  $E'$ associated to the unipotent class $O_{E'}$ (that is E'=E).     
 Thus the group\ $W_T\times A$\  is equal to a subgroup of
 $$
-W_T \times A \subseteq  \left\{ {\matrix \format \l \\
+W_T \times A \subseteq  \left\{ 
+{\begin{matrix} % \format \l \\
 1,~ \sigma_\alpha,~ \sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_\beta, ~
 \sigma_\beta\sigma_\alpha\sigma_\beta \\
 \sigma_\beta\sigma_0, ~ \sigma_\beta\sigma_\alpha\sigma_0,~
 \sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_0,~ \sigma_\alpha\sigma_\beta\sigma_0
-\endmatrix}
+\end{matrix}}
 \right\}~~  {\mathrel{\mathop =^{def}}}~~ \Omega_1
 $$
 
@@ -2038,9 +2110,11 @@ independent of  $w$.  We may integrate in (5.16) first over $w$.  But
 $\int_{{\bold P}^1(F)} {\dsize\frac{dw}{|w|^2}} = 0$~~~[LS1]~~ so that the germ is
 equal to zero.	This completes the proof.  We remark that the proof does not
 use the fact that $\kappa$  is a nontrivial character.
+\end{proof}
 \vskip .2in
 
-Next we consider the endoscopic group\ $H = SL(2)\times U_{E}(1)$.  By (5.2) the subregular germ for pairs  $(T,\kappa)$
+Next we consider the endoscopic group\ $H = SL(2)\times U_{E}(1)$. 
+ By (5.2) the subregular germ for pairs  $(T,\kappa)$
 associated to  $H$  are zero except when  $H$  is split by the quadratic extension
 associated to the unipotent class.  We assume that $E$ splits $H$.  We identify the
 nontrivial element of the Weyl group of $H$  with the simple reflection  $\sigma_\beta$
@@ -2056,7 +2130,7 @@ non-split endoscopic group\ $H=SL(2) \times U_{E}(1)$.\  Then the nonzero subreg
 germ on $G$  for the pair  $(T,\kappa)$\  considered as a function of the tangent
 direction  $(T_1,T_2)$\ of the curve $\Gamma$ at the identity element depends only on
 $T_2$ not $T_1$.
-\flushpar
+\noindent %flushpar
 (2)\ The subregular germ of the unipotent class $O_{E}$ on G for pairs  $(T,\kappa)$  associated to  $SL(2) 
 \times U_{E}(1) $\  are given by the first row of (5.1)  where 
 $$
@@ -2065,16 +2139,16 @@ $$
 $$
 Here the action of $Gal(\overline{F}/F)$ on $w$ is determined by the rule
 $\sigma_\beta(w) = w/w_B$,\ 
-$\sigma_0\sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_\beta(w) = -w$\. $Nm1$  
+$\sigma_0\sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_\beta(w) = -w$.~~ $Nm1$  
 denotes the group of norm 1 elements of $E$.
-\flushpar
+\noindent %flushpar
 (3)\ The transfer (2.8) of subregular germs near the identity is compatible for various choices of $(T,\kappa)$\
 associated to  $SL(2) \times U_E(1)$.  (In other words the function $f^H$
 may be chosen independent of $(T,\kappa)$.)
 \endproclaim
 
 
-\demo{Proof}  The character $\kappa$ of  $H^1(Gal(\overline{F}/F),T)$\  may be
+\begin{proof}  The character $\kappa$ of  $H^1(Gal(\overline{F}/F),T)$\  may be
 identified with the nontrivial character on\ $H^1(Gal(\overline{F}/F), U_E(1))$
 under the projection\ $T\subseteq H = SL(2) \times U_E(1) \to U_E(1)$.  We then
 see using (5.13)  that  $\kappa(t_\sigma)$
@@ -2083,12 +2157,12 @@ indiscriminately for the nontrivial character on  $U_E(1)$  and the nontrivial
 character on  $F^\times$  trivial on the norms of  $E$.)  Again by (5.13)  
 $\eta_E(a_\sigma)$\ of (5.15) is equal to  $\eta_E$  applied to 
 ${\dsize\frac{w_Aw_D}{w_B}}~ \zeta \in F^\times$.  By (5.16) the germ is equal to
-$$
+\begin{equation}
 {\frac{|\lambda|}{2}} \int {\frac{d\overline{\xi}}{|\overline{\xi}|}} \int
 \eta_E ({\frac{w^2}{w_Aw_D}}) {\frac{dw}{|w|^2}} + {\frac{|\lambda|}{2}} \int
 {\frac{d\overline{\xi}}{|\overline{\xi}|}} \int \eta_E({\frac{w^2\zeta}{w_B}})
-{\frac{dw}{|w|^2}} . \tag 5.19
-$$
+{\frac{dw}{|w|^2}} . \tag {5.19}
+\end{equation}
 
 
 \noindent $w_B = -2T_2w+1$  depends only on $T_2$ not $T_1$  and by (5.13) 
@@ -2098,23 +2172,23 @@ $T_1$.  Thus the second term of (5.19) depends only on  $T_2$.
 To show that the first term of (5.19) is independent of  $T_1$  we introduce the
 variable \linebreak
 $w' = w/2T_1w+1 = w/w_D$.\ Simple calculations give
-$$
+\begin{equation}
 {\frac{dw}{w^2}} = {\frac{dw'}{w'^2}} , \quad {\frac{w^2}{w_Aw_D}} = 
-{\frac{w'^2}{(-2T_2w'+1)}} , \tag 5.20
-$$
+{\frac{w'^2}{(-2T_2w'+1)}} , \tag {5.20}
+\end{equation}
 
 \noindent and writing  $w'_B = -2T_2w'+1$,
 \vskip .2in
 \noindent (5.21)
 $$
-\matrix \format  \c \quad & \c \quad  &\c\quad & \c\quad & \c \\
+\begin{matrix} % \format  \c \quad & \c \quad  &\c\quad & \c\quad & \c \\
 & \underline{\sigma(w)} & \underline{\sigma(w')} & \underline{\sigma(w_B)} 
 & \underline{\sigma(w'_B)}  \\
 \vspace{1.5\jot}
 \sigma_\beta & w/w_B & w'/w'_B & 1/w_B & w'/w'_B \\
 \vspace{1.5\jot}
 \sigma_0\sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_\beta & -w & -w' & w_B & w'_B \\ 
-\endmatrix
+\end{matrix}
 $$
 \vskip .2in
 
@@ -2135,15 +2209,15 @@ direction of  $T_1$.  Thus a function supported on regular and subregular
 elements satisfies\
 $\Delta_G^{T,\kappa} \Phi_G^{T,\kappa}(\gamma ,f) 
 = \Delta_G^{T,\kappa} \Phi_G^{T,\kappa}(z_0\gamma ,f)$\ (assuming that
-$z_0 = exp(zT_1)$ and $\gamma$ are sufficiently small), so that the germ
+$z_0 = \exp(zT_1)$ and $\gamma$ are sufficiently small), so that the germ
 expansion at the identity coincides with the germ expansion at  $z_0$.  By
 (2.11)\ $\Delta_G^{T,\kappa} \Phi^{T,\kappa} (z_0\gamma ,f) =
 \Delta_{M_{qs}}^{T_{qs,\kappa}} \Phi_{M_{qs}}^{T_{qs,\kappa}} (\gamma ,f)$.\  
 $\kappa$  is trivial on
 $(T\setminus M)(F)$\ and  $M_{der} {\dsize\mathrel{\mathop\to^{\sim}}}\ H_{der}$\
 so the result follows.
-
-\medpagebreak
+\end{proof}
+%\medpagebreak
 
 Next we consider the case that  $H = Sp(4), \quad G$ is not quasi-split and the
 integrals are all stable.
@@ -2153,7 +2227,7 @@ not quasi-split,\ $\Gamma_{qs}^{(T,1)}$\ is the germ on the quasi-split inner fo
 and  $\Gamma^{(T,1)}$  is the germ on $G$.  Then\ $\Gamma^{(T,1)} = -\Gamma_{qs}^{(T,1)}$.
 \endproclaim
 
-\demo{Proof}  The factor $\kappa(t_\sigma)$  of (5.16) is constant so that by the result
+\begin{proof}  The factor $\kappa(t_\sigma)$  of (5.16) is constant so that by the result
 $\int_{{\bold P}^1(F)} {\dsize\frac{dw}{|w|^2}} = 0$\  it follows that the first term
 of (5.16) is zero.  The cocycle $a_\sigma$  for  $G$  and  $a_\sigma^{qs}$\ for
 the quasi-split  inner form differ only by the factor $\zeta$.  Thus we have
@@ -2168,9 +2242,9 @@ $$
 = \eta_E(\zeta) \Gamma_{qs}^{(T,1)} = - \Gamma_{qs}^{(T,1)}
 $$
 since $\eta_E(\zeta) = -1$\ because $\zeta$ is not a norm if $G$ is not quasi-split.
-\enddemo
+\end{proof}
 
-\medpagebreak
+%\medpagebreak
 
 Finally we consider the endoscopic group  $H = SO(4)$.  Since  $H$  is split we must
 consider all subregular unipotent classes including the distinguished one.  The 
@@ -2179,12 +2253,12 @@ Weyl group of  $H$  may be identified with\ $\{ 1,\sigma_\alpha,\sigma_\beta\sig
 is a subgroup of
 
 $$
-\Omega_1 ~ {\mathrel{\mathop=^{def}}}~ \left\{ {\matrix \format \l \\
+\Omega_1 ~ {\mathrel{\mathop=^{def}}}~ \left\{ {\begin{matrix} % \format \l \\
 1,\quad \sigma_\alpha,\quad \sigma_\beta\sigma_\alpha\sigma_\beta, \quad
 \sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_\beta \\
 \sigma_0, \quad \sigma_\alpha\sigma_0, \quad \sigma_\beta\sigma_\alpha\sigma_\beta
 \sigma_0, \quad  \sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_\beta\sigma_0
-\endmatrix} \right\} .
+\end{matrix}} \right\} .
 $$
 
 \proclaim{Proposition\ 5.23}\ (1)\   Let  $(T,\kappa)$  be a pair associated to the
@@ -2193,12 +2267,12 @@ $(T,\kappa)$  and a subregular unipotent class associated to a nontrivial
 quadratic extension $E$ of $F$ breaks into a sum of two terms.  The first
 term depends on  $T_1+T_2$  but not  $T_1-T_2$.  The second term depends on
 $T_1-T_2$  but not  $T_1+T_2$.  
-\flushpar
+\noindent %flushpar
 (2)\ These germs are given as in (5.1) and the transfer (2.8) to the endoscopic 
 group  $SO(4)$\ is valid for those germs.
 \endproclaim
 
-\demo{Proof}  As in the discussion of the endoscopic group  $H = {}^{E}SO(4)$\ we
+\begin{proof}  As in the discussion of the endoscopic group  $H = {}^{E}SO(4)$\ we
 use coordinates\ $\xi' = w_D\xi$\ and  $w$  instead of $\xi$and  $w$.  We 
 have by (5.13)\ $\sigma_\alpha(\xi') = \xi'$, 
 $\sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_\beta(\xi') = \xi'$, ~~
@@ -2206,26 +2280,27 @@ $\sigma_0(\xi') = ({\dsize\frac{w_Bw_D}{w_A\zeta}})({\dsize\frac{1}{\xi'}})$.\ T
 evaluated on the cocycle  $a_\sigma$  of (5.15) equals
 $\eta_E({\dsize\frac{w_Bw_D}{w_A\zeta}}),~~ {\dsize\frac{w_Bw_D}{w_A\zeta}} \in F^\times$.
 
-\medpagebreak
+%\medpagebreak
 
-$H = SO(4)$  is an endoscopic group (up to a central factor) even if  $G$  is of adjoint type, so we may
+$H = SO(4)$  is an endoscopic group (up to a central factor) 
+even if  $G$  is of adjoint type, so we may
 calculate the    cocycle in the adjoint group.  We form a cocycle in  $U_{E'}(1)$
 (where  $E'$  is the invariant field of  $\sigma_\alpha$  and  $\sigma_0$)  by
 replacing the cocycle  $t_\sigma:  \sigma \mapsto (t_{1\sigma},t_{2\sigma})$ by
 $e_\sigma:  \sigma\mapsto t_{1\sigma}t_{2\sigma}\in U_{E'} (1)$.  The fact that
 $W_T\times A$  is a subgroup of  $\Omega_1$  insures that this is well-defined.
 By (5.13) we find that\ $e_\sigma$  is given by
-$$
+\begin{equation}
 \sigma_\alpha \mapsto 1,\quad  \sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_\beta 
-\mapsto w^2/x(\gamma)^2w_Bw_D \in F^\times,\quad \sigma_0 \mapsto 1.\tag 5.24
-$$
+\mapsto w^2/x(\gamma)^2w_Bw_D \in F^\times,\quad \sigma_0 \mapsto 1.\tag {5.24}
+\end{equation}
 
 \noindent Thus  $\kappa(t_\sigma) = \eta_{E'}(e_\sigma)$.  Since  $x(\gamma)\in F^\times$,
 $x(\gamma)^2\in F^{\times 2}$  and it may be removed without affecting
 $\eta_{E'}(e_\sigma)$.  Write  $e'_\sigma$  for the cocycle so obtained.
 
 We make the change of coordinates  $w\ =\ w'/(2T_2w'+1)$.\  Then\ $e'_\sigma$\
-becomes\ $\sigma_\alpha~\mapsto~ 1$,\ \linebreak 
+becomes\ $\sigma_\alpha~\mapsto~ 1$,\ 
 $\sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_\beta\
 \mapsto~w'^2/(2(T_1+T_2)w'+1)\in F^\times$, $\sigma_0~\mapsto~1$.  The action of
 $\Omega_1$  on the variable $w'$  is easily seen to be\ 
@@ -2279,6 +2354,8 @@ that  $T$  lies in a parabolic subgroup of $G$.  Since we have expressed the
 subregular germ in terms of the germs associated to  $T$  lying in a parabolic
 subgroup compatiblity for all pairs  $(T,\kappa)$ associated to 
 $SO(4)$\ follows.	   
+\end{proof}
+
 \vskip .2in
 
 The following proposition will complete our study of the subregular germs.
@@ -2293,7 +2370,7 @@ $T_1-T_2$\ but not\ $T_1+T_2$.
 endoscopic group\ $SO(4)$\ is valid for these germs.
 \endproclaim
 
-\demo{Proof}\ In the analysis of the distinguished subregular class (5.2) does not
+\begin{proof}\ In the analysis of the distinguished subregular class (5.2) does not
 apply so that there are two divisors to consider.  We select  $B_0, B_\infty$  as
 before, noting that\  $B_0, B_\infty$\ are now over $F$ so that the group $A$ is
 trivial ($\sigma_0$ does not occur).  Recall that  $B_0$  was selected to lie in a
@@ -2315,11 +2392,11 @@ Since  $H$  is split by  $\kappa$  evaluated on the cocycle
 $\sigma_\alpha  \mapsto 1$,\ $\sigma_\beta  \mapsto x^{\beta^v}$,\  
 $(x \in F^\times)$\ is trivial (5.14).  Thus we may take $t_\sigma$  to be given by
 $$
-\aligned
+\begin{aligned}
 \sigma_\alpha & \mapsto~ (1/x(\alpha))^{\alpha^v} \\
 \sigma_\beta & \mapsto~ (\lambda/x(\beta))^{\beta^v} = z(\beta)^{\beta^v} =
 \left( {\frac{x(\alpha)w(\gamma)}{x(\gamma)}} \right)^{\beta^v}	.
-\endaligned
+\end{aligned}
 $$ 
 We adjust this by the coboundary  $c_\sigma = \sigma(t)t^{-1}$\quad 
 $t = (1,x(\alpha))$
@@ -2335,15 +2412,14 @@ $E_\beta(u_0) \cap Y_U$\  and so identically 1 everywhere:  $\kappa(t_\sigma)
 We turn to the form on  $E_\beta$.  Recall that  $E_\beta$  is given by the
 equations\ $x(\beta) = z(\alpha) = w(\delta) = x(\alpha)w(\gamma) -
 z(\beta)x(\gamma) = 0$.\  For  $x(\gamma)\ne 0$\  we use coordinates given 
-on the patch  $x(\gamma)\ne 0$\  in the proof of (4.4).  The form\ $\omega_{E_\beta}$\  on $E_\beta$  is given by	
-$$
-\align
+on the patch  $x(\gamma)\ne 0$\  in the proof of (4.4).  
+The form\ $\omega_{E_\beta}$\  on $E_\beta$  is given by	
+\begin{align*}
 \omega_{E_\beta} &= Res_{E_\beta}(\omega_Y/\lambda^2) = Res\left( {\frac{d\lambda}{\lambda^2}}
-dx(\alpha)dx(\beta)dx(\gamma)dx(\delta)dv \right) \tag 5.26 \\
+dx(\alpha)dx(\beta)dx(\gamma)dx(\delta)dv \right) \tag {5.26} \\
 &= x(\gamma) {\frac{dw(\gamma)}{w(\gamma)^2}} {\frac{dx(\alpha)}{x(\alpha)}} 
 dx(\gamma)dx(\delta)dv .
-\endalign
-$$
+\end{align*}
 
 \noindent We take an invariant measure on the subregular class $O$  to be 
 $$
@@ -2353,9 +2429,9 @@ where we use coordinates\ $x(\alpha), x(\gamma), x(\delta), v(\alpha),
 v(\gamma), $\  on an open set of the double cover of $O$.
 Set
 $$
-m(w,x,y,z) = \left( {\matrix 1 & x & y & z \\
-&1 & w & * \\  &&1 & * \\ &&& 1 \endmatrix} \right) ~~\in~~ Sp(4),\
-J_0 = \left( {\matrix &&&1 \\ &&1& \\ & -1 && \\ -1 &&& \endmatrix} \right) .
+m(w,x,y,z) = \left( {\begin{matrix} 1 & x & y & z \\
+&1 & w & * \\  &&1 & * \\ &&& 1 \end{matrix}} \right) ~~\in~~ Sp(4),\
+J_0 = \left( {\begin{matrix} &&&1 \\ &&1& \\ & -1 && \\ -1 &&& \end{matrix}} \right) .
 $$
 
 \noindent Then\ $(x(\alpha), x(\gamma), v(\alpha), v(\beta), 
@@ -2365,16 +2441,15 @@ ${\bold v_\beta} =$ $J_0^{-1}m(0,v(\alpha),v(\gamma),v(\delta))J_0$.
 
 We take the quotient\ $\omega_{E_\beta}/\omega_0$\ to obtain the form on
 $E_\beta(\ell_\beta)$
-
-$$
+\begin{equation}
 {\frac{x(\gamma)}{x(\alpha)}}~  {\frac{dw(\gamma)}{w(\gamma)^2}} d\xi_\beta
 \qquad \qquad {\text{where}}~~{\xi_\beta}~~ {\text{is given as follows}}.
-\tag 5.27
-$$
+\tag {5.27}
+\end{equation}
 
 If\ $(u, B_0^{n_W})^v \in E_\beta(\ell_\beta)$\ then\ $B_0^v = \ell_\beta$,
 $B_0\in \ell_\beta$\  which implies that\ $v\in P_\beta \cap N_\infty$\ so that
-$v = exp(-{{\xi_\beta}}\ X_{-\beta})$.\  Also recall that  $u_0$  has the 
+$v = \exp(-{{\xi_\beta}}\ X_{-\beta})$.\  Also recall that  $u_0$  has the 
 form (5.5) \  $u_0 = m(0,0,x,0)$\ provided   $B_0$  is taken to be upper triangular and
 $B_\infty$  lower triangular.  Thus\  $u_0^{v^{-1}} = u = m(0,{\tilde{\xi}},x,0)$\
 so that on  $E_\beta(\ell_\beta)$\ \ ${\dsize\frac{x(\gamma)}{x(\alpha)}} = 
@@ -2392,13 +2467,11 @@ Res_{E_\beta(\ell_\beta)} \omega_{E_\alpha(u_0)} = Res_{E_\alpha(u_0)}
 \omega_{E_\beta(\ell_\beta)} .
 $$
 This condition forces the normalization
-
-$$
+\begin{equation}
 \omega_{E_\beta(\ell_\beta)}\ =\ {\frac{dw(\gamma)}{w(\gamma)^2}}\ 
-{\frac{d{\xi_\beta}}{{\xi_\beta}}}  \tag 5.28
-$$
-
-\noindent for then\ $Res_{E_\alpha(u_0)} \omega_{E_\beta(\ell_\beta)}\ =\
+{\frac{d{\xi_\beta}}{{\xi_\beta}}}  \tag {5.28}
+\end{equation}
+for then\ $Res_{E_\alpha(u_0)} \omega_{E_\beta(\ell_\beta)}\ =\
 {\dsize\frac{dw(\gamma)}{w(\gamma)^2}}$.
 \vskip .2in
 	      
@@ -2406,8 +2479,7 @@ Write $w_\beta$ for the restriction of $w(\gamma)$ to $E(\ell_\beta)$.  Then
 by (5.10)
 
 \noindent (5.29)
-
-$$\matrix \format \c &\quad \c &\quad \c &\quad \c &\quad \c \\
+$$\begin{matrix} % \format \c &\quad \c &\quad \c &\quad \c &\quad \c \\
 & \underline{1} & \underline{\sigma_\alpha} & 
 \underline{\sigma_\beta\sigma_\alpha\sigma_\beta} & 
 \underline{\sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_\beta} \\  \vspace{2\jot}
@@ -2425,7 +2497,7 @@ $$\matrix \format \c &\quad \c &\quad \c &\quad \c &\quad \c \\
 {w}_{\beta,D}/{w}_{\beta,A} \\							    \vspace{1.5\jot}
 \sigma({w}_{\beta,D}) & {w}_{\beta,D} & {w}_D/{w}_{\beta,A} & {w}_{\beta,B} &
 {w}_{\beta,B}/{w}_{\beta,A}
-\endmatrix
+\end{matrix}
 $$
 \vskip .3in
 \noindent where  ${w}_{\beta,A} = 2(T_1-T_2){w_\beta} + 1, 
@@ -2446,47 +2518,112 @@ we have
 
 \noindent (5.30)
 $$
-\aligned
+\begin{aligned}
 w_\beta &= z_c/(\xi_c + 2T_2z_c), \\  z_c &= -w_\beta/\xi_\beta(1-2T_2w_\beta),
-\endaligned  \quad
-\aligned  \xi_\beta &= -1/\xi_c\\ \xi_c &= -1/\xi_\beta .
-\endaligned
+\end{aligned}  \quad
+\begin{aligned}  \xi_\beta &= -1/\xi_c\\ \xi_c &= -1/\xi_\beta .
+\end{aligned}
 $$
 
 \noindent On  $E(\ell_\alpha,u_0)$\  we have
 
 \noindent (5.31)
 $$
-\aligned
+\begin{aligned}
 \xi_\alpha &= -1/\xi'_\alpha, \\  \xi'_\alpha &= -1/\xi_\alpha,
-\endaligned \quad
-\aligned  w_\alpha &= -w'_\alpha/(2(T_1-T_2)w'_\alpha+1) \\
+\end{aligned} \quad
+\begin{aligned}  w_\alpha &= -w'_\alpha/(2(T_1-T_2)w'_\alpha+1) \\
 w'_\alpha &= -w_\alpha/(2(T_1-T_2)w_\alpha + 1)	.
-\endaligned
+\end{aligned}
 $$
 
 \noindent On  $E(\ell'_\beta,u_0)$\ we have
 
 \noindent (5.32)
 $$
-\aligned
+\begin{aligned}
 w'_\beta &= z'_c/(\xi'_c + 2T_2z'_c), \\ z'_c &= -w'_\beta/\xi'_\beta(1-2T_2w'_\beta),
-\endaligned \quad
-\aligned  \xi'_\beta &= -1/\xi'_c \\ \xi'_c &= -1/\xi'_c.  \endaligned
+\end{aligned} \quad
+\begin{aligned}  \xi'_\beta &= -1/\xi'_c \\ \xi'_c &= -1/\xi'_c.  \end{aligned}
 $$
 
-\flushpar
+\noindent %flushpar
 The form on $E(\ell_\beta,u_0)$\ is\ $-dz_cd\xi_c/z^2_c 
 = dw_\beta d\xi_\beta/w^2_\beta\xi_\beta$\
 and the form on\ $E(\ell'_\beta,u_0)$\ is\ $-dz'_cd\xi'_c/z'^2_c = 
 dw'_\beta d\xi'_\beta/w'^2_\beta\xi'_\beta$.
 
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[scale=2.5]
+\draw[thick] (1,2.5) -- ++(0.2,0.2) -- ++(0,-0.2);
+\draw[thick] (1,2.5)--(0.8,2.5)--(0.8,2.5-0.2);
+\draw[thick] (0,0)--(1,1)--(1,2.5)--(0,1.5)--cycle;
+\draw[thick](1,1)--(3,1) -- ++(0,1.5)-- ++(-2,0) -- cycle;
+\draw[thick](3,1)--(4,0)-- ++(0,1.5)-- ++ (-1,1) --cycle;
+\draw[thick](3,2.5) -- ++(0.2,0) -- ++(0,-0.2);
+\draw[thick](3,2.5) -- ++(-0.2,0.2) -- ++(0,-0.2);
+\draw (0.3,0.5+1.5+0.2) node[above] {$E(\ell_\beta,u_0)$};
+\draw (2,2.5) node[above] {$E(\ell_\alpha,u_0)$};
+\draw (3.8,0.5+1.5+0.2) node[above] {$E(\ell'_\beta,u_0)$};
+\draw[thick,->] (0+0.2,0+0.5)--(0.2+0.2,0.5+0.2) node[above] {$\xi_c$};
+\draw[thick,->] (0+0.2,0+0.5)-- ++ (0,0.3) node[right,above] {$z_c$};
+%
+\draw[thick,->] (1-0.2,1+0.1)-- ++ (-0.2,-0.2) node[left,above] {$\xi_\beta$};
+\draw[thick,->] (1-0.2,1+0.1)-- ++ (0,0.3) node[left,above] {$w_\beta$};
+%
+\draw[thick,->] (1+0.2,1+0.2)-- ++ (0.2,0) node[left,above] {$\xi_\alpha$};
+\draw[thick,->] (1+0.2,1+0.2)-- ++ (0,0.2) node[left,above] {$w_\alpha$};
+%
+\draw[thick,->] (3-0.2,1+0.2)-- ++ (-0.2,0) node[left,above] {$\xi'_\alpha$};
+\draw[thick,->] (3-0.2,1+0.2)-- ++ (0,0.2) node[left,above] {$w'_\alpha$};
+%
+\draw[thick,->] (3+0.2,1)-- ++ (0.2,-0.2) node[right,above] {$\xi'_\beta$};
+\draw[thick,->] (3+0.2,1)-- ++ (0,0.3) node[right,above] {$w'_\beta$};
+%
+\draw[thick,->] (4-0.2,0.5)-- ++ (-0.2,0.2) node[right,above] {$\xi'_c$};
+\draw[thick,->] (4-0.2,0.5)-- ++ (0,0.3) node[right,above] {$z'_c$};
+% PART II
+% left bumps
+\draw[yshift=-2.3cm,thick] (1,2.5) -- ++(0.2,0.2) -- ++(0,-0.2);
+\draw[yshift=-2.3cm,thick] (1,2.5)--(0.8,2.5)--(0.8,2.5-0.2);
+% left
+%\draw[yshift=-2.3cm,thick] (0,0)--(1,1)--(1,2.5)--(0,1.5)--cycle;
+\draw[yshift=-2.3cm,thick] (0,0)-- ++ (0.5,0.5) -- ++(0,1.5) -- ++(-0.5,-0.5)--cycle;
+\draw[yshift=-2.3cm,thick] (0.7,0.7)--(1,1)-- ++(0,1.5) -- ++(-0.3,-0.3)--cycle;
+% center
+%\draw[yshift=-2.3cm,thick](1,1)--(3,1) -- ++(0,1.5)-- ++(-2,0) -- cycle;
+\draw[yshift=-2.3cm,thick](1,1)-- ++(0.3,0) -- ++(0,1.5) -- ++(-0.3,0) --cycle;
+\draw[yshift=-2.3cm,thick](1+0.5,1)-- ++(1,0) -- ++(0,1.5) -- ++(-1,0) -- cycle;
+\draw[yshift=-2.3cm,thick](2.7,1)-- ++(0.3,0) -- ++(0,1.5) -- ++(-0.3,0) --cycle;
 
-
-\midspace {6.5in} \caption{\noindent This diagram 
+% right
+%\draw[yshift=-2.3cm,thick](3,1)--(4,0)-- ++(0,1.5)-- ++ (-1,1) --cycle;
+\draw[yshift=-2.3cm,thick](3,1)-- ++(0.3,-0.3) -- ++(0,1.5) -- ++ (-0.3,0.3)--cycle;
+\draw[yshift=-2.3cm,thick](3+0.5,1-0.5)-- ++(0.5,-0.5) -- ++(0,1.5) -- ++ (-0.5,0.5)--cycle;
+% right bumps
+\draw[yshift=-2.3cm,thick](3,2.5) -- ++(0.2,0) -- ++(0,-0.2);
+\draw[yshift=-2.3cm,thick](3,2.5) -- ++(-0.2,0.2) -- ++(0,-0.2);
+\draw[yshift=-2.3cm] (0.3,0.2+1.5+0.2) node[above] {$\text{PV}_1$};
+\draw[yshift=-2.3cm] (1,2.5+0.2) node[above] {$\text{PV}_2$};
+\draw[yshift=-2.3cm] (2,2.5) node[above] {$\text{PV}_3$};
+\draw[yshift=-2.3cm] (3,2.5+0.2) node[above] {$\text{PV}_4$};
+\draw[yshift=-2.3cm] (3.8,0.2+1.5+0.2) node[above] {$\text{PV}_5$};
+\draw[yshift=-2.3cm] (0.3,0.2+1.5+0.2-2) node[above] {$0$};
+\draw[yshift=-2.3cm] (1,2.5+0.2-2.5) node[above] {$T_1+T_2$};
+\draw[yshift=-2.3cm] (2,2.5-2) node[above] {$0$};
+\draw[yshift=-2.3cm] (3,2.5+0.2-2.5) node[above] {$T_1-T_2$};
+\draw[yshift=-2.3cm] (3.8,0.2+1.5+0.2-2) node[above] {$0$};
+\end{tikzpicture}
+\caption{This diagram 
 should help to clarify coordinates patches.  It also 
 identifies how the principal value integral will be broken into five pieces by
 truncating the integrals near the poles.}
+\end{figure}
+
+
+%XX \midspace {6.5in} 
+\wasacaption{\noindent }
 
 Truncate near  $E(\ell_\beta,u_0) \cap E(\ell_\alpha,u_0)$\ in\ $E(\ell_\beta,u_0)$\
 (The $\ell_\alpha$-pole) by
@@ -2502,7 +2639,7 @@ $$
 {(T_1-T_2)w_\beta +1}}.
 $$							    
 
-\pagebreak
+%\pagebreak
 \noindent
 this region is the same as  $|\xi_c + (T_1 + T_2)z_c| \le q^{m}$.  Let
 $\overline{\xi}_c = \xi_c + (T_1 + T_2)z_c$.  Then $z_c$  and  $\overline{\xi}_c$
@@ -2537,8 +2674,6 @@ $$
 The contribution  $PV_4$  to the germ at the pole\ $\ell'_\beta \cap \ell_\alpha$\
 is given by (1.3).  The function $M$ is given by $m(\alpha_0) + 2m$\ where $\alpha_0$
 is defined by: 
-
-
 $$
 \alpha_0 = \lim_{\lambda\to 0}  
 {\dsize\frac{\lambda}{\overline{\xi}'_\beta\overline{\xi}'_\alpha}} = 
@@ -2551,7 +2686,7 @@ $$
      \right\}  
 .
 $$
-\vskip .2in
+\bigskip
 	    
 
 \noindent Here $\overline{\xi}'_\alpha$ and $\overline{\xi}'_\beta$\ are variables
@@ -2560,18 +2695,12 @@ of this limit.
 On\ $E_\alpha(u_0)$\ \ $x(\gamma)/x(\beta) = 1/2\xi'_\alpha$\ \ (5.8), on\ 
 $E(\ell'_\beta,u_0)$\ $x(\gamma)/x(\alpha) = 1/\xi'_\beta$\ (5.27) and\
 $w'_\alpha = w'_\beta = w(\gamma)$\ on their intersection so that
-	    
-
 $$
 \alpha_0 = \lim_{\lambda\to 0}\ {\dsize\frac{2x(\gamma)w(\gamma)((T_1-T_2)w(\gamma)+1)}
 {(2(T_1-T_2)w(\gamma)+1)}}\ =\ {\dsize\frac{2x(\gamma)w_3}{(1-(T_1-T_2)^2w_3^2)}}
 $$
-	    
-
 \noindent where\ $w_3 = w'_\alpha/((T_1-T_2)w'_\alpha+1)$\  is a coordinate
 over  $F$.  Thus  $M$  and hence $PV_4$  depend only on  $T_1-T_2$.
-
-	    
 
 Similarly the factor $\alpha$  at the $(\ell_\beta \cap \ell_\alpha)$-pole is up to inessential
 factors is
@@ -2586,9 +2715,11 @@ As in the proof of (5.23) we see that $PV_2$ is expressed in terms of the
 corresponding terms $PV_2$ associated to a Cartan subgroup $T'$ contained
 in a parabolic subgroup ($W_{T'} = \langle\sigma_\alpha\rangle$ or $\{1\}$)
 for which compatibility is known.  The term $PV_4$ is analyzed similarly.
-Hence the proposition follows.\heading
-\S 6.\ \ The transfer of 2-regular germs of  GSp(4)
-\endheading
+Hence the proposition follows.\end{proof}
+
+%6
+\section{The transfer of 2-regular germs of  GSp(4)}
+
 \vskip .2in
 
 There are no 2-regular elements in G(F) if G is not split.  Consequently, we
@@ -2606,31 +2737,28 @@ $E_2$  of the Igusa data which contributes to the 2-regular germ.  On the patch
 $Y_U$,  $E_2$  is described by the equation\ $z(\alpha) = x(\alpha) =
 x(\beta) = x(\gamma) = 0$.\ On the smaller patch where\ $x(\delta), w(\gamma) \ne 0$\
 the equations become 
-
-
-$$
-\align
-\lambda &= x(\gamma)^2 w(\delta)z(\beta)/(w(\gamma)^2x(\delta)) \tag 6.1\\
+\begin{align*}
+\lambda &= x(\gamma)^2 w(\delta)z(\beta)/(w(\gamma)^2x(\delta)) \tag {6.1}\\
 x(\alpha) &= z(\beta)x(\gamma)/w(\gamma) \\
 x(\beta) &= x(\gamma)^2 w(\delta)/(w(\gamma)^2 x(\delta)) \\ \vspace{1.5\jot}
 z(\alpha) &= {\frac{x(\gamma)w(\delta)}{w(\gamma)x(\delta)}}
-\endalign
-$$
+\end{align*}
 
 \noindent and $E_2$  is described simply by\ $x(\gamma) = 0$.  Coordinates on
 $E_2$  on this patch are\ $x(\delta)$, $w(\gamma)$, $w(\delta)$, $z(\beta)$, 
 $v(\alpha)$, $v(\beta)$, $v(\gamma)$, $v(\delta)$.
 
-By [Sp, p. 148]~~ ${\Cal B}_{u_0}$\  the 2-dimensional variety of Borel
+By [Sp, p. 148]~~ ${\mathcal B}_{u_0}$\  the 2-dimensional variety of Borel
 subgroups containing a given 2-regular element  $u_0$, contains a unique
-projective line  $\ell_\beta$  of type $\beta$  and  ${\Cal B}_{u_0}$\ is a
+projective line  $\ell_\beta$  of type $\beta$  and  ${\mathcal B}_{u_0}$\ is a
 union of lines of type  $\alpha$  which intersect the line of type  $\beta$.
 We consider the variety\ $E_2(u_0)$\ of all points $p$ of  $E_2$  above
 $u_0 = \pi(p)\in G$.\  We fix a Borel subgroup  $B_0$  in the line  $\ell_\beta$
 (whose points are Borel subgroups) and select any $B_\infty$  opposite  $B_0$.
 Then by the choice of  $B_0$  $x_\alpha(u_0) = x_\beta(u_0) = x_\gamma(u_0) = 0$.\
-Also if in the notation of (3.12) we have\ $(u, B_0^{n_W})^v \in E_2(u_0)$,\ then $x_\alpha(u) = x_\beta(u) =
-x_\gamma(u) = 0$\  and  $u^v = u_0$.\  This forces\  $v = exp(\xi x_{-\beta})$\
+Also if in the notation of (3.12) 
+we have\ $(u, B_0^{n_W})^v \in E_2(u_0)$,\ then $x_\alpha(u) = x_\beta(u) =
+x_\gamma(u) = 0$\  and  $u^v = u_0$.\  This forces\  $v = \exp(\xi x_{-\beta})$\
 for some  $\xi$.  It follows that\ $x(\delta), v(\alpha), v(\gamma), v(\delta)$\
 serve as coordinates on an open set of the conjugacy class\ $O_{u_0}$\ of
 $u_0$  while\ $z\ {\mathrel{\mathop=^{def}}}\ z(\beta)$, 
@@ -2639,12 +2767,10 @@ $w\ {\mathrel{\mathop=^{def}}}\ w(\gamma)$\  and
 $\tilde{w}\ {\mathrel{\mathop=^{def}}}\ w(\delta)$\  serve as coordinates on an open
 set of the fibre\ $E_2(u_0)$.\ We also set
 
-$$
-\align
-w_A &= 2(T_1-T_2)w+1, \quad w_B = -2T_2w+1, \quad w_D = 2T_1w+1 \tag 6.2\\
+\begin{align*}
+w_A &= 2(T_1-T_2)w+1, \quad w_B = -2T_2w+1, \quad w_D = 2T_1w+1 \tag {6.2}\\
 \ell &= \tilde{w}/w_B 
-\endalign
-$$
+\end{align*}
 
 The differential form on $E_2$  is\
 $\omega_{E_2}\ {\mathrel{\mathop=^{def}}}\ 
@@ -2656,10 +2782,10 @@ $$
 {\frac{dx(\gamma)}{x(\gamma)}} dx(\delta) d\xi dv(\alpha) dv(\gamma) dv(\delta)
 $$
 and
-$$
+\begin{equation}
 \omega_{E_2} = -x(\delta) {\frac{dz}{z^2}} {\frac{d\tilde{w}}{\tilde{w}^2}} dw\ dx(\delta)\
-d\xi\ dv(\alpha)\ dv(\gamma)\ dv(\delta) . \tag 6.3
-$$
+d\xi\ dv(\alpha)\ dv(\gamma)\ dv(\delta) . \tag {6.3}
+\end{equation}
 
 \noindent We separate this form into two parts:  an invariant form on the
 conjugacy class\ $O_{u_0}$\  and a form on the fibre\ $E_2(u_0)$.\  
@@ -2668,7 +2794,7 @@ seen to be an invariant form on  $O_{u_0}$\ and  $\omega_{E_2(u_0)} =
 {\dsize\frac{dz}{z^2}}\ {\dsize\frac{d\tilde{w}}{\tilde{w}^2}} dw d\xi$\  is then the form on the fibre
 $E_2(u_0)$.
 
-\medpagebreak
+%\medpagebreak
 
 Next we consider the action of the group $W\times A$  on the variables.  By our
 choice of Borel subgroup  $B_0$, as with the subregular germs $A$ has two elements
@@ -2678,7 +2804,7 @@ Equations (5.10)  give the first two rows of (6.4)
 
 \noindent (6.4)
 $$
-\matrix \format \c &\quad \c &\quad \c &\quad \c &\quad \c &\quad \c &\quad \c \\
+\begin{matrix} % \format \c &\quad \c &\quad \c &\quad \c &\quad \c &\quad \c &\quad \c \\
 & \underline{w} & \underline{\ell} & \underline{z} & \underline{\xi} &
 \underline{T_1} & \underline{T_2} \\
 \vspace{2\jot}
@@ -2689,15 +2815,17 @@ $$
 \vspace{1.5\jot}
 \sigma_0 & {(\xi w+z)/(\xi +2T_2z)} & \ell & {z/(\xi(2T_2z+\xi))}
 & -1/\xi & T_1 & T_2
-\endmatrix
+\end{matrix}
 $$
 
 \vskip .2in
 
 \noindent We have used the abbreviations\ $\ell = \tilde{w}/w_B$, $\overline{w} = w + (T_1-T_2)\tilde{w}$,
-$\overline{w}_A = w_A + (T_1-T_2)^2\tilde{w}$.  The cocycle\ $t_\sigma$\  is given by\  $\sigma_\alpha\ \mapsto\ (1/x(\alpha))^{\alpha^v}$,\
+$\overline{w}_A = w_A + (T_1-T_2)^2\tilde{w}$.  
+The cocycle\ $t_\sigma$\  is given by\  $\sigma_\alpha\ \mapsto\ (1/x(\alpha))^{\alpha^v}$,\
 $\sigma_\beta\ \mapsto\ (1/x(\beta))^{\beta^v}$,\ $\sigma_0 = A_\beta\
-\mapsto\ (\xi_\beta)^{\beta^v}$.  We adjust  $t_\sigma$  by  $c_\sigma = \sigma(t)t^{-1},  \quad t = (1, x(\alpha_1))$
+\mapsto\ (\xi_\beta)^{\beta^v}$.  
+We adjust  $t_\sigma$  by  $c_\sigma = \sigma(t)t^{-1},  \quad t = (1, x(\alpha_1))$
 \vskip .1in
 
 \noindent $c_\sigma: \qquad \sigma_\alpha\ \mapsto\ (x(\alpha))^{\alpha^v}$,\ 
@@ -2711,11 +2839,11 @@ $\sigma_\beta\ \mapsto\ (w_Bx(\alpha)^2)^{-\beta^v}$,\ $\sigma_0\ \mapsto\
 
 \noindent $\kappa$ is trivial on\ $d_\sigma$:\quad  $\sigma_\alpha\ \mapsto\ 1$,\
 $\sigma_\beta\ \mapsto\ (\lambda^2)^{\beta^v}$,\ $\sigma_0\ \mapsto\ 1$.  So we may consider
-\vskip .1in
-
-$$c_\sigma t_\sigma d_\sigma\ =\ \sigma_\alpha\ \mapsto\ 1,\quad
+\begin{equation}
+c_\sigma t_\sigma d_\sigma\ =\ \sigma_\alpha\ \mapsto\ 1,\quad
 \sigma_0\ \mapsto\ 1,\quad  \sigma_\beta\ \mapsto\ ({{z(\alpha)^2}\over {w_Bx(\beta)}} )^{\beta^v}
-=\ \ell^{\beta^v}.  \tag 6.5 $$
+=\ \ell^{\beta^v}.  \tag {6.5}
+\end{equation}
 \vskip .1in
 
 \noindent $\kappa(t_\sigma)\ =\ \kappa(t_\sigma'')$\  depends only on
@@ -2726,11 +2854,11 @@ We recall the fact that\ $a(E_2)\ =\ 2$\  implies that there is a term of the
 asymptotic expansion\ $F_1(\theta, 3)$\  for every character $\theta$ in  $F^\times$\
 of order 2.		    
 
-\pagebreak
+%\pagebreak
 \proclaim{Proposition 6.6}~~ $F_1(\theta,3) = 0$\  if  $\theta$  is non-trivial.
 \endproclaim
 
-\demo{Proof}  Let  $T_0$  be a split Cartan subgroup.  Then the action of  $G$ on
+\begin{proof}  Let  $T_0$  be a split Cartan subgroup.  Then the action of  $G$ on
 $Y_\Gamma$  gives an action of\ $T_0\subseteq\ G$\  on  $Y_\Gamma$.  To make this
 explicit select two Borel subgroups\ $B_0,B_\infty$\  over  $F$  with\
 $B_0 \cap B_\infty = T_0$.\  Then the action of\  $t_0\in T_0(\overline{F})$\  is
@@ -2772,7 +2900,8 @@ $\Gamma$  but not of $\xi$  or  $z$.  By Hilbert's 90th we write\
 ${\widetilde{x(\gamma)}} = x(\gamma)a$\  with\ $a$ a function of\ $w, \ell$\ and
 the  tangent direction, and $\widetilde{x(\gamma)}$ a variable over F.  Then
 $$
-\lambda\ =\ {{x(\gamma)^2\tilde{w}z}\over {w^2x(\delta)}}\ =\ {{{\widetilde{x(\gamma)}}^2\tilde{w}z}\over
+\lambda\ =\ {{x(\gamma)^2\tilde{w}z}\over {w^2x(\delta)}}\ 
+=\ {{{\widetilde{x(\gamma)}}^2\tilde{w}z}\over
 {a^2w^2x(\delta)}}		 
 $$
 
@@ -2800,23 +2929,25 @@ $$
 
 \noindent  So that if  $\theta(s)\ne 1$\ for some\ $s\in F^\times$\  we must have\
 $F_1(\theta,3)\ =\ 0$.\
+\end{proof}
 
 We turn to the Cartan subgroups associated to the endoscopic group  SO(4).  We define
 a birational map from\ $E_2(u_0)$\ to\ $({\bold P}^1)^4$\  by
-$$
-\aligned
+\begin{align*}
 w_2 &= {{-T_1w_B+\ell_1}\over {T_2w_B}}  \\ \vspace{2\jot}
 \ell_2 &= {{f_T\ell}\over {f_T\ell +2}} \\ \vspace{2\jot}
 \xi_1 &= \xi  \\ \vspace{2\jot}
-\xi_2 &= \xi + \rho z 	\endaligned
-\qquad \aligned
+\xi_2 &= \xi + \rho z 	\end{align*}
+\qquad 
+\begin{align*}
 \ell_1 & {\mathrel{\mathop=^{def}}}\ (1 + T_2(T_1+T_2)\ell)(T_1 +T_2)\\
 \vspace{2\jot}
 w_B & {\mathrel{\mathop=^{def}}}\ (-2T_2w+1) \\ \vspace{2\jot}
 f_T & {\mathrel{\mathop=^{def}}}\ (T^2_2 - T^2_1) \\ \vspace{2\jot}
 \rho & {\mathrel{\mathop=^{def}}}\ {{2T_2\ell_1}\over {-T_1w_B+\ell_1}}
-\endaligned \tag 6.7
-$$
+\tag {6.7}
+\end{align*}
+
 
 
 \noindent  where\ $w_2, \ell_2, \xi_1, \xi_2$\  are coordinates on\ $({\bold A}^1)^4 \subseteq
@@ -2824,10 +2955,10 @@ $$
 relations for\ $\ell_2, \xi_1, w_2$\ and\ $\xi_2$\ in that order.  The form\
 $\omega_{E_2(u_0)}$\  in these coordinates is found to be
 
-$$
+\begin{equation}
 {{(T^2_2-T^2_1)}\over {2}} ~ {{d\ell_2}\over {\ell_2^2}} ~ {{dw_2}\over {w_2}} ~
-{{d\xi_1 d\xi_2}\over {(\xi_1-\xi_2)^2}}\ =\ \omega_{E_2(u_0)}  \tag 6.8
-$$
+{{d\xi_1 d\xi_2}\over {(\xi_1-\xi_2)^2}}\ =\ \omega_{E_2(u_0)}  \tag {6.8}
+\end{equation}
 
 
 Transferring the action of\ $W\times A$\  via (6.7) to the coordinates\ $w_2, \ell_2,
@@ -2836,8 +2967,9 @@ Transferring the action of\ $W\times A$\  via (6.7) to the coordinates\ $w_2, \e
 
 \noindent (6.9)
 $$
-\matrix \format \c & \quad \c &\quad \c &\quad \c &\quad \c \\
-& \underline{1} & \underline{\sigma_\alpha} & \underline{\sigma_\beta\sigma_\alpha\sigma_\beta}
+\begin{matrix} % \format \c & \quad \c &\quad \c &\quad \c &\quad \c \\
+& \underline{1} & \underline{\sigma_\alpha} & 
+\underline{\sigma_\beta\sigma_\alpha\sigma_\beta}
 & \underline{\sigma_0} \\
 \vspace{2\jot}
 w_2 & w_2 & w_2/f^2 & 1/w_2 & (\xi_2/\xi_1)w_2 \\
@@ -2847,7 +2979,7 @@ w_2 & w_2 & w_2/f^2 & 1/w_2 & (\xi_2/\xi_1)w_2 \\
 \xi_1 & \xi_1 & \xi_1 & \xi_2 & -1/\xi_1 \\
 \vspace{1.5\jot}
 \xi_2 & \xi_2 & \xi_2 & \xi_1 & -1/\xi_2
-\endmatrix
+\end{matrix}
 $$
 \vskip .2in
 
@@ -2885,28 +3017,31 @@ is preserved under the birational map (6.7).
 $W_T \subseteq \langle 1, \sigma_\alpha, \sigma_\beta\sigma_\alpha\sigma_\beta\rangle$.
 \endproclaim
 
-\demo{Proof}  For  $s\in F^\times$  the automorphism of  $E_2(u_0)$\ sending
+\begin{proof}  For  $s\in F^\times$  the automorphism of  $E_2(u_0)$\ sending
 $w_2$ to $w_2$,  $\ell_2$ to $s\ell_2$, $\xi_1$ to $\xi_1$ and $\xi_2$ to $\xi_2$  is  defined
-over $F$.  It takes the form\ $\omega_{E_2(u_0)}$  to\ $\omega_{E_2(u_0)}/{s}$\ so that changing coordinates using this automorphism 
+over $F$.  It takes the form\ $\omega_{E_2(u_0)}$  
+to\ $\omega_{E_2(u_0)}/{s}$\ so that changing coordinates using this automorphism 
 $$
 \int_{E_2(u_0)} |\omega_{E_2(u_0)}|\ =\ {{1}\over {|s|}} \int_{E_2(u_0)}
 |\omega_{E_2(u_0)}| (= 0 \quad {\text{if}} ~~ |s| \ne 1).
 $$
+\end{proof}
 
 \proclaim{Corollary\  2}  The 2-regular germs have the form\ 
 $|T_1^2-T^2_2| c(T,\kappa)$\  for some constants\ $c(T,\kappa)$\ depending on  $(T,\kappa)$.
 \endproclaim
 
-\demo{Proof}  The data (6.9) is independent of  $T_1,T_2$ and\
+\begin{proof}  The data (6.9) is independent of  $T_1,T_2$ and\
 $|\omega_{E_2(u_0)}| = |T_1^2-T^2_2|$\ $|\omega'|$\ where $\omega'$  is a form independent
 of  $T_1,T_2$.
+\end{proof}
 
 
 \proclaim{Corollary\  3}  The transfer of orbital integrals in (2.8) holds for a
 function  $f^H$  independent of  $(T,\kappa)$\ associated to\ $H = SO(4)$.
 \endproclaim
 
-\demo{Proof}  To prove the compatiblity of functions  $f^H$  for various choices
+\begin{proof}  To prove the compatiblity of functions  $f^H$  for various choices
 of  $(T,\kappa)$\ associated to $SO(4)$  we reason as follows.  We write 
 $T/(\pm 1) = S_1\times S_2$\ where the tangent direction in  $S_1$  is  $T_1-T_2$\
 and $T_1+T_2$\ in $S_2$.  Fix a function  $f\in C_c^\infty(G)$\ such that
@@ -2924,7 +3059,7 @@ be made independently of  $S_1$.  To see this  we use the explicit formula for
 $f^M$ in [R] and note that the choice of  $f_{qs}$  in the definition of  QSR\
 $(2.10)$\ may be chosen independently of  $S_1$.  Thus we conclude 
 
-\pagebreak
+%\pagebreak
 that\
 $\mu_0^{H'}(f'_{qs}) = |T_1+T_2|b'_{S_2}$\ or\ $c(T,\kappa) = a_{S_1}b'_{S_2}$\
 for some constants  $b'_{S_2}$.\ Reversing the roles of  $S_1$  and $S_2$  we have
@@ -2932,9 +3067,12 @@ $c(T,\kappa) = a'_{S_1}b_{S_2}$\  for constants  $a'_{S_1}$.\  We conclude that
 $c(T,\kappa) = \alpha_1 a_{S_1}b_{S_2}$\ for some constant $\alpha_1$.  Thus the
 2-regular germ is\ $\alpha_1\lambda^2|T_1^2-T_2^2|a_{S_1}b_{S_2} = 
 \alpha_1 A_{S_1} B_{S_2}$\  which up to scalar $\alpha_1$ is the 2-regular germ
-on $H$.\heading
-\S 7\ \ Spurious Divisors and some technical details 
-\endheading
+on $H$.
+\end{proof}
+
+%7
+\section{Spurious Divisors and some technical details}
+
 
 This final section contains the remaining details of the proof of the transfer
 of orbital integrals on  GSp(4).  It is shown that the construction in the preceding
@@ -2947,23 +3085,22 @@ principal value integrals.
 To obtain coordinates outside $Y_U$ we construct the variety $Y_\Gamma$  from
 scratch.  The variety of stars is defined on an open patch\ $S(B_\infty, B_0)$\
 by 
-
-$$
+\begin{equation}
 \epsilon_{-\alpha}(s_4)\epsilon_{-\beta}(r_4)\epsilon_{-\alpha}(s_3)\epsilon_{-\beta}(r_3)
 \epsilon_{-\alpha}(s_2)\epsilon_{-\beta}(r_2)\epsilon_{-\alpha}(s_1)\epsilon_{-\beta}(r_1)\
-=\ 1. \tag 7.1
-$$
+=\ 1. \tag {7.1}
+\end{equation}
 
-\noindent where\ $\epsilon_{-\alpha}(s) = {\pmatrix 1&&&\\ s&1&&\\ &&1&\\ 
-&&-s&1 \endpmatrix}$\  and\  $\epsilon_{-\beta}(r)\ =\ 
-{\pmatrix 1&&&\\ &1&&\\ &r&1&\\ &&&1 \endpmatrix}$.
+\noindent where\ $\epsilon_{-\alpha}(s) = {\begin{pmatrix} 1&&&\\ s&1&&\\ &&1&\\ 
+&&-s&1 \end{pmatrix}}$\  and\  $\epsilon_{-\beta}(r)\ =\ 
+{\begin{pmatrix} 1&&&\\ &1&&\\ &r&1&\\ &&&1 \end{pmatrix}}$.
 \vskip .2in
 
 Multiplying out the relation (7.1) we obtain
 
-\flushpar
+\noindent %flushpar
 (7.2)
-$$\matrix \format \l & \c \\
+$$\begin{matrix} % \format \l & \c \\
 \vspace{1\jot}
 s_1+s_2+s_3+s_4 = 0 & \\
 \vspace{1\jot}
@@ -2971,10 +3108,10 @@ r_1+r_2+r_3+r_4 = 0 & \\
 \vspace{1\jot}
 r_2s_1+r_3(s_1+s_2)+r_4(s_1+s_2+s_3) = 0 & \\
 \vspace{1\jot}
-r_2s_2^2 + r_3(s_1+s_2)^2+r_4(s_1+s_2+s_3)^2 = 0 & \endmatrix
+r_2s_2^2 + r_3(s_1+s_2)^2+r_4(s_1+s_2+s_3)^2 = 0 & \end{matrix}
 $$
 \vskip .2in
-\flushpar
+\noindent %flushpar
 
 There is a\ ${\bold G}_m\times {\bold G}_m$\  action on\ $S(B_\infty, B_0)$\ given
 by\ $(s_i,r_i)\ \mapsto\ (ss_i,rr_i)$.\   There is an action of the cyclic group of
@@ -2986,7 +3123,7 @@ action.
 
 We note for future reference that the equation (7.2) imply
 
-\flushpar
+\noindent %flushpar
 (7.3) \qquad \qquad  $r_2s_1s_2 = -r_4s_4s_3$\ plus identities obtained by permuting
 the indices cyclically.
 
@@ -2995,11 +3132,12 @@ where\  $S_1(B_\infty,B_0) = \varphi^{-1}S(B_\infty, B_0)$\  is covered by
 coordinate patches\ $U(m,n) \quad  m,n\in \{ 1,2,3,4\}$.    The coordinates and
 relations on\ $U(m,n)$\ are
 
-\pagebreak
-\flushpar
+%\pagebreak
+\noindent %flushpar
 
 (7.4)
-$$\matrix \format \l & \c \\ r,s, R_1, R_2, R_3, R_4, S_1, S_2, S_3, S_4 
+$$\begin{matrix} % \format \l & \c \\ 
+r,s, R_1, R_2, R_3, R_4, S_1, S_2, S_3, S_4 
 {\text{\qquad satisfying~the~ relations}}& \\
 \vspace{1.5\jot}
 R_m = S_n = 1 & \\
@@ -3011,61 +3149,141 @@ R_1 + R_2 + R_3 + R_4 = 0 & \\
 R_2S_1 + R_3(S_1 + S_2) + R_4(S_1 + S_2 + S_3) = 0 \\
 \vspace{1\jot}
 R_2 S_1^2 + R_3(S_1 + S_2)^2 + R_4(S_1 + S_2 + S_3)^2 = 0
-\endmatrix
+\end{matrix}
 $$
 \vskip .2in
-\flushpar
+\noindent %flushpar
 
 The morphism\ $\varphi $\ from  $U(m,n)$  to  $S(B_\infty, B_0)$\  is given by
 $(S_i, R_j, s, r)\ \mapsto\ (sS_i, rR_j)$.  
 It is proved in [H] that\ $\varphi $\ is a proper map from $S_1$ to $S$.
 
 \proclaim{Lemma\ \ 7.5}  (a)  $S_1$  is covered by patches isomorphic to  $U(1,1)$
-\flushpar
+\noindent %flushpar
 (b)  $S_1$  is nonsingular.
 \endproclaim
 
-\demo{Proof}  (a)\ The patches\ $S(B_\infty, B_0)$ \ as  $(B_\infty, B_0)$\ vary 
+\begin{proof}  (a)\ The patches\ $S(B_\infty, B_0)$ \ as  $(B_\infty, B_0)$\ vary 
 are all isomorphic.  So we may fix\ $(B_\infty, B_0)$.
-\enddemo
+\end{proof}
 
 
 Let $Z = \{R_1,R_2,R_3,R_4,S_1,S_2,S_3,S_4\}$\  and for\  $p\in U(m,n)$\ set
 $Z_p = \{z\in Z \mid z(p) = 0\}$.\  The possibilities for $Z_p$  are calculated
 in [H].  Up to a symmetry of the Weyl group acting on the indices they are
-$$
-a+b+c = 0, y\ne 0.\quad  {\text{If}}~~ a = 0~~{\text{then}}~~ bc\ne 0. \tag 7.6
-$$  
-\hrule height0pt width6true in
-\vskip 1.8true in
-$$
-a+b+c = 0 \quad x\ne 0. ~~~{\text{If}}~~ b = 0 ~~ {\text{then}}~~ac \ne 0.
-\tag 7.7
-$$
-\hrule height0pt width6true in
-\vskip 1.8true in
-\pagebreak
-$$
-x\ne 0.~~~{\text{If}}~~y = 0 ~~{\text{then}}~~ z\ne 0. \tag 7.8
-$$
-\hrule height0pt width6true in
-\vskip 1.8true in
 
-$$
-y\ne 0.~~~{\text{If}}~~ x = 0~~{\text{then}}~~z\ne 0. \tag 7.9
-$$
-\hrule height0pt width6true in
-\vskip 1.8true in
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[>=angle 90,scale=2.5]
+\node[] at (0,0.35) {
+{(7.6)}\qquad $a+b+c = 0, y\ne 0.\quad  {\text{If}}~~ a = 0~~{\text{then}}~~ bc\ne 0.$
+};
+\draw[thick]
+(0,0) node[above,left]{$y$}
+-- ++(0:0.5) node[above]{$a$}
+-- ++(0:0.5) node[above,right]{$0$}
+-- ++(270:0.5) node[right]{$c$}
+-- ++(270:0.5) node[below,right]{$0$}
+-- ++(180:0.5) node[below]{$b$}
+-- ++(180:0.5) node[below,left]{$-y$}
+-- ++(90:0.5) node[left]{$0$}
+-- cycle;
+\end{tikzpicture}
+\end{figure}
 
-\flushpar where the variables are arranged around the squares as follows:
+%7.7
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[>=angle 90,scale=2.5]
+\node[] at (0,0.35) {
+{(7.7)}\qquad 
+$a+b+c = 0 \quad x\ne 0. ~~~{\text{If}}~~ b = 0 ~~ {\text{then}}~~ac \ne 0.$
+};
+\draw[thick]
+(0,0) node[above,left]{$a$}
+-- ++(0:0.5) node[above]{$0$}
+-- ++(0:0.5) node[above,right]{$c$}
+-- ++(270:0.5) node[right]{$-x$}
+-- ++(270:0.5) node[below,right]{$0$}
+-- ++(180:0.5) node[below]{$x$}
+-- ++(180:0.5) node[below,left]{$b$}
+-- ++(90:0.5) node[left]{$0$}
+-- cycle;
+\end{tikzpicture}
+\end{figure}
+
+%7.8
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[>=angle 90,scale=2.5]
+\node[] at (0,0.35) {
+{(7.8)}\qquad 
+$x\ne 0.~~~{\text{If}}~~y = 0 ~~{\text{then}}~~ z\ne 0.$
+};
+\draw[thick]
+(0,0) node[above,left]{$y$}
+-- ++(0:0.5) node[above]{$x$}
+-- ++(0:0.5) node[above,right]{$z$}
+-- ++(270:0.5) node[right]{$0$}
+-- ++(270:0.5) node[below,right]{$-z$}
+-- ++(180:0.5) node[below]{$-x$}
+-- ++(180:0.5) node[below,left]{$-y$}
+-- ++(90:0.5) node[left]{$0$}
+-- cycle;
+\end{tikzpicture}
+\end{figure}
+
+%7.9
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[>=angle 90,scale=2.5]
+\node[] at (0,0.35) {
+{(7.9)}\qquad 
+$y\ne 0.~~~{\text{If}}~~ x = 0~~{\text{then}}~~z\ne 0.$
+};
+\draw[thick]
+(0,0) node[above,left]{$y$}
+-- ++(0:0.5) node[above]{$x$}
+-- ++(0:0.5) node[above,right]{$0$}
+-- ++(270:0.5) node[right]{$-x$}
+-- ++(270:0.5) node[below,right]{$-y$}
+-- ++(180:0.5) node[below]{$-z$}
+-- ++(180:0.5) node[below,left]{$0$}
+-- ++(90:0.5) node[left]{$z$}
+-- cycle;
+\end{tikzpicture}
+\end{figure}
+\noindent %flushpar 
+
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[>=angle 90,scale=2.5]
+\node[] at (0,0.35) {
+The variables are arranged around the squares as follows:
+};
+\draw[thick]
+(0,0) node[above,left]{$S_2$}
+-- ++(0:0.5) node[above]{$R_2$}
+-- ++(0:0.5) node[above,right]{$S_1$}
+-- ++(270:0.5) node[right]{$R_1$}
+-- ++(270:0.5) node[below,right]{$S_4$}
+-- ++(180:0.5) node[below]{$R_4$}
+-- ++(180:0.5) node[below,left]{$S_3$}
+-- ++(90:0.5) node[left]{$R_3$}
+-- cycle;
+\end{tikzpicture}
+\end{figure}
+
+
+
 \hrule height0pt width6true in
 \vskip 1.8 true in 
 
-\flushpar
+\noindent %flushpar
 Notice that (7.3) now states that the product of variables along an edge is the
 negative of the product of variables along the opposite edge.
 
-\flushpar
+\noindent %flushpar
 By examining (7.6)-(7.9) it is evident that there are always two adjacent variables
 on the square that are non-zero.  By the action of the Weyl group, we may take the
 adjacent variables to be  $R_1, S_1$.  Such a point is contained in a patch
@@ -3074,103 +3292,100 @@ isomorphic to  $U(1,1)$.  This proves (a).
 (b)\ By (a) it is enough to prove that  $U(1,1)$  is nonsingular.  We consider
 two patches $A$ and $B$.
 
-\flushpar
+\noindent %flushpar
 (A)\  Let  $x = S_4$,  $y = S_3R_4$.\  Then inverting the relations (7.2) we find
-\flushpar
+\noindent %flushpar
 (7.10)
-$$\matrix \format \l &\qquad\l \\
+$$\begin{matrix} % \format \l &\qquad\l \\
 S_1 = 1 & R_1 = 1 \\
 S_2 = xy+y-1 & R_2 = -xy/(xy+y-1) \\
 S_3 = -x-y-xy & R_3 = x/((xy+y+x)(xy+y-1)) \\
 S_4 = x & R_4 = -y/(xy+y+x)
-\endmatrix
+\end{matrix}
 $$
 \vskip .2in
 
-\flushpar
+\noindent %flushpar
 
 We see that $x$ and $y$  are local coordinates, unless $(x,y) = (0,1)$ or
 $(0,0)$.  (Unless the numerator and the denominator of  $R_2,R_3$, or  $R_4$  
 simultaneously vanish, $x$ and $y$  describe a pont in  $S_1(B_\infty, B_0)$\
 although not necessarily a point in\ $U(1,1)$).  By (7.10) it follows that
 
-$$
+\begin{equation}
 t{\mathrel{\mathop=^{def}}} y/x = {\frac{S_3R_4}{S_4}} = {\frac{-R_4}{S_2R_3}} =
-{\frac{R_2}{R_3S_3S_4}} . \tag 7.11
-$$
+{\frac{R_2}{R_3S_3S_4}} . \tag {7.11}
+\end{equation}
 
-\flushpar
+\noindent %flushpar
 
 Near  $(x,y) = (0,0)$  we may select coordinates  $(x,t)$ or  $(y,1/t)$\ unless
 $R_2 = R_4 = S_4 = 0, \quad R_1 = S_1 = 1, \quad S_2R_3 = 0$.\ But the list of
 possible patterns  $Z_p$  in (7.6)-(7.9)  shows that this never occurs.  We conclude
-that patch (A) (together with the variants $(x,t)$ or $(y,1/t)$) covers points such that\ $(x,y)\ne (0,1)$,
+that patch (A) (together with the variants $(x,t)$ or $(y,1/t)$) 
+covers points such that\ $(x,y)\ne (0,1)$,
 i.e., \quad $S_4 = 0,
 S_3R_4 = 1$.
 \vskip .2in
-\flushpar
+\noindent %flushpar
 
 (B)  Let  $S_1 = R_1 = 1,\ a = S_2,\ b = R_3$.\ Then inverting the relations
 (7.4) we find
 
 \noindent (7.12)
 $$
-\matrix \format \l & \qquad \l \\
+\begin{matrix} % \format \l & \qquad \l \\
 S_1 = 1 & R_1 = 1 \\
 S_2 = a & R_2 = -b(1+a)^2/(1+ba^2) \\
 S_3 = (1+a)/(ab-1) & R_3 = b \\
 S_4 = -ab(1+a)/(ab-1) & R_4 = -(ab-1)^2/(1+ba^2) 
-\endmatrix
+\end{matrix}
 $$
 \vskip .2in
 
-\flushpar
+\noindent %flushpar
 We see $a$ and $b$  are local coordinates unless  $ab = 1$  and  $1+a = 0$, i.e.,\
 $a = -1$, $b = -1$ \quad $(S_2 = -1, S_1 = 1, R_3 = -1)$.
 
-\flushpar
+\noindent %flushpar
 Points in the complement of both patches must satisfy\ $R_1,S_1,S_2,R_3,S_3,R_4 
 \ne 0$.  This is impossible by the list of possible patterns (7.6)-(7.9).
 
-\flushpar
+\noindent %flushpar
 Next we turn to a calculation of\ $t^{-1}n^{-1}t\ n \in N$\  
 for\ $n\in N, t\in T$.  Using the notation following (5.26) we let
- 
-$$
-\align
+\begin{align*}
 n &= m(n_\beta, n_\alpha, n_\gamma, n_\delta) \qquad \qquad (n'_\gamma =\
 n_\gamma - n_\alpha n_\beta) \\
 y &= m(y_\beta, y_\alpha, y_\gamma, y_\delta) \qquad \qquad (y'_\gamma =\
 y_\gamma - y_\alpha y_\beta), \qquad  n,y \in N  \\
 t &= {\text{diag}}(t_1,t_2,t_2^{-1},t_1^{-1}) \in T.
-\endalign
-$$
+\end{align*}
 \vskip .2in
 
-\pagebreak
+%\pagebreak
 \proclaim{Lemma\ \ 7.13}  
-$$\align
+\begin{align*}
 y_\alpha &= (1-t_2t_1^{-1})n_\alpha \\
 y_\beta &= (1-t_2^{-2})n_\beta \\
 y_\gamma &= (1-t_2^{-1}t_1^{-1})n_\gamma + (t_2^{-1}t_1^{-1}-t_2t_1^{-1})n_\alpha n_\beta \\
 y'_\gamma &= (1-t_2^{-1}t_1^{-1})n_\gamma + (t_2^{-2}-1)n_\alpha n_\beta \\
 y_\delta &= (1-t_1^{-2})n_\delta + (t_2^{-1}t_1^{-1}-t_2t_1^{-1})n_\alpha n'_\gamma
-\endalign
-$$
+\end{align*}
 \vskip .1in
 
 \noindent provided\ $y = t^{-1}n^{-1}t\ n$.
 \endproclaim
 
-\demo{Proof}\ Elementary matrix computation.
-\enddemo
+\begin{proof}\ Elementary matrix computation.
+\end{proof}
 
 By definition (3.12)\ $w(\alpha) = w(\beta) = 1$, $w(\gamma) = \lambda y_\gamma /y_\alpha y_\beta$\
 and\ $w(\delta) = \lambda^2y_\delta /y^2_\alpha y_\beta$\  so that with\
 $\alpha = t_1t_2^{-1}, \beta = t_2^2, \gamma = t_1t_2, \delta = t_1^2$\ we have:
 
 \noindent (7.14)
-$$\align
+\begin{align*}
 w(\gamma) &= {\frac{(1-\gamma^{-1})\lambda}{(1-\alpha^{-1})(1-\beta^{-1})}}\
 \left( {\frac{n_\gamma}{n_\alpha n_\beta}} \right)  +  {\frac{(\gamma^{-1}-\alpha^{-1})\lambda}
 {(1-\alpha^{-1})(1-\beta^{-1})}} \\
@@ -3179,11 +3394,8 @@ w(\delta) &= {\frac{\lambda^2(1-\delta^{-1})}{(1-\alpha^{-1})^2(1-\beta^{-1})}}\
 \left( {\frac{n_\delta}{n^2_\alpha n_\beta}} \right)  +
 {\frac{\lambda^2(\gamma^{-1}-\alpha^{-1})}{(1-\alpha^{-1})^2(1-\beta^{-1})}}
 \left( {\frac{n'_\gamma}{n_\alpha n_\beta}}\right).
-\endalign
-$$
-\vskip .2in
-
-\flushpar
+\end{align*}
+\noindent %flushpar
 To complete the description of  $w(\gamma)$  and  $w(\delta)$\  it is necessary
 to compute\ $n_\gamma/(n_\alpha n_\beta))$\ and\ 
 $n_\delta/(n_\alpha^2n_\beta)$\ in terms of coordinates on the star
@@ -3198,10 +3410,10 @@ $z(\alpha) = -s_4\lambda/(1-\alpha^{-1})$, $z(\beta) =
 r_1\lambda/(1-\beta^{-1})$.
 \endproclaim
 
-\demo{Proof}  The final two relations are found in both [L] and [H].  By
+\begin{proof}  The final two relations are found in both [L] and [H].  By
 $n_Wn^{-1} \in {\bold B}\omega$\ we have (by writing out these matrices)
 
-\pagebreak
+%\pagebreak
 
 $n_\alpha = -1/s_4, n_\beta = 1/r_1, n'_\gamma = -n_\beta/s_1 = -1/r_1s_1$.
 $n_\gamma = n'_\gamma + n_\alpha n_\beta = -1/r_1s_1\ -1/r_1s_4,\ r_4s_4n_\delta =
@@ -3210,13 +3422,15 @@ n_\alpha + r_4n_\gamma = -1/s_4 - r_4/r_1s_1 -r_4/r_1s_4 =
 -r_3s_2/(-s_2r_3s_3) = 1/s_3$,\ $n_\delta = 1/(s_3r_4s_4) =
 -1/(r_2s_1s_2)$.  We have made use of (7.2) and (7.3).  
 This completes the proof.
+\end{proof}
+
 Now combining (7.14) and (7.15) with\ $A = (1-\alpha^{-1})/\lambda, \quad
 B = (1-\beta^{-1})/\lambda, \quad C = (1-\gamma^{-1})/\lambda, \quad
 D = (1-\delta^{-1})/\lambda$\ we find
 
 \noindent (7.16)
 $$
-\matrix \format \l & \l \\
+\begin{matrix} %\format \l & \l \\
 w(\gamma) &= {\dsize\frac{C}{AB}}({\dsize\frac{s_4}{s_1} + 1}) 
 + {\dsize\frac{(A-C)}{AB}} \\ \vspace{2\jot}
 {} & = \qquad
@@ -3229,7 +3443,7 @@ w(\gamma) &= {\dsize\frac{D}{A^2B}}\ {\dsize\frac{(r_1s_4)}{(r_4s_3)}} +
 {} &= \qquad {\dsize\frac{(s_4r_1)}{(r_4s_3)}} ) ({ 
 {\dsize\frac{D}{A^2B}}{\dsize\frac{r_1s_1}{r_1s_1}} + 
 {\dsize\frac{(A-C)}{A^2B}} {\dsize\frac{r_4s_3}{r_1s_1}} }).
-\endmatrix
+\end{matrix}
 $$
 \vskip .2in
 
@@ -3241,22 +3455,16 @@ Begin with the assumption that\ $g\ {\mathrel{\mathop=^{def}}}\ \left(
 {\frac{D}{A^2B}} + {\frac{A-C}{A^2B}} R_4 S_3 \right) \ne 0$\ at $p$, a point on the
 divisor $E$.  We consider several patches.  We begin by using (7.15), (7.16) to rewrite
 the equations
-
-$$
-\align
+\begin{align*}
 \lambda w(\delta) &= z(\alpha)^2z(\beta)x(\delta) \\
 x(\alpha) &= {\frac{\lambda}{z(\alpha)}} \\
 x(\beta) &= {\frac{\lambda}{z(\beta)}} \\
 x(\gamma) &= {\frac{\lambda w(\gamma)}{z(\alpha)z(\beta)}}
-\endalign
-$$
-\vskip .2in
-
+\end{align*}
 \noindent in the form.
 
 \noindent (7.17)
-$$
-\align
+\begin{align*}
 \lambda &= {\frac{R_4S_3S_4s^2rx(\delta)}{A^2Bg}} \\
 \vspace{1.5\jot}
 x(\alpha) &= {\frac{-S_3R_4rx(\delta)s}{ABg}} \\
@@ -3264,30 +3472,25 @@ x(\alpha) &= {\frac{-S_3R_4rx(\delta)s}{ABg}} \\
 x(\beta) &= {\frac{S_3R_4S_4s^2x(\delta)}{A^2g}} \\
 \vspace{1.5\jot}
 x(\gamma) &= {\frac{-S_3R_4sx(\delta)}{A^2g}} \left( {\frac{C}{AB}} S_4 + {\frac{1}{B}}\right)
-\endalign
-$$
-\vskip .2in
-
+\end{align*}
 \noindent $(g\ne 0$, Patch A  $(x,y)\ne (0,0)$ \quad $x = S_4, S_3R_4 = y)$
 
-$$
-\lambda = {\frac{yxs^2rx(\delta)}{(A^2Bg)}} \tag 7.18
-$$
+\begin{equation}
+\lambda = {\frac{yxs^2rx(\delta)}{(A^2Bg)}} \tag {7.18}
+\end{equation}
 
 
 \noindent The form $\omega = d\lambda \ dx(\alpha) \ dx(\beta) \ dx(\gamma)
 \ dx(\delta) \ dv$\  in these
 coordinates becomes (we may treat $A,B,C,D$  as constants as $\lambda \to 0$)
 
-$$
-\align
+\begin{align*}
 \omega &= d\lambda \ d({\frac{\lambda A}{-S_4s}}) \ d({\frac{\lambda B}{r}})
 \ d({\frac{\lambda w(\gamma)AB}{-S_4sr}}) \ dx(\gamma) \ dv \\
 \vspace{1.5\jot}
 &= \lambda^3x(\delta) {\frac{CD}{A^3B}} dy {\frac{ds}{s}} {\frac{dr}{r^2}} 
-{\frac{dx}{x}} dx(\delta)dv	\tag 7.19
-\endalign 
-$$
+{\frac{dx}{x}} dx(\delta)dv	\tag {7.19}
+\end{align*}
 \vskip .2in
 
 We obtain the divisors on this patch
@@ -3295,12 +3498,11 @@ We obtain the divisors on this patch
 \noindent $E_\alpha$  defined by 
 $x = 0; \quad a(E_a) = 1, \quad \beta(E_a) = 3, \ S_4 = R_2 = R_3 = 0,$
 
-$$\align
+\begin{align*}
 x(\beta) &= 0, \quad x(\alpha) =  {\frac{-yrsx(\delta)}{ABg}} ,	\\
 \vspace{1.5\jot}
 x(\gamma) &= {\frac{-ysx(\delta)}{A^2g}} ({\frac{C}{AB}} S_4 + {\frac{1}{B}})
-\endalign$$
-\vskip .2in
+\end{align*}
 
 \noindent $E_b$  defined by  $y = 0$; \quad $a(E_b) = 1$, 
 \quad $\beta(E_b) = 4$, \quad $R_2 = R_4 = 0$,\
@@ -3324,18 +3526,14 @@ $g\ne 0$, Patch A, coordinates\ $t = y/x,x$ \quad $(y = tx)$.
 \vskip .2in
 
 (7.18) and (7.19) become
-
-$$
-\align
+\begin{align*}
 \lambda &= {\frac{tx^2s^2rx(\delta)}{A^2Bg}} \\
 \omega &= {\frac{\lambda^3x(\delta)CD}{A^3B}} dt {\frac{ds}{s}} {\frac{dr}{r^2}} dx\
 dx(\delta)\ dv
-\endalign
-$$
-\vskip .2in
-
+\end{align*}
 \noindent We have previously considered the divisors given by
-$t = 0, \quad s = 0, \quad r = 0, \quad x(\delta) = 0$.  We obtain the new divisor given by $x = 0$.
+$t = 0, \quad s = 0, \quad r = 0, \quad x(\delta) = 0$.  
+We obtain the new divisor given by $x = 0$.
 \vskip .2in
 
 \noindent $E_c$  given by  $x = 0; \quad a(E_c) = 2, \quad \beta(E_c) = 7/2$
@@ -3347,7 +3545,6 @@ $g\ne 0$, Patch A, coordinates  $u = x/y, y \quad (x = uy)$.
 \vskip .2in
 
 \noindent Equation (7.18) becomes
-
 $$
 \lambda = {\frac{uy^2s^2rx(\delta)}{A^2Bg}} .
 $$
@@ -3371,17 +3568,12 @@ But $-1 = S^2_2R_3 = {\dsize\frac{x(xy+y-1)}{xy+y+x}}$\ ~~  so that again
 $(x,y) \ne (0,1)$.  Since we have already investigated the divisors
 for $g\ne 0 ~~ (x,y)\ne (0,1)$  we may assume $ab-1\ne 0$  and $1+ba^2 \ne 0$.
 (7.18) and (7.19) become
-
-$$
-\align
+\begin{align*}
 \lambda &= {\frac{ab(1+a)^2s^2rx(\delta)}{(1+ba^2)(A^2Bg)}} \\
 \omega &= \lambda^3x(\delta) {\frac{(1-ab)}{ab(1+a)}} d\left[ {\frac{(1+a)(1-ab)}
 {1+ba^2}} \right] {\frac{ds}{s}} {\frac{dr}{r^2}} d\left[ {\frac{ab(1+a)}{1-ab}} \right]
 dx(\delta) \ dv.
-\endalign
-$$
-\vskip .2in
-
+\end{align*}
 \noindent The three divisors $s = 0$, $r = 0$, and $x(\delta) = 0$  have already been
 considered.  If  $(1+a) = 0$  then  $R_2 = S_3 = S_4 = 0$.  Thus
 $(x,y) = (0,0)$  and we find that  $(1+a) = 0$  defines the divisor  $E_c$
@@ -3437,67 +3629,74 @@ given by $x = 0$.  But
 $x = 0$  implies  $x(\beta) = 0$, and by (7.6)-(7.9),\ $R_2 = R_3 = S_4 = 0$.\  We
 recognize this as the divisor\ $E_a$.
 
-\flushpar We summarize the results in the first part of the following proposition.
+\noindent %flushpar 
+We summarize the results in the first part of the following proposition.
 
 \proclaim{Proposition\ \ 7.20}  Let $V$ be the open subvariety of 
 elements in $Y_1(B_\infty)$
 which do
 not lie over the identity element.  Then
 
-\item{(a)}\quad $V$ is non-singular,		    
+\begin{enumerate}[label=(\alph*)]
+\item $V$ is non-singular,		    
 
-\item{(b)}\quad divisors have normal crossings in $V$,
+\item divisors have normal crossings in $V$,
 
-\item{(c)}\quad divisors which do not meet $Y_U \cap V$ make 
+\item divisors which do not meet $Y_U \cap V$ make 
 no contribution to the germ expansion of $\kappa$-orbital 
 integrals for $\kappa$ nontrivial,
 
-\item{(d)}\quad If  $E$  is a divisor which does not meet $Y_U$, $\beta(E) \le 3$, and $T$
+\item If  $E$  is a divisor which does not meet $Y_U$, $\beta(E) \le 3$, and $T$
 is an elliptic Cartan subgroup then $E$ has no $F$-rational points.
+\end{enumerate}
 \endproclaim
 
-\demo{Proof}  (a) and (b) have been verified on each patch.  
-\flushpar (d)\quad  Up to conjugacy by the Weyl group the only divisors	not meeting
+\begin{proof}  (a) and (b) have been verified on each patch.  
+\noindent %flushpar 
+(d)\quad  Up to conjugacy by the Weyl group the only divisors	not meeting
 $Y_U$ are:
 
 $$
-\matrix \format \l &\quad \l & \quad \l \\
+\begin{matrix} % \format \l &\quad \l & \quad \l \\
 E_a & \beta(E_a)-1 &= 2 \\
 E_b & \beta(E_b)-1 &= 3 \\
 E_c & \beta(E_c)-1 &= 5/2 \\
 E_d & \beta(E_d)-1 &> 2.
-\endmatrix
+\end{matrix}
 $$
 \vskip .2in
 
-\flushpar The condition that $\beta(E) \le 3$  forces  $E = E_a$  on which\
+\noindent %flushpar 
+The condition that $\beta(E) \le 3$  forces  $E = E_a$  on which\
 $S_4 = R_2 = R_3 = 0$.\  The corresponding pattern is (7.7). 
 It is clear that the symmetries of  (7.7) must fix the diagonal
 axis.  If the divisor has rational points the pattern is invariant under the
 action of\ $Gal(\overline{F}/F)$\ on the Weyl chambers\ $(\sigma \to \sigma_T \in W)$\
 coming from the Cartan subgroup $T$  which implies that  $T$  is not elliptic.
 
-\flushpar (c)  The germ expansion, excluding the germ of the identity element,
+\noindent %flushpar 
+(c)  The germ expansion, excluding the germ of the identity element,
 has terms of homogeneity $0, 1$, and $2$.  A divisor $E$ contributes a term of
 homogeneity \ $\beta(E)-1$\ (1.1).  The only possiblity then is  $E_a$ and homogeneity\
 $\beta(E_a)-1 = 2$.\  But we have seen that if  $E_a$  has $F$-rational points
 $T$ is not elliptic. If  $T$  is not elliptic,  the germ expansion reduces to an expansion
 on a Levi factor for which the terms have homogeneity $0$ and $1$ but not $2$.
 The proposition follows.
+\end{proof}
 
 \proclaim{Proposition\ \ 7.21}  The morphism defined by (6.7) preserves principal
 value integrals.
 \endproclaim
 
-\demo{Proof}  First we remark that the morphism extends to
+\begin{proof}  First we remark that the morphism extends to
 $E_2(u_0) \to {\bold P}^1\times {\bold P}^1$\ $(\xi_1,\xi_2)$\  with $\xi_1,\xi_2$\
 defined by (6.7).  In fact, this morphism has a simple geometric interpretation.
 Let\ $(b, (B(W))) =  (b_0, B_0^{n_W})^v$.  By the discussion following (6.1)\
-$n_Wv = exp(z_WX_{-\beta})$\ for appropriate choices of $z_W$ for points of $E_2(u_0)$.
+$n_Wv = \exp(z_WX_{-\beta})$\ for appropriate choices of $z_W$ for points of $E_2(u_0)$.
 $\xi_1$ and $\xi_2$ have been chosen so that $\xi_1 = z_{W_+}$\ and $\xi_2 = 
 z_{W_-}$\ where $W_-$  
 
-\pagebreak
+%\pagebreak
 is the Weyl chamber opposite $W_+$.  Thus  $E_2(u_0)\to
 {\bold P}^1\times {\bold P}^1$\ $(\xi_1,\xi_2)$\ may be identified with the
 morphism\ $E_2(u_0)\to {\bold P}^1\times {\bold P}^1 = B_0\backslash P_\beta \times
@@ -3533,7 +3732,7 @@ By considering the zero patterns of (7.6)-(7.9) and assuming that  $T$  is ellip
 ourselves at an $F$-rational point so that one of the following holds:
 
 $$
-\matrix \format \l &\quad \l &\quad \l\\
+\begin{matrix} %\format \l &\quad \l &\quad \l\\
 (i) & S_i \ne 0\quad R_i \ne 0 & \forall i\\
 \vspace{1\jot}
 (ii) & S_1 = S_3 = 0 & S_i,R_j \ne 0~{\text{otherwise}}\\
@@ -3543,7 +3742,7 @@ $$
 (iv) & R_1 = R_3 = 0 & S_i,R_j \ne 0~ {\text{otherwise}}\\
 \vspace{1\jot}
 (v) & R_2 = R_4 = 0 & S_i, R_j \ne 0 ~ {\text{otherwise}}
-\endmatrix
+\end{matrix}
 $$
 
 \vskip .2in
@@ -3564,7 +3763,7 @@ points.  Finally if $q$ is an indeterminate of the form $\infty/\infty$ then
 $\ell_1 = \infty$ so that  $R_4S_3 = R_3S_3 = R_4S_4 = R_3S_2 = 0$ and
 $w_B = \infty$ so that  
 
-\pagebreak
+%\pagebreak
 \noindent
 $S_1 = R_4S_3 = 0$.  Again we exclude by (i)-(v) the
 case $S_1 = R_4 = 0$  so $S_1 = S_3 = 0$, $S_2,S_4 \ne 0$ but then $R_3 = R_4 = 0$
@@ -3575,9 +3774,9 @@ the form $\infty/\infty$.
 We consider coordinate transformations from one chart to another.  We compare
 coordinates for the pair $(B_\infty,B_0)$ with those for the pair
 $(B'_\infty,B_0) = (B^n_\infty,B_0)$\ with $n\in N_0$.  We have
-$$
-(b, B_0^{n_W})^v = (b'', B_0^{n''_W})^{v''n} \tag 7.23
-$$
+\begin{equation}
+(b, B_0^{n_W})^v = (b'', B_0^{n''_W})^{v''n} \tag {7.23}
+\end{equation}
 where 
 $n_W, v\in N_\infty,\ n''^n_W,\ v''^n \in B^n_\infty, \quad b''^n \in B_0
 $.
@@ -3613,16 +3812,14 @@ $B'_\infty$.  Thus there is a $B_0\in \ell_\beta$ opposite both  $B_\infty$ and
 $B'_\infty$, so that  $B'_\infty = B^n_\infty$  for $n\in N_0 \subseteq B_0$.
 
 We have  
-$$
-\align
-b_sv'' = vn^{-1} &=  exp(\xi\, X_{-\beta})exp(-u\, X_\beta) \quad mod~ N_\beta \\  
+\begin{align}
+b_sv'' = vn^{-1} &=  \exp(\xi\, X_{-\beta})\exp(-u\, X_\beta) \quad mod~ N_\beta \\  
 \vspace {2\jot}
-&= {\pmatrix {1/(1-\xi) u} & {-u} \\ 0 & {1-\xi u} \endpmatrix}
-{\pmatrix 1 & 0 \\ {\xi/(1-\xi u)} & 1 \endpmatrix}\ mod~ N_\beta
-\endalign
-$$	       
+&= {\begin{pmatrix} {1/(1-\xi) u} & {-u} \\ 0 & {1-\xi u} \end{pmatrix}}
+{\begin{pmatrix} 1 & 0 \\ {\xi/(1-\xi u)} & 1 \end{pmatrix}}\ mod~ N_\beta
+\end{align}      
 \vskip .1 in
-So that $s_1 = 1$, $s_2 = 1/(1-\xi u)$,\ $v'' = exp(\xi''X_{-\beta})$,\
+So that $s_1 = 1$, $s_2 = 1/(1-\xi u)$,\ $v'' = \exp(\xi''X_{-\beta})$,\
 $\xi'' = \xi(1-\xi u)$, $s_2y_\beta = -u$,
 
 $$
@@ -3638,7 +3835,7 @@ w_B'' = {\frac{(1-\xi u)w_B}{(-2T_2zu+1-\xi u)}},\quad \tilde{w}'' =
 \ell_2'' = \ell_2	
 $$ 
 				      
-\pagebreak
+%\pagebreak
 $$
 z'' = {\frac{z}{(1-\xi u-2T_2zu)(1-\xi u)}}, \quad {\frac{\ell''_1}{w''_B}} =
 {\frac{(1-(\xi +2T_2)u)}{(1-\xi u)}} {\frac{\ell_1}{w_B}}.
@@ -3649,11 +3846,14 @@ $u$ so that $(1-\xi u) \ne 0$ $(1- (\xi +2T_2u)\ne 0)$ the birational map
 $E_2(u_0) \to {\bold P}^1 (\ell_1/w_B)$ extends so that $E_2(u_0) \to 
 {\bold P}^1(w_2)$
 does as well.
-\heading
-Bibliography
-\endheading
+\end{proof}
+
+\section{Bibliography}
+
+
 \vskip .25in
 
+\begin{enumerate}[label=]
 \item{[H]}  Thomas Hales, thesis, Princeton University. 
 
 \item{[H-Ch]}  Harish-Chandra, Admissible Invariant distributions on reductive
@@ -3684,15 +3884,18 @@ Compositio Math., Vol 42, Fasc. 3, (1981) 417-423.
 
 \item{[Sp]} N. Spaltenstein, {\it Classes Unipotentes et Sous-groupes de Borel}, 
 Lecture Notes in Math. 946, Springer-Verlag, Berlin Heidelberg, New York (1982).
-
+\end{enumerate}
 \vskip .3in
 
 \baselineskip 12pt
-$$
-\matrix \format \c &\qquad \c &\qquad \c & \qquad \c & \qquad \c & \qquad \l \\
-&&&&&{\text{Hales, Thomas C.}}\\
-&&&&&{\text{Harvard University}}\\
-&&&&&{\text{Department of Mathematics}}\\
-&&&&&{\text{Cambridge, Massachusetts 02138}}
-\endmatrix
-$$
+
+%$$
+%\matrix \format \c &\qquad \c &\qquad \c & \qquad \c & \qquad \c & \qquad \l \\%
+%&&&&&{\text{Hales, Thomas C.}}\\%
+%&&&&&{\text{Harvard University}}\\
+%&&&&&{\text{Department of Mathematics}}\\
+%&&&&&{\text{Cambridge, Massachusetts 02138}}
+%\endmatrix
+%$$
+
+\end{document}
