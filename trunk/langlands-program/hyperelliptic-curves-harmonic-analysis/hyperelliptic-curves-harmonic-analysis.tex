@@ -1,0 +1,2447 @@
+% First line of file hyper.tex
+% paper on Hyperelliptic curves and harmonic analysis
+% Written and typed by Thomas C. Hales
+% Format AMS-TeX
+% Created April 26, 1993
+% Version 1.2
+% Most recent corrections made June 1, 1994
+% 
+% To appear in the proc. of the Rutgers conference in memory
+%     of Larry Corwin, edited by R. Goodman
+% 
+\input amstex
+\documentstyle{conm-p}
+\NoBlackBoxes
+%
+\leftheadtext{THOMAS C. HALES}
+\rightheadtext{HYPERELLIPTIC CURVES AND HARMONIC ANALYSIS}
+
+%\magnification=\magstep1
+%\parindent=0pt
+%\parskip=\baselineskip
+%\baselineskip=1.5\baselineskip
+
+\topmatter
+\title Hyperelliptic Curves and Harmonic Analysis\endgraf
+      {\it (Why harmonic analysis on reductive 
+                       p-adic groups is not elementary) } \endtitle
+\author Thomas C. Hales\endauthor
+\address Department of Mathematics, University of Michigan, Ann Arbor, Michigan
+\endaddress
+\email hales\@math.lsa.umich.edu\endemail
+
+%
+\cvol{00}
+\cvolyear{0000}
+\cyear{0000}
+
+\subjclass 22E50; Secondary 22E35, 14H52, 11G20\endsubjclass
+\abstract  
+This paper constructs several families of hyperelliptic
+curves over finite fields and shows how basic objects
+of $p$-adic harmonic analysis are described by the
+number of points on these curves.  This leads to proofs
+that there are no general elementary formulas for
+characters and other basic objects of harmonic analysis
+on reductive $p$-adic groups.  Basic objects covered
+by this theory include characters, Shalika germs,
+Fourier transforms of invariant measures, and the
+orbital integrals of the unit element of the Hecke algebra.
+Various examples are given for unitary, orthogonal, and
+symplectic groups.
+\endabstract
+
+\thanks Research supported by an NSF postdoctoral fellowship \endthanks
+\endtopmatter
+
+
+\UseAMSsymbols
+%\loadmsbm
+%\loadeufm
+%\pretolerance=10000
+%\raggedbottom
+
+\def\Fq{{\Bbb F}_q}
+\def\PSp{{P\! Sp}}
+\def\O{{\Cal O}}
+\def\B{{\frak B}}
+\def\h{{\frak h}}
+\def\g{{\frak g}}
+\def\p{{\frak p}}   %maximal ideal
+\def\gsp{{\frak gsp}}
+\def\so{{\frak so}}
+\def\P{{\Bbb P}}
+\def\G{{\Bbb G}}
+\def\Q{{\Bbb Q}}
+\def\Z{{\Bbb Z}}
+\def\C{{\Bbb C}}
+\def\O{{\Cal O}}
+\def\Ima{{\Cal I\hskip-.2em m}}
+\def\bGamma{\bar\Gamma}
+\def\diag{\hbox{diag}}
+\def\bk{\bar k}
+\def\Gal{\operatorname{Gal}}
+\def\bF{{\bar F}}
+\def\vvol{\operatorname{vol}}
+
+ \def\star{\hbox to 0pt{\hskip -10pt $\bullet$ \hss}}  %compare Knuth, Exercise 14.28
+ \def\leftmargin{$\bullet$
+    \vadjust{\vbox to 0pt{\vskip-0.8\baselineskip\hbox to \hsize{\star\hfil}\vss}}}
+
+% small square box:
+\def\x{%
+        \hskip .05em
+        \vbox{\hrule height .4pt%
+          \hbox{\vrule width .4pt%
+                      \hskip .25em%
+                      \vbox{\vskip .61em}%
+                      \hskip .25em%   was 15 on both sides
+                      \vrule width .4pt%
+                }
+          \hrule height .4pt%
+          }}
+\def\qed{\hfill\hbox{}\nobreak\hfill\x}
+
+
+
+%Cover Page
+\hbox{}
+%\centerline{\bf Hyperelliptic Curves and 
+%                 Harmonic Analysis}
+
+\document
+
+% This is the body of paper on hyperelliptic curves and
+%   harmonic analysis by Thomas C. Hales
+% Small changes made June 1, 1994
+
+% Accepted for publication in the proc. of the Rutgers conference
+% in memory of L. Corwin, edited by R. Goodman.
+
+
+% Body
+
+\head 1. Characters and Curves\endhead
+
+{\it What is the form of a character of an admissible representation
+of a reductive $p$-adic group, and more generally what 
+is the form of 
+the basic objects of invariant harmonic analysis on these groups?}
+\footnote""{This paper is in final form, and no version of it
+will be submitted for publication elsewhere.}
+Kazhdan, Lusztig, and Bernstein were the first to realize that the answer
+to this
+question is not elementary, and will have, when the full story
+is eventually told, a gratifying answer.
+  This is the implication
+of a 
+1988 paper of Kazhdan and Lusztig \cite{KLB}.
+The stated purpose of
+their paper is to study fixed-point varieties on complex affine
+flag manifolds,
+but the final section and an appendix by Kazhdan
+and Bernstein turn to the rank-three symplectic group
+over the local field $F=\Fq((t))$ of sufficiently
+large characteristic.
+They construct a 
+cuspidal representation
+of the group $Sp(6,F)$ and a collection of regular elliptic 
+elements $\{u_\lambda\}$ parameterized by elements $\lambda$ in
+the finite field $\Fq$.  The character $\chi_w$
+of the representation
+evaluated at $u_\lambda$ has the form $\chi_w(u_\lambda) = A(q) + B(q)
+\# E_\lambda(\Fq)$, where $A$ and $B$ are 
+nonzero polynomials in $q$,
+and $E_\lambda$ is an elliptic curve over the finite field $\Fq$
+with $j$-invariant $\lambda$.  Based on the form of this character,
+they conclude the paper with the 
+claim, ``In particular, we see that there is
+no `elementary' formula for $\chi_w(u)$.'' 
+
+One of the most compelling problems in nonarchimedean harmonic analysis
+is to understand the implications of this
+claim for arbitrary reductive groups.   In this 
+paper, we adopt the same notion of elementariness: an object is
+not {\it elementary\/} if its description depends essentially
+on the number of points on a family of nonrational
+varieties over a finite field.  In our examples, these varieties will be
+elliptic or hyperelliptic curves.  (A {\it hyperelliptic curve} is a complete
+nonsingular curve of genus $g\ge 2$ that admits a finite morphism
+of degree two to the projective line $\P^1$.)
+We will also say, with the same
+meaning, that 
+the given object or group is {\it nonrational}.
+This paper makes significant progress on (without completing)
+the task of delineating which reductive groups are not elementary.
+Examples support the expectation
+that the harmonic analysis on most reductive groups will not be elementary.
+Perhaps only $GL(n)$ 
+and its relatives (possibly including unramified unitary groups) 
+will possess an elementary theory.
+
+The Kazhdan-Lusztig-Bernstein example for $Sp(6)$ stands in sharp contrast to the
+experience with $GL(n)$.   
+Substantial evidence
+suggests a rational theory, especially calculations of characters,
+Fourier transforms of invariant measures supported
+on nilpotent orbits, and Shalika germs.  
+The work of Corwin and Howe \cite{CH} gives characters on tamely
+ramified division algebras, which, by the abstract matching
+theorem \cite{BDKV}, gives the characters of the discrete series 
+of $GL(n)$ on the
+elliptic set.  Corwin and Sally 
+have made this even more concrete \cite{CS}.
+Harish-Chandra established a local expansion of characters as linear
+combinations of
+Fourier transforms of nilpotent orbits, and 
+formulas for these Fourier transforms on
+$GL(n)$ appear in \cite{Ho}.  
+Waldspurger gives an algorithm for computing the Shalika germs
+on the group $GL(n)$ \cite{W1}.  In none of this work on the general linear
+group is there any indication
+of nonrational behavior.
+
+For a general reductive group very little explicit work
+has been done along
+these lines.  But there is mounting evidence to show
+that the harmonic analysis on a general reductive group behaves
+more like the $Sp(6)$ example than $GL(n)$.  Specifically, 
+examples show that the following objects of local harmonic
+analysis admit no elementary description.
+In the following theorem, let $F$ be a $p$-adic
+field of characteristic zero, and assume that its residual
+characteristic is odd. We say that there is no {\it general elementary
+formula\/} for an object, if there exists a reductive $p$-adic group $G$
+over $F$, and a given object on the group $G$ whose description
+is not elementary (in the sense given above).
+
+\bigbreak
+\proclaim{Theorem 1.1}
+\roster
+\item"(1)"
+There is no general elementary formula for characters.
+\item"(2)"
+There is no general elementary formula for the Fourier transform of 
+invariant measures supported on nilpotent
+orbits.
+\item"(3)"
+There is no general elementary formula for Shalika germs.
+\item"(4)"
+There is no general elementary formula for the orbital integrals of the
+unit element of Hecke algebras.
+\item"(5)"
+The Langlands principle of functoriality
+ is not generally elementary. 
+\endroster
+\endproclaim
+
+Statement 5 has the
+following interpretation.  Kottwitz and Shelstad have developed
+a theory of twisted endoscopy (\cite{KS1},\cite{KS2}).  In it,
+ they make precise conjectures
+about the relationship between orbital integrals on two different groups.
+In special cases, we express orbital integrals in terms of points on varieties
+over finite fields.  The conjectures of Kottwitz and Shelstad may
+then be viewed as conjectural relationships (e.g., correspondences) between
+the underlying varieties.   Statement 5 asserts that examples may be
+produced in which the underlying
+varieties on the two groups are not rational and, moreover, are not
+birationally equivalent to each other.  What we actually show is more
+precise: the varieties in our example are elliptic curves, and the
+matching or transfer is expressed as an isogeny between the two
+curves.
+
+It seems likely that Murnaghan's work on Kirillov-type formulas for
+local character expansions will also imply that there is no general
+elementary formula for the coefficients $c_{\O}(\pi)$ arising
+in Harish-Chandra's local character expansion, but I have not
+checked this (see \cite{M2}).
+
+We would also like to delineate which groups exhibit 
+nonrational behavior (say (1), (2), (3), or (4) of Theorem 1.1).  
+The following
+groups display at least one of these four types of
+nonrational behavior.  In the next theorem, 
+suppose that $F$ is a $p$-adic field
+of characteristic zero, with sufficiently large residual characteristic.
+
+
+\proclaim{Theorem 1.2}
+The invariant harmonic analysis
+on the following groups is {\it not} elementary:
+\roster
+\item"(1)"
+the group ${}^2\! A_n$, for $n\ge 2$ 
+     (quasi-split or an inner form),
+    assuming that
+the group splits over a {\it ramified} quadratic extension,
+\item"(2)"
+   the group $B_n$, for $n\ge 2$
+    (split or an inner form),
+\item"(3)"
+   the split group $C_n$, for $n=2,3$, 
+\item"(4)"
+  the split group $D_4$. 
+\endroster
+\endproclaim
+
+To prove the theorem, we show that the Shalika germs associated with
+certain subregular unipotent classes, when evaluated at particular
+elliptic semisimple elements,  are expressed by the number
+of points on families of elliptic or
+hyperelliptic curves over finite fields.  In the list of Theorem 1.2, 
+the center
+of the group is irrelevant, and one can build  further
+examples by taking products, isogenies, and so forth.
+The groups $U(3)$ and $GSp(4)$ come as
+pleasant surprises because of the
+already considerable literature
+on these groups. 
+
+Assuming the principle of
+functoriality, we can add more groups to this list.  Again, we assume
+that $F$ is a $p$-adic field of characteristic zero and odd
+residual characteristic.
+
+\proclaim{Theorem 1.3}
+Assume the conjectures of Kottwitz
+and Shelstad on the stabilization of twisted orbital integrals.
+Then the invariant harmonic analysis on the following additional groups
+is {\it not} elementary:
+\roster
+\item"(1)" the split group $C_n$, for $n\ge 2$, 
+\item"(2)" the group $D_n$, for $n\ge 5$ (any quasi-split form).
+\endroster
+\endproclaim
+
+In all of our examples, we produce nonrational behavior
+on the elliptic set.  Trivial extensions of these
+theorems could be obtained by including the full set
+of regular semisimple elements.
+
+I have not determined whether the exceptional groups $(G_2,F_4,E_6,E_7,E_8)$
+display nonrational behavior on the elliptic set.  
+I suspect that 
+none of the exceptional groups will be elementary.  Also,
+the status of unramified unitary groups remains 
+unresolved.
+The Shalika germs that I have considered here are elementary,
+and it would not be overly surprising for the entire theory to
+be rational in this case.
+
+Other results along these lines arise in 
+the twisted harmonic analysis on reductive groups
+with an automorphism (see \cite{KS1},\cite{KS2}).
+For instance, consider the group $GL(2n+1)$
+and the outer automorphism of the group fixing a splitting.  
+Then for $n\ge 2$, its
+twisted theory is not elementary.  Assuming the conjectures
+of Kottwitz and Shelstad, one can add 
+several other twisted cases to the list, including
+$GL(2n)$ twisted by the
+outer automorphism that fixes a splitting, for $n\ge 2$.
+
+Sections 4 through 7 will give complete proofs of Theorems 1.1, 1.2, and 1.3
+except for the proofs of the nonrationality of $C_3$ and $D_4$.
+Although we do not give the proof that $C_3$ and $D_4$ are not
+elementary, this is at least made plausible by Examples 2.3 and 2.6
+of Section 2.  These examples show how elliptic curves are associated
+with $Sp(6)$ and $SO(8)$ (without relating these examples back to
+the harmonic analysis of the group).  
+  Section 2
+gives short arguments establishing the existence of elliptic
+or hyperelliptic
+curves in several reductive groups.
+
+In Section 3 we give a brief account of a general framework that
+ties harmonic analysis to varieties over finite fields.  This section
+contains no proofs (and no theorems).  Section 4 gives a series
+of concrete examples that establish that certain Shalika
+germs are not elementary for many reductive groups.  The stable orbital integrals
+of the unit element of the spherical 
+Hecke algebra of $SO(2n+1)$ are
+treated in Section 5.  Section 6 gives a couple of examples of the
+Fourier transforms of nilpotent orbits in low rank.  Section 7 shows
+how the examples of Sections 4, 5, and 6 establish Theorems 1.1, 1.2,
+and 1.3 
+(with the exception, noted above, of the nonrationality of $C_3$ and $D_4$).
+The proof that the harmonic analysis of
+$D_n$ is not elementary relies on the result for $D_4$.
+
+At a 1992 conference at Luminy, J.-L. Waldspurger announced
+results concerning the homogeneity of certain invariant distributions
+(\cite{W2},\cite{W3}).  By giving general explicit estimates on the domain of
+validity of Harish-Chandra's local character expansion, Waldspurger's
+work related the Kazhdan-Lusztig-Bernstein example on $Sp(6)$ to the
+Fourier transforms of nilpotent orbits in positive characteristic.
+This gave reason to believe that the Fourier transforms of nilpotent
+orbits would not be elementary in characteristic zero. 
+At the same conference, G. Laumon suggested to me that 
+it was hardly possible for the fundamental lemma to be elementary,
+in light of the
+Kazhdan-Lusztig-Bernstein example.  Their comments provided the
+impetus behind nonrationality results described in this paper, for
+it was not until then that I clearly understood that 
+nonrationality cannot make any entrance into harmonic
+analysis without being all-pervasive.
+
+I dedicate this paper to the memory of L. Corwin, 
+whose work with Howe on characters of
+tamely ramified division algebras gave
+some of the first general
+insights into the characters of reductive
+$p$-adic groups.
+
+\head  2.  The Construction of Hyperelliptic Curves\endhead
+
+The argument that certain Shalika germs are described
+by hyperelliptic curves
+is a long one.  The first step is made in \cite{H3}.  This
+section presents a quick overview of the argument.  We show how
+hyperelliptic curves are associated with some of the
+classical groups.  In Section 3, we 
+give a brief indication of the
+connection between the curves constructed in this section and
+the $p$-adic harmonic analysis on reductive groups.
+
+We begin with a split reductive group $G$ defined over a
+field $k$ whose characteristic is not two, and 
+with a short simple root $\alpha$ of $G$.
+In practice, $\alpha$ will usually be taken to be adjacent to a long root.
+From this data we will construct a variety that turns
+out to be an elliptic
+or  hyperelliptic curve in a number of interesting situations.
+
+We let $\B$ denote the variety of Borel subalgebras of the
+Lie algebra of $G$.  Let $W$ denote
+the Weyl group of $G$, which we identify with the $G$-orbits on
+$(\B\times \B)$.   For $w\in W$, we write $(\B\times \B)_w$ for the
+orbit corresponding to $w$.  
+For every Borel subalgebra $B$ and Cartan subgroup $T$ whose Lie algebra
+lies in $B$,
+the Weyl group $W(T)$ of $T$ is identified with $W$ by
+associating $(B,{}^w\! B)$, for $w\in W(T)$, with the 
+corresponding $G$-orbit $(\B\times\B)_w$, for $w\in W$.
+   The simple reflections correspond to the
+orbits of dimension one more than the dimension of $\B$.
+
+Let $\g$ denote the Lie algebra of $G$, and let $\tilde\g$ denote
+the Springer-Grothendieck variety.  It consists of the subvariety
+of $\g\times \B$ formed by pairs $(X,B)$, where $X$ belongs to the
+subalgebra $B$.  We let $\h$ denote the Cartan subalgebra of $\g$.
+By definition, $\h$ is the Lie algebra $B/[B,B]$, where $B$ is a Borel
+subalgebra, and $[B,B]$ is the commutator ideal.  
+A different choice of Borel subalgebra in the definition of $\h$ leads
+to a canonically isomorphic Lie algebra. 
+We have a canonical morphism $\tilde \g\to \h$ that sends a pair $(X,B)$ in $\g$
+to the image of $X\in B$ in $\h=B/[B,B]$.
+
+We let $\tilde\g^{rs}$ denote the elements $(X,B)$ of $\tilde\g$ whose
+first coordinate $X$ is a regular semisimple element of $\g$.
+There is an action of the Weyl group on $\tilde\g^{rs}$.  The element
+$w$ sends a pair $(X,B)$ to a pair $(X,B')$, where $B'$ is the unique
+Borel subalgebra containing $X$ such that $(B',B)$ belongs to the
+orbit $(\B\times\B)_w$.  To distinguish
+this action from various other actions to be defined below we let
+$\phi_w(X,B)$ denote the resulting pair.  The group $W$ acts naturally
+on $\h$, and the morphism $\tilde\g^{rs}\to\h^{rs}$ is equivariant.  
+We also
+denote the action on $\h$ by $\phi_w$.
+
+We introduce a formal parameter $t$ in the Cartan subalgebra as follows.
+Let $k_1=k(\h)$ denote the field of rational functions on $\h$.  
+The field contains the linear dual $\h^*$ of $\h$.
+The Weyl group $W$ acts on $\h^*$ by $\langle\sigma_w\cdot X^*,\phi_w\cdot X\rangle
+=\langle X^*,X\rangle$, where $X^*\in\h^*$, $X\in\h$, and $\langle\cdot,\cdot
+\rangle$ is the canonical pairing.  This action extends to field
+automorphisms $\sigma_w$ on $k_1$.  The desired formal parameter $t$
+is then the canonical element of $\h\otimes_k\h^* \subseteq \h\otimes_k k_1
+= \h(k_1)$
+(the algebra of $k_1$ points of $\h$).  It equals
+the element $\sum e_i\otimes e_i^*$, where $\{e_i\}$ is a basis of $\h$
+and $\{e_i^*\}$ is the dual basis of $\h^*$.  Equivalently, it is
+the $k_1$-point in $\h(k_1) = \hbox{Hom}_{k-\hbox{alg}}(k[\h],k(\h))$,
+obtained by the canonical inclusion of the algebra $k[\h]$ of regular
+functions on $\h$ into its quotient field of rational functions $k(\h)$.
+The canonical element $t$ is invariant under the automorphism
+$\phi_w\sigma_w$ of $\h(k_1)$.
+
+The construction of the curve depends on a choice of a particular
+nilpotent element $N$.  It is well known that if $N$ is a nilpotent
+element of the Lie algebra, then 
+$r=(\dim C_G(N) - \hbox{rank}(G))/2$ is a nonnegative integer, and we say that
+$N$ is $r$-regular if this number equals $r$.  When $r=0$, we also
+say that $N$ is {\it regular}, and
+when $r=1$, the nilpotent element is also
+called {\it subregular}.  
+Over the algebraic closure $\bar k$ of $k$, there
+is exactly one conjugacy class of regular nilpotent elements.  
+Over $\bar k$, 
+there is exactly one conjugacy class of subregular nilpotent
+elements for each connected component of the Dynkin diagram of the
+group.  We fixed, at the beginning of this section, a particular
+simple root $\alpha$, which lies in
+a particular component of the Dynkin diagram.  Hence the
+given simple root $\alpha$ determines a subregular nilpotent element $N$ up to
+stable
+conjugacy.  We fix such an element $N$.  It is a $k$-point of the
+Lie algebra $\g$.
+
+The variety $\B_N$ of Borel subalgebras containing a subregular nilpotent element
+$N$ is a union of projective lines.  Each projective line is associated
+with a simple root.  There is precisely one line in $\B_N$ associated
+with the short root $\alpha$.  Thus, $\alpha$ and $N$ determine a
+projective line in $\B$, which we denote $\P(\alpha,N)$.
+We let $S$
+be the surface $\P(\alpha,N)\times \P(\alpha,N)$
+in $\B\times \B$.
+
+For certain groups $G$ and simple roots $\alpha$,  we will
+construct a rational function on (a twisted
+form of) the surface $S$.
+An irreducible component of the zero set of the rational
+function
+will be the hyperelliptic
+curve.  
+The rational function
+is (more or less) of the form $\sigma(y)-y$, for
+some involution $\sigma$ of the surface.
+If we pick a local coordinate on $\P(\alpha,N)$, 
+then a point on $S$
+is described by a pair $(x_1,x_2)$, and the coordinate
+$y$ of the construction is $x_2-x_1$.
+The key is to show
+that the involution arises naturally.
+
+We pause to clarify the notation.  The elements
+$s_\beta$ represent the simple reflections of the Weyl group, and $w$
+denotes a general element of $W$.  The corresponding
+automorphisms of the field $k_1$
+associated with $W$ are denoted $\sigma_\beta$ and $\sigma_w$.  The
+automorphisms of the regular semisimple part $\tilde \g^{rs}$
+of the Springer-Grothendieck
+variety are denoted $\phi_{s_\beta}$ and $\phi_w$.  The same notation
+is used for the action of $W$ on $\h$.
+The automorphisms $\phi_w$ are defined over
+$k$, so $\sigma_w$ and $\phi_w$ commute on the $k_1$-points of 
+$\tilde \g^{rs}$.
+ Finally, $\sigma^*_\beta$ and $\sigma^*_w$,
+to be constructed in Lemma 2.2 below,
+denote the birational action (composed with field automorphisms) of
+$W$ on the surface $S$.  
+
+
+Let $Z_\alpha$ denote the variety of regular triples:
+$$Z_\alpha = \{(Y,B_1,B_2)\in \g^{rs}\times \B\times\B :
+   Y\in B_1\cap B_2,\ \phi_{s_\alpha}(Y,B_1) = (Y,B_2)\}.
+$$
+Let $(B_1,B_2)$ be an element of $S(k_1)$ with $B_1\ne B_2$.
+We select a 
+deformation $(N(\lambda),B_1(\lambda),B_2(\lambda))$, 
+for $\lambda\in k^\times$, of $(N,B_1,B_2)$ satisfying
+the following properties:
+%\roster
+\item{(1)} $(N(\lambda),B_1(\lambda),B_2(\lambda))$, for $\lambda\ne0$,
+belongs to $Z_\alpha(k_1)$.
+\item{(2)} The center $(N(0),B_1(0),B_2(0))$ of the deformation is $(N,B_1,B_2)$.
+\item{(3)} The image of $(N(\lambda),B_1(\lambda))$ in $\h(k_1)$, under the
+canonical map $\tilde \g^{rs}\to\h$ is $\lambda t$, where $t$ is the
+canonical element of $\h(k_1)$.
+%\endroster
+\par
+\noindent
+Such deformations exist.
+
+Now fix an element $w$ in the Weyl group.  Define $B_1'(\lambda)$ and
+$B_2'(\lambda)$ by the conditions $\phi_w(N(\lambda),B_1(\lambda)) =
+(N(\lambda),B_1'(\lambda))$ and $\phi_{s_\alpha}(N(\lambda),B_1'(\lambda))=
+(N(\lambda),B_2'(\lambda))$. Let $(N,B_1',B_2')$ denote the center
+$(N(0),B_1'(0),B_2'(0))$ of the resulting deformation 
+$(N(\lambda),B_1'(\lambda),B_2'(\lambda))$.
+
+\proclaim{Lemma 2.1}  On a Zariski open set of $S$, the pair $(B_1',B_2')$ is
+independent of the choice of deformation.
+\endproclaim
+
+\definition{Notation}  We define $\sigma^*_w (B_1,B_2) = (\sigma_w B_1',\sigma_w B_2')$,
+for $(B_1,B_2)$ in a Zariski open set of $S/k_1$.
+\enddefinition
+
+\proclaim{Lemma 2.2}  $(B_1,B_2) \mapsto \sigma^*_w (B_1,B_2)$ defines an action
+of the Weyl group (by birational maps composed with field automorphisms of $k_1$).
+\endproclaim
+
+\demo{Proof (Lemmas 2.1 and 2.2)}  \!The definitions show directly that
+$\sigma^*_1 (B_1,B_2)$ does not depend on the choice of deformation and
+that $\sigma^*_1 (B_1,B_2) = (B_1,B_2)$.
+
+We will show below that Lemma 2.1 holds when $w$ is a simple reflection.
+Assuming this result for the moment, we prove Lemma 2.1 by induction on
+the length $\ell(w)$ of $w$.  Assume $\ell(w)\ge 2$.  Pick a simple
+reflection $s_\beta$ such that $w' = s_\beta w$ has length less than $\ell(w)$.
+Let $(N(\lambda),B_1'(\lambda),B_2'(\lambda))$ be 
+associated as above 
+with a deformation $(N(\lambda),B_1(\lambda),B_2(\lambda))$
+and the Weyl group element $w$.  Let $(N(\lambda),B''_1(\lambda),B''_2(\lambda))$
+be associated with the same deformation and the Weyl group element $w'$.
+Set $(B_1'',B_2'') = \sigma^*_{w'}(B_1,B_2)$.  By our induction hypothesis,
+it is independent of the choice of deformation, and is defined on a Zariski
+open set.  We show that the center of $(N(\lambda),B_1'(\lambda),B_2'(\lambda))$
+is $\sigma_w^{-1}(\sigma^*_\beta(B_1'',B_2''))$, which, by the
+induction hypothesis, is indeed
+independent of the choice of deformation.   To calculate
+$\sigma^*_\beta(B_1'',B_2'')$ we use the deformation
+$$(\sigma_{w'}N(\lambda),\sigma_{w'}B_1''(\lambda),\sigma_{w'}B_2''(\lambda)).$$
+This satisfies Conditions 1, 2, and 3 given above.
+Then
+$$
+\align
+\phi_{s_\beta}(\sigma_{w'}N(\lambda),\sigma_{w'}B_1''(\lambda))&=
+      \sigma_{w'}B_1'(\lambda),\\
+\phi_{s_\alpha}(\sigma_{w'}N(\lambda),\sigma_{w'}B_1'(\lambda))&=
+      \sigma_{w'}B_2'(\lambda).
+\endalign
+$$
+So $\sigma_\beta^* (\sigma^*_{w'} (B_1,B_2))$ is the center of 
+$\sigma_\beta\sigma_{w'}(N(\lambda),B_1'(\lambda),B_2'(\lambda))$ as desired.
+
+It is now a formality that we have a group action.  Take $w'$ and $w$.
+Write $\sigma^*_{w'} (B_1,B_2) = (B_1'',B_2'')$, obtained by a deformation
+$(N(\lambda),B_1(\lambda),B_2(\lambda))$.  Use the same deformation to
+compute $\sigma^*_{ww'} (B_1,B_2)$, and use the deformation 
+$$(\sigma_{w'}N(\lambda),\sigma_{w'}B_1''(\lambda),\sigma_{w'}B_2''(\lambda))$$
+to compute $\sigma^*_w (B_1'',B_2'')$, where
+$$\phi_{w'}(N(\lambda),B_1(\lambda)) = (N(\lambda),B_1''(\lambda))
+\hbox{ and } \phi_{s_\alpha}(N(\lambda),B''_1(\lambda)) = (N(\lambda),B_2''(\lambda)).$$
+With these choices, composition holds.
+
+We have thus reduced to Lemma 2.1 for simple reflections.
+Suppose that the simple root is $\alpha$.  Then from the definitions it follows
+easily that $\sigma^*_\alpha (B_1,B_2) = (\sigma_\alpha B_2,
+\sigma_\alpha B_1)$.  For the other
+simple reflections $s_\beta$, the calculation essentially reduces to the
+rank-two system containing the roots $\alpha$ and $\beta$.  For instance,
+if $s_\beta$ and $s_\alpha$ commute then we find that 
+$\sigma^*_\beta (B_1,B_2) = (\sigma_\beta B_1,
+\sigma_\beta B_2)$.  
+The explicit rank-two relations are obtained
+in a slightly different
+context in \cite{H3,VI.1.6}.
+Particular cases are found in Examples 2.3 and 2.6.
+Details are left to the reader.
+\qed\enddemo
+
+\subhead Example 2.3\endsubhead
+  Consider the group $G=Sp(6)$.  We have three
+simple roots $\beta_1 = 2t_1$,
+$\beta_2 = t_2-t_1$, and $\beta_3 = t_3-t_2$.  We let the fixed simple
+root $\alpha$ of the construction be $\alpha=\beta_2$.  
+The line
+$\P(\alpha,N)$ intersects three other projective lines in $\B_N$, say
+$\P_1$, $\P_2$, and $\P_3$.  We assume that the nilpotent element
+is {\it distinguished} in the sense that the lines $\P_1$, $\P_2$, and
+$\P_3$ are defined over $k$.  Assume that the lines $\P_1$, $\P_2$, and
+$\P_3$ are of types $\beta_1$, $\beta_2$, and $\beta_1$, respectively.
+Select a coordinate $x$ on $\P(\alpha,N)$ 
+in such a way that the intersections
+of $\P(\alpha,N)$ with the lines $\P_1$, $\P_2$, and $\P_3$ have
+coordinates $x=0,1$, and $\infty$, respectively.  Then on an open set of $S =
+\P(\alpha,N)\times \P(\alpha,N)$ we may choose the coordinate $x$
+for $B_1$ and $x+y$ for $B_2$.  An explicit calculation shows that
+the birational map $(B_1,B_2)\mapsto \sigma_\beta^{-1}\sigma^*_\beta(B_1,B_2)$
+is given for simple roots $\beta$ by
+$$
+\aligned
+(x,y) &\mapsto \left(x, {(t_1+t_2) y x\over  x (t_2-t_1) -  t_1 y}\right),
+    \qquad \hbox{if } \beta=\beta_1,\\
+      &\mapsto \left(x+y,-y\right),\qquad \hbox{if } \beta=\beta_2,\\
+      &\mapsto \left(x,{(t_3-t_1)y\over (t_2-t_1) + y (t_3-t_2)/(1-x)}\right),
+      \qquad \hbox{if } \beta=\beta_3.
+\endaligned\tag 2.4
+$$
+In this simple case, it can be verified directly from these expressions
+and the Coxeter relations of the group
+that $(B_1,B_2)\mapsto \sigma^*_w(B_1,B_2)$ defines a Weyl group action.
+
+Let $w_-$ be the element of longest length in $Sp(6)$. 
+Write $\sigma_-$ and $\sigma_-^*$ for $\sigma_{w_-}$ and
+$\sigma^*_{w_-}$.
+The element $\sigma_-$  acts on $t_i$,
+for $i=1,2,3$, by $\sigma_{-}(t_i) = -t_i$.  Let $k_1^-$ be the
+field fixed by $\sigma_{-}$ in $k_1$.  We create a twisted form
+$S^*$ of $S$, defined over $k^-_1$, by using the twisted action $\sigma_{-}^*$
+of the nontrivial element of the 
+Galois group of $\Gal(k_1/k_1^-)$.  
+Since the maps of  Lemma 2.2 are only birational, the surface
+$S^*$ is only defined up to birational equivalence.
+By writing $w_-$ as a product of simple reflections,
+Equations 2.4 may be used to
+find explicit rational functions $X(x,y)$ and $Y(x,y)$ such that
+$$\sigma_{-}(x) = X(x,y),\qquad \sigma_{-}(y) = Y(x,y)$$
+for every rational point $(x,y)$ on the twisted form $S^*(k_1^-)$.
+In fact, the longest element is $w_- = s_3s_2s_1s_2s_3s_2s_1s_2s_1$,
+where $s_i = s_{\beta_i}$.
+The rational functions $X$ and $Y$ are given in the appendix.
+
+\proclaim{Lemma 2.5} Assume the nondegeneracy condition $t_i^2\ne t_j^2$,
+for $i\ne j$. An irreducible component of $Y(x,y) - y=0$ is an elliptic
+curve with $j$-invariant
+$$32 \left( \sum_{i<j} (\mu_i-\mu_j)^2\right)^3/\prod_{i<j} (\mu_i-\mu_j)^2,$$
+where $\mu_i = 1/t_i^2$, $i=1,2,3$.  The other irreducible components
+of $Y(x,y)-y = 0$
+define rational curves.
+\endproclaim
+
+Bernstein and Kazhdan construct an elliptic curve
+in $Sp(6)$ with this $j$-invariant by completely different methods.
+The elliptic curve $y^2 = (1-x t_1^2 )(1-x t_2^2 )(1-x t_3^2)$ given
+in $Sp(6)$ in Section 3 also has this $j$-invariant.
+
+\demo{Proof (Sketch)}  The surface $S$ is
+defined only up to birational equivalence, but the birational class of each
+irreducible component 
+of the divisor $Y(x,y)-y$ is well-defined.
+  Starting with the explicit formula for the
+rational function $f(x,y) = Y(x,y) - y$ in the appendix, we write
+$x = 1 - y/x_1$ to obtain a rational function $f_1(x_1,y) = f(x,y)$.
+One of the irreducible polynomial factors of $f_1(x_1,y)$ is 
+of degree four in $x$ and quadratic
+in $y$.  Completing the square (by a substitution $y_1 = f_2(x_1) + f_3(x_1) y$,
+for suitable polynomials $f_2$ and $f_3$) we rewrite $f_1(x_1,y)$ in the
+form
+$$y_1^2 - (a_0 x_1^4 + a_1 x_1^3 + a_2 x_1^2 + a_3 x_1 + a_4).$$
+The constants $a_i$ are found by direct calculation to be
+$$\align
+a_0 &= t_2^2 (-t_2 + t_3)^2,\\
+a_1 &= 4 t_2 (-t_2 + t_3) (t_2^2 + t_1 t_3),\\
+a_2 &= 2 (-t_1^2 t_2^2 + 3 t_2^4 - 3 t_1^2 t_2 t_3 + 3 t_1 t_2^2 t_3
+           + 2 t_1^2 t_3^2 - 3 t_1 t_2 t_3^2 - t_2^2 t_3^2),\\
+a_3 &= 4 (t_1-t_2)(t_1 t_2^2 + t_2^3 - t_1^2 t_3 + t_1 t_2 t_3 + t_2^2 t_3
+       - t_1 t_3^2),\\
+a_4 &= (-t_1+t_2)^2 (t_1+t_2+t_3)^2.
+\endalign
+$$
+A standard formula for the $j$-invariant of an elliptic curve gives
+the $j$-invariant of the lemma.   
+The other irreducible components of $Y(x,y) - y=0$ are
+conics.
+\hbox{}\hfill\hbox{}\hfill\qed\enddemo
+
+\subhead Example 2.6 \endsubhead The second example we consider is $G=SO(8)$.  We write
+the four simple roots as $\beta_4 = t_4-t_3$, $\beta_3 = t_3-t_2$,
+$\beta_2 = t_2-t_1$, and $\beta_1 = t_2+t_1$.  We select
+$\alpha=\beta_3$ as the distinguished
+simple root of the construction.  The line
+$\P(\alpha,N)$ intersects three projective lines as before, and we
+arrange things so that the intersections of $\P(\alpha,N)$ with the
+lines of types $\beta_4$, $\beta_2$, and $\beta_1$ have coordinates
+$0$, $1$, and $\infty$, respectively. Fix
+coordinates
+ $x$ and $x+y$ for $B_1$ and $B_2$ as in Example 2.3.
+Direct calculation shows that the birational maps $(B_1,B_2)\mapsto
+\sigma^{-1}_\beta\sigma^*_\beta(B_1,B_2)$, for $\beta$ simple, are
+given by
+$$
+\align
+(x,y) &\mapsto \left(x,{(t_4-t_2) y\over (t_3-t_2) + y (t_3-t_4)/x}
+  \right),\ \hbox{ if } \beta=\beta_4,\\
+      &\mapsto \left(x+y,-y\right),\ \hbox{ if } \beta=\beta_3,\\
+      &\mapsto \left(x,{(t_3-t_1) y\over (t_3-t_2) + y (t_1-t_2)/(x-1)}
+  \right),\ \hbox{ if } \beta=\beta_2,\\
+      &\mapsto \left(x,{(t_3+t_1)y\over (t_3-t_2)}\right),\ \hbox{ if } 
+    \beta=\beta_1.
+\endalign
+$$
+
+We proceed as before, constructing the longest element 
+$$w_- = s_3 s_4 s_1 s_3 s_2 s_1 s_3 s_1 s_4 s_3 s_1 s_2$$
+(with $s_i = s_{\beta_i}$), the
+field $k_1^-$, and the rational function $Y(x,y) = \sigma_{-} (y)$.
+
+\proclaim{Lemma 2.7}  Assume the nondegeneracy condition
+$t_i^2\ne t_j^2$, for $i\ne j$.
+An irreducible component of $Y(x,y)-y=0$ is an elliptic
+curve with $j$-invariant
+$${256 \left(6\mu_1\mu_2\mu_3\mu_4-\sum_{i<j<k} (\mu_i+\mu_j+\mu_k)(\mu_i \mu_j \mu_k)
+        + \sum_{i<j} \mu_i^2\mu_j^2\right)^3\over
+(\mu_1-\mu_2)^2 (\mu_1-\mu_3)^2 (\mu_1-\mu_4)^2 (\mu_2-\mu_3)^2
+ (\mu_2-\mu_4)^2 (\mu_3-\mu_4)^2},$$
+where $\mu_i = t_i^2$, for $i=1,2,3,4$.
+The other irreducible components of $Y(x,y)-y$ are rational.
+\endproclaim
+
+The elliptic curve $\epsilon y^2 = (1- x \tau_1^2)(1-x \tau_2^2)(1-x \tau_3^2)
+(1-x \tau_4^2)$, with $\epsilon \in k^\times\setminus k^{\times\,2}$,
+ has the same $j$-invariant, if we set $\mu_i=\tau_i^2$.  
+This elliptic curve
+is the curve that should appear in
+$Sp(8)$ by the results of Lemma 4.10.  This
+might well be expected,
+since $SO(8)$ is an endoscopic group of
+$Sp(8)$.
+
+\demo{ Proof}  The same argument as in the proof of the previous lemma 
+gives an elliptic curve.  The calculations are even longer in this
+case.  As with Example 2.3,
+they were obtained by computer and {\it Mathematica}.
+The elliptic curve obtained by completing the
+square is
+$$y_1^2 = a_0 x_1^4 + a_1 x_1^3 + a_2 x_1^2 + a_3 x_1 + a_4,$$
+with
+$$\align
+% OLD TRY:
+%a_0 &=	(t_1+t_3)^2 (-t_3+t_4)^2,\\
+%a_1 &=  4 (t_1+t_3) (-t_3+t_4)(-t_1 t_2 + t_3^2 - t_1 t_4 + t_2 t_4),\\
+%a_2 &= 2 (2 t_1^2 t_2^2 - 3 t_1^2 t_2 t_3 + 3 t_1 t_2^2 t_3 - t_1^2 t_3^2 
+%      - 3 t_1 t_2 t_3^2 - 
+%     t_2^2 t_3^2 + 3 t_3^4 \\
+%      &\quad + 3 t_1^2 t_2 t_4 - 3 t_1 t_2^2 t_4 - 3 t_1^2 t_3 t_4 + 
+%     6 t_1 t_2 t_3 t_4 - 3 t_2^2 t_3 t_4 - 3 t_1 t_3^2 t_4 + 3 t_2 t_3^2 t_4 \\
+%      &\quad + 
+%     2 t_1^2 t_4^2 - 3 t_1 t_2 t_4^2 + 2 t_2^2 t_4^2 + 3 t_1 t_3 t_4^2 - 3 t_2 t_3 t_4^2 - 
+%     t_3^2 t_4^2),\\
+% 
+%a_3 &=  4(t_2-t_3) (-t_1^2 t_2 + t_1 t_2^2 -t_1 t_2 t_3 - t_1 t_3^2
+%        + t_2 t_3^2 + t_3^3 \\
+%        &\quad - t_1^2 t_4 + t_1 t_2 t_4 - t_2^2 t_4
+%        - t_1 t_3 t_4 + t_2 t_3 t_4 + t_3^2 t_4 + t_1 t_4^2 - t_2 t_4^2),\\
+% 4*(t2 - t3)*(-(t1^2*t2) + t1*t2^2 - t1*t2*t3 - t1*t3^2 + t2*t3^2 + t3^3 - 
+%     t1^2*t4 + t1*t2*t4 - t2^2*t4 - t1*t3*t4 + t2*t3*t4 + t3^2*t4 + t1*t4^2 - 
+%     t2*t4^2)
+%
+%a_4 &= (-t_2+t_3)^2(-t_1+t_2+t_3+t_4)^2.
+%
+%
+%
+% NEW TRY:
+ a_0 &= (-t_1+t_2)^2 (t_1+t_3)^2,\\
+ a_1 &= 4(t_1-t_2)(t_1+t_3)(t_1 t_2-t_1 t_3 + t_2 t_3 - t_4^2),\\
+ a_2 &= 4(t_1^2 t_2^2 - 3t_1^2t_2t_3 + 3t_1t_2^2 t_3 + t_1^2 t_3^2-3t_1t_2t_3^2
+        + t_2^2t_3^2 + t_1^2t_4^2 - 3t_1 t_2t_4^2 \\
+      &\hbox{}\qquad + t_2^2 t_4^2 + 3t_1t_3t_4^2 - 3t_2t_3t_4^2+t_3^2t_4^2),\\
+ a_3 &= 8(-t_2+t_3)(t_1t_2t_3 - t_1t_4^2 + t_2t_4^2 - t_3t_4^2),\\
+ a_4 &= 4(-t_2+t_3)^2t_4^2.
+\endalign
+$$
+A standard formula for the $j$-invariant of an elliptic curve leads to
+the given $j$-invariant of the lemma.
+\qed\enddemo
+
+\subhead Example 2.8\endsubhead  Consider the group $G=SO(2n+1)$.  We have the simple
+roots $\beta_n = t_n-t_{n-1}$, $\ldots,$ $\beta_2 = t_2-t_1$, and
+$\beta_1 = t_1$.  Let the distinguished simple root $\alpha$ be $\beta_1$.
+The line $\P(\alpha,N)$ intersects two other projective lines
+$\P_1$ and  $\P_2$ in $\B_N$, and both of these lines are of type $\beta_2$.
+Assume that $N$ is chosen in such a way that the lines $\P_1$ and
+$\P_2$ are defined over $k$.  Select a coordinate $x$ on $\P(\alpha,N)$
+in such a way that $x=0$ and $x=\infty$ define the intersection
+of $\P(\alpha,N)$ with $\P_1$ and $\P_2$.  Let $x$ and $x+y$ be the
+coordinates of $B_1$ and $B_2$.  The birational map $(B_1,B_2)\mapsto
+\sigma_\beta^{-1}\sigma_\beta^*(B_1,B_2)$ is given for simple roots
+$\beta$ by
+$$
+\align
+(x,y)&\mapsto (x+y,-y),\quad\hbox{if } \beta=\beta_1,\\
+     &\mapsto \left(x ,{2t_2xy\over 2t_1x-t_2y+t_1y}\right),
+              \quad\hbox{if } \beta=\beta_2,\\
+     &\mapsto (x,y),\qquad\hbox{if } \beta\ne \beta_1,\beta_2.
+\endalign
+$$
+$k[\h]$ is a graded ring.  Let $t_{x}\in k[\h]\subset k_1$ be an
+element of degree two that is Weyl group invariant (say
+$t_1^2+\cdots+t_n^2$).  Let $k_2/k_1$
+be the quadratic field extension $k_2 = k_1[t_{0}]/(t_0^2 - t_{x})$.
+The Weyl group action extends to $k_2$ with trivial action on $t_{0}$.
+The group of order two with generator $\sigma_0$ acts on $k_2$ by
+restricting trivially to $k_1$ and $\sigma_0(t_0)= -t_0$.  We extend
+the action of Lemma 2.2 to $S(k_2)$.  Let $k_0\subset k_1$ be the
+fixed field of $W$.
+
+The centralizer $C_G(N)$ has two components.  The group $C_G(N)$ acts
+on $\B_N$, on $\P(\alpha,N)$, and diagonally on $S = \P(\alpha,N)\times
+\P(\alpha,N)$.  This action commutes with the action of Lemma 2.2
+and with the conjugation $\sigma_0$.  Pick an involution $\iota$
+of $S$ coming from the nonneutral component of $C_G(N)$.
+It has the form
+$$
+(x,y)\mapsto \left({1\over cx},{-y\over c x(x+y)}\right),
+$$
+for some constant $c\ne0$ depending on the choice of $\iota$.
+We choose $\iota$ in such a way that $c=1$.
+  Let
+$\sigma_0^*$ be the involution $\iota\sigma_0$ of $S(k_2)$.
+We have an action of $\Gal(k_2/k_0)$ on $S(k_2)$ by the maps
+$\sigma^*_w$ and $\sigma^*_0$.  By Galois descent, we obtain
+a variety $S^*$ defined over $k_0$ (or at least the birational
+equivalence class of a variety, since the Weyl group acts only
+by birational maps).   
+
+There are coordinates $y_1$ and $x_1$ on $S^*$ with the property
+that $x_1$ is a $k_0$-variable, $y_1$ is a $k_0(t_0)$-variable,
+and the condition for $(x_1,y_1)$ to define a point of $S^*(k_0)$
+is 
+$$y_1 \sigma_0(y_1) = (1- x_1^2 \tau_1^2)\cdots (1-x_1^2 \tau_n^2),\tag2.9$$
+where $\tau_i = t_i/t_0$.  We do not give a proof of these relations here.
+They are proved in a slightly different context in \cite{H5,1.2}.
+We conclude that at points of $S^*(k_0)$, the rational function
+$\sigma_0(y_1) - y_1$ 
+vanishes along the hyperelliptic
+curve $y_1^2 = f(x_1)$, where $f(x_1)$ is given by the
+right-hand side of Equation 2.9.
+
+\head 3. Relation to Shalika Germs\endhead
+
+In this section we sketch the connection between Shalika germs and
+varieties over finite fields.  As we have already mentioned, many of the
+proofs are long and are not given here.  The purpose of this section
+is merely to orient the reader to a suitable
+conceptual framework.  This
+framework is provided by the work of Denef,
+Igusa, Langlands, Shelstad, and others.
+
+Let $F$ be a $p$-adic field of characteristic zero.  Igusa \cite{I}
+established
+a general
+asymptotic expansion for
+families of  integrals over $p$-adic
+manifolds.
+The asymptotic expansion of the family of integrals $I(\lambda)$,
+depending on a parameter $\lambda\in F^\times$,
+takes  the general
+form of a {\it finite} sum of quasicharacters 
+$\theta:F^\times\to \C^\times$ and powers of logarithms:
+$$I(\lambda) \sim \sum_\theta \theta(\lambda) (\log|\lambda|)^m
+c_{\theta,m}$$
+as $\lambda$ tends to zero.
+The expansion actually gives an exact formula for $I(\lambda)$
+when $\lambda$ is  sufficiently small.
+For each quasicharacter
+$\theta_0$, Igusa considers
+the Mellin transform 
+$$Z(\theta_0,s)= 
+     \int_{|\lambda|\le \epsilon} I(\lambda) \theta_0(\lambda)|\lambda|^s 
+    \,|d\lambda|,\ \ \hbox{for } s\in\C\ \ \hbox{and}\quad  \Re(s)\gg 0,$$
+for any small positive constant $\epsilon$.
+The Mellin transforms $Z(\theta_0,s)$ are rational functions of 
+$q^{-s}$.  As $\theta_0$ varies, the Mellin transforms determine
+the original asymptotic expansion.
+The functions $Z(\theta_0,s)$ are essentially
+examples of {\it Igusa's  
+local zeta functions}.
+We refer the reader to Denef's survey article \cite{D2}.
+
+Langlands and Shelstad
+showed  how the asymptotic expansion of Shalika 
+fits naturally into
+the framework of Igusa's theory.  In Shalika's germ
+expansion there are no logarithmic terms: $c_{\theta,m}=0$,
+for $m\ne0$. In their work,
+the terms $c_{\theta,0}$ of the
+original asymptotic expansion (and so also the Shalika germs)
+are given as principal-value integrals
+on $p$-adic manifolds $X$ (see \cite{L} and \cite{H3}).
+
+Denef proved that a large class of Igusa zeta functions have
+a description in terms of the number of points on varieties over
+finite fields \cite{D1}.
+
+If we formulate Denef's argument in terms that mesh with 
+the treatment 
+of Shalika germs given by Langlands and Shelstad, 
+then the strategy
+is to replace each of the $p$-adic
+manifolds $X$ with a scheme $X_0$ that is proper over
+$O_F$, the ring of integers of $F$.  The integration over the
+analytic manifold $X$ is then to be replaced
+ with integration over the $O_F$-points
+of $X_0$.  Let $k$ be the residue field of $F$, and set
+$\bar X_0 = X_0\times_{O_F} k$.  There is a canonical map
+$\varphi:X_0(O_F) \to \bar X_0(k)$ to the set of points on the
+variety over the finite field.  The integral of a measure $|\omega|$
+over $X$ may then be written
+$$\int_X |\omega| = \sum_{x\in \bar X_0(k)} \int_{\varphi^{-1}(x)} |\omega|.$$
+If we knew, for instance, that the integral over the fiber $\varphi^{-1}(x)$
+was a constant $c$ independent of $x$, then the integral over $x$
+would 
+become $c\,\, \#\bar X_0(k)$.  In general, the most we can hope for is that
+the integral over the fiber will be independent of $x$,
+ for $x$ in a 
+Zariski open set $U\subset \bar X_0$. We then
+repeat the argument on the complement of $U$ in $\bar X_0$.
+ The integral over $X$ is 
+then eventually expressed as 
+the
+sum of $c\,\,\#\bar X_0(k)$ and similar terms coming from a finite collection
+of closed subvarieties of $\bar X_0$. 
+
+This argument, when it can be carried out, expresses the Shalika
+germs in terms of points on varieties over finite fields.  In the context
+of Shalika germs, the varieties $X$ 
+and the accompanying data depend on a parameter $t$ in the
+Lie algebra, so that we actually obtain families of varieties.
+Typically, the constants $c$, independent of $t$, are elementary
+functions of $q$, the cardinality of the residue field.
+This
+paper deals with examples where $\bar X_0$ is a nonconstant
+family of elliptic or hyperelliptic curves.
+An important unsolved problem is to determine how
+generally Denef's argument applies
+to Shalika germs and other
+basic objects of harmonic analysis on $p$-adic groups.
+Are the Fourier transforms of nilpotent orbits and the Shalika germs
+always representable by points on varieties over finite fields?
+
+The surface $S$ of the previous section is birationally equivalent
+to one of the irreducible components $S'$
+of the surface $X$ that
+arises in the study of Shalika germs of subregular unipotent elements
+in a reductive group $G$.  The Weyl group acts on $S'$, and this permits
+us to define a form of $S'$ for every Cartan subgroup $T$ of $G$.
+The Shalika germ is expressed as an integral over the twisted form
+of $S'$ and of the other irreducible components of the surface $X$.
+The fields $k$ and $k_1$ of Section 2 are to be a $p$-adic field $F$
+of characteristic zero, and a splitting field $T$ of the Cartan subgroup.
+
+Examples 2.3 and 2.6 of the previous section stem from the elliptic
+Cartan subgroup $T$ split by a ramified quadratic extension $E/F$,
+obtained by twisting the split Cartan subgroup by the longest element
+$w_-$.  In this case, we may specialize the parameters $t_i$ so that
+$t_i/t_j\in F$ and $t_i\in E$.
+Assume that the parameters $t_i$ all have the
+same half-integral valuation, say $|t_i| = q^{-1/2}$, for $i=1,2,3$.
+Let $\tau_i$ be the residue of the unit $t_i/\sqrt{\pi}$, where
+$\pi$ is a uniformizing parameter.
+The rational function $Y(x,y)$ descends to a rational
+function on the finite residue field, again denoted
+$Y(x,y)$: take $x,y\in k$ and use the fact that
+$Y(x,y)$ is homogeneous of degree zero in the coordinates
+$t_i$ to replace each $t_i$ by $\tau_i$.
+  Consider the expression
+$$\sigma_{-}(y) - y = Y(x,y) - y,\qquad\hbox{for } \sigma_{-}\in \Gal(E/F).$$
+If $E/F$ is ramified, then this expression vanishes
+for $x$ and $y$ in the residue field $k$, because
+$\sigma_{-}$ acts trivially on the
+residue field. We conclude that 
+$0 = Y(x,y)-y$,
+for $x,y\in k$.
+
+The calculations of Examples 2.3 and
+2.6 descend to the finite field without difficulty and give us an
+elliptic curve over the finite field.  
+The $j$-invariants are obtained by replacing $t_i$ by
+$\tau_i$ in Lemmas 2.5 and 2.7.
+One part of
+the integral over the surface $X$ 
+is then a constant times the number
+of points on the elliptic curve.  This gives one term
+(the nonrational term) in the formula
+for the subregular Shalika germ of orbital integrals. 
+
+
+\head  4. Examples\endhead
+
+We establish some notation and conventions for Sections
+4-7.  Let $F$ be a $p$-adic field of characteristic
+zero and odd residual characteristic, with ring
+of integers $O_F$, algebraic closure $\bar F$, and
+residue field $k$ of cardinality $q$.  Let $\pi$ be
+a uniformizer in $F$. 
+
+The Shalika germs, unless indicated to the contrary,
+are to be the germs of stable orbital integrals 
+normalized by the usual discriminant factor
+(denoted $|\eta(X)|^{1/2}_{\p}$ in \cite{HC} and
+$D_{G^*}(\exp(X))$, for $X$ sufficiently small,
+ in \cite{LS}).  We write it $D(X)$.
+The measures of orbital integrals are normalized as
+in \cite{L}.  We take the Shalika germs to be homogeneous
+functions on the Lie algebra, with the understanding
+that the germ expansion holds only for regular
+semisimple elements sufficiently close to the 
+identity.  Since the discriminant factor $D(X)$ is
+already included in the definition of germs, we omit
+the discriminant factor $\Delta_{IV}$ from the
+definition of the Langlands-Shelstad transfer factor
+$\Delta$.
+
+
+Let $G$ be a reductive group over $F$. More
+specifically, we
+assume that $G$ is one of the groups $SU_E(n)$, $Sp(2n)$, or $SO(n)$. We
+assume that $G$ is defined by a matrix equation
+$${}^tg\,J\,\sigma(g) = J,$$
+where the entries of the matrix $J$ satisfy $J_{ik}=0$, for $i+k\ne n+1$,
+and $J_{ik}= \pm 1$ along the skew-diagonal. (Replace $n$ by $2n$ if 
+$G=Sp(2n)$.)
+  We assume that the nonzero
+entries of $J$ equal one, for the orthogonal group.  We take $g\in SL(n,F)$
+for $SO(n)$, $g\in SL(2n,F)$ for $Sp(2n)$, and 
+$g\in SL(n,E)$ for $SU_E(n)$.  We assume that $E/F$ is a fixed
+{\it ramified} quadratic extension, and $\sigma(g)$ denotes the matrix
+obtained by applying the nontrivial field automorphism of $E/F$ to each
+coefficient of $g$.  
+We take $\sigma(g) = g$ in the orthogonal and symplectic groups.
+
+Each regular semisimple element of the Lie algebra $\g$ of $G$ is diagonalizable
+over $\bF$.
+We write 
+$t=[t_1,\ldots,t_n]\in \g(\bF)$ for a diagonal element.  Specifically,
+we let $[t_1,\ldots,t_n]$ denote the element
+$$\align
+&\diag(t_1,\ldots,t_n),\quad \hbox{ if } G=SU_E(n),\\
+&\diag(t_1,\ldots,t_n,-t_n,\ldots,-t_1),\quad \hbox{ if } G = Sp(2n) 
+   \hbox{ or } G = SO(2n),\\
+&\diag(t_1,\ldots,t_n,0,-t_n,\ldots,-t_1),\quad \hbox{ if } G = SO(2n+1).
+\endalign
+$$
+
+The elements $t_1,\ldots,t_n$ lie in $\bF$.  We assume that the image
+of $[t_1,\ldots,t_n]$ in $\h/W$ (the diagonal subalgebra modulo the Weyl group)
+is an $F$-point.  Extend the normalized absolute value on $F$ to $\bF$.
+
+Most of our examples come from a particular set of elliptic semisimple elements
+in the Lie algebra of our reductive group $G$, a set that we will call
+the half-integral set.  We say that $t=[t_1,\ldots,t_n]$ is {\it half-integral\/}
+if $$|t_i| = |\alpha(t)| = q^{-1/2},$$
+for all $i$ and every root $\alpha$ of $\h$.  For example, if $G=Sp(2n)$,
+this condition reads $|t_i|=|t_i\pm t_j| = q^{-1/2}$,
+for all $i$ and $j$.  Given a half-integral element $t$, and a ramified
+quadratic extension $E/F$, we define elements $\tau_i$ in 
+the algebraic closure $\bk$ of the residue field $k$ of $F$.
+Let $\tau_i$ be the residue of 
+$t_i/\pi_E$, where $\pi_E$ is a uniformizer of $E$ whose
+square lies in $F$.  A different choice of uniformizer changes
+all  the elements
+$\tau_i$ by the same element of $k^\times$.
+We write $\tau_E(t) = [\tau_1,\ldots,\tau_n]$
+for the array of elements obtained.
+Fix a unit $\epsilon\in k^\times$ that is not a square
+(occasionally we identify $\epsilon$ with a unit of $F$). 
+
+Assume that $t$ is half-integral and that a ramified quadratic extension $E/F$
+has been fixed.  The following hyperelliptic curves are then defined over $k$.
+$$\align
+\epsilon y^2 &= ( 1 - x^2 \tau_1^2)(1 - x^2 \tau_2^2) \cdots (1-x^2\tau_n^2),
+      \quad (G=SO(2n+1)),\tag4.1\\
+\epsilon y^2 &= (1-x \tau_1^2)(1-x\tau_2^2)\cdots (1- x\tau_n^2),\quad
+      (G=Sp(2n)),\tag4.2\\
+\epsilon y^2 &= x (1-x \tau_1^2)(1-x \tau_2^2)\cdots (1-x \tau_n^2),\quad
+      (G=Sp(2n)),\tag4.3\\
+\epsilon y^2 &= (1 + x \tau_1)(1 + x \tau_2) \cdots (1 + x\tau_n),\quad
+      (G=SU_E(n),\ \  n \hbox{ even}),\tag4.4\\
+\epsilon y^2 &= (x + \tau_1)(x+ \tau_2)\cdots (x+\tau_n), \quad
+      (G=SU_E(n),\ \  n \hbox{ odd}).\tag4.5
+\endalign
+$$
+We assume that the ramified extension $E/F$ used for
+$\tau_E$ is the splitting field of $SU_E(n)$ in the
+case of unitary groups.
+The half-integrality  of $t$
+implies that the polynomials on the
+right-hand side of these equations have distinct roots. 
+Let $P(x)$ be a polynomial of degree $d$ with distinct roots.
+The genus $g$ of the complete nonsingular
+curve associated with $y^2 = P(x)$ is the integral
+part of $(d-1)/2$.  
+By definition, a hyperelliptic curve is complete.
+A second coordinate patch, which includes the points
+at {\it infinity}, is described by the equation
+$y_1^2 = P_1(x_1)$, where $y_1 = y/x^{g+1}$, 
+$x_1 = 1/x$, and $P_1$ is the polynomial
+$P_1(x) = x^{2g+2} P(1/x)$.
+
+Let $C_i(\tau_E(t))$
+denote the number of points in $k$ on the hyperelliptic curve
+of Equation $4.i$, for $i=1,2,3,4,5$.  
+The number $C_i(\tau_E(t))$ depends on $E$, but not
+on the choice of uniformizer $\pi_E$ in $E$
+(except for $C_5(\tau_E(t))$: see Lemma 4.15).  
+The examples in this section
+will show how certain Shalika germs on the half-integral set 
+of $G$ are expressed
+in terms of the number of points $C_i(\tau_E(t))$ on hyperelliptic curves.
+
+\proclaim{Lemma 4.6}  Half-integral elements are regular elliptic.
+\endproclaim
+
+\demo{ Proof}  If $t$ is half-integral
+and not elliptic, then there exists a nonempty subset $I\subset
+\{1,\ldots,n\}$ and a choice of
+signs $\epsilon_i=\pm 1$, for $i\in I$, such that
+$\Gal(\bF/F)$ acts on and even acts transitively on the set
+$\{t_i\epsilon_i : i\in I\}$ (see \cite{H5,\S4}).  
+Fix a ramified quadratic extension $E/F$ and 
+a uniformizing parameter $\pi_E\in E$.
+  Write $\{t_i\epsilon_i/\pi_E : i\in I\} =
+\{s_1,\ldots,s_\ell\}$.  The polynomial
+$$(X-s_1)\cdots (X-s_\ell) = X^\ell + a_1 X^{\ell-1} + \cdots 
++ a_\ell$$
+has coefficients in $O_E$.  If $\sigma$ is the nontrivial element of
+$\Gal(E/F)$, then $\sigma(a_i) = (-1)^i a_i$. 
+Since $E/F$ is ramified, $a_i$ is congruent to $(-1)^i a_i$ modulo
+the maximal ideal of $O_E$.  If $\ell$ is odd, then
+$a_\ell$ is congruent to zero, and this
+contradicts the condition that $s_i$ are units.  If $\ell$ is even, then
+the polynomial is congruent to a polynomial in $X^2$, and this means that
+for every $i$, there exists a $j$ such that $s_i$ is congruent to $-s_j$,
+or that $|t_i\epsilon_i + t_j\epsilon_j|< q^{-1/2}$.  For $G=SO(n)$
+or $G=Sp(2n)$, clearly $t_i\epsilon_i + t_j\epsilon_j$ is a root $\alpha(t)$,
+and this inequality contradicts the condition of half-integrality.
+
+For $SU_E(n)$ we divide our set into positive and negative pieces:
+$$\{s_1,\ldots,s_m\} =\!\{t_i/\pi_E : i\in I,\epsilon_i = +1\},\
+  \{s_1',\ldots,s_m'\} =\!\{t_i/\pi_E: i\in I,\epsilon_i = -1\}.$$
+The polynomials
+$$P(X) = (X-s_1)\cdots (X-s_m)\quad\hbox{and}\ P'(X) = (X-s_1')\cdots (X-s_m')$$
+are defined over $E$, and $\sigma(P) = P'$, for $\sigma$ nontrivial in $\Gal(E/F)$.
+Thus, for every $i$ there exists a $j$ such that $s_i$ is congruent to $s_j'$,
+so that we again reach the contradiction $|\alpha(t)|< q^{-1/2}$ for
+some root $\alpha$. \qed\enddemo
+
+\proclaim{Lemma 4.7}  Fix a ramified quadratic character $\eta$ of $F^\times$.
+Let $P(x)$ be a polynomial with
+coefficients in $O_F$.  Assume that
+$P(x)$ reduces to a polynomial in the residue field whose roots are
+distinct.  Assume that $P(0)$ is a unit and a square.
+Then 
+$$\int_{\P^1(F)}\eta(P(x))\left| {dx\over x^2}\right| =
+   {-C(P)\over q},$$
+where 
+$C(P)$ is the number of points on the
+hyperelliptic curve over the residue field $k$ obtained by
+reduction of the equation
+$\epsilon y^2 = P(x)$.
+\endproclaim
+
+\demo{Proof}  As in \cite{H5,2.2}, we may replace the integrand $\eta(P(x))$ by 
+$\eta(P(x))-1$.  For each residual point $x_0\in\P^1(k)$, let 
+$U(x_0)$ denote the set of $x\in \P^1(F) = \P^1(O_F)$ that reduce to
+$x_0$ under the canonical reduction map $\P^1(O_F)\to \P^1(k)$.  Then it is
+easy to check that
+$$\int_{U(x_0)} (\eta(P(x)) - 1) \left|{dx\over x^2}\right|$$
+is equal to $0$, $-1/q$, or $-2/q$.  We obtain $0$ when
+$\eta(P(x))=1$ on $U(x_0)$, that is, $P(x)$ is a unit and a square.
+We obtain $-2/q$ when $\eta(P(x))=-1$ on $U(x_0)$, that is, $P(x)$ is
+a unit but not a square.  And we obtain $-1/q$ when $P(x)$ lies in the
+maximal ideal, giving a point of ramification on the hyperelliptic
+curve over the finite field.  The points at {\it infinity} ($|x|>1$)
+ are treated similarly
+by using local coordinates $(x_1,y_1)=(1/x,y/x^{g+1})$, where $g$ is the genus
+of the hyperelliptic curve.  The result now follows easily.\qed\enddemo
+
+On the group $SO(2n+1)$, the subregular unipotent classes are
+parameterized by the set $F^\times/F^{\times\,2}$.  For $a\in F^\times/
+F^{\times\,2}$ and $t=[t_1,\ldots,t_n]$,
+we let $\Gamma_a(t)$ be the stable
+subregular
+Shalika germ on the half-integral set of $SO(2n+1)$ associated
+with the class parameterized by $a$.  The stable
+Shalika germs are well-defined up to a scalar multiple that depends
+on the normalization of measures.
+
+\proclaim{Lemma 4.8}  With appropriate normalizations, the stable
+subregular Shalika germs of $SO(2n+1)$ on the half-integral set
+are
+$$
+\align
+\Gamma_a(t) &= 1,\ \hbox{if $a$ has even valuation,}\\
+\Gamma_a(t) &= C_1(\tau_E(t)),\ \hbox{if $a$ has odd valuation.}
+\endalign
+$$
+Here 
+$E$ is the ramified extension 
+$E=  F(\sqrt{a})$, and
+$C_1(\tau_E(t))$ is the number of points on the hyperelliptic
+curve in Equation 4.1.
+\endproclaim
+
+\demo{Proof}  By \cite{H5,1.2}, the stable subregular Shalika germs are given by
+the following principal-value integrals:
+$$
+\aligned
+\Gamma_a(t) &= \int_{F} \log|(1-x^2 t_1^2)\ldots
+(1-x^2 t_n^2)|\left| {dx\over x^2}\right|,\ \hbox{if } a=F^{\times\,2},\\
+\Gamma_a(t) &= \int_{\Ima(a)}
+        \eta_a((1-u^2 t_1^2)\cdots (1-u^2 t_n^2))\left| {du\over u^2}\right|,
+        \ \hbox{if } a\ne F^{\times\,2},
+\endaligned\tag4.9
+$$
+where $\eta_a$ is the quadratic character of $F^\times$
+associated with  the extension $F(\sqrt{a})$, and $\Ima(a)$ is the
+corresponding imaginary axis: $\sqrt{a}F \subset F(\sqrt{a})$.
+
+If $a$ is even, then it is easy to see that these integrals are
+independent of $t$ on the half-integral set.  
+Explicitly, we have
+$$
+\align
+\Gamma_a(t) &= n\int_F \log|(1-\pi x^2)| \left|{dx\over x^2}\right|=
+ {n (q+1)\over q (q-1)}, \quad \hbox{if } a=F^{\times\,2},\\
+\Gamma_a(t) &= {-1+(-1)^n\over q}, \quad \hbox{if } a\ne F^{\times\,2}.
+\endalign
+$$
+(Compare \cite{H5,2.8}.)  A change in normalizations gives 
+$\Gamma_a(t)=1$.
+
+If $a$ has odd valuation, then these integrals are determined on
+the half-integral set by Lemma 4.7, under the substitution
+$u=x/\pi_E $, where $\pi_E$ is a uniformizer in $E$.  Changing
+normalizations, we may eliminate the constant $-1/q$ appearing
+in Lemma 4.7.
+The result follows. \qed\enddemo
+
+\bigskip
+For the group $\PSp(2n)$, the subregular unipotent classes are also
+parameterized by the set $F^\times/F^{\times\,2}$.  For $a\in F^\times/
+F^{\times\,2}$, we let $\Gamma_a(t)$ be the stable
+subregular Shalika germ on the half-integral set 
+attached to the
+subregular unipotent element associated with $a$.  It is well-defined
+up to a scalar multiple depending on the normalizations of measures.
+
+\proclaim{Lemma 4.10}  Assume the conjectures of Kottwitz and Shelstad
+on the transfer of orbital integrals.  With suitable normalizations,
+the stable subregular Shalika germs of $\PSp(2n)$ on the half-integral
+set are
+$$
+\align
+\Gamma_a(t) &= \gamma_a +  C_2(\tau_E(t)),\quad
+\hbox{if $a$ has even valuation,}\\
+\Gamma_a(t) &= \gamma_a +  C_3(\tau_E(t)),\quad
+\hbox{if $a$ has odd valuation.}
+\endalign
+$$
+Here $C_2(\tau_E(t))$ and $C_3(\tau_E(t))$ are the numbers of points
+on the hyperelliptic curves defined by Equations 4.2 and 4.3,
+and the $\gamma_a$ are (known) constants in $\C$
+that are independent of $t$ (but dependent on $n$ and $q$).
+  The ramified extension
+$E$ is given by $E=F(\sqrt{\pi})$.
+\endproclaim
+
+\demo{Proof}   For the stable germs, there is no harm in working on the
+group $Sp(2n)$ instead of $\PSp(2n)$.
+As \cite{H5,\S1} explains, the conjectures of Kottwitz and
+Shelstad lead to a conjectural duality between groups of type $C_n$
+and groups of type $B_n$.  Each stable Shalika germ on $B_n$ should
+be a linear combination of stable Shalika germs on $C_n$, and each
+stable Shalika germ on $C_n$ should be a linear combination of stable
+Shalika germs on $B_n$.  We add superscripts $B$ and $C$ to the
+stable
+subregular germs on $B_n$ and $C_n$ to distinguish notation for these
+two groups.  It is also convenient to begin with
+the normalization
+of germs given in \cite{H5,\S2}, which we distinguish by adding a bar:
+$\bGamma_a^B$, $\bGamma_a^C$, and so forth.  For stable subregular
+germs on the groups $B_n$ and $C_n$ of rank $n$, the theory of  
+Kottwitz and Shelstad thus predicts the existence of an
+invertible $4\times 4$ matrix relation:
+$$\bGamma^C_a(t) = \sum_{a'} L^{(n)}_{a,a'}
+  \bGamma^B_{a'}(t).\tag 4.11$$
+The matrix $L^{(n)}$ is independent of $t$.  Equation 4.11
+has been verified
+in rank two (see \cite{H5,2.1}), and the matrix $L^{(2)}$ 
+is uniquely determined.
+We have
+$$L^{(2)} = {1\over2}\pmatrix 1&1&1&1\\
+  1&1&-1&-1\\
+  1&-1&s_q&-s_q\\
+  1&-1&-s_q&s_q\endpmatrix.
+$$
+Here $s_q=1$, if $-1$ is a square in $F$, and $s_q=-1$ otherwise.
+The cosets have been put into the order $F^{\times\,2}$,
+$\epsilon F^{\times\,2}$,
+$\pi F^{\times\,2}$, $\pi\epsilon F^{\times\,2}$.
+
+The stable Shalika germs $\bGamma_a^C$ and $\bGamma_a^B$, 
+restricted respectively
+to Levi factors $\G_m^{n-2}\times Sp(4)$ and 
+$\G_m^{n-2}\times SO(5)$, reduce to the
+stable Shalika germs on the rank-two groups $Sp(4)$ and $SO(5)$.
+This reduction is compatible with the normalization that we have
+given the germs.  Since the restrictions are already linearly
+independent, the matrix $L^{(n)}$ is already determined by this
+restriction.  Hence we must have $L^{(n)}=L^{(2)}$, for all $n$.  Thus,
+Equation 4.11 gives an exact 
+(conjectural) formula for the stable
+subregular Shalika germs of $C_n$.  For instance,
+picking representatives $1$, $\epsilon$, $\pi$, and 
+$\pi\epsilon$ for the cosets of $F^\times/F^{\times\,2}$,
+we should have
+$$\bGamma_1^C = {1\over 2}(\bGamma_1^B + \bGamma_\epsilon^B +
+ \bGamma_\pi^B + \bGamma_{\pi\epsilon}^B),$$
+where $\bGamma_a^B$ is given by Equation 4.9.
+  Lemma 4.8 shows that the term
+${1\over 2}(\bGamma_1^B+\bGamma_\epsilon^B)$ contributes a constant
+ to the formula of the lemma.  The term
+${1\over 2}(\bGamma_1^B-\bGamma_\epsilon^B)$ is also constant on the
+half-integral set. 
+
+To prove the lemma, we must show that up to constants $d_0,d_1,d_2,d_3$ 
+independent of $t$ we have
+$\bGamma_\pi^B + \bGamma_{\pi\epsilon}^B = d_0+ 2d_2 C_2(\tau_E(t))$
+and 
+$\bGamma_\pi^B - \bGamma_{\pi\epsilon}^B = d_1+ 2d_3 C_3(\tau_E(t))$.
+Set $E= F(\sqrt{\pi})$, and
+$E'=F(\sqrt{\pi\epsilon})$.  
+The normalization constants, which relate $\bGamma^B_a$ to the
+normalization of Equation 4.9, and Equation 4.9 to the normalization
+of Lemma 4.8, are the same for the cosets $a=\pi F^{\times\,2}$
+and $a=\pi\epsilon F^{\times\,2}$.
+By Lemma 4.8, it will suffice to show
+that 
+$$C_1(\tau_E(t)) + C_1(\tau_{E'}(t)) =2  C_2(\tau_E(t)),\tag4.12$$
+and
+$$C_1(\tau_E(t)) - C_1(\tau_{E'}(t)) = 2 (C_3(\tau_E(t))-1-q).\tag4.13$$
+Underlying these identities is the fact that the Jacobian of the
+curve $y^2 = (1-x^2\tau_1^2)\cdots (1-x^2\tau_n^2)$ is isogenous
+to the product of the Jacobians of $y^2 = (1-x \tau_1^2)\cdots (1-x\tau_n^2)$ and $y^2 = x(1-x \tau_1^2)\cdots (1-x\tau_n^2)$.  
+
+We check
+the identities directly as follows.  To prove Identity 4.12, note that
+each point $(x,y)$ of the curve $\epsilon y^2 = (1-x\tau_1^2)\cdots
+(1-x\tau_n^2)$ leads to two points $(x_1,y_1) = (\pm\sqrt{x},y)$ on the
+curve $\epsilon y_1^2 = (1- x_1^2\tau_1^2)\cdots (1-x_1^2 \tau_n^2)$,
+if $x$ is a square,
+or to two points $(x_1,y_1) = (\pm \sqrt{x/\epsilon},y)$ on the
+curve $\epsilon y_1^2 = 
+(1-x_1^2\tau_1^2\epsilon)\ldots(1-x_1^2 \tau_1^2\epsilon)$
+otherwise.
+We may assume $\tau_{E'}(t) = \epsilon \tau_E(t)$.
+This proves Identity 4.12.
+
+To prove Identity 4.13, we observe that there are two points on
+$y_1^2 = (1-x_1^2\tau_1^2)\cdots (1-x_1^2\tau_n^2)$ given by
+$(x_1,y_1) = (\pm \sqrt{x},y/x_1)$, or two points
+on $\epsilon y_1^2 = (1-x_1^2\tau_1^2\epsilon)\cdots
+   (1-x^2_1\tau_n^2\epsilon)$ given by $(x_1,y_1) 
+= (\pm\sqrt{x/\epsilon},y/(x_1\epsilon))$,
+for each point $(x,y)$ on $y^2=x(1-x\tau^2_1)\cdots (1-x\tau^2_n)$.
+A twist $\epsilon y^2 = P(x)$
+has $1+q-b$ points if $y^2 = P(x)$ has $1+q+b$ points.  This completes
+the proof of Lemma 4.10. \qed\enddemo
+
+\bigskip
+In the adjoint group of $U_E(2k)$ there is a single 
+subregular conjugacy class.  Stable germs may be grouped together
+according to the unipotent classes in the adjoint group
+\cite{H3,VII.5.4}.
+
+\proclaim{Lemma 4.14}  Assume that $E/F$ is a ramified quadratic
+extension.  With suitable normalizations, the stable subregular Shalika
+germ of $U_E(2k)$ on the half-integral set is equal to
+$C_4(\tau_E(t))$, the number of points on the hyperelliptic
+curve of Equation 4.4.
+\endproclaim
+
+\demo{Proof}
+We deduce the lemma from
+the results of Chapter VII of \cite{H3}.  The argument is nearly
+identical to the argument given in \cite{H5,\S1} for the group $SO(2n+1)$.
+In the notation of \cite{H3,page 124}, set $u = w/(-T_{-1}w+1)$. 
+The structure constants $e(\alpha,\beta)$ appearing in \cite{H3,V.6}
+are $e(\alpha_i,\alpha_{i+1})=1$ and $e(\alpha_{i+1},\alpha_i)=-1$.
+ Then
+an easy calculation using \cite{H3,VII.5.6} shows that $u$ is a Weyl group
+invariant coordinate, and that $\sigma_0(u) = -u$, where $\sigma_0$
+denotes the nontrivial element of $\Gal(E/F)$.  Let
+$[b] = (1 + u T_1)\cdots (1+ u T_k)$, considered as an $\bF$-point
+of $U_E(1)$ depending on $u$.  Consider the cocycle 
+$a_\sigma$ of $\Gal(\bF/F)$
+with values in $\bF$, given by \cite{H3,VII.5.6}. Then
+$a_\sigma\,\sigma[b][b]^{-1}$ is equal to one, if the image
+of $\sigma$ in $\Gal(E/F)$ is trivial, and is equal to
+$$1/((1+u T_k)\cdots (1+u T_1)(1+u T_{-1})\cdots (1+u T_{-k}))$$
+otherwise.  The nontrivial character of $H^1(\Gal(\bF/F),U_E(1))$
+evaluated on $a_\sigma$ is then
+$$\eta((1+u T_k)\cdots (1+u T_{-k})),$$
+where $\eta$ is the quadratic character of $F^\times$
+attached to $E/F$.  Shifting from the notation $T_i$ of \cite{H3}
+back to our notation $t_i$, we find that this expression is equal to
+$\eta((1+ u t_1)\cdots (1 + u t_n))$
+(because $\{t_1,\ldots,t_n\}= \{T_k,\ldots,T_{-k}\}$).
+
+Now $|dw/w^2| = |du/u^2|$, and the stable germ is
+$${1\over 2} |\lambda| \int_{\Ima}
+\eta((1+ u t_1)\cdots (1+u t_n)) \left|{du\over u^2}\right |,$$
+where $\Ima$ is the set of elements $u\in E$ that satisfy
+$\sigma_0(u) = -u$.
+On the half-integral set, we take $\lambda=1$ and evaluate
+by Lemma 4.7 to obtain the theorem.\hfill\hbox{}\hfill\qed\enddemo
+
+\bigskip
+Now consider the group $G=U_E(2k+1)$.  On its adjoint group
+there are two subregular conjugacy classes, but their stable
+germs differ only by a sign if the appropriate normalizations of measures
+are chosen. (Compare \cite{H2,\S5}.)
+
+\proclaim{Lemma 4.15}  Assume that $E/F$ is  a ramified quadratic
+extension.  With a suitable normalization of measures, the
+stable subregular Shalika germ of $U_E(2k+1)$ on the half-integral
+set is equal to $1+q-C_5(\tau_E(t))$, where
+$C_5(\tau_E(t))$ is the number of points on the
+hyperelliptic curve of Equation 4.5.
+\endproclaim
+
+As we have noted, the constant $C_5(\tau_E(t))$
+depends on the choice of a uniformizer $\pi_E$.  The lemma
+holds for every choice of uniformizer if we adapt the sign of the 
+normalization of measures to $\pi_E$. In fact, if $\pi_E' = \pi_E\epsilon$,
+then with obvious notation $1+q-C_5(\tau_E(t)) =
+-(1+q-C_5(\tau_E'(t)))$. 
+
+\demo{Proof}  The argument is similar to the proof of the
+previous lemma.  The structure constants are $e(\alpha_i,\alpha_{i+1})=1$
+and $e(\alpha_{i+1},\alpha_i)= -1$ as
+before.  We define $u$ by $u=w/(-T_0 w+1)$.  It is a Weyl group
+invariant coordinate, and $\sigma_0(u) = -u$ as before.
+This time we adjust the cocycle $a_\sigma$ by $\sigma[b][b]^{-1}$,
+where $[b]^{-1} = (1+ u T_0)\cdots (1+ u T_{-k})$.  We find that
+the nontrivial character of $H^1(\Gal(\bF/F),U_E(1))$ evaluated
+on $a_\sigma$ is equal to 
+$$\eta(x(\gamma))\eta((1+u T_k)\cdots (1+u T_0)\cdots (1+ u T_{-k})) =
+\eta(x(\gamma) u (1+u t_1)\cdots (1+u t_n)),$$
+where $\eta$ is the character of $F^\times$ attached to $E$
+and $x(\gamma)$ is a constant in $F^\times$.  
+The formula of \cite{H3,VII.5.5} now shows that the germ is
+$${1\over 2}\eta(x(\gamma))\eta(\lambda)|\lambda|\int_{\Ima(a)}
+   \eta(u (1+ u t_1)\cdots (1+u t_n))\left| {du\over u^2}\right|.$$
+$\eta(x(\gamma))$ is a sign depending on the subregular unipotent class.
+On the half-integral set, we take $\lambda=1$, and we use
+an adaptation of Lemma 4.7 to show that the germ is a multiple
+of the difference of $1+q$ and
+the number of points on the hyperelliptic curve
+$$\epsilon y^2 = x (1+ x\tau_1)\cdots (1+x \tau_n).$$
+In fact, Lemma 4.7 does not hold because $P(0)$ is not a unit, and
+$$\int_{U(0)} \eta(P(x))-1 \left| {dx\over x^2}\right | = 1 = 
+{q+1\over q} - {1\over q},$$
+instead of the constant $-1/q$ occurring
+in the proof of the lemma.  We pick up the term $(q+1)/q$, so the
+integral is $q^{-1}$ times $1+q-C_5(\tau_E(t))$.
+Under the substitution $(x,y)\mapsto (1/x,y/x^{(n+1)/2})$, we
+obtain the curve
+$\epsilon y^2 = (x+\tau_1)\cdots (x+\tau_n)$
+as desired.\qed\enddemo
+
+\bigskip
+The groups $Sp(6)$ and $SO(8)$ are treated in the following
+lemma.  We do not give a proof here.  The starting point
+of the proofs is contained in Lemmas 2.5 and 2.7.
+Recall that the subregular unipotent classes in $\PSp(6)$
+are parameterized by $F^\times/F^{\times\,2}$.  In $SO(8)$
+there is a single subregular unipotent class.
+
+\proclaim{Lemma 4.16}  Let $E/F$ be a ramified quadratic
+extension.  Let $T$ belong to  the stable conjugacy
+class of Cartan subgroups
+(in $G= Sp(6)$ or $SO(8)$) that splits over $E$ and
+is obtained by twisting the split Cartan subgroup
+by the longest element $w_-$ of the Weyl group.
+\roster
+\item"(1)" With appropriate normalizations, on the elements
+of the half-integral set of $Sp(6)$ in the Lie algebra
+of $T$,
+the stable Shalika germ for the subregular unipotent
+class indexed by the coset
+$F^{\times\,2}$ has the form
+$$\gamma_0 + C_6(\tau_E(t)),$$
+where $\gamma_0$ is an elementary function of $t$
+and $C_6(\tau_E(t))$ is the number of points on the elliptic
+curve obtained by replacing $t_i\in E$ by
+$\tau_i\in k$ in the curve of Lemma 2.5.
+\item"(2)" With appropriate normalizations,
+the stable  subregular
+Shalika germ on the half-integral set of $SO(8)$ has the form
+$$\gamma_1 + C_7(\tau_E(t)),$$
+where $\gamma_1$ is an elementary function of $t$
+and $C_7(\tau_E(t))$ is the number of points on the elliptic
+curve obtained by replacing $t_i\in E$ by $\tau_i\in k$
+in the curve of Lemma 2.7.
+\endroster
+\endproclaim
+
+
+\head 5. The Unit Element of the Hecke Algebra\endhead
+
+
+This section will analyze the orbital integrals of the unit element
+of the Hecke algebra on the group $SO(2n+1)$.
+Consider the stable orbital integral 
+$D(\lambda t)\Phi^{st}
+(\exp(\lambda t),{\pmb 1}_K)$
+ of the unit element of
+the spherical Hecke algebra on $SO(2n+1)$
+over the stable conjugacy class of $\exp(\lambda\,t)$,
+where $t$ belongs to the half-integral set.
+  Let
+$E/F$ be a ramified quadratic extension, and let
+$C_2(\tau_E(t))$ be the number of points on the
+hyperelliptic curve of Equation 4.2.
+
+\proclaim{Theorem 5.1}
+ When $\lambda\in F^\times$ is sufficiently small,
+$D(\lambda t)\Phi^{st}
+(\exp(\lambda t),{\pmb 1}_K)$ is
+a linear combination of the functions
+$$1,\quad |\lambda|,\quad |\lambda| C_2(\tau_E(t)),$$
+and functions of higher degrees of homogeneity: $o(|\lambda|)$.
+In this linear combination, the coefficient of $|\lambda|C_2(\tau_E(t))$
+is nonzero.  In particular, the stable orbital integrals of the
+unit element of the Hecke algebra are not elementary
+on $SO(2n+1)$, for $n\ge 3$.
+\endproclaim
+
+A preliminary lemma must precede the proof.
+All subregular unipotent conjugacy
+classes in $SO(2n+1)$ lie in the same stable conjugacy
+class.  We fix an invariant form on the
+stable subregular conjugacy class in $SO(2n+1)$.  To be
+specific, let $e_{ij}$ denote the $(2n+1)\times(2n+1)$ matrix
+whose ${ij}$-coefficient is one, and whose other coefficients
+are zero. For every root $\gamma$, we
+fix a root vector $X_\gamma$
+in the Lie algebra of
+$SO(2n+1)$ of the form $X_\gamma=e_{ij} - e_{i'j'}$, where
+$i>i'$.  Let $\alpha_1$ denote the short simple root of $SO(2n+1)$.
+We endow a Zariski open set of the stable subregular
+unipotent class with coordinates by the equation $y^{-1} x y$, where 
+$$x = \prod_{\gamma\ne\alpha_1\atop \gamma>0} \exp(
+x(\gamma) X_\gamma),\ \ 
+y = \prod_{\gamma\ne\alpha_1\atop\gamma>0}\exp(
+y(\gamma) X_{-\gamma}),\quad\hbox{and } x(\gamma),\ y(\gamma)\in F.\tag5.2$$
+  (These
+products require a fixed linear order on the positive roots.)
+
+An invariant measure on the stable subregular class is then
+$|\omega|$, where $\omega$ is the differential form
+$$\bigwedge_{\gamma\ne\alpha_1} (dx(\gamma)\wedge dy(\gamma)).$$
+This restricts to
+an invariant measure $\mu_a$, for $a\in F^\times/
+F^{\times\,2}$, on each subregular unipotent class.  
+(Recall that the subregular unipotent classes in $SO(2n+1)$
+are parameterized by $a\in F^\times/F^{\times\,2}$.)
+
+\proclaim{Lemma 5.3}  The integrals $\mu_a({\pmb 1}_K)$ and
+$\mu_{a'}({\pmb 1}_K)$ are equal for the two 
+cosets $a,a'$ of {\it odd} valuation.
+\endproclaim
+
+\demo{Proof}  If $\theta:F^\times\to\C^\times$ is a quadratic
+character, let $\mu^\theta$ be the signed measure on the
+stable subregular conjugacy class given by
+$$\mu^\theta = \sum_{a\in F^\times/F^{\times\,2}}
+  \theta(a) \mu_a.$$
+To establish the lemma, it is enough to show that
+$\mu^\theta({\pmb 1}_K) = \mu^{\theta'}({\pmb 1}_K)$, if
+$\theta$ and $\theta'$ are the two ramified quadratic
+characters of $F^\times$. This we check by direct
+computation.
+
+If $x$
+is a subregular unipotent element
+of the form (5.2), then its conjugacy class
+has parameter $$a=x(\alpha_1+\alpha_2)^2 + 2 x(\alpha_2) x(2\alpha_1
++\alpha_2)\ \hbox{modulo}\ 
+F^{\times\,2},$$ where $\alpha_2$ is the long simple root adjacent
+to the short simple root $\alpha_1$. To see this, we recall how
+the parameterization is defined.  The subregular unipotent class
+$\O_a$
+with parameter $a$ has the characteristic property that every
+irreducible component of
+$\B_u$, the variety of Borel subgroups containing a given unipotent element $u\in \O_a$,
+is defined over $F(\sqrt{a})$.
+More concretely $a$ is the discriminant (modulo squares) of the
+quadratic polynomial in $z$ determined by the condition
+$$
+\exp(z X_{-\alpha_1}) x \exp(-z X_{-\alpha_1}) \in N_{2},$$
+where we let $N_{i}$ denote the unipotent radical of the
+upper-block triangular
+parabolic subgroup associated with the short root $\alpha_i$.
+A short calculation shows that the quadratic polynomial is
+$$z^2 x(2\alpha_1 + \alpha_2) +2 z x(\alpha_1+\alpha_2) - 2 x(\alpha_2)=0,$$
+whose discriminant gives $x(\alpha_1 +\alpha_2)^2 + 2 x(\alpha_2)
+x(2\alpha_1 + \alpha_2)$ as desired.  
+
+According to the method of \cite{H4,3.9}, there is a constant $c$ independent
+of $\theta$, such that $\mu^{\theta,x} = c\mu^\theta$, where 
+$\mu^{\theta,x}$ is the measure in Ranga Rao's normalization:
+$$\mu^{\theta,x}(f) = \int_K\int_{N_1} f(k^{-1} x k) 
+\theta(x(\alpha_1+\alpha_2)^2 + 2 x(\alpha_2) x(2\alpha_1+\alpha_2))
+\left|\prod_{\gamma\ne\alpha_1} dx(\gamma)\right| dk.$$
+Here $dk$ is the Haar measure of mass one on the group
+$K=SO(2n+1,O_F)$.  
+
+We must check that $\mu^{\theta,x}({\pmb 1}_K) = \mu^{\theta',x}({\pmb 1}_K)$
+for the two ramified characters $\theta,\theta'$ of order two on $F^\times$.
+For the unit of the Hecke algebra, the integral over $K$ is one,
+and the integral over each $|dx(\gamma)|$ is also one, for
+$\gamma\ne \alpha_1,\alpha_2,\alpha_1+\alpha_2$, and $2\alpha_1+\alpha_2$.
+We are left to show that the integral
+$$\int_{|x|\le 1,\,|y|\le 1,\,|z|\le 1} \theta(x^2 + 2 y z) |dx\,dy\,dz|$$
+is independent of the ramified quadratic character $\theta$.  This is
+an easy exercise that is left to the reader.
+Thus, our claim is established that $\mu_a({\pmb 1}_K)=\mu_{a'}({\pmb 1}_K)$
+when $a$ and $a'$ are the two cosets of odd valuation.\qed\enddemo
+
+\demo{Proof (Theorem 5.1)}  The Shalika germ expansion of the stable
+orbital integral of the
+unit element of the Hecke algebra has the form
+$$D(\lambda t)\Phi^{st}(\exp(\lambda t),{\pmb 1}_K) =
+       \sum_{\O} \Gamma_{\O} (\lambda t)\mu_{\O}({\pmb 1}_K),$$
+where $\O$ ranges over the unipotent classes of $G$ and $t$ is half-integral
+in the Lie algebra of $G$.  
+By \cite{HC}, the $r$-regular Shalika germs satisfy
+$\Gamma_\O(\lambda^2 t) = |\lambda|^{2r} \Gamma_\O(t)$,
+so the theorem calls for an analysis of the regular and
+subregular terms $(r=0,1)$.
+  By Shelstad \cite{Sh}, the
+stable regular Shalika germ is a constant, which with an appropriate
+normalization is simply the constant 1.  Now consider the subregular
+terms.  By the results of \cite{H3,VI.2}, we find that
+$\Gamma_\O(\lambda t) = |\lambda | \Gamma_\O(t)$ for the
+stable subregular germs of $SO(2n+1)$.
+By Lemma 4.8, each stable germ $\Gamma_\O(t)$ is a linear combination
+of the functions $1$, $C_1(\tau_E(t))$, and $C_1(\tau_{E'}(t))$,
+where $E$ and $E'$ are distinct ramified quadratic extensions of $F$.
+The stable germs associated with the cosets 
+$a,a'$ of even valuation are $\Gamma_a(\lambda t) = \Gamma_{a'}
+(\lambda t) = |\lambda|$.
+The cosets $a,a'$ of odd valuation give
+$$\align
+&|\lambda| \Gamma_{\O_a}(t)\mu_a({\pmb 1}_K) 
+   + |\lambda|\Gamma_{\O_{a'}}(t)
+\mu_{a'}({\pmb 1}_K)\\
+=&|\lambda|\mu_a({\pmb 1}_K) (x_a C_1(\tau_E(t)) + x_{a'} C_1(\tau_{E'}(t))).
+\endalign
+$$
+The nonzero 
+constants $x_a$ and $x_{a'}$ account for the different normalizations of
+measures.  The normalization of $\Gamma_{\O_a}(t)$ 
+comes from the measure
+$\mu_a$, and this is not the same as the normalization of Lemma 4.8.
+
+The constants $x_a$ and $x_{a'}$ are equal.  To see this, we
+must track down the constants of normalization that we have ignored
+in going from $\Gamma_{\O_a}$ to $C_1(\tau_E(t))$.  In the proof
+of \cite{H5,1.2}, the constant ${1\over 2}\int |d\xi/\xi|$ was
+discarded, where $\int |d\xi/\xi|$ is the integral over the
+elements in $F(\sqrt{a})$ of norm one.  This integral is $2/q$
+for every ramified extension. The constant $-1/q$ in the
+statement of Lemma 4.7 was discarded in the proof of Lemma 4.8.
+There is also a factor of $\sqrt{q}$ in the proof of Lemma 4.8 
+arising from a
+change of coordinates: $u=x/\pi_E$, and $\sqrt{q}|du/u^2|=|dx/x^2|$.
+No other constants were dropped.
+
+  With $x_a=x_{a'}$, Equation 4.12 shows that
+the term
+coming from cosets of odd valuation is
+$$2|\lambda| C_2(\tau_E(t)) x_a \mu_a({\pmb 1_K}).$$
+Finally, we note that the constant $x_a\mu_a({\pmb 1}_K)$ is nonzero.
+In fact, the factor $\mu_a({\pmb 1}_K)$ is positive, being the
+positive measure of a characteristic function on the orbit $\O_a$.
+ The conclusion follows.  \qed\enddemo
+
+\head 6. Fourier Transforms and Characters\endhead
+
+Results of Arthur, Harish-Chandra, and Kazhdan allow us to draw some
+conclusions about characters and Fourier transforms of invariant
+measures supported on nilpotent
+orbits from our work on stable Shalika germs.
+
+Harish-Chandra has shown that the Fourier transform $\hat\mu_\O$ of
+the invariant measure on a nilpotent conjugacy class $\O$ is
+represented by a locally integrable function
+that  is locally  constant
+on the regular semisimple set \cite{HC}.  
+Let $T_X$ be the Cartan subgroup corresponding to a given
+regular elliptic element $X$, and let $A$ be the split
+component of $G$.  Let $\vvol(T_X/A)$ be the volume
+of $T_X/A$ computed with respect to the measure 
+used to define the algebraic measure on $G/T$ used
+to compute Shalika germs in \cite{L}.
+
+On the regular elliptic set, these Fourier
+transforms are related to the
+unstable Shalika germs $\Gamma^{un}_\O(X)$ 
+and discriminant $D(X)$ by the identity \cite{HC}
+$$\sum_\O D(X)\hat\mu_\O(X)\Gamma^{un}_\O(Y)\vvol(T_Y/A) = 
+   \sum_\O D(Y)\hat\mu_\O(Y) \Gamma^{un}_\O(X)\vvol(T_X/A),
+\tag6.1$$
+$(X,Y \ \hbox{regular elliptic})$,
+where the sum runs over nilpotent conjugacy classes.  (It is harmless
+to shift the indexing set back and forth from nilpotent classes to
+unipotent classes.)  We view this equation as giving for each $Y$ a
+linear relation between Fourier transforms
+ and
+the Shalika germs
+ on the elliptic set.
+
+A {\it cuspidal\/} linear combination of Shalika germs
+$\sum x_\O \Gamma^{un}_\O(X)$ is defined to be a linear combination that
+vanishes on all nonelliptic elements.  Kazhdan has shown that the
+space of cuspidal linear combinations of Shalika germs coincides with
+the span of Fourier transforms of nilpotent orbits \cite{K}. For every
+regular elliptic $Y$, the right-hand side of Equation 6.1 is a cuspidal
+linear combination of Shalika germs, and as
+$Y$ varies, we span the
+space of cuspidal linear combinations of Shalika germs.
+In other words, Harish-Chandra's identity (6.1) gives a transition
+matrix from one spanning set of functions to another.  As a result,
+if cuspidal linear combinations of Shalika germs are not elementary,
+then neither are certain Fourier transforms.
+
+Results showing that Fourier transforms of nilpotent orbits are
+not 
+elementary carry over to characters of admissible representations.
+Harish-Chandra proved that every character $\chi_\pi$ of an
+irreducible
+admissible representation of a  reductive $p$-adic group has an
+expansion parameterized by nilpotent orbits $\O$
+$$\chi_\pi(\exp(X)) = \sum_\O c_\O(\pi) \hat\mu_\O(X),\tag6.2$$
+for some collection of constant $c_\O(\pi)$
+whenever the regular
+semisimple element $X$ is sufficiently small.  If a nilpotent orbit
+$\hat\mu_{\O'}(X)$ is known not to be elementary, then the local
+expression for
+$\chi_\pi(\exp(X))$ is not elementary either
+except in the degenerate
+cases when the particular coefficients $c_\O(\pi)$ cancel the
+nonrational behavior from Equation 6.2.  
+  Although cancellation may occur
+for particular representations, it cannot happen in general because
+Equation 6.2 may be inverted.  
+
+\proclaim{Lemma 6.3}   Assume the center of $G(F)$ is
+compact. Each Fourier
+transform of an invariant nilpotent measure is, on the regular elliptic set,
+a finite linear combination of irreducible admissible characters:
+$$\hat\mu_\O(X) = \sum_\pi \hat c_\O(\pi)\chi_\pi(\exp(X)),$$
+for $X$ sufficiently small.
+\endproclaim
+
+\demo{Proof}  Kazhdan \cite{K,\S2} proves that there is a cuspidal function
+$f$ whose orbital integrals on the regular elliptic set equal 
+$\hat\mu_\O(X)$.
+Arthur \cite{A,5.1} has used the local trace formula to express the
+orbital integrals of a cuspidal function as a linear combination
+of elliptic characters (again on the regular elliptic set).  These
+two results combine to give the lemma.\qed\enddemo
+
+\bigskip
+Thus, the nonrationality of cuspidal linear combinations of Shalika
+germs implies that characters admit no general elementary description.
+A cuspidal linear combinations of subregular Shalika germs
+is identically zero -- except when the rank of the group is small.
+As a result, other unipotent classes must be studied to prove general
+nonrationality results for characters.  Nevertheless, the subregular
+Shalika germs give nonrationality results for the characters on some
+groups of small rank, and it is worthwhile to consider these examples.
+
+Our first example will be the group $G=SO(5)$.
+Let $C_3(\tau_E(t))$ denote the number of points on the elliptic
+curve of Equation 4.3, with $t=[t_1,t_2]$ in the half-integral
+set.
+
+\proclaim{Theorem 6.4}  Fix any ramified quadratic extension $E/F$.
+The space of Fourier transforms of subregular
+nilpotent classes in $SO(5)$ restricted to the elliptic set is
+two-dimensional.  A basis of this space on the half-integral set
+is given by the two functions
+$$A_T,\qquad A_T C_3(\tau_E(t)),$$
+for some collection of nonzero constants $A_T$ depending only
+on the stable conjugacy class of Cartan subgroups 
+$T$ containing (a conjugate of) $t$.
+\endproclaim
+
+\proclaim{Corollary}  The characters of admissible representations of
+$SO(5)$ (and $GSp(4)$, $Sp(4)$, and so forth) are not elementary
+in general.
+\endproclaim
+
+\demo{Proof}  The local character expansion on the half-integral set
+will in general contain the term $C_3(\tau_E(t))$ of Theorem 6.4.\qed\enddemo
+
+\smallskip
+If we select a different ramified extension $E'$, we obtain a 
+different function $C_3(\tau_{E'}(t))$, but the vector space spanned
+remains unchanged.
+
+The discriminant factor $D(X)$ is constant on the half-integral
+set, so that it does not matter whether we include it or
+not in the normalizations of the Fourier transforms. 
+
+ Murnaghan \cite{M1} has identified a family of supercuspidal
+representations on $GSp(4)$ for which the the 
+local character expansions
+are elementary.  The subregular term of this family lies in the
+one-dimensional subspace
+$(A_T)$ of the two-dimensional space  of the theorem.
+
+\demo{Proof (Theorem 6.4)}  We write the four Shalika germs of subregular
+unipotent elements as $\bGamma^{un}_1$, $\bGamma^{un}_\epsilon$, $\bGamma^{un}_\pi$,
+and $\bGamma^{un}_{\pi\epsilon}$, using the representatives $1$, $\epsilon$,
+$\pi$, and $\pi\epsilon$ of cosets $F^\times/F^{\times\,2}$.  The
+bar indicates that we are using the normalization of \cite{H5}
+(compare Lemma 4.10).
+The superscript $un$ reminds us that we are now using ordinary
+(unstable) Shalika germs, and no longer the stable germs used throughout
+Sections 4 and 5.  We write $\bGamma^{T,\kappa}_a$ for the $\kappa$-combination
+of Shalika germs on the restriction to a particular Cartan subgroup $T$,
+for any character $\kappa$ of the cohomology group
+$H^1(\Gal(\bF/F),T)$.
+
+Suppose that we have a cuspidal linear combination of Shalika germs
+$$\sum_a x_a \bGamma^{un}_a.$$
+Each $\kappa$-combination of Shalika germs is a linear combination
+of unstable Shalika germs.  Thus, cuspidality implies that
+$$\sum x_a \bGamma^{T,\kappa}_a = 0,\tag 6.5$$
+for every nonelliptic Cartan subgroup $T$ and every $\kappa$.
+Since each unstable
+Shalika germ is a linear combination of the $\kappa$-germs, we see
+that Condition 6.5 for all $(T,\kappa)$ implies cuspidality.
+
+The stable germs of $SO(5)$ are given in Equation 4.9.  The split
+torus $T$ gives no constraints on cuspidality.  Suppose first
+that
+$T$ is a product $T_1\times T_2$, with parameter $t_i$ in the
+Lie algebra of $T_i$, for $i=1,2$.
+In this case $T$ has an
+endoscopic group $SO(3)\times SO(3)$ (and this is the only 
+nontrivial endoscopic
+group of $SO(5)$), so we may consider $\kappa$-orbital integrals.
+Let $\Delta^{T,\kappa}$ be the transfer factor of Langlands
+and Shelstad, which we write as a function of $t_1$ and $t_2$.
+The transfer to the endoscopic group (proved in \cite{H1,5.25}
+and \cite{H1,page 243,Cor3})
+ forces each
+germ $\Delta^{T,\kappa}\bGamma^{T,\kappa}_a$
+ to be a linear combination of
+$\bGamma_a(t_1,0)$ and $\bGamma_a(t_2,0)$, where $\bGamma_a(t_1,0)$
+is equal up to a constant to the integral of Equation 4.9, specialized to
+$t_2=0$, and similarly for $\bGamma_a(t_2,0)$.
+The constants relating the normalizations $\bGamma_a$
+and $\Gamma_a$ are given in \cite{H5,\S2}.
+  Looking at the
+two extreme cases -- first when $T_1$ is split, then when
+$T_2$ is split -- we find that 
+$\Delta^{T,\kappa}\bGamma_a^{T,\kappa} =
+\bGamma_a(t_1,0) + \bGamma_a(t_2,0)$.  As \cite{H5,2.3} points
+out, the integral $\bGamma_a(t_i,0)$ is independent of $a$.
+This is, in fact, the purpose of shifting to the normalization
+$\bGamma_a$.
+Thus, the given linear combination $\sum_a x_a\bGamma_a^{T,\kappa}$
+ becomes
+$$(x_1 + x_\epsilon + x_\pi + x_{\pi\epsilon}) 
+  (\bGamma_a(t_1,0) + \bGamma_a(t_2,0))/\Delta^{T,\kappa}(t_1,t_2).$$
+The vanishing condition of cuspidality forces $x_1+x_\epsilon +
+ x_\pi + x_{\pi\epsilon} = 0$.  But when this sum is zero, the
+$\kappa$-germ vanishes on all Cartan subgroups (associated with
+the endoscopic group) -- not just the nonelliptic
+ones.  It follows that the cuspidal  linear combinations of Shalika germs
+are essentially stable:
+on each Cartan subgroup, the unstable germ is a multiple (determined
+by the number $h_T$ of conjugacy classes in the stable class) of the
+stable germ.  Thus, we may drop the superscripts $un$ and work directly
+with stable germs.
+
+The constraint $\sum_a x_a=0$ comes from one of the parabolic subgroups.
+The constraint for the other proper parabolic subgroup comes from the
+duality of \cite{H5,2.1}.  This condition is $x_1=0$.  The cuspidal linear
+combinations are made up of the two-dimensional space
+$$(x_\epsilon \bGamma_\epsilon + x_\pi\bGamma_\pi +
+  x_{\pi\epsilon} \bGamma_{\pi\epsilon})/h_T,\ \
+\hbox{with } x_\epsilon+x_\pi+x_{\pi\epsilon}=0.$$
+By the explicit results of \cite{H5,\S2} and Equation 6.1,
+this gives an explicit basis for the Fourier transforms of
+subregular orbits on elliptic elements.
+By \cite{H5,2.8}, the germ $\bGamma_\epsilon$ is identically zero on the
+half-integral set, giving us arbitrary linear combinations of
+$\bGamma_\pi$ and $\bGamma_{\pi\epsilon}$.  The theorem now follows
+from Equations 4.12 and 4.13.  The curve of Equation
+4.2 has genus zero in rank two.  It follows that the
+term $C_2(\tau_E(t))$ appearing in Equation 4.12 is independent
+of $t$.  This gives the desired basis.
+The constants $A_T$ are $A_T = \vvol(T/A)/h_T$, where
+$h_T\in\{1,2\}$ is the number of conjugacy classes of
+Cartan subgroups in the stable conjugacy class of $T$.
+\qed\enddemo
+
+\bigskip
+We give one more example.  Consider the group $G=U_E(3)$ split over
+a ramified quadratic extension $E/F$.  There are two subregular
+unipotent conjugacy classes, parameterized by $F^\times$ modulo
+the norms of $E$.  Let $\eta$ be the ramified quadratic
+character of $F^\times$ associated with $E/F$.
+
+\proclaim{Theorem 6.6}  The Fourier transforms of subregular
+nilpotent measures on $U_E(3)$
+span a two dimensional space on elliptic elements.
+A basis of this space
+on the half-integral set is formed by the functions
+$$A_T \,\eta((t_1-t_2)(t_2-t_3))\ \hbox{ and }
+  B_T\,(1+q- C_5(\tau_E(t))),$$
+where $C_5(\tau_E(t))$ is the number of points on the elliptic
+curve $\epsilon y^2 = (x+\tau_1)(x+\tau_2)(x+\tau_3)$ of
+Equation 4.5.   The constants $A_T$ and $B_T$ depend only on the conjugacy
+class of Cartan subgroup containing the given half-integral
+element.  The constant $A_T$ is nonzero if and only if $T$ is
+stably conjugate to a Cartan subgroup in
+$$H=\left\{\pmatrix *&&*\\&*&\\*&&*\endpmatrix\right\}.$$
+The constant $B_T$, defined for every elliptic Cartan subgroup $T$
+meeting the half-integral set, is nonzero for every such $T$.
+If $T$ and $T'$ are stably conjugate but not conjugate, then
+$A_T + A_{T'} = 0$ and $B_T = B_{T'}$.
+\endproclaim
+
+\proclaim{Corollary}  The characters of representations on $U_E(3)$ are
+not in general elementary.
+\endproclaim
+
+\demo{Proof}  This follows easily from the results of \cite{H2}.  We sketch
+the argument.  There
+is only one nonelliptic Cartan subgroup up to conjugacy, and all
+subregular orbital integrals vanish on it. Thus, every subregular
+germ is cuspidal, and the subregular cuspidal space is two-dimensional.
+
+There are either one or two conjugacy classes of Cartan subgroups
+in the stable conjugacy class of $T$.  If there is only one,
+then there is no difference between the  unstable germ 
+and the stable germ. We obtain the lemma
+in this case from Lemma 4.15 with $A_T=0$.
+
+If there are two conjugacy classes, then $H$ is the endoscopic group.
+If $t'$ is stably
+conjugate (but not conjugate) to $t$, 
+we set $\Gamma_a^{T,st}(t) = \Gamma_a^{un}(t) + \Gamma_a^{un}(t')$
+and $\Gamma_a^{T,\kappa}(t) = 
+ \Gamma_a^{un}(t) - \Gamma_a^{un}(t')$, for $t\in Lie(H)$.
+The germ is expressed in terms
+of the $\kappa$-germs as $\Gamma^{un}_a(t) = {1\over 2} (\Gamma_a^{T,st}(t) +
+\Gamma_a^{T,\kappa}(t))$.
+  Multiplying
+$\Gamma_a^{T,\kappa}$ by the transfer factor $\eta((t_1-t_2)(t_2-t_3))$
+of \cite{H2,2.1} and transferring 
+the $\kappa$-germ to the endoscopic group, we find that
+$\eta((t_1-t_2)(t_2-t_3))\Gamma_a^{T,\kappa}(t)$ is equal to
+the stable germ on $H$, which is a constant $A_T$ on the half-integral set
+\cite{Shk,2.2.2}.
+Clearly $\Gamma_a^{T,\kappa}(t') = -\Gamma_a^{T,\kappa}(t)$, if
+$t$ and $t'$ are stably conjugate but not conjugate.  Thus,
+$A_T + A_{T'} = 0$.  Also $\Gamma_a^{T,\kappa} = \Gamma_{a'}^{T,\kappa}$
+with the normalizations of \cite{H2,\S5}. 
+
+The stable germ $\Gamma_a^{T,st}$ is given by Lemma 4.15.  With the
+normalizations of \cite{H2,\S5}, the two subregular
+stable germs differ by the sign
+$\eta(x(\gamma))$ (appearing in the proof of Lemma 4.15). The sign
+is positive on one of the subregular classes and negative on the other.
+Hence $\Gamma_a^{T,st} + \Gamma_{a'}^{T,st} = 0$. 
+Finally $$\Gamma^{un}_a(t) + \Gamma^{un}_{a'}(t) 
+    = \Gamma_a^{T,\kappa}(t)=
+A_T\eta((t_1-t_2)(t_2-t_3))$$
+and $\Gamma^{un}_a(t)-\Gamma^{un}_{a'}(t) = \Gamma_a^{T,st}(t)
+   =B_T(1+q- C_5(\tau_E(t)))$
+as desired. \qed\enddemo
+
+\head  7.  Proofs and Conclusion\endhead
+
+The proofs of Theorems 1.1, 1.2, and 1.3 are now nearly complete.  Lemma 6.3,
+Theorem 6.4, and Theorem 6.6 prove that there is no general elementary
+formula for the Fourier transform of nilpotent orbits, and that there
+is no general elementary formula for characters.  Sections 4 and 5
+treat Shalika germs and the unit element of the Hecke algebra.
+
+To prove that the
+Langlands principle of functoriality is not elementary,
+we rely on the main example of \cite{H5}.  The embedding of $L$-groups
+$${}^L\!SO(5) = Sp(4,\C)\to GL(4,\C) = {}^LGL(4)$$ 
+leads to conjectures relating twisted stable
+characters on $GL(4,F)$ 
+and stable characters on $SO(5,F)$ (see \cite{KS1}).
+Expressed dually in terms of orbital integrals, the twisted orbital
+integrals on $GL(4)$ should be related to stable orbital integrals
+on $SO(5)$.  Concrete calculations on the half-integral set of $GL(4)$
+give points on the elliptic curve
+$$ y_1^2 = 1+ a x_1^2 + b x_1^4, \ \ \hbox{ for } a,b\in k,$$
+over the residue field $k$ of $F$.  On $SO(5)$, we find the elliptic
+curve
+$$ y_2^2 = 1 - 2 a x_2^2 + (a^2 - 4 b) x_2^4, \ \ \hbox{ for } a,b\in k.$$
+For details see \cite{H5,2.8}.
+These curves have different $j$-invariants.  The theory of endoscopy
+then predicts that these two elliptic curves have the same number
+of points.  This follows from the pair of dual isogenies between
+the curves:
+$$\align
+\phi^*x_2 = x_1/y_1,\ \qquad&\phi^*y_2 = (1-b x_1^4)/y_1^2,\\
+\psi^*x_1 = 2x_2/y_2,\ \qquad&\psi^* y_1 = (1-(a^2-4b) x_2^4)/y_2^2.
+\endalign
+$$
+The theory of endoscopy and functoriality, formulated
+as correspondences between varieties over finite fields,
+will be
+a vast generalization of this pair of dual isogenies.  We conclude
+the principle of functoriality is not generally elementary.
+The proof of Theorem 1.1 is now complete.
+
+Turn to the proofs of
+Theorems 1.2 and 1.3.  The stable invariant theory on the quasisplit groups
+$SU_E(n)$ for $n\ge 3$, $Sp(2n)$ for $n\ge 2$ (assuming transfer), 
+and $SO(2n+1)$, for $n\ge 2$,  is not
+elementary by the results of Section 4.  
+The inner forms of $SO(2n+1)$
+and of $SU_E(2k)$ do not have elementary theories because of 
+\cite{H3,VII.4.1}, 
+which asserts that the stable
+subregular Shalika germs are affected
+only by a sign in passing to the inner form.  The groups
+ $Sp(6)$ and $SO(8)$ are treated in Lemma 4.16.
+
+For the quasisplit form of the group $SO(2n)$, 
+for $n\ge 5$, we make use of the 
+standard endoscopic group $H$ that is a quasisplit
+form of $SO(8)\times SO(2n-8)$, with $SO(8)$ split.
+(see \cite{H5,VII.1.4}).
+  The following
+lemma will complete the proof of Theorems 1.2 and 1.3.
+
+\proclaim{Lemma 7.1}  Assume the transfer of Shalika germs from
+the quasisplit forms $G_{adj}$ of 
+$SO(2n)$ to the endoscopic group $H$ given above.  Then the
+Shalika germs of $\kappa$-orbital integrals of $SO(2n)$
+on the half-integral set are not in general elementary.
+\endproclaim
+
+\demo{Proof}  
+There is a single subregular conjugacy class in $G_{adj}$, for $n\ge 3$.
+The transfer of germs implies that the 
+$\kappa$-combinations of subregular germ, multiplied
+by the Langlands-Shelstad transfer factor \cite{LS},  is a linear combination
+of stable germs on the endoscopic groups.  
+Since $H$ is a product, the stable subregular germs on $H$
+are linear combinations of the stable subregular
+germs on the two factors $SO(8)$ and $SO(2n-8)$.  To
+determine the particular linear combination that arises
+in the transfer, we look at the Cartan subgroups in
+the Levi factors $\G_m^{n-4}\times SO(8)$ and
+$SO(2n-8)\times \G_m^4$.  For such Cartan subgroups,
+the $\kappa$-combination is already stable, the Langlands-
+Shelstad transfer factor is one (since the discriminant
+has already been removed), and the transfer to the
+endoscopic group degenerates to ordinary Levi descent.
+From this, we see that the transfer gives a {\it nontrivial\/}
+linear combination of the stable subregular germs
+on $SO(8)$ and $SO(2n-8)$.  In particular, the stable
+subregular germ of $SO(8)$ contributes a nonzero term
+to the $\kappa$-orbital integrals on $G$.  The other
+term coming from $SO(2n-8)$ cannot cancel this, because
+they are functions of independent sets of parameters
+in the Lie algebra.
+By Lemma 4.16,  
+the Shalika germ is not elementary on the
+half-integral set of $SO(8)$.  Thus, it
+cannot be elementary on $SO(2n)$ either.\qed\enddemo
+
+\bigskip
+\line{\hfil \leaders\hrule\hskip1in \hfil}
+\bigskip
+Objects such as the Fourier transform of nilpotent orbits,
+Shalika germs, orbital integrals (especially the orbital integrals
+of the unit element of the Hecke algebra) have been studied
+extensively, and many interrelationships between these basic objects
+have been
+obtained.  Yet despite persistent efforts, explicit formulas
+have been produced for these objects only in special cases such
+as $GL(n)$,
+and we are led to suspect that the general theory is
+profoundly different from these special cases.
+
+Experts have long harbored vague feelings
+that harmonic analysis on reductive $p$-adic groups
+is not elementary.  This paper quantifies some of the complexities
+long felt to exist and
+explains why previous efforts have encountered such difficulty:
+certain methods treat invariant harmonic analysis 
+as a rational theory, and
+have only been successful for {\it rational groups}.
+Any approach to harmonic analysis on $p$-adic groups that is
+not equipped to deal with nonrational geometry is ill-fated.
+
+The principle of functoriality, as envisioned by Langlands and
+elaborated
+by many, predicts relationships between the basic objects
+of invariant harmonic analysis of pairs of reductive groups
+whose $L$-groups
+are related.  To the extent that these
+basic objects are described by varieties over finite fields,
+ we may reformulate the principle of functoriality geometrically
+ and seek to prove
+it by geometrical methods. 
+
+This paper has
+given a series of examples of nonrational varieties arising in
+harmonic analysis.
+These results are tentative in the sense that the fundamental
+problems in this nascent theory 
+remain largely unformulated and yet unsolved.  
+I conclude with three problems that I see as essential to the
+future progress of harmonic analysis on $p$-adic groups.
+First, to establish the proper foundations for this theory, some
+general structure theorems are required.  For example, give general 
+arguments that
+show that the basic objects of
+invariant harmonic analysis are described by the number of points
+on varieties over finite fields.
+Second,  identify the family of varieties attached to a given group.
+The examples of the paper involve hyperelliptic curves.  What
+other nonrational varieties arise -- if any?
+Third, produce the morphisms or correspondences of varieties predicted
+by the principle of functoriality.  The isogeny of elliptic
+curves described in this section should be an isolated example within
+a much larger theory yet to be developed.
+
+\head  Appendix\endhead
+
+In this appendix, we list some rational functions that are used
+in Example 2.3.  These rational functions 
+give an elliptic curve.
+  We follow the notation of Example 2.3 for the group
+$Sp(6)$.   A symbolic computer calculation shows that on $S^*(k^-_1)$
+we have $\sigma_{-}(x) = X(x,y)$ and $\sigma_{-}(y) = Y(x,y)$,
+where
+$$X(x,y) - x = {(t_2 + t_3) y b_1\over b_2 b_3}, \qquad
+  Y(x,y) - y = {y b_1 b_4\over b_2 b_5 b_6 },$$
+and
+$$\align
+b_1 &=  -2 t_1^2 x^2 + 4 t_1 t_2 x^2 - 2 t_2^2 x^2 + 4 t_1^2 x^3 - 8 t_1 t_2 x^3 + 
+   4 t_2^2 x^3 - 2 t_1^2 x^4 + 4 t_1 t_2 x^4 \\
+   &\quad
+   - 2 t_2^2 x^4 - 3 t_1^2 x y + 
+   4 t_1 t_2 x y - t_2^2 x y + t_1 t_3 x y - t_2 t_3 x y + 6 t_1^2 x^2 y \\
+   &\quad
+   - 12 t_1 t_2 x^2 y + 6 t_2^2 x^2 y - 3 t_1^2 x^3 y 
+    + 8 t_1 t_2 x^3 y - 
+   5 t_2^2 x^3 y - t_1 t_3 x^3 y + t_2 t_3 x^3 y \\
+   &\quad - t_1^2 y^2 
+    + t_1 t_2 y^2 + t_1 t_3 y^2 + 2 t_1^2 x y^2 
+     - 6 t_1 t_2 x y^2 + 2 t_2^2 x y^2 - t_1^2 x^2 y^2 \\
+   &\quad
+   + 5 t_1 t_2 x^2 y^2 - 4 t_2^2 x^2 y^2 
+    - t_1 t_3 x^2 y^2  + 2 t_2 t_3 x^2 y^2 - 
+   t_1 t_2 y^3 \\
+   &\quad
+      + t_1 t_2 x y^3 - t_2^2 x y^3 + t_2 t_3 x y^3,\\
+%
+b_2 &=  -t_1^2 x + 2 t_1 t_2 x - t_2^2 x + t_1^2 x^2 - 2 t_1 t_2 x^2 + t_2^2 x^2 - 
+   t_1^2 y + t_1 t_2 y \\
+    &\quad + t_1^2 x y - 2 t_1 t_2 x y + t_2^2 x y + t_1 t_3 x y - 
+   t_2 t_3 x y - t_1 t_2 y^2 - t_2 t_3 y^2,\\
+%
+b_3 &=  -t_1 x + t_2 x + 
+       t_1 x^2 - t_2 x^2 - t_1 y + t_1 x y - t_2 x y + t_3 x y + t_3 y^2,\\
+%
+b_4 &=  -t_1^2 x + 2 t_1 t_2 x - t_2^2 x + t_1^2 x^2 - 2 t_1 t_2 x^2 + t_2^2 x^2 - 
+   t_1^2 y + t_1 t_2 y + t_1^2 x y \\
+   &\quad - 2 t_1 t_2 x y + t_2^2 x y + t_1 t_3 x y - 
+   t_2 t_3 x y + t_1 t_3 y^2 + t_3^2 y^2,\\
+%
+b_5 &=  -t_1 x + t_2 x + t_1 x^2 - t_2 x^2 - t_1 y + t_1 x y - t_2 x y + t_3 x y,\\
+%
+b_6 &=  -t_1 x + t_2 x + t_1 x^2 - t_2 x^2 - t_1 y + 
+             t_1 x y - t_2 x y + t_3 x y + t_3 y^2.
+\endalign
+$$
+It is clear that $b_i=0$ defines a rational curve for $i\ne 1$.  The
+polynomial $b_1$ becomes, under the substitution $x = 1- y/x_1$, the
+product of $y^2/x_1^4$ and the polynomial
+$$\align
+b_1' &= 
+%
+ -2 t_1^2 x_1^2 + 4 t_1 t_2 x_1^2 - 2 t_2^2 x_1^2 -
+          4 t_1 t_2 x_1^3 + 4 t_2^2 x_1^3 + 
+   2 t_1 t_3 x_1^3 - 2 t_2 t_3 x_1^3 - 2 t_2^2 x_1^4 \\
+  &\quad + 2 t_2 t_3 x_1^4 
+         + 4 t_1^2 x_1 y - 
+   8 t_1 t_2 x_1 y + 4 t_2^2 x_1 y - 3 t_1^2 x_1^2 y + 12 t_1 t_2 x_1^2 y - 
+   9 t_2^2 x_1^2 y \\
+   &\quad 
+   - 3 t_1 t_3 x_1^2 y + 3 t_2 t_3 x_1^2 y 
+   - 4 t_1 t_2 x_1^3 y 
+   + 6 t_2^2 x_1^3 y + 2 t_1 t_3 x_1^3 y - 4 t_2 t_3 x_1^3 y - t_2^2 x_1^4 y 
+          \\
+   &\quad
+   + t_2 t_3 x_1^4 y 
+   - 2 t_1^2 y^2 + 4 t_1 t_2 y^2 
+    - 2 t_2^2 y^2 + 3 t_1^2 x_1 y^2 
+   - 8 t_1 t_2 x_1 y^2 + 5 t_2^2 x_1 y^2 \\
+   &\quad + t_1 t_3 x_1 y^2 
+   - t_2 t_3 x_1 y^2 - t_1^2 x_1^2 y^2 
+    + 5 t_1 t_2 x_1^2 y^2 - 4 t_2^2 x_1^2 y^2 - t_1 t_3 x_1^2 y^2 \\
+    &\quad
+    + 2 t_2 t_3 x_1^2 y^2 
+    - t_1 t_2 x_1^3 y^2 
+    + t_2^2 x_1^3 y^2 - t_2 t_3 x_1^3 y^2.
+\endalign
+$$
+This polynomial is quadratic in $y$.  By completing the square it may
+be brought into the form $y_1^2 - f(x_1)$.  The resulting elliptic
+curve is given in the proof of Lemma 2.5.  
+
+\newpage
+\Refs
+\widestnumber\key{BDKV}
+
+
+\ref\key A \by J. Arthur 
+\paper On Elliptic Tempered Characters 
+\jour Acta Mathematica
+\vol 171
+\yr 1993
+\pages 73--138
+\endref
+
+\ref\key {BDKV}
+\by  J. Bernstein, P. Deligne, D. Kazhdan and M.-F. \!Vign\'eras
+\book
+ Repr\'esentations des groupes r\'eductifs sur un corps local
+\publ Hermann
+\publaddr Paris 
+\yr 1984
+\endref
+
+\ref\key{CH}
+\by L. Corwin, and R. Howe  
+\paper Computing characters of tamely
+ramified $p$-adic division algebras 
+\jour Pacific. J. Math. 
+\vol  73 
+\yr 1977
+\pages 461--477
+\endref
+
+\ref\key{CS} \by L. Corwin, and P. Sally 
+\paper Discrete Series
+Characters for Division Algebras and $GL_n$
+\paperinfo in preparation
+\endref
+
+\ref\key{D1} \by  J. Denef
+\paper On the Degree of Igusa's Local Zeta Function
+   \jour Amer. J. Math. 
+    \vol 109  \yr1987\pages 991--1008
+\endref
+
+\ref\key{D2} \by J. Denef 
+\paper Report on Igusa's Local Zeta Function
+  \jour S\'eminaire Bourbaki \yr 1990--1991 
+   \paperinfo $n^\circ$ 741
+\endref
+
+\ref\key{H1} \by  T. Hales
+\paper Shalika Germs on $GSp(4)$ \jour Ast\'erisque \vol 171--172
+    \yr 1989  \pages 195--256
+\endref
+
+\ref\key{H2}\by  T. Hales\paper
+Orbital integrals on $U(3)$
+\inbook The
+Zeta Function of Picard Modular Surfaces
+\eds R. Langlands and
+D. Ramakrishnan \publ CRM \yr1992\endref
+
+\ref\key{H3} \by T. Hales\book  The Subregular Germ of Orbital Integrals
+   \publ Memoirs AMS \vol 476 \yr1992\endref
+
+\ref\key{H4} \by T. Hales \paper Unipotent orbits and unipotent representations on 
+$SL(n)$
+\yr 1993
+\pages 1347--1383
+\vol 115:6
+\jour Amer. J. Math.\endref
+
+\ref\key{H5} \by T. Hales \paper The Twisted Endoscopy of $GL(4)$ and $GL(5)$ :
+Transfer of Shalika germs
+\jour Duke Math. J.
+\toappear
+\yr 1994
+\endref
+
+\ref\key{HC}  \by Harish-Chandra
+\paper  Admissible invariant distributions on reductive
+  $p$-adic groups 
+\jour \phantom{The} Queen's Papers in Pure and Applied Math. 
+\vol 48 \yr 1978
+  \pages 281--347\endref
+
+\ref\key{Ho}\by  R. Howe\paper  The Fourier Transform and Germs of Characters
+(Case of $GL_n$ over a $p$-adic Field)\jour Math. Ann. \vol
+208\yr 1974\pages 305-322\endref
+
+\ref\key{I}\by J.-I. Igusa\book Lectures on forms of higher degree
+\publ Tata Institute of Fundamental Research\publaddr  Bombay\yr  1978
+\endref
+
+
+\ref\key{KLB}\by D. Kazhdan, and G. Lusztig\paper Fixed Point Varieties
+on Affine Flag Manifolds\jour Israel Journal of Math.\vol 62:2
+\yr 1988\pages 129--168
+\paperinfo Appendix by J. Bernstein and D. Kazhdan,
+{\it An example of a non-rational variety $\hat\B_N$ for
+$G=Sp(6)$}
+\endref
+
+\ref\key{K}\by  D. Kazhdan\paper Cuspidal Geometry of $p$-adic Groups\jour
+ J.  d'Analyse Math. \vol 47\yr 1986\pages 1-36.
+\endref
+
+\ref\key{KS1} \by  R. Kottwitz, and D. Shelstad
+  \paper Twisted Endoscopy I: Definitions, Norm Mappings and Transfer
+   Factors\paperinfo preprint
+\endref
+
+\ref\key{KS2}
+\by R. Kottwitz, and D. Shelstad
+  \paper Twisted Endoscopy II: Basic Global Theory
+\paperinfo  preprint
+\endref
+
+\ref\key{L}\by  R. Langlands\paper  Orbital Integrals on Forms
+of $SL(3)$, I \jour  Amer. J. Math\yr 1983\pages 465--506\endref
+
+
+\ref\key{LS} \by  R. Langlands, and D.  Shelstad
+\paper On the Definition of
+Transfer Factors\jour  Math. Ann. \vol 278\yr 1987\pages  219--271\endref
+
+\ref\key{M1} \by F. Murnaghan\paper
+Asymptotic behaviour of supercuspidal
+characters of $p$-adic $GSp(4)$\jour Comp. Math. \vol 80\yr  1991
+\pages  15--54\endref
+
+\ref\key{M2} \by F. Murnaghan\paper Local character expansions and Shalika
+germs for $GL(n)$\paperinfo  preprint\endref
+
+\ref\key{Shk} \by J. Shalika\paper  A theorem on semi-simple $\p$-adic groups
+\jour Annals of Math. \vol 95\yr  1972\pages  226--242\endref
+
+\ref\key{Sh} \by  D. Shelstad \paper A formula for regular unipotent germs
+\jour Ast\'erisque \vol 171--172\yr 1989\pages  275--277\endref
+
+\ref\key{W1}\by  J.-L. Waldspurger\paper  Sur les int\'egrales orbitales tordues
+pour les groupes lin\'eairies: un lemme fondamental
+\jour Canad. J. Math\vol 43:4\yr 1991\pages 852-896
+\endref
+
+\ref\key {W2}\by  J.-L. Waldspurger\paper  Quelques r\'esultats de finitude
+concernant les distributions invariantes sur les alg\`ebres de Lie
+$p$-adiques\paperinfo preprint\endref
+
+\ref\key{W3}\by  J.-L. Waldspurger\paper Homog\'en\'eit\'e de certaines
+distributions sur les groupes $p$-adiques\paperinfo preprint\endref
+
+\endRefs
+
+\enddocument
+
+\bye
+% End of File
