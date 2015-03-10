@@ -1,0 +1,2452 @@
+% Thomas C. Hales
+% 
+% MSRI preprint 08220-87
+% September 1987.
+% It includes a few revisions from September 1988.
+% The abstract is from May 1989.
+% Converted to latex March 2015.
+
+ABSTRACT:
+
+The Springer correspondence may be used to define a map from
+certain unipotent classes in the endoscopic groups of a given
+reductive group $G$ to unipotent classes of $G$.  Conjectures of
+Langlands and Shelstad relating orbital integrals on $G$ to
+orbital integrals on endoscopic groups leads one to suspect the
+existence of such a map, and one of the first steps in proving
+these conjectures in general is to show that such a map exists
+satisfying certain properties. It is verified in this paper that
+the map obtained by the Springer correspondence satisfies the
+formal properties necessary for this map to be correct map for
+the study of orbital integrals and its germs.  The map is
+calculated explicitly for the exceptional groups.
+
+\magnification=\magstep1
+\pagewidth{5.75 truein}
+\pageheight{8.4 truein}
+\hcorrection{.25 truein}
+\vcorrection{.25 truein}
+\baselineskip=18 pt          %changed also below
+\nologo
+\NoBlackBoxes
+\printoptions
+\redefine\qed{{\unskip\nobreak\hfil\penalty50\hskip2em\vadjust{}\nobreak\hfil
+    $\square$\parfillskip=0pt\finalhyphendemerits=0\par}}
+
+%Document macros
+\define\dotlabel{%
+	\leavevmode
+	\hbox to 0pt{%
+		\hskip -0.5 in
+		$\bullet$%
+		\hfil}%
+	}%
+\define\ljleftlabel#1{%
+	\leavevmode
+	\hbox to 0pt{%
+		\hskip -0.5 in
+		#1%
+		\hfil}%
+	}%
+\define\Section#1{%
+	\vskip 0.75 in
+	\noindent
+	\subheading{Explicit results for {#1}}
+	\bigskip
+	}%
+
+
+%Dave's macros for this file
+\define		\Am		{A_{m-1}}
+\define		\Amone#1{A_{m_{#1}-1}}
+\define		\axi	{a(\xi,\eta)}
+\redefine	\B		{{\Cal B}}
+\define		\Bug	{\B_u^G}
+\define		\C		{{\Bbb C}}
+\define		\deltai	{\underset{2i}\to \delta}
+\define		\eps	{\varepsilon}
+\define		\Elam	{E_\lam}
+\define		\Emu	{E_\mu}
+\define		\Gimm	{G_{i+m_1+m_2}}
+\define		\HBug	{H^*(\Bug,\Q)}
+\define		\Hom	{\operatorname{Hom}}
+\define		\I		{\operatorname{I}}
+\define		\Ilams	{\Ind(\lam^1,\dots,\lam^r)}
+\define		\Ilammu	{\Ind(\lam^1,\dots,\mu^s)}
+\define		\Ind	{\operatorname{Ind}}
+\define		\IndHG	{\Ind_H^G(\O_u)}
+\define		\IndHH	{\Ind_{H_1}^{H_2}(\O_u)}
+\define		\IndCx#1#2{\Ind_{#1}^{#2} C_x}
+\define		\IndCy#1#2{\Ind_{#1}^{#2} C_y}
+\define		\Lam	{\Lambda}
+\define		\Lami	{\Lam_i}
+\define		\lam	{\lambda}
+\define		\lami	{\lam_i}
+\define		\lams	{(\lam_1,\dots,\lam_\ell)}
+\define		\lamsmus{(\lam^1,\dots,\lam^r,\mu^1,\dots,\mu^s)}
+\define		\lamsprime{(\lam_1',\dots,\lam_\ell')}
+\define		\lamtil	{\tilde\lambda}
+\define		\mus	{(\mu_1,\dots,\mu_\ell)}
+\define		\mutil	{\tilde\mu}
+\define		\NLam	{N\Lambda_r}
+\redefine	\O		{{\Cal O}}
+\define		\Ou		{(\O_u,\psi)}
+\define		\Q		{{\Bbb Q}}
+\define		\rank	{\operatorname{rank}}
+\define		\rhou	{\rho_u}
+\define		\rhoxi	{\rho(\xi,\eta)}
+\define		\sumlam#1{\sum_{#1} (\tilde\lam_i^2 - \tilde\lambda_i)}
+\define		\sumxi	{\sum_i (\tilde\xi_i^2 - \tilde\xi_i)}
+\define		\Thetalam{\Theta_\lam}
+\define		\Thetamu{\Theta_\mu}
+\define		\UHo	{UH^0}
+\define		\UGo	{UG^0}
+\define		\x		{\times}
+\define		\Z		{{\Bbb Z}}
+
+
+\topmatter
+
+\title UNIPOTENT CLASSES INDUCED FROM ENDOSCOPIC GROUPS
+\endtitle
+\author Thomas C. Hales
+\endauthor 
+\thanks{Research at MSRI sponsored in part by NSF Grant DMS-812079-05.}
+\address{Mathematical Sciences Research Institute \newline
+	1000 Centennial Drive, Berkeley CA 94720} 
+
+\endtopmatter 
+\baselineskip=18pt 
+
+\document 
+
+\vskip 0.75 in
+
+\input hales1a.tex
+\input hales1b.tex
+\input hales1c.tex
+
+\enddocument
+\bye
+
+Let $G$ be a connected reductive algebraic group defined over the
+complex
+number field $\C$.  Lusztig and Spaltenstein \cite{LS},
+generalizing a result
+of Richardson, have shown 
+how to associate a unipotent conjugacy class $\Ind_H^G(\O)$ in
+$G$ with a
+unipotent conjugacy class of a Levi subgroup $H$ of $G$.  The
+Springer 
+representation may be used to extend induction of unipotent
+classes to the
+more general setting where $H$ is allowed to be any endoscopic
+group of 
+$G$~\cite{Lu}.  It is no longer true that the
+induction map is no longer defined for all unipotent classes.
+
+Such an induction map on unipotent classes is needed for the
+study of the
+Shalika germ expansions of a $\kappa$-orbital integral on $G$. 
+We show that 
+the unipotent induction map defined through the Springer
+construction satisfies
+some of the properties required for it to be relevant to the
+study of Shalika
+germs.  In particular, we show that the map preserves the
+dimension of the
+centralizers, is transitive in the appropriate sense, and
+preserves the 
+partial order on unipotent classes.  
+The definition of the induction map in section 2 has previously
+been used by Lusztig and others.  Propositions 3 and 4 are direct
+reformulations of known theorems.  The exposition of proposition
+3 follows \cite{LS}.  Section 5 contains results of Shoji. 
+Proposition 6 is new.  For the exceptional groups the proof
+relies heavily on the charts of Spaltenstein giving the partial
+order on unipotent classes.  The tables in the appendix giving
+the induction of unipotent classes are taken directly from
+\cite{AL} and \cite{A} for the groups $E_6$, $E_7$, and $E_8$. 
+The table for the group $G_2$ is elementary and the table for
+$F_4$ is new, but is easily deduced from \cite{A}, using the
+involution introduced in section 8.
+
+Since the classification of stable unipotent classes of adjoint
+groups is 
+independent of the
+characteristic of the ground field provided the characteristic is
+sufficiently
+large~\cite{C}, we
+obtain an induction map on stable unipotent classes in an
+endoscopic group
+$H$ over an arbitrary perfect field $k$ in sufficiently large
+characteristic 
+by restricting
+to stable classes meeting $H(k)$ which the induction map sends to
+a stable 
+class meeting $G(k)$.
+
+\leftskip = 1 truein
+
+\vskip 2 truein
+
+\centerline{\bf Outline}
+
+\bigskip
+
+\noindent
+\ljleftlabel{\bf 1.} Review of Springer's Construction\newline
+\ljleftlabel{\bf 2.} Definition of Induction\newline
+\ljleftlabel{\bf 3.} Dimension of Centralizers\newline
+\ljleftlabel{\bf 4.} Transitivity of Induction\newline
+\ljleftlabel{\bf 5.} Explicit Results for Classical
+Groups\newline
+\ljleftlabel{\bf 6.} Preservation of Partial Order on
+Classes\newline
+\ljleftlabel{\bf 7.} Extension of theory to Groups over fields
+other than $\C$%
+     \newline
+\ljleftlabel{\bf 8.} Explicit results for Exceptional
+Groups\newline
+
+\leftskip = 0 truein
+\rightskip = 0 truein
+\newpage
+
+\subheading{1. Review of Springer's Construction}
+
+\bigskip
+
+For any connected reductive linear algebraic group $G$ over $\C$,
+let 
+$\B = \B^G$ denote the variety of Borel subgroups of $G$.  For
+any $G$ let
+$\B_x = \B_x^G$ denote the variety of Borel subgroups of $G$
+containing $x$.
+We have an action of the centralizer $Z_G(x)$ on $\B_x^G$.  We
+are concerned
+with $\B_x^G$ only when $x = u$ is a unipotent element.
+
+The dimension of $\Bug$ is $d_u = \frac 12(\dim Z_G(u) - \rank
+G)$.  
+Springer~\citeallbold{Spr1,Spr2} has defined a natural action of
+the Weyl 
+group $W$ of $G$ on the 
+cohomology $\HBug$ of $\Bug$.  There is also a group action of
+$Z_G(u)$ on
+$\HBug$ which descends to an action of the quotient 
+$A(u) = Z_G(u) / Z_G(u)^0$.  The action of $A(u)$ commutes with
+the action
+of $W$ and affords a representation of $A(u) \prod W$ on
+$H^{2d_u}(\Bug,\Q)$.  One obtains an injective map from
+absolutely irreducible representations $\rho$ of $W$ to
+equivalence classes of pairs $(\Ou,\psi)$ where $\psi$ is an
+irreducible representation of $A(u)$.  The map is characterized
+by the condition that $\rho$ is realized in the $\psi$-isotypic
+subspace $H^{2d_u}(\Bug,\Q)_\psi$.  The map from irreducible
+representations to such pairs is not surjective, but the image
+includes all pairs of the form $(\Ou,1)$ where $1$ denotes the
+trivial representation of $A(u)$.  Restricting to the set of
+pairs $(\Ou,1)$ we obtain an inverse map from unipotent classes
+$\Ou \mapsto (\Ou,1) \mapsto \rho$ to the set of irreducible
+representations of $W$.  We call this map the Springer map. 
+(Springer's original definition differs from this by the sign
+representation).
+
+
+
+
+\newpage
+
+\subheading{2. Definition of Induction}
+
+\bigskip
+
+
+As in the previous section, $G$ is a reductive algebraic group
+over the
+complex field $\C$.  This
+assumption will remain in force until section 7.  The letter $U$
+preceding
+the name of a reductive group will denote the set of unipotent
+conjugacy
+classes in that group.  For a finite group $W$ we let $W\sphat$
+denote the
+set of irreducible representations of $W$ over $\C$ up to
+equivalence, or simply the set of characters.  Roughly speaking,
+induction 
+is given by the following steps:
+     $$
+     \CD
+     \UHo                                              @.    
+\subseteq UH   \\
+     @V\text{Springer correspondence}VV                     @.\\
+     W_H\sphat                                              \\
+     @V\text{truncated induction}VV                         @.\\
+     W_G\sphat                                              \\
+     @V\text{Inverse of Springer correspondence}VV          @.\\
+     UG                                                @.
+     \endCD
+     $$
+The subset $\UHo$ of $UH$ on which induction is defined will be
+described
+below.  We now give details of the construction.  Let $\O_u$ be a
+unipotent
+class in an endoscopic group $H$ of $G$.  The Springer
+correspondence
+associates with $(\O_u,1)$ an irreductible representation $\rho$
+of the
+Weyl group $W_H$ of $G$.  We denote this representation by
+$\rhou$ (or by
+$\rho(u,\psi)$ if the representation $\psi$ is non-trivial). 
+Recall that by
+definition \cite{L} the dual group ${}^LH$ of $H$ is the
+centralizer of
+a semisimple element $s$ in the dual group ${}^LG$ of $G$.  For a
+group $G$
+over $\C$, the $L$-groups ${}^LH$ and ${}^LG$ are connected and
+we may identify
+the Weyl group $W_{{}^LH}$ of ${}^LH$ with a reflection subgroup
+of the Weyl 
+group
+$W_{{}^LG}$ of ${}^LG$.  We also identify $W_H$ and $W_G$ with
+$W_{{}^LH}$
+and $W_{{}^LG}$ respectively so that $W_H$ is considered as a
+reflection subgroup of $W_G$.  We pass from an irreducible
+representation of
+$W_H$ to an irreducible representation of $W_G$ by truncated
+induction 
+defined by I.G.~MacDonald \cite{M1}.  We briefly recall this
+process.  The
+Weyl group $W$ of $G$ acts as a reflection group on a real vector
+space of
+dimension $r = \rank(G)$.  This extends to an action of $W$ on
+the graded ring $S^*(V)$ of real valued polynomial functions on
+$V$ and on
+$R^* = S^*(V)/I$ where $I$ is the ideal of $W$-invariant
+polynomials
+vanishing at 0.  $R^*(V)$ inherits a grading from $S^*(V)$ and
+the 
+representation on $R^*$ is isomorphic to the regular
+representation of $W$.
+Let $W'$ be a reflection subgroup of $W$.  We write $V = V'
+\oplus V^{W'}$
+as a direct sum of $W'$-modules where $V^{W'}$ is the space of
+$W'$-invariant
+vectors on $V$.
+
+Let $\rho'$ be an irreducible representation of $W'$.  Let $e$ be
+the smallest 
+integer
+for which $\rho'$ occurs in $R^e(V')$.  It follows from the fact
+that $W'$ is
+a reflection subgroup that $\rho'$ occurs with multiplicity one
+in $R^e(V')$.
+Let $U$ be the subspace of $R^e(V')$
+which transforms by $\rho'$.  Identify $R^e(V')$  and $U$ with
+$W'$-submodules of $R^e(V)$ via the direct sum decomposition 
+$V = V' \oplus V^{W'}$.  Then $WU \subseteq R^e(V)$ is an
+irreducible
+$W$-module denoted by $\I_{W'}^W (\rho')$.  Moreover, $\I_{W'}^W
+(\rho')$
+occurs with multiplicity zero in $R^d(V)$ for $d<e$ and
+multiplicity one
+for $d=e$.
+
+If $\I_{W'}^W (\rho')$ is the image of some conjugacy class
+$(\O,1)$ in $G$
+by the Springer correspondence then we say that $\O$ in $UH$ lies
+in the 
+domain of induction and that $\O$ is obtained from $C$ by 
+{\it endoscopic induction\/} or simply {\it induction}.  There is
+no
+ambiguity in this terminology when $H$ is a Levi subgroup, for
+Lusztig
+and Spaltenstein~\cite{LS} have proved this process coincides in
+that case
+with ordinary induction of unipotent classes.  We write $\UHo$
+(or $UH^G$
+when the dependence on the original group $G$ needs to be
+indicated) for the
+set of unipotent conjugacy classes in $H$ that lie in the domain
+of induction
+to $G$.  If $\O_u$ lies in $\UHo$, we write $\IndHG$ for the
+unipotent class
+in $G$ obtained by this process.
+
+\newpage
+
+\subheading{3. Dimension of Centralizers}
+
+\bigskip
+
+If $\O_u \in UG$, set $d_u = d_u^G = \frac 12(\dim Z_G(u) - \rank
+G)$.
+
+\proclaim{Proposition} Let $\O_u \in \UHo$ and $\O_{u'} =
+\IndHG$, then
+     $d_u^H = d_{u'}^G$.
+     \endproclaim
+
+\demo{Proof} We mentioned in Section~2 that $e_u = e_{u'}$, where
+$e_u$ is 
+the integer
+associated to the irreducible representation $\rhou$ in the
+previous section.
+(We write $e_{(u,\psi)}$ if the representation $\psi$ of $A(u)$
+is non-trivial.)
+The proposition then follows if we show $d_u = e_u$.  We recall
+the proof
+of this fact from \cite{LS} and \cite{BM1}.
+
+Fix a torus $T$ and Borel subgroup $B$ containing $T$.  For every
+character
+$\chi$ of $T$ (which we extend to a character of $B$) we let
+$L_\chi$ be the 
+associated line bundle on $B \backslash G \simeq \B$ and let
+$e_1(L_\chi)$ be 
+its first Chern class in $H^2(\B,\Z)$.  We extend $\chi \in
+\Hom(X_*,\Z)$ to a 
+function from $V_\Q = X_* \otimes \Q$ to $\Q$. Shifting notation
+slightly,
+$\chi \in S^1(V_\Q)$ where $S^i(V_\Q)$ now denotes the
+$\Q$-valued
+polynomials of degree $i$ on $V_\Q$.
+The Chern class map extends uniquely to a ring homomorphism
+$S^*(V_\Q) \to H^*(\B,\Q)$ which factors through the ideal $I$. 
+We obtain an
+isomorphism $R^*(V_\Q) \simeq H^*(\B,\Q)$ in which $R^i(V_\Q)$ 
+is sent to
+$H^{2i}(\B,\Q)$ for all $i$ (in particular $H^i(\B,\Q) = 0$ for
+$i$ odd).  
+The map from $R^*(V_\Q)$ to $H^*(\B,\Q)$ is $W$-equivariant.  It
+is shown 
+in~\cite{BM} that the multiplicity of $\rho_{(u,\psi)}$ in
+$H^{2i}(\B,\Q)$ is zero if $i<d_u$ or if $i=d_u$ and $\psi \ne 1$
+and further
+that
+the multiplicity is 1 if $i=d_u$ and $\psi = 1$.  In light of the
+isomorphism
+$R^*(V_\Q) \simeq H^*(\B,\Q)$ we have $e_u = d_u$ (but
+$e_{(u,\psi)} > d_u$ for
+$\psi$ non-trivial).
+\qed
+
+\newpage
+
+\subheading{4. Transitivity of Induction}
+
+\bigskip
+
+Let $H_1$ and $H_2$ be endoscopic groups of $G$.  Suppose that 
+${}^LH_1 \subseteq {}^LH_2 \subseteq {}^LG$ in such a way that
+$H_1$ is also
+an endoscopic group of $H_2$.  
+
+\proclaim{Proposition} Suppose that $\O_u \in UH_1^{H_2}$ and
+that either
+     $\O_u \in UH_1^G$ or $\IndHH \in UH_2^G$.  Then $\O_u \in
+UH_1^G$, 
+     $\IndHH \in UH_2^G$ and $\Ind_{H_1}^G(\O_u) =
+\Ind_{H_2}^G(\IndHH)$.
+     \endproclaim
+
+\demo{Remark} Without further restrictions it is possible for a
+     class $\O_u$ to lie in $UH_1^G$, but not $UH_1^{H_2}$.
+     \enddemo
+
+\demo{Proof} Suppose $\IndHH \in UH_2^G$. Let 
+$\IndHH = \O_{u'}, \quad \Ind_{H_2}^G(\O_{u'}) = \O_{u''}$,
+and let $W = W_G$, $W' = W_H$, $W'' = W_{H_2}$. Then by
+definition
+     $$
+     \align
+     \rho_{u''} &= \I_{W''}^W \rho_{u'} \\
+     &= \I_{W''}^W \I_{W'}^{W''} \rhou \\
+     &= \I_{W'}^W \rhou
+     \endalign
+     $$
+by the transitivity of truncated induction~\cite{C}.  Thus
+$\Ind_{H_1}^G(\O_u) = \Ind_{H_2}^G \IndHH$.  The case $\O_u \in
+UH_1^G$
+is proved similarly.
+\qed
+
+\newpage
+
+\subheading{5. Explicit Results for Classical Groups}
+
+\bigskip
+
+We begin with a
+few operations on partitions.  We follow the convention that partitions
+are increasing: $\lam = \lams, \quad \lam_1 \le \dots \le \lam_\ell$.  We say
+that a partition is positive if $\lam_1 > 0$.  We make the definitions:
+	$$
+	\alignat 2
+	&\eps(\lam) 
+		&&: \text{ partition with parts } \lam_i + i-1, i=1,\dots,\ell. \\
+	&E(\lam)
+		&&: \text{ partition with parts } \frac{\lam_i}2 , 
+		i=1,\dots,\ell \text{ and } \lam_i \text{ even.} \\
+	&\Theta(\lam)
+		&&: \text{ partition with parts } \frac{\lam_i -1}2,
+		i=1,\dots,\ell \text{ and } \lam_i \text{ odd.} \\
+	&\eps^{-1}(\lam)
+		&& \text{ (defined only on strictly increasing partitions }
+		\lam) \\
+	&
+		&&: \text{ partitions with parts } \lam_i - i+1,
+		i=1,\dots,\ell. \\
+	&(\lam)_+
+		&&: \text{ partition with parts } \lam_i, 
+		i=1,\dots,\ell \text{ and } \lam_i > 0. \\
+	&\lam \cup \mu
+		&&: \text{ partition with parts } \lam_i, \mu_j,
+		\text{ for all } i,j. \\
+	&\lamtil
+		&&: \text{ dual partition.} \\
+	&\lam+\mu
+		&&: \ \overset \text{def} \to = (\lamtil \cup \mutil)\sptilde.\\
+	&O_d(\lam)
+		&&: \text{ partition with parts } \lambda_{\ell+1-i},
+		\text{ for all } i \text{ odd.} \\
+	&E_v(\lam)
+		&&: \text{ partition with parts } \lambda_{\ell+1-i},
+		\text{ for all } i \text{ even.}
+	\endalignat
+	$$
+
+We let $|\lam| = \sum \lam_i \in \Z_{\ge 0}$ denote the length of the 
+partition.  Also write $E^\eps$ for
+$\eps^{-1} \cdot E \cdot \eps$ and $\Theta^\eps$ for 
+$\eps^{-1} \cdot \Theta \cdot \eps$.
+We write $\succeq$ for the natural partial order on partitions.  If
+$\lam = \lams, \quad \mu = (\mu_1,\dots,\mu_m)$ then $\lam \succeq \mu$ if
+$\lam_{\ell-i} + \lam_{\ell-i+1} + \dots + \lam_\ell \ge \mu_{m-i} +
+	\dots + \mu_m$ for all $0 \le i \le \min(\ell,m) -1$.  
+As a matter of convenience, if all of the parts of a partition are between
+0 and 9 we omit the commas between the parts.
+
+\demo{Examples} $\lam = 1245; \eps(\lam) = 1368, E(\lam) = 12, 
+	\Theta(\lam) = 02, \eps^{-1}(\lam) = 1122, (\lam)_+ = 1245, 
+	\lamtil = 12234, O_d(\lam) = 14, E_v(\lam) = 25, E^\eps(\lam) = 33,
+	\Theta^\eps(\lam) = 00$.
+	\enddemo
+
+We introduce the following notation.  Let $\lam,\mu,\nu,\xi,\eta$ denote
+partitions.  For groups of type $A_{n-1}$ we set
+
+\leftskip = 40 pt
+\parindent = -20 pt
+
+$\O_\lam =$ unipotent class described by a positive partition $\lam$, 
+	$|\lam| = n$.
+	
+$d(\lam) = \frac 12 (\dim C_G(u) - \rank G)$ for $u\in \O_\lam$.
+
+$\rho(\lam) =$ irreducible representation of $W_{A_{n-1}}$ described by a
+	positive partition $\lam$.
+
+$e(\lam) =$ smallest $a$ such that $\rho(\lam)$ occurs in $S^a(V)$
+	(= homogeneous polynomials of degree $a$ on the real vector space $V$
+	on which $W_{A_{n-1}}$ acts naturally as a reflection group).
+
+\leftskip = 0 in
+\parindent = 20pt
+
+For groups of type $B_n, C_n, D_n$ we define $\O_\lam$ and $d(\lam)$ 
+simlarly.
+
+For groups of type $B_n, C_n, D_n$ we let $\rho(\xi,\eta)$ denote the
+representation of the Weyl group described by a pair of positive partitions
+$\xi,\eta$ with $|\xi| + |\eta| = n$.  These representations are irreducible
+except in the case $D_n$ and $\xi = \eta$, in which case the Weyl group 
+representation breaks up into two inequivalent irreducible representations 
+which we denote by $\rho(\xi,\xi)^+$ and $\rho(\xi,\xi)^-$.  The nonnegative
+integer $e(\xi,\eta)$ associated to $\rhoxi$ is defined as above.
+
+This section reviews some explicit results on unipotent classes and Weyl group
+representations~\citeallbold{C,Sp}.  The Springer correspondence was first
+made explicit for classical groups by Shoji~\cite{Sh1}.  In describing the
+induction map, we will often write $\Ind (\lam)$ instead of 
+$\Ind_H^G(\O_\lam)$ for a partition $\lam$.  Also, statements such as
+$\lam \in UA_{n-1}$ should be interpreted as $\O_\lam \in UA_{n-1}$.
+
+\Section{$A_{n-1}$}
+
+\noindent
+{\bf A.1} \qquad Unipotent conjugacy classes $\O_\lam$ are parametrized by 
+elementary divisors.  Elementary divisors are are described by positive
+partitions $\lam$ of $n$.
+	$$
+	d(\lam) = \frac 12 \sumlam{i} \qquad
+	(\lamtil \text{ dual partition}).
+	$$
+
+\noindent
+{\bf A.2} \qquad The partial ordering unipotent classes by inclusion in the 
+closure is $\O_\lam \succeq \O_{\lam'}$ if and only if $\lam \succeq \lam'$.
+
+\noindent
+{\bf A.3} \qquad Irreducible representations $\rho(\lam)$ of $W_{A_{n-1}}$ are parametrized
+by positive partitions $\lam$ of $n$.
+	$$
+	e(\lam) = \frac 12 \sumlam{i}
+	$$
+
+\noindent
+{\bf A.4} \qquad The Springer correspondence maps the class $\O_\lam$ to the 
+representation $\rho(\lam)$.  Notice that $e(\lam) = d(\lam)$.
+
+\noindent
+{\bf A.5} \qquad Induction from 
+$H = \Amone 1 \times \dots \times \Amone r \times T^r$ to $G$.  $H$ is
+both an endoscopic and Levi subgroup.  If $\O_\lam i \in UA_{m_i}$ then
+$\Ilams = \lam^1 + \dots + \lam^r$.  
+Note that $e(\lam' + \dots + \lam^r) = e(\lam')+\dots+ e(\lam^r)$,
+so that $d(\Ilams) = d(\lam^1)+\dots+d(\lam^r)$.  Induction is defined on all
+classes in $UH$.
+
+\noindent
+{\bf A.6} \qquad If $\lam \succeq \lam'$ and $\mu \succeq \mu'$ then 
+$\lam + \mu \succeq \lam' + \mu'$ so that induction is compatible with
+the partial order.
+
+\noindent
+{\bf A.7} \qquad All unipotent classes and all irreducible representations 
+are special.
+
+\Section{$B_n$}
+
+\noindent
+{\bf B.1} \qquad Unipotent conjugacy classes are described by positive partitions $\lam$ of
+$2n+1$ such that every even part occurs an even number of times.
+	$$
+	d(\lam) = \frac 14 \sumlam{} - \frac 14 (R-1) \qquad 
+	R = \#\{i \mid \lami \text{ is odd} \}.
+	$$
+
+\noindent
+{\bf B.2} \qquad Partial ordering by inclusion is $\O_\lam \succeq \O_{\lam'}$ 
+if and only if $\lam \succeq \lam'$.
+
+\noindent
+{\bf B.3} \qquad Irreducible representations of $W_{B_n}$ are parametrized 
+by pairs $(\xi,\eta)$ of positive partitions with $|\xi| + |\eta| = n$.
+	$$
+	e(\xi,\eta) = \sumxi + \sum_i \tilde\eta_i^2
+	$$
+
+\noindent
+{\bf B.4} \qquad The Springer correspondence is given by 
+$\lam \to (\xi,\eta)$ where
+$\xi = (\Theta^\eps(\lam))_+$, $\eta = (E^\eps(\lam))_+$.
+The image of the Springer correspondence is described as follows. By adding
+zeros as parts as necessary we may assume that $\xi$ has one more part than
+$\eta$.  Then $(\xi,\eta)$ lies in the image of the Springer correspondence
+if and only if
+	$$
+	\xi_1 \le \eta_1 \le \xi_2+2 \le \eta_2 + 2 \le \xi_3 + 4 \le \dots
+	$$
+
+\noindent
+{\bf B.5} \qquad Induction from 
+$H = T^r \times \Amone{1} \times \dots \times \Amone{r} \times B_{n_1}
+	\times \dots \times B_{n_s}$, $(\sum m_i + \sum n_i = n)$ to $B_n$.
+$H$ is an endoscopic group if $s \le 2$.  $H$ is a Levi subgroup if $s\le 1$.
+Let $\lam^i \in UA_{m_i-1}$, $\mu^i \in UB_{n_i}$.  Then 
+$\Ind(\lam^1,\dots,\lam^r,\mu^1,\dots,\mu^s)$ equals the unipotent class whose
+associated partitions $(\xi,\eta)$ are
+	$$
+	\align
+	\xi &= (O_d\lam^1 + \dots + O_d\lam^r + \Theta^\eps \mu^1
+		+ \dots + \Theta^\eps \mu^r)_+ \\
+	\eta &= (E_v \lam^1 + \dots + E_v \lam^r + E^\eps \mu^1
+		+ \dots + E^\eps \mu^r)_+
+	\endalign
+	$$
+if such a class exists.  If no such class exists then induction is not
+defined for $(\lam^1,\dots,\mu^s)$.
+
+\noindent
+{\bf B.6} \qquad We have $d(\lam) = e(\xi,\eta)$ if $\O_\lam$ corresponds 
+to $\rhoxi$ by the
+Springer correspondence.  Also with $\xi$ and $\eta$ as defined by induction
+	$$
+	\multline
+	e(\xi,\eta) = e(O_d\lam^1, E_v \lam^1) +\dots+ e(O_d\lam^r,E_v \lam^r) \\
+	+ e(\Theta^\eps \mu^1, E^\eps \mu^1) +\dots+
+		e(\Theta^\eps \mu^s, E^\eps \mu^s)
+	\endmultline
+	$$
+so that
+	$$
+	d(\Ilammu) = d(\lam^1) +\dots+ d(\lam^r) +\dots+ d(\mu^s).
+	$$
+
+\noindent
+{\bf B.7} \qquad Let $[x]$ denote the greatest integer less than or equal to
+$x$.
+
+Let $\lam = \lams$ be a positive partition such that every even part occurs
+an even number of times.  We assume that $\ell$ is odd.  Define an index
+$\delta(\lam,2i)$ for $0 < 2i < \ell$ by
+	$$
+\delta = \cases 2 &\text{if $\lam_{2i} = \lam_{2i+1}$ 
+is even and the largest odd $\lam_j$} \\
+&\qquad \text{for $j<2i$ occurs for an odd $j$.} \\
+\left[ \tsize\frac{\lam_{2i} + 1}{2} \right] + 
+\left[ \tsize\frac{-\lam_{2i+1} + 1}{2} \right] &\text{otherwise.}
+\endcases
+	$$
+
+\noindent
+{\bf B.8} \qquad Domain of Induction.  We carry out the induction process in
+two stages.  First we show how to pass from a class in the Levi subgroup
+$A_{m_i-1}$ to a partition in $B_{m_i}$ by ordinary induction.  This induction
+is defined for all unipotent classes and allows us to assume that there are
+no factors of type $A$.  Then we determine which classes
+$(\mu^1 ,\dots, \mu^s) \in UB_{n_1} \times\dots\times UB_{n_s}$ lie in the
+domain of induction.
+
+Let $\lam = \lams$ be a partition of $m$.  By adding a zero if necessary we
+may assume that $\lam$ has an odd number of parts.  Then
+$\Ind_{{\Am}}^{B_m} (\lam) = \mus$ where for $2i + 2 < \ell$
+	$$
+(\mu_{2i+1},\mu_{2i+2}) = \cases 
+(2\lam_{2i+1}, 2\lam_{2i+2}) &\text{if $\lam_{2i+1} = \lam_{2i+2}$} \\
+(2\lam_{2i+1} + 1, 2\lam_{2i+2} - 1) &\text{if $\lam_{2i+1} < \lam_{2i+2}$}
+\endcases
+	$$
+and $\mu_\ell = 2\lam_\ell + 1$.  From this description it follows that
+$\lam \succeq \lam'$ if and only if 
+$\Ind_{{\Am}}^{B_m} (\lam) \succeq \Ind_{{\Am}}^{B_m} (\lam')$.
+
+Now let $(\mu^1 ,\dots, \mu^s)$ be an $s$-tuple of partitions.  By adding
+zeros as necessary we may assume that $\mu^1 ,\dots, \mu^s$ all have the
+same odd number of parts (say $\ell$).  Then $(\mu^1 ,\dots, \mu^s)$ lies in 
+the domain of induction if for all $i < \ell/2$
+	$$
+	\delta(\mu^1,2i) +\dots+ \delta(\mu^s,2i) \le 2
+	\tag *
+	$$
+A unipotent conjugacy class $\O_\mu \in UB_n$ is {\it special\/} if
+$\delta(\mu,2i) < 2$ for all $2i < \ell$.  This is equivalent to the usual
+definition of special~\cite{C}. We see in particular that if
+$s=2$ and $\mu^1,\dots,\mu^s$ are all special then $\lamsmus$ lies in the
+domain of induction.  
+
+\newpage
+
+\subheading{Explicit results for $D_n$}
+
+\bigskip
+
+\noindent
+{\bf D.1} \qquad Unipotent conjugacy classes are described by partitions $\lam$ of $2n$ such
+that every even part occurs an even number of times, except that there are
+two classes for partitions whose parts are all even.
+	$$
+	d(\lam) = \frac 14 \sumlam{} - \frac 14 R \qquad
+	R = \#\{ i \mid \lami \text{ odd } \}.
+	$$
+
+\noindent
+{\bf D.2} \qquad The partial ordering by inclusion is 
+$\O_\lam \succeq \O_{\lam'}$ if and only if $\lam \succeq \lam'$.
+
+\noindent
+{\bf D.3} \qquad Irreducible representations of $W_{D_n}$ are described by pairs of partitions
+$(\xi,\eta)$ such that $|\xi| + |\eta| = n$.  The representation associated
+to $(\xi,\eta)$ is equivalent to $(\eta,\xi)$, but no others.  The
+representations are irreducible except for $(\xi,\xi)$ which is a direct
+sum of two inequivalent irreducible representations.
+
+\noindent
+{\bf D.4} \qquad The Springer correspondence is given by $\lam \to (\xi,\eta)$
+where
+	$$
+	\xi = (E^\eps\lam)_+ \qquad
+	\eta = (\Theta^\eps\lam)_+
+	$$
+The image is described as follows.  Arrange that
+$\xi$ and $\eta$ have the same number of parts.  Then $(\xi,\eta)$ lies in the
+image if and only if
+	$$
+	\gather
+	\xi_1 \le \eta_1 \le \xi_2+2 \le \eta_2+2 
+		\le \xi_2+4 \le \dots \text{ or} \\
+	\eta_1 \le \xi_1 \le \eta_2+2 \le \xi_2+2 \le \eta_2+4 \le \dots
+	\endgather
+	$$
+
+\noindent
+{\bf D.5} \qquad Induction to $D_n$ from 
+$H = T^r \times \Amone{1} \times\dots\times \Amone{r} \times
+	D_{d_1} \times\dots\times D_{d_t}$, $(\sum m_i + \sum d_i = n)$.
+$H$ is an endoscopic group if $t \le 2$.  $H$ is a Levi subgroup if 
+$t \le 1$.  The unipotent class described by the $r+t$-tuple of partitions
+$(\lam^1,\dots,\lam^r,\mu^1,\dots,\mu^t)$ is sent to the Weyl group
+representation of $D_n$ described by the pair of partitions.
+	$$
+	\align
+	\xi &= O_d\lam^1 + O_d\lam^2 +\dots+ O_d\lam^r +
+		E^\eps \mu^1 +\dots+ E^\eps \mu^t \\
+	\eta &= E_v \lam^1 +\dots+ E_v \lam^r + \Theta^\eps \mu^1
+		+\dots+ \Theta^\eps \mu^t
+	\endalign
+	$$
+
+\noindent
+{\bf D.6} \qquad Again $e$ is additive:  
+$e(\xi,\eta) = e(O_d\lam^1,E_v \lam^1)_+ \dots 
+	e(E^\eps \mu^t,\Theta^\eps \mu^t)$. Also
+$e(\xi,\eta) = d(\lam)$ provided $\O_\lam$ corresponds to $\rhoxi$. 
+It follows that the dimension of the centralizer is preserved as predicted
+by \S 3.
+
+\noindent
+{\bf D.7} \qquad Let $\lam = \lams$ be a positive partition such that every
+even part occurs an even number of times.  We assume that $\ell$ is even.
+Define an index $\delta(\lam,2i)$ for $0 < 2i < \ell$ by
+	$$
+\delta = \cases 2 &\text{if $\lam_{2i} = \lam_{2i+1}$ 
+is even and the largest odd $\lam_j$} \\
+&\qquad \text{for $j<2i$ occurs for $j$ odd.} \\
+\left[ \tsize\frac{\lam_{2i+1} + 1}{2} \right] + 
+\left[ \tsize\frac{-\lam_{2i+1} + 1}{2} \right] &\text{otherwise.}
+\endcases
+	$$
+We also define $\delta(\lam,2i+1)$ for $0 < 2i+1 < \ell$ by
+		$$
+\delta = \cases 0 &\text{if $\lam_{2i+1} = \lam_{2i+2}$ 
+is even and the largest odd $\lam_j$} \\
+&\qquad \text{for $j<2i+1$ occurs for $j$ even.} \\
+\left[ \tsize\frac{\lam_{2i+1} - 1}{2} \right] + 
+\left[ \tsize\frac{-\lam_{2i+2} - 1}{2} \right] &\text{otherwise.}
+\endcases
+	$$
+
+\noindent
+{\bf D.8} \qquad Domain of induction.  As with $B_n$ we carry out the 
+induction in two stages.  Let $\lam = \lams$ be a partition of $m$.  By
+adding zeros as necessary we may assume that $\lam$ has an even number of
+parts.  Then $\Ind_{{\Am}}^{D_m} (\lam) = \mus$ where for $2i + 2 \le \ell$
+	$$
+(\mu_{2i+1},\mu_{2i+2}) = \cases 
+(2\lam_{2i+1}, 2\lam_{2i+2}) &\text{if $\lam_{2i+1} = \lam_{2i+2}$} \\
+(2\lam_{2i+1} + 1, 2\lam_{2i+2} - 1) &\text{if $\lam_{2i+1} < \lam_{2i+2}$}
+\endcases
+	$$
+From this description it follows that $\lam \succeq \lam'$ if and only if 
+$\Ind_{{\Am}}^{D_m} (\lam) \succeq \Ind_{{\Am}}^{D_m} (\lam')$.
+	
+\noindent
+{\bf D.9} \qquad Now let $(\mu^1 ,\dots, \mu^s)$ be an $s$-tuple of 
+partitions where $\mu^i \in UD_{d_i}$.  By adding
+zeros as necessary we may assume that $\mu^1 ,\dots, \mu^s$ all have the
+same even number of parts (say $\ell$).  Then $(\mu^1 ,\dots, \mu^s)$ lies 
+in the domain of induction if for all $2i < \ell$
+	$$
+	\delta(\mu^1,2i) + \delta(\mu^2,2i) +\dots+ \delta(\mu^s,2i) \le 2
+	$$
+A unipotent conjugacy class $\O_\mu \in UD_m$ is {\it special\/} if
+$\delta(\mu,2i) < 2$ for all $i$. If $t=2$ (i.e. the group is endoscopic) 
+and $\mu^1$ and $\mu^2$ are special then the class 
+$(\lam^1 ,\dots, \lam^r,\mu^1,\mu^2)$ lies in the domain of induction.  
+
+\Section{$C_n$}
+
+\noindent
+{\bf C.1} \qquad Unipotent conjugacy classes are described by partitions 
+$\lam$ of $2n$ such that every odd part occurs an even number of times.
+	$$
+	d(\lam) = \frac 14 \sum \lamtil_i^2 +
+	\frac 14 R - \frac {\rank G}2 = \frac 14 \sumlam{} +
+	\frac 14 R \quad R = \# \{ i \mid \lam_i \text{ odd} \}.
+	$$
+
+\noindent
+{\bf C.2} \qquad The partial ordering on unipotent classes coincides with the 
+natural partial order on partitions, that is $\lam \succeq \lam'$ if and 
+only if $\O_\lam \succeq \O_{\lam'}$.
+
+\noindent
+{\bf C.3} \qquad Irreducible representations of the Weyl group $W_{C_n}$ are 
+described by pairs of partitions $(\xi,\eta)$ such that $|\xi| + |\eta| = n$.
+	$$
+	e(\xi,\eta) = \sumxi + \sum_i \tilde\eta_i^2.
+	$$
+
+\noindent
+{\bf C.4} \qquad The Springer correspondence is described as follows.  
+Arrange that $\lam$ has an even number of parts by calling 0 the first part 
+if necessary.  Then $\lam \to (\xi,\eta)$ where
+	$$
+	\xi = (\Theta^\eps\lam)_+ \qquad \eta = (E^\eps\lam)_+.
+	$$
+The map is injective.  The image is described as follows.  Arrange that $\xi$
+has exactly one more part than $\eta$ by adding 0 as parts are needed.  Then
+$(\xi,\eta)$  lies in the image if and only if we have
+	$$
+	\xi_1 \le \eta_1+1 \le \xi_2+2 \le \eta_2+3 \le \dots
+	$$
+
+\noindent
+{\bf C.5} \qquad Induction from $H$ to $C_n$ where 
+	$$
+	H = T^r \times \Amone{1} \times\dots\times \Amone{r} \times
+	C_{c_1} \times\dots\times C_{c_s} \times D_{d_1} \times\dots\times
+	D_{d_t}
+	$$
+$n= m_1 +\dots+ m_r+c_1 +\dots+ c_s+d_1 +\dots+ d_t$.
+$H$ is an endoscopic subgroup if $s \le 1, t\le 1$.  $H$ is a Levi subgroup
+if $s \le 1, t=0$.  The unipotent class of $H$ described by the 
+$r+s+t$-tuple of partitions 
+$(\lam^1 ,\dots, \lam^r,\mu^1 ,\dots, \mu^s, \nu^1 ,\dots, \nu^t)$ is sent
+to the representation of the Weyl group of $C_n$ described by the pair of
+partitions
+	$$
+	\align
+	\xi &= O_d\lam^1 + O_d\lam^2 +\dots+ O_d\lam^r +
+		\Theta^\eps \mu^1 +\dots+ \Theta^\eps \mu^s + E^\eps\nu^1 
+		+\dots+ E^\eps\nu^t \\
+	\eta &= E_v \lam^1 +\dots+ E_v \lam^r +
+		E^\eps \mu^1 +\dots+ E^\eps \mu^s + \Theta^\eps\nu^1
+		+\dots+ \Theta^\eps\nu^t
+	\endalign
+	$$
+
+\noindent
+{\bf C.6} \qquad Again $e$ is additive
+	$$
+	e(\xi,\eta) = e(O_d\lam^1,E_v \lam^1) + e(O_d\lam^2,E_v \lam^2) +\dots+
+	e(E^\eps\nu^t, \Theta^\eps\nu^t).
+	$$
+and since $e(\xi,\eta) = d(\lam)$, if $\O_\lam$ corresponds to $\rhoxi$ the 
+dimension of centralizers correspond as predicted by \S 3.
+
+
+\noindent
+{\bf C.7} \qquad Let $\lam = \lams$ be a positive partition such that every
+even part occurs an even number of times.  We assume that $\ell$ is even.
+Define an index $\delta(\lam,i)$ for $0 < i < \ell$ by
+	$$
+\delta = \cases 
+1 &\text{if $i=2k$, $\lam_{2k} = \lam_{2k+1}$, $\lam_{2k}$
+is odd, and the largest} \\
+&\qquad \text{even $\lam_j$ for $j < 2k$ occurs for $j$ odd.} \\
+1 &\text{if $i=2k+1$, $\lam_{2k+1} = \lam_{2k+2}$, $\lam_{2k+1}$
+is odd, and the} \\ 
+&\qquad \text{largest even $\lam_j$ for $j < 2k+1$ occurs 
+for $j$ even.} \\
+\left[ \tsize\frac{\lam_i}{2} \right] + 
+\left[ \tsize\frac{-\lam_{i+1}}{2} \right] &\text{otherwise.}
+\endcases
+	$$
+
+When it becomes necessary to distinguish this index and the index previously
+defined in the discussion of $D_n$, we will write $\delta_C(\lam,i)$ and
+$\delta_D(\lam,i)$ respectively.
+
+\noindent
+{\bf C.8} \qquad Domain of induction.  As before, we carry out the 
+induction in two stages.  Let $\lams$ be a partition of $m$.  
+Then $\Ind_{{\Am}}^{C_m} (\lam) = (2\lam_1 ,\dots, 2\lam_\ell)$.  It is
+clear that $\lam \succeq \lam'$ if and only if 
+$\Ind_{{\Am}}^{C_m} (\lam) \succeq \Ind_{{\Am}}^{C_m} (\lam')$. 
+	
+\noindent
+{\bf C.9} \qquad Finally, let 
+$(\mu^1 ,\dots, \mu^s,\nu^1 ,\dots, \nu^t)$ be an $s+t$-tuple of 
+partitions corresponding to a unipotent class in 
+$C_{c_1} \times\dots\times C_{c_s} \times D_{d_1} \times\dots\times D_{d_t}$.
+By adding
+parts as necessary we may assume that $\mu^1 ,\dots, \nu^t$ contain the
+same even number of parts (say $\ell$).  Then $(\mu^1 ,\dots, \nu^t)$ lies 
+in the domain of induction if and only if 
+	$$
+	\sum_{j=1}^s \delta_C (\mu^j,i) +
+	\sum_{j=1}^t \delta_D (\nu^j,i) \le 1 \text{ for } i < \ell.
+	$$
+A class $\O_\mu \in UC_m$ is {\it special\/} if
+$\delta(\nu,2i) \le 0$ for all $2i < \ell$.  It follows that if
+$\O_\nu \in UD_d$ and $\O_\mu \in UC_c$ are special then 
+$\O_\nu \times \O_\mu \in U(D_d \times C_c)^0$.
+
+\newpage
+
+\subheading{6. Preservation of Partial Order on Classes}
+
+\bigskip
+
+There is a partial order on unipotent conjugacy classes given by
+$\O_x \succeq \O_y$ if and only if $\O_y \subseteq
+\overline{\O_x}$ the 
+closure of $\O_x$. 
+
+\proclaim{Proposition} If $\O_x$ and $\O_y$ are classes in $\UHo$
+with
+     $\O_x \succeq \O_y$ then $\Ind \O_x \succeq \Ind \O_y$.
+     \endproclaim
+
+\demo{Proof} (For classical groups only. We postpone the proof
+for exceptional
+     groups to $\S 8$ where the induction map is given
+explicitly.)  For
+     $A_n$ the endoscopic groups are Levi subgroups $M$ and the
+proposition
+     is clear.  For if $U_P$ is the unipotent radical subgroup of
+a parabolic
+     subgroup containing $M, \overline{\O_xU_P} \supseteq
+\O_yU_P$ so the 
+     class dense in $\O_yU_P$ is contained in the closure of the
+class dense in
+     $\O_xU_P$, that is $\Ind \O_x \succeq \Ind \O_y$.
+
+We also remark that it is enough to prove the result for simple
+groups, so
+we restrict our attention to $B_n, C_n, D_n$.  The endoscopic
+groups are
+(remember we are working over $\C$):
+     $$
+     \alignat 3
+     &\underline{G_n} &\qquad &\underline{H} && \\
+     &B_n &\qquad &M_i \times B_{n-i} &\qquad 
+          &M_i \text{ is a Levi subgroup of $B_i$} \\
+     &C_n &\qquad &M_i \times D_{n-i} &\qquad 
+          &M_i \text{ is a Levi subgroup of $C_i$} \\
+     &D_n &\qquad &M_i \times D_{n-i} &\qquad 
+          &M_i \text{ is a Levi subgroup of $D_i$.}
+     \endalignat
+     $$
+By ordinary Levi induction applied to the classes inside $M_i$ it
+is enough
+to consider three cases:
+     $$
+     \alignat 2
+     &\underline{G_n} &\qquad &\underline{H_n}  \\
+     &B_n &\qquad &B_i \times B_{n-i} \\
+     &C_n &\qquad &C_i \times D_{n-i} \\
+     &D_n &\qquad &D_i \times D_{n-i} \\
+     \endalignat
+     $$
+We write in these cases 
+     $$
+H_n = G_i \times G_{n-i}' \text{ where } G_n' =
+\cases G_n &\text{if $G = B, D$} \\ D_n &\text{if $G=C$.}
+\endcases
+     $$
+
+\proclaim{Lemma}
+     \roster
+     \item"{(a)}" Fix classes $\O_x$ and $\O_y$ in $UG_n$.  For
+$\O$ fixed 
+          $\in U\Am$.  Set:
+               $$
+               \gather
+               \O_x^\prime = \Ind_{G_n \times \Am}^{G_{n+m}}
+(\O_x \times \O) \\
+               \O_y^\prime = \Ind_{G_n \times \Am}^{G_{n+m}}
+(\O_y \times \O)
+               \endgather
+               $$
+          Then $\O_x \succeq \O_y$ if and only if $\O_x' \succeq
+\O_y'$.
+     \item"{(b)}" Fix classes $\O_x$ and $\O_y$ in $UA_{n-1}$. 
+Then
+          $\O_x \succeq \O_y$ if and only if
+          $\Ind_{A_{n-1}}^{G_n} (\O_x) \succeq
+\Ind_{A_{n-1}}^{G_n} (\O_y)$.
+     \endroster
+     \endproclaim
+
+Before proving the lemma, we point out how the lemma implies the
+proposition
+for classical groups by a diagram chase.  Consider the following
+diagram:
+
+\bigskip
+     $$
+     \CD
+     G_i \times G^\prime_{n-i} \times \Amone{1} \times \Amone{2} 
+@>0>>
+          G_n \times \Amone{1} \times \Amone{2} \\
+     @.   @VV6V \\
+     @.   G_n \times A_{m_1 + m_2-1} \\
+     @VV1V  @VV5V \\
+     G_{i+m_1} \times G^\prime_{n-i+m_2}  @>>>  G_{n+m_1+m_2} \\
+     @AA2A     @AA4A \\
+     A_{i+m_1-1} \times A_{n-i+m_2-1}   @>3>>     A_{n+m_1+m_2-1}
+     \endCD
+     $$
+\bigskip
+
+An arrow from $A$ to $B$ in the diagram above indicates that $A$
+is an
+endoscopic group of $B$.  To simplify notation we write $\Ind_j$
+for
+$\Ind_A^B$ and label the arrow from $A$ to $B$ in the diagram
+with a $j$.
+
+We fix $\O_2 \succeq \O_1$ in $U(G_i \times G_{n-i}')$.  By part
+(a) of the 
+lemma the proposition will follow if we can find an 
+$\O' \in U(G_i \x G'_{n-i} \x A_m)$ such that 
+$\Ind_7 (\O_2 \x \O) \succeq \Ind_7 (\O_1 \x \O)$ where 
+$\Ind_7 = \Ind_{G_i \x G_{n-1}' \x A_{m-1}}^{G_n \x \Am}$. 
+Select
+and fix $m_1,m_2$ and $\O$ for which there exists $\O_1', \O_2'$
+satisfying
+$\Ind_1 (\O_i \x \O) = \Ind_2 (\O_i')$, $i=1,2$.  Such an $\O$
+exists by
+the explicit results given in the previous section (B.5, C.5,
+D.5).  
+By part (a) of the lemma,
+$\Ind_1 (\O_2 \x \O) \succeq \Ind_1(\O_1 \x \O)$ and by part (b)
+of the
+lemma $\O_2' \succeq \O_1'$.  Induction applied to Levi factors
+yields
+$\Ind_4 \Ind_3 \O_2' \succeq \Ind_4 \Ind_3 \O_1'$.  By the
+transitivity
+of induction $\Ind_4 \Ind_3 \O_i' = \Ind_5 \Ind_6 \Ind_0 (\O_i \x
+\O)$, 
+$i=1,2$ so that 
+$\Ind_5 \Ind_6 \Ind_0 (\O_2 \x \O) \succeq \Ind_5 \Ind_6 \Ind_0
+(\O_1 \x \O)$.
+The lemma allows us to drop ``$\Ind_5$" to conclude that
+$\Ind_6 \Ind_0 (\O_2 \x \O) \succeq \Ind_6 \Ind(\O_1 \x \O)$.  We
+write
+$\O' = \Ind_{\Amone{1} \x \Amone{2}}^{A_{m_1+m_2-1}}(\O)$.  Then
+noting that
+$\Ind_6$ acts only on $\O$ we find that (with $m = m_1 + m_2$)
+$\Ind_7 (\O_2 \x \O') = \Ind_6 \Ind_0 (\O_2 \x \O) \succeq
+     \Ind_6 \Ind_0 (\O_2 \x \O) = \Ind_7 (\O_1 \x \O')$.  
+This proves the proposition.
+
+Now we turn to the proof of the lemma.  The validity of (b) was
+observed
+in~B.8, C.8 and~D.8.  Consider part (a) of the lemma. Consider
+classes 
+$\O_\lam$, $\O_{\lam'} \in UG_n.$  Let $\O_\lam \succeq
+\O_{\lam'}$, 
+$\lam = \lams$, $\lam' = \lamsprime$ (adding zeros as necessary).
+Write
+     $$
+     \gather
+\Lambda_i = \lam_{\ell-i+1} + \lam_{\ell-i} +\dots+ \lam_\ell \\
+\Lambda_i' = \lam_{\ell-i+1}' + \lam_{\ell-i}' +\dots+ \lam_\ell'
+     \endgather
+     $$
+for $i \ge 1$.
+
+Let $\underline{\mu} = (\overbrace{\mu ,\dots, \mu}^r)$ be a
+partition
+whose parts are all equal.  $\O_{\underline{\mu}} \in U\Am$, 
+$m = |\underline{\mu}| = \mu r$.  
+If we show 
+$\Ind (\O_\lam \x \O_{\underline{\mu}}) \succeq 
+     \Ind (\O_{\lam'} \x \O_{\underline{\mu}})$ 
+if and only if $\O_\lam \succeq \O_{\lam'}$ we are done by
+induction, 
+for every partition can be broken into a sum:
+     $$
+     \multline
+     \mu' = (\mu_1 ,\dots, \mu_{\ell'}) = 
+          \overbrace{(\mu_1 ,\dots, \mu_1)}^{\ell'}
+          + (\mu_2-\mu_1 ,\dots, \mu_2-\mu_1) +\dots+ \\
+     (\mu_3-\mu_2-\mu_1 ,\dots, \mu_3-\mu_2-\mu_1)
+          +\dots+ (\mu_{\ell'} - \sum \mu_i ,\dots, \mu_{\ell'} -
+\sum \mu_i).
+     \endmultline
+     $$
+of partitions $\underline{\mu}$ having identical parts.  For
+example, 
+$\mu' = 133558 = (111111) + (22222) + (222) + 3 = 1^6 + 2^5 + 2^3
++ 3^1
+     = 1^6 + 1^5 + 1^5 + 1^3 + 1^3 + 1^1 + 1^1 + 1^1$.  
+Notice that $\tilde\mu' = 11133556$.
+
+By adding zeros as parts as necessary we may assume that $r \le
+\ell$.  Now
+let $N\lam$ be the partition such that
+     $$
+     \O_{N\lam} = \Ind \O_\lam \times \O_{\underline{\mu}}.
+     $$
+Let $N\Lami = N\lam_{\ell-i+1} +\dots+ N\lam_\ell, i \ge 1$.
+Define 
+$N\lam'$ and $N\Lami'$ similarly.
+A short calculation using the explicit relations ($\S 5$) gives:
+     $$
+N\Lami = \cases \Lami + 2i\mu &1 \le i<r. \\ \Lami + 2r\mu &r < i
+\le \ell
+\endcases
+     $$
+and $\NLam = 2r\mu + \Lam_r + \eta$, where $\eta \in \{0,-1\}$
+(In the cases
+that $\delta(\lambda,r)$ is defined, $\eta = -1$ if and only if 
+$\delta(\lambda,r) > 0$).
+Similar relations hold for the primed objects $N\Lami'$.
+Now $\O_{N\Lami} \succeq \O_{N\Lam'}$ if and only if 
+$N\Lami \ge N\Lami' \ge 0$ for all $i$, which holds if and only
+if
+     $$
+     \alignat 2
+     &\Lami - \Lami' \ge 0, &\quad &i<r      \\
+     &\Lam_r - \Lam_r' + (\eta - \eta') = \NLam - N\Lambda_r' \ge
+0 && \\
+     &\Lami - \Lami' \ge 0, &\quad &i>r. 
+     \endalignat
+     $$
+So it is enough to prove that, provided we have $\Lami \ge
+\Lami'$ for
+$i \ne r$ then $\Lam_r - \Lam_r' + (\eta-\eta') \ge 0$ if and
+only if
+$\Lam_r - \Lam_r' \ge 0$.  A further calculation using $\S 5$
+shows that
+     $$
+     \NLam - \NLam' \in 2\Z.
+     \tag *
+     $$
+Also, since $\eta, \eta' \in \{0,-1\}$
+     $$
+     |\eta-\eta'| \le 1.
+     \tag **
+     $$
+From (**) it follows that if $\Lam_r > \Lam_r'$ then $\NLam \ge
+\NLam'$ and
+if $\NLam > \NLam'$ then $\Lam_r \ge \Lam_r'$.  From (*) and (**)
+if follows
+that if $\Lam_r = \Lam_r'$ then $\NLam = \NLam'$.  We are left
+with the
+case $\NLam = \NLam'$.  It is enough to show that if $\eta' = -1$
+then
+$\eta = -1$.  
+
+From $N\Lam_{r-1} \ge N\Lam_{r-1}'$ follows
+$N\lam_{\ell-r+1}' \ge N\lam_{\ell-r+1} \ge N\lam_{\ell-r}$
+and from $N\Lam_{r+1} \ge N\Lam_{r+1}'$ follows
+$N\lam_{\ell-r} \ge N\lam_{\ell-r}'$.  Now $\eta' = -1$
+if and only if $N\lam_{\ell-r+1}' - N\lam_{\ell-r}' < 2\mu$.  But
+then 
+$N\lam_{\ell-r+1} - N\lam_{\ell-r} < 2\mu$ so that $\eta = -1$
+also.
+\qed
+
+\newpage
+
+\subheading{7. Extension of theory to groups over fields other
+than $\C$}
+
+\bigskip
+
+The classification of stable unipotent classes in terms of
+partitions in a
+reductive group $G$ is independent of the base field in
+sufficiently large
+characteristic~\citeallbold{Sp,C}.  This allows us to extend our
+construction 
+to other base fields
+$k$.  In this section we assume that $G$ is a reductive group
+defined over a 
+perfect field $k$ of sufficiently large characteristic.  Let 
+$UH_{\text{rat}}^0$ denote 
+the set of stable unipotent classes in $\UHo$ meeting $H(k)$ 
+whose image
+under induction is a stable class meeting $G(k)$, and let
+$UG_{\text{rat}}$
+denote the stable unipotent classes of $G$ meeting $G(k)$. 
+Induction is
+then defined from $UH_{\text{rat}}^0$ to $UG_{\text{rat}}$.
+
+We give two examples.  Let $G = SL(r\ell)$ over $k$ and let $K$
+be a cyclic 
+extension
+of $k$ with $[K:k] = \ell$.  Then there is an endoscopic group
+$H$ which
+is the subgroup of $\operatorname{Res}_{K/k} GL(r)$ (restriction
+of scalars)
+consisting of elements whose determinant has norm 1 by $K/k$. 
+Over
+an algebraic closure $\bar k$, $H$ is isomorphic to the subgroup
+of 
+elements $(x_1 ,\dots, x_\ell)$
+in $\overbrace{GL(r) \times\dots\times GL(r)}^\ell$ such that
+$\prod_i \det(x_i) = 1$.  This is a Levi factor of $SL(r\ell)$
+over $\bar k$ 
+so the Springer
+correspondence coincides with ordinary induction of unipotent
+classes.
+Restricting to classes meeting $H(k)$ we obtain the map of
+partitions
+     $$
+     \lam = (\lam_1 ,\dots, \lam_s) \longrightarrow 
+     \ell\lam = (\ell\lam_1 ,\dots, \ell\lam_s)
+     $$
+where $\lam = (\lam_1 ,\dots, \lam_s)$, $|\lam| = r$ parametrizes
+unipotent
+classes in $GL(r,K)$ hence in $H(k)$.  Note that 
+$\ell d^H(\lam) = d^G(\ell\lam)$.
+
+For a second example, we take $G = B_6$, $H = {}^2(B_3 \times
+B_3)$, so that
+$H$ splits over a quadratic extension $K$ of $k$.  Classes of 
+$UH_{\text{rat}}$ are in bijection with unipotent classes of
+$UB_3$ so we have
+     $$
+     \alignat 4
+     &\underline{d^H} &\qquad &\underline{UH_{\text{rat}}}
+&\qquad
+          &\underline{UG_{\text{rat}}} &\qquad &\underline{d^G}
+\\
+     &0 &\qquad &7 &\qquad &\underline{13} &\qquad &0 \\
+     &1 &\qquad &51^2 &\qquad &931 &\qquad &2 \\
+     &2 &\qquad &3^21 &\qquad &6^21 &\qquad &4 \\
+     &3 &\qquad &32^2 &\qquad &54^2 &\qquad &6 \\
+     &4 &\qquad &31^4 &\qquad &532^21 &\qquad &8 \\
+     &5 &\qquad &(2^21^3) &\qquad &* &\qquad &* \\
+     &9 &\qquad &1^7 &\qquad &2^61 &\qquad &18
+     \endalignat
+     $$
+Here $UH_{\text{rat}} \setminus UH_{\text{rat}}^0$ consists of a
+single class
+--- that with the partition $2^21^3$.  (More generally, for $G =
+B_{2n}$,
+$H = {}^2(B_n \times B_n)$ the set $UH_{\text{rat}}$ is in
+bijection with
+$UB_n$ so that
+     $$
+     2d^H(\lam) = d^G(\lam') \text{ where } \Ind_H^G \lam = \lam'
+     $$
+and $\lam$ is a partition describing a class of $B_n$.  Also, 
+$UH_{\text{rat}}^0$ is in bijection with the stable special
+unipotent
+classes of $B_n$.)
+
+\newpage
+
+\subheading{8.  Exceptional Groups}
+
+\bigskip
+
+This section describes induction explicitly for exceptional
+groups.  The
+table $G_2$ is obtained using the Shoji's explicit description
+of the Springer correspondence together with the character table
+for $G_2$.  
+The tables for $E_n (n = 6,7,8)$ follow directly from the
+information on the Springer representation for $E_n$ contained 
+in~\cite{AL}, at least for the special unipotent classes in
+$\UHo$.
+For the non-special classes we resort to the useful tables
+of~\cite{A}.
+
+The table $F_4$ is computed as follows.  There is an involution
+$\iota$
+of $W_{F_4}$~\cite{K}.  It arises from an automorphism of the
+vector space
+$V$ spanned by the roots which interchanges the short and long
+roots.
+Consequently the involution preserves the grading of polynomials
+in
+$S^*(V)$.  Since ${}^L H \subseteq {}^L F_4$ we have
+$W_{{}^L H} \subseteq W_{{}^L F_4}$ and $W_H$ may be identified
+with
+$\iota(W_{{}^L H})$.  If $\rho \in W_H\sphat$ let 
+$\iota(\rho) \in W_{{}^L H}\sphat$ be defined by 
+$\iota(\rho)(x) = \rho( \iota^{-1} x)$.  It follows that
+     $$
+     \iota \left( \I_{W_H}^{W_{F_4}} \rho \right) = 
+          \I_{W_{{}^L H}}^{W_{{}^L F_4}} \iota(\rho)
+     \tag *
+     $$
+The induction on the right-hand side of (*) is contained
+in~\cite{A}.  For
+example, if $H = C_4$ (*) gives $\I_{W_{C_4}}^{W_{F_4}}$ in terms
+of
+$\I_{W_{B_4}}^{W_{F_4}}$.
+
+We give induction for groups whose duals are maximal in ${}^L G$
+and which are
+not Levi subgroups of $G$  Call these groups ``$L$-maximal."  The
+group
+$D_4$ in the $F_4$ table is not $L$-maximal because
+${}^L D_4 \subseteq {}^L C_4 \subseteq {}^L F_4$ but is included
+for 
+reference.  Induction for endoscopic groups follows 
+by the transitivity of induction for classes satisfying the
+conditions of
+the proposition of \S 4.
+
+We denote unipotent conjugacy classes in simple classical groups
+by the
+corresponding partition.  As in~\cite{C} we identify unipotent
+conjugacy classes in exceptional groups by a Levi subgroup of the
+
+distinguished parabolic subgroup associated to each class by the
+Bala-Carter
+Theorem.  If the group $M$ is of the form $M_1 \x A_1$ and $x \in
+UM_1$ we let
+$x$ and $x$/ denote the unipotent classes $(x;2)$ and $(x;1^2)$
+respectively
+of $U(M_1 \x A_1) \overset \sim \to \longrightarrow UM_1 \x
+UA_1$.  
+Similarly
+for groups of the form $M_1 \x A_2$ and $x \in UM_1$ we let $x$,
+$x$/, and 
+$x$// denote the classes $(x;3)$, $(x;21)$ and $(x;1^3)$
+respectively of
+$U(M_1 \x A_2) \overset \sim \to \longrightarrow UM_1 \x UA_2$.
+In the case $M = A_2^3$ classes in $A_2$ are denoted by 0,1 and~3
+instead
+of 2, 21 and~$1^3$ respectively.
+
+A tilde (for example $\tilde A_n$) indicates that the roots
+of $A_n$ are identified with short roots of $G$.  
+The first column of the tables list the degree
+of homogeneity:  $d = \frac 12 (\dim C_G(u) - \rank G)$.  The
+second column
+lists the unipotent classes of the exceptional group $G$.  The
+next column 
+labelled $s$, giving
+the dimension of the corresponding irreducible Weyl group
+representation,
+is included to make the relation of the following tables to those
+
+of~\cite{AL} transparent.  Further columns list unipotent classes
+in 
+$L$-maximal groups $M$ and corresponding dimensions of
+representations.
+The unipotent classes in an $L$-maximal group $M$ listed in a row
+or 
+rows following a given
+class $y$ in $UG$ are precisely the classes such that
+$\Ind_M^G(x) = y$.
+No relation between unipotent classes in different endoscopic
+groups of $G$
+is implied by these tables.  When $M$ is of the form $A_q^p$ then
+the 
+induction map does not depend on the order of the factors and
+classes of $UM$
+are listed only up to a permutation of factors.
+
+The following list gives all classes in $UM \backslash UM^G$, $M$
+
+$L$-maximal.  \newline
+$S \overset \text{def} \to = UM \backslash UM^G = \emptyset$
+unless    $$
+     \align
+     &G = F_4, \quad M = C_4, \quad S = \{ 21^6 \} \\
+     &G = F_4, \quad M = D_4 \text{ (not $L$-maximal)}, 
+          \quad S = \{ 32^21, 1^8 \} \\
+     &G = E_7, \quad M = D_6 + A_1, \quad S = \{ 32^2 1 / \} \\
+     &G = E_8, \quad M = E_7 + A_1, \quad S = \{ A_5'/, 3A_1'/ \}
+\\
+     &G = E_8, \quad M = E_6 + A_2, \quad S = \{ 2A_2 + A_1// \}
+\\
+     &G = E_8, \quad M = D_8, \quad S = \{ 54^23, 4^232^21,
+32^61, 32^21^9 \}.
+     \endalign
+     $$
+
+The data in the tables that follow make it possible to complete
+the proof
+of Proposition~6.
+
+\proclaim{Lemma~1} Let $G$ be an exceptional group and let $H$ be
+an
+     endoscopic group of $G$.  If $\O_x$ and $\O_y$ are classes
+in $UH^0$
+     with $\O_x \succeq \O_y$ then $\Ind \O_x \succeq \Ind \O_y$.
+     \endproclaim
+     
+\demo{Remark} The proof of this lemma assumes the validity of the
+diagrams
+in~\cite{Sp} giving the partial order on unipotent classes for
+exceptional
+groups.  The diagrams in~\cite{C} also purporting to give the
+partial order
+differ slightly from those of~\cite{Sp} for $E_7$ and~$E_8$. 
+This lemma
+is false if the partial orders in~\cite{C} are the correct ones.
+\enddemo
+
+\demo{Proof} Let $M$ be one of the maximal groups in the tables. 
+It follows
+by comparing the tables against the diagrams giving the partial
+order 
+in~\cite{Sp} that if $\O_u$ and $\O_v$ are the classes in $UM^G$
+with
+$\O_u \succeq \O_v$ then $\Ind_M^G \O_u \succeq \Ind_M^G \O_v$.
+
+Let $H$ be an endoscopic group of $G$.  By definition we have
+${}^L H \subseteq {}^L M \subseteq {}^L G$ for some maximal ${}^L
+M$.  By
+the transitivity of induction we may assume there is no group
+$H'$ with
+${}^L H \subsetneqq {}^L H' \subseteqq {}^L M$ with $\O_x, \O_y
+\in UH^{H'}$.
+By the preceding remarks we may also assume that $H \ne M$ and
+that
+$\O_x$ or $\O_y$ belongs to $UH^G \backslash UH^M$.  We observe
+that if
+$G = E_8$, $M = E_7 + A_1$, $H \ne M$ and $UH^M \backslash UH \ne
+\emptyset$
+then $H \subseteq D_6 + A_1 + A_1 = D_6 + D_2 \subseteq D_8$. 
+Thus in this
+case we may replace $M$ by $M' = D_8$.  This allows us to assume
+that $M$
+contains no $E_7$ factor.  By the description of endoscopic
+groups in \S 5
+we may assume that if $M$ has a $B_n$ (resp. $C_n$, $D_n$) factor
+then $H$
+has a $B_{n-i} + B_i$ (resp. $C_{n-i} + D_i$, $D_{n-i} + D_i$)
+factor.
+
+The preceding reductions reduce the proof to the following list
+of
+possibilities for $G, M, H$ with $UH^G \backslash UH^M \ne
+\emptyset$.
+     $$
+     \alignedat 5
+     &\underline{G} &\qquad &\underline{M} &\qquad
+          &\underline{H} &\qquad &\underline{UH^G \backslash
+UH^M} 
+          &\qquad &\underline{\Ind_H^G (\O)}\\
+     &F_4 &\qquad &B_3 + \tilde A_1 &\qquad &B_2 + B_1 + \tilde
+A_1 
+          &\qquad &(2^21, 1^3) &\qquad &B_3 \\
+     &E_7 &\qquad &D_6 + A_1 &\qquad &D_4 + D_2 + A_1 &\qquad
+&(32^21,1^4,2)
+          &\qquad &A_6 \\
+     &E_8 &\qquad &D_8 &\qquad &D_4 + D_4 &\qquad &(32^21,51^3)
+          &\qquad &E_8(a_5) \\
+     &E_8 &\qquad &D_8 &\qquad &D_5 + D_3 &\qquad &(52^21,31^3)
+          &\qquad &E_8(a_5) \\
+     &&&&&&&(32^21^3,1^6) &\qquad &A_6 + A_1 \\
+     &E_8 &\qquad &D_8 &\qquad &D_6 + D_2 &\qquad &(72^21,1^4)
+          &\qquad &E_8(a_5) \\
+     &&&&&&&(32^41,1^4) &\qquad &A_6 + A_1
+     \endalignedat
+     \tag *
+     $$
+
+One now checks case by case that if $H$ is one of the groups
+listed and
+$\O_x$ or $\O_y$ is one of the unipotent classes in $UH^G
+\backslash UH^M$
+then $\Ind \O_x \succeq \Ind \O_y$.  The next paragraph gives
+details for
+$E_8$ the other cases being similar but much easier.  The proof
+is now
+complete for $G_2$ and $E_6$.
+
+Let $G = E_8$.  By the reductions above, we may assume $M$ has no
+$E_7$
+factor.  By the tables, if $H'$ is an endoscopic group of $M =
+E_6 + A_2$,
+$2A_4$, or $A_8$ then $U{H'}^M = UH'$.  Thus we may assume $M =
+D_8$,
+$H = D_i + D_{8-i}$, $6 \ge i \ge 4$.  Notice that $D_7 + D_1 =
+D_7 + T^1$
+is a Levi subfactor of $D_8$ and may be excluded.  Also the
+classes in
+$D_2,D_3$ are all special.  Let $(\lam^1,\lam^2) \in UH
+\backslash UH^M$;
+then $\delta(\lam^1,2j) + \delta(\lam^2,2j) > 2$ for some $j$ so
+that
+in particular $\lam^1$ is not special.  This yields the
+possibilities
+     $$
+     \alignat 3
+     &D_4 + D_4 &\qquad &(\lam^1 = 32^21; 
+          &\quad &\lam^2 = 51^3,32^21,31^5,1^8) \\
+     &D_5 + D_3 &\qquad &(\lam^1 = 52^21,32^21;
+          &\quad &\lam^2 = 31^3,1^6) \\
+     &D_6 + D_2 &\qquad &(\lam^1 = 72^21,52^21^3,3^22^21^5,32^41;
+          &\quad &\lam^2 = 1^4)
+     \endalignat
+     $$
+By \cite{A} and D.5 the only classes in this list which lie in
+$UH^G$ are
+the five pairs of possibilities listed above in (*).
+
+To show that if $\O_x$ or $\O_y \in UH^G \backslash UH^M$ then
+$\Ind_H^G \O_x \succeq \Ind_H^G \O_y$ argue as follows.  Consider
+first the
+case $\Ind(\cdot) = E_8(a_5) \in UE_8$.  An examination of the
+partial order
+on $UE_8$ revelas that for $\O \in UE_8$, $\O \succ E_8(a_5)$ if
+and only
+if $d_\O < 6 = d_{E_8(a_5)}$ and that $\O \prec E_8(a_5)$ if and
+only if
+$d_\O > 6$.  Thus in this case the partial order is preserved
+because
+$d_\O = d_{\O'}$ if $\Ind \O' = \O$.
+
+Finally, let $\O_z$ be one of the classes of $UH^G \backslash
+UH^M$ in (*)
+with $\Ind \O_z = A_6 + A_1$.  The classes $\O \in UE_8$ with 
+$d_\O \ne d_{A_6 + A_1} = 14$, $\overline{\O} \cap (A_6 + A_1) =
+\emptyset$
+and $\O \cap \overline{A_6 + A_1} = \emptyset$ are $\O = E_6$, 
+$E_6(a_1)$, $D_6(a_1)$, $D_5 + A_1$, and $D_5$.  By the tables,
+the classes
+in $UD_8$ which map to one of these are $91^7,731^6$, $532^4$,
+$4^22^4b$
+and~$71^9$.  It is a simple matter to check that if $\O_w \in
+UH^G$
+and $\overline{\O}_w \cap \O_z \ne \emptyset$ or $\O_w \cap
+\overline{\O}_z$
+then $\Ind_H^{D_8} (\O_w) \ne 91^7,731^6,532^4,4^22^4b,71^9$. 
+The
+cases $G = F_4,E_7$ proceed similarly.
+
+% END OF HHALES1C.TEX
+
+ %% E6 FILE:
+
+\magnification=\magstep1
+
+%Paper: Hales1
+%Template: Table2
+%Title: The Group E6
+
+\nologo
+
+% \setstrut
+% compute \strut as a \vrule of
+%	width = 0
+%	height = 70% of the current value of \baselineskip
+%	depth = the remaining 30% of \baselineskip
+\newdimen\strutskip
+\redefine\strut{\vrule height 0.7\strutskip
+					 depth 0.3\strutskip
+					 width 0.2pt}%
+\define\setstrut{%
+	\strutskip = \baselineskip
+	}
+
+\baselineskip = 14pt
+
+$$
+\vbox{
+\setstrut
+\offinterlineskip
+%
+			%tab0 and tabn are both \hfil
+			\tabskip = 0pt plus 1fil
+\halign to \hsize{
+	#\hfil		\tabskip = 1.0 cm&	%Col 1	= d
+	\hfil #		\tabskip = 0.25cm&	%2		= E6
+	#\hfil		\tabskip = 0.25cm&	%3		= s
+	\strut#		\tabskip = 0.25cm&  %4		= dividing line
+	\hfil #		\tabskip = 0.25cm&	%5		= A23
+	#\hfil		\tabskip = 1.0 cm&	%6		= s
+	\hfil #		\tabskip = 0.25cm&	%7		= A1+A5
+	#\hfil		\tabskip = 0pt plus 1fil\cr	%8	= s
+%End preamble
+%Row 1 + \hrule begins here
+d&  $E_6$ class&  s& \omit& $3A_2$&  s&  $A_1+A_5$&  s\cr\noalign{\vskip 0.2cm
+							\hrule height 2pt
+							\vskip 0.2cm}
+%Row 2 begins here
+0&  $E_6$&  1&&  0+0+0&  1&  6&  1\cr
+1&  $E_6(a_1)$&  6&&  0+0+1&  2&  51&  5\cr
+&&&&&&  6/&  1\cr
+2&  $D_5$&  20&&  0+1+1&  4&  42&  9\cr
+&&&&&&  51/&  5\cr
+3&  $E_6(a_3)$&  30&&  1+1+1&  8&  $41^2$&  10\cr
+&&&&  0+0+3&  1&  $3^2$&  5\cr
+&&&&&& $42/$&  9\cr
+4&  $A_5$&  15&&&&  $3^2$/&  5\cr
+4&  $D_5(a_1)$&  64&&  0+1+3&  2&  321&  16\cr
+&&&&&&  $41^2$/&  10\cr
+5&  $A_4+A_1$&  60&&  1+1+3&  4&  321/&  16\cr
+6&  $D_4$&  24&&  0+3+3&  1&  $2^3$&  5\cr
+6&  $A_4$&  81&&&&  $31^3$&  10\cr
+7&  $D_4(a_1)$&  80&&  1+3+3&  2&  $2^21^2$&  9\cr
+&&&&&&  $31^3$/&  10\cr
+&&&&&&  $2^3$/&  5\cr
+8&  $A_3+A_1$&  60&&&&  $2^21^2$/&  9\cr
+9&  $2A_2+A_1$&  10&&  3+3+3&  1&& \cr
+10&  $A_3$&  81&&&&  $21^4$&  5\cr
+11&  $A_2+2A_1$&  60&&&&  $21^4$/&  5\cr
+12&  $2A_2$&  24&&&&& \cr
+13&  $A_2+A_1$&  64&&&&& \cr
+15&  $A_2$&  30&&&&  $1^6$&  1\cr
+16&  $3A_1$&  15&&&&  $1^6$/&  1\cr
+20&  $2A_1$&  20&&&&& \cr
+25&  $A_1$&  6&&&&& \cr
+36&  1&  1&&&&& \cr
+}%	end \halign
+}$$%	end \vbox
+
+\end
+
+
+% END OF E6 FILE
+
+% E7 FILE
+
+%Paper: Hales1
+%Template: Table3
+%Title: The Group E7
+
+\nologo
+\hsize = 7 truein
+\vsize = 9 truein
+
+% \setstrut
+% compute \strut as a \vrule of
+%	width = 0
+%	height = 70% of the current value of \baselineskip
+%	depth = the remaining 30% of \baselineskip
+\newdimen\strutskip
+\redefine\strut{\vrule height 0.7\strutskip
+					 depth 0.3\strutskip
+					 width 0.2pt}%
+\define\setstrut{%
+	\strutskip = \baselineskip
+	}
+
+\baselineskip = 12pt
+
+$$
+\vbox{
+\setstrut
+\offinterlineskip
+%
+			%tab0 and tabn are both \hfil
+			\tabskip = 0pt plus 1fil
+\halign to \hsize{
+	#\hfil		\tabskip = 1.0 cm&	%Col 1	= d
+	\hfil #		\tabskip = 0.5 cm&	%2		= E7
+	#\hfil		\tabskip = 0.25cm&	%3		= s
+	\strut#		\tabskip = 0.25cm&	%4		= dividing line
+	\hfil #		\tabskip = 0.5 cm&	%5		= A7
+	#\hfil		\tabskip = 1.0 cm&	%6		= s
+	\hfil #		\tabskip = 0.5 cm&	%7		= A5+A2		
+	#\hfil		\tabskip = 1.0 cm&  %8		= s
+	\hfil #		\tabskip = 0.5 cm&	%9		= D6+A1
+	#\hfil		\tabskip = 0pt plus 1fil\cr	%10	= s
+%End preamble
+%Row 1 + \hrule begins here
+d&  $E_7$ class&  s& \omit& $A_7$&  s&  $A_5 + A_2$&  s&  $D_6+A_1$&
+				s\cr\noalign{\vskip 0.2cm
+				 	 		\hrule height 2pt
+							\vskip 0.2cm}
+%Row 2 begins here
+0&  $E_7$&  1&&  8&  1&  6&  1& $\underline{11},1$& 1\cr
+1&  $E_7(a_1)$&  7&&  71&  7&  51&  5& 93& 6\cr
+&&&&&&  6/&  2& $\underline{11},1$/& 1\cr
+2&  $E_7(a_2)$&  27&&  62&  20&  42&  9& $91^3$& 5\cr
+&&&&&&  51/&  10& 75& 15\cr
+&&&&&&&& 93/& 6\cr
+3&  $E_7(a_3)$&  56&&  $61^2$&  21&  $41^2$&  10& $731^2$& 24\cr
+&&&&  53&  28&  42/&  18& $6^2$a& 10\cr
+&&&&&&  6//&  1& 75/& 15\cr
+3&  $E_6$&  21&&&&  $3^2$&  5& $6^2$b& 10\cr
+&&&&&&&& $91^3$/& 5\cr
+4&  $E_6(a_1)$&  120&&  521&  64&  321&  16& $5^21^2$& 45\cr
+&&&&&&  $41^2$/&  20& $731^2$/& 24\cr
+&&&&&&  $3^2$/&  10& $6^2$b/& 10\cr
+&&&&&&  51//&  5&&\cr
+4&  $D_6$&  35&&  $4^2$&  14&&& $6^2$a/& 10\cr
+&&&&&&&& $72^21$& 9\cr
+5&  $E_7(a_4)$&  189&&  431&  70&  321/&  32& $53^21$& 30\cr
+&&&&&&  42//&  9& $5^21^2$/& 45\cr
+&&&&&&&& $72^21$/& 9\cr
+6&  $D_6(a_1)$&  210&&  $51^3$&  35&  $31^3$&  10& $71^5$& 10\cr
+&&&&&&&& $532^2$& 45\cr
+6&  $D_5+A_1$&  168&&  $42^2$&  56&  $2^3$&  5& $4^231$& 30\cr
+&&&&&&  $41^2$//&  10&&\cr
+6&  $A_6$&  105&&&&  $3^2$//&  5& $53^21$/& 30\cr
+7&  $E_7(a_5)$&  315&&  $421^2$&  90&  $31^3$/&  20& $531^4$& 36\cr
+&&&&  $3^22$&  42&  $2^3$/&  10& $4^22^2$a& 40\cr
+&&&&&&  321//&  16& $4^231$/& 30\cr
+&&&&&&&& $532^2$/& 45\cr
+7&  $D_5$&  189&&&&  $2^21^2$&  9& $4^22^2$b& 40\cr
+&&&&&&&& $71^5$/& 10\cr
+8&  $E_6(a_3)$&  405&&&&  $2^21^2$/&  18& $4^21^4$& 45\cr
+&&&&&&&& $3^4$& 30\cr
+&&&&&&&& $531^4$/& 36\cr
+&&&&&&&& $4^22^2$b/& 40\cr
+8&  $D_6(a_2)$&  280&&  $3^21^2$&  56&&& $4^22^2$a/& 40\cr
+&&&&&&&& $52^21^3$&  16\cr
+9&  $D_5(a_1)+A_1$&  378&&  $32^21$&  70&  $31^3$//&  10& $4^21^4$/& 45\cr
+&&&&&&&& $3^31^3$& 30\cr
+9&  $A_5+A_1$&  70&&&&  $2^3$//&  5&&\cr
+9&  $(A_5)^\prime$&  216&&&&&& $3^4$/& 30\cr
+&&&&&&&& $52^21^3$&  16\cr
+10&  $A_4+A_2$&  210&&&&  $2^21^2$//&  9& $3^31^3$/& 30\cr
+10&  $D_5(a_1)$&  420&&  $41^4$&  35&  $21^4$&  5& $3^22^21^2$& 45\cr
+}% 	end \halign
+}$$%	end \vbox
+
+\newpage
+%The Group E7, page 2
+
+$$
+\vbox{
+\setstrut
+\offinterlineskip
+%
+			%tab0 and tabn are both \hfil
+			\tabskip = 0pt plus 1fil
+\halign to \hsize{
+	#\hfil		\tabskip = 1.0 cm&	%Col 1	= d
+	\hfil #		\tabskip = 0.5 cm&	%2		= E7
+	#\hfil		\tabskip = 0.25cm&	%3		= s
+	\strut#		\tabskip = 0.25cm&	%4		= dividing line
+	\hfil #		\tabskip = 0.5 cm&	%5		= A7
+	#\hfil		\tabskip = 1.0 cm&	%6		= s
+	\hfil #		\tabskip = 0.5 cm&	%7		= A5+A2		
+	#\hfil		\tabskip = 1.0 cm&  %8		= s
+	\hfil #		\tabskip = 0.5 cm&	%9		= D6+A1
+	#\hfil		\tabskip = 0pt plus 1fil\cr	%10	= s
+%End preamble
+%Row 1 + \hrule begins here
+d&  $E_7$ class&  s& \omit& $A_7$&  s&  $A_5 + A_2$&  s&  $D_6+A_1$&
+				s\cr\noalign{\vskip 0.2cm
+				 	 		\hrule height 2pt
+							\vskip 0.2cm}
+%Row 2 begins here
+11&  $A_4+A_1$&  512&&  $321^3$&  64&  $21^4$/&  10& $3^22^21^2$/& 45\cr
+12&  $D_4+A_1$&  84&&  $2^4$&  14&&&  $32^41$&  5\cr
+12&  $(A_5)^{\prime\prime}$&  105&&&&&& $51^7$& 10\cr
+13&  $A_3+A_2+A_1$&  210&&  $2^31^2$&  28&  $21^4$//&  5&  $32^41$/&  5\cr
+13&  $A_4$&  420&&&&&& $3^21^6$& 24\cr
+&&&&&&&& $51^7$/& 10\cr
+14&  $A_3+A_2$&  378&&&&&& $3^21^6$/& 24\cr
+&&&&&&&& $32^21^5$&  9\cr
+15&  $D_4(a_1)+A_1$&  405&&  $31^5$&  21&&& $2^6$a& 10\cr
+15&  $D_4$&  105&&&&  $1^6$&  1& $2^6$b& 10\cr
+16&  $A_3+2A_1$&  216&&  $2^21^4$&  20&&& $2^6$a/& 10\cr
+16&  $D_4(a_1)$&  315&&&&  $1^6$/&  2& $2^41^4$& 15\cr
+&&&&&&&& $2^6$b/& 10\cr
+17&  $(A_3+A_1)^\prime$&  280&&&&&& $2^41^4$/& 15\cr
+18&  $2A_2+A_1$&  70&&&&  $1^6$//&  1&&\cr
+20&  $(A_3+A_1)^{\prime\prime}$&  189&&&&&& $31^9$& 5\cr
+21&  $A_2+3A_1$&  105&&  $21^6$&  7&&&&\cr
+21&  $2A_2$&  168&&&&&& $31^9$/& 5\cr
+21&  $A_3$&  210&&&&&& $2^21^8$& 6\cr
+22&  $A_2+2A_1$&  189&&&&&& $2^21^8$/& 6\cr
+25&  $A_2+A_1$&  120&&&&&&&\cr
+28&  $4A_1$&  15&&  $1^8$&  1&&&&\cr
+30&  $A_2$&  56&&&&&& $1^{12}$& 1\cr
+31&  $(3A_1)^\prime$&  35&&&&&& $1^{12}$/& 1\cr
+36&  $(3A_1)^{\prime\prime}$&  21&&&&&&&\cr
+37&  $2A_1$&  27&&&&&&&\cr
+46&  $A_1$&  7&&&&&&&\cr
+63&  1&  1&&&&&&&\cr
+}% 	end \halign
+}$$%	end \vbox
+
+\end
+
+% END OF E7
+
+% START OF E8
+%Paper: Hales1
+%Template: Table4
+%Title: The Group E8
+
+\nologo
+\hsize = 7 truein
+\vsize = 9 truein
+
+% \setstrut
+% compute \strut as a \vrule of
+%	width = 0
+%	height = 70% of the current value of \baselineskip
+%	depth = the remaining 30% of \baselineskip
+\newdimen\strutskip
+\redefine\strut{\vrule height 0.7\strutskip
+					 depth 0.3\strutskip
+					 width 0.2pt}%
+\define\setstrut{%
+	\strutskip = \baselineskip
+	}
+
+\baselineskip = 14pt
+
+$$
+\vbox{
+\setstrut
+\offinterlineskip
+%
+			%tab0 and tabn are both \hfil
+			\tabskip = 0pt plus 1fil
+\halign to \hsize{
+	#\hfil		\tabskip = 0.5 cm&	%Col 1 	= d
+	\hfil #		\tabskip = 0.25cm&	%2		= E8
+	#\hfil		\tabskip = 0.25cm&	%3		= s
+	\strut#		\tabskip = 0.25cm&	%4		= dividing line
+	\hfil #		\tabskip = 0.25cm&	%5		= E7+A1
+	#\hfil		\tabskip = 0.5 cm&	%6		= s	
+	\hfil #		\tabskip = 0.25cm&	%7		= E6+A2
+	#\hfil		\tabskip = 0.5 cm&	%8		= s
+	\hfil #		\tabskip = 0.25cm&	%9		= A24
+	#\hfil		\tabskip = 0.5 cm&	%10		= s
+	\hfil #		\tabskip = 0.25cm&	%11		= A8
+	#\hfil		\tabskip = 0.5 cm&	%12		= s
+	\hfil #		\tabskip = 0.25cm&	%13		= D8
+	#\hfil		\tabskip = 0pt plus 1fil\cr	%14	= s
+%End preamble
+%Row 1 + \hrule begins here
+d&  $E_8$ class&  s& \omit& $E_7+A_1$&  s&  $E_6+A_2$&  s&  $2A_4$&  
+	s&  $A_8$&  s&  $D_8$&  s\cr\noalign{\vskip 0.2cm
+						\hrule height 2pt
+						\vskip 0.2cm}
+%Row 2 begins here
+0&  $E_8$&  1&&  $E_7$&  1&  $E_6$&  1&  5,5&  1&  9&  1&
+	\underbar{15},1&  1\cr
+1&  $E_8(a_1)$&  8&&  $E_7$/&  1&  $E_6$/&  2&  5,41&  4&  81&  8&
+	\underbar{13},3&  8\cr
+&&&&  $E_7(a_1)$&  7&  $E_6(a_1)$&  6&&&&&&\cr
+2&  $E_8(a_2)$&  35&&  $E_7(a_1)$/&  7&  $E_6(a_1)$/&  12&  5,32&  5&
+	72&  27&  \underbar{13},$1^3$&  7\cr
+&&&&  $E_7(a_2)$&  27&  $D_5$&  20&  41,41&  16&&&  \underbar{11},5&  28\cr
+3&  $E_8(a_3)$&  112&&  $E_7(a_2)$/&  27&  $E_6$//&  1&  $5,31^2$&  6&
+	$71^2$&  28&  \underbar{11},$31^2$&  48\cr
+&&&&  $E_7(a_3)$&  56&  $D_5$/&  40&  41,32&  20&  63&  48&  97&  56\cr
+&&&& $E_6$&  21&  $E_6(a_3)$&  30&&&&&&\cr
+4&  $E_8(a_4)$&  210&&  $E_7(a_3)$/&  56&  $E_6(a_1)$//&  6&  $5,2^21$&  5&
+	621&  105&  $8^2$a&  35\cr
+&&&&  $E_6(a_1)$&  120&  $E_6(a_3)$/&  60&  $41,31^2$&  24&  54&  42&  
+	$951^2$&  140\cr
+&&&&&&  $D_5(a_1)$&  64&  32,32&  25&&&&\cr
+4&  $E_7$&  84&&  $E_6$/&  21& $A_5$& 15&&&&&  $8^2$b&  35\cr
+&&&&  $D_6$&  35&&&&&&&  $\underline{11},2^21$&  20\cr
+5&  $E_8(b_4)$&  560&&  $E_6(a_1)$/&  120&  $D_5$//&  20&  $41,2^21$&
+	20&  531&  162&  $93^21$&  112\cr
+&&&&  $E_7(a_4)$&  189&  $D_5(a_1)$/&  128&  $32,31^2$&  30&&&  $7^21^2$& 224\cr
+&&&&  $D_6$/&  35&  $A_4+A_1$&  60&&&&&&\cr
+&&&&&&  $A_5$/&  30&&&&&&\cr
+6&  $E_8(a_5)$&  700&&  $E_7(a_4)$/&  189&  $E_6(a_3)$//&  30&  $32,2^21$&
+	25&  522&  120&  7531&  252\cr
+&&&&  $D_5+A_1$&  168& $A_4+A_1$/&  120&  $31^2,31^2$&  36&  $4^21$&  84&& \cr
+&&&&  $A_6$&  105&  $D_4$&  24&&&&&&\cr
+6&  $E_7(a_1)$&  567&&  $D_6(a_1)$&  210&  $A_4$&  81&  $5,21^3$& 
+	4&  $61^3$&  56&  \underbar{11},$1^5$&  21\cr
+&&&&&&&&&&&&  $932^2$&  140\cr
+7&  $E_8(b_5)$&  1400&&  $D_6(a_1)$/&  210&  $D_5(a_1)$//&  64&  $41,21^3$&
+	16&  $521^2$&  189&  $931^4$&  120\cr
+&&&&  $D_5+A_1$/&  168&  $A_4$/&  162&  $31^2,2^21$&  30&  432&  168&
+	$6^231$&  280\cr
+&&&&  $E_7(a_5)$&  315&  $D_4$/&  48&&&&&  $752^2$&  448\cr
+&&&&  $D_5$&  189&  $D_4(a_1)$&  80&&&&&&\cr
+7&  $D_7$&  400&&  $A_6$/&  105&  $A_5$//&  15&&&&&  $74^21$&  112\cr
+8&  $E_8(a_6)$&  1400&&  $E_7(a_5)$/&  315&  $A_4+A_1$//&  60&  $32,21^3$&
+	20&  $431^2$&  216&  $751^4$&  280\cr
+&&&&  $E_6(a_3)$&  405&  $D_4(a_1)$&  160&  $2^21,2^21$&  25&&&  
+	$73^3$&  252\cr
+&&&&&&&&&&&&  $6^22^2$a&  315\cr
+&&&&&&&&&&&&  $5^31$&  140\cr
+8&  $E_7(a_2)$&  1344&&  $D_5$/&  189&  $A_3+A_1$&  60&&&&&  $6^22^2$b&  315\cr
+&&&&  $D_6(a_2)$&  280&&&&&&&  $92^21^3$&  64\cr
+9&  $E_6+A_1$&  448&&  $A_5+A_1$&  70&  $D_4$//&  24&&&  $3^3$&  42&&\cr
+&&&&&&  $2A_2+A_1$&  10&&&&&&\cr
+9&  $D_7(a_1)$&  3240&&  $E_6(a_3)$/&  405&  $A_4$//&  81&  $31^2,21^3$&
+	24&  $42^21$&  216&  $73^21^3$&  280\cr
+&&&&  $A_5'$&  216&  $A_3+A_1$/&  120&&&&&  $6^21^4$&  336\cr
+&&&&  $D_6(a_2)$&  280&&&&&&&  $5^23^2$& 560\cr
+&&&&  $D_5(a_1)+A_1$&  378&&&&&&&&\cr
+10&  $E_8(b_6)$&  2240&&  $A_4+A_2$&  210&  $D_4(a_1)$//&  80&  $2^21,21^3$&
+	20&  $3^221$&  168&  $5^231^3$&  448\cr
+&&&&  $D_5(a_1)+A_1$/&  378&  $2A_2+A_1$/&  20&&&&&&\cr
+&&&&  $A_5+A_1$/&  70&&&&&&&&\cr
+10&  $E_7(a_3)$&  2268&&  $D_5(a_1)$&  420&  $A_3$&  81&  $5,1^5$&  1&  
+	$51^4$&  70&  $732^21^2$&  280\cr
+11&  $E_6(a_1)+A_1$&  4096&&  $D_5(a_1)$/&  420&  $A_3$/&  162&  $41,1^5$&
+	4&  $421^3$&  189&  $5^22^21^2$&  672\cr
+&&&&  $A_4+A_1$&  512&  $A_2+2A_1$&  60&&&&&&\cr
+11&  $A_7$&  1400&&  $A_4+A_2$/&  210&  $A_3+A_1$//&  60&&&&& $54^21^3$& 168\cr
+}%	end \halign
+}$$%	end \vbox
+
+\newpage
+
+$$
+\vbox{
+\setstrut
+\offinterlineskip
+%
+			%tab0 and tabn are both \hfil
+			\tabskip = 0pt plus 1fil
+\halign to \hsize{
+	#\hfil		\tabskip = 0.5 cm&	%Col 1 	= d
+	\hfil #		\tabskip = 0.25cm&	%2		= E8
+	#\hfil		\tabskip = 0.25cm&	%3		= s
+	\strut#		\tabskip = 0.25cm&	%4		= dividing line
+	\hfil #		\tabskip = 0.25cm&	%5		= E7+A1
+	#\hfil		\tabskip = 0.5 cm&	%6		= s	
+	\hfil #		\tabskip = 0.25cm&	%7		= E6+A2
+	#\hfil		\tabskip = 0.5 cm&	%8		= s
+	\hfil #		\tabskip = 0.25cm&	%9		= A24
+	#\hfil		\tabskip = 0.5 cm&	%10		= s
+	\hfil #		\tabskip = 0.25cm&	%11		= A8
+	#\hfil		\tabskip = 0.5 cm&	%12		= s
+	\hfil #		\tabskip = 0.25cm&	%13		= D8
+	#\hfil		\tabskip = 0pt plus 1fil\cr	%14	= s
+%End preamble
+%Row 1 + \hrule begins here
+d&  $E_8$ class&  s& \omit& $E_7+A_1$&  s&  $E_6+A_2$&  s&  $2A_4$&  
+	s&  $A_8$&  s&  $D_8$&  s\cr\noalign{\vskip 0.2cm
+						\hrule height 2pt
+						\vskip 0.2cm}
+%Row 2 begins here
+12&  $D_7(a_2)$&  4200&&  $A_4+A_1$/&  512&  $A_2+2A_1$/&  120&  $32,1^5$&  5&
+	$3^21^3$&  120&  $53^31^2$&  448\cr
+&&&&&&&&  $21^3,21^3$&  16&  $32^3$&  84&  $4^2a$&  140\cr
+12&  $E_6$&  525&&  $(A_5)^{\prime\prime}$&  105&  $2A_2$&  24&&&&&  $91^7$&  35\cr
+12&  $D_6$&  972&&  $D_4+A_1$&  84&&&&&&&  $4^2b$&  140\cr
+&&&&&&&&&&&&  $72^41$&  56\cr
+13&  $D_5+A_2$&  4536&&  $A_3+A_2+A_1$&  210&  $A_3$//&  81&
+	$31^2,1^5$&  6&  $32^21^2$&  162&  $4^23^21^2$&  560\cr
+&&&& $D_4+A_1$/&  84&&&&&&&  $53^22^21$&  168\cr
+13&  $E_6(a_1)$&  2800&&  $(A_5)^{\prime\prime}$/&  105&  $2A_2$/&  48&&&&&  
+	$731^6$&  160\cr
+&&&&  $A_4$&  420&  $A_2+A_1$&  64&&&&&&\cr
+14&  $E_7(a_4)$&  6075&&  $A_4$/&  420&  $A_2+A_1$/&  128&&&&&  $5^21^6$& 280\cr
+&&&&  $A_3+A_2$&  378&&&&&&&  $72^21^5$&  90\cr
+14&  $A_6+A_1$&  2835&&  $A_3+A_2+A_1$/&  210&  $A_2+2A_1$//&  60&  $2^21,1^5$&
+	5&&&&\cr
+15&  $D_6(a_1)$&  5600&&  $D_4(a_1)+A_1$&  405&  $A_2$&  30&&&  $41^5$&  56&
+	$532^4$&  336\cr
+&&&&  $D_4$&  105&&&&&&&&\cr
+15&  $A_6$&  4200&&  $A_3+A_2$/&  378&  $2A_2$//&  24&&&&& $53^21^5$& 280\cr
+16&  $E_8(a_7)$&  4480&&  $D_4(a_1) + A_1$/&  405&  $A_2$/&  60&  $21^3,1^5$&
+	4&  $321^4$&  105&  $4^22^4a$&  315\cr
+&&&&  $D_4(a_1)$&  315&  $A_2+A_1$//&  64&&&  $2^41$&  42&  $532^21^4$&  280\cr
+&&&&&&&&&&&&  $4^231^5$&  252\cr
+&&&&&&&&&&&&  $3^51$&  140\cr
+16&  $D_5+A_1$&  3200&&  $D_4$/&  105&  $3A_1$&  15&&&&&  $4^22^4b$&  315\cr
+&&&&  $A_3+2A_1$&  216&&&&&&&&\cr
+17&  $E_7(a_5)$&  7168&&  $D_4(a_1)$/&  315&  $3A_1$/&  30&&&&&  $4^22^21^4$&
+	448\cr
+&&&&  $(A_3+A_1)'$&  280&&&&&&&  $3^42^2$&  280\cr
+&&&&  $A_3+2A_1$/&  216&&&&&&&&\cr
+18&  $E_6(a_3)+A_1$&  3150&&  $2A_2+A_1$&  70&  $A_2$//&  30&&&  
+	$2^31^3$&  48&&\cr
+18&  $D_6(a_2)$&  4200&&  $(A_3+A_1)'$/&  280&&&&&&&  $3^41^4$&  252\cr
+&&&&&&&&&&&&  $52^41^3$&  70\cr
+19&  $D_5(a_1)+A_2$&  1344&&&&&&&&&&  $3^32^21^3$&  112\cr
+19&  $A_5+A_1$&  2016&&  $2A_2+A_1$/&  70&  $3A_1$//&  15&&&&&&\cr
+20&  $A_4+A_3$&  420&&&&&&  $1^5,1^5$&  1&&&&\cr
+20&  $D_5$&  2100&&  $(A_3+A_1)^{\prime\prime}$&  189&  $2A_1$&  20&&&&&  $71^9$&  35\cr
+21&  $E_6(a_3)$&  5600&&  $(A_3+A_1)^{\prime\prime}$/&  189&  $2A_1$/&  40&&&&&  
+	$531^8$& 120\cr
+&&&&  $2A_2$&  168&&&&&&&&\cr
+&&&&  $A_3$&  210&&&&&&&&\cr
+21&  $D_4+A_2$&  4200&&  $A_2+3A_1$&  105&&&&&  $31^6$&  28& $3^22^41^2$& 224\cr
+22&  $A_4+A_2+A_1$&  2835&&  $A_2+3A_1$/&  105&&&&&  $2^21^5$&  27&&\cr
+22&  $D_5(a_1)+A_1$&  6075&&  $A_3$/&  210&&&&&&&  $4^21^8$&  140\cr
+&&&&  $A_2+2A_1$&  189&&&&&&&&\cr
+22&  $A_5$&  3200&&  $2A_2$/&  168&&&&&&&  $52^21^7$&  64\cr
+23&  $A_4+A_2$&  4536&&  $A_2+2A_1$/&  189&  $2A_1$//&  20&&&&& $3^31^7$& 112\cr
+24&  $A_4+2A_1$&  4200&&&&&&&&&&  $3^22^21^6$&  140\cr
+25&  $D_5(a_1)$&  2800&&  $A_2+A_1$&  120&  $A_1$&  6&&&&&&\cr
+}%	end \halign
+}$$%	end \vbox
+
+\newpage
+
+$$
+\vbox{
+\setstrut
+\offinterlineskip
+%
+			%tab0 and tabn are both \hfil
+			\tabskip = 0pt plus 1fil
+\halign to \hsize{
+	#\hfil		\tabskip = 0.5 cm&	%Col 1 	= d
+	\hfil #		\tabskip = 0.25cm&	%2		= E8
+	#\hfil		\tabskip = 0.25cm&	%3		= s
+	\strut#		\tabskip = 0.25cm&	%4		= dividing line
+	\hfil #		\tabskip = 0.25cm&	%5		= E7+A1
+	#\hfil		\tabskip = 0.5 cm&	%6		= s	
+	\hfil #		\tabskip = 0.25cm&	%7		= E6+A2
+	#\hfil		\tabskip = 0.5 cm&	%8		= s
+	\hfil #		\tabskip = 0.25cm&	%9		= A24
+	#\hfil		\tabskip = 0.5 cm&	%10		= s
+	\hfil #		\tabskip = 0.25cm&	%11		= A8
+	#\hfil		\tabskip = 0.5 cm&	%12		= s
+	\hfil #		\tabskip = 0.25cm&	%13		= D8
+	#\hfil		\tabskip = 0pt plus 1fil\cr	%14	= s
+%End preamble
+%Row 1 + \hrule begins here
+d&  $E_8$ class&  s& \omit& $E_7+A_1$&  s&  $E_6+A_2$&  s&  $2A_4$&  
+	s&  $A_8$&  s&  $D_8$&  s\cr\noalign{\vskip 0.2cm
+						\hrule height 2pt
+						\vskip 0.2cm}
+%Row 2 begins here
+26&  $2A_3$&  840&&&&&&&&&&  $32^41^5$&  28\cr
+26&  $A_4+A_1$&  4096&&  $A_2+A_1$/&  120&  $A_1$/&  12&&&&&&\cr
+28&  $D_4(a_1)+A_2$&  2240&&&&  $A_1$//&  6&&&  $21^7$&  8&  $2^8a$&  35\cr
+28&  $D_4+A_1$&  700&&  $4A_1$&  15&&&&&&&  $2^8b$&  35\cr
+29&  $A_3+A_2+A_1$&  1400&&  $4A_1$/&  15&&&&&&&  $2^61^4$&  56\cr
+30&  $A_4$&  2268&&  $A_2$&  56&&&&&&&  $51^{11}$&  21\cr
+31&  $A_3+A_2$&  3240&&  $A_2$/&  56&&&&&&&  $3^21^{10}$&  48\cr
+&&&&  $(3A_1)'$&  35&&&&&&&&\cr
+32&  $D_4(a_1)+A_1$&  1400&&&&&&&&&&&\cr
+34&  $A_3+2A_1$&  1050&&&&&&&&&&  $2^41^8$&  28\cr
+36&  $2A_2+2A_1$&  175&&&&&&&&  $1^9$&  1&&\cr
+36&  $D_4$&  525&&  $(3A_1)^{\prime\prime}$&  21&  1&  1&&&&&&\cr
+37&  $D_4(a_1)$&  1400&&  $(3A_1)^{\prime\prime}$/&  21&  1/&  2&&&&&&\cr
+&&&&  $2A_1$&  27&&&&&&&&\cr
+38&  $A_3+A_1$&  1344&&  $2A_1$/&  27&&&&&&&&\cr
+39&  $2A_2+A_1$&  448&&&&  1//&  1&&&&&&\cr
+42&  $2A_2$&  700&&&&&&&&&&  $31^{13}$&  7\cr
+43&  $A_2+3A_1$&  400&&&&&&&&&&  $2^21^{12}$&  8\cr
+46&  $A_3$&  567&&  $A_1$&  7&&&&&&&&\cr
+47&  $A_2+2A_1$&  560&&  $A_1$/&  7&&&&&&&&\cr
+52&  $A_2+A_1$&  210&&&&&&&&&&&\cr
+56&  $4A_1$&  50&&&&&&&&&&  $1^{16}$&  1\cr
+63&  $A_2$&  112&&  1&  1&&&&&&&&\cr
+64&  $3A_1$&  84&&  1/&  1&&&&&&&&\cr
+74&  $2A_1$&  35&&&&&&&&&&&\cr
+91&  $A_1$&  8&&&&&&&&&&&\cr
+120&  1&  1&&&&&&&&&&&\cr
+}%	end \halign
+}$$%	end \vbox
+
+\end
+
+% END OF E8
+
+% START OF F4
+\magnification=\magstep1
+
+%Paper: Hales1
+%Template: Table1
+%Title: The Group F4
+
+\nologo
+
+% \setstrut
+% compute \strut as a \vrule of
+%	width = 0
+%	height = 70% of the current value of \baselineskip
+%	depth = the remaining 30% of \baselineskip
+\newdimen\strutskip
+\redefine\strut{\vrule height 0.7\strutskip
+					 depth 0.3\strutskip
+					 width 0.2pt}%
+\define\setstrut{%
+	\strutskip = \baselineskip
+	}
+
+\baselineskip = 14pt
+
+$$
+\vbox{
+\setstrut
+\offinterlineskip
+%
+			%tab0 and tabn are both \hfil
+			\tabskip = 0pt plus 1fil
+\halign to \hsize{
+	#\hfil		\tabskip = 0.5 cm&	%Col 1  = d
+	\hfil #		\tabskip = 0.25cm&	%2		= F4
+	#\hfil		\tabskip = 0.25cm&	%3		= s
+	\strut#		\tabskip = 0.25cm&	%4		= dividing line
+	\hfil #		\tabskip = 0.25cm&	%5		= C4
+	#\hfil		\tabskip = 0.5 cm&	%6		= s
+	\hfil #		\tabskip = 0.25cm&	%7		= D4
+	#\hfil		\tabskip = 0.5 cm&	%8		= s
+	\hfil #		\tabskip = 0.25cm&	%9		= B3+A1
+	#\hfil		\tabskip = 0.5 cm&	%10		= s
+	\hfil #		\tabskip = 0.25cm&	%11		= A2+A2
+	#\hfil		\tabskip = 0pt plus 1fil\cr	%12	= s
+%End preamble
+%Row 1 + \hrule begins here
+d&  $F_4$ class&  s& \omit&  $C_4$&  s&  $D_4$&  s&  $B_3+\tilde A_1$&  
+	s&  $A_2+\tilde A_2$&  s\cr\noalign{\vskip 0.2cm
+						\hrule height 2pt
+						\vskip 0.2cm}
+%Row 2 begins here
+0&  $F_4$&  1&&  8&  1&  71&  1&  7&  1&  $3,\tilde 3$&  1\cr
+1&  $F_4(a_1)$&  4&&  62&  4&  53&  4&  $51^2$&  3&  $21,\tilde 3$&  2\cr
+&&&&&&&&  7/&  1&  $3,\widetilde{21}$& 2\cr
+2&  $F_4(a_2)$&  9&&  $61^2$&  3&  $51^3$&  3&  $3^21$&  3&  
+	$21,\widetilde{21}$&  4\cr
+&&&&  $4^2$&  6&  $4^2$&  3+3&  $51^2$/&  3&  &\cr
+3&  $C_3$&  8&&&&&& $32^2$&  3&  $1^3,\tilde 3$&  1\cr
+3&  $B_3$&  8&&  $42^2$&  8&  $3^21^2$&  8&  $3^21$/&  3&  $3,\tilde 1^3$&  1\cr
+4&  $F_4(a_3)$&  12&&  $421^2$&  6&&& $31^4$&  3&  $21,\tilde 1^3$& 2\cr
+&&&&  $3^22$&  6&&&  $32^2$/&  3&  $1^3,\widetilde{21}$&  2\cr
+5&  $C_3(a_1)$&  16&&  $3^21^2$& 8&&&  $2^21^3$&  2&&\cr
+&&&&&&&&  $31^4$/&  3&&\cr
+6&  $\tilde A_2+A_1$&  6&&&&&&&&  $1^3,\tilde 1^3$&  1\cr
+6&  $B_2$&  9&&  $41^4$&  3&  $31^5$&  3&  $2^21^3$/&  2&&\cr
+&&&&  $2^4$&  6&  $2^4$&  3+3&&&&\cr
+7&  $A_2+\tilde A_1$&  4&&  $2^31^2$&  4&  $2^21^4$&  4&&&&\cr
+9&  $\tilde A_2$&  8&&&&&&  $1^7$&  1&&\cr
+9&  $A_2$&  8&&  $2^21^4$&  4&&&&&&\cr
+10&  $A_1+\tilde A_1$&  9&&&&&&  $1^7$/&  1&&\cr
+13&  $\tilde A_1$&  4&&&&&&&&&\cr
+16&  $A_1$&  2&&  $1^8$& 1&&&&&&\cr
+24&  1&  1&&&&&&&&&\cr
+}%	end \halign
+}$$%	end \vbox
+
+\end
+
+% END OF F4
+
+% START OF G2
+
+\magnification=\magstep1
+
+%Paper: Hales1
+%Template: Table6
+%Title: The Group G2
+
+\nologo
+
+% \setstrut
+% compute \strut as a \vrule of
+%	width = 0
+%	height = 70% of the current value of \baselineskip
+%	depth = the remaining 30% of \baselineskip
+\newdimen\strutskip
+\redefine\strut{\vrule height 0.7\strutskip
+					 depth 0.3\strutskip
+					 width 0.2pt}%
+\define\setstrut{%
+	\strutskip = \baselineskip
+	}
+
+\baselineskip = 14pt
+
+$$
+\vbox{
+\setstrut
+\offinterlineskip
+%
+			%tab0 and tabn are both \hfil
+			\tabskip = 0pt plus 1fil
+\halign to \hsize{
+	#\hfil		\tabskip = 1.0 cm&	%Col 1	= d 
+	\hfil #		\tabskip = 0.25cm&	%2		= G2 Class
+	#\hfil		\tabskip = 0.25cm&	%3		= s
+	\strut#		\tabskip = 0.25cm&  %4		= dividing line
+	\hfil #		\tabskip = 0.25cm&	%5		= A2
+	#\hfil		\tabskip = 1.0 cm&	%6		= s
+	\hfil #		\tabskip = 0.25cm&	%7		= A2xA1
+	#\hfil		\tabskip = 0pt plus 1fil\cr	%8 = s
+%End preamble
+%Row 1 + \hrule begins here
+d&  $G_2$ class&  s& \omit& $A^2$&  s&  $A_1 + \tilde A_1$&  
+			   s\cr\noalign{\vskip 0.2cm
+							\hrule height 2pt
+							\vskip 0.2cm}
+%Row 2 begins here
+0&  $G_2$&  1&&  3&  1&  $2,\tilde 2$&  1\cr
+1&  $G_2(a_1)$&  2&&  21&  2&  $1^2,\tilde 2$&  1\cr
+&&&&&&  $2,\widetilde{1^2}$&  1\cr
+2&  $\tilde A_1$&  2&&&&  $1^2,\widetilde{1^2}$&  1\cr
+3&  $A_1$&  1&&  $1^3$&  1&&\cr
+6&  1&  1&&&&&\cr
+}%	end \halign
+}$$%	end \vbox
+
+\end
+
+% END OF G2
+
+% REFERENCES:
+
+%MSRI Book References File
+%Typist: David Mostardi
+%Begun
+
+\magnification = \magstep1
+\hsize = 5.4 truein
+\vsize = 8.7 truein
+\NoBlackBoxes
+\nologo
+\printoptions
+
+\document
+
+\newpage
+
+\Refs
+
+\ref \key [{\bf A}]
+\by D. Alvis
+\paper Induce/Restrict Matrices for Exceptional Weyl Groups
+\paperinfo preprint
+\endref
+
+\ref \key [{\bf AL}]
+\by D. Alvis and G. Lusztig
+\paper On Springer's Correspondance for Simple Groups of Type 
+	$E_n (n = 6,7,8)$
+\jour Math. Proc. Camb. Phil. Soc.  \vol 92
+\yr 1982  \pages 65--78
+\endref
+
+\ref \key [{\bf BL}]
+\by W.M. Benyon and G. Lusztig
+\paper Some Numerical Results on the Characters of Exceptional Weyl Groups
+\jour Math. Proc. Camb. Phil. Soc.  \vol 84
+\yr 1978  \pages 417--426
+\endref
+
+\ref \key [{\bf BM1}]
+\by W. Borho and R. MacPherson
+\paper Repr\'esentations des Groupes de Weyl et Homologie d'Intersection
+	pour les Vari\'et\'es Nilpotentes
+\jour C.R. Acad. Sc. Paris  \vol 292 s\'er. I
+\yr 27 avril 1981  \pages 707--710
+\endref
+
+\ref \key [{\bf BM2}]
+\by W. Borho and R. MacPherson
+\paper Partial Resolutions of Nilpotent Varieties
+\jour Ast\'eriques  \vol 100
+\endref
+
+\ref \key [{\bf C}]
+\by R. Carter
+\book Finite Groups of Lie Type: Conjugacy Classes and Complex Characters
+\publ John Wiley {\it \&\/} Sons
+\yr 1985
+\endref
+
+\ref \key [{\bf H}]
+\by R. Hotta
+\paper On Springer's Representations
+\jour J. Fac. Sci. Univ. Tokyo  \vol 82
+\yr 1981  \pages 863--876
+\endref
+
+\ref \key [{\bf K}]
+\by T. Kondo
+\paper The Characters of the Weyl Group of Type $F_4$
+\jour J. Fac. Sci. Univ. Tokyo  \vol 11
+\yr 1965  \pages 145--153
+\endref
+
+\ref \key [{\bf L}]
+\by R.P. Langlands
+\book Les D\'ebuts d'une Formule des Traces Stables
+\publ Publ. Math. de l'Univ. de Paris  VII, vol. 13
+\yr 1983
+\endref
+
+\ref \key [{\bf LS}]
+\by G. Lusztig and N. Spaltenstein
+\paper Induced Unipotent Classes
+\jour J. London Math. Soc. II  \vol 19
+\yr 1979  \pages 41--52
+\endref
+
+\ref \key [{\bf Lu}]
+\by G. Lusztig
+\book Characters of Reductive Groups over a Finite Field
+\publ Princeton University Press
+\yr 1984
+\endref
+
+\ref \key [{\bf M1}]
+\by I.G. MacDonald
+\paper Some Irreducible Representations of Weyl Groups
+\jour Bull. London Math. Soc.  \vol 4
+\yr 1972  \pages 148--150
+\endref
+
+\ref \key [{\bf M2}]
+\by I.G. MacDonald
+\book Symmetric Functions and Hall Polynomials
+\publ Clarendon Press
+\publaddr Oxford
+\yr 1979
+\endref
+
+\ref \key [{\bf Sh1}]
+\by T. Shoji
+\paper On the Springer Representations of the Weyl Groups of Classical
+	Algebraic Groups
+\jour Comm. in Alg. VII  \vol 16
+\yr 1979  \pages 1713--1745
+\endref
+
+\ref \key [{\bf Sh2}]
+\by T. Shoji
+\paper On the Springer Representations of Chevalley Groups of Type $F_4$
+\jour Comm. in Alg. VIII  \vol 5
+\yr 1980  \pages 409--440
+\endref
+
+\ref \key [{\bf Sh3}]
+\by T. Shoji
+\paper On the Green Polynomials of Classical Groups
+\jour Inv. Math.  \vol 74
+\yr 1983  \pages 239--267
+\endref
+
+\ref \key [{\bf Sh4}]
+\by T. Shoji
+\paper On the Green polynomials of a Chevalley Groups of Type $F_4$.
+\jour Comm. in Alg. X  \vol 5
+\yr 1982  \pages 505-543
+\endref
+
+\ref \key [{\bf Sl1}]
+\by P. Slodowy
+\paper Four Lectures on Simple Groups and Singularities
+\jour Comm. of the Math. Inst. Rijksuniversiteit Utrecht II
+\yr 1980
+\endref
+
+\ref \key [{\bf Sl2}]
+\by P. Slodowy
+\book Simple Singularities and Simple Algebraic Groups
+\publ Springer Lecture Notes in Math., vol 815
+\yr 1980
+\endref
+
+\ref \key [{\bf Sp}]
+\by N. Spaltenstein
+\book Classes Unipotentes et Sous-Groupes de Borel
+\publ Springer Lecture Notes in Math., vol 946
+\yr 1982
+\endref
+
+\ref \key [{\bf Spr1}]
+\by T.A. Springer
+\paper A Construction of Representations of Weyl Groups
+\jour Inv. Math.  \vol 44
+\yr 1978  \pages 279--293
+\endref
+
+\ref \key [{\bf Spr2}]
+\by T.A. Springer
+\paper Trigonometric Sums, Green Functions of Finite Groups and 
+	Representations of Weyl Groups
+\jour Inv. Math.  \vol 36
+\yr 1976  \pages 173--207
+\endref
+
+\ref \key [{\bf Spr3}]
+\by T.A. Springer
+\paper A Purity Result for Fixed Point Varieties in Flag Manifolds
+\jour J. Fac. Sci. Univ. Tokyo  \vol Sec. 1A, Math. 31
+\yr 1984  \pages 271--282
+\endref
+
+\ref \key [{\bf Sr}]
+\by B. Srinivasan
+\paper Green Polynomials of Finite Classical Groups
+\jour Comm. in Alg. V  \vol 12
+\yr 1977  \pages 1241--1258
+\endref
+
+\enddocument
+\bye
