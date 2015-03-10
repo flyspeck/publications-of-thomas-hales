@@ -1,0 +1,1552 @@
+\def\AA{{\bf A}}
+\def\semi{\hbox{$\Omega\mathchar"3202\mkern -3mu\vrule height 4.5pt
+    depth .1pt width 0.3pt Gal(E/F)$}}
+
+\def\CC{{\bf{C}}}
+\def\C{{\Gamma}}
+\def\Ea{E_\a}
+\def\Eb{E_\b}
+\def\Eo{E_0}
+\def\FF{{\bf{F}}}
+\def\Fbar{\overline{F}}
+\def\Gal{{Gal(\overline{F}/F)}}
+\def\KOI#1#2{\Phi^{(T,\k)}_G(#1,#2)}
+\def\Ni{{N_\infty}}
+\def\Proof{\medbreak\noindent{\bf Proof.\enspace}} 
+\def\QQ{{\bf{Q}}}
+\def\Remark{\medbreak\noindent{\bf Remark. \enspace}}
+\def\RR{{\bf{R}}}
+\def\SOI#1#2{\Phi^{(T,st)}_H(#1,#2)}
+\def\Tbold{{\bf T}}
+\def\TmodG{{(T\backslash G)(F)}}
+\def\ZZ{{\bf{Z}}}
+\def\aXw{{1 + \alpha(X) w}}
+\def\aX{\alpha(X)}
+\def\a{{\alpha}}
+\def\bXw{{1 - \beta (X) w}}
+\def\bX{{\beta (X)}}
+\def\b{{\beta}}
+\def\cX{{\gamma (X)}}
+\def\cog{{\s (g)g^{-1}}}
+\def\coh#1{H^1(F,#1)}
+\def\c{{\gamma}}
+\def\dedef{=^{def}}
+\def\dfrac#1#2{\displaystyle{ {{#1}\over{#2}}  } }
+\def\d{{\delta}}
+\def\endsect{\par\vskip .2 in }
+\def\endtitle{}
+\def\ep{{\epsilon}}
+\def\frac#1#2{{ {#1}\over{#2}}}
+\def\help{{\bf help}}
+\def\he{{\eta_{E/F}}}
+\def\i{{^{-1}}}
+\def\k{{\kappa}}
+\def\l{{\lambda}}
+\def\nq{{\frac{n_\alpha n_\b}{n_\c}}}
+\def\mult{\times}
+\def\proof{\Proof}
+\def\ref {{\bf{ [Ref] }}}
+\def\sa{{\sigma_{\alpha}}}
+\def\sect#1\endsect{\par\medskip{\bf\centerline{#1}}}
+%\def\sox{\sigma_0 \sigma_{-}}
+%\def\so{\sigma_0}
+%\def\sx{\sigma_{-}}
+\def\s{\sigma}
+%\def\tag{}
+\def\th{{\theta}}
+\def\title#1\endtitle{\vfill {\bf\centerline{#1}} \vfill}
+\def\w #1{w(#1)}
+\def\wc{{w(\gamma)}}
+\def\xa{{x(\alpha)}}
+\def\xb{{x(\beta)}}
+\def\xc{{x(\gamma)}}
+\def\y#1{y(#1)}
+\def\z #1{z(#1)}
+\def\zquot{{\frac {z_1''}{z_3''}}}
+
+%\input vanilla.sty
+%\input format.tex
+\magnification = 1300
+\baselineskip = .4in  
+\overfullrule 0pt
+%  Cover Page 
+\vfill
+\title Orbital Integrals on $U(3)$ \endtitle
+\centerline{Thomas C. Hales}
+\vskip 1in
+\centerline{The Institute for Advanced Study}
+\vskip 1in
+\centerline{Version - 25 -- 1 -- 1990}
+\vfill
+\eject
+\pageno=1
+\title Orbital Integrals on $U(3)$ 
+\endtitle
+
+\centerline{Thomas C. Hales}
+\bigskip 
+
+\par\noindent {\bf Section 1}\dotfill   Statement of Theorem
+\par\noindent {\bf Section 2}\dotfill  Transfer Factors
+\par\noindent {\bf Section 3}\dotfill  Shalika Germs
+\par\noindent {\bf Section 4}\dotfill  Descent
+\par\noindent {\bf Section 5}\dotfill  Unipotent Classes
+\par\noindent {\bf Section 6}\dotfill  A Reduction
+\par\noindent {\bf Section 7}\dotfill  Igusa Theory
+\par\noindent {\bf Section 8}\dotfill  A Geometric Construction
+\par\noindent {\bf Section 9}\dotfill  Regular Classes
+\par\noindent {\bf Section 10}\dotfill  Actions of the Galois Group
+\par\noindent {\bf Section 11}\dotfill  Subregular Classes
+\par\noindent {\bf Section 12}\dotfill  Normalization of Measures
+\par\noindent {\bf Section 13}\dotfill  Other Endoscopic Groups
+\par\noindent {\bf References}\hfill
+
+\bigskip 
+\sect 1.	Statement of Theorem
+\endsect
+
+Let $G = U_E(3)$ denote a unitary group in three variables over a
+nonarchimedean local  field $F$ of characteristic zero.  The group  $G$ is quasi-split and
+splits over a quadratic extension $E$ of $F$.  To be precise we
+assume that $G(F) = \{ g \in GL(3,E) | {}^t\overline{g}Jg = J\}$
+where $J = \pmatrix {0&0&1\cr 0&1&0\cr 1&0&0} $.  If $x$ is a
+matrix with coefficients in $E$, $\bar x$ denotes the matrix whose
+coefficients are conjugated by $Gal(E/F)$.
+The group of upper triangular matrices is a
+Borel subgroup of $G$ defined over $F$.
+
+Let $H$ be the group  $U_E(2) \times U_E(1)$ again quasi-split over
+$F$ and split over the quadratic field extension $E$ of $F$.  Fix an
+embedding $\iota: H \to G$ defined over $F$ whose image is the
+subgroup $$\left\{\pmatrix {*&&*\cr &*&\cr *&&*\cr}\right\}.$$
+$\iota$ is well defined up to an automorphism of $H$ over $F$.
+
+Let $H'$ denote the image of $H$ in $G$.  We identify Cartan subgroups
+$T$  in $H$ with Cartan subgroups $\iota(T)$ in $H'$  by this embedding.
+We drop $\iota$ from the notation when the context is clear.
+
+There is an induced map on cohomology:  $\iota_*: \coh H  \to
+H^1(F,G)$.  There is exactly one non-trivial class
+$a$ in $H^1(F,H)$ mapping to the trivial class in $ H^1(F,G)$; we
+let $a'$ denote the image of $a$ in $H^1(F,H')$.  Let
+$e$ (resp. $e'$) denote the trivial class in $\coh H$ (resp. $\coh {H'})$. 
+Let $\Fbar$ denote the
+algebraic closure of $F$.  Fix
+$g_o \in G(\Fbar )$ such that $\sigma(g_o) g_o^{-1}$ for $\sigma \in
+\Gal$ represents $a'$
+in $H^1(F,H')$.  Then $H'' \dedef {H'}^{g_o}$ is a
+reductive group over $F$ in $G$ which is an inner form of $H'$. 
+
+Let $T \subset {H'}$ be a Cartan subgroup over $F$.  Note that in general
+the quotient of the $F$-points $T(F)\backslash G(F)$ does not equal the
+$F$-points of the quotient $(T\backslash G)(F)$.  The defining condition
+of the latter is $\s(Tg)=Tg$ or $\cog \in T(\Fbar)$ for all $\s\in\Gal$.
+If $Tg \in \TmodG$ then the cocycle $\cog$, $\s
+\in \Gal$, gives a well-defined class in $H^1(F,T) $ and hence in $\coh
+{{H'}}$.  Set $\kappa (\cog ) = +1 $ or $-1$  according as $\cog$
+represents the trivial or non-trivial cocycle $e'$ or $a'$.  It is
+a simple matter to see that 
+$\kappa$ distinguishes between Cartan subgroups $T^g$ over $F$
+conjugate by $G(F)$ into $H'$ from those $G(F)$-conjugate to one of
+$H''$.
+
+Fix invariant forms $\omega_G,\ \omega_H,\ \omega_T$ 
+of maximal degree on $G$, $H$, and $T$ for all
+Cartan subgroups $T$ of $H$.  Assume they are defined over $F$.  
+Identifying $T$ with a Cartan subgroup
+in $G$ by $\iota$ we obtain invariant forms $\omega_{T\backslash G}$
+on $T\backslash G$ and $\omega_{T\backslash H}$ on $T\backslash H$
+with associated measures $|\omega_{T\backslash G}|$ and
+$|\omega_{T\backslash H}|$.
+
+\def\KOI#1#2{\Phi^{(T,\kappa)}_G(#1,#2)}
+\def\SOI#1#2{\Phi^{(T,st)}_H(#1,#2)}
+
+Let $\KOI \c f$ for $f \in C_c^\infty(G)$ denote the integral $\int_{\TmodG}
+\kappa(\cog)f(g\i\c g)|\omega_{T\backslash G}|$ for $\c $ regular in
+$T$.  Similarly define $\SOI \c {f^H} = \int_{(T \backslash H)(F)}
+f^H(h\i\c h)|\omega_{T\backslash H}|$ for $\c$ regular in $T$ and
+$f^H \in C_c^\infty(H)$.  $\KOI \c f$ and $\SOI \c {f^H}$ are called
+$\k$-orbital integrals and stable orbital integrals respectively.
+Let $\gamma_1$, $\gamma_2$, $\gamma_3$ denote the eigenvalues of 
+$\gamma$ chosen so that $\gamma_2$ is the projection of $\c$ 
+from $H' = U_E(2)\times U_E(1)$ to $U_E(1)$.  
+We consider the following functions
+$$\eqalign {D_H(\c) &= \frac{|\c_1-\c_3|}{|\c_1\c_3|^{1/2}} \cr 
+\Delta^*_G(\c)&=\Delta(\c)D_H(\c) \cr }$$
+for $\c$ having regular image in $G$ ($G$-regular).
+   Here $\Delta(\c)$, or rather 
+$\Delta(\c,\iota(\c))$, is the transfer factor of Langlands 
+and Shelstad [LS2].  It is defined in the next section.
+
+The purpose of this paper is to sketch a proof of the following theorem
+of Langlands and Shelstad.  [L2], [LS3].
+
+\proclaim {Theorem  (Langlands-Shelstad) 1.1}.  For every $f \in C_c^\infty(G)$ 
+there exists a function $f^H \in C_c^\infty(H)$
+such that for all $T \subseteq H$ and $\c$ with $\iota(\c)$ 
+regular in $G$ 
+$$ D_H(\c)\SOI \c {f^H} = \Delta^*_G(\iota(\c))\KOI {\iota(\c)}
+f$$
+
+The outline of the proof is as follows.  In the next section the
+transfer factor of Langlands and Shelstad is defined, and a few of
+its elementary properties are described.  Section 4 discusses descent
+which reduces the theorem to elements $\c$ in an arbitrarily small
+neighborhood of the identity.  Near the identity element there is
+an expansion, called the Shalika germ expansion, for orbital 
+integrals.  We will see that 
+our $\k$-orbital integrals possess a three term
+expansion.  To prove the theorem we must match each term with a
+corresponding term in the expansion of stable orbital integrals
+on $H$.  Sections 7 and 8 describe a general method, Igusa theory,
+of obtaining formulas for Shalika germs.  Section 9 matches the
+first term of the expansion, the regular germ, with the corresponding
+term on the endoscopic group.  Sections 10 and 11 show that one of
+the remaining two terms of the Shalika germ expansion vanishes, while
+the other matches the remaining term on $H$.  Section 12 relates
+the normalization of measures to the identity of the Hecke
+algebra.  Section 13 shows how to extend the results to other
+endoscopic groups.
+
+\sect 2.        Transfer Factors \endsect
+
+The paper [LS2] of Langlands and Shelstad defines a factor 
+$\Delta(\c) = \Delta(\c,\iota(\c))$ associated to strongly $G$-regular semisimple elements $\c$ in $H'$.  
+This section gives an explicit formula for that factor.  
+The factor $\Delta(\c)$ is defined as a product of 5 factors  $$\Delta_I,\quad \Delta_{II},\quad \Delta_{III_1},\quad \Delta_{III_2},\quad \Delta_{IV}$$
+The product of the factors is canonically defined.  
+The individual factors rely on several choices.   We remark 
+that the factor $\Delta(\c)$ is actually a function $\Delta(\c_H,\c_G)$,
+$\c_H\in H(F)$, $\c_G\in G(F)$ and that $\Delta(\c_H,\c_G)$ itself
+is defined through a factor depending on four elements $(\Delta(\c_H,
+\c_G,\bar\c_H,\bar\c_G)$, $\c_H,\bar\c_H \in H(F)$, $\c_G,\bar\c_G
+\in G(F))$.  A pair $\bar\c_H,\bar\c_G$ is fixed, $\Delta(\bar\c_H,
+\bar\c_G)$ is specified arbitrarily and $\Delta(\c_H,\c_G)$ is defined
+as $$\Delta(\bar\c_H,\bar\c_G)\Delta(\c_H,\c_G;\bar\c_H,\bar\c_G).$$ 
+What we write as $\Delta(\c)$ is the factor $\Delta_0(\c,\iota(\c))$
+of [LS2] for an appropriate choice of $F$-splitting.
+
+
+Let $\a=\c_1\c_2\i$, $\b=\c_2\c_3\i$ denote the positive simple roots of the diagonally embedded Cartan subgroup $\bf T$ in the upper triangular Borel subgroup $\bf B$.  
+At times we will write the root $\a\b$ additively as $\a+\b$.  
+Let $X^*({\bf T})$ denote the character group of $\bf T$.  
+The Galois group of $E/F$ and the Weyl group $\Omega$ act on $X^*({\bf T})$.  
+These actions may be combined to give an action of the semidirect product 
+$\semi$ on $X^*({\bf T})$.  
+We let $\omega$ denote the longest element $\omega=\sigma_\a\sigma_\b\sigma_\a$ in $\Omega$ 
+($\s_\a,\s_\b$ simple reflections), and let $\tau$ denote the nontrivial element in $Gal(E/F)$.  
+Let $\Theta$ denote the subgroup $\{1,\tau,\omega,\tau\omega\}$ of $\semi$.  
+It is isomorphic to $\ZZ_2 \times \ZZ_2$.
+
+If $T$ is a Cartan subgroup of $H'$ over $F$ split by a Galois extension $K$ of $F$ then by conjugating $T$ to $\bf T$ we identify the roots of $T$ with $\a,\b,\a\b,\a\i,\b\i,\a\i\b\i$ and we identify $X^*(T)$ with $X^*(\bf T)$.  
+Transporting the action of $Gal(K/F)$ on $X^*(T)$ to $X^*(\bf T)$ one finds that there is a unique map $$Gal(K/F) \mapsto^{\phi_T}\Theta$$ with image $\C_T$ respecting 
+ the transported action of $Gal(K/F)$ and $\Theta$ on $X^*(\bf T)$.  
+Note also that we have a commutative diagram
+$$\eqalign{Gal(K/F) &\to^{\phi_T}\Theta \subseteq \semi\cr
+\searrow\phantom{F)} &\phantom{\semi}\swarrow\cr
+  &Gal(E/F)}$$
+We must distinguish three possibilities for $T$.  These are the only $T$ that are stably conjugate to a Cartan subgroup of $H'$ or $H''$:
+
+\settabs 
+\+ (iii)\quad&$[K:F]=4$\qquad&$\C_T=\{1,\tau,\omega,\omega\tau\}$
+   \qquad&$Gal(K/F)=\{1,\s_\tau,\s_\omega,\s_{\omega\tau}\}$\cr
+    %sample line
+\+ (i)&$K=E$&$\C_T=\{1,\tau\}$&$Gal(E/F)=\{1,\s_\tau\}$\cr
+\+ (ii)&$K=E$&$\C_T=\{1,\omega\tau\}$&$Gal(E/F)=\{1,\s_{\omega\tau}\}$\cr
+\+ (iii)&$[K:F]=4$&$\C_T=\{1,\tau,\omega,\omega\tau\}$&$Gal(K/F)=\{1,\s_\tau,\s_\omega,\s_{\omega\tau}\}$\cr
+
+In case $(iii)$, $E$ is the field fixed by $\s_\omega$, $E_\tau$ is the field fixed by $\s_\tau$, and $E_{\omega\tau}$ is the field fixed by $\s_{\omega\tau}$.
+
+A certain selection of constants in $\overline{F}^\times$, known as $a$-data and a certain selection of characters on extensions of $F^\times$ known as $\chi$-data, are required for the definition of $\Delta_I$, $\Delta_{II}$, $\Delta_{III_1}$, $\Delta_{III_2}$.    
+The following table indicates choices of $a$-data and $\chi$-data and the corresponding definitions of  factors.  
+The reader may consult [LS2] for details.  We also select the element $h$ of the construction to lie in the derived group of $H'$.  If
+$E''/E'$ is a quadratic extension of fields let $\eta_{E''/E'}:
+E'^\times \to \{\pm 1\}$ denote the character of $E'^\times$ associated
+to this extension by local class field theory.
+
+\vfill\eject\hbox{}\vfill\eject %\input table0.tex
+
+% table0.tex starts here
+%\input format.tex
+\nopagenumbers
+
+\moveleft1.5in\vbox{\offinterlineskip\hrule
+\halign{
+&\vrule#&\strut\quad\hfil#\hfil\quad\cr
+height4pt& \omit && \omit &&\omit && \omit &\cr
+&\omit &&(i)&&(ii)&&(iii)&\cr
+height4pt
+&\omit&&\omit    &&\omit   && \omit &\cr
+\noalign{\hrule}
+height4pt
+&\omit  &&\omit  &&\omit   && \omit &\cr
+&$a$-data&&$a_\a=a_\b=a_{\a+\b} =1$&&$a_\a=-a_\b=a_{\a+\b}\in E^\times$&&$a_\a\in E^\times,\ \bar a_\a =-a_\a$&\cr
+&        &&$a_{-\a}=a_{-\b}=a_{-\a-\b}=-1$&&$\bar a_\a=-a_\a$&&$a_{\a+\b}\in E_\tau,\ \s_\omega(a_{\a+\b}) = 
+-a_{\a+\b}$&\cr
+&        &&\omit&&$a_{-\a}=-a_{-\b}=a_{-\a-\b}=-a_{\a}$&&$a_{-*}=-a_{*},\ *=\a,\b,\a+\b$&\cr
+&\omit   &&\omit&&\omit &&$a_\b =-a_\a$&\cr
+height4pt &\omit &&\omit &&\omit && \omit &\cr
+\noalign{\hrule}
+height4pt &\omit &&\omit &&\omit && \omit &\cr
+&$\chi$-data&&all trivial&&$\chi_\a=\chi_\b$ characters on $E^\times$&&$\chi_\a:K^\times \to \CC^\times$&\cr
+&\omit&&\omit&&extending&&extending&\cr
+&\omit&&\omit&&$\he:F^\times\to\{\pm1\}$&&$\eta_{K/E_{\omega\tau}}:E^\times_{\omega\tau}\to \{\pm1\}$&\cr
+height4pt &\omit&&\omit &&\omit &&\omit &\cr
+\noalign{\hrule}
+height4pt &\omit&&\omit &&\omit &&\omit &\cr
+&$\Delta_I(\c)$&&1&&1&&1&\cr
+height4pt &\omit&&\omit &&\omit &&\omit &\cr
+\noalign{\hrule}
+height4pt &\omit&&\omit &&\omit &&\omit &\cr
+&$\Delta_{II}(\c)$&&1&&$\chi_\a((\c_1\c_2\i-1)(\c_2\c_3\i-1))$&&$\chi_\a\left(
+\displaystyle{\c_1\c_2\i -1 \over a_\a}
+\right)$&\cr
+height4pt &\omit&&\omit &&\omit &&\omit &\cr
+\noalign{\hrule}
+height4pt &\omit&&\omit && \omit &&\omit &\cr
+&$\Delta_{III_1}(\c)$&&1&&1&&1&\cr
+height4pt &\omit&&\omit&&\omit&&\omit&\cr
+\noalign{\hrule}
+height4pt &\omit&&\omit&&\omit&&\omit&\cr
+&$\Delta_{III_2}(\c)$&&$\th_1(\c)$&&$\th_2(\c)$&&$\th_3(\c)$&\cr
+height4pt &\omit&&\omit&&\omit&&\omit&\cr
+\noalign{\hrule}
+height4pt &\omit&&\omit&\omit&\omit&\omit&\omit&\cr
+&$\Delta_{IV}(\c)$&&$D_{G/H}(\c)=|(\c_1\c_2\i-1)(\c_1\i\c_2-1)(\c_2\c_3\i-1)(\c_2\i\c_3-1)|^{1/2}$
+\span\omit\span\omit\span\omit\span\omit&\cr
+height4pt &\omit&&\omit&\omit&\omit&\omit&\omit&\cr
+\noalign{\hrule}
+height4pt &\omit&&\omit&&\omit&&\omit&\cr
+&$\Delta(\c)$&&$\th_1(\c)D_{G/H}(\c)$&&$\th_2(\c)\chi_\a((\c_1\c_2\i-1)(\c_2\c_3\i-1))D_{G/H}(\c)$&&
+$\th_3(\c)\chi_\a\left(\displaystyle {\c_1\c_2\i-1 \over a_\a}\right)D_{G/H}(\c)$&\cr
+height4pt &\omit&&\omit&&\omit&&\omit&\cr
+}\hrule}
+
+% table0.tex ends here
+
+$\th_1$, $\th_2$, $\th_3$ are continuous characters on the $F$-points
+of the Cartan subgroups $T=C_G(\c)$.  We will see in section 4 that
+it is not necessary to compute $\th_i$ to prove theorem 1.1.  since
+for $\c$ sufficiently close to $1$ we have
+$\th_i(\c)=1$.  
+
+Here is a brief description of $\th_i$.  
+To fix the characters $\th_1,\th_2,\th_3$ it is 
+necessary to fix supplementary data, endoscopic data $(H,{\cal H},s,\xi)$
+attached to the endoscopic group $H$.  Let $W_F$ denote the
+Weil group of $F$ and $\hat G$, $\hat H$, $\hat T$ the connected
+complex duals of $G$, $H$, and $T$.  Examples: $\widehat {U(n)} = GL(n,\CC)$, 
+$\widehat{Sp(2n) } = SO(2n+1,\CC)$, $\widehat{SL(n)} = PSL(n,\CC)$;
+the Weil group $W_{E/F}$, at a finite level, is a nonsplit extension
+$$1 \to E^\times \to W_{E/F} \to Gal(E/F) \to 1$$
+${\cal H}$ and ${}^LG$ are defined as semidirect products
+$$1 \to \hat H \to {\cal H} \to W_F \to 1$$
+$$1 \to \hat G \to {}^LG \to W_F \to 1$$
+satisfying certain properties.  The element $s$ is semisimple in $\hat G$.
+Finally, $\xi$ is an embedding $\xi: {\cal H} \to {}^LG$ which
+restricts to an isomorphism of $\hat H$ and $C_{\hat G}(s)^0$.   This 
+data is subject to a list of conditions [L1,LS2] and a notion of
+equivalence.  The $\chi$-data and $\xi$ determine an element
+$a\in H^1(W_F,\hat T)$.  This cohomology group pairs with $T(F)$ as
+in [B], and determines a character $\th_i$ of $T(F)$.
+
+
+It is also necessary to have a limit formula for $\Delta(\c)$.
+Set $\c = \exp(\l X)$, $\l \in F^\times$.  Let $\a(X)$, $\b(X)$
+be the simple roots evaluated on the element $X$ of the Lie algebra.
+
+\proclaim {Lemma 2.1}.  $$\Delta_0(X) \dedef \lim_{\l\to 0} {\Delta(\c)
+\over D_{G/H}(\c)} = \he(\a(X)\b(X))$$
+
+\proof   This is immediate from the definitions of $\Delta(\c)$ in 
+cases (i) and (ii).  In case (iii) 
+$$\Delta_0(X) = \lim \eta_{K/E_{\omega\tau}}
+(\displaystyle {\l\a(X)\over a_\a})$$ with $\displaystyle {\l\a(X)
+\over a_\a}\in E_{\omega\tau}$.  By local class field theory this is
+equal to $$\he\left(\displaystyle { {\l\a(X) \over a_\a} \tau \left(
+{\l\a(X) \over a_\a}\right)}\right) = \he(\a(X)\b(X)).$$
+
+\smallskip
+Another limit of interest is
+
+\proclaim{Lemma 2.2}.  For $\c$ sufficiently small $$\lim_{\c_1\to\c_3}
+{\Delta(\c)\over D_{G/H}(\c)} =1$$
+
+\proof  We may select $\c$ small so that $\th_i(\c)=1$.  
+The lemma is immediate from the definitions in cases (i),(ii).
+For case (iii) and $\c$ sufficiently small the previous lemma
+may be used to approximate $\Delta(\c)$ by $\he(\a(X)\b(X))$, 
+noting that $\a(X)\in E$ when $\c_1=\c_3$ so that $\a(X)\b(X)$ is
+the norm of $\a(X)$.
+
+\bigskip
+Although this paper deals with $F$ a $p$-adic field, [LS3] also
+defines transfer factors in the case of $F$ archimedean.  It is
+enough to consider the case $F=\RR$ by restricting scalars for
+complex groups.   Shelstad in [S] defines a transfer factor
+$\Delta^{(\RR)}(\c_H,\c_G)$ for real groups and proves the
+matching of orbital integrals.  In [LS4] Langlands and Shelstad
+show that there is a constant $c$ such that $$c\Delta^{(\RR)}(\c_H,\c_G)=
+\Delta(\c_H,\c_G)$$ for all $G$-regular $\c_H$ in $H(\RR)$.  The
+matching of orbital integrals for $\Delta(\c_H,\c_G)$ then follows
+by this work of Shelstad.
+
+There is also a global product formula relating the transfer
+factors at all places of a number field $k$ with the ring of
+adeles $\AA$.  We take $H$ and $G$ to be over $k$.  We say that
+$\c_H \in H(k)$ is an adelic image of $\c_G\in G(\AA)$ if for
+every place $v$, $\c_H$ is an image of $\c_{G,v}$ in $G(F_v)$.
+
+Using global Tate-Nakayama duality, Langlands and Shelstad 
+define a global factor $\Delta_\AA(\c_H,\c_G)\in \CC^\times$,
+$\c_H\in H(k)$, $\c_G\in G(\AA)$, which coincides with the
+term $\k(\ep(D))$ of [L1].  It depends only on the stable
+conjugacy class of $\c_H$, and the $G(\AA)$-conjugacy class
+of $\c_G$.   We insert the superscript $(v)$ on local factors.
+They prove the product formula:
+
+  $$\Delta^{(v)}(\c_H,\c_{G,v}) =1 \hbox{ for almost all } v$$
+
+  $$\prod_v\Delta^{(v)}(\c_H,\c_{G,v})=\Delta_\AA(\c_H,\c_G).$$
+
+
+
+\sect 3.	Shalika Germs 
+\endsect
+
+As above let $G$ be a reductive group over a $p$-adic field of
+characteristic zero, and let $T$ be a Cartan subgroup over $F$.
+For every unipotent orbit $O$ in $G(F)$ fix an invariant measure $\mu_O$
+on $O$.
+Shalika [Sh] has shown that there
+exist functions $\Gamma_O^T(\c)$ called germs defined on the regular
+elements of $T(F)$ for all unipotent classes $O$ in $G(F)$ such that
+for every $f \in C_c^\infty(G)$ there is a neighborhood $V_f$ of the
+identity element in $T(F)$ in which the expansion
+$$ \int_{T(F)\backslash G(F)} f(g\i\c g) |\omega_{T\backslash G}|
+= \sum_O
+\mu_O(f)\Gamma_O^T(\c)$$
+holds for $\c$ regular in $V_f$.
+
+Similarly for $\kappa$ and stable orbital integrals there are
+expansions, called Shalika germ expansions,
+ in sufficiently small neighborhoods of the identity:
+$$ \Delta^*_G(\c) \KOI \c f = \sum_O \mu_O(f) \Gamma_O^{(T,\k)}(\c)$$ 
+$$ D_H(\c) \SOI \c {f^H} = \sum_{O_H} \mu_{O_H}(f^H)
+\Gamma_{O_H}^{(T,st)}(\c)$$
+where $O_H$ runs over unipotent classes of $H(F)$.  The most difficult
+part of theorem 1.1 is to obtain an expression for the Shalika germs
+$\C_O^{(T,\k)},\C_{O_H}^{(T,st)}$.
+
+\sect 4. Descent \endsect
+
+In this section $G$ is any connected reductive group over $F$
+and $H$ is an endoscopic group of $G$.  Orbital integrals
+display complicated behavior near the identity element.  More
+generally, near any fixed element $\c_0$, an orbital integral
+behaves as an appropriate chosen orbital integral on the
+centralizer $C_G(\c_0)$.  This section gives a precise form
+to this assertion.  This section also indicates how Langlands
+and Shelstad have used this descent property to reduce the
+proof of theorem 1.1 to statements about Shalika germs near
+the identity element. 
+
+
+We recall of Rogawski's form of
+Harish-Chandra descent 
+[R1].  Let $M$ be a connected
+reductive subgroup over $F$ 
+of $G$ containing a Cartan subgroup of $G$.  Let
+$\c_0 \in M(F)$ be such that $C_G(\c_0) \subseteq M$.  Let
+$T_1,\ldots,T_j$ be the Cartan subgroups over $F$ of $M$ containing
+$\c_0$ up to conjugacy by $M(F)$.
+Let $\Omega$ be a compact open set in $G(F)$.  Then
+there exists [R1 lemma1] a compact open set $K$ of $G(F)$ depending on $M$ and
+$\Omega$ and there exist neighborhoods $V_i$ of $\c_0$ in $T_i(F)$
+such that $\{ g \in G(F)| g\i V_ig \cap \Omega~\ne~\emptyset\} \subseteq M(F)K$
+for $i= 1,\ldots,j$.  Fix invariant forms $\omega_G$, $\omega_M$,
+$\omega_{T_i}$ on $G$, $M$, and $T_i$.  We obtain compatible forms
+$\omega_{T_i\backslash G}$, $\omega_{T_i\backslash M}$, $\omega_G$
+ and $\omega_M$ and corresponding measures 
+ on $T_i(F)\backslash G(F)$, $T_i(F)\backslash M(F)$,
+ $G(F)$, $M(F)$.  Further choosing $\a \in C_c^\infty(G)$ so that
+$$\int_{M(F)} \a(mg) |\omega_M| = 
+\cases {1& $g\in M(F)K$ \cr  0& otherwise,
+\cr}$$ then for $f \in C_c^\infty(\Omega)$ and $\c_i \in V_i \cap
+T_i^o(F)$ ($T_i^o(F)$ = the regular elements of $T_i(F)$) 
+we have $$\int_{T_i(F)\backslash G(F)}
+f(g\i \c_i g )|\omega_{T_i\backslash G}|
+= \int_{T_i(F)\backslash M(F)} \l(f) (m\i \c_i m) 
+|\omega_{T_i\backslash M}|,$$ $i=
+1,\ldots,j$, where $\l : C_c^\infty(\Omega) \to C_c^\infty(M)$ is the linear
+functional $$\l(f)(m) = \int_{G(F)} \a(g)f(g\i m g) |\omega_G|.$$  We note
+that $\l$ depends on $\Omega,M,\c_0,K,\a$.
+
+\bigskip
+The rest of this section mentions a few results of [LS3].  Two points 
+encumber the notation of this section.  First, for an arbitrary reductive
+group $G$, the 
+matching of orbital integrals is not between $G$ and an
+endoscopic group $H$, but between $G$ and $\tilde H$ a 
+central extension of $H$.  The transfer factor is then a function
+$\Delta({\tilde\c}_H,\c_G)$ pairing certain elements of $\tilde H(F)$
+and $G(F)$.  Near the identity element $\Delta({\tilde\c}_H,\c_G)$
+descends to a factor $\Delta_{loc}(\c_H,\c_G)$ on $H$ and $G$.
+The functions $f^{\tilde H}$ in $C_c^\infty(\tilde H)$ are to be
+functions $C_c^\infty(\tilde H,\tilde \l)$ transforming by
+a specified character $\tilde\l$ on the center of $\tilde H(F)$.  Second
+we must use the relative factor $\Delta({\tilde\c}_H,\c_G;{\tilde{\bar
+\c}}_H,\bar\c_G) = \displaystyle {\Delta({\tilde\c}_H,\c_G) \over \displaystyle\Delta({\tilde{\bar
+\c}}_H,\bar\c_G)}$  mentioned at the beginning of section 2.
+
+Start with a (possibly singular) semisimple element $\ep_H$ in $H(F)$
+an {\it image\/} of $\ep_G$ in $G(F)$.  (For the general definition
+of image see [LS3].  For $H=U_E(2)\times U_E(1)$, we say that
+$\ep_H$ is an image of $\ep_G$ if it is conjugate to $\iota(\ep_H)$
+or $\iota(\ep_H)^{g_0}$.)  The elements $\ep_H$ and $\ep_G$ have
+connected centralizers $H_{\ep_H}$ and $G_{\ep_G}$ in $H$ and $G$.
+We assume that $\ep_H$ is such that $H_{\ep_H}$ is quasisplit.
+From the endoscopic data $(H,{\cal H},s,\xi)$ for $G$ they
+define endoscopic data $(H_{\ep_H},{\cal H}_{\ep},s,\xi_\ep)$
+for $G_{\ep_G}$.  Associated to this endoscopic data is a
+transfer factor denoted $\Delta_\ep$.
+
+We say that $(G,H)$ admits {\it local\/} $\Delta$-transfer at
+the identity if for any $f\in C_c^\infty(G)$ there exists $f^H\in
+C_c^\infty(H)$ such that $$\Phi^{st}(\c,f^H) = \sum_{\c_G}\Delta_{loc}
+(\c_H,\c_G)\Phi(\c_G,f)$$ for strongly $G$-regular $\c_H$ near
+1 in $H(F)$.
+
+We say that $(G,H)$ admits $\Delta$-transfer if for any $f\in
+C_c^\infty(G)$ there exists $f^{\tilde H}\in C_c^\infty(\tilde H,
+\tilde \l)$ such that $$\Phi^{st}({\tilde\c}_H,f^{\tilde H}) =
+\sum_{\c_G} \Delta({\tilde\c}_H,\c_G)\Phi(\c_G,f)\eqno(*)$$
+for strongly $G$-regular ${\tilde\c}_H$ in $\tilde H(F)$.
+
+\Remark  The sum runs over conjugacy classes of strongly regular
+elements in $G(F)$.  All but finitely many terms are zero.  This
+sum effectively replaces an integral over $T(F)\backslash G(F)$
+by an integral over $(T\backslash G)(F)$.  
+For $G=U_E(3)$ the right and left hand
+sides of (*) coincide, up to the factor $D_H(\c)$, with the
+right and left hand sides of the equation of theorem 1.1.
+
+The main result of [LS3] is
+\proclaim {Theorem 4.1}.  Suppose that all pairs $(G_{\ep_G},H_{\ep_H})$
+admit local $\Delta_\ep$-transfer at the identity.  Then
+$(G,H)$ admits $\Delta$-transfer.
+
+Several remarks are in order.
+
+1.  Three simplifications occur in local $\Delta$-transfer.
+First $\Delta_{loc}$ is a function on $H(F)$ and $G(F)$ whereas
+$\Delta$ in general is a function on the central extension $\tilde H$ and $G$.
+Second the term $\Delta_{III_2}$, the term of the greatest complexity
+in the definition of the transfer factor, is identically 1 near
+the identity.  Third  the Shalika germ expansion holds near the
+identity.  Thus theorem 4.1 allows us to use
+the simplified transfer factor $\Delta_{loc}$, ignore
+the central extension $\tilde H$ and to match terms of the
+Shalika germ expansion term by term in proving theorem 1.1.
+This is carried out in sections 6-11.
+
+2.  The proof of the theorem 4.1 is elementary once it
+is known that the transfer factors satisfy
+$$\lim_{\displaystyle {{\tilde\c}_H,{\tilde{\bar\c}}_H\to{\tilde\ep}_H} \atop \displaystyle{\c_G,
+\bar\c_G\to\ep_G} } {\Delta(\c_H,\c_G;\bar\c_H,\bar\c_G) \over
+\Delta_\ep({\tilde\c}_H,\c_G;{\tilde{\bar\c}}_H,\c_G)} = 1\eqno(**)$$
+However, the proof of (**) is extremely technical and occupies
+the bulk of [LS3].
+
+3. In the case of $G=U_E(3)$, 
+one can check that if $G_{\ep_G}$ is
+not conjugate to a subgroup of $H'$ or $H''$ and if $\ep_G$ is
+conjugate to an element of $H'(F)$ or $H''(F)$, then $\ep_G$ is
+central in $G$.
+In the  situation where $G_{\ep_G}$ is conjugate to a subgroup of
+$H'$ or $H''$, then $H_{\ep_H}$ is the quasisplit inner form of $G_{\ep_G}$.  Further, $G_{\ep_G}$ if not a Cartan subgroup must have a form
+of $SL(2)$ as  derived group.  This situation, that of SL(2),
+has been extensively studied in [LS1].  There it is shown that
+local $\Delta_\ep$-matching holds for such $(G_{\ep_G},H_{\ep_H})$.
+
+Thus in the case of $G=U_E(3)$ the only remaining case to be
+studied is that of $\ep_G$ central in $G$, so that we may assume
+$G_{\ep_G}=G,H_{\ep_H}=H$.  Thus theorem 4.1 becomes :  suppose
+that $(G,H)$ admits {\it local\/} $\Delta$-transfer at the identity,
+then $(G,H)$ has $\Delta$-transfer.  We can restate theorem 1.1
+as 
+\proclaim {Theorem 4.2}.  $(G,H)$ admits local $\Delta$-transfer
+at the identity.
+
+4.  Note that lemma 2.2 is a special case of (**), for if
+$\ep_G = \iota(\c)$ with $\c=\ep_H$, $\c_1=\c_3$, then  $G_{\ep_G}=H'_{\ep_H}$,
+$\Delta_\ep({\tilde\c}_H,\c_G,{\tilde{\bar\c}}_H,\c_G)$ is seen to be $1$, and by 2.2 (near the identity)
+$$\lim_{\displaystyle {\tilde\c_H,\tilde{\bar\c}_H \to \tilde\ep_H} \atop \displaystyle{\c_G,\bar\c_G \to \ep_G} } \Delta(\c_H,
+\c_G;\bar\c_H,\bar\c_G)=1.$$  Thus (**) holds in this special case.
+
+
+
+\sect 5.   Unipotent Classes	
+\endsect
+It is known that the germ $\C_1^T$ associated to the identity
+element $1 \in G(F)$ is a constant  independent of the elliptic Cartan
+subgroup $T$ and is zero if $T$ is not elliptic [Ho,HC,R2].  
+A simple general argument using this fact shows that $\Gamma_1^{(T,\k)}=0$ when $\k$ is non-trivial.  The argument is given in [LS3].  We turn to the other unipotent classes.
+
+Over $\Fbar$ the group $G(\Fbar)$ has 3 unipotent conjugacy classes
+corresponding to the various partitions of 3 : $3, \ 21, \ 1^3$.
+These are the regular unipotent class, subregular unipotent class,
+and the identity $\{1\}$.  Over $F$, the $\Fbar$ regular class
+remains a single unipotent class but the subregular
+class breaks into 2 classes.  This calculation can be easily
+seen from conjugating the regular and subregular elements to  $$\pmatrix
+{1&1&-\frac {1} 2  \cr &1&-1 \cr &&1 }\hbox { and } \pmatrix {1&0&ux \cr
+&1&0 \cr &&1 } $$ where $u \in F^\times$ and $x \in E^\times$, $\bar x =
+-x$.
+Conjugation by an element $diag(a,b,c) \in U_E(3,F)$
+only changes $u \in F$ by a norm from $E$.
+
+Fix an invariant form $\omega_{sub}$ on the stable subregular class.
+Then set $\mu_{sub}^+ = |\omega_{sub}|_{O_o} + |\omega_{sub}|_{O_1}$
+and $\mu_{sub}^- = |\omega_{sub}|_{O_o} - |\omega_{sub}|_{O_1}$ where
+$O_o$ and $O_1$ are the two subregular classes over $F$.
+We shall write the unipotent measures as $\mu_{reg}$,
+$\mu_{sub}^{\pm}$, and $\mu_1$ for the regular, subregular and identity
+conjugacy classes.  We now write the germ expansion as 
+$$\Delta^*_G(\c)\KOI \c f = \Gamma^{(T,\k)}_{reg}(\c)\mu_{reg}(f) + \sum_\pm
+\Gamma^{(T,\k)}_{sub,\pm}(\c) \mu_{sub}^{\pm}(f).$$  
+Write $O_{reg}$ for the regular class, and  $O_{sub}$ for the union of $O_0$
+and $O_1$ in $G$.
+The derived group of $H$ is isomorphic to $SL(2)$ so that over $\Fbar$
+$H$ has conjugacy classes corresponding to the partitions $2,1^2$ of $2$.
+These are the regular and subregular classes.  The $F$-points of these
+classes will be denoted $O_{reg}^H$ and $O_{sub}^H$.  We also fix
+invariant forms on these classes and associate invariant measures
+$\mu_{reg}^{st}(f^H)$, $\mu_{sub}^{st}(f^H)$, $f^H\in C_c^\infty(H)$.
+  The Shalika germ expansion on $H$ takes the form
+$$D_H\Phi^{(T,st)}=\C_{reg}^{(T,st)}(\c)\mu_{reg}^{st}(f^H) +
+\C_{sub}^{(T,st)}(\c)\mu_{sub}^{st}(f^H)$$
+We will prove theorem 4.2 by showing that with appropriate
+normalizations of measures 
+$$\eqalign{
+\C_{reg}^{(T,\k)}(\c) &= \C_{reg}^{(T,st)}(\c)\cr
+\C_{sub,+}^{(T,\k)}(\c) &= \C_{sub}^{(T,st)}(\c)\cr
+\C_{sub,-}^{(T,\k)}(\c) &= 0}$$
+The functions on the left are associated to $G$.  Those on the right,
+although the notation does not indicate it, are germs  on 
+$H$.
+
+Once these equalities are demonstrated we select $f\in C_c^\infty(G)$
+and select any function $f^H\in C_c^\infty(H)$ such that
+$$\eqalign{
+\mu_{reg}(f) &= \mu_{reg}^{st}(f^H)\cr
+\mu_{sub}^+(f) &= \mu_{sub}^{st}(f^H)}$$
+Then $D_H\SOI \c {f^H} = \Delta_G^*\KOI \c f$ wherever the germ
+expansion is valid.
+
+
+\sect 6.      A	Reduction 
+\endsect
+
+Every $f \in C_c^\infty(G)$ may be written as $f = f_1 + f_2,\quad f_i \in
+C_c^\infty(G)$, where $\mu_{reg}(f_1)=0$, $\mu_{sub}^\pm(f_2)=0$.
+This allows us to break the proof of theorem 4.2 into two cases.  Section 9 proves theorem 4.2 for functions such that $\mu_{sub}^+(f)=\mu_{sub}^-(f)=0$.  This section gives a reduction for functions such that $\mu_{reg}(f)=0$.  
+\proclaim {Lemma 6.1}.
+Suppose that for each $(T,\k)$ associated to $H$
+the germs $\C_{sub,\pm}^{(T,\k)}(\c)$ have the form $$
+\C_{sub,\pm}^{(T,\k)}(\exp (\l^2 X)) = |\l|^2 m^{(T,\k)}_{\pm}(X) $$ where $m^{(T,\k)}_\pm$
+satisfies 
+$$m^{(T,\k)}_{\pm}(X+Z) = m^{(T,\k)}_{\pm}(X)$$ for $|\l| \le 1 $, for $X, \ X+Z $ sufficiently
+small regular elements of $Lie \ H'$ and $Z $ belonging to the Lie
+algebra of the center of $H'(F) \subseteq G(F)$.  Then theorem 4.2 holds for all
+functions $f$ such that $\mu_{reg}(f) =0$.  
+
+\proof  By [HC] there exists a neighborhood $V$ of the identity $0$ in $Lie\ 
+G$ such that for all regular $X \in V \cap Lie\, G$ 
+$$\C_{sub,\pm}^{(T,\k)}(\exp (\l^2X)) =
+|\l|^2 \C_{sub,\pm}^{(T,\k)}(\exp (X))$$ for $|\l| \le 1$, $\l \in F^\times$.  Select
+$z' = \exp(Z) \ne 1$ small enough in $Z(H'(F)) \setminus Z(G(F))$ so that there exists
+a neighborhood $V_1$ of $0$ in $Lie \ G$ satisfying  $V_1, Z+V_1
+\subseteq V$.  Then if $X$ is regular and lies in $V_1 \cap Lie\, H'$
+$$\C_{sub,\pm}^{(T,\k)}(\exp (X)) = m^{(T,\k)}_{\pm}(X) = 
+m^{(T,\k)}_{\pm}(X+Z) =
+\C_{sub,\pm}^{(T,\k)}(z' \exp(X))$$ or replacing $X$ by $\l X$, $\C_{sub,\pm}^{(T,\k)}(\exp
+(\l X)) = \C_{sub,\pm}^{(T,\k)}(z'\exp(\l X))$.   Selecting $f$ as in the
+hypothesis of the lemma, $$\Delta^*_G(\exp(\l X))\KOI {\exp (\l X)} f =
+\Delta^*_G(z' \exp(\l X))\KOI {z'\exp(\l X)} f.$$  Now $C_G(z') = H'$ so by
+the results of section 4,
+we see that this
+integral is equal to a stable orbital integral $D_H (z'\exp(\l
+X)) \SOI {z'\exp(\l X)} {f_1}$ (centered at $z_1$) for some $f_1
+\in C_c^\infty(H)$.  Replacing $f_1$ by $f^H$ defined by
+$f^H(x) = f_1(z_1 x)$ and using the fact that $D_H(z'\exp(\l X))
+= D_H(\exp(\l X))$  we see that $f^H \in C_c^\infty(H)$ and that the
+original $\k$-orbital integral is equal to $D_H(\c)\SOI \c
+{f^H}$.  
+
+\sect 7.	Igusa Theory
+\endsect
+
+The idea behind the explicit construction of germs is the following.  Fix a curve
+$\Gamma(F) = \{\exp(\l X)\} \subseteq T(F)$.  One constructs a
+variety $Y_1$ whose $F$-points form a compactification of $\C(F)
+\times (T\backslash G)(F)$.  The orbital integral $\Delta^*_G(\c)
+\KOI \c f$ is
+replaced by an integral over the image of $\{ g\i exp(\l X)g | g \in
+(T\backslash G)(F)\}$ in the variety $Y_1$.  For $\l \ne 0$ this
+image is the set of $F$-points of a smooth hypersurface $C_\l$ of
+$Y_1$.  For $\l = 0$, $C_0$ becomes a divisor
+with normal crossings.  As $\l$ tends to zero $C_\l$ tends to $C_0$
+and the integral over $C_\l$ tends to an integral over $C_0$. In
+fact one obtains an expansion for $\Delta^*_G(\c)\KOI \c f$ as a sum of integrals
+taken over the irreducible components of $C_0$ and their
+intersections.  One then observes that this expansion coincides
+with the Shalika germ expansion, thus obtaining an explicit integral
+formula for the Shalika germs.  From this, the property of section 5
+is easily verified.
+
+In the next section we shall give local coordinate charts for a
+variety $Y_1$ compactifying $\C \times T\backslash G$.  It is
+verified in [L2] that this variety satisfies all of the technical
+conditions of the theory needed to guarantee that the orbital
+integral $\Delta^*_G(\c)\KOI \c f$ has an expansion in terms of integrals over the irreducible
+components of $C_0$ and their intersections.  We shall take this
+fact for granted.
+
+To simplify matters we make one minor modification of the theorem of
+Igusa giving  an expansion as set forth in [L2].  There it is required that any
+irreducible component of $C_0$ with an $F$-rational point be defined
+over $F$.  We shall   study the situation in which there
+are two divisors whose intersection is defined over $F$ which are
+not themselves defined over $F$.
+
+Let $F$ be a p-adic field of characteristic zero.
+Let $K/F$ be a degree $r$ cyclic extension with generator $\s$ of
+the Galois group.  Let $NK$ denote the norms of elements of $K$ in
+$F$.  Let $\eta_{K/F}:F^\times/NK^\times \to \CC^\times$ be a 
+generator of the characters 
+on this quotient.  
+Let $|\ |$ be the absolute value on $F$
+normalized by the Haar measure in the usual manner or a compatible
+extension to $K$.  Let $$U = \{(\mu_1,\ldots,\mu_n)|\quad |\mu_i| \le
+\epsilon_i,  \quad\mu = \mu_1 = \s(\mu_2) = \cdots = \s^{r-1}(\mu_r) \} \subseteq K^r \times F^{n-r}$$ where $
+\epsilon_1 = \cdots = \epsilon_r$.  
+Let $\lambda = \a_0\prod_1^n \mu_i^{a_i}$ where
+$1=a_1 = \cdots = a_r$, $\a_0,\ \l \in F^\times$ and assume $|\a_0|$ and
+$\eta_{K/F}(\a_0)$ are constant on
+$U$.  Let $\omega = \prod_1^n
+\mu_i^{b_i} \frac{d\mu_1}{\mu_1} \wedge \ldots \wedge
+\frac{d\mu_n}{\mu_n}$ where $b = b_1 = \cdots = b_r$.  
+Suppose that $b_i \ne
+a_ib$ for $i > r$.  Let $f = \k_{r+1}(\mu_{r+1})\cdots \k_n(\mu_n)$ for
+some unitary characters $\k_{r+1},\ldots,\k_n$ of $F^{\times}$. 
+Then $f$ is a
+function on $U$.  Write $N\mu = \mu_1\ldots\mu_r$. 
+\proclaim {Lemma 7.1}.
+In the above setting, $F(\l)=$
+$$ \int_{U,\l = \a_0\mu_1\cdots\mu_n} f |\frac{\omega}{d\l}| =
+\frac 1 r \sum_{j=0}^{r-1}|\l|^{b-1}\delta_{K/F}\eta^j_{K/F}(\l)F(j) + \sum_{\b
+\ne b,\theta,k} \theta(\l)|\l|^{\b-1}m(\l)^kF_k(\theta,\b,f)$$
+for $\l$ sufficiently small where 
+$$\eqalign {\delta_{K/F} &= 
+\int_{N\mu = 1} \frac{d\s(\mu)d\s^2(\mu)\cdots d\s^{r-1}(\mu)}
+{|\s(\mu)\s^2(\mu)\cdots \s^{r-1}(\mu)|}\cr
+F(j) &= \int_{U_0} \frac{|\omega_0|f}{\eta^j_{K/F}(\a_0\mu^{a_{r+1}}_{r+1}\cdots \mu_n^{a_n}) } \cr
+U_0 &= \{(\mu_1,\ldots,\mu_n) \in U | \mu_1 = \cdots \mu_r = 0\}
+\cr
+\omega_0 &= \frac{\omega}{ \frac{d\mu_1\cdots d\mu_n}{\mu_1
+\cdots \mu_n }|\l|^{b} } }$$  and where $F_r(\theta,\b,f)$ are
+appropriate constants.
+
+
+\proof  Denote the expansion on the right hand side in the lemma by $G(\l)$.  By the theory
+of Mellin transforms it is enough to check that $$F_s = \int_{|\l|\le
+\epsilon} F(\l)\theta\i(\l)|\l|^s d\l \quad 
+\hbox{ and } \quad G_s = \int_{|\l|\le
+\epsilon} G(\l)\theta\i(\l)|\l|^s d\l$$ have the same principal
+parts at every complex $s$ for every unitary character $\theta$ of
+$F^{\times}$.  We shall only treat the terms
+$|\l|^{b-1}\eta^j_{K/F}(\l)$ as the form of the other terms is well
+understood [L2,I].  The terms $|\lambda|^{b-1}\eta_{K/F}^j(\lambda)$ are
+determined by the principal parts of $F_s$ and $G_s$ at $s=-b$.  Thus 
+we shall only consider the principal parts
+at $s = -b$.  Write $x \sim y$ if $x$ and $y$ are meromorphic
+functions of $s$ having the same principal part at $s=-b$. 
+It is easy to see that if $\theta(N\mu) \ne 1$ then both
+Mellin transforms are analytic at $s=-b$.  So we take $\theta =
+\eta_{K/F}^j$ for some $j$.  We are led to compare the two Mellin
+transforms: 
+\def\lamep{\int_{|\l|\le\epsilon}}
+\def\la{\int_{|\l|\le\epsilon,U}}
+$$\eqalign{F_s &\sim \la |\l|^s\eta_{K/F}^{-j}(\l)f|\omega| \cr
+&= 
+\la |\frac{(N\mu)^{s+b} d\mu_1
+\ldots d\mu_r }{N\mu}| \ \times \cr &\cdot\int |\a_0|^s
+\eta_{K/F}^{-j}(\a_0)\eta_{K/F}^{-ja_{r+1}}\k_{r+1}(\mu_{r+1})
+|\mu_{r+1}|^{a_{r+1}s+b_{r+1}}
+\frac{d\mu_{r+1}}{|\mu_{r+1}|} \cdots 
+\eta_{K/F}^{-ja_n}\k_n(\mu_n)|\mu_n|^{a_ns+b_n} \frac {d\mu_n}{|\mu_n|}}$$ 
+(which has
+the same principal part without the constraint $|\l|\le\epsilon$)
+and
+
+$$G_s \sim \frac 1 r  \lamep |\l|^s\eta^{-j}(\l)|\l|^b
+\frac{d\l}{|\l|}\eta^j(\l)\delta_{K/F}F(j) = \frac 1 r\lamep
+|\l|^{s+b-1}d\l \delta_{K/F}F(j).$$  (The other terms of this Mellin
+trasform are $\sim 0$).
+
+Since $a_{r+i}s+b_{r+i} \ne 0$ at $s=-b$ the terms $\int
+\eta_{K/F}^{-ja_{r+i}}\k_{r+i}(\mu_{r+i})|\mu_{r+i}|^{a_{r+i}s+b_{r+i}}
+\frac{d\mu_{r+i}}{|\mu_{r+i}|}$ are regular at $s=-b$ and equal the
+principal-value integral obtained by substituting $-b$ for $s$
+($i>0$).  In
+fact these analytic continuations serve as a definition of these
+principal-value integrals.
+The product of these integrals with $|\a_0|^s\eta_{K/F}^{-j}(\a_0)$ at
+$s=-b$ is $F(j) = \int_{U_0} \eta^{-j}(\l)f|\omega_0|$.
+Thus  $F_s \sim  F(j)\int_{|N\mu|\le\epsilon} |N\mu|^{s+b-1} d\mu_1
+\ldots d\mu_r $.   Write $\l_0 = \mu_1\ldots\mu_r$ and substitute
+for $\mu_1$ to obtain $$F(j)\int_{|\l_0|\le\epsilon} |N\mu|^{s+b-1} d\mu_1 \ldots d\mu_n
+\sim F(j)\delta_{K/F}\int_{\l_0\in NK,\ |\l_0|\le\epsilon}|\l_0|^{s+b-1} d\l_0
+$$   Now $$\int_{\l \in NK,|\l|\le\ep}|\l|^{s+b-1}d\l 
+= \frac{1}{r} \int_{|\l|\le\ep} \sum_0^{r-1}\eta_{K/F}^j(\l)|\l|^{s+b-1}{d\l} 
+\sim \frac{1}{r}
+\lamep |\l|^{s+b-1} {d\l}.$$  
+Making this substitution we obtain $F_s \sim G_s$.
+
+
+
+
+
+
+
+
+\sect 8.	Langlands' variety of stars
+\endsect
+	Langlands constructs the variety $Y_1$ and gives explicit coordinate
+	patches and coordinates on the variety.  We change notation from
+	that used in [L2].  The roots  $\a$ and $\b$ of this paper are
+         denoted
+	$\a '$
+	and $\a ''$ in [L2].  We introduce coordinates $\l$, $\xa$, $
+	\xb$, $\xc$, $\z \a$, $\z \b$, $\w \c$ which are related to the
+	coordinates of [L2] by $\xa = u$, $\xb = v$, $\xc = w$, $\z
+	\a = x/b(\l)$, $\z \b = y/c(\l)$, $\w \c = \frac U {b(\l)c(\l)V} =
+	\frac {d(\l)-Vc(\l)}{b(\l)c(\l)V}$.  Here $b = \frac
+	{1-\a\i(s(\l))}{\l}, c = \frac{1-\b\i(s(\l))}{\l}, d =
+	\frac{1-\a\i\b\i(s(\l))}{\l}$.  We set $b(0) = \aX$, $c(0) =
+	\bX$, $d(0) = \cX$ so that $\aX + \bX = \cX$.  These are the positive roots of the Lie algebra evaluated on the tangent direction $X$.  In the following sections $\c$ always denotes the Lie algebra root $\a+\b$.  The coordinate $V$
+	is defined by $V= \dfrac{-z_1''}{z_3''}$, where $\displaystyle{-\zquot}$ is a
+	rational function to be defined and discussed in section 8.  Our definitions then imply
+	that $$ 1 + \zquot = \frac {-\aX} \bX  \frac {(1-\bX \w \c)}{(1-\aX \w
+	\c )}\eqno({8.1})$$
+	whenever $\l = 0$ and both sides are defined.
+
+	With this notation the coordinate relations (4.1)-(4.3) of [L2]
+	become
+	$$\l = \z \a \xa\eqno({8.2})$$
+	$$\l = \z \b \xb$$
+	$$\l \w \c = \xc \z \a \z \b$$
+
+	Having made this conversion to new notation, the reader is free to
+	forget the previous notation.  Only (7.1) and (7.2) need be
+	retained.  We will often abbreviate $\w \c$ as $w$.
+
+	We note that when $\xc \neq 0$ , then $\z \a = \frac {\xb \w
+	\c }{\xc}$, $\z \b = \frac {\xa \w \c}{\xc}$, and $\l =
+	\frac {\xa \xb \w \c}{\xc}$.  
+Then $\xc \neq 0$, $\l = 0$ defines three  irreducible divisors $\Ea$, $\Eb$, and
+$\Eo$ with normal crossings defined respectively by $\xa =0$, $\xb =
+0$, $\w \c = 0$.   In other words $C_0$ breaks into three
+irreducible components on this patch.  These divisors are called $E_1''$, $E_1'$, and $E_4$ in
+[L2].   
+
+Actually the construction of [L2] leads to nine divisors not just
+these three.   Fortunately, none of the other divisors contribute to the
+Shalika germ expansion of a $\kappa$-orbital integral.   Two of
+those 
+divisors $E_3$ and $E_5$ have support lying over the identity element.  We
+have shown above that the Shalika germ associated to the identity element
+is zero.  Hence these divisors do not contribute to the germ expansion.
+Three other divisors $E_2^1$, $E_2^2$, $E_2^3$ have support lying over the
+subregular unipotent classes.   It is shown in [L2] however that their
+contribution to the asymptotic expansion is by terms of the form
+$\theta(\l)|\l|^2$, $\th$ a character of finite order of $F^{\mult}$.  Since there are no such terms in our expansion (see proof of lemma 5), they
+too make no contribution.  Finally there is a divisor $E_6$.  It is not actually a 
+divisor on $Y_1$ but on the variety obtained by blowing up along the
+intersection of $\Ea$ and $\Eb$.   Lemma 7.1 allows us to 
+work directly with $Y_1$ -not the blown up variety.  Thus the divisor
+$E_6$ is not present in our construction.
+
+We will  confine our remarks to a single patch.  The complement of
+the union of patches isomorphic to this one lies in a union of
+irreducible divisors excluded in the previous paragraph, and we
+leave it as an exercise to see that the constructions carried out on
+this patch extend to the isomorphic patches.
+
+\sect 9. Regular Classes 
+\endsect
+
+This section gives an explicit formula for the
+function $\kappa(\cog)$ in terms of the transfer factor and the
+coordinates on $Y_1$.  This formula is then used to show that theorem 4.2 holds for functions satisfying $\mu_{sub}^+(f)=\mu_{sub}^-(f)=0$.
+
+Let $X$ be the tangent direction of the curve $\Gamma$ at the identity.
+Let $\bf{T}$ be the diagonal subgroup of $G$.  Let $\pi_2 : {H'}
+\to U_E(1)$
+be the projection onto the (2,2) matrix coefficient.  Let $\he$ be the
+nontrivial character on $\coh{U_E(1)}$ or the nontrivial character of 
+$F^{\mult}$ 
+modulo the norms of $E^{\mult}$ - depending on the context.
+As in section 2 let 
+$$\Delta_0(X) = \lim_{\l\to 0} \left[ {{\Delta(\exp(\l X))} \over
+{D_{G/H}(\exp(\l X))}}\right] $$
+Let $\Delta_{E_0} = \kappa(\cog)|_{\Eo}$.  We will see that this limit
+exists on an open set of $\Eo$ and depends on $E_0$ only through
+the tangent
+direction $X$.  Define $w' \dedef w/(1+\aX w)$, $w$ as in section 7.
+
+\proclaim {Proposition \ 9.1}. 
+$$\Delta_0(X)\Delta_{E_0}(X) = 1$$
+and
+$$\eqalign{
+m_\k=^{def}\Delta_0(X)\k(\cog)|_{\l=0}
+ &= \Delta_0(X)\he(\pi_2(\cog))|_{\l=0} \cr
+ &= \he((1+\aX w)(1- \bX w)) 
+ \cr
+ &= \he(\frac {1 - \cX w'}{- w'^2})}$$
+
+The first part of proposition 9.1 implies the matching of regular 
+germs.  The equation states that the transfer factor $(\Delta_0(X))$
+times the regular germ of a $\k$-orbital integral $(\Delta_{E_0}(X))$
+equals the regular germ of a stable orbital integral $(1)$.
+
+The identification of $\Delta_{E_0}$ as the regular germ occurs as 
+follows.  The divisor $E_0$ is the only divisor which contributes
+to the regular germ.  The integral over $E_0$ is equal to $\Delta_{E_0}(X)$
+times the integral of $f$ over $O_{reg}$ : $\mu_{reg}(f)$.
+
+Similarly one considers a variety $Y_1^H$ which gives the germs of $H$.  
+There is one divisor which contributes to the regular germ.  The 
+analysis proceeds as in the case of $G$ except that with stable
+orbital integrals the term $\k(\cog)|_{E_0}$ does not arise.
+The regular germ for a stable orbital integral is found to be $1$
+(using the normalizations of measures arising in Igusa theory).
+
+
+The action of $\Gal$ on $Y_1$ depends on $T$.  The action is obtained by twisting an action independent of $T$ by a biregular action of $\C_T\subseteq \Theta = \{1,\omega,\tau,\omega\tau\}$ on $Y_1$.  
+We note here for reference the action of $\Theta$  on the
+coordinates $w$ and $w'$ at $F$-points of our variety.  These
+relations will be proved in section 10. 
+
+
+\bigskip
+
+%\input table1.tex
+% table 1 starts here
+
+\moveright 1.5in\vbox{\offinterlineskip\hrule
+\halign{
+&\vrule#&\strut\quad\hfil#\hfil\quad\cr
+height2pt& \omit && \omit &&\omit && \omit &\cr
+&$x$&&$\tau(x)$&&$\tau\omega(x)$&&$\omega(x)$&\cr
+height2pt
+&\omit&&\omit    &&\omit   && \omit &\cr
+\noalign{\hrule}
+height2pt
+&\omit  &&\omit  &&\omit   && \omit &\cr
+&$w'$&&$\dfrac{-w'}{1-\c(X)w'}$&&${-w'}$&&$\dfrac{w'}{1-\c(X)w'}$&\cr
+&       &&       &&        &&        &\cr
+&$\a(X)$&&$\b(X)$&&$-\a(X)$&&$-\b(X)$&\cr
+&$\b(X)$&&$\a(X)$&&$-\b(X)$&&$-\a(X)$&\cr
+&$\c(X)$&&$\c(X)$&&$-\c(X)$&&$-\c(X)$&\cr
+%&8000 B.C.&&5,000,000&\cr
+height2pt
+&\omit  &&\omit  && \omit  && \omit & \cr}
+\hrule}
+
+\bigskip
+\moveright 1.3in\vbox{\offinterlineskip\hrule
+\halign{
+&\vrule#&\strut\quad\hfil#\hfil\quad\cr
+height2pt&\omit &&\omit &&\omit &&\omit & \cr
+&$x$&&$\tau(x)$&&$\tau\omega(x)$&&$\omega(x)$&\cr
+height2pt
+&\omit &&\omit &&\omit &&\omit &\cr
+\noalign{\hrule}
+&\omit&&\omit &&\omit &&\omit &\cr
+&$w$&&$-w$&&$-w$&&$w$&\cr
+&$1+\a(X)w$&&$1-\b(X)w$&&$1+\a(X)w$&&$1-\b(X)w$&\cr
+&$1-\b(X)w$&&$1+\a(X)w$&&$1-\b(X)w$&&$1+\a(X)w$&\cr
+height2pt
+&\omit &&\omit && \omit &&\omit &\cr}
+\hrule}
+
+% table 1 ends here
+
+\vskip .2 in
+We also note that $\aXw = 1/(1-\aX w')$ and $\bXw = \dfrac{1-\cX
+w'}{1-\aX w'}$.
+
+\proof  Let $\bf{B}$ be the group of upper triangular matrices.
+Select $h $ in  the derived group of $H'$ such that $T^h = \bf{T}$.  
+We may assume that $h\in H'_{der}(K)$ where $K$ is the field splitting
+$T$ in section 2.
+From the definition
+of $\kappa$ in section 1 we see that $\kappa(\cog)$ must equal $ \he(\pi_2(\cog))$.  Writing
+$g$ in a certain open set of $G$ as $g = htn\nu$ with $t \in T$, $n \in
+\bf{N}$ and $\nu$ in the unipotent radical $\bf{N}_{\infty}$ of the Borel subgroup
+opposite $\bf{B}$ through $\bf{T}$ we find that $\cog$ defines
+the same cohomology class in $H^1(F,T)$ as $\s (h) \s (n) \s (\nu) \nu\i n\i h\i$.
+Set $\omega_\s = h\i \s(h)$.  It is an element of the normalizer of
+$\bf{T}$ in $H'_{der}$ depending on $\s \in Gal(K/F)$.  The image of $\omega_\s$ in $\Omega$ coincides with the element in $\{1,\omega\}\subseteq \Omega$ obtained by the map $$Gal(K/F) \to \C_T\subseteq\semi\to\Omega$$  The final map is projection on the first factor.  The (2,2) matrix
+element is not changed by conjugating by $\s(h)$; thus $\kappa(\cog)
+= \he(\pi_2(t_\s))$ where $t_\s = \s (n) \s (\nu) \nu \i n \i \omega_\s
+\in T^{\s(h)} = \bf{T}$.  By its form, $t_\s$ is then uniquely
+determined by the equation ${\bf{N}}_\infty {\bf{N}} t_\s \ni n\i \omega_\s$.  For those
+elements $\s\  (\in \{1,\s_\tau\}\subseteq Gal(K/F))$ mapping by $\omega_\s$ to the trivial element of the Weyl group of $H'$
+it follows that $t_\s = \omega_\s$ lies in the derived group of $H'$ and
+so $\pi_2(t_\sigma) = 1$.   If, on
+the other hand, $\s\  (\in \{\s_\omega,\s_{\tau\omega}\}\subseteq
+Gal(K/F))$ maps to a non-trivial element in the Weyl group of $H'$ 
+then writing 
+
+$$ n\i = {\pmatrix {1&{-n_\a}&{-n_\c + n_\a n_\b}\cr
+			     0&1&{-n_\b}\cr
+			     0&0&1\cr  }}    $$
+
+\noindent we see that $t_\s$ is equal to $diag(x(-n_\c +n_\a
+n_\b),\dfrac{-n_\c}{-n_\c + n_\a n_\b}, -\dfrac{1}{x n_\c})$ where
+$x$ is a constant 	depending on $\omega_\s$.  So 
+$\pi(t_\s)\i = (1-\dfrac{n_\a n_\b}{n_\c})$.  
+
+\def\Xa{{X_{-\a}}}
+\def\Xb{{X_{-\b}}}
+Next we relate $\displaystyle\nq$ to the coordinate $w(\c)$ on
+the variety.  To do so we recall the definition of $\displaystyle
+\zquot$.
+For every element of the Weyl group $\omega$ define $n_\omega \in
+\Ni$ by $(\c^g,B_+^{\hat\omega g}) = (b,{\bf B}^{n_\omega})^{\nu'}$ where
+$\omega = \hat\omega^h$, $B_+^h = \bf {B}$,  and $g = htn\nu$ in a Zariski open set of $G$.  
+Setting $\omega = 1$ we find $\nu = \nu'$.  Further
+$B_+^{\hat\omega g} = {\bf B}^{\omega n \nu}$ so that $n_\omega n\i \in
+{\bf B}\omega$.  Define elements $z_i',z_i''$ by 
+
+$$n_\omega =
+\cases {\exp(z_1'\Xa)&$\omega = \s_\a$\cr
+       \exp(z_1''\Xb) n_{\s_\a}& $\omega = \s_\b \s_\a $\cr
+       \exp(z_2'\Xa) n_{\s_\b \s_\a}& $\omega = \s_\a \s_\b \s_\a $\cr
+       \cdots & $\cdots $\cr
+       \exp(z_3''\Xb) n_{\omega'}& $\omega = \s_\b \omega'; \ \omega'
+       = \s_\a \s_\b \s_\a \s_\b \s_\a$\cr }
+$$
+Here $$\exp(X_{-\a}) = \pmatrix {1&&\cr 1&1& \cr &&1 \cr} \hbox{ and }
+\exp(X_{-\b}) = \pmatrix {1&&\cr &1& \cr &1&1 \cr}$$
+
+The condition $n_\omega = 1$ for $\omega = (\s_\a \s_\b)^3$ by a
+$3\times3$ matrix calculation implies
+$z'_1 + z'_2 + z'_3 =0$, $z''_1 +z''_2 +z''_3 = 0$, $z'_1z_3'' =
+z_2'z_2''$.  The condition $n_\omega n\i \in \bf {B}_+ \omega$ for
+$\omega = \s_\a, \s_\b \s_\a, \s_\b$ implies by a $3\times3$ matrix
+calculation $z'_1 = 1/n_\a$, $z''_1
+= n_\a/n_\c$, $z''_3 = -1/n_\b$ so that by (8.1) $$1-\frac{n_\a n_\b}{n_\c} =
+ 1 + \frac{z''_1}{z''_3} = \frac{-\aX}{\bX}\frac{\bXw}{\aXw}$$  
+
+Thus we see that the cocycle $\pi_2(t_\s)$ $(\l=0)$ is given by
+$$1,\s_\tau \to 1, \quad\quad \s_\omega,\s_{\tau\omega} \to
+\frac {-\b(X)(1+\a(X)w)} {\a(X)(1-\b(X)w)}$$
+in $H^1(F,U_E(1))$.   Set $t= (\frac {\b(X)} {1-\b(X)w}) \in
+U_E(1,K)$.  Then $\pi_2(t_\s)\s(t)t\i$ is given by
+$$1,\s_\omega \to 1, \quad\quad \s_\tau,\s_{\tau\omega}\to
+\frac {(1+\a(X)w)(1-\b(X)w)} {\a(X)\b(X)} \in F^\times$$
+Thus $\he(\pi_2(t_\s))$ is equal to $$\he(\frac {(1+\a(X)w)
+(1-\b(X)w)} {\a(X)\b(X)})$$
+Inserting the norm $-w^2$ we find the equivalent expressions
+$$\he(\frac {(1+\a(X)w)(1-\b(X)w)} {\a(X)\b(X)(-w^2)}) = \he(\frac
+{1-\c(X)w} {-\a(X)\b(X)w'^2})$$
+The divisor $E_0$ is defined by $w=0$.  Thus $$\Delta_{E_0}(X) =
+\he(\frac {(1+\a(X)w)(1-\b(X)w)} {\a(X)\b(X)})|_{w=0} =
+\he(\frac 1 {\a(X)\b(X)})$$  Also $\Delta_0(X) = \he(\a(X)\b(X))$ so that
+$\Delta_{E_0}(X)\Delta_0(X) = 1$.  This completes the proof.
+
+
+
+\sect 10.  Actions of the  Galois Group
+\endsect
+
+We reproduce here for reference the conditions in [L2] on the
+coordinates for a point in $Y_1$ to be in $Y_1(F)$.  They are
+determined by the requirement that the embedding $\C_0 \times
+T\backslash G \to Y_1$ be defined over $F$.  Once the action on
+coordinates is determined, the condition for rationality will
+be $\s_\rho(x) = \rho(x)$ for $\rho \in \C_T$ and $x$ a coordinate
+of $Y_1$.  To calculate these
+conditions for rationality it is enough to do so for the generators
+$\tau$ and
+$\omega$.
+
+Begin with $\s_\tau$, $\C_T = \{1,\s_t\}$.
+  The condition for rationality of
+$(b,B^{n_\omega})^\nu$ is determined by $b = J{}^t\overline{(b)}\i J$ and
+$n_\omega\nu = J{}^t\overline{(n_\omega\nu)}\i J$, where $\bar{(x)}$ denotes
+conjugation coefficient-wise.  In other words $\s_\tau$ twists
+the ordinary conjugation by the algebraic action $\tau : \ b \to
+J{}^tb\i J$, $\tau: n_\omega \nu \to J{}^t(n_\omega\nu)\i J$.
+Writing $b = t \pmatrix {1 & \xa &\xc
+\cr
+&1&\xb \cr
+&&1 \cr}$, we see that $\tau(\xa) = -\xb$, $\tau(\xc) =
+-\xc(1-\frac{\xa\xb}{\xc})$.  On $E_\a \cup E_\b$, $\xa\xb = 0$ so
+that on this set $\tau(\xc) = -\xc$.  From (8.2) it follows that on
+$E_\a \cup E_\b$ that $\tau(\wc) = \tau(\frac{\l\xc}{\xa\xb}) =
+\frac{-\l\xc}{\xa\xb} = -\wc$.  This action of $\tau$ is independent
+of $T$.
+
+
+When $\s = \s_\omega$ then $\omega = \sa\s_\b\sa$ where $\sa$ (resp.
+$\s_\b$) is the simple reflection associated to the root $\a$ (resp.
+$\b$).  The action of $\omega$ factors by $\sa\s_\b\sa$.
+The action of ${\s_\a}$ on $x(\a)$, $x(\b)$, $x(\c)$ is
+determined, according to [L2], by the condition $$\pmatrix
+{1&&\cr z&1&\cr &&1\cr}
+\pmatrix {t_1&t_1\xa&t_3\xc\cr &t_2&t_2\xb\cr &&t_3\cr}
+\pmatrix {1&&\cr -z&1&\cr &&1 \cr}  = 
+\pmatrix {t_1'&&\cr &t_2'&\cr &&t_3'\cr}
+\pmatrix {1&\xa'&\xc'\cr &1&\xb'\cr &&1\cr}$$
+Here $\xa' = {\s_\a}(\xa)$, etc.  By equating coefficients of these
+matrices one finds first that $z = \dfrac {\aX \l} {\xa}$ and then
+that $\dfrac {\xa'} {\xa} =1$, $\dfrac {\xb'} {\xb} =(1+\a(X)w)$, $\dfrac
+{\xc'} {\xc} = 1$ when $\l =0$.
+So ${\s_\a}(w) = {\s_\a}(\dfrac {\l x(\c)}{\xa \xb}) =
+\dfrac {\l \xc} {\xa \xb (\aXw)} = \dfrac w {\aXw}$ when $\l =0$.
+
+Similarly the calculation of the action of ${\s_\b}$ on
+$x(\a)$, $x(\b)$, $\xc$ is identical except that 
+$\pmatrix {1&&\cr z&1&\cr &&1 \cr}$ 
+is replaced by 
+$\pmatrix {1&&\cr &1&\cr &z'&1\cr}$.  Equating coefficients of the $3\times
+3$ matrices one obtains on $\l = 0$: $z' = \dfrac {\l\bX}{\xb}$, $\dfrac {\xa'} {\xa} = \aXw$,
+$\dfrac {\xb'} {\xb} = 1$, $\dfrac {\xc'}{\xc} = 1$.  Then
+similarly, ${\s_\b}(w) = \dfrac w {\bXw}$.   Finally,
+$\s_\a\s_\b\s_\a(w) = \s_\a\s_\b(\dfrac {w}{\aXw}) = \s_\a(\dfrac w
+{\aXw}) = w$.  This leads immediately to the table of section 9.
+
+\sect 11.   Subregular Classes 
+\endsect
+
+
+By the action of the Galois group of the splitting field of  $T$  calculated
+in section 10
+$$
+\s_\omega[(1 - \beta(X)w)x(\alpha)] = (1 - \beta(X)w)x(\alpha) \in E
+$$
+\centerline {and}
+$$
+\sigma_\tau[(1 - \beta(X)w)x(\alpha)] = - (1 - \alpha(X)w)x(\beta).
+$$
+So
+$$
+\lambda = {\frac{x(\alpha)x(\beta)w(\gamma)}{x(\gamma)}} = 
+- {\frac{[(1-\beta(X)w)x(\alpha)]\sigma_\tau[(1-\beta(X)w)x(\alpha)]w}{(1-\beta(X)w)(1+\alpha(X)w)x(\gamma)}}.
+$$
+Consequently
+$$
+\eta_{E/F}(\lambda) = \eta_{E/F}\left( {\frac{-w}{(1-\beta(X)w)(1+\alpha(X)w)x(\gamma)}}\right) .
+$$
+By the theory of Igusa outlined in section 7 (with  $K = E, r = 2$)
+we obtain the formula
+
+${\displaystyle \sum_{\pm}} \Gamma^{(T,\k)}_{sub,\pm} (\gamma) 
+\mu^{\pm}_{sub}(f) =$
+$$
+\frac{\delta_{E/F}}{2} |\lambda| \int_{E_\alpha \cap E_\beta} m_\k f |\omega_0| 
++ \frac{\delta_{E/F}}{2} |\lambda| \eta_{E/F}(\lambda) \int_{E_\alpha\cap E_\beta}
+m_\k {\frac{f|\omega_0|}{\eta_{E/F}(\lambda)}} . \eqno(*)
+$$
+
+\noindent
+Now $|\omega_0| = {\frac{d\omega}{|w|^2}} \mu_{sub}^{+}$,
+and  $m_\k$  is the factor of proposition 9.1.
+The first term of $(*)$ is
+$$
+\frac{\delta_{E/F}}{2} |\lambda| \int_{{\bf  P}^1=E_\alpha\cap E_\beta(u)}
+\eta_{E/F} \left( {\frac{1-\gamma(X)w'}{-w'^2}}\right) {\frac{dw'}{|w'|^2}}\
+\mu^{+}_{sub}(f) .
+$$
+The second term is
+$$
+\frac{\delta_{E/F}}{2} |\lambda| \eta_{E/F}(\lambda) \mu^{-}_{sub}(f) \int_{{\bf  P}^1}
+\eta_{E/F} \left(\frac{(1+\alpha(X)w)(1-\beta(X)w)}{\lambda x(\c)}\right)
+{\frac{dw}{|w|^2}}
+$$
+$$
+= \frac{\delta_{E/F}}{2} |\lambda| \eta_{E/F}(\lambda)\mu_{sub}^-(f) \int_{{\bf  P}^1}
+{\frac{\eta_{E/F}(- w)dw}{|w|^2}} = 0.
+$$
+\noindent Note that $\eta_{E/F}(x(\gamma))$ has been pulled in front of
+the integral over $w$.  The factor $\eta_{E/F}(x(\gamma))$ is constant
+on each $F$-class and gives rise to the signed measure
+$\mu_{sub}^-$.
+This integral vanishes because for any non-trivial quasi-character $\theta
+: F^\times \to \CC^\times$:
+$$ \eqalign{
+\int_{{\bf  P}^1} {\frac{\theta(w)dw}{|w|}} & =^{(w\to \alpha w)}
+\int_{{\bf  P}^1} \theta (\alpha w) {\frac{d(\alpha w)}{|\alpha w|}} \cr
+& = {{\theta(\alpha)}} \int_{{\bf  P}^1} \theta(w) 
+{\frac{dw}{|w|}} .  } $$
+
+\noindent So that  $\theta(\alpha)\ne 1$  implies
+${\displaystyle\int_{{\bf  P}^1}} \theta(w)  {\frac{dw}{|w|}} = 0$.	
+A more rigorous treatment of this integral is given in [LS1].  
+Thus we have that the subregular germ is 
+$$
+\Gamma_{sub,+}^{(T,\k)} (\gamma) \mu^+_{sub}(f) = \frac{\delta_{E/F}}
+{2}|\lambda| \int_{\bf P^1}
+\eta_{E/F} \left( {\frac{1-\gamma(X)w'}{- w'^2}} \right) 
+{\frac{dw'}{|w'|^2}} \mu_{sub}^+ (f).
+$$
+
+This clearly depends only on  $X$  through  $\gamma(X)$.  
+By lemma 6.1, this completes the
+proofs of theorems 4.2 and 1.1.
+
+\vskip .2 in
+To check the constants explicitly that are involved in the transfer consider the
+an\-iso\-tropic Cartan subgroup $T$ split by a quadratic extension  $E$  with Galois group $\{ 1,\sigma_{\omega\tau}\}$.
+Then 
+$$
+\gamma(X), w' \in E,\quad \sigma_{\omega\tau}(\gamma(X)) = - \gamma(X),\quad  \sigma_{\omega\tau}(w') = -w'.
+$$
+Then  $- w'^2 \in NE$  and  $u = \gamma(X)w'$  is a variable over 
+$F$ so that
+$$\eqalign{
+\Gamma_+ &= {\frac{|\lambda|}{2}} \delta_{E/F} \int \eta_{E/F}
+\left( {\frac{1-\gamma(X)w'}{-w'^2}} \right) {\frac{dw'}{|w'|^2}} = \cr  &\quad \quad
+{\frac{|\lambda\gamma(X)|}{2}} \int_{\sigma_{\omega\tau}(x)x = 1} 
+{\frac{dx}{|x|}} 
+\int_{{\bf  P}^1} \eta_{E/F}(1-u) {\frac{du}{|u|^2}}.
+}$$
+It is also shown in [LS1] that the integral 
+${\displaystyle\int_{{\bf  P}^1}} {\frac{du}{|u|^2}}$ vanishes.  Also  
+$ {\frac{\eta_{E/F}(1-u)+1}{2}} = 0$  if and only if  $1-u =\sigma_{\omega\tau}(a_0)a_0 \in NE$  we may write (setting $xa_0=a$)
+$$
+\Gamma_+ /|\gamma(X)\lambda| = \int_{\sigma_{\omega\tau}(x)x=1} \frac{dx}{|x|}\int 
+{\frac{\eta_{E/F}(1-u)+1}{2}} {\frac{du}{|u|^2}} = \int_{\sigma_{\omega\tau}(a)a = 1-u} 
+{\frac{da}{|a|}} \int_{{\bf  P}^1} {\frac{du}{|u|^2}} .
+$$
+
+\noindent
+Set  $b = a/(1-u) \in E$  (so  $u = 1 - a/b$).
+$$
+\Gamma_+\left/ |\gamma(X)\lambda|\right. = \int_{\sigma_{\omega\tau}(a)=b^{-1}} 
+{\frac{da}{|a|}} \int {\frac{d(a/b)}{|1-a/b|^2}} = \int_{Q(F)}
+{\frac{da\ db}{|a-b|^2}}
+$$
+where  $Q(F)$  is the form of  ${\bf  P}^1 \times {\bf  P}^1$  defined by the
+rationality condition  $\sigma_{\omega\tau}(a,b) = (b^{-1}, a^{-1})$ on
+inhomogenious coordinates.
+
+The integral $\int_{Q(F)} {da db \over |a-b|^2}$ arises in the paper [LS1] in connection with the germs of $SL(2)$.  
+In that paper it is proved, using Igusa theory, that $$|\c(X)\lambda|\int_{Q(F)} \frac {dadb} {|a-b|^2}$$ is equal to the germ in $SL(2)$ associated to the subregular conjugacy class and the torus split by $E$.  Now $\c(X)$
+denotes the simple positive root of $SL(2)$.
+The derived group of the quasi-split group $H'$ is isomorphic to $SL(2)$ so that this is also equal to the germ associated to the subregular class on $H'$.   
+(We have used the result, proved by Harish-Chandra [HC], that germs are independent of the center in a suitable sense).  Set
+$$u_\ep(x,z) = \pmatrix { 1&x&\ep z - \frac {x\bar x} 2 \cr
+&1&-\bar x \cr &&1 \cr}\in U_E(3,F)$$  where $x \in E$, $z\in F$, $\bar \ep = -\ep$.
+Also set $\ell_\ep(x,z) = {}^tu_{\ep}(x,z)$.
+By comparing the normalization of measures used in [LS1] with the normalization of measures used here, we obtain the following explicit form of the matching of orbital integrals near the identity:
+\proclaim {Theorem 11.1}.  Suppose that  $f,f^H$  are chosen so that
+$$
+\mu_{reg}(f) = \mu^H_{reg}(f),\quad \mu_{sub}^+
+(f) = \mu^H_{sub}(f^H) \eqno(1)
+$$
+
+$$
+\lim_{\gamma\to 1} \Delta^*_G(\c)\Phi_G^{(T,\kappa)} (\gamma ,f) = \mu_{reg} (f) \eqno(2)$$
+$$
+\lim_{\gamma\to 1} D_H(\c)\Phi_H^{(T,st)}(\gamma ,f^H) 
+= \mu^H_{reg}(f^H).
+\eqno(3) 
+$$
+
+Suppose also that measures are 
+normalized by the invariant forms
+$$
+\eqalign{
+\mu_{reg}&:\   dzdxdsdt {\hbox{coordinates}}: \quad
+         \ell_\ep(t,s)u_\ep(x,z)\ell_\ep(t,s)\i \cr
+\mu^+_{sub}&:\  zdzdtds   {\hbox{coordinates}}:  \quad
+          \ell_\ep(t,s)u_\ep(0,z)\ell_\ep(t,s)\i \cr
+\mu^H_{reg}&:   dudx   {\hbox {coordinates}}: \quad
+{\pmatrix {1 & 0 \cr  x & 1}} 
+{\pmatrix {1 & u \cr  0 & 1 }}
+{\pmatrix {1 & 0 \cr  -x & 1 }} \cr 
+\mu^H_{sub}  (f) &= f(1).  \quad
+}$$
+Then $$\Delta^*_G(\c)\KOI \c f = D_H(\c)\SOI \c
+{f^H}$$ in a sufficiently small neighborhood
+of the identity.
+
+
+
+\sect 12. Normalization of Measures and the Hecke algebra
+\endsect
+The results of this section assume that $E/F$ is an unramified
+extension.
+If $M$ is a reductive group over the integers $O_F$ of $F$ set 
+$$[M] = {\#M(\FF_q) \over q^{dim\ M}}.$$  
+For instance $$[GL(n)] = ( 1- \frac 1 {q^n})(1 - \frac  1 {q^{n-1}})
+\cdots (1-\frac 1 q)$$ and $$[U_E(3)] = (1+\frac 1 {q^3})
+(1-\frac 1 {q^2})(1+\frac 1 q)$$  Here $q$ is the cardinality of the residue field $\FF_q$ of $O_F$.
+
+Let $1_G$ denote the normalized characteristic function $1_G = \frac {char\ K} {[G]}$, $K = U_E(3,F) \cap GL(3,O_F)$.  
+Similarly put $1_H = \frac {char K'} {[H]}$, 
+$K' = H' \cap GL(3,O_F)$.  Normalize $\omega_{T\backslash G}$ 
+and $\omega_{T\backslash H}$ by
+$$\eqalign{
+\lim_{\c\to 1} \Delta_G^*(\c)\KOI \c f &= \mu_{reg}(f)\cr
+\lim_{\c\to 1} \Delta_H^*(\c)\SOI \c {f^H} &=\mu_{reg}^{st}(f^H)
+}$$
+This section proves
+\proclaim {Theorem 12.1}.  $$\Delta_G^*\KOI \c {1_G} = D_H\SOI \c {1_H}$$
+for $\c$ sufficiently small and $G$-regular.
+
+This is a weak form of the fundamental lemma. 
+In the case of $SL(n)$ the assumption that $\c$ is close to the identity can be removed and consequently for $SL(n)$ the matching of germs implies the fundamental lemma for the identity of the Hecke algebra {[H3]}.
+
+This theorem gives a precise statement of how the measures arising in Igusa theory relate to the maximal compact subgroup.  The theorem is actually a statement about germs and is proved by computing the integrals $\mu_{reg}(f),\ \mu_{sub}^\pm,\ldots$.  
+
+As a corollary we obtain the alternate form of theorem 12 which holds true for any normalization of measures $\mu_{reg},\mu_{sub},\ldots$.
+
+\proclaim {Corollary 12.2}.  Suppose that 
+$$ {{\mu_{reg}(f)} \over {\mu_{reg}(1_G)}} = {{\mu_{reg}^{st}(f^H)} \over {\mu_{reg}^{st}(1_H)}}$$
+
+$${ {{\mu_{sub}^+(f)} \over {\mu_{sub}^+(1_G)}} = {{\mu_{sub}^{st}(f^H)} \over \mu_{sub}^{st}(1_H)}}$$
+{\it Also suppose that the measures of the orbital integrals are normalized so as to satisfy:}
+$$ \lim_{\c\to 1} { \Delta_G^*\KOI \c {1_G} \over {\mu_{reg}(1_G)}} =
+   \lim_{\c\to 1} {D_H\SOI \c {1_H} \over {\mu_{reg}^{st}(1_H)}} = 1$$
+{\it Then $\Delta_G^*\KOI \c f = D_H\SOI \c {f^H}$ in  a sufficiently small neighborhood of $1$.}
+
+\proof (of corollary).  Take germ expansions of both sides in theorem 12.1.
+
+\proof (of theorem).  By Rao [Ra]
+for $f\in C_c^\infty(G)$, $f^H \in C_c^\infty(H')$,
+
+$$\eqalign {
+f &\to \int_{K,E,F} f(k\i u_\ep(x,z)k)dkdxdz = \mu_{reg}^{Rao}(f)\cr
+f &\to \int_{K,F} f(k\i u_\ep(0,z)k)dkdz = \mu_{sub}^{Rao}(f)\cr 
+f^H &\to \int_{K',F} f^H(k\i u_\ep(0,z)k)dkdz = \mu_{reg}^{Rao,st}(f^H)\cr 
+f^H &\to \int_{K'} f^H(1)dk = \mu_{sub}^{Rao,st}(f^H)\cr 
+}$$
+are invariant measures on $O_{reg}$
+, $O_{sub}$, $O_{reg}^H$, $O_{sub}^H$ respectively and so are equal to $\mu_{reg}$, $\mu_{sub}^+$, $\mu_{reg}^{st}$, $\mu_{sub}^{st}$ resp.  
+up to scalars.   
+Let $\chi$ be the characteristic function of 
+$$\{\ell_\ep(t,s)u_\ep(x,z)\ell_\ep(t,s)\i | t,x \in O_E; s,z \in O_F\}$$
+on $G$, and let $\chi'$ be the characteristic function of 
+$$\{\ell_\ep(0,s)u_\ep(0,z)\ell_\ep(0,s)\i | z,s \in F \}$$ on $H'$.
+If $\chi(k\i u_\ep(x,z)k)\ne 0$ with $x\ne 0$ then $x\in O_E$, $y\in O_F$
+and $k = k_bk_\ell$, $k_b \in K \cap {\bf B}$, $k_\ell \in K \cap {\bf N}_\infty$.  Similarly if $\chi'(k'\i u_\ep(0,z)k') \ne 0$ with $z \ne 0$ then
+$z \in O_F$ and $k' = k'_b k'_\ell$, with $k_b \in K' \cap {\bf B}$,
+$k_\ell \in K' \cap {\bf N_\infty}$.  We use normalizations of measures
+that assign volume one to the set of elements in $K,K'$ that are
+congruent to the identity modulo a uniformizing element.
+
+Then 
+$$\eqalign{
+\mu_{reg}(1_G) &= {\mu_{reg}(\chi) \over \mu_{reg}^{Rao}(\chi)}
+\mu_{reg}^{Rao}(1_G)\cr
+                 &= {\int_{O_F,O_F,O_E,O_E} dsdzdxdt \over
+                        \int_{K\cap {\bf B}\cdot K\cap {\bf N}_\infty}
+                     dk \int_{O_F,O_E}dzdx }
+                       {\int_K dk \int_{O_F,O_E} dzdx \over [G]} \cr
+             &= {1 \over (q+1)(q^2-1)q^6}{[G] q^{dim\ G} \over [G]}
+              = {1 \over (1 + \frac 1 q)^2(1- \frac 1 q)} =
+                {1 \over [{\bf T}]}
+}$$
+
+$$\eqalign{
+\mu_{sub}(1_G) &= {\mu_{sub}(\chi) \over \mu_{sub}^{Rao}(\chi)} 
+\mu_{sub}^{Rao}(1_G) \cr
+&= {\int_{O_F} zdz \over \int_{K\cap{\bf B}\cdot K\cap {\bf N}_\infty}
+             dk \int_{O_F} zdz} {\int_K dk \int zdz \over [G]} =
+                {1 \over (1+\frac 1 q)} \mu_{reg}(1_G)
+}$$
+
+$$\eqalign{
+\mu_{reg}^{st}(1_H) &= {\mu_{reg}(\chi') \over \mu_{reg}^{Rao}(\chi')}
+                        \mu_{reg}^{Rao,st}(1_H) \cr
+ &= {\int_{O_F,O_F} dzds \over \int_{K'\cap {\bf B}\cdot K'\cap {\bf N_\infty} } dk \int_{O_F} dz } {\int_{K'}dk \int_{O_F}dz \over [H]} \cr
+&= {1 \over (q+1)(q^2-1)q^2} {[H]q^{dim \ H} \over [H]} =
+   {1 \over (1 + \frac 1 q )^2 (1 - \frac 1 q)} = {1 \over [{\bf T}]}
+}$$
+
+$$\eqalign{
+\mu_{sub}^{st}(1_H) &= {\mu_{sub}^{st}(\chi') \over \mu_{sub}^{Rao}(\chi') } \mu_{sub}^{Rao,st}(1_H) \cr
+&= {1 \over \int_{K'} dk}{[H]q^{dim \ H} \over [H]} \cr
+&= {q^{dim \ H} \over (q^2-1)(q^2+q)(q+1)} = {1 \over (1+\frac 1 q)}
+\mu_{reg}^{st}(1_H)
+}$$
+
+So $$\Delta_G^*\KOI \c {1_G} = {1 \over [{\bf T}]} + {1 \over
+[H]}\C_{{}_+} = D_H\SOI \c {1_H}$$ for $\c$ small.
+
+
+\sect 13. Other endoscopic groups
+\endsect
+
+The endoscopic groups $H$ of $U_E(3)$ are found among the endoscopic
+groups $H$ of $SU_E(3)$ (allowing for minor modifications of the
+centers of $H$). 
+
+Upon extension of scalars  to $E$ the endoscopic groups of $SU_E(3)$ become
+endoscopic groups of $SL(3)/E$.  It is known that these are either a
+split Levi factor of $SL(3)$ or a torus split by a cubic cyclic
+extension.  Descending back down to $SU_E(3)$ it is not difficult to
+check that the endoscopic groups must be one of the following:
+
+\item {1.}  $SU_E(3)$ itself. (This group is quasi-split and has no
+inner forms).
+\item {2.}  the subgroup $\left\{\pmatrix {*&&*\cr &*&\cr *&&* }\right\}$
+\item {3.}  a Cartan subgroup   of $SU(3)$ contained in a 
+Borel subgroup over $F$
+\item {4.}  a Cartan subgroup of $SU(3)$ split by an $S_3$ extension of
+$F$ which becomes cyclic over $E$.
+\vskip .2 in
+
+Cases (1) and (3) correspond to  Levi factors of $SL(3)$ over $E$.  The
+transfer of (3) is easily dealt with using arguments of [HC].
+
+Case (2), at least for $G=U_E(3)$ has been dealt with fully above.
+The argument for $G=SU_E(3)$ is identical, and is easily deduced
+from the above.
+
+Case (4).  Note that $U_E(3)$ is isomorphic to $GL(3)$ over $E$.
+Consequently this class of endoscopic groups does not arise for
+$U_E(3)$ (every endoscopic group of $GL(3)$ is a split Levi factor).
+Similarly $G_{adj}$ does not have any endoscopic Cartan subgroups of
+this type.
+
+Proving the transfer to a Cartan subgroup is equivalent to showing
+that the germs $\C^{(T,\k)}_O(\c) = 0$ vanish when $O$ is not
+regular.  For then the orbital integral becomes a locally constant
+function of $\c \in T(F)$.
+
+In our situation $G=SU_E(3)$ there is a simple symmetry which forces
+$\C^{(T,\k)}_{sub,\pm}=0$ and which gives the result.
+
+\proclaim {Lemma 13.1}.  If $h \in G(\Fbar)$ and $\s(h)h\i \in H^1(F,Z_G)$
+then $$\C_{O^h}^{(T,\k)} = \C_O^{(T,\k)}\k(\s(h)h\i)$$
+
+\proof  Compare orbital integrals of $f$ and $f_h$ where $f_h(x) =
+f(x^h)$.  See [H2].  
+
+For $g \in G_{adj}(\Fbar)$ let $\hat g \in G(\Fbar)$ denote a lift.
+Let $\hat G_{adj}(F)$ denote the inverse image of $G_{adj}(F)$ in
+$G(\Fbar)$.   
+\def \hG {{\hat G_{adj}(F)}}
+Then $\hG = \{h \in G(\Fbar) | \s(h)h\i \in Z_G\}$.   If $O$ is
+subregular then $O^h = O$ for $h \in \hG$ as can be seen by
+conjugating $\pmatrix {1&0&ux\cr &1&0\cr &&1}$ by $diag(a,b,c)
+\in \hG$ as in section 4.  Thus we are reduced to finding $h \in
+\hG$ with $\k(\s(h)h\i)\ne 1$.  
+
+There is an isomorphism over $F$:  $(T\backslash G)(F) \simeq
+(T_{adj}\backslash G_{adj})(F)$.    Then there is a well defined
+function $m_{\k'}$ on $(T_{adj}\backslash G_{adj})(F)$ given by
+$m_{\k'}(T_{adj}g) = \k(\s(\hat g)\hat g\i)$.  If $\k(\s(h)h\i) = 1$
+for all $h \in \hG$ then $m_{\k'}$ factors through $\k' :
+Z^1(T_{adj}) \to \CC$, $m_{\k'}(T_{adj}g) = \k(\s(\hat g)\hat g\i)$.
+$\k'$ is trivial on coboundaries so descends to $H^1(F,T_{adj})$.
+But then $(\k_{adj},T_{adj})$ defines an endoscopic group of
+$G_{adj}$ falling into case (4) above,
+contradicting the remarks above.
+
+\vfill
+\eject
+
+
+
+%\font\ly=lasy10
+%\ly
+%\NoBlackBoxes \nologo \printoptions \document
+\def\kkey#1{\par\noindent  [{\bf {#1}}]}
+\def\by{}
+\def\paper#1{{\it #1}}
+\def\yr{}
+\def\vol{}
+\def\book{}
+\def\pages{}
+\def\endref{}
+\def\jour{}
+\def\publ{}
+\def\paperinfo{}
+
+%\newpage
+%\Refs
+\sect References \endsect
+\bigskip
+
+\everypar={\hangafter1\hangindent .5in}
+
+
+\kkey {H1}  T.C. Hales, {\it  The Subregular Germ of Orbital
+Integrals},  thesis, Princeton University, (1986). 
+
+\kkey {H2} T.C. Hales, {\it Shalika Germs on $GSp(4)$}, 
+preprint. 
+
+\kkey {H3} T.C. Hales, {\it Unipotent Representations and Unipotent
+Orbits on $SL(n)$}, preprint.
+
+\kkey {HC} \by Harish-Chandra, {\it Admissable Invariant
+Distributions on Reductive p-adic groups\/},  Queens' Papers in
+Pure and Applied Math {\bf 48} \yr (1978), \pages 281-347. \endref
+
+\kkey {Ho} \by R. Howe, {\it The Fourier Transform and Germs of
+Characters\/}, Math. Ann. {\bf 208} \yr (1974), \pages 305-322. \endref
+
+\kkey {I} \by J.I. Igusa, ``Lectures on forms of higher degree''
+Tata Institute of Fundamental Research, Bombay \yr (1978).
+\endref
+
+\kkey {L1} \by R.P. Langlands, \book ``Les debuts d'une formule des
+traces stable'', \publ Publications math. de l'Univ. de Paris VII \vol
+{\bf 132}, \yr (1983). \endref
+
+\kkey {L2} \by R.P. Langlands, \paper {\it Orbital Integrals on Forms of
+$SL(3)$, I}, \jour American Journal of Mathematics, {\bf  105}, (1983)
+\pages 465-506. \endref
+
+\kkey {LS1} \by R.P. Langlands and D. Shelstad, \paper {\it On Principal
+Values on P-adic Manifolds}, \jour Lie Group Representations II,
+Lecture Notes in Math, \vol {\bf 1041} \publ Springer-Verlag, Berlin \yr
+(1984). \endref
+
+\kkey {LS2} \by R.P. Langlands and D. Shelstad, \paper {\it On the
+Definition of the Transfer Factors}, \jour Math. Ann. \vol {\bf 278}, \pages
+219-271, \yr (1987). \endref
+
+\kkey {LS3} \by R.P. Langlands and D. Shelstad, \paper {\it Orbital
+Integrals on Forms of $SL(3)$, II}, \paperinfo preprint. \endref
+
+\kkey {LS4} \by R.P. Langlands and D. Shelstad, \paper {\it Descent for
+Transfer Factors}, \paperinfo preprint. \endref
+
+\kkey {Ra}  \by R.R. Rao, {\it Orbital integrals in reductive groups}, Ann. of Math. {\bf 96},
+(1972).
+
+\kkey {R1} \by J. Rogawski, \paper {\it Applications of the Building to
+Orbital Integrals}, \paperinfo thesis, Princeton University \yr (1980).
+
+\kkey {R2} \by J. Rogawski, \paper {\it An Application of the Building to
+Orbital Integrals} \jour Compositio Mathematica \vol {\bf 42.3}, \yr (1981),
+\pages 417-423. \endref
+
+\kkey {Sh} \by J. Shalika, \paper {\it A theorem on semi-simple p-adic
+groups}, \jour Annals of Math, \vol {\bf 95} \yr (1972), \pages 226-242. \endref
+
+\kkey {S} \by D. Shelstad, \paper {\it L-indistinguishability for real groups}, Math. Ann,
+{\bf 259}, 385-430, {(1982)}.
+\bye
