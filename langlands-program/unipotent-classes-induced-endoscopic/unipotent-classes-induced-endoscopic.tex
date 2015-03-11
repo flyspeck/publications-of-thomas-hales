@@ -1,13 +1,117 @@
 % Thomas C. Hales
-% 
+% Title: Unipotent classes induced from endoscopic groups
 % MSRI preprint 08220-87
 % September 1987.
 % It includes a few revisions from September 1988.
 % The abstract is from May 1989.
 % Converted to latex March 2015.
 
-ABSTRACT:
+\documentclass{amsart}
 
+%Packages
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{alltt}
+\usepackage{amsrefs}
+
+\newtheorem{thm}{}
+\newenvironment{cthm}[1]
+  {\renewcommand\thethm{\sc #1}\thm}
+  {\endthm}
+
+
+%\magnification=\magstep1
+%\pagewidth{5.75 truein}
+%\pageheight{8.4 truein}
+%\hcorrection{.25 truein}
+%\vcorrection{.25 truein}
+%\baselineskip=18 pt          %changed also below
+%\nologo
+%\NoBlackBoxes
+%\printoptions
+%\redefine\qed{{\unskip\nobreak\hfil\penalty50\hskip2em\vadjust{}\nobreak\hfil
+%    $\square$\parfillskip=0pt\finalhyphendemerits=0\par}}
+
+%Document macros
+%\newcommand\dotlabel{%
+%	\leavevmode
+%	\hbox to 0pt{%
+%		\hskip -0.5 in
+%		$\bullet$%
+%		\hfil}%
+%	}%
+%\define\ljleftlabel#1{%
+%	\leavevmode
+%	\hbox to 0pt{%
+%		\hskip -0.5 in
+%		#1%
+%		\hfil}%
+%	}%
+%\define\Section#1{%
+%	\vskip 0.75 in
+%	\noindent
+%	\subheading{Explicit results for {#1}}
+%	\bigskip
+%	}%
+
+
+%Dave's macros for this file
+\newcommand\Am		{A_{m-1}}
+\newcommand\Amone[1]{A_{m_{#1}-1}}
+\newcommand\axi	{a(\xi,\eta)}
+\newcommand\bB{{\mathcal B}}
+\newcommand\Bug	{\bB_u^G}
+\newcommand\C		{{\Bbb C}}
+\newcommand\deltai	{\underset{2i}\to \delta}
+\newcommand\eps	{\varepsilon}
+\newcommand\Elam	{E_\lam}
+\newcommand\Emu	{E_\mu}
+\newcommand\Gimm	{G_{i+m_1+m_2}}
+\newcommand\HBug	{H^*(\Bug,\Q)}
+\newcommand\Hom	{\operatorname{Hom}}
+\newcommand\I		{\operatorname{I}}
+\newcommand\Ilams	{\Ind(\lam^1,\dots,\lam^r)}
+\newcommand\Ilammu	{\Ind(\lam^1,\dots,\mu^s)}
+\newcommand\Ind	{\operatorname{Ind}}
+\newcommand\IndHG	{\Ind_H^G(\cO_u)}
+\newcommand\IndHH	{\Ind_{H_1}^{H_2}(\cO_u)}
+\newcommand\IndCx[2]{\Ind_{#1}^{#2} C_x}
+\newcommand\IndCy[2]{\Ind_{#1}^{#2} C_y}
+\newcommand\Lam	{\Lambda}
+\newcommand\Lami	{\Lam_i}
+\newcommand\lam	{\lambda}
+\newcommand\lami	{\lam_i}
+\newcommand\lams	{(\lam_1,\dots,\lam_\ell)}
+\newcommand\lamsmus{(\lam^1,\dots,\lam^r,\mu^1,\dots,\mu^s)}
+\newcommand\lamsprime{(\lam_1',\dots,\lam_\ell')}
+\newcommand\lamtil	{\tilde\lambda}
+\newcommand\mus	{(\mu_1,\dots,\mu_\ell)}
+\newcommand\mutil	{\tilde\mu}
+\newcommand\NLam	{N\Lambda_r}
+\newcommand\cO		{{\mathcal O}}
+\newcommand\Ou		{(\cO_u,\psi)}
+\newcommand\Q		{{\Bbb Q}}
+\newcommand\rank	{\operatorname{rank}}
+\newcommand\rhou	{\rho_u}
+\newcommand\rhoxi	{\rho(\xi,\eta)}
+\newcommand\sumlam[1]{\sum_{#1} (\tilde\lam_i^2 - \tilde\lambda_i)}
+\newcommand\sumxi	{\sum_i (\tilde\xi_i^2 - \tilde\xi_i)}
+\newcommand\Thetalam{\Theta_\lam}
+\newcommand\Thetamu{\Theta_\mu}
+\newcommand\UHo	{UH^0}
+\newcommand\UGo	{UG^0}
+\newcommand\x		{\times}
+\newcommand\Z		{{\Bbb Z}}
+
+
+%\topmatter
+\begin{document}
+
+
+\begin{abstract}
 The Springer correspondence may be used to define a map from
 certain unipotent classes in the endoscopic groups of a given
 reductive group $G$ to unipotent classes of $G$.  Conjectures of
@@ -20,121 +124,31 @@ the map obtained by the Springer correspondence satisfies the
 formal properties necessary for this map to be correct map for
 the study of orbital integrals and its germs.  The map is
 calculated explicitly for the exceptional groups.
-
-\magnification=\magstep1
-\pagewidth{5.75 truein}
-\pageheight{8.4 truein}
-\hcorrection{.25 truein}
-\vcorrection{.25 truein}
-\baselineskip=18 pt          %changed also below
-\nologo
-\NoBlackBoxes
-\printoptions
-\redefine\qed{{\unskip\nobreak\hfil\penalty50\hskip2em\vadjust{}\nobreak\hfil
-    $\square$\parfillskip=0pt\finalhyphendemerits=0\par}}
-
-%Document macros
-\define\dotlabel{%
-	\leavevmode
-	\hbox to 0pt{%
-		\hskip -0.5 in
-		$\bullet$%
-		\hfil}%
-	}%
-\define\ljleftlabel#1{%
-	\leavevmode
-	\hbox to 0pt{%
-		\hskip -0.5 in
-		#1%
-		\hfil}%
-	}%
-\define\Section#1{%
-	\vskip 0.75 in
-	\noindent
-	\subheading{Explicit results for {#1}}
-	\bigskip
-	}%
+\end{abstract}
 
 
-%Dave's macros for this file
-\define		\Am		{A_{m-1}}
-\define		\Amone#1{A_{m_{#1}-1}}
-\define		\axi	{a(\xi,\eta)}
-\redefine	\B		{{\Cal B}}
-\define		\Bug	{\B_u^G}
-\define		\C		{{\Bbb C}}
-\define		\deltai	{\underset{2i}\to \delta}
-\define		\eps	{\varepsilon}
-\define		\Elam	{E_\lam}
-\define		\Emu	{E_\mu}
-\define		\Gimm	{G_{i+m_1+m_2}}
-\define		\HBug	{H^*(\Bug,\Q)}
-\define		\Hom	{\operatorname{Hom}}
-\define		\I		{\operatorname{I}}
-\define		\Ilams	{\Ind(\lam^1,\dots,\lam^r)}
-\define		\Ilammu	{\Ind(\lam^1,\dots,\mu^s)}
-\define		\Ind	{\operatorname{Ind}}
-\define		\IndHG	{\Ind_H^G(\O_u)}
-\define		\IndHH	{\Ind_{H_1}^{H_2}(\O_u)}
-\define		\IndCx#1#2{\Ind_{#1}^{#2} C_x}
-\define		\IndCy#1#2{\Ind_{#1}^{#2} C_y}
-\define		\Lam	{\Lambda}
-\define		\Lami	{\Lam_i}
-\define		\lam	{\lambda}
-\define		\lami	{\lam_i}
-\define		\lams	{(\lam_1,\dots,\lam_\ell)}
-\define		\lamsmus{(\lam^1,\dots,\lam^r,\mu^1,\dots,\mu^s)}
-\define		\lamsprime{(\lam_1',\dots,\lam_\ell')}
-\define		\lamtil	{\tilde\lambda}
-\define		\mus	{(\mu_1,\dots,\mu_\ell)}
-\define		\mutil	{\tilde\mu}
-\define		\NLam	{N\Lambda_r}
-\redefine	\O		{{\Cal O}}
-\define		\Ou		{(\O_u,\psi)}
-\define		\Q		{{\Bbb Q}}
-\define		\rank	{\operatorname{rank}}
-\define		\rhou	{\rho_u}
-\define		\rhoxi	{\rho(\xi,\eta)}
-\define		\sumlam#1{\sum_{#1} (\tilde\lam_i^2 - \tilde\lambda_i)}
-\define		\sumxi	{\sum_i (\tilde\xi_i^2 - \tilde\xi_i)}
-\define		\Thetalam{\Theta_\lam}
-\define		\Thetamu{\Theta_\mu}
-\define		\UHo	{UH^0}
-\define		\UGo	{UG^0}
-\define		\x		{\times}
-\define		\Z		{{\Bbb Z}}
-
-
-\topmatter
-
-\title UNIPOTENT CLASSES INDUCED FROM ENDOSCOPIC GROUPS
-\endtitle
-\author Thomas C. Hales
-\endauthor 
+\title {Unipotent Classes Induced from Endoscopic Groups}
+\author {Thomas C. Hales}
 \thanks{Research at MSRI sponsored in part by NSF Grant DMS-812079-05.}
-\address{Mathematical Sciences Research Institute \newline
-	1000 Centennial Drive, Berkeley CA 94720} 
+\thanks{MSRI 08220-27 preprint series}
+\date{September 1987}
+\address{Mathematical Sciences Research Institute}
 
-\endtopmatter 
-\baselineskip=18pt 
+\maketitle
 
-\document 
+%\input hales1a.tex
+%\input hales1b.tex
+%\input hales1c.tex
 
-\vskip 0.75 in
-
-\input hales1a.tex
-\input hales1b.tex
-\input hales1c.tex
-
-\enddocument
-\bye
+%\enddocument
+%\bye
 
 Let $G$ be a connected reductive algebraic group defined over the
 complex
 number field $\C$.  Lusztig and Spaltenstein \cite{LS},
 generalizing a result
 of Richardson, have shown 
-how to associate a unipotent conjugacy class $\Ind_H^G(\O)$ in
+how to associate a unipotent conjugacy class $\Ind_H^G(\cO)$ in
 $G$ with a
 unipotent conjugacy class of a Levi subgroup $H$ of $G$.  The
 Springer 
@@ -186,50 +200,49 @@ to stable classes meeting $H(k)$ which the induction map sends to
 a stable 
 class meeting $G(k)$.
 
-\leftskip = 1 truein
-
-\vskip 2 truein
+%\leftskip = 1 truein
+%\vskip 2 truein
 
 \centerline{\bf Outline}
 
 \bigskip
 
-\noindent
-\ljleftlabel{\bf 1.} Review of Springer's Construction\newline
-\ljleftlabel{\bf 2.} Definition of Induction\newline
-\ljleftlabel{\bf 3.} Dimension of Centralizers\newline
-\ljleftlabel{\bf 4.} Transitivity of Induction\newline
-\ljleftlabel{\bf 5.} Explicit Results for Classical
-Groups\newline
-\ljleftlabel{\bf 6.} Preservation of Partial Order on
-Classes\newline
-\ljleftlabel{\bf 7.} Extension of theory to Groups over fields
+\begin{enumerate}[label=\arabic*.]
+\item Review of Springer's Construction
+\item Definition of Induction
+\item Dimension of Centralizers
+\item Transitivity of Induction
+\item Explicit Results for Classical
+Groups
+\item Preservation of Partial Order on
+Classes
+\item Extension of theory to Groups over fields
 other than $\C$%
-     \newline
-\ljleftlabel{\bf 8.} Explicit results for Exceptional
-Groups\newline
+\item Explicit results for Exceptional
+Groups
+\end{enumerate}
 
-\leftskip = 0 truein
-\rightskip = 0 truein
-\newpage
+%\leftskip = 0 truein
+%\rightskip = 0 truein
+%\newpage
 
-\subheading{1. Review of Springer's Construction}
+\section{Review of Springer's Construction} %1
 
 \bigskip
 
 For any connected reductive linear algebraic group $G$ over $\C$,
 let 
-$\B = \B^G$ denote the variety of Borel subgroups of $G$.  For
+$\bB = \bB^G$ denote the variety of Borel subgroups of $G$.  For
 any $G$ let
-$\B_x = \B_x^G$ denote the variety of Borel subgroups of $G$
+$\bB_x = \bB_x^G$ denote the variety of Borel subgroups of $G$
 containing $x$.
-We have an action of the centralizer $Z_G(x)$ on $\B_x^G$.  We
+We have an action of the centralizer $Z_G(x)$ on $\bB_x^G$.  We
 are concerned
-with $\B_x^G$ only when $x = u$ is a unipotent element.
+with $\bB_x^G$ only when $x = u$ is a unipotent element.
 
 The dimension of $\Bug$ is $d_u = \frac 12(\dim Z_G(u) - \rank
 G)$.  
-Springer~\citeallbold{Spr1,Spr2} has defined a natural action of
+Springer~\cites{Spr1,Spr2} has defined a natural action of
 the Weyl 
 group $W$ of $G$ on the 
 cohomology $\HBug$ of $\Bug$.  There is also a group action of
@@ -256,12 +269,12 @@ representation).
 
 
 
-\newpage
+%\newpage
 
-\subheading{2. Definition of Induction}
+\section{Definition of Induction} %2
 
 \bigskip
-
+\newcommand\sphat{} %% XX
 
 As in the previous section, $G$ is a reductive algebraic group
 over the
@@ -270,31 +283,31 @@ assumption will remain in force until section 7.  The letter $U$
 preceding
 the name of a reductive group will denote the set of unipotent
 conjugacy
-classes in that group.  For a finite group $W$ we let $W\sphat$
+classes in that group.  For a finite group $W$ we let $\hat{W}\sphat$
 denote the
 set of irreducible representations of $W$ over $\C$ up to
 equivalence, or simply the set of characters.  Roughly speaking,
 induction 
 is given by the following steps:
      $$
-     \CD
+     \begin{CD}
      \UHo                                              @.    
 \subseteq UH   \\
      @V\text{Springer correspondence}VV                     @.\\
-     W_H\sphat                                              \\
+     \hat{W}_H\sphat                                              \\
      @V\text{truncated induction}VV                         @.\\
-     W_G\sphat                                              \\
+     \hat{W}_G\sphat                                              \\
      @V\text{Inverse of Springer correspondence}VV          @.\\
      UG                                                @.
-     \endCD
+     \end{CD}
      $$
 The subset $\UHo$ of $UH$ on which induction is defined will be
 described
-below.  We now give details of the construction.  Let $\O_u$ be a
+below.  We now give details of the construction.  Let $\cO_u$ be a
 unipotent
 class in an endoscopic group $H$ of $G$.  The Springer
 correspondence
-associates with $(\O_u,1)$ an irreductible representation $\rho$
+associates with $(\cO_u,1)$ an irreductible representation $\rho$
 of the
 Weyl group $W_H$ of $G$.  We denote this representation by
 $\rhou$ (or by
@@ -354,10 +367,10 @@ multiplicity one
 for $d=e$.
 
 If $\I_{W'}^W (\rho')$ is the image of some conjugacy class
-$(\O,1)$ in $G$
-by the Springer correspondence then we say that $\O$ in $UH$ lies
+$(\cO,1)$ in $G$
+by the Springer correspondence then we say that $\cO$ in $UH$ lies
 in the 
-domain of induction and that $\O$ is obtained from $C$ by 
+domain of induction and that $\cO$ is obtained from $C$ by 
 {\it endoscopic induction\/} or simply {\it induction}.  There is
 no
 ambiguity in this terminology when $H$ is a Levi subgroup, for
@@ -370,25 +383,25 @@ when the dependence on the original group $G$ needs to be
 indicated) for the
 set of unipotent conjugacy classes in $H$ that lie in the domain
 of induction
-to $G$.  If $\O_u$ lies in $\UHo$, we write $\IndHG$ for the
+to $G$.  If $\cO_u$ lies in $\UHo$, we write $\IndHG$ for the
 unipotent class
 in $G$ obtained by this process.
 
-\newpage
+%\newpage
 
-\subheading{3. Dimension of Centralizers}
+\section{Dimension of Centralizers} %3
 
 \bigskip
 
-If $\O_u \in UG$, set $d_u = d_u^G = \frac 12(\dim Z_G(u) - \rank
+If $\cO_u \in UG$, set $d_u = d_u^G = \frac 12(\dim Z_G(u) - \rank
 G)$.
 
-\proclaim{Proposition} Let $\O_u \in \UHo$ and $\O_{u'} =
+\begin{cthm}{Proposition} Let $\cO_u \in \UHo$ and $\cO_{u'} =
 \IndHG$, then
      $d_u^H = d_{u'}^G$.
-     \endproclaim
+     \end{cthm}
 
-\demo{Proof} We mentioned in Section~2 that $e_u = e_{u'}$, where
+\begin{proof} We mentioned in Section~2 that $e_u = e_{u'}$, where
 $e_u$ is 
 the integer
 associated to the irreducible representation $\rhou$ in the
@@ -403,9 +416,9 @@ Fix a torus $T$ and Borel subgroup $B$ containing $T$.  For every
 character
 $\chi$ of $T$ (which we extend to a character of $B$) we let
 $L_\chi$ be the 
-associated line bundle on $B \backslash G \simeq \B$ and let
+associated line bundle on $B \backslash G \simeq \bB$ and let
 $e_1(L_\chi)$ be 
-its first Chern class in $H^2(\B,\Z)$.  We extend $\chi \in
+its first Chern class in $H^2(\bB,\Z)$.  We extend $\chi \in
 \Hom(X_*,\Z)$ to a 
 function from $V_\Q = X_* \otimes \Q$ to $\Q$. Shifting notation
 slightly,
@@ -413,28 +426,28 @@ $\chi \in S^1(V_\Q)$ where $S^i(V_\Q)$ now denotes the
 $\Q$-valued
 polynomials of degree $i$ on $V_\Q$.
 The Chern class map extends uniquely to a ring homomorphism
-$S^*(V_\Q) \to H^*(\B,\Q)$ which factors through the ideal $I$. 
+$S^*(V_\Q) \to H^*(\bB,\Q)$ which factors through the ideal $I$. 
 We obtain an
-isomorphism $R^*(V_\Q) \simeq H^*(\B,\Q)$ in which $R^i(V_\Q)$ 
+isomorphism $R^*(V_\Q) \simeq H^*(\bB,\Q)$ in which $R^i(V_\Q)$ 
 is sent to
-$H^{2i}(\B,\Q)$ for all $i$ (in particular $H^i(\B,\Q) = 0$ for
+$H^{2i}(\bB,\Q)$ for all $i$ (in particular $H^i(\bB,\Q) = 0$ for
 $i$ odd).  
-The map from $R^*(V_\Q)$ to $H^*(\B,\Q)$ is $W$-equivariant.  It
+The map from $R^*(V_\Q)$ to $H^*(\bB,\Q)$ is $W$-equivariant.  It
 is shown 
 in~\cite{BM} that the multiplicity of $\rho_{(u,\psi)}$ in
-$H^{2i}(\B,\Q)$ is zero if $i<d_u$ or if $i=d_u$ and $\psi \ne 1$
+$H^{2i}(\bB,\Q)$ is zero if $i<d_u$ or if $i=d_u$ and $\psi \ne 1$
 and further
 that
 the multiplicity is 1 if $i=d_u$ and $\psi = 1$.  In light of the
 isomorphism
-$R^*(V_\Q) \simeq H^*(\B,\Q)$ we have $e_u = d_u$ (but
+$R^*(V_\Q) \simeq H^*(\bB,\Q)$ we have $e_u = d_u$ (but
 $e_{(u,\psi)} > d_u$ for
 $\psi$ non-trivial).
-\qed
+\end{proof}
 
-\newpage
+%\newpage
 
-\subheading{4. Transitivity of Induction}
+\section{Transitivity of Induction} %4
 
 \bigskip
 
@@ -443,47 +456,45 @@ ${}^LH_1 \subseteq {}^LH_2 \subseteq {}^LG$ in such a way that
 $H_1$ is also
 an endoscopic group of $H_2$.  
 
-\proclaim{Proposition} Suppose that $\O_u \in UH_1^{H_2}$ and
+\begin{cthm}{Proposition} Suppose that $\cO_u \in UH_1^{H_2}$ and
 that either
-     $\O_u \in UH_1^G$ or $\IndHH \in UH_2^G$.  Then $\O_u \in
+     $\cO_u \in UH_1^G$ or $\IndHH \in UH_2^G$.  Then $\cO_u \in
 UH_1^G$, 
-     $\IndHH \in UH_2^G$ and $\Ind_{H_1}^G(\O_u) =
+     $\IndHH \in UH_2^G$ and $\Ind_{H_1}^G(\cO_u) =
 \Ind_{H_2}^G(\IndHH)$.
-     \endproclaim
+     \end{cthm}
 
-\demo{Remark} Without further restrictions it is possible for a
-     class $\O_u$ to lie in $UH_1^G$, but not $UH_1^{H_2}$.
-     \enddemo
+\begin{cthm}{Remark} Without further restrictions it is possible for a
+     class $\cO_u$ to lie in $UH_1^G$, but not $UH_1^{H_2}$.
+     \end{cthm}
 
-\demo{Proof} Suppose $\IndHH \in UH_2^G$. Let 
-$\IndHH = \O_{u'}, \quad \Ind_{H_2}^G(\O_{u'}) = \O_{u''}$,
+\begin{proof} Suppose $\IndHH \in UH_2^G$. Let 
+$\IndHH = \cO_{u'}, \quad \Ind_{H_2}^G(\cO_{u'}) = \cO_{u''}$,
 and let $W = W_G$, $W' = W_H$, $W'' = W_{H_2}$. Then by
 definition
-     $$
-     \align
+     \begin{align*}
      \rho_{u''} &= \I_{W''}^W \rho_{u'} \\
      &= \I_{W''}^W \I_{W'}^{W''} \rhou \\
      &= \I_{W'}^W \rhou
-     \endalign
-     $$
+     \end{align*}
 by the transitivity of truncated induction~\cite{C}.  Thus
-$\Ind_{H_1}^G(\O_u) = \Ind_{H_2}^G \IndHH$.  The case $\O_u \in
+$\Ind_{H_1}^G(\cO_u) = \Ind_{H_2}^G \IndHH$.  The case $\cO_u \in
 UH_1^G$
 is proved similarly.
-\qed
+\end{proof}
 
-\newpage
+%\newpage
 
-\subheading{5. Explicit Results for Classical Groups}
-
+\section{Explicit Results for Classical Groups} %5
+\newcommand\sptilde{} %% XX
 \bigskip
 
 We begin with a
 few operations on partitions.  We follow the convention that partitions
 are increasing: $\lam = \lams, \quad \lam_1 \le \dots \le \lam_\ell$.  We say
 that a partition is positive if $\lam_1 > 0$.  We make the definitions:
-	$$
-	\alignat 2
+	%$$
+	\begin{alignat*}{2}
 	&\eps(\lam) 
 		&&: \text{ partition with parts } \lam_i + i-1, i=1,\dots,\ell. \\
 	&E(\lam)
@@ -507,15 +518,16 @@ that a partition is positive if $\lam_1 > 0$.  We make the definitions:
 	&\lamtil
 		&&: \text{ dual partition.} \\
 	&\lam+\mu
-		&&: \ \overset \text{def} \to = (\lamtil \cup \mutil)\sptilde.\\
+		&&: \ \overset {\text{def}} % \to 
+                = (\lamtil \cup \mutil)\widetilde{\phantom{X}}\sptilde.\\
 	&O_d(\lam)
 		&&: \text{ partition with parts } \lambda_{\ell+1-i},
 		\text{ for all } i \text{ odd.} \\
 	&E_v(\lam)
 		&&: \text{ partition with parts } \lambda_{\ell+1-i},
 		\text{ for all } i \text{ even.}
-	\endalignat
-	$$
+	\end{alignat*}
+	%$$
 
 We let $|\lam| = \sum \lam_i \in \Z_{\ge 0}$ denote the length of the 
 partition.  Also write $E^\eps$ for
@@ -528,22 +540,22 @@ $\lam_{\ell-i} + \lam_{\ell-i+1} + \dots + \lam_\ell \ge \mu_{m-i} +
 As a matter of convenience, if all of the parts of a partition are between
 0 and 9 we omit the commas between the parts.
 
-\demo{Examples} $\lam = 1245; \eps(\lam) = 1368, E(\lam) = 12, 
+\begin{cthm}{Examples} $\lam = 1245; \eps(\lam) = 1368, E(\lam) = 12, 
 	\Theta(\lam) = 02, \eps^{-1}(\lam) = 1122, (\lam)_+ = 1245, 
 	\lamtil = 12234, O_d(\lam) = 14, E_v(\lam) = 25, E^\eps(\lam) = 33,
 	\Theta^\eps(\lam) = 00$.
-	\enddemo
+	\end{cthm}
 
 We introduce the following notation.  Let $\lam,\mu,\nu,\xi,\eta$ denote
 partitions.  For groups of type $A_{n-1}$ we set
 
-\leftskip = 40 pt
-\parindent = -20 pt
+%\leftskip = 40 pt
+%\parindent = -20 pt
 
-$\O_\lam =$ unipotent class described by a positive partition $\lam$, 
+$\cO_\lam =$ unipotent class described by a positive partition $\lam$, 
 	$|\lam| = n$.
 	
-$d(\lam) = \frac 12 (\dim C_G(u) - \rank G)$ for $u\in \O_\lam$.
+$d(\lam) = \frac 12 (\dim C_G(u) - \rank G)$ for $u\in \cO_\lam$.
 
 $\rho(\lam) =$ irreducible representation of $W_{A_{n-1}}$ described by a
 	positive partition $\lam$.
@@ -552,10 +564,10 @@ $e(\lam) =$ smallest $a$ such that $\rho(\lam)$ occurs in $S^a(V)$
 	(= homogeneous polynomials of degree $a$ on the real vector space $V$
 	on which $W_{A_{n-1}}$ acts naturally as a reflection group).
 
-\leftskip = 0 in
-\parindent = 20pt
+%\leftskip = 0 in
+%\parindent = 20pt
 
-For groups of type $B_n, C_n, D_n$ we define $\O_\lam$ and $d(\lam)$ 
+For groups of type $B_n, C_n, D_n$ we define $\cO_\lam$ and $d(\lam)$ 
 simlarly.
 
 For groups of type $B_n, C_n, D_n$ we let $\rho(\xi,\eta)$ denote the
@@ -567,16 +579,17 @@ which we denote by $\rho(\xi,\xi)^+$ and $\rho(\xi,\xi)^-$.  The nonnegative
 integer $e(\xi,\eta)$ associated to $\rhoxi$ is defined as above.
 
 This section reviews some explicit results on unipotent classes and Weyl group
-representations~\citeallbold{C,Sp}.  The Springer correspondence was first
+representations~\cites{C,Sp}.  The Springer correspondence was first
 made explicit for classical groups by Shoji~\cite{Sh1}.  In describing the
 induction map, we will often write $\Ind (\lam)$ instead of 
-$\Ind_H^G(\O_\lam)$ for a partition $\lam$.  Also, statements such as
-$\lam \in UA_{n-1}$ should be interpreted as $\O_\lam \in UA_{n-1}$.
+$\Ind_H^G(\cO_\lam)$ for a partition $\lam$.  Also, statements such as
+$\lam \in UA_{n-1}$ should be interpreted as $\cO_\lam \in UA_{n-1}$.
 
-\Section{$A_{n-1}$}
+\bigskip
+\subsection{Explicit results for $A_{n-1}$}~\newline
 
 \noindent
-{\bf A.1} \qquad Unipotent conjugacy classes $\O_\lam$ are parametrized by 
+{\bf A.1} \qquad Unipotent conjugacy classes $\cO_\lam$ are parametrized by 
 elementary divisors.  Elementary divisors are are described by positive
 partitions $\lam$ of $n$.
 	$$
@@ -586,7 +599,7 @@ partitions $\lam$ of $n$.
 
 \noindent
 {\bf A.2} \qquad The partial ordering unipotent classes by inclusion in the 
-closure is $\O_\lam \succeq \O_{\lam'}$ if and only if $\lam \succeq \lam'$.
+closure is $\cO_\lam \succeq \cO_{\lam'}$ if and only if $\lam \succeq \lam'$.
 
 \noindent
 {\bf A.3} \qquad Irreducible representations $\rho(\lam)$ of $W_{A_{n-1}}$ are parametrized
@@ -596,13 +609,13 @@ by positive partitions $\lam$ of $n$.
 	$$
 
 \noindent
-{\bf A.4} \qquad The Springer correspondence maps the class $\O_\lam$ to the 
+{\bf A.4} \qquad The Springer correspondence maps the class $\cO_\lam$ to the 
 representation $\rho(\lam)$.  Notice that $e(\lam) = d(\lam)$.
 
 \noindent
 {\bf A.5} \qquad Induction from 
 $H = \Amone 1 \times \dots \times \Amone r \times T^r$ to $G$.  $H$ is
-both an endoscopic and Levi subgroup.  If $\O_\lam i \in UA_{m_i}$ then
+both an endoscopic and Levi subgroup.  If $\cO_\lam i \in UA_{m_i}$ then
 $\Ilams = \lam^1 + \dots + \lam^r$.  
 Note that $e(\lam' + \dots + \lam^r) = e(\lam')+\dots+ e(\lam^r)$,
 so that $d(\Ilams) = d(\lam^1)+\dots+d(\lam^r)$.  Induction is defined on all
@@ -617,7 +630,8 @@ the partial order.
 {\bf A.7} \qquad All unipotent classes and all irreducible representations 
 are special.
 
-\Section{$B_n$}
+\bigskip
+\subsection{Explicit results for $B_n$}~\newline
 
 \noindent
 {\bf B.1} \qquad Unipotent conjugacy classes are described by positive partitions $\lam$ of
@@ -628,7 +642,7 @@ $2n+1$ such that every even part occurs an even number of times.
 	$$
 
 \noindent
-{\bf B.2} \qquad Partial ordering by inclusion is $\O_\lam \succeq \O_{\lam'}$ 
+{\bf B.2} \qquad Partial ordering by inclusion is $\cO_\lam \succeq \cO_{\lam'}$ 
 if and only if $\lam \succeq \lam'$.
 
 \noindent
@@ -658,28 +672,26 @@ $H$ is an endoscopic group if $s \le 2$.  $H$ is a Levi subgroup if $s\le 1$.
 Let $\lam^i \in UA_{m_i-1}$, $\mu^i \in UB_{n_i}$.  Then 
 $\Ind(\lam^1,\dots,\lam^r,\mu^1,\dots,\mu^s)$ equals the unipotent class whose
 associated partitions $(\xi,\eta)$ are
-	$$
-	\align
+	\begin{align*}
 	\xi &= (O_d\lam^1 + \dots + O_d\lam^r + \Theta^\eps \mu^1
 		+ \dots + \Theta^\eps \mu^r)_+ \\
 	\eta &= (E_v \lam^1 + \dots + E_v \lam^r + E^\eps \mu^1
 		+ \dots + E^\eps \mu^r)_+
-	\endalign
-	$$
+	\end{align*}
 if such a class exists.  If no such class exists then induction is not
 defined for $(\lam^1,\dots,\mu^s)$.
 
 \noindent
-{\bf B.6} \qquad We have $d(\lam) = e(\xi,\eta)$ if $\O_\lam$ corresponds 
+{\bf B.6} \qquad We have $d(\lam) = e(\xi,\eta)$ if $\cO_\lam$ corresponds 
 to $\rhoxi$ by the
 Springer correspondence.  Also with $\xi$ and $\eta$ as defined by induction
-	$$
-	\multline
+	%$$
+	\begin{multline*}
 	e(\xi,\eta) = e(O_d\lam^1, E_v \lam^1) +\dots+ e(O_d\lam^r,E_v \lam^r) \\
 	+ e(\Theta^\eps \mu^1, E^\eps \mu^1) +\dots+
 		e(\Theta^\eps \mu^s, E^\eps \mu^s)
-	\endmultline
-	$$
+	\end{multline*}
+	%$$
 so that
 	$$
 	d(\Ilammu) = d(\lam^1) +\dots+ d(\lam^r) +\dots+ d(\mu^s).
@@ -693,12 +705,12 @@ Let $\lam = \lams$ be a positive partition such that every even part occurs
 an even number of times.  We assume that $\ell$ is odd.  Define an index
 $\delta(\lam,2i)$ for $0 < 2i < \ell$ by
 	$$
-\delta = \cases 2 &\text{if $\lam_{2i} = \lam_{2i+1}$ 
+\delta = \begin{cases} 2 &\text{if $\lam_{2i} = \lam_{2i+1}$ 
 is even and the largest odd $\lam_j$} \\
 &\qquad \text{for $j<2i$ occurs for an odd $j$.} \\
-\left[ \tsize\frac{\lam_{2i} + 1}{2} \right] + 
-\left[ \tsize\frac{-\lam_{2i+1} + 1}{2} \right] &\text{otherwise.}
-\endcases
+\left[ \textstyle{\frac{\lam_{2i} + 1}{2}} \right] + 
+\left[ \textstyle{\frac{-\lam_{2i+1} + 1}{2}} \right] &\text{otherwise.}
+\end{cases}
 	$$
 
 \noindent
@@ -714,10 +726,10 @@ Let $\lam = \lams$ be a partition of $m$.  By adding a zero if necessary we
 may assume that $\lam$ has an odd number of parts.  Then
 $\Ind_{{\Am}}^{B_m} (\lam) = \mus$ where for $2i + 2 < \ell$
 	$$
-(\mu_{2i+1},\mu_{2i+2}) = \cases 
+(\mu_{2i+1},\mu_{2i+2}) = \begin{cases} 
 (2\lam_{2i+1}, 2\lam_{2i+2}) &\text{if $\lam_{2i+1} = \lam_{2i+2}$} \\
 (2\lam_{2i+1} + 1, 2\lam_{2i+2} - 1) &\text{if $\lam_{2i+1} < \lam_{2i+2}$}
-\endcases
+\end{cases}
 	$$
 and $\mu_\ell = 2\lam_\ell + 1$.  From this description it follows that
 $\lam \succeq \lam'$ if and only if 
@@ -727,19 +739,19 @@ Now let $(\mu^1 ,\dots, \mu^s)$ be an $s$-tuple of partitions.  By adding
 zeros as necessary we may assume that $\mu^1 ,\dots, \mu^s$ all have the
 same odd number of parts (say $\ell$).  Then $(\mu^1 ,\dots, \mu^s)$ lies in 
 the domain of induction if for all $i < \ell/2$
-	$$
+	\begin{equation}\tag{*}
 	\delta(\mu^1,2i) +\dots+ \delta(\mu^s,2i) \le 2
-	\tag *
-	$$
-A unipotent conjugacy class $\O_\mu \in UB_n$ is {\it special\/} if
+\end{equation}
+A unipotent conjugacy class $\cO_\mu \in UB_n$ is {\it special\/} if
 $\delta(\mu,2i) < 2$ for all $2i < \ell$.  This is equivalent to the usual
 definition of special~\cite{C}. We see in particular that if
 $s=2$ and $\mu^1,\dots,\mu^s$ are all special then $\lamsmus$ lies in the
 domain of induction.  
 
-\newpage
+%\newpage
 
-\subheading{Explicit results for $D_n$}
+\bigskip
+\subsection{Explicit results for $D_n$}~\newline
 
 \bigskip
 
@@ -754,7 +766,7 @@ two classes for partitions whose parts are all even.
 
 \noindent
 {\bf D.2} \qquad The partial ordering by inclusion is 
-$\O_\lam \succeq \O_{\lam'}$ if and only if $\lam \succeq \lam'$.
+$\cO_\lam \succeq \cO_{\lam'}$ if and only if $\lam \succeq \lam'$.
 
 \noindent
 {\bf D.3} \qquad Irreducible representations of $W_{D_n}$ are described by pairs of partitions
@@ -773,13 +785,11 @@ where
 The image is described as follows.  Arrange that
 $\xi$ and $\eta$ have the same number of parts.  Then $(\xi,\eta)$ lies in the
 image if and only if
-	$$
-	\gather
+	\begin{gather*}
 	\xi_1 \le \eta_1 \le \xi_2+2 \le \eta_2+2 
 		\le \xi_2+4 \le \dots \text{ or} \\
 	\eta_1 \le \xi_1 \le \eta_2+2 \le \xi_2+2 \le \eta_2+4 \le \dots
-	\endgather
-	$$
+	\end{gather*}
 
 \noindent
 {\bf D.5} \qquad Induction to $D_n$ from 
@@ -789,20 +799,18 @@ $H$ is an endoscopic group if $t \le 2$.  $H$ is a Levi subgroup if
 $t \le 1$.  The unipotent class described by the $r+t$-tuple of partitions
 $(\lam^1,\dots,\lam^r,\mu^1,\dots,\mu^t)$ is sent to the Weyl group
 representation of $D_n$ described by the pair of partitions.
-	$$
-	\align
+	\begin{align*}
 	\xi &= O_d\lam^1 + O_d\lam^2 +\dots+ O_d\lam^r +
 		E^\eps \mu^1 +\dots+ E^\eps \mu^t \\
 	\eta &= E_v \lam^1 +\dots+ E_v \lam^r + \Theta^\eps \mu^1
 		+\dots+ \Theta^\eps \mu^t
-	\endalign
-	$$
+	\end{align*}
 
 \noindent
 {\bf D.6} \qquad Again $e$ is additive:  
 $e(\xi,\eta) = e(O_d\lam^1,E_v \lam^1)_+ \dots 
 	e(E^\eps \mu^t,\Theta^\eps \mu^t)$. Also
-$e(\xi,\eta) = d(\lam)$ provided $\O_\lam$ corresponds to $\rhoxi$. 
+$e(\xi,\eta) = d(\lam)$ provided $\cO_\lam$ corresponds to $\rhoxi$. 
 It follows that the dimension of the centralizer is preserved as predicted
 by \S 3.
 
@@ -811,21 +819,21 @@ by \S 3.
 even part occurs an even number of times.  We assume that $\ell$ is even.
 Define an index $\delta(\lam,2i)$ for $0 < 2i < \ell$ by
 	$$
-\delta = \cases 2 &\text{if $\lam_{2i} = \lam_{2i+1}$ 
+\delta = \begin{cases} 2 &\text{if $\lam_{2i} = \lam_{2i+1}$ 
 is even and the largest odd $\lam_j$} \\
 &\qquad \text{for $j<2i$ occurs for $j$ odd.} \\
-\left[ \tsize\frac{\lam_{2i+1} + 1}{2} \right] + 
-\left[ \tsize\frac{-\lam_{2i+1} + 1}{2} \right] &\text{otherwise.}
-\endcases
+\left[ \textstyle{\frac{\lam_{2i+1} + 1}{2}} \right] + 
+\left[ \textstyle{\frac{-\lam_{2i+1} + 1}{2}} \right] &\text{otherwise.}
+\end{cases}
 	$$
 We also define $\delta(\lam,2i+1)$ for $0 < 2i+1 < \ell$ by
 		$$
-\delta = \cases 0 &\text{if $\lam_{2i+1} = \lam_{2i+2}$ 
+\delta = \begin{cases} 0 &\text{if $\lam_{2i+1} = \lam_{2i+2}$ 
 is even and the largest odd $\lam_j$} \\
 &\qquad \text{for $j<2i+1$ occurs for $j$ even.} \\
-\left[ \tsize\frac{\lam_{2i+1} - 1}{2} \right] + 
-\left[ \tsize\frac{-\lam_{2i+2} - 1}{2} \right] &\text{otherwise.}
-\endcases
+\left[ \textstyle{\frac{\lam_{2i+1} - 1}{2}} \right] + 
+\left[ \textstyle{\frac{-\lam_{2i+2} - 1}{2}} \right] &\text{otherwise.}
+\end{cases}
 	$$
 
 \noindent
@@ -834,10 +842,10 @@ induction in two stages.  Let $\lam = \lams$ be a partition of $m$.  By
 adding zeros as necessary we may assume that $\lam$ has an even number of
 parts.  Then $\Ind_{{\Am}}^{D_m} (\lam) = \mus$ where for $2i + 2 \le \ell$
 	$$
-(\mu_{2i+1},\mu_{2i+2}) = \cases 
+(\mu_{2i+1},\mu_{2i+2}) = \begin{cases} 
 (2\lam_{2i+1}, 2\lam_{2i+2}) &\text{if $\lam_{2i+1} = \lam_{2i+2}$} \\
 (2\lam_{2i+1} + 1, 2\lam_{2i+2} - 1) &\text{if $\lam_{2i+1} < \lam_{2i+2}$}
-\endcases
+\end{cases}
 	$$
 From this description it follows that $\lam \succeq \lam'$ if and only if 
 $\Ind_{{\Am}}^{D_m} (\lam) \succeq \Ind_{{\Am}}^{D_m} (\lam')$.
@@ -851,12 +859,13 @@ in the domain of induction if for all $2i < \ell$
 	$$
 	\delta(\mu^1,2i) + \delta(\mu^2,2i) +\dots+ \delta(\mu^s,2i) \le 2
 	$$
-A unipotent conjugacy class $\O_\mu \in UD_m$ is {\it special\/} if
+A unipotent conjugacy class $\cO_\mu \in UD_m$ is {\it special\/} if
 $\delta(\mu,2i) < 2$ for all $i$. If $t=2$ (i.e. the group is endoscopic) 
 and $\mu^1$ and $\mu^2$ are special then the class 
 $(\lam^1 ,\dots, \lam^r,\mu^1,\mu^2)$ lies in the domain of induction.  
 
-\Section{$C_n$}
+\bigskip
+\subsection{Explicit results for $C_n$}~\newline
 
 \noindent
 {\bf C.1} \qquad Unipotent conjugacy classes are described by partitions 
@@ -870,7 +879,7 @@ $\lam$ of $2n$ such that every odd part occurs an even number of times.
 \noindent
 {\bf C.2} \qquad The partial ordering on unipotent classes coincides with the 
 natural partial order on partitions, that is $\lam \succeq \lam'$ if and 
-only if $\O_\lam \succeq \O_{\lam'}$.
+only if $\cO_\lam \succeq \cO_{\lam'}$.
 
 \noindent
 {\bf C.3} \qquad Irreducible representations of the Weyl group $W_{C_n}$ are 
@@ -907,16 +916,14 @@ $r+s+t$-tuple of partitions
 $(\lam^1 ,\dots, \lam^r,\mu^1 ,\dots, \mu^s, \nu^1 ,\dots, \nu^t)$ is sent
 to the representation of the Weyl group of $C_n$ described by the pair of
 partitions
-	$$
-	\align
+	\begin{align*}
 	\xi &= O_d\lam^1 + O_d\lam^2 +\dots+ O_d\lam^r +
 		\Theta^\eps \mu^1 +\dots+ \Theta^\eps \mu^s + E^\eps\nu^1 
 		+\dots+ E^\eps\nu^t \\
 	\eta &= E_v \lam^1 +\dots+ E_v \lam^r +
 		E^\eps \mu^1 +\dots+ E^\eps \mu^s + \Theta^\eps\nu^1
 		+\dots+ \Theta^\eps\nu^t
-	\endalign
-	$$
+	\end{align*}
 
 \noindent
 {\bf C.6} \qquad Again $e$ is additive
@@ -924,7 +931,7 @@ partitions
 	e(\xi,\eta) = e(O_d\lam^1,E_v \lam^1) + e(O_d\lam^2,E_v \lam^2) +\dots+
 	e(E^\eps\nu^t, \Theta^\eps\nu^t).
 	$$
-and since $e(\xi,\eta) = d(\lam)$, if $\O_\lam$ corresponds to $\rhoxi$ the 
+and since $e(\xi,\eta) = d(\lam)$, if $\cO_\lam$ corresponds to $\rhoxi$ the 
 dimension of centralizers correspond as predicted by \S 3.
 
 
@@ -933,7 +940,7 @@ dimension of centralizers correspond as predicted by \S 3.
 even part occurs an even number of times.  We assume that $\ell$ is even.
 Define an index $\delta(\lam,i)$ for $0 < i < \ell$ by
 	$$
-\delta = \cases 
+\delta = \begin{cases} 
 1 &\text{if $i=2k$, $\lam_{2k} = \lam_{2k+1}$, $\lam_{2k}$
 is odd, and the largest} \\
 &\qquad \text{even $\lam_j$ for $j < 2k$ occurs for $j$ odd.} \\
@@ -941,9 +948,9 @@ is odd, and the largest} \\
 is odd, and the} \\ 
 &\qquad \text{largest even $\lam_j$ for $j < 2k+1$ occurs 
 for $j$ even.} \\
-\left[ \tsize\frac{\lam_i}{2} \right] + 
-\left[ \tsize\frac{-\lam_{i+1}}{2} \right] &\text{otherwise.}
-\endcases
+\left[ \textstyle{\frac{\lam_i}{2}} \right] + 
+\left[ \textstyle{\frac{-\lam_{i+1}}{2}} \right] &\text{otherwise.}
+\end{cases}
 	$$
 
 When it becomes necessary to distinguish this index and the index previously
@@ -970,28 +977,28 @@ in the domain of induction if and only if
 	\sum_{j=1}^s \delta_C (\mu^j,i) +
 	\sum_{j=1}^t \delta_D (\nu^j,i) \le 1 \text{ for } i < \ell.
 	$$
-A class $\O_\mu \in UC_m$ is {\it special\/} if
+A class $\cO_\mu \in UC_m$ is {\it special\/} if
 $\delta(\nu,2i) \le 0$ for all $2i < \ell$.  It follows that if
-$\O_\nu \in UD_d$ and $\O_\mu \in UC_c$ are special then 
-$\O_\nu \times \O_\mu \in U(D_d \times C_c)^0$.
+$\cO_\nu \in UD_d$ and $\cO_\mu \in UC_c$ are special then 
+$\cO_\nu \times \cO_\mu \in U(D_d \times C_c)^0$.
 
-\newpage
+%\newpage
 
-\subheading{6. Preservation of Partial Order on Classes}
+\section{Preservation of Partial Order on Classes} %6
 
 \bigskip
 
 There is a partial order on unipotent conjugacy classes given by
-$\O_x \succeq \O_y$ if and only if $\O_y \subseteq
-\overline{\O_x}$ the 
-closure of $\O_x$. 
+$\cO_x \succeq \cO_y$ if and only if $\cO_y \subseteq
+\overline{\cO_x}$ the 
+closure of $\cO_x$. 
 
-\proclaim{Proposition} If $\O_x$ and $\O_y$ are classes in $\UHo$
+\begin{cthm}{Proposition} If $\cO_x$ and $\cO_y$ are classes in $\UHo$
 with
-     $\O_x \succeq \O_y$ then $\Ind \O_x \succeq \Ind \O_y$.
-     \endproclaim
+     $\cO_x \succeq \cO_y$ then $\Ind \cO_x \succeq \Ind \cO_y$.
+     \end{cthm}
 
-\demo{Proof} (For classical groups only. We postpone the proof
+\begin{proof} (For classical groups only. We postpone the proof
 for exceptional
      groups to $\S 8$ where the induction map is given
 explicitly.)  For
@@ -999,19 +1006,18 @@ explicitly.)  For
 proposition
      is clear.  For if $U_P$ is the unipotent radical subgroup of
 a parabolic
-     subgroup containing $M, \overline{\O_xU_P} \supseteq
-\O_yU_P$ so the 
-     class dense in $\O_yU_P$ is contained in the closure of the
+     subgroup containing $M, \overline{\cO_xU_P} \supseteq
+\cO_yU_P$ so the 
+     class dense in $\cO_yU_P$ is contained in the closure of the
 class dense in
-     $\O_xU_P$, that is $\Ind \O_x \succeq \Ind \O_y$.
+     $\cO_xU_P$, that is $\Ind \cO_x \succeq \Ind \cO_y$.
 
 We also remark that it is enough to prove the result for simple
 groups, so
 we restrict our attention to $B_n, C_n, D_n$.  The endoscopic
 groups are
 (remember we are working over $\C$):
-     $$
-     \alignat 3
+     \begin{alignat*}{3}
      &\underline{G_n} &\qquad &\underline{H} && \\
      &B_n &\qquad &M_i \times B_{n-i} &\qquad 
           &M_i \text{ is a Levi subgroup of $B_i$} \\
@@ -1019,48 +1025,43 @@ groups are
           &M_i \text{ is a Levi subgroup of $C_i$} \\
      &D_n &\qquad &M_i \times D_{n-i} &\qquad 
           &M_i \text{ is a Levi subgroup of $D_i$.}
-     \endalignat
-     $$
+     \end{alignat*}
 By ordinary Levi induction applied to the classes inside $M_i$ it
 is enough
 to consider three cases:
-     $$
-     \alignat 2
+     \begin{alignat*} {2}
      &\underline{G_n} &\qquad &\underline{H_n}  \\
      &B_n &\qquad &B_i \times B_{n-i} \\
      &C_n &\qquad &C_i \times D_{n-i} \\
      &D_n &\qquad &D_i \times D_{n-i} \\
-     \endalignat
-     $$
+     \end{alignat*}
 We write in these cases 
      $$
 H_n = G_i \times G_{n-i}' \text{ where } G_n' =
-\cases G_n &\text{if $G = B, D$} \\ D_n &\text{if $G=C$.}
-\endcases
+\begin{cases} G_n &\text{if $G = B, D$} \\ D_n &\text{if $G=C$.}
+\end{cases}
      $$
 
-\proclaim{Lemma}
-     \roster
-     \item"{(a)}" Fix classes $\O_x$ and $\O_y$ in $UG_n$.  For
-$\O$ fixed 
+\begin{cthm}{Lemma}
+     \begin{enumerate}[label=(\alph*)]
+     \item Fix classes $\cO_x$ and $\cO_y$ in $UG_n$.  For
+$\cO$ fixed 
           $\in U\Am$.  Set:
-               $$
-               \gather
-               \O_x^\prime = \Ind_{G_n \times \Am}^{G_{n+m}}
-(\O_x \times \O) \\
-               \O_y^\prime = \Ind_{G_n \times \Am}^{G_{n+m}}
-(\O_y \times \O)
-               \endgather
-               $$
-          Then $\O_x \succeq \O_y$ if and only if $\O_x' \succeq
-\O_y'$.
-     \item"{(b)}" Fix classes $\O_x$ and $\O_y$ in $UA_{n-1}$. 
+               \begin{gather*}
+               \cO_x^\prime = \Ind_{G_n \times \Am}^{G_{n+m}}
+(\cO_x \times \cO) \\
+               \cO_y^\prime = \Ind_{G_n \times \Am}^{G_{n+m}}
+(\cO_y \times \cO)
+               \end{gather*}
+          Then $\cO_x \succeq \cO_y$ if and only if $\cO_x' \succeq
+\cO_y'$.
+     \item Fix classes $\cO_x$ and $\cO_y$ in $UA_{n-1}$. 
 Then
-          $\O_x \succeq \O_y$ if and only if
-          $\Ind_{A_{n-1}}^{G_n} (\O_x) \succeq
-\Ind_{A_{n-1}}^{G_n} (\O_y)$.
-     \endroster
-     \endproclaim
+          $\cO_x \succeq \cO_y$ if and only if
+          $\Ind_{A_{n-1}}^{G_n} (\cO_x) \succeq
+\Ind_{A_{n-1}}^{G_n} (\cO_y)$.
+     \end{enumerate}
+     \end{cthm}
 
 Before proving the lemma, we point out how the lemma implies the
 proposition
@@ -1069,7 +1070,7 @@ diagram:
 
 \bigskip
      $$
-     \CD
+     \begin{CD}
      G_i \times G^\prime_{n-i} \times \Amone{1} \times \Amone{2} 
 @>0>>
           G_n \times \Amone{1} \times \Amone{2} \\
@@ -1079,7 +1080,7 @@ diagram:
      G_{i+m_1} \times G^\prime_{n-i+m_2}  @>>>  G_{n+m_1+m_2} \\
      @AA2A     @AA4A \\
      A_{i+m_1-1} \times A_{n-i+m_2-1}   @>3>>     A_{n+m_1+m_2-1}
-     \endCD
+     \end{CD}
      $$
 \bigskip
 
@@ -1090,77 +1091,75 @@ for
 $\Ind_A^B$ and label the arrow from $A$ to $B$ in the diagram
 with a $j$.
 
-We fix $\O_2 \succeq \O_1$ in $U(G_i \times G_{n-i}')$.  By part
+We fix $\cO_2 \succeq \cO_1$ in $U(G_i \times G_{n-i}')$.  By part
 (a) of the 
 lemma the proposition will follow if we can find an 
-$\O' \in U(G_i \x G'_{n-i} \x A_m)$ such that 
-$\Ind_7 (\O_2 \x \O) \succeq \Ind_7 (\O_1 \x \O)$ where 
+$\cO' \in U(G_i \x G'_{n-i} \x A_m)$ such that 
+$\Ind_7 (\cO_2 \x \cO) \succeq \Ind_7 (\cO_1 \x \cO)$ where 
 $\Ind_7 = \Ind_{G_i \x G_{n-1}' \x A_{m-1}}^{G_n \x \Am}$. 
 Select
-and fix $m_1,m_2$ and $\O$ for which there exists $\O_1', \O_2'$
+and fix $m_1,m_2$ and $\cO$ for which there exists $\cO_1', \cO_2'$
 satisfying
-$\Ind_1 (\O_i \x \O) = \Ind_2 (\O_i')$, $i=1,2$.  Such an $\O$
+$\Ind_1 (\cO_i \x \cO) = \Ind_2 (\cO_i')$, $i=1,2$.  Such an $\cO$
 exists by
 the explicit results given in the previous section (B.5, C.5,
 D.5).  
 By part (a) of the lemma,
-$\Ind_1 (\O_2 \x \O) \succeq \Ind_1(\O_1 \x \O)$ and by part (b)
+$\Ind_1 (\cO_2 \x \cO) \succeq \Ind_1(\cO_1 \x \cO)$ and by part (b)
 of the
-lemma $\O_2' \succeq \O_1'$.  Induction applied to Levi factors
+lemma $\cO_2' \succeq \cO_1'$.  Induction applied to Levi factors
 yields
-$\Ind_4 \Ind_3 \O_2' \succeq \Ind_4 \Ind_3 \O_1'$.  By the
+$\Ind_4 \Ind_3 \cO_2' \succeq \Ind_4 \Ind_3 \cO_1'$.  By the
 transitivity
-of induction $\Ind_4 \Ind_3 \O_i' = \Ind_5 \Ind_6 \Ind_0 (\O_i \x
-\O)$, 
+of induction $\Ind_4 \Ind_3 \cO_i' = \Ind_5 \Ind_6 \Ind_0 (\cO_i \x
+\cO)$, 
 $i=1,2$ so that 
-$\Ind_5 \Ind_6 \Ind_0 (\O_2 \x \O) \succeq \Ind_5 \Ind_6 \Ind_0
-(\O_1 \x \O)$.
-The lemma allows us to drop ``$\Ind_5$" to conclude that
-$\Ind_6 \Ind_0 (\O_2 \x \O) \succeq \Ind_6 \Ind(\O_1 \x \O)$.  We
+$\Ind_5 \Ind_6 \Ind_0 (\cO_2 \x \cO) \succeq \Ind_5 \Ind_6 \Ind_0
+(\cO_1 \x \cO)$.
+The lemma allows us to drop ``$\Ind_5$'' to conclude that
+$\Ind_6 \Ind_0 (\cO_2 \x \cO) \succeq \Ind_6 \Ind(\cO_1 \x \cO)$.  We
 write
-$\O' = \Ind_{\Amone{1} \x \Amone{2}}^{A_{m_1+m_2-1}}(\O)$.  Then
+$\cO' = \Ind_{\Amone{1} \x \Amone{2}}^{A_{m_1+m_2-1}}(\cO)$.  Then
 noting that
-$\Ind_6$ acts only on $\O$ we find that (with $m = m_1 + m_2$)
-$\Ind_7 (\O_2 \x \O') = \Ind_6 \Ind_0 (\O_2 \x \O) \succeq
-     \Ind_6 \Ind_0 (\O_2 \x \O) = \Ind_7 (\O_1 \x \O')$.  
+$\Ind_6$ acts only on $\cO$ we find that (with $m = m_1 + m_2$)
+$\Ind_7 (\cO_2 \x \cO') = \Ind_6 \Ind_0 (\cO_2 \x \cO) \succeq
+     \Ind_6 \Ind_0 (\cO_2 \x \cO) = \Ind_7 (\cO_1 \x \cO')$.  
 This proves the proposition.
 
 Now we turn to the proof of the lemma.  The validity of (b) was
 observed
 in~B.8, C.8 and~D.8.  Consider part (a) of the lemma. Consider
 classes 
-$\O_\lam$, $\O_{\lam'} \in UG_n.$  Let $\O_\lam \succeq
-\O_{\lam'}$, 
+$\cO_\lam$, $\cO_{\lam'} \in UG_n.$  Let $\cO_\lam \succeq
+\cO_{\lam'}$, 
 $\lam = \lams$, $\lam' = \lamsprime$ (adding zeros as necessary).
 Write
-     $$
-     \gather
+      \begin{gather}
 \Lambda_i = \lam_{\ell-i+1} + \lam_{\ell-i} +\dots+ \lam_\ell \\
 \Lambda_i' = \lam_{\ell-i+1}' + \lam_{\ell-i}' +\dots+ \lam_\ell'
-     \endgather
-     $$
-for $i \ge 1$.
+     \end{gather}
+ for $i \ge 1$.
 
 Let $\underline{\mu} = (\overbrace{\mu ,\dots, \mu}^r)$ be a
 partition
-whose parts are all equal.  $\O_{\underline{\mu}} \in U\Am$, 
+whose parts are all equal.  $\cO_{\underline{\mu}} \in U\Am$, 
 $m = |\underline{\mu}| = \mu r$.  
 If we show 
-$\Ind (\O_\lam \x \O_{\underline{\mu}}) \succeq 
-     \Ind (\O_{\lam'} \x \O_{\underline{\mu}})$ 
-if and only if $\O_\lam \succeq \O_{\lam'}$ we are done by
+$\Ind (\cO_\lam \x \cO_{\underline{\mu}}) \succeq 
+     \Ind (\cO_{\lam'} \x \cO_{\underline{\mu}})$ 
+if and only if $\cO_\lam \succeq \cO_{\lam'}$ we are done by
 induction, 
 for every partition can be broken into a sum:
-     $$
-     \multline
+     %$$
+     \begin{multline*}
      \mu' = (\mu_1 ,\dots, \mu_{\ell'}) = 
           \overbrace{(\mu_1 ,\dots, \mu_1)}^{\ell'}
           + (\mu_2-\mu_1 ,\dots, \mu_2-\mu_1) +\dots+ \\
      (\mu_3-\mu_2-\mu_1 ,\dots, \mu_3-\mu_2-\mu_1)
           +\dots+ (\mu_{\ell'} - \sum \mu_i ,\dots, \mu_{\ell'} -
 \sum \mu_i).
-     \endmultline
-     $$
+     \end{multline*}
+     %$$
 of partitions $\underline{\mu}$ having identical parts.  For
 example, 
 $\mu' = 133558 = (111111) + (22222) + (222) + 3 = 1^6 + 2^5 + 2^3
@@ -1172,48 +1171,44 @@ By adding zeros as parts as necessary we may assume that $r \le
 \ell$.  Now
 let $N\lam$ be the partition such that
      $$
-     \O_{N\lam} = \Ind \O_\lam \times \O_{\underline{\mu}}.
+     \cO_{N\lam} = \Ind \cO_\lam \times \cO_{\underline{\mu}}.
      $$
 Let $N\Lami = N\lam_{\ell-i+1} +\dots+ N\lam_\ell, i \ge 1$.
 Define 
 $N\lam'$ and $N\Lami'$ similarly.
 A short calculation using the explicit relations ($\S 5$) gives:
      $$
-N\Lami = \cases \Lami + 2i\mu &1 \le i<r. \\ \Lami + 2r\mu &r < i
+N\Lami = \begin{cases} \Lami + 2i\mu &1 \le i<r. \\ \Lami + 2r\mu &r < i
 \le \ell
-\endcases
+\end{cases}
      $$
 and $\NLam = 2r\mu + \Lam_r + \eta$, where $\eta \in \{0,-1\}$
 (In the cases
 that $\delta(\lambda,r)$ is defined, $\eta = -1$ if and only if 
 $\delta(\lambda,r) > 0$).
 Similar relations hold for the primed objects $N\Lami'$.
-Now $\O_{N\Lami} \succeq \O_{N\Lam'}$ if and only if 
+Now $\cO_{N\Lami} \succeq \cO_{N\Lam'}$ if and only if 
 $N\Lami \ge N\Lami' \ge 0$ for all $i$, which holds if and only
 if
-     $$
-     \alignat 2
+     \begin{alignat*} {2}
      &\Lami - \Lami' \ge 0, &\quad &i<r      \\
      &\Lam_r - \Lam_r' + (\eta - \eta') = \NLam - N\Lambda_r' \ge
 0 && \\
      &\Lami - \Lami' \ge 0, &\quad &i>r. 
-     \endalignat
-     $$
+     \end{alignat*}
 So it is enough to prove that, provided we have $\Lami \ge
 \Lami'$ for
 $i \ne r$ then $\Lam_r - \Lam_r' + (\eta-\eta') \ge 0$ if and
 only if
 $\Lam_r - \Lam_r' \ge 0$.  A further calculation using $\S 5$
 shows that
-     $$
+     \begin{equation}\tag{*}
      \NLam - \NLam' \in 2\Z.
-     \tag *
-     $$
+\end{equation}
 Also, since $\eta, \eta' \in \{0,-1\}$
-     $$
+     \begin{equation}\tag{**}
      |\eta-\eta'| \le 1.
-     \tag **
-     $$
+\end{equation}
 From (**) it follows that if $\Lam_r > \Lam_r'$ then $\NLam \ge
 \NLam'$ and
 if $\NLam > \NLam'$ then $\Lam_r \ge \Lam_r'$.  From (*) and (**)
@@ -1232,12 +1227,12 @@ if and only if $N\lam_{\ell-r+1}' - N\lam_{\ell-r}' < 2\mu$.  But
 then 
 $N\lam_{\ell-r+1} - N\lam_{\ell-r} < 2\mu$ so that $\eta = -1$
 also.
-\qed
+\end{proof}
 
-\newpage
+%\newpage
 
-\subheading{7. Extension of theory to groups over fields other
-than $\C$}
+\section{Extension of theory to groups over fields other
+than $\C$} %7
 
 \bigskip
 
@@ -1245,7 +1240,7 @@ The classification of stable unipotent classes in terms of
 partitions in a
 reductive group $G$ is independent of the base field in
 sufficiently large
-characteristic~\citeallbold{Sp,C}.  This allows us to extend our
+characteristic~\cites{Sp,C}.  This allows us to extend our
 construction 
 to other base fields
 $k$.  In this section we assume that $G$ is a reductive group
@@ -1294,8 +1289,7 @@ B_3)$, so that
 $H$ splits over a quadratic extension $K$ of $k$.  Classes of 
 $UH_{\text{rat}}$ are in bijection with unipotent classes of
 $UB_3$ so we have
-     $$
-     \alignat 4
+     \begin{alignat*} {4}
      &\underline{d^H} &\qquad &\underline{UH_{\text{rat}}}
 &\qquad
           &\underline{UG_{\text{rat}}} &\qquad &\underline{d^G}
@@ -1307,8 +1301,7 @@ $UB_3$ so we have
      &4 &\qquad &31^4 &\qquad &532^21 &\qquad &8 \\
      &5 &\qquad &(2^21^3) &\qquad &* &\qquad &* \\
      &9 &\qquad &1^7 &\qquad &2^61 &\qquad &18
-     \endalignat
-     $$
+     \end{alignat*}
 Here $UH_{\text{rat}} \setminus UH_{\text{rat}}^0$ consists of a
 single class
 --- that with the partition $2^21^3$.  (More generally, for $G =
@@ -1324,9 +1317,9 @@ $UH_{\text{rat}}^0$ is in bijection with the stable special
 unipotent
 classes of $B_n$.)
 
-\newpage
+%\newpage
 
-\subheading{8.  Exceptional Groups}
+\section{Exceptional Groups} %8
 
 \bigskip
 
@@ -1353,14 +1346,13 @@ in
 $S^*(V)$.  Since ${}^L H \subseteq {}^L F_4$ we have
 $W_{{}^L H} \subseteq W_{{}^L F_4}$ and $W_H$ may be identified
 with
-$\iota(W_{{}^L H})$.  If $\rho \in W_H\sphat$ let 
-$\iota(\rho) \in W_{{}^L H}\sphat$ be defined by 
+$\iota(W_{{}^L H})$.  If $\rho \in \hat{W}_H\sphat$ let 
+$\iota(\rho) \in \hat{W}_{{}^L H}\sphat$ be defined by 
 $\iota(\rho)(x) = \rho( \iota^{-1} x)$.  It follows that
-     $$
+     \begin{equation}\tag{*}
      \iota \left( \I_{W_H}^{W_{F_4}} \rho \right) = 
           \I_{W_{{}^L H}}^{W_{{}^L F_4}} \iota(\rho)
-     \tag *
-     $$
+\end{equation}
 The induction on the right-hand side of (*) is contained
 in~\cite{A}.  For
 example, if $H = C_4$ (*) gives $\I_{W_{C_4}}^{W_{F_4}}$ in terms
@@ -1369,7 +1361,7 @@ $\I_{W_{B_4}}^{W_{F_4}}$.
 
 We give induction for groups whose duals are maximal in ${}^L G$
 and which are
-not Levi subgroups of $G$  Call these groups ``$L$-maximal."  The
+not Levi subgroups of $G$  Call these groups ``$L$-maximal.''  The
 group
 $D_4$ in the $F_4$ table is not $L$-maximal because
 ${}^L D_4 \subseteq {}^L C_4 \subseteq {}^L F_4$ but is included
@@ -1390,14 +1382,14 @@ Theorem.  If the group $M$ is of the form $M_1 \x A_1$ and $x \in
 UM_1$ we let
 $x$ and $x$/ denote the unipotent classes $(x;2)$ and $(x;1^2)$
 respectively
-of $U(M_1 \x A_1) \overset \sim \to \longrightarrow UM_1 \x
+of $U(M_1 \x A_1) \overset{\sim}{\longrightarrow} UM_1 \x
 UA_1$.  
 Similarly
 for groups of the form $M_1 \x A_2$ and $x \in UM_1$ we let $x$,
 $x$/, and 
 $x$// denote the classes $(x;3)$, $(x;21)$ and $(x;1^3)$
 respectively of
-$U(M_1 \x A_2) \overset \sim \to \longrightarrow UM_1 \x UA_2$.
+$U(M_1 \x A_2) \overset{\sim}{\longrightarrow} UM_1 \x UA_2$.
 In the case $M = A_2^3$ classes in $A_2$ are denoted by 0,1 and~3
 instead
 of 2, 21 and~$1^3$ respectively.
@@ -1434,9 +1426,9 @@ are listed only up to a permutation of factors.
 The following list gives all classes in $UM \backslash UM^G$, $M$
 
 $L$-maximal.  \newline
-$S \overset \text{def} \to = UM \backslash UM^G = \emptyset$
-unless    $$
-     \align
+$S \overset {\text{def}}{=} UM \backslash UM^G = \emptyset$
+unless    
+     \begin{align*}
      &G = F_4, \quad M = C_4, \quad S = \{ 21^6 \} \\
      &G = F_4, \quad M = D_4 \text{ (not $L$-maximal)}, 
           \quad S = \{ 32^21, 1^8 \} \\
@@ -1447,21 +1439,20 @@ unless    $$
 \\
      &G = E_8, \quad M = D_8, \quad S = \{ 54^23, 4^232^21,
 32^61, 32^21^9 \}.
-     \endalign
-     $$
+     \end{align*}
 
 The data in the tables that follow make it possible to complete
 the proof
 of Proposition~6.
 
-\proclaim{Lemma~1} Let $G$ be an exceptional group and let $H$ be
+\begin{cthm}{Lemma~1} Let $G$ be an exceptional group and let $H$ be
 an
-     endoscopic group of $G$.  If $\O_x$ and $\O_y$ are classes
+     endoscopic group of $G$.  If $\cO_x$ and $\cO_y$ are classes
 in $UH^0$
-     with $\O_x \succeq \O_y$ then $\Ind \O_x \succeq \Ind \O_y$.
-     \endproclaim
+     with $\cO_x \succeq \cO_y$ then $\Ind \cO_x \succeq \Ind \cO_y$.
+     \end{cthm}
      
-\demo{Remark} The proof of this lemma assumes the validity of the
+\begin{cthm}{Remark} The proof of this lemma assumes the validity of the
 diagrams
 in~\cite{Sp} giving the partial order on unipotent classes for
 exceptional
@@ -1470,26 +1461,26 @@ partial order
 differ slightly from those of~\cite{Sp} for $E_7$ and~$E_8$. 
 This lemma
 is false if the partial orders in~\cite{C} are the correct ones.
-\enddemo
+\end{cthm}
 
-\demo{Proof} Let $M$ be one of the maximal groups in the tables. 
+\begin{proof} Let $M$ be one of the maximal groups in the tables. 
 It follows
 by comparing the tables against the diagrams giving the partial
 order 
-in~\cite{Sp} that if $\O_u$ and $\O_v$ are the classes in $UM^G$
+in~\cite{Sp} that if $\cO_u$ and $\cO_v$ are the classes in $UM^G$
 with
-$\O_u \succeq \O_v$ then $\Ind_M^G \O_u \succeq \Ind_M^G \O_v$.
+$\cO_u \succeq \cO_v$ then $\Ind_M^G \cO_u \succeq \Ind_M^G \cO_v$.
 
 Let $H$ be an endoscopic group of $G$.  By definition we have
 ${}^L H \subseteq {}^L M \subseteq {}^L G$ for some maximal ${}^L
 M$.  By
 the transitivity of induction we may assume there is no group
 $H'$ with
-${}^L H \subsetneqq {}^L H' \subseteqq {}^L M$ with $\O_x, \O_y
+${}^L H \subsetneqq {}^L H' \subseteqq {}^L M$ with $\cO_x, \cO_y
 \in UH^{H'}$.
 By the preceding remarks we may also assume that $H \ne M$ and
 that
-$\O_x$ or $\O_y$ belongs to $UH^G \backslash UH^M$.  We observe
+$\cO_x$ or $\cO_y$ belongs to $UH^G \backslash UH^M$.  We observe
 that if
 $G = E_8$, $M = E_7 + A_1$, $H \ne M$ and $UH^M \backslash UH \ne
 \emptyset$
@@ -1508,12 +1499,12 @@ The preceding reductions reduce the proof to the following list
 of
 possibilities for $G, M, H$ with $UH^G \backslash UH^M \ne
 \emptyset$.
-     $$
-     \alignedat 5
+     \begin{equation}\tag{*}
+     \begin{alignedat} 5
      &\underline{G} &\qquad &\underline{M} &\qquad
           &\underline{H} &\qquad &\underline{UH^G \backslash
 UH^M} 
-          &\qquad &\underline{\Ind_H^G (\O)}\\
+          &\qquad &\underline{\Ind_H^G (\cO)}\\
      &F_4 &\qquad &B_3 + \tilde A_1 &\qquad &B_2 + B_1 + \tilde
 A_1 
           &\qquad &(2^21, 1^3) &\qquad &B_3 \\
@@ -1528,15 +1519,14 @@ A_1
      &E_8 &\qquad &D_8 &\qquad &D_6 + D_2 &\qquad &(72^21,1^4)
           &\qquad &E_8(a_5) \\
      &&&&&&&(32^41,1^4) &\qquad &A_6 + A_1
-     \endalignedat
-     \tag *
-     $$
+     \end{alignedat}
+\end{equation}
 
 One now checks case by case that if $H$ is one of the groups
 listed and
-$\O_x$ or $\O_y$ is one of the unipotent classes in $UH^G
+$\cO_x$ or $\cO_y$ is one of the unipotent classes in $UH^G
 \backslash UH^M$
-then $\Ind \O_x \succeq \Ind \O_y$.  The next paragraph gives
+then $\Ind \cO_x \succeq \Ind \cO_y$.  The next paragraph gives
 details for
 $E_8$ the other cases being similar but much easier.  The proof
 is now
@@ -1558,62 +1548,62 @@ then $\delta(\lam^1,2j) + \delta(\lam^2,2j) > 2$ for some $j$ so
 that
 in particular $\lam^1$ is not special.  This yields the
 possibilities
-     $$
-     \alignat 3
+     \begin{alignat*} {3}
      &D_4 + D_4 &\qquad &(\lam^1 = 32^21; 
           &\quad &\lam^2 = 51^3,32^21,31^5,1^8) \\
      &D_5 + D_3 &\qquad &(\lam^1 = 52^21,32^21;
           &\quad &\lam^2 = 31^3,1^6) \\
      &D_6 + D_2 &\qquad &(\lam^1 = 72^21,52^21^3,3^22^21^5,32^41;
           &\quad &\lam^2 = 1^4)
-     \endalignat
-     $$
+     \end{alignat*}
 By \cite{A} and D.5 the only classes in this list which lie in
 $UH^G$ are
 the five pairs of possibilities listed above in (*).
 
-To show that if $\O_x$ or $\O_y \in UH^G \backslash UH^M$ then
-$\Ind_H^G \O_x \succeq \Ind_H^G \O_y$ argue as follows.  Consider
+To show that if $\cO_x$ or $\cO_y \in UH^G \backslash UH^M$ then
+$\Ind_H^G \cO_x \succeq \Ind_H^G \cO_y$ argue as follows.  Consider
 first the
 case $\Ind(\cdot) = E_8(a_5) \in UE_8$.  An examination of the
 partial order
-on $UE_8$ revelas that for $\O \in UE_8$, $\O \succ E_8(a_5)$ if
+on $UE_8$ revelas that for $\cO \in UE_8$, $\cO \succ E_8(a_5)$ if
 and only
-if $d_\O < 6 = d_{E_8(a_5)}$ and that $\O \prec E_8(a_5)$ if and
+if $d_\cO < 6 = d_{E_8(a_5)}$ and that $\cO \prec E_8(a_5)$ if and
 only if
-$d_\O > 6$.  Thus in this case the partial order is preserved
+$d_\cO > 6$.  Thus in this case the partial order is preserved
 because
-$d_\O = d_{\O'}$ if $\Ind \O' = \O$.
+$d_\cO = d_{\cO'}$ if $\Ind \cO' = \cO$.
 
-Finally, let $\O_z$ be one of the classes of $UH^G \backslash
+Finally, let $\cO_z$ be one of the classes of $UH^G \backslash
 UH^M$ in (*)
-with $\Ind \O_z = A_6 + A_1$.  The classes $\O \in UE_8$ with 
-$d_\O \ne d_{A_6 + A_1} = 14$, $\overline{\O} \cap (A_6 + A_1) =
+with $\Ind \cO_z = A_6 + A_1$.  The classes $\cO \in UE_8$ with 
+$d_\cO \ne d_{A_6 + A_1} = 14$, $\overline{\cO} \cap (A_6 + A_1) =
 \emptyset$
-and $\O \cap \overline{A_6 + A_1} = \emptyset$ are $\O = E_6$, 
+and $\cO \cap \overline{A_6 + A_1} = \emptyset$ are $\cO = E_6$, 
 $E_6(a_1)$, $D_6(a_1)$, $D_5 + A_1$, and $D_5$.  By the tables,
 the classes
 in $UD_8$ which map to one of these are $91^7,731^6$, $532^4$,
 $4^22^4b$
-and~$71^9$.  It is a simple matter to check that if $\O_w \in
+and~$71^9$.  It is a simple matter to check that if $\cO_w \in
 UH^G$
-and $\overline{\O}_w \cap \O_z \ne \emptyset$ or $\O_w \cap
-\overline{\O}_z$
-then $\Ind_H^{D_8} (\O_w) \ne 91^7,731^6,532^4,4^22^4b,71^9$. 
+and $\overline{\cO}_w \cap \cO_z \ne \emptyset$ or $\cO_w \cap
+\overline{\cO}_z$
+then $\Ind_H^{D_8} (\cO_w) \ne 91^7,731^6,532^4,4^22^4b,71^9$. 
 The
 cases $G = F_4,E_7$ proceed similarly.
+\end{proof}
+\vfill\newpage
 
 % END OF HHALES1C.TEX
 
  %% E6 FILE:
 
-\magnification=\magstep1
+%\magnification=\magstep1
 
 %Paper: Hales1
 %Template: Table2
 %Title: The Group E6
 
-\nologo
+%\nologo
 
 % \setstrut
 % compute \strut as a \vrule of
@@ -1621,10 +1611,10 @@ cases $G = F_4,E_7$ proceed similarly.
 %	height = 70% of the current value of \baselineskip
 %	depth = the remaining 30% of \baselineskip
 \newdimen\strutskip
-\redefine\strut{\vrule height 0.7\strutskip
+\renewcommand\strut{\vrule height 0.7\strutskip
 					 depth 0.3\strutskip
 					 width 0.2pt}%
-\define\setstrut{%
+\newcommand\setstrut{%
 	\strutskip = \baselineskip
 	}
 
@@ -1683,8 +1673,8 @@ d&  $E_6$ class&  s& \omit& $3A_2$&  s&  $A_1+A_5$&  s\cr\noalign{\vskip 0.2cm
 }%	end \halign
 }$$%	end \vbox
 
-\end
-
+%\end
+\vfill\newpage
 
 % END OF E6 FILE
 
@@ -1694,9 +1684,9 @@ d&  $E_6$ class&  s& \omit& $3A_2$&  s&  $A_1+A_5$&  s\cr\noalign{\vskip 0.2cm
 %Template: Table3
 %Title: The Group E7
 
-\nologo
-\hsize = 7 truein
-\vsize = 9 truein
+%\nologo
+%\hsize = 7 truein
+%\vsize = 9 truein
 
 % \setstrut
 % compute \strut as a \vrule of
@@ -1704,12 +1694,12 @@ d&  $E_6$ class&  s& \omit& $3A_2$&  s&  $A_1+A_5$&  s\cr\noalign{\vskip 0.2cm
 %	height = 70% of the current value of \baselineskip
 %	depth = the remaining 30% of \baselineskip
 \newdimen\strutskip
-\redefine\strut{\vrule height 0.7\strutskip
+\renewcommand\strut{\vrule height 0.7\strutskip
 					 depth 0.3\strutskip
 					 width 0.2pt}%
-\define\setstrut{%
-	\strutskip = \baselineskip
-	}
+%\newcommand\setstrut{%
+%	\strutskip = \baselineskip
+%	}
 
 \baselineskip = 12pt
 
@@ -1785,7 +1775,7 @@ d&  $E_7$ class&  s& \omit& $A_7$&  s&  $A_5 + A_2$&  s&  $D_6+A_1$&
 }% 	end \halign
 }$$%	end \vbox
 
-\newpage
+%\newpage
 %The Group E7, page 2
 
 $$
@@ -1844,7 +1834,8 @@ d&  $E_7$ class&  s& \omit& $A_7$&  s&  $A_5 + A_2$&  s&  $D_6+A_1$&
 }% 	end \halign
 }$$%	end \vbox
 
-\end
+\vfill\newpage
+%\end
 
 % END OF E7
 
@@ -1853,26 +1844,16 @@ d&  $E_7$ class&  s& \omit& $A_7$&  s&  $A_5 + A_2$&  s&  $D_6+A_1$&
 %Template: Table4
 %Title: The Group E8
 
-\nologo
-\hsize = 7 truein
-\vsize = 9 truein
-
-% \setstrut
-% compute \strut as a \vrule of
-%	width = 0
-%	height = 70% of the current value of \baselineskip
-%	depth = the remaining 30% of \baselineskip
 \newdimen\strutskip
-\redefine\strut{\vrule height 0.7\strutskip
+\renewcommand\strut{\vrule height 0.7\strutskip
 					 depth 0.3\strutskip
 					 width 0.2pt}%
-\define\setstrut{%
-	\strutskip = \baselineskip
-	}
-
 \baselineskip = 14pt
 
-$$
+\newenvironment{e8}{}{}
+
+\begin{e8}
+\hskip-2.5cm{
 \vbox{
 \setstrut
 \offinterlineskip
@@ -1965,11 +1946,14 @@ d&  $E_8$ class&  s& \omit& $E_7+A_1$&  s&  $E_6+A_2$&  s&  $2A_4$&
 &&&&  $A_4+A_1$&  512&  $A_2+2A_1$&  60&&&&&&\cr
 11&  $A_7$&  1400&&  $A_4+A_2$/&  210&  $A_3+A_1$//&  60&&&&& $54^21^3$& 168\cr
 }%	end \halign
-}$$%	end \vbox
+}%	end \vbox
+}% end \hskip
+\end{e8}
 
-\newpage
+%\newpage
 
-$$
+\begin{e8}
+\hskip-2.5cm{
 \vbox{
 \setstrut
 \offinterlineskip
@@ -2050,11 +2034,13 @@ d&  $E_8$ class&  s& \omit& $E_7+A_1$&  s&  $E_6+A_2$&  s&  $2A_4$&
 24&  $A_4+2A_1$&  4200&&&&&&&&&&  $3^22^21^6$&  140\cr
 25&  $D_5(a_1)$&  2800&&  $A_2+A_1$&  120&  $A_1$&  6&&&&&&\cr
 }%	end \halign
-}$$%	end \vbox
+}%	end \vbox
+}% end \hskip
+\end{e8}
 
-\newpage
+%\newpage
 
-$$
+
 \vbox{
 \setstrut
 \offinterlineskip
@@ -2111,33 +2097,34 @@ d&  $E_8$ class&  s& \omit& $E_7+A_1$&  s&  $E_6+A_2$&  s&  $2A_4$&
 91&  $A_1$&  8&&&&&&&&&&&\cr
 120&  1&  1&&&&&&&&&&&\cr
 }%	end \halign
-}$$%	end \vbox
+}%	end \vbox
 
-\end
+\vfill\newpage
+%\end
 
 % END OF E8
 
 % START OF F4
-\magnification=\magstep1
+%\magnification=\magstep1
 
 %Paper: Hales1
 %Template: Table1
 %Title: The Group F4
 
-\nologo
+%\nologo
 
 % \setstrut
 % compute \strut as a \vrule of
 %	width = 0
 %	height = 70% of the current value of \baselineskip
 %	depth = the remaining 30% of \baselineskip
-\newdimen\strutskip
-\redefine\strut{\vrule height 0.7\strutskip
-					 depth 0.3\strutskip
-					 width 0.2pt}%
-\define\setstrut{%
-	\strutskip = \baselineskip
-	}
+%\newdimen\strutskip
+%\redefine\strut{\vrule height 0.7\strutskip
+%					 depth 0.3\strutskip
+%					 width 0.2pt}%
+%\newcommand\setstrut{%
+%	\strutskip = \baselineskip
+%	}
 
 \baselineskip = 14pt
 
@@ -2193,32 +2180,32 @@ d&  $F_4$ class&  s& \omit&  $C_4$&  s&  $D_4$&  s&  $B_3+\tilde A_1$&
 }%	end \halign
 }$$%	end \vbox
 
-\end
+%\end
 
 % END OF F4
 
 % START OF G2
 
-\magnification=\magstep1
+%\magnification=\magstep1
 
 %Paper: Hales1
 %Template: Table6
 %Title: The Group G2
 
-\nologo
+%\nologo
 
 % \setstrut
 % compute \strut as a \vrule of
 %	width = 0
 %	height = 70% of the current value of \baselineskip
 %	depth = the remaining 30% of \baselineskip
-\newdimen\strutskip
-\redefine\strut{\vrule height 0.7\strutskip
-					 depth 0.3\strutskip
-					 width 0.2pt}%
-\define\setstrut{%
-	\strutskip = \baselineskip
-	}
+%\newdimen\strutskip
+%\redefine\strut{\vrule height 0.7\strutskip
+%					 depth 0.3\strutskip
+%					 width 0.2pt}%
+%\newcommand\setstrut{%
+%	\strutskip = \baselineskip
+%	}
 
 \baselineskip = 14pt
 
@@ -2254,7 +2241,7 @@ d&  $G_2$ class&  s& \omit& $A^2$&  s&  $A_1 + \tilde A_1$&
 }%	end \halign
 }$$%	end \vbox
 
-\end
+%\end
 
 % END OF G2
 
@@ -2263,18 +2250,7 @@ d&  $G_2$ class&  s& \omit& $A^2$&  s&  $A_1 + \tilde A_1$&
 %MSRI Book References File
 %Typist: David Mostardi
 %Begun
-
-\magnification = \magstep1
-\hsize = 5.4 truein
-\vsize = 8.7 truein
-\NoBlackBoxes
-\nologo
-\printoptions
-
-\document
-
-\newpage
-
+\vfill\newpage
 \Refs
 
 \ref \key [{\bf A}]
@@ -2448,5 +2424,5 @@ d&  $G_2$ class&  s& \omit& $A^2$&  s&  $A_1 + \tilde A_1$&
 \yr 1977  \pages 1241--1258
 \endref
 
-\enddocument
-\bye
+\end{document}
+

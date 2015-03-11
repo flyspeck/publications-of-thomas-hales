@@ -1,103 +1,140 @@
 % Document Created June 23, 1993 on B2 C2
 % AMS-Tex document
 % Author Thomas C. Hales
+% Reformatted March 2015
 
-\magnification=\magstep1
+\documentclass{amsart}
+
+%Packages
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{alltt}
+\usepackage{txfonts}
+%tikz graphics
+%\usepackage{xcolor} % to remove color.
+\usepackage{tikz} 
+\usetikzlibrary{chains,shapes,arrows,shadings,trees,matrix,%
+  positioning,intersections,decorations,%
+  decorations.markings,decorations.pathmorphing,backgrounds,%
+  fit,calc,fadings,decorations.pathreplacing}
+
+
+
+%\magnification=\magstep1
 %\parindent=0pt
-\baselineskip=1.5\baselineskip
-\parskip=.66\baselineskip
-\pretolerance=10000  % turn off hyphenation
-\raggedbottom        % 
+%\baselineskip=1.5\baselineskip
+%\parskip=.66\baselineskip
+%\pretolerance=10000  % turn off hyphenation
+%\raggedbottom        % 
 
-\UseAMSsymbols
-\loadmsbm
-\loadeufm
+%\UseAMSsymbols
+%\loadmsbm
+%\loadeufm
 \font\headfont=cmcsc10 scaled\magstep1
 
- \def\star{\hbox to 0pt{\hskip -10pt $\bullet$ \hss}}  %compare Knuth, Exercise 14.28
- \def\leftmargin{$\bullet$
-    \vadjust{\vbox to 0pt{\vskip-0.8\baselineskip\hbox to \hsize{\star\hfil}\vss}}}
+% \def\star{\hbox to 0pt{\hskip -10pt $\bullet$ \hss}}  %compare Knuth, Exercise 14.28
+% \def\leftmargin{$\bullet$
+%    \vadjust{\vbox to 0pt{\vskip-0.8\baselineskip\hbox to \hsize{\star\hfil}\vss}}}
 
-\def\xx{\x\x\ }
-\def\x{%
-        \hskip .05em
-        \vbox{\hrule height .4pt%
-          \hbox{\vrule width .4pt%
-                      \hskip .25em%
-                      \vbox{\vskip .61em}%
-                      \hskip .25em%   was 15 on both sides
-                      \vrule width .4pt%
-                }
-          \hrule height .4pt%
-          }}
+%\def\xx{\x\x\ }
+%\def\x{%
+%        \hskip .05em
+%        \vbox{\hrule height .4pt%
+%          \hbox{\vrule width .4pt%
+%                      \hskip .25em%
+%                      \vbox{\vskip .61em}%
+%                      \hskip .25em%   was 15 on both sides
+%                      \vrule width .4pt%
+%                }
+%          \hrule height .4pt%
+%          }}
 
-\def\v{\hskip -3.5pt }
-\def\txt#1{\hbox{\quad \vbox{\hsize=.9\hsize\par #1 }\quad}}
-\def\diabox#1to#2,#3,{
-\smallskip
-\hbox to \hsize
-{\hfill
-\vrule \vbox{ \hrule \vskip 6pt \txt#1 \vskip #2 %
-     \special{psfile=#3 hoffset=5 voffset=5 }\hrule }
-\v\vrule\hfill
-}
-\smallskip}
-\def\jota{{\dot\iota}}
-\def\P{{\Bbb P}}
-\def\pp{{\frak p}}
-\def\SS{{\frak S}}
-\def\Q{{\Bbb Q}}
-\def\G{{\Bbb G}}
-\def\C{{\Bbb C}}
-\def\Z{{\Bbb Z}}
-\def\leftd#1{\left | {d#1\over #1^2}\right |}
-\def\leftdx{\leftd x}
-\def\leftdu{\leftd u}
-\def\Gal{\hbox{Gal\,}}
-\def\Im{{\Cal I\hskip-.2em m}}
-\def\Ima{\hbox{Im}}
-\def\LOG{{L\,}}
-\def\bGamma{\bar\Gamma}
-\def\diag{\hbox{diag}}
-\def\so{{\frak s\frak o}}
-\def\sp{{\frak s\frak p}}
-\def\rank{\hbox{rank}}
-\def\bF{{\bar F}}
-\def\val{\operatorname{val}}
-\def\Res{\operatorname{Res}}
-\def\hq{%
-        \hskip .05em
-        \vbox{\hrule height .4pt%
-          \hbox{\vrule width .4pt%
-                      \hskip .25em%
-                      \vbox{\vskip .61em}%
-                      \hskip .25em%   was 15 on both sides
-                      \vrule width .4pt%
-                }
-          \hrule height .4pt%
-          }}
+%\newcommand\v{\hskip -3.5pt }
+%\newcommand\txt#1{\hbox{\quad \vbox{\hsize=.9\hsize\par #1 }\quad}}
+\def\diabox#1#2#3{#1, #2, #3}
+%\smallskip
+%\hbox to \hsize
+%{\hfill
+%\vrule \vbox{ \hrule \vskip 6pt \txt#1 \vskip #2 %
+%     \special{psfile=#3 hoffset=5 voffset=5 }\hrule }
+%\v\vrule\hfill
+%}
+%\smallskip}
+
+\newcommand\jota{{\dot\iota}}
+\newcommand\bP{{\mathbb P}}
+\newcommand\pp{{\mathfrak p}}
+\newcommand\fS{{\mathfrak S}}
+\newcommand\Q{{\mathbb Q}}
+\newcommand\G{{\mathbb G}}
+\newcommand\C{{\mathbb C}}
+\newcommand\Z{{\mathbb Z}}
+\newcommand\leftd[1]{\left | {d#1\over #1^2}\right |}
+\newcommand\leftdx{\leftd x}
+\newcommand\leftdu{\leftd u}
+\newcommand\Gal{\hbox{Gal\,}}
+\newcommand\Imm{{\mathcal I\hskip-.2em m}}
+\newcommand\Ima{\hbox{Im}}
+\newcommand\LOG{{L\,}}
+\newcommand\bGamma{\bar\Gamma}
+\newcommand\diag{\hbox{diag}}
+\newcommand\so{{\mathfrak s\mathfrak o}}
+\newcommand\fsp{{\mathfrak s\mathfrak p}}
+\newcommand\rank{\hbox{rank}}
+\newcommand\bF{{\bar F}}
+\newcommand\val{\operatorname{val}}
+\newcommand\Res{\operatorname{Res}}
+
+\newtheorem{thm}{}
+\newenvironment{cthm}[1]
+  {\renewcommand\thethm{\bf #1}\thm}
+  {\endthm}
+
+%\newcommand\hq{%
+%        \hskip .05em
+%        \vbox{\hrule height .4pt%
+%          \hbox{\vrule width .4pt%
+%                      \hskip .25em%
+%                      \vbox{\vskip .61em}%
+%                      \hskip .25em%   was 15 on both sides
+%                      \vrule width .4pt%
+%                }
+%          \hrule height .4pt%
+%          }}
+
+\begin{document}
+\title[Twisted Endoscopy]{The Twisted Endoscopy of $GL(4)$ and $GL(5)$:\\
+ Transfer of Shalika germs}
+\author{Thomas C. Hales}
+\address{University of Chicago}
+\date{September 1993}
+\thanks{Duke Mathematical Journal 76.2 (1994): 595-632.}
+
+%\centerline{\headfont The Twisted Endoscopy of GL(4) and GL(5):}
+%\smallskip
+%\centerline{\headfont Transfer of Shalika germs}
+%\bigskip
+%\centerline{Thomas C. Hales}
+%\smallskip
+%\centerline{University of Chicago}
+%\smallskip
+%\centerline{September 1993}
+%\smallskip
+%\centerline{to appear in Duke Math Journal}
+%\line{\hfil \leaders\hrule\hskip1in \hfil}
+%\bigskip
 
 
-\centerline{\headfont The Twisted Endoscopy of GL(4) and GL(5):}
-\smallskip
-\centerline{\headfont Transfer of Shalika germs}
-\bigskip
-\centerline{Thomas C. Hales}
-\smallskip
-\centerline{University of Chicago}
-\smallskip
-\centerline{September 1993}
-\smallskip
-\centerline{to appear in Duke Math Journal}
-\line{\hfil \leaders\hrule\hskip1in \hfil}
-\bigskip
-
-\noindent
-{\bf Abstract.}\   The transfer of germs of orbital integrals 
+\begin{abstract}  The transfer of germs of orbital integrals 
 is carried out for the twisted endoscopy of $GL(4)$ and
 $GL(5)$, for $p$-adic fields of odd  residual characteristic.
-We also transfer the $\kappa$-orbital integrals of $Sp(4)$
+We also transfer the $\kappa$-orbital integrals of $\text{Sp}(4)$
 to its endoscopic groups, again in odd residual characteristic.
+\end{abstract}
+\maketitle
 
 \bigskip
 
@@ -125,7 +162,7 @@ twisted orbital integrals on $GL(4)$ and $GL(5)$
 are expressed
 by the number of points on a family of elliptic curves over
 finite fields.  The stable orbital integrals on the endoscopic
-groups $SO(5)$ and $Sp(4)$ have a similar description.
+groups $\text{SO}(5)$ and $\text{Sp}(4)$ have a similar description.
 The transfer of orbital integrals to the
 endoscopic groups is established by producing isogenies
 between the families of elliptic curves.  
@@ -135,15 +172,15 @@ Kazhdan, Lusztig, and Bernstein [KLB].  For further
 results along these lines, see [H3].
 
 These calculations  give complete formulas for the
-Shalika germs of $Sp(4)$.  
+Shalika germs of $\text{Sp}(4)$.  
 By results of Kazhdan and Harish-Chandra, the Fourier
 transforms of subregular nilpotent orbits on the elliptic set coincide,
 up to a change of basis, with cuspidal combinations
 of subregular Shalika germs
-on the group $Sp(4)$ (see [Ka],[HC]). 
+on the group $\text{Sp}(4)$ (see [Ka],[HC]). 
 Thus the Fourier transforms of certain subregular
 nilpotent orbits on elliptic elements of
-$Sp(4)$, being
+$\text{Sp}(4)$, being
 expressed in terms of
 points on families of elliptic curves over finite fields,
 are not elementary.
@@ -151,7 +188,7 @@ are not elementary.
 The transfer of orbital integrals and the related fundamental
 lemmas are essential steps in the development of a stable
 trace formula. This paper brings us one step closer
-to obtaining a stable trace formula for $Sp(4)$.
+to obtaining a stable trace formula for $\text{Sp}(4)$.
 
 We also give the first verification of an unpublished conjecture of
 Assem and Kottwitz.  Their conjecture states that the
@@ -159,14 +196,14 @@ stable Shalika germ associated with a unipotent
 conjugacy class that is not special is identically zero.  
 (For the definition of {\it special} unipotent classes, see [C].)
 We verify this conjecture for
-the {\it two-regular} unipotent conjugacy class in $Sp(4)$.  This
+the {\it two-regular} unipotent conjugacy class in $\text{Sp}(4)$.  This
 verification is part of the proof of the transfer of twisted
 orbital integrals on $GL(4)$ and $GL(5)$.
 
 The final section gives a proof of the transfer of orbital
-integrals on $Sp(4)$ to its endoscopic groups.  The paper
+integrals on $\text{Sp}(4)$ to its endoscopic groups.  The paper
 [H1] carried this out for the group $GSp(4)$, but the
-analysis of the two-regular conjugacy class of $Sp(4)$ was left
+analysis of the two-regular conjugacy class of $\text{Sp}(4)$ was left
 incomplete.  The formula for the germs of the two-regular
 conjugacy class, obtained
 as part of our work on the twisted theory, provides an
@@ -177,47 +214,48 @@ hospitality at the Universit\'e de Paris-Sud, and
 % UPS verified Aug 1993
 the C.N.R.S. for its generous support.
 
-\vfill\break
-\centerline{\headfont Section 1.  Twisted Endoscopy of the General Linear Group.}
-\bigskip
+\section{Twisted Endoscopy of the General Linear Group}
+%\vfill\break
+%\centerline{\headfont Section 1.  Twisted Endoscopy of the General Linear Group.}
+%\bigskip
 
 Let $\theta$ be the automorphism of $GL(n)$ defined by
 $\theta(x) = J\cdot {}^t{x}^{-1}\cdot J^{-1}$, where $J$ is the matrix
 with alternating signs along the skew diagonal and zeros
 elsewhere:
-$$J=\pmatrix &&& 1\\ &&-1&\\ &\cdots &&\\ (-1)^{n-1}&&&\endpmatrix.
+$$J=\begin{pmatrix} &&& 1\\ &&-1&\\ &\cdots &&\\ (-1)^{n-1}&&&\end{pmatrix}.
 $$
 The connected components of the fixed point sets of $\theta$
- are the quasisplit groups $GL(2n)^{\theta\,\circ} = Sp(2n)$,
-and $GL(2n+1)^{\theta\,\circ} = SO(2n+1)$.  
+ are the quasisplit groups $GL(2n)^{\theta\,\circ} = \text{Sp}(2n)$,
+and $GL(2n+1)^{\theta\,\circ} = \text{SO}(2n+1)$.  
 One of the endoscopic groups for
-$(GL(2n),\theta)$ is $H= SO(2n+1)$, and one of the endoscopic groups
-for $(GL(2n+1),\theta)$ is $H=Sp(2n)$.  By a result of 
+$(GL(2n),\theta)$ is $H= \text{SO}(2n+1)$, and one of the endoscopic groups
+for $(GL(2n+1),\theta)$ is $H=\text{Sp}(2n)$.  By a result of 
 Arthur [A,Lemma 2.1]
 generalizing Harish-Chandra, the stable twisted
 orbital integral near the unit element in $GL(2n)$ descends to a
-stable orbital integral on the fixed point set $Sp(2n)$.  Similarly,
-twisted orbital integrals on $GL(2n+1)$ descend to $SO(2n+1)$.
+stable orbital integral on the fixed point set $\text{Sp}(2n)$.  Similarly,
+twisted orbital integrals on $GL(2n+1)$ descend to $\text{SO}(2n+1)$.
 
 The transfer factor of Kottwitz and Shelstad for the endoscopic groups
 just given is a constant that we can take to be 1 (see [KS]). 
 (This is a general property of the ``largest'' twisted
 endoscopic group.)
 We are thus led
-to compare stable orbital integrals at the identity on $Sp(2n)$ and
-$SO(2n+1)$.  Near the identity element, we may pass to the Lie
+to compare stable orbital integrals at the identity on $\text{Sp}(2n)$ and
+$\text{SO}(2n+1)$.  Near the identity element, we may pass to the Lie
 algebra.  We have an identification of split Cartan subalgebras
 in the Lie algebras:
-$$\diag(t_1,\ldots, t_n,-t_n,\ldots,-t_1)\subset \sp(2n)$$
+$$\diag(t_1,\ldots, t_n,-t_n,\ldots,-t_1)\subset \fsp(2n)$$
 may be identified with 
 $$\diag(t_1,\ldots, t_n,0,-t_n,\ldots,-t_1)\subset \so(2n+1).$$
 We may also identify Weyl groups on these two groups, and this allows
 us to identify stable conjugacy classes of regular semisimple elements
-in $\sp(2n)$ and $\so(2n+1)$.
-If we express each stable Shalika germ on $\sp(2n)$ as a linear
+in $\fsp(2n)$ and $\so(2n+1)$.
+If we express each stable Shalika germ on $\fsp(2n)$ as a linear
 combination of stable Shalika germs on $\so(2n+1)$, and conversely,
 each stable Shalika germ on $\so(2n+1)$ as linear combinations of
-stable Shalika germs on $\sp(2n)$, then the transfer of twisted
+stable Shalika germs on $\fsp(2n)$, then the transfer of twisted
 germs
 from $(GL(n),\theta)$ to the given endoscopic groups holds.
 Thus the twisted transfer manifests itself as a duality between
@@ -239,7 +277,7 @@ correspond in the two groups, so the matching holds in this case as
 well.  There is a discriminant factor that comes into the different
 normalizations.  Near the identity, 
 the discriminant factors are
-equal, up to a constant, for $\sp(2n)$ and $\so(2n+1)$, and so these
+equal, up to a constant, for $\fsp(2n)$ and $\so(2n+1)$, and so these
 factors do
 not affect the conclusion.
 
@@ -247,21 +285,22 @@ The main result of this paper is the following theorem.  It expresses
 a duality on groups of type $B_2$ that exchanges the short
 and long roots.  As we have remarked, an immediate corollary of this
 result is the transfer of twisted stable Shalika germs from $GL(4)$
-to $SO(5)$ and from $GL(5)$ to $Sp(4)$.  In the following theorem
+to $\text{SO}(5)$ and from $GL(5)$ to $\text{Sp}(4)$.  In the following theorem
 we identify regular semisimple conjugacy classes
-in the Lie algebras $\so(5)$ and $\sp(4)$
+in the Lie algebras $\so(5)$ and $\fsp(4)$
 as above.
 
 \bigskip
 \noindent
-{\bf Theorem 1.1.}\   Let $F$ be a $p$-adic field of characteristic zero
+\begin{cthm}{Theorem 1.1}   Let $F$ be a $p$-adic field of characteristic zero
 whose residual characteristic is odd.  Each stable Shalika germ on $\so(5)$
-is a linear combination of Shalika germs on $\sp(4)$, and conversely each
-stable Shalika germ on $\sp(4)$ is a linear combination of Shalika germs
+is a linear combination of Shalika germs on $\fsp(4)$, and conversely each
+stable Shalika germ on $\fsp(4)$ is a linear combination of Shalika germs
 on $\so(5)$.
+\end{cthm}
 
 In this rank two situation,  we must compare stable orbital integrals
-on $\sp(4)$ and $\so(5)$. These Lie algebras are
+on $\fsp(4)$ and $\so(5)$. These Lie algebras are
 isomorphic.  Thus, at the level of Lie algebras, we compare
 orbital integrals of parameters $(t_1,t_2,0,-t_2,-t_1)$ and
 $(t_1+t_2,t_1-t_2,0,t_2-t_1,-t_1-t_2)/2$.  We consider these vectors
@@ -272,38 +311,40 @@ diagonalized over the algebraic closure of $F$.
 We say that a unipotent conjugacy class is $k$-regular if
 $2k = \dim\,C_G(u) - \rank(G)$, for an element $u$ in the conjugacy
 class.  It is known that $k$ is a nonnegative integer.   For the
-group $SO(5)$ there are four unipotent conjugacy classes over the
+group $\text{SO}(5)$ there are four unipotent conjugacy classes over the
 algebraic closure of $F$.  These classes are regular (0-regular),
 subregular (1-regular), two-regular, and four-regular (the trivial unipotent
 element).  We have already treated the regular and four-regular classes
 by a general argument.  
 Section 3 will discuss the two-regular unipotent class.
 The stable germ of the subregular unipotent class was determined
-in [H2].  Let us recall the formula for $G=SO(2n+1)$.  Over the
+in [H2].  Let us recall the formula for $G=\text{SO}(2n+1)$.  Over the
 field $F$, the subregular unipotent classes are parametrized by
 $F^\times/F^{\times\,2}$.  
 Consider parameters $t_1,\ldots, t_n$ in the algebraic closure
 of $F$, such that the Weyl orbit of $(t_1,t_2,\ldots,-t_2,-t_1)$
 is defined over $F$.
 \bigskip
+
 \noindent
-{\bf Theorem 1.2.}\  The stable Shalika germ corresponding to the
+\begin{cthm}{Theorem 1.2}  The stable Shalika germ corresponding to the
 coset $F^{\times\,2}$ is the principal-value integral
 $$\int_F \log |(1- t_1^2 x^2)(1-t_2^2 x^2)\cdots (1-t_n^2 x^2)| 
      \left| 
      {dx\over x^2} \right |.$$
 The stable Shalika germ corresponding to a nontrivial coset $a F^{\times\,2}$
 is
-$$\int_{\Im} \eta((1-t_1^2 u^2)(1-t_2^2 u^2)\cdots (1-t_n^2 u^2))
+$$\int_{\Imm} \eta((1-t_1^2 u^2)(1-t_2^2 u^2)\cdots (1-t_n^2 u^2))
     \left| {du\over u^2} \right |.$$
 Here $\eta$ is the nontrivial quadratic character of $F^\times$
 that is trivial on $x^2-a y^2$, for $x,y\in F$,
-and $\Im = F\sqrt{a}$ is the corresponding
+and $\Imm = F\sqrt{a}$ is the corresponding
 {\it imaginary} axis.
+\end{cthm}
 
 \medskip
 \noindent
-{\bf Proof.}\  This is a  reformulation of [H2].  For the nontrivial
+\begin{proof}  This is a  reformulation of [H2].  For the nontrivial
 cosets it is an easy reformulation.  For the trivial class, the
 reformulation requires more work.  Theorem 1.2 holds even if the
 residual characteristic is even.  For further details about the
@@ -313,10 +354,10 @@ The
 stable subregular germ is an integral over the $F$-points
 of a connected surface $S$ defined over $F$.  The 
 irreducible components of $S$ are indexed by the irreducible components
-of the variety ${\Cal B}_u$ of Borel subgroups containing
+of the variety ${\mathcal B}_u$ of Borel subgroups containing
 a unipotent element $u$,  the element $u$ lying in the
 given conjugacy class.
-For $SO(2n+1)$, the irreducible components may be denoted
+For $\text{SO}(2n+1)$, the irreducible components may be denoted
 $S_1,\ldots,S_n$ and $S'_1,\ldots,S'_{n-1}$.  The 
 components $S_i$ and $S_{i+1}$ intersect along a projective
 line, as do the components $S_i'$ and $S_{i+1}'$ and
@@ -328,7 +369,7 @@ $\alpha_2=t_2-t_3$, $\ldots$, $\alpha_n = t_n$.
 Then
 the components $S_i$, for $i\le n$, and $S_i'$,
 for $i<n$, are indexed by the projective lines
-in ${\Cal B}_u$
+in ${\mathcal B}_u$
 of type $\alpha_i$. 
 
 
@@ -351,25 +392,21 @@ introduced in [H2,VI,Prop. 3.2].
 
 \medskip
 
-\diabox{
-\centerline{Diagram 1.  Local Coordinates on $S$}
-}
-to 3 truein,diag1.ps,
+\diabox{XX \centerline{Diagram 1.  Local Coordinates on $S$}}{3 truein}{diag1.ps}
+
 \medskip
 
 We will treat the irreducible components $S_1,\ldots,S_n$.
 The remaining components are treated in an identical manner,
 by adding primes to all of the coordinates.  We set
-$$
-\align
+\begin{align*}
 x_{-i} &= {w_{-i}\over (1-t_i w_{-i} )},\ \ \ \ \,\,
 y_{-i}  = {\xi_{-i}\over
-  (1+t_1 x_{-i} )\cdots (1+t_i x_{-i} )},\ \hbox{ for }1<i\le n,\\
+  (1+t_1 x_{-i} )\cdots (1+t_i x_{-i} )},\ \text{ for }1<i\le n,\\
 x_{+i} &= {w_{+i}\over (1-t_{i+1} w_{+i})},\ \ 
-y_{+i} = {\xi_{+i} (1+t_1 x_{+i})\cdots (1+t_i x_{+i})},\ \hbox{ for }
+y_{+i} = {\xi_{+i} (1+t_1 x_{+i})\cdots (1+t_i x_{+i})},\ \text{ for }
  1\le i<n.\\
-\endalign
-$$
+\end{align*}
 
 Transporting the action of the Weyl group (described in
 [H2,VI,Theorem 1.6]) to this new set of coordinates, 
@@ -378,7 +415,7 @@ Weyl-group invariant.  (To verify this, one must know explicit
 values for the constants $e(\alpha,\beta)$:
 $e(\alpha_i,\alpha_{i+1}) = 1$, $e(\alpha_{i},\alpha_{i-1})=
 -1$, for $i<n$,  and $e(\alpha_n,\alpha_{n-1}) = -2$.)
-We may also take $\zeta=1$, since $SO(2n+1)$ is quasisplit.
+We may also take $\zeta=1$, since $\text{SO}(2n+1)$ is quasisplit.
 The transition relations of
 [H2,V,Lemma 5.3,Lemma 6.1] imply that on the overlap of
 two coordinate charts on $S_i$, we have
@@ -388,8 +425,8 @@ where $P(x_{-n}):= (1-t_1^2 x_{-n}^2)\cdots (1-t_n^2 x_{-n}^2)$.
 
 The
 Galois group $\Gal(\bF/F)$ permutes the irreducible
-components of ${\Cal B}_u$ and $S$ in a compatible way.  For
-$SO(2n+1)$ and the unipotent class associated with $a\,F^{\times\,2}$,
+components of ${\mathcal B}_u$ and $S$ in a compatible way.  For
+$\text{SO}(2n+1)$ and the unipotent class associated with $a\,F^{\times\,2}$,
 each irreducible component is defined over $E=F(\sqrt{a})$.  
 
 Now consider a nontrivial coset $a\,F^{\times\,2}$.
@@ -416,9 +453,9 @@ its norm is $1$, independent of $x_{-n}$.
 Thus the germ is
 $$\int_{S_n} \left| {dy_{-n}\, dx_{-n}\over y_{-n}\,\, x_{-n}^2}\right|
 = {1\over 2} \int\left | {dy_{-n}\over y_{-n}}\right|
- \int_{\Im}\left | dx_{-n}\over x_{-n}^2 \right| +
+ \int_{\Imm}\left | dx_{-n}\over x_{-n}^2 \right| +
  {1\over 2} \int\left | {dy_{-n}\over y_{-n}}\right|
- \int_\Im \eta(P(x_{-n}))\left | dx_{-n}\over x_{-n}^2 \right|.$$
+ \int_\Imm \eta(P(x_{-n}))\left | dx_{-n}\over x_{-n}^2 \right|.$$
 By Lemma 2.2, the integral $\int |dx_{-n}/x_{-n}^2|$ is zero,
 so that the first of the two terms is zero.  The normalizing
 factor $\int |dy_{-n}/y_{-n}|/2$ is independent
@@ -456,9 +493,11 @@ $${z(W_+,\alpha_{i-1}) (1+t_1 x_{+(i-1)})\cdots (1+t_{i-1} x_{+(i-1)})\over
 (t_{i-1}-t_i) w_{+(i-1)} e(\alpha_{i-1},\alpha_i)}.$$
 Along the pole, $w_{-i}=w_{+(i-1)}$, $x_{-i} = x_{+(i-1)}$, 
 and the product $y_{-i}y_{-i}$ is the restriction
-of $${z(W_+,\alpha_i)z(W_+,\alpha_{i-1})\over
+of 
+\begin{equation}{z(W_+,\alpha_i)z(W_+,\alpha_{i-1})\over
 (t_i-t_{i+1})(t_{i-1}-t_i) w^2 e(\alpha_i,\alpha_{i-1})e(\alpha_{i-1},\alpha_i)
-(1+t_i x_{-i})}.\tag1.3$$
+(1+t_i x_{-i})}.\tag{1.3}
+\end{equation}
 For the definitions of $\lambda$, $z(W_+,\alpha)$, and so forth
 we refer the reader to [H2].
 The quotient of $\lambda$ by Expression 1.3 simplifies to
@@ -504,12 +543,13 @@ $$
 \int_F \left|{dx_{-n}\over x_{-n}^2}\right |,$$
 and this is a constant times
 $$\int_F \log|P(x_{-n})| \left|{dx_{-n}\over x_{-n}^2}\right|.$$
-This completes the proof of Theorem 1.2. \hfill \x
+This completes the proof of Theorem 1.2.
+\end{proof}
 
-
-\vfill\break
-\centerline{\headfont Section 2.  The Basic Identity for the Subregular Germs.}
-\bigskip
+\section{The Basic Identity for the Subregular Germs}
+%\vfill\break
+%\centerline{\headfont Section 2.  The Basic Identity for the Subregular Germs.}
+%\bigskip
 
 \noindent
 {\bf Notation.}\  
@@ -542,10 +582,10 @@ where $\epsilon$ is a unit in $F$.  Then $E_1$ is obtained by
 adjoining to $F$ a square root of $\epsilon$.  The Galois
 groups $\Gal(E_i/F)$ of these quadratic extensions have nontrivial
 elements that we denote $\sigma_i$, for $i=1,2,3$.  The quadratic
-extensions have {\it imaginary} axes $\Im_i = \{u\in E_i| \sigma_i(u) = -u\}$,
+extensions have {\it imaginary} axes $\Imm_i = \{u\in E_i| \sigma_i(u) = -u\}$,
 for $i=1,2,3$.  We let $\eta_i$ be the 
 quadratic character of $F^\times$
-associated with $E_i$, for $i=1,2,3$.  We have $\pi_i\in \Im_i$,
+associated with $E_i$, for $i=1,2,3$.  We have $\pi_i\in \Imm_i$,
 for $i=2,3$.
 
 For $a,b\in F$, we let $P(x) = P(x,a,b)$ denote the polynomial
@@ -553,12 +593,12 @@ $P(x) = 1-ax^2 + bx^4$.  We factor the polynomial as
 $P(x) = (1-\alpha x^2)(1-\beta x^2)$, where $\alpha=\alpha(a,b)$,
 $\beta=\beta(a,b)$ lie in some quadratic extension of $F$.
 We define a dual polynomial 
-$$\align
+\begin{align*}
 P'(x,a,b) &= P(x,2a,a^2-4b) = 1-2ax^2 + (a^2-4b)x^4 = (1-a'x^2 + b'x^4)\cr
 	  &= (1-(\alpha^{1/2} - \beta^{1/2})^2x^2)
                 (1-(\alpha^{1/2}+\beta^{1/2})^2x^2)\cr
 	  &= (1-\alpha'x^2)(1-\beta'x^2),
-\endalign$$
+\end{align*}
 where $\alpha' = \alpha+\beta-2\sqrt{b} = a-2\sqrt{b}$, and
 $\beta' = \alpha+\beta+2\sqrt{b} = a+2\sqrt{b}$.  Also,
 $a'=2a$, $b'=a^2-4b = \alpha'\beta'=(\alpha-\beta)^2$.
@@ -572,11 +612,11 @@ This and all the integrals that follow  are
 to be interpreted as a principal-value integrals.
 Extending the absolute value $|\cdot|$ and the associated measure
 to field extensions $E_i/F$, we also set
-$$\Gamma_i(a,b) = \int_{\Im_i} \eta_i(P(u,a,b))\leftdu.$$
+$$\Gamma_i(a,b) = \int_{\Imm_i} \eta_i(P(u,a,b))\leftdu.$$
 We normalize these integrals by setting $\bGamma_i(a,b) =
 \Gamma_i(a,b)/\Gamma_i(\epsilon,0)$, for $i=0,1,2,3$.
 We have seen that these integrals are the stable
-subregular Shalika germs of $SO(5)$.
+subregular Shalika germs of $\text{SO}(5)$.
 The integrals $\Gamma_2$ and $\Gamma_3$ are {\it elliptic} in the
 sense that for certain choices of parameters $a,b\in F$ the values
 of the integrals are expressed by the number of points on elliptic
@@ -590,43 +630,44 @@ subregular Shalika germs.
 It expresses
 the nontrivial part of the transfer of Shalika
 germs from the twisted reductive groups $GL(4)$ and $GL(5)$ to 
-endoscopic groups $SO(5)$ and $Sp(4)$.  The geometrical
+endoscopic groups $\text{SO}(5)$ and $\text{Sp}(4)$.  The geometrical
 content of this proposition is the existence of particular isogenies of
 elliptic curves.
 \bigskip
 
 \noindent
-{\bf Proposition 2.1.}\  For all $a,b\in F$,
-$$\pmatrix\bGamma_0(2a,a^2-4b) \\
+\begin{cthm}{Proposition 2.1}  For all $a,b\in F$,
+$$\begin{pmatrix}\bGamma_0(2a,a^2-4b) \\
           \bGamma_1(2a,a^2-4b) \\
           \bGamma_2(2a,a^2-4b) \\
-          \bGamma_3(2a,a^2-4b) \endpmatrix
+          \bGamma_3(2a,a^2-4b) \end{pmatrix}
 = {1\over 2}
-\pmatrix1&1&1&1\\
+\begin{pmatrix}1&1&1&1\\
         1&1&-1&-1\\
         1&-1&s_q&-s_q\\
-        1&-1&-s_q&s_q\endpmatrix
-\pmatrix\bGamma_0(a,b)\\
+        1&-1&-s_q&s_q\end{pmatrix}
+\begin{pmatrix}\bGamma_0(a,b)\\
         \bGamma_1(a,b)\\
         \bGamma_2(a,b)\\
-        \bGamma_3(a,b)\endpmatrix.
+        \bGamma_3(a,b)\end{pmatrix}.
 $$
+\end{cthm}
 
 This proposition expresses a duality in the sense that the statement
 is equivalent to the identity
-$$\pmatrix\bGamma_0(a,b) \\
+$$\begin{pmatrix}\bGamma_0(a,b) \\
           \bGamma_1(a,b) \\
           \bGamma_2(a,b) \\
-          \bGamma_3(a,b) \endpmatrix
+          \bGamma_3(a,b) \end{pmatrix}
 = {1\over 2}
-\pmatrix1&1&1&1\\
+\begin{pmatrix}1&1&1&1\\
         1&1&-1&-1\\
         1&-1&s_q&-s_q\\
-        1&-1&-s_q&s_q\endpmatrix
-\pmatrix\bGamma_0(2a,a^2-4b)\\
+        1&-1&-s_q&s_q\end{pmatrix}
+\begin{pmatrix}\bGamma_0(2a,a^2-4b)\\
         \bGamma_1(2a,a^2-4b)\\
         \bGamma_2(2a,a^2-4b)\\
-        \bGamma_3(2a,a^2-4b)\endpmatrix,
+        \bGamma_3(2a,a^2-4b)\end{pmatrix},
 $$
 obtained by taking the inverse of the $4\times 4$ matrix.  We could
 also substitute $a'$ for $a$ and $b'$ for $b$ and note that
@@ -643,7 +684,7 @@ The proposition is
 proved by calculating the integrals on both sides for all possible
 choices of parameters $a,b\in F$, and comparing the two sides.
 We will see that the integrals $\bGamma_i(a,b)$ are linearly
-independent over ${\Bbb C}$, so that the $4\times4$ matrix in
+independent over ${\mathbb C}$, so that the $4\times4$ matrix in
 the proposition is unique.
 
 The most difficult of these integrals to compute are $\Gamma_i(a,b)$,
@@ -692,9 +733,10 @@ is found in [LS1].
 
 \bigskip
 \noindent
-{\bf Lemma 2.2.}\ Let $\theta:F^\times\to \C^\times$ be a
+\begin{cthm}{Lemma 2.2} Let $\theta:F^\times\to \C^\times$ be a
 nontrivial quasicharacter of $F^\times$.  Then
-$$\int_{\P^1} \theta(x) \left | {dx\over x}\right | =0.$$
+$$\int_{\bP^1} \theta(x) \left | {dx\over x}\right | =0.$$
+\end{cthm}
 
 It is often easier to compute the integral of $\eta_i(P) - 1$ 
 than the integral of $\eta_i(P)$.  The two integrands give the
@@ -708,9 +750,9 @@ show how to express them in terms of integrals whose values
 have been tabulated.
 The following integrals are tabulated in the appendix.
 $$\LOG(a) := \int_{F} \log|1-ax^2| \leftdx,
-\quad \hbox{ for } a\in F.$$
+\quad \text{ for } a\in F.$$
 $$H_i(a):= \int_{F}\eta_i(1-ax^2) \leftdx,
-\quad \hbox{ for } a\in F \hbox{ and } i=1,2,3.$$
+\quad \text{ for } a\in F \text{ and } i=1,2,3.$$
 In terms of these integrals, the normalizing constants
 entering into the definitions of the functions $\bGamma_i(a,b)$
 are
@@ -723,25 +765,23 @@ to $\Gamma_i(a,b)$.
 
 \bigskip
 \noindent
-{
-{\bf Lemma 2.3.}\  It is enough to establish the Proposition 2.1 
+\begin{cthm}{Lemma 2.3}  It is enough to establish the Proposition 2.1 
 in the following
-four cases.  \parskip=0pt \parindent=0pt
-
-(1) $|\alpha|>|\beta|$, and $\alpha,\beta\in F$.
-
-(2) $|\alpha|=|\beta| = |\alpha-\beta|=|\alpha'|=|\beta'|=|\alpha'-\beta'|$,
-and $\val(\alpha)\in {\Bbb Z} + {1\over 2}$.
-
-(3) $|\alpha|=|\beta| = |\alpha-\beta|=|\alpha'|=|\beta'|=|\alpha'-\beta'|$,
-and $\val(\alpha)\in 2{\Bbb Z}$.
-
-(4) $|\alpha|=|\beta| = |\alpha-\beta|=|\alpha'|=|\beta'|=|\alpha'-\beta'|$,
-and $\val(\alpha)\in 2{\Bbb Z}+1$.
-}
+four cases.  %\parskip=0pt \parindent=0pt
+\begin{enumerate}[label=(\arabic*)]
+\item $|\alpha|>|\beta|$, and $\alpha,\beta\in F$.
+\item $|\alpha|=|\beta| = |\alpha-\beta|=|\alpha'|=|\beta'|=|\alpha'-\beta'|$,
+and $\val(\alpha)\in {\mathbb Z} + {1\over 2}$.
+\item $|\alpha|=|\beta| = |\alpha-\beta|=|\alpha'|=|\beta'|=|\alpha'-\beta'|$,
+and $\val(\alpha)\in 2{\mathbb Z}$.
+%
+\item $|\alpha|=|\beta| = |\alpha-\beta|=|\alpha'|=|\beta'|=|\alpha'-\beta'|$,
+and $\val(\alpha)\in 2{\mathbb Z}+1$.
+\end{enumerate}
+\end{cthm}
 
 \noindent
-{\bf Proof.}\  First we dispense with the degenerate case when $\beta=0$.
+\begin{proof}  First we dispense with the degenerate case when $\beta=0$.
 It is easily deduced from the tables of the appendix that $\bGamma_i(a,0)$
 is independent of $i$.  The proposition reduces to the vanishing integral
 of Lemma 2.2 and the claim
@@ -770,7 +810,8 @@ so $|\alpha^{1/2}-\beta^{1/2}| = |\alpha^{1/2}+\beta^{1/2}| = |\alpha^{1/2}|
 = |\beta^{1/2}|$.  Thus, $|\alpha|=|\beta|=|\alpha-\beta| =
 |\alpha'|=|\beta'| = |\alpha'-\beta'|$.   Now Cases 2, 3, and 4 give
 the three possibilities for the valuation of an element in a quadratic
-extension of $F$.\hfill\x
+extension of $F$.
+\end{proof}
 
 
 \bigskip
@@ -779,23 +820,23 @@ extension of $F$.\hfill\x
 
 We now check Proposition 2.1 in Case 1 : $|\alpha| >|\beta|$, and $\alpha,
 \beta\in F$.  Dropping subscripts, we let $\eta$ be a quadratic character
-associated with a quadratic extension $E$, and let $\Im$ be the
+associated with a quadratic extension $E$, and let $\Imm$ be the
 imaginary axis of $E$.
 
 \bigskip
 \noindent
-{\bf Lemma 2.4.}\  Suppose that $|\alpha|>|\beta|$, with $\alpha,\beta\in F$.
+\begin{cthm}{Lemma 2.4}  Suppose that $|\alpha|>|\beta|$, with $\alpha,\beta\in F$.
 Then
 $$\int_{F} \log|(1-\alpha x^2)(1-\beta x^2)| \leftdx
   = \LOG(\alpha) + \LOG(\beta), $$
 and
-$$\int_{\Im} \eta((1-\alpha u^2)(1-\beta u^2))\leftdu
-  = \int_{\Im}\eta(1-\alpha u^2) \leftdu +
-\eta(\alpha) \int_{\Im}\eta(1-\beta u^2)\leftdu.$$
+$$\int_{\Imm} \eta((1-\alpha u^2)(1-\beta u^2))\leftdu
+  = \int_{\Imm}\eta(1-\alpha u^2) \leftdu +
+\eta(\alpha) \int_{\Imm}\eta(1-\beta u^2)\leftdu.$$
+\end{cthm}
 
 \bigskip
-\noindent
-{\bf Proof.}\  The first statement follows immediately from the identity
+\begin{proof}  The first statement follows immediately from the identity
 $\log|xy| = \log|x|+\log|y|$, and the definition of the integral $\LOG$.
 On the interval $|u|^2 < 1/|\beta|$, we have $\eta(P(u)) = \eta(1-\alpha u^2)$,
 and $\eta(\alpha)=\eta(\alpha)\eta(1-\beta u^2)$.  
@@ -803,11 +844,12 @@ And on the interval
 $|u|^2 \ge 1/|\beta|$, we have $\eta(P(u)) = \eta(\alpha)\eta(1-\beta u^2)$,
 and $\eta(\alpha)=\eta(1-\alpha u^2)$.  Thus 
 $$\eta(P(u)) + \eta(\alpha) = \eta(1-\alpha u^2) + \eta(\alpha)\eta(1-\beta u^2),$$
-for all $u\in \Im$.  Now integrate over the imaginary axis, and use Lemma 2.2
-to complete the proof: $\int_{\Im} \eta(\alpha) |du/u^2|=0$.\hfill\x
+for all $u\in \Imm$.  Now integrate over the imaginary axis, and use Lemma 2.2
+to complete the proof: $\int_{\Imm} \eta(\alpha) |du/u^2|=0$.
+\end{proof}
 
 With a parametrization of the imaginary axis by $u = cx$, for some 
-fixed $c\in \Im$
+fixed $c\in \Imm$
 and $x\in F$, the integrals on the right-hand side 
 in Lemma 2.4 equal those tabulated
 in the appendix.  Thus, the integrals $\bGamma_i(a,b)$ in Case 1
@@ -824,14 +866,14 @@ the verification to the reader.
 
 \bigskip
 \noindent
-{{\bf Lemma 2.5.}  Suppose that $|\alpha|>|\beta|$, and that $\alpha,\beta\in F$.
+\begin{cthm}{Lemma 2.5}  Suppose that $|\alpha|>|\beta|$, and that $\alpha,\beta\in F$.
 Then
 \parskip=0pt
 
-(1)  $\int_{\Im}\eta(P'(u)) |du/u^2| = 0$, if $\alpha^{1/2}\not\in\Im$.
+(1)  $\int_{\Imm}\eta(P'(u)) |du/u^2| = 0$, if $\alpha^{1/2}\not\in\Imm$.
 
-(2)  $\int_{\Im}\eta(P'(u)) |du/u^2| = 2\int_{\Im}\eta(1-\beta u^2)|du/u^2|$,
-       if $\alpha^{1/2}\in \Im$.
+(2)  $\int_{\Imm}\eta(P'(u)) |du/u^2| = 2\int_{\Imm}\eta(1-\beta u^2)|du/u^2|$,
+       if $\alpha^{1/2}\in \Imm$.
 
 (3)  $\int_{F}\log|P'(x)| |dx/x^2| = 2\int_{F}
         \log|1-\alpha x^2| |dx/x^2|$,
@@ -839,27 +881,26 @@ Then
 
 (4) $\int_{F}\log|P'(x)| |dx/x^2| = 2\int_{F}\log|1-\beta x^2|
      |dx/x^2|$, if $\alpha\in F^{\times\,2}$.
-
-}
+\end{cthm}
 
 \bigskip
 \noindent
-{\bf Proof.}\  Since $\alpha'=(\alpha^{1/2}-\beta^{1/2})^2$, and $|\alpha|>|\beta|$,
+\begin{proof} Since $\alpha'=(\alpha^{1/2}-\beta^{1/2})^2$, and $|\alpha|>|\beta|$,
 we have $|\alpha'| = |\alpha|$.  Similarly, $|\beta'| =|\alpha|$.  So
 $|\alpha'|=|\beta'|$.  On the interval $|u|^2 < 1/|\beta'|$,
 we see that $\eta(P'(u)) = 1$, and on the interval $|u|^2 > 1/|\beta'|$,
 we see that $\eta(P'(u)) = \eta(b') = 1$, since $b'=(\alpha-\beta)^2\in
 F^{\times\, 2}$.
 
-On the set $\{u:\ |u|^2 = 1/|\beta'|,\hbox{ and }|P'(u)|=1$\},
+On the set $\{u:\ |u|^2 = 1/|\beta'|,\text{ and }|P'(u)|=1$\},
 we see that $\eta(P'(u)) = \eta((1-\alpha u^2)^2) = 1$.
-So $\eta(P'(u)) = 1$, for all $u\in \Im$, except at points $u$
+So $\eta(P'(u)) = 1$, for all $u\in \Imm$, except at points $u$
 in the imaginary axis such that $|1-\alpha u^2|<1$.  There are
-no such points if $\alpha^{1/2}\not\in\Im$.  
+no such points if $\alpha^{1/2}\not\in\Imm$.  
 In this case, the integral of Part 1 of the lemma is 
-equal to $\int_{\Im} |du/u^2|$ and hence is zero by Lemma 2.2.
+equal to $\int_{\Imm} |du/u^2|$ and hence is zero by Lemma 2.2.
 
-Assume that $\alpha^{1/2}\in \Im$.  The integral of Part 2
+Assume that $\alpha^{1/2}\in \Imm$.  The integral of Part 2
 the lemma is equal to 
 $$\int _{|1-\alpha u^2|<1} \eta(P'(u)) -1 \leftdu.$$
 Write $x \sim y$ if $xy^{-1}\in F^{\times\,2}$.
@@ -877,7 +918,7 @@ then $P'(u)\sim (1-\beta v^{\prime\,2})$,
 where $v' = u/(1+\alpha^{1/2} u)$.
 Making this change of coordinates we have
 $$\int_{|1-\alpha u^2|<1} \eta(P'(u))-1 \leftdu = 2
-\int_{\Im} \eta(1-\beta v^2)-1 \leftd v.$$
+\int_{\Imm} \eta(1-\beta v^2)-1 \leftd v.$$
 We have used the fact that $v$ and $v'$ make equal contributions to the
 integral.  We have also used the fact that $|1-\alpha^{1/2} u | <1$
 if and only if $|1+\alpha^{1/2} v  |$, or equivalently $|\alpha^{1/2}v|$,
@@ -886,13 +927,12 @@ so the integrand vanishes.  This justifies the integration over the
 full imaginary axis.  Part 2 now follows from Lemma 2.2.
 
 Now turn to the log terms.  We easily check that 
-$$\align
+\begin{align*}
 \int_{F} |P'(x)|\leftdx &= \int_{|\beta'x^2|>1} \log|b'x^4|\leftdx
         + \int_{|\beta'x^2|=1,\ |P'(x)|<1} \log|P'(x)|\, \leftdx\\
  &= 2\int_{|\alpha x^2| >1} \log|\alpha x^2| \leftdx 
         + \int_{|\beta'x^2|=1,\ |P'(x)|<1} \log|P'(x)|\, \leftdx.
-\endalign
-$$
+\end{align*}
 If $\alpha$ is not a square, the first term is 
 $2\int_{F} \log|1-\alpha x^2| |dx/x^2|$, and the second term is
 zero.  This proves Part 3 of the lemma.  Now assume that $\alpha$ is
@@ -908,13 +948,14 @@ The integral of the second term is $2\int_{F}\log|1-\beta v^2| \,|dv/v^2|$.
 The integral of the first term becomes
 $-2\int_{F} \log |1-\epsilon \alpha t^2| \,|dt/t^2|$, under the
 substitution $1+\alpha^{1/2} x = 1/(t \alpha^{1/2})$.  The result
-follows.\hfill\x
+follows.
+\end{proof}
 
 \bigskip
 \centerline{\bf Subregular Case 2.  ${1\over 2}$-Integral Valuation.}
 \bigskip
 
-Next we check the proposition in Case 2: $\val(\alpha)\in {\Bbb Z}+{1\over 2}$.
+Next we check the proposition in Case 2: $\val(\alpha)\in {\mathbb Z}+{1\over 2}$.
 The root
 $\alpha$ lies in a ramified quadratic extension of $F$.  
 If $\alpha\in E_2\setminus F$, then $b\in -\pi \,F^{\times\,2}$,
@@ -927,25 +968,21 @@ the following lemma.
 
 \bigskip
 \noindent
-{
-{\bf Lemma 2.6.}\ 
-\parskip=0pt\parindent=0pt
-
+\begin{cthm}{Lemma 2.6}
 (1)  If $b\in -\pi\epsilon\,F^{\times\,2}$, then
-$$\align
-\Gamma_0(a,b) &= {|b\pi^{-1}|^{1/4}(3q+1)\over q(q-1)}, \hbox{ if }
+\begin{align*}
+\Gamma_0(a,b) &= {|b\pi^{-1}|^{1/4}(3q+1)\over q(q-1)}, \text{ if }
 			\val(b)\equiv 1 \mod 4,\\
-\Gamma_0(a,b) &= {|b\pi^{-3}|^{1/4}(q+3)\over q(q-1)}, \hbox{ if }
+\Gamma_0(a,b) &= {|b\pi^{-3}|^{1/4}(q+3)\over q(q-1)}, \text{ if }
 			\val(b)\equiv 3 \mod 4,\\
-\Gamma_1(a,b) &= {-2|b\pi^{-j}|^{1/4}\over q}, \hbox{ if }
-			\val(b)\equiv j \mod 4 \hbox{ and } j=1, 3,\\
-\Gamma_2(a,b) &= {-2|b\pi^{-1}|^{1/4}\sqrt{q}\over q}, \hbox{ if }
+\Gamma_1(a,b) &= {-2|b\pi^{-j}|^{1/4}\over q}, \text{ if }
+			\val(b)\equiv j \mod 4 \text{ and } j=1, 3,\\
+\Gamma_2(a,b) &= {-2|b\pi^{-1}|^{1/4}\sqrt{q}\over q}, \text{ if }
 			\val(b)\equiv 1 \mod 4,\\
-\Gamma_2(a,b) &= {-2|b\pi^{-3}|^{1/4}\sqrt{q}\over q^2}, \hbox{ if }
+\Gamma_2(a,b) &= {-2|b\pi^{-3}|^{1/4}\sqrt{q}\over q^2}, \text{ if }
 			\val(b)\equiv 3 \mod 4,\\
 \Gamma_3(a,b) &= 0.
-\endalign
-$$
+\end{align*}
 \smallskip
 
 (2)  If $b\in -\pi\,F^{\times\,2}$, then the same relations
@@ -955,24 +992,24 @@ hold after interchanging the subscripts $2$ and $3$ in Part 1.
 \smallskip
 (3)
 
-$$\align
-\Gamma_i(2a,a^2-4b) &= \Gamma_i(a,b), \hbox{ for } i=0,1,\\
-\Gamma_i(2a,a^2-4b) &= \Gamma_i(a,b), \hbox{ for } i=2,3, \hbox{ if }
-		-1 \hbox{ is a square,}\\
-\Gamma_i(2a,a^2-4b) &= \Gamma_j(a,b), \hbox{ for } (i,j) = (2,3), (3,2),
-		\hbox{ if } -1 \hbox { is not a square.}
-\endalign
-$$
+\begin{align*}
+\Gamma_i(2a,a^2-4b) &= \Gamma_i(a,b), \text{ for } i=0,1,\\
+\Gamma_i(2a,a^2-4b) &= \Gamma_i(a,b), \text{ for } i=2,3, \text{ if }
+		-1 \text{ is a square,}\\
+\Gamma_i(2a,a^2-4b) &= \Gamma_j(a,b), \text{ for } (i,j) = (2,3), (3,2),
+		\text{ if } -1 \text { is not a square.}
+\end{align*}
 
-}
+\end{cthm}
+
 \smallskip
 
 \noindent
-{\bf Proof.}\ 
+\begin{proof}
 The integrals of Part 1 are easily computed. 
 Assume 
 $\alpha\in E_3\setminus F$.  
-If $u\in \Im_3$, then $P(u)$ is
+If $u\in \Imm_3$, then $P(u)$ is
 the norm of $(1-\alpha u^2)$, so that $\eta_3(P(u)) = 1$,
 and $\Gamma_3(a,b)=0$ by Lemma 2.2.
 The other integrals quickly reduce to geometric series and the
@@ -995,7 +1032,7 @@ On the other hand, if
 $-1$ is not a square, then 
 $b'/b$ is a unit but not a square, so that the subscripts $2$ and $3$
 must be interchanged in passing from $\Gamma_i(a',b')$ to
-$\Gamma_i(a,b)$.  \hfill\x
+$\Gamma_i(a,b)$.  \end{proof}
 
 
 \bigskip
@@ -1013,25 +1050,25 @@ $r_1,r_\epsilon\in \{0,2,4\}$ and $r_1+r_\epsilon\le 4$.
 The valuations of $b=\alpha\beta$ and $b'=\alpha'\beta'$ are multiples of $4$, 
 and
 $b'=(\alpha-\beta)^2 \in F$.  So either
-$\alpha-\beta\in F$, or $\alpha-\beta\in \Im_1$.
+$\alpha-\beta\in F$, or $\alpha-\beta\in \Imm_1$.
 
 \smallskip
 \noindent
-{\bf Lemma 2.7.}\  In the context of Case 3, we have
-$$
-\align
+\begin{cthm}{Lemma 2.7}  In the context of Case 3, we have
+\begin{align*}
 \Gamma_0(a,b) &= {(4-r_1)|b|^{1/4}\over q-1},\\
 \Gamma_1(a,b) &= {-2r_\epsilon|b|^{1/4}\over q+1}, \\
 \Gamma_2(a,b) &= {-\sqrt{q}(1-\eta_2(b))|b|^{1/4}\over q}, \\
 \Gamma_3(a,b) &= \Gamma_2(a,b).
-\endalign
-$$
+\end{align*}
+\end{cthm}
 
 \smallskip
 \noindent
-{\bf Proof.}\  These are routine calculations.  The constants
+\begin{proof} 
+These are routine calculations.  The constants
 $r_1$ and $r_\epsilon$ enter into the result through the contribution
-from the approximate zeros of $P$ and $P_\epsilon$.\hfill\x
+from the approximate zeros of $P$ and $P_\epsilon$.\end{proof}
 
 We can deduce the entries of the following table from the lemma.
 The meaning of the various rows is described below.
@@ -1044,14 +1081,14 @@ Then $A' = 2-r_1'/2$, $B'= r_\epsilon'/2$, and $C' = (1-\eta_2(b'))/2$.
 Proposition 2.1, in this third case, then follows from the immediate
 verifications that $A'=A+B+C$, $B'=A+B-C$, $C'=A-B$.
 
-$$\matrix
+$$\begin{matrix}
 &A&B&C&A'&B'&C'\\
 (3a)&0&0&0&0&0&0 \\
 (3b)&1/2&1/2&1&2&0&0 \\
 (3c)&1&1&0&2&2&0 \\
 (3d)&1&0&0&1&1&1 \\
 (3e)&1&0&1&2&0&1
-\endmatrix
+\end{matrix}
 $$
 
 In the following explanations of the table 
@@ -1070,7 +1107,8 @@ $r_\epsilon'=0$, and $r_1'=0$. Furthermore, $\eta_2(b)=-1$, and
 $\eta_2(b')=1$.
 
 Row 3c is the subcase $\alpha=\epsilon\alpha_0^2$ and $\beta=\epsilon\beta_0^2$.
-Then $\alpha'=\epsilon(\alpha_0-\beta_0)^2$, and $\beta'=\epsilon(\alpha_0+\beta_0)^2$.  Thus $r_\epsilon=4$, $r_1=0$, $r_\epsilon'=4$, $r_1'=0$, 
+Then $\alpha'=\epsilon(\alpha_0-\beta_0)^2$, and $\beta'=\epsilon(\alpha_0+\beta_0)^2$.  
+Thus $r_\epsilon=4$, $r_1=0$, $r_\epsilon'=4$, $r_1'=0$, 
 $\eta_2(b) = 1$, and $\eta_2(b')=1$.
 
 Row 3d is the subcase $\alpha=u-\sqrt{\epsilon}v$, $\beta=u+\sqrt{\epsilon}v$,
@@ -1108,25 +1146,25 @@ with $\bar a,\bar b\in k$.
 
 \smallskip
 \noindent
-{\bf Lemma 2.8.}\ In the context of Case 4,
-$$
-\align
+\begin{cthm}{Lemma 2.8} In the context of Case 4,
+\begin{align*}
 \bGamma_0(a,b) &= {(q+1)|b\pi^{-2}|^{1/4} \over q},\tag{1} \\
 \bGamma_1(a,b) &= 0,\tag{2}\\
 \bGamma_2(a,b) &= {C(\bar a,\bar b)|b\pi^{-2}|^{1/4} \over 2q},\tag{3} \\
 \bGamma_3(a,b) &= {C(\bar \epsilon\bar a,\bar\epsilon^2
  			\bar b)|b\pi^{-2}|^{1/4} \over 2q},\tag{4} \\
 \bGamma_0(a,b) &= \bGamma_2(a,b)+\bGamma_3(a,b).\tag{5}
-\endalign
-$$
-
+\end{align*}
+\end{cthm}
 
 \smallskip
 \noindent
-{\bf Proof.}\ 
+\begin{proof}
 Again this is a routine calculation using the integration techniques
-described at the beginning of Section 2.\hfill\x
+described at the beginning of Section 2.
+\end{proof}
 
+\begin{proof}
 We now verify the proposition in Case 4.
 The first two rows of the matrix
 in Proposition 2.1 are formal consequences of the lemma
@@ -1157,33 +1195,32 @@ elliptic curve $y_1^2 = 1+\bar a x_1^2 + \bar b x_1^4$ as on the
 curve $y_2^2 = 1 - \bar a' x_2^2 + \bar b' x_2^4$, where $\bar a'=2\bar a$
 and $\bar b' = \bar a^2 - 4\bar b$.  This follows from the pair
 of dual isogenies of degree two between the curves:
-$$
-\align
+\begin{align*}
 \phi^*x_2 &= x_1/y_1,\qquad \phi^* y_2 = (1-\bar b x_1^4)/y_1^2,\\
 \psi^*x_1 &= 2x_2/y_2,\qquad \psi^*y_1 = (1-\bar b' x_2^4)/y_2^2.
-\endalign
-$$
+\end{align*}
 
 This completes the proof of the matching of the stable subregular Shalika
-germs.\hfill\x
+germs.\end{proof}
 
-\vfill\break
-\centerline{\headfont Section 3.  Two-Regular Shalika Germs.}
-\bigskip
+\section{Two-Regular Shalika Germs}
+%\vfill\break
+%\centerline{\headfont Section 3.  Two-Regular Shalika Germs.}
+%\bigskip
 
 We now shift our attention from the subregular unipotent class to the two-regular
 unipotent class.  In order to make use of the results of [H1], we now
-work with the group $Sp(4)$ rather than $SO(5)$.  It makes no difference
+work with the group $\text{Sp}(4)$ rather than $\text{SO}(5)$.  It makes no difference
 which we work with, if we bear in mind that the parameter
-$\diag(t_1,t_2,-t_2,-t_2)$ in the Lie algebra of $Sp(4)$ corresponds to
-$\diag(t_1+t_2,t_1-t_2,0,t_2-t_1,-t_1-t_2)/2$ in the Lie algebra of $SO(5)$.
+$\diag(t_1,t_2,-t_2,-t_2)$ in the Lie algebra of $\text{Sp}(4)$ corresponds to
+$\diag(t_1+t_2,t_1-t_2,0,t_2-t_1,-t_1-t_2)/2$ in the Lie algebra of $\text{SO}(5)$.
 
-A formula for the Shalika germ of the two-regular unipotent class in $Sp(4)$
+A formula for the Shalika germ of the two-regular unipotent class in $\text{Sp}(4)$
 was obtained in [H1].  Let us recall the formula.  Let $X_1$ be
-the variety obtained from $X_0 := \P^1\times \P^1\times \P^1\times
-\P^1$ by blowing up the diagonal 
-$\P^1\simeq \{(x,x,x,x)\} \subset X_0$.
-The cross-ratio of four distinct points in $\P^1$
+the variety obtained from $X_0 := \bP^1\times \bP^1\times \bP^1\times
+\bP^1$ by blowing up the diagonal 
+$\bP^1\simeq \{(x,x,x,x)\} \subset X_0$.
+The cross-ratio of four distinct points in $\bP^1$
 with affine coordinates $x_1,\ldots,x_4$
 is defined as
 $$c(x_1,\ldots,x_4) = {(x_2-x_4)(x_1-x_3)\over (x_3-x_4)(x_1-x_2)}.$$
@@ -1208,12 +1245,11 @@ The group $W$ acts on the elements $\{\pm t_1,\pm t_2\}$ by
 $\sigma_\alpha(\pm t_1) = \pm t_2$, $\sigma_\beta(\pm t_1) = \pm t_1$,
 and $\sigma_\beta(\pm t_2) = \mp t_2$.
 The group $W$ acts on the coordinates of $X_0$ and $X_1$ by 
-$$\align \sigma_\alpha(x_1) = x_1, &\quad \sigma_\beta(x_1) = x_2,\\
+\begin{align*} \sigma_\alpha(x_1) = x_1, &\quad \sigma_\beta(x_1) = x_2,\\
          \sigma_\alpha(x_2) = x_3, &\quad \sigma_\beta(x_2) = x_1,\\
          \sigma_\alpha(x_3) = x_2, &\quad \sigma_\beta(x_3) = x_4,\\
          \sigma_\alpha(x_4) = x_4, &\quad \sigma_\beta(x_4) = x_3.
-  \endalign
-$$
+  \end{align*}
 This implies that $\sigma_\beta(c) = c$ and $\sigma_\alpha(c) c=1$,
 where $c$ is the cross-ratio of $x_1,\ldots,x_4$.  We lift the
 action of $W$ to $X$ by the conditions $\sigma_\alpha(c_1) c_1 = 1$ and
@@ -1234,21 +1270,23 @@ the Galois structure by $\phi$.
 Let
 $X^*(F)$ denote the set of $F$-points of the variety $X$ for this
 twisted structure.
-We identify $W$ with the Weyl group of $Sp(4)$, making $\sigma_\alpha$ the
+We identify $W$ with the Weyl group of $\text{Sp}(4)$, making $\sigma_\alpha$ the
 reflection through a short simple root $\alpha$.
 \bigskip
+
 \noindent
-{\bf Lemma 3.1.}\ 
+\begin{cthm}{Lemma 3.1}
 The two-regular stable Shalika germ on
-$Sp(4)$, attached to the parameter
-$$\diag(t_1,t_2,-t_2,-t_1) \in \sp(4)$$ (in the stable conjugacy class
+$\text{Sp}(4)$, attached to the parameter
+$$\diag(t_1,t_2,-t_2,-t_1) \in \fsp(4)$$ (in the stable conjugacy class
 attached to the map $\phi:\Gal(\bF/F)\to W$) is equal to the
 principal-value integral
 $$\int_{X^*(F)} |\omega|.$$
+\end{cthm}
 
 \bigskip
 \noindent
-{\bf Proof.}\   The lemma holds even if the residual characteristic
+\begin{proof}    The lemma holds even if the residual characteristic
 of the $p$-adic field $F$ is even.
 This is a reformulation of [H1].  In that paper we showed
 that each Borel subgroup in 
@@ -1262,7 +1300,7 @@ $W$ and $W'$ is of type $\alpha$.
 The eight Borel subgroups are thus arranged into four pairs.
 Thus there is a morphism of varieties
 from the variety $Y_\Gamma$ computing the Shalika germs to the fourfold
-product of $\P^1$, sending each point to the associated four points
+product of $\bP^1$, sending each point to the associated four points
 $(B(W))$ in $\ell_\beta$.   The construction in [La,\S3] (see also [H2,I\S4])
 blows up along a certain subvariety in the variety of stars, and
 this corresponds in our picture to blowing up along the diagonal subvariety.
@@ -1279,7 +1317,7 @@ the double cover of $X$ is birational but not an isomorphism.  One
 way to see this is to note that in [H1,p.254] we showed that the 
 square root of the cross-ratio
 (which up to a linear fractional transformation is the coordinate
-we denoted $\ell$ in [H1]) gives a well-defined morphism $Y\to\P^1$.
+we denoted $\ell$ in [H1]) gives a well-defined morphism $Y\to\bP^1$.
 But it is easy to check that the cross-ratio does not extend to all of
 $X$.  For instance, it does not extend to points $x_1=x_2=x_3\ne x_4$.
 (The morphism $Y_\Gamma$ restricts to an isomorphism
@@ -1312,7 +1350,7 @@ on $Y_\Gamma$ given in [La,\S2],
 which states that the Galois group acts on a 
 star $(B(W))$ by permuting the chambers $W$ according to the Weyl group.
 This completes the reformulation of the
-stable two-regular Shalika germ.\hfill \x
+stable two-regular Shalika germ.\end{proof}
 
 \bigskip
 We classify the possible homomorphisms $\phi:\Gal(\bF/F)\to W$.
@@ -1329,55 +1367,54 @@ $ denote the subgroup of $W$ generated by $\sigma_1,\ldots,\sigma_\ell$.
 
 \bigskip
 \noindent
-{
-{\bf Lemma 3.2.}\   It is enough to consider the following
+\begin{cthm}{Lemma 3.2}   It is enough to consider the following
 homomorphisms $\phi$. 
-\parindent=0pt \parskip=.7\parskip
-\everypar={\hangindent=.2in\hangafter=1}
-\smallskip
-($K$ biquadratic)
+%\parindent=0pt \parskip=.7\parskip
+%\everypar={\hangindent=.2in\hangafter=1}
 
-(1) $\Ima(\phi)=\langle\sigma_\beta,\sigma_\alpha\sigma_\beta
+\noindent($K$ biquadratic)
+\begin{enumerate}[label=]
+\item (1) $\Ima(\phi)=\langle\sigma_\beta,\sigma_\alpha\sigma_\beta
    \sigma_\alpha\rangle$, the fields
    $K^{\langle\sigma_\beta\rangle}$ and $K^{\langle
        \sigma_\alpha\sigma_\beta\sigma_\alpha\rangle}$ are
   ramified quadratic extensions of $F$.
 
-(2) $\Ima(\phi)=\langle\sigma_\beta,\sigma_\alpha\sigma_\beta
+\item (2) $\Ima(\phi)=\langle\sigma_\beta,\sigma_\alpha\sigma_\beta
    \sigma_\alpha\rangle$,
    $K^{\langle\sigma_\beta\rangle}$ is ramified, and $K^{\langle
        \sigma_\alpha\sigma_\beta\sigma_\alpha\rangle}$ is unramified.
 \smallskip
+\end{enumerate}
 ($K$ cyclic of order four)
-
-(3)  $\Ima(\phi)=\langle\sigma_\alpha\sigma_\beta\rangle$, and $K$
+\begin{enumerate}[label=]
+\item (3)  $\Ima(\phi)=\langle\sigma_\alpha\sigma_\beta\rangle$, and $K$
  is an unramified cyclic extension of degree four.
 
-(4)   $\Ima(\phi)=\langle\sigma_\alpha\sigma_\beta\rangle$, $K$
+\item(4)   $\Ima(\phi)=\langle\sigma_\alpha\sigma_\beta\rangle$, $K$
  is a totally ramified cyclic extension of degree four, and
 $-1$ is a square in $F$.
 
-(5)  $\Ima(\phi)=\langle\sigma_\alpha\sigma_\beta\rangle$, and the
+\item (5)  $\Ima(\phi)=\langle\sigma_\alpha\sigma_\beta\rangle$, and the
  maximal unramified subfield 
  $F\subset E\subset K$ has degree two over $F$.
-
+\end{enumerate}
 \smallskip
 ($K$ dihedral)
-
-(6)  $\Ima(\phi) = W$, the subfield 
+\begin{enumerate}[label=]
+\item(6)  $\Ima(\phi) = W$, the subfield 
 $E:= K^{\langle\sigma_\alpha\sigma_\beta\rangle}$
 is an unramified extension of $F$ of degree two, and $K/E$ is a
 totally ramified extension of degree four.
 Also $-1$ is not a square in $F$.
-\par
-
-}
+\end{enumerate}
+\end{cthm}
 
 \bigskip
 \noindent
-{\bf Proof.}\   If the homomorphism $\phi$ does not define an elliptic
+\begin{proof}    If the homomorphism $\phi$ does not define an elliptic
 Cartan subgroup, then the (stable or unstable)
-two-regular Shalika germ in $Sp(4)$ is identically zero on that
+two-regular Shalika germ in $\text{Sp}(4)$ is identically zero on that
 Cartan subgroup.  Thus we may exclude $\phi$ if the image of $\phi$
 is trivial or conjugate to a subgroup of order two generated by
 a simple reflection.  If the image of $\phi$ is contained in
@@ -1434,30 +1471,30 @@ Write $K^{\langle\sigma_\beta\rangle} =
 K_1(t_1)$, for some $t_1$ satisfying $t_1^2\in K_1$.  Set $u=t_1/\sigma_\alpha(t_1)$.
 Then $\sigma_\beta(u) = -u$ and $\sigma_\alpha(u) u =1$.  We have the
 following congruences modulo the maximal ideal in $O_K$:
-$$\gather
+\begin{gather*}
 -1\equiv \sigma_\alpha\sigma_\beta(u) u \equiv u^2,\qquad
  \pm\sqrt{-1} \equiv u,\\
 1\equiv \sigma_\alpha(u) u \equiv \sigma_\alpha(\sqrt{-1}) \sqrt{-1}.
-\endgather
-$$
+\end{gather*}
 So $\sigma_\alpha(\sqrt{-1}) =-\sqrt{-1}$, and $\sqrt{-1}\not\in F$.
-\hfill\x
+\end{proof}
 
 The following special case of  a general conjecture
 of Assem and Kottwitz will complete the proof of Theorem 1.1.
 
 \bigskip
 \noindent
-{\bf Theorem 3.3.}\   $\int_{X^*(F)}|\omega| = 0$, 
+\begin{cthm}{Theorem 3.3}   $\int_{X^*(F)}|\omega| = 0$, 
 for any $p$-adic field $F$
 of characteristic zero of odd residual characteristic.
+\end{cthm}
 
 \medskip
 \noindent
-{\bf Proof.}\   By the lemma, there are six cases to consider.  In
+\begin{proof}    By the lemma, there are six cases to consider.  In
 each of these cases $\Ima(\phi)$ acts transitively on the
 coordinates $x_i$.  Thus $|x_i|=|x_j|$ for all $i,j$ on the set
-of $F$-rational points.  For each $x_1\in\P^1$, we have
+of $F$-rational points.  For each $x_1\in\bP^1$, we have
 $|x_1|\le 1$ or $|x_1|>1$.  We have already remarked that
 the group of linear fractional transformations acts on $X$
 preserving the form $\omega$.  Replacing $x_i$ by $1/x_i$
@@ -1467,12 +1504,12 @@ and $P_2=\{ (x_1,\ldots,x_4,c_1) : \forall i, \ |x_i|<1\}$.
 We will show that the integral of $\omega$ over the
 union of these two
 sets is zero.  The rough idea is to produce a morphism 
-to a projective line $\P^1$
+to a projective line $\bP^1$
 (essentially given by $(x_1,\ldots,x_4,c_1)\mapsto c_1$),
 to check that the volumes of the fibers of this map are all equal,
 and to verify that the integral over the projective line
 is zero.  The integral over the projective line will reduce to
-$\int_{\P^1}|dx/x^2|$.  We then appeal to Lemma 2.2 with
+$\int_{\bP^1}|dx/x^2|$.  We then appeal to Lemma 2.2 with
 $\theta(x) = 1/|x|$.
 
 
@@ -1503,11 +1540,10 @@ and we take $e'$ to be a uniformizer in $F(e')$.   We fix $F$-coordinates
 $u_i$ by the relation
 $$x_1 = u_0 + u_1 e + u_2 e' + u_3 e e'.$$
 Then also
-$$\align x_2 &= u_0 - u_1 e + u_2 e' - u_3 e e',\\
+\begin{align*} x_2 &= u_0 - u_1 e + u_2 e' - u_3 e e',\\
          x_3 &= u_0 + u_1 e - u_2 e' - u_3 e e',\\
          x_4 &= u_0 - u_1 e - u_2 e' + u_3 e e'.
-\endalign
-$$
+\end{align*}
 The cross-ratio $c=c(x_1,\ldots,x_4)$ becomes
 $$c= { e^{\prime\,2}(u_2^2-u_3^2 e^2)\over e^2 (u_1^2-u_3^2 e^{\prime\,2})}.$$
 By the conditions of Lemma 3.1,
@@ -1532,15 +1568,14 @@ To construct $X$ we blow up along the diagonal, expressed in these
 coordinates by the equations $u_1=u_2=u_3=0$.  The blowing-up is defined
 by the equations $u_iU_j = u_jU_i$, for $i,j=1,2,3$, 
 where $(U_1,U_2,U_3)$ are
-homogeneous coordinates on $\P^2$.  Each such point satisfies exactly
+homogeneous coordinates on $\bP^2$.  Each such point satisfies exactly
 one of the following three pairs of constraints depending on
 which of the coordinates $U_i$ is largest:
-$$\align
+\begin{align*}
 Q_1 &:\quad |U_1|\ge |U_2|,\ |U_1|\ge |U_3|, \\
 Q_2 &:\quad |U_2| >  |U_1|,\ |U_2|\ge |U_3|, \\
 Q_3 &:\quad |U_3|>   |U_1|,\ |U_3|> |U_2|.
-\endalign
-$$
+\end{align*}
 The third possibility $Q_3$ never actually arises because the
 condition $|u_3|\le |u_1|$ implies $|U_3|\le |U_1|$.
 We set $u_{ij} = U_i/U_j$.
@@ -1552,8 +1587,7 @@ defined over $F$, and the coordinate $c_1$ lies in the
 imaginary axis of $K^{\langle\sigma_\alpha\sigma_\beta
 \sigma_\alpha\sigma_\beta\rangle}$.  Expressed in local
 coordinates, we have
-$$
-\align
+\begin{align*}
 Q_1\cap P_1' &= \{(c_1,u_0,u_1,u_{32},v):
   |c_1|\le 1,\ |u_0|\le 1,\ |u_1|\le 1,\ 
   v^2=1-e^2 u_{32}^2 \}, \\
@@ -1564,8 +1598,7 @@ Q_1\cap P_2' &= \{(c_1,u_0,u_1,u_{32},v):
 {t_1 t_2 (t_2^2-t_1^2) du_0\,du_1\,dc_1\, du_{32} \over
  u_1^2(-t_1+t_2 c_1)^2 (1-e^2 u_{32}^2) }
 \right|.
-\endalign
-$$
+\end{align*}
 
 In carrying out this calculation, we found it convenient
 first
@@ -1595,8 +1628,7 @@ $$
 
 On $Q_2$ we use local coordinates $c_1$, $u_0$, $u_2$, and $u_{31}$.
 Expressed in local coordinates we have
-$$
-\align
+\begin{align*}
 Q_2\cap P_1' &=\{(c_1,u_0,u_2,u_{31},v) :
  |c_1|>1,\ |u_0|\le 1,\ |u_2|\le 1,\ |u_{31}|\le 1,\ v=\pm1\},
  \\
@@ -1608,8 +1640,7 @@ Q_2\cap P_2' &=\{(c_1,u_0,u_2,u_{31},v) :
 \left| {t_1 t_2 (t_2^2-t_1^2) du_0\, du_2\, dc_1\, du_{31} \over
 u_2^2 (-t_1+ t_2 c_1)^2}
 \right|.
-\endalign
-$$
+\end{align*}
 We integrate over the coordinates $u_0$, $u_2$, and $u_{31}$,
 and find that the contribution from $Q_2\cap P_1'$ and 
 $Q_2\cap P_2'$ is
@@ -1620,15 +1651,16 @@ $$
 \left| {dc_1 \over (-t_1+t_2 c_1)^2 } \right|.
 $$
 Thus the stable two-regular germ is 
-$$
+\begin{equation}
 -2\left({1\over q}+{1\over q^2}\right)
 |t_1 t_2 (t_2^2-t_1^2)|
-\int_{\P^1} \left|{dc_1 \over (-t_1+t_2 c_1)^2 }\right|.
-\tag3.4$$
+\int_{\bP^1} \left|{dc_1 \over (-t_1+t_2 c_1)^2 }\right|.
+\tag{3.4}
+\end{equation}
 Under the change of coordinates $x = 1- t_2 c_1/t_1$ the integral
-over $\P^1$
+over $\bP^1$
 reduces to the constant $|t_1t_2|^{-1}$
-times $\int_{\P^1} |dx/x^2| = 0$.
+times $\int_{\bP^1} |dx/x^2| = 0$.
 Thus the stable two-regular germ vanishes in Cases 1 and 2.
 
 \bigskip
@@ -1638,24 +1670,23 @@ Thus the stable two-regular germ vanishes in Cases 1 and 2.
 We begin with some comments that apply to all of the
 remaining cases.
 Set
-$$\align
+\begin{align*}
 y_1 &= x_3 - x_4,\\
 y_2 &= x_1 - x_3, \\
 y_3 &= x_2 - x_1,\\
 y_4 &= x_4 - x_2.
-\endalign
-$$
+\end{align*}
 Then $y_1+y_2+y_3+y_4=0$, and the cross-ratio becomes
 $c=c_1^2 = y_4 y_2/(y_1 y_3)$.  The Weyl-group action on the
 coordinates $x_i$ becomes
-$$
-\aligned
+\begin{equation}
+\begin{aligned}
 \sigma_\beta\sigma_\alpha(y_1) &= y_2,\quad \sigma_\beta(y_1) = -y_1,\\
 \sigma_\beta\sigma_\alpha(y_2) &= y_3,\quad \sigma_\beta(y_2) = -y_4,\\
 \sigma_\beta\sigma_\alpha(y_3) &= y_4,\quad \sigma_\beta(y_3) = -y_3,\\
 \sigma_\beta\sigma_\alpha(y_4) &= y_1,\quad \sigma_\beta(y_4) = -y_2.
-\endaligned\tag3.5
-$$
+\end{aligned}\tag{3.5}
+\end{equation}
 In Cases 3,4,5, and 6, the Galois group $\Gal(K/F)$ acts transitively
 on the coordinates $y_1$, $y_2$, $y_3$, $y_4$, so
 $|y_i|=|y_j|$, for all $i$ and $j$, and $c_1$ is a unit in the
@@ -1666,20 +1697,19 @@ $\omega' = y_1^{-3}dy_1\wedge dy_2\wedge dy_3/(-1 + t c_1)^2$,
 where $t$ is defined to be $t_2/t_1$.  
 For $\ell\in\Q$, let $Y_\ell$ 
 denote the set
-$$\align
+\begin{align*}
 Y_\ell= \{(y_1,y_2,y_3,y_4,c_1)\in K^5&: \ y_1+y_2+y_3+y_4=0,\ 
  |y_i|^4 = q^{-\ell},\ \sigma(y_i)=\phi_\sigma(y_i),\ \\
  c_1^2 &= y_2 y_4/(y_1 y_3),\ \ 
  \sigma(c_1) = \phi_\sigma(c_1),\\
-   &\hbox{ for }
- i=1,2,3,4,\hbox{ and } \sigma\in\Gal(K/F)\}.
-\endalign
-$$
+   &\text{ for }
+ i=1,2,3,4,\text{ and } \sigma\in\Gal(K/F)\}.
+\end{align*}
 Let $Z_\ell$ denote the integral $\int_{Y_\ell} |\omega'|$.
 
 \bigskip
 \noindent
-{\bf Lemma 3.6.}\   In the context of Cases 3,4,5, and 6, suppose that
+\begin{cthm}{Lemma 3.6}   In the context of Cases 3,4,5, and 6, suppose that
 $Z_\ell=0$,
 for $\ell=0,1,2,3$.  Then the stable
 two-regular germ is zero.
@@ -1689,10 +1719,11 @@ $$
 {2\over 1-q} Z_0 + {q^{1/4} (q+1)\over q (1-q)} Z_1 +
 {q^{1/2} (q+1)\over q (1-q)} Z_2 + {q^{3/4} (q+1)\over q (1-q)}
 Z_3.$$
+\end{cthm}
 \bigskip
 
 \noindent
-{\bf Proof. }\   The ramification index
+\begin{proof} The ramification index
 $e(K/F)$ of the field extension $K/F$
 divides four, and $Y_{\ell}=\emptyset$
 unless $e(K/F)\cdot\ell\in {4}\Z$.
@@ -1721,7 +1752,7 @@ two-regular germ is the analytic continuation of
 $$
 |t_2^2-t_1^2|\sum_\ell q^{-s+\ell/4} \int_{Y_\ell}
 |\omega'|,
-\ \ \hbox{Re}(s)\gg 0,$$
+\ \ \text{Re}(s)\gg 0,$$
 to $s=0$.  The sum runs over $\{\ell\in \Z: \ell\ge 0\}$
 and $\{\ell\in \Z:\ell > 0\}$, for $P_1$ and $P_2$.
 Summing the series, we obtain Lemma 3.6.
@@ -1729,7 +1760,7 @@ Since $|y_i|=|y_j|$
 on the set of rational points near the diagonal $y_1=y_2=y_3=0$,
 the rational points are concentrated in a particular direction,
 and blowing-up has no effect on the principal-value integral.
-\hfill\x
+\end{proof}
 
 \medskip
 Now in Case 3, the extension $K/F$ is cyclic and unramified.
@@ -1760,8 +1791,7 @@ The measure $|\omega'|$ becomes $|dg_1\,dg_2\,dg_3|$
 if $(-1+t c_1) \not\equiv 0\negthinspace \mod \pp$, and
 it becomes $|g_1^{-2}dg_1\,dg_2\,dg_3|$ otherwise.
 Then the integral of $|\omega'|$ over $Y_0$ is
-$$
-\align
+\begin{align*}
   \sum_{\xi\atop  -1+ \xi t \not\equiv 0}
   &\sum_{R(\xi)}
   \int |dg_1\,dg_2\,dg_3| +
@@ -1769,8 +1799,7 @@ $$
   \sum_{R(\xi)}
   \int |g_1^{-2}dg_1\,dg_2\,dg_3|\tag3.7\\
   =& q\cdot r\cdot {1\over q^3} + 1\cdot r\cdot {-1\over q^2} = 0.
-\endalign
-$$
+\end{align*}
 
 It remains to be seen that the cardinality of $R(\xi)$ is
 independent of $\xi$.  For this we work entirely over the
@@ -1802,13 +1831,13 @@ and  $b\,z=u+v\in k_2^\times$, we find
 that $b=4\xi_1/a$.  Moreover,
 $z\in k^\times$ is uniquely determined in terms
 of $a$ by the condition
-$$\hbox{trace}_{k_2/k} (a+ z b) = \hbox{trace}_{k_2/k} 2u = 0$$
+$$\text{trace}_{k_2/k} (a+ z b) = \text{trace}_{k_2/k} 2u = 0$$
 whenever $a\not\in \xi_1 e k^\times,\, e k^\times$ 
 (that is, the traces of $a$ and $b$
 are nonzero).  The lines $\xi_1 e k$ and $e k$ are distinct:
 if $\xi_1\in k^\times$, then $\sigma(\xi)\xi=1$, contrary to hypothesis.
 If $a\in e k$ or $a\in \xi_1 e k$, then we would obtain the
-contradiction $z=0$ or $\hbox{trace}_{k_2/k} u\ne 0$.
+contradiction $z=0$ or $\text{trace}_{k_2/k} u\ne 0$.
 The solutions are thus parametrized by the element $a$,
 which lies in the complement of two intersecting lines in 
 the plane $k_2$,
@@ -1831,12 +1860,13 @@ Galois group $\Gal(K/F)$ such that $\sigma(\pi') = \jota \pi'$.
 If $y_1 = \pi^{\prime\,\ell} y_1'$, where $y_1'$ is a unit,
 then $\sigma(y_1')\equiv y_1'$ modulo the maximal ideal
 $\pp$ of $O_K$, so
-$$-1\equiv \sigma(c_1)c_1\equiv c_1^2 \equiv c \equiv
+\begin{equation}
+-1\equiv \sigma(c_1)c_1\equiv c_1^2 \equiv c \equiv
 {y_2 y_4\over y_1 y_3}\equiv {\sigma(y_1)\sigma^3(y_1)\over
 y_1 \sigma^2(y_1)} \equiv {\jota^\ell\cdot\jota^{3\ell}\over
  1\cdot \jota^{2\ell}}\equiv \jota^{2\ell} \equiv (-1)^\ell
-\mod \pp.\tag 3.8
-$$
+\mod \pp.\tag {3.8}
+\end{equation}
 So $\ell$ is odd.  Conversely, if $\ell$
 is odd, then the cross-ratio $c$ has two square roots $c_1$ satisfying
 $\sigma(c_1)c_1 = -1$.  
@@ -1857,36 +1887,35 @@ We switch to the local $F$-coordinates $x,u_1$, and $u_2$
 when $|-1+c_1 t|<1$.
 Expressed in terms of these coordinates we have $Y_1=Y'\cup Y''$,
 where
-$$
-\align
+\begin{align*}
 Y' &= \{(u_1,u_2,x): \ |u_1|=1,\ |u_2|\le 1,\ |x|\le 1\},\ \\
 Y'' &= \{(u_1,u_2,u_3):|u_1|=1,\ |u_2|\le 1,\ |u_3|\le 1\},\\
 |\omega'| &= q^{1/4} \left|{du_1\, du_2\, dx\over x^2}\right|
-						\hbox{ on } Y',\\ 
-    &=q^{-3/4}\left|du_1\,du_2\,du_3\right| \hbox{ on } Y''.
-\endalign
-$$
+						\text{ on } Y',\\ 
+    &=q^{-3/4}\left|du_1\,du_2\,du_3\right| \text{ on } Y''.
+\end{align*}
 %
 %
 The integral over $Y_1$ is then
-$$
+\begin{equation}
 Z_1 = q^{1/4}\int_{Y'} \left | {du_1\, du_2\, dx \over x^2}\right |
 + q^{-3/4}\int_{Y''} \left | du_1\, du_2\, du_3 \right |.
-\tag3.9
-$$
+\tag{3.9}
+\end{equation}
 In the second integral we set $u_3 = 1/(\pi x)$.  We
 then see that the integral reduces to
 $$Z_1=q^{1/4} \int_{|u_1|=1\atop |u_2|\le 1} 
-\left| du_1\, du_2\right | \int_{\P^1} 
+\left| du_1\, du_2\right | \int_{\bP^1} 
 \left | dx\over x^2\right | = q^{1/4} \left( 1-{1\over q}\right)
-\int_{\P^1} \leftdx.$$
+\int_{\bP^1} \leftdx.$$
 If $\ell=3$, write $y_1 = \pi^{\prime\,3} u_1 + \pi^{\prime\,5}u_2
 +\pi^{\prime\,6} u_3$, with $u_1\in O_F^\times$ and $u_2, u_3\in O_F$.
 A similar argument shows
-$$
-Z_3 = q^{-1/4}\int |du_1\,du_3| \int_{\P^1}\leftdx =
-q^{-1/4}\left(1-{1\over q}\right )\int_{\P^1}\leftdx.
-\tag3.10$$
+\begin{equation}
+Z_3 = q^{-1/4}\int |du_1\,du_3| \int_{\bP^1}\leftdx =
+q^{-1/4}\left(1-{1\over q}\right )\int_{\bP^1}\leftdx.
+\tag{3.10}
+\end{equation}
 By Lemma 2.2, these integrals are zero.  This completes Case 4.
 
 \bigskip
@@ -1930,17 +1959,15 @@ In fact, the
 measure is 
 $$|\omega'| = q^{-1/2} |du_1\,du_2\,du_3 (-1+c_1 t)^{-2}|,$$
 and the integral of $|\omega'|$ over $Y_2$ is
-$$
-\align
+\begin{align*}
 Z_2 =
 q^{-1/2}\hskip -1em\sum_{\xi\atop  -1+t\xi \not\equiv0}
 &\sum_{R(\xi)} \int |dg_1\,dg_2\,dg_3| + q^{-1/2}\hskip -1em 
 \sum_{\xi\atop  -1+t\xi \equiv 0}
-\sum_{R(\xi)} \int \left|{dg_1\over g_1^2} dg_2\,dg_3\right|\tag3.11\\
+\sum_{R(\xi)} \int \left|{dg_1\over g_1^2} dg_2\,dg_3\right|\tag{3.11}\\
 &= q^{-1/2}\cdot q\cdot r\cdot {1\over q^3} + q^{-1/2}\cdot 1\cdot r\cdot {-1\over q^2}
  =0.
-\endalign
-$$
+\end{align*}
 
 \bigskip
 \centerline{\bf Two-regular Case 6. Dihedral Extensions.}
@@ -1982,42 +2009,45 @@ with $u_1\in O_E^\times$, $u_2,u_3\in O_E$.  The condition
 $\sigma_\beta(y_1)=-y_1$
 of Equation 3.5 implies that $u_1\in O_F^\times$, $u_2,u_3\in O_F$.
 Following the argument of Case 4, we find that $Y_1 = Y'\cup Y''$, where
-$$\align
+\begin{align*}
 Y'&=\{(u_1,u_2,x): \ |u_1|=1,\ |u_2|\le 1,\ |x|\le 1\},\\
 Y''&=\{(u_1,u_2,u_3):\ |u_1|=1,\ |u_2|\le 1,\ |u_3|\le 1\},
-\endalign
-$$
+\end{align*}
 %
-$$\align
+\begin{align*}
 |\omega'| &= q^{1/4}\left|{du_1\, du_2\, dx\over x^2}\right|
-\ \hbox{ on } Y',\\
+\ \text{ on } Y',\\
 |\omega'| &= q^{-3/4}\left|du_1\,du_2\,du_3\right|\ 
-\hbox{ on } Y''.
-\endalign
-$$
+\text{ on } Y''.
+\end{align*}
 %
-$$Z_1 = q^{1/4} \left(1-{1\over q}\right) \int_{\P^1} \leftdx.
-\tag3.12
-$$
+\begin{equation}
+Z_1 = q^{1/4} \left(1-{1\over q}\right) \int_{\bP^1} \leftdx.
+\tag{3.12}
+\end{equation}
 
 If $\ell=3$, we write $y_1 = 
 \pi^{\prime\,3}\jota u_1 + \pi^{\prime\,5}\jota u_2
 +\pi^{\prime\,6}\jota u_3$,
 with $u_1\in O_F^\times$, $u_2,u_3\in O_F$.  We find
-$$Z_3 = q^{-1/4} \left(1-{1\over q}\right ) \int_{\P^1}\leftdx.
-\tag 3.13$$
+\begin{equation}
+Z_3 = q^{-1/4} \left(1-{1\over q}\right ) \int_{\bP^1}\leftdx.
+\tag {3.13}
+\end{equation}
 By Lemma 2.2, these integrals are zero.
-This completes the proof of Theorem 3.3.\hfill\x
+This completes the proof of Theorem 3.3.
+\end{proof} 
 
-\vfill\break
-\centerline{\headfont Section 4. The Cohomology of Cartan Subgroups.}
-\bigskip
+\section{The Cohomology of Cartan Subgroups}
+%\vfill\break
+%\centerline{\headfont Section 4. The Cohomology of Cartan Subgroups.}
+%\bigskip
 
 In the next section we will study some unstable two-regular
 germs in order to complete the matching of orbital integrals
-on $Sp(4)$ with its endoscopic groups.  The paper [H1] proved
+on $\text{Sp}(4)$ with its endoscopic groups.  The paper [H1] proved
 the matching for $GSp(4)$, but fell short of proving all that
-is needed for the unstable two-regular germs on $Sp(4)$.
+is needed for the unstable two-regular germs on $\text{Sp}(4)$.
 We will rely on the formula of Lemma 3.1 to prove
 the required matching results.
 
@@ -2040,11 +2070,11 @@ character group $\{a_1\chi_1+\cdots+ a_n\chi_n: a_i\in \Z\}
 \simeq\Z^n$, where $\chi_i$ is the projection onto the $i$th
 factor of $T$.  Let $W$ be the Weyl group of $B_n$ or $C_n$,
 the group of order $2^n n!$ of signed permutations.  $W$ is
-generated by a subgroup $\SS_n$, isomorphic to the symmetric group
+generated by a subgroup $\fS_n$, isomorphic to the symmetric group
 on $n$ letters, and reflections $\rho_i$, $i=1,\ldots,n$.  The
 Weyl group acts on the character group of $T$ by $\rho_i(\chi_j) = \pm \chi_j$
 (negative only if $i=j$), and $\tau(\chi_j) = \chi_{\tau_j}$,
-for $\tau\in \SS_n$.   If $T$ is not split, then
+for $\tau\in \fS_n$.   If $T$ is not split, then
 we assume that the Galois group acts on the character group
 through the Weyl group $W$, that is, we assume we are given
 a nontrivial map $\phi:\Gamma\to W$.
@@ -2057,21 +2087,22 @@ Let
 $I_1,\ldots, I_r$ be the distinct orbits.  Then the
 image of $\Gamma$ in the permutation group of $I$,
 under the natural map,
-lies in a subgroup isomorphic to $\SS_{i_1}\times\cdots\times 
-\SS_{i_r}$,  with $i_j= \# I_j$.
+lies in a subgroup isomorphic to $\fS_{i_1}\times\cdots\times 
+\fS_{i_r}$,  with $i_j= \# I_j$.
 Then $T$ is a product $T_1\times\cdots\times T_r$ over $F$ and 
 $\pi_0(\hat T^\Gamma) = \oplus \pi_0(\hat T_i^{\Gamma_i})$.
 
 \bigskip
 \noindent
-{\bf Lemma 4.1.}\   If $\Gamma$ acts transitively on $I$, then
+\begin{cthm}{Lemma 4.1}   If $\Gamma$ acts transitively on $I$, then
 $\pi_0(\hat T^\Gamma)$ is trivial unless there exists
 $\sigma\in \Gamma$ such that $\sigma(\chi_1) =-\chi_1$.  In
 this case the component group has order two.
+\end{cthm}
 
 \bigskip
 \noindent
-{\bf Proof.}\   By transitivity, we select $\sigma_j\in \Gamma$
+\begin{proof}    By transitivity, we select $\sigma_j\in \Gamma$
 and $\epsilon_j=\pm 1$ such that $\sigma_j(\chi_1)=\epsilon_j\chi_j$.
 Then $\hat T^\Gamma \subset \{(t,t^{\epsilon_1},\ldots,t^{\epsilon_n})\}
 \simeq \C^\times$.   This connected group is the full group
@@ -2079,7 +2110,7 @@ of Galois-invariant elements unless an element $\sigma$ exists
 with $\sigma(\chi_1)=-\chi_1$.  Then $\sigma(t_1,\ldots,t_n) =
 (t_1^{-1},\ldots)$, so $t_1 = {\pm 1}$.  
 Thus $\hat T^\Gamma\subset \{\pm1\} = \hat T^W \subset
-\hat T^\Gamma$, and $\hat T^\Gamma =\{\pm1\}$.\hfill\x
+\hat T^\Gamma$, and $\hat T^\Gamma =\{\pm1\}$.\end{proof}
 
 \smallskip
 We remark that $T$ is anisotropic if and only if the group
@@ -2107,8 +2138,8 @@ $H^1(T)\twoheadrightarrow H^1(U_E(1))$.  We conclude that
 the nontrivial class is detected by the determinant on $U_E(n)$.
 
 \noindent
-{\bf Example 2.}\   $G=SO(2n+1)$ or $G= {}^ESO(2n)$ (the quasisplit
-group of type $SO(2n)$ split over the quadratic extension $E$).
+{\bf Example 2.}\   $G=\text{SO}(2n+1)$ or $G= {}^ESO(2n)$ (the quasisplit
+group of type $\text{SO}(2n)$ split over the quadratic extension $E$).
 We let $T_{sc}$ denote the inverse image of $T$ in the simply
 connected cover of $G$.  We have an exact sequence
 $$1\to \Z/2\Z \to T_{sc} \to T\to 1$$
@@ -2125,11 +2156,10 @@ detect the nontrivial class in the cohomology of $T$.
 {\bf Example 3.}\  Let $G$ be any of the groups
 discussed in Examples 1 and 2.
 Set 
-$$\align
+\begin{align*}
 \Gamma_1 &= \{\sigma\in\Gamma : \sigma\chi_1 =\pm \chi_1\},\\
 \Gamma_1^+ &= \{\sigma\in\Gamma:\sigma\chi_1=\chi_1\}.
-\endalign
-$$
+\end{align*}
 Let $E_1^+$ be the fixed field in $\bF$ of $\Gamma_1^+$,
 and $E_1$ the fixed field of $\Gamma_1$.  We have
 $[E_1^+:E_1]=2$, and $[E_1:F]=n$.  
@@ -2154,37 +2184,37 @@ $\sigma\in\Gamma_1\setminus \Gamma_1^+$.  Moreover,
 the cohomology class of $a_\sigma$ determines $\chi_1(a_\sigma)$
 modulo the norms of $E_1^+$.
 
-
-\vfill\break
-\centerline{\headfont Section 5.  Unstable Two-Regular Germs on Sp(4).}
-\bigskip
+\section{Unstable Two-Regular Germs on \text{Sp}(4)}
+%\vfill\break
+%\centerline{\headfont Section 5.  Unstable Two-Regular Germs on \text{Sp}(4).}
+%\bigskip
 
 In this section we prove the transfer of $\kappa$-combinations
-of Shalika germs on $Sp(4)$ to its endoscopic groups.
+of Shalika germs on $\text{Sp}(4)$ to its endoscopic groups.
 The assumption that the residual characteristic of $F$
 is odd remains in effect.  Let
 us survey what needs to be done.  The elliptic
-endoscopic groups of $Sp(4)$ are $SL(2)\times T_1$, where
+endoscopic groups of $\text{Sp}(4)$ are $SL(2)\times T_1$, where
 $T_1$ is a one-dimensional anisotropic torus, and the
-quasisplit forms of $SO(4)$.  The endoscopic groups
+quasisplit forms of $\text{SO}(4)$.  The endoscopic groups
 $SL(2)\times T_1$ do not contain a two-regular unipotent
 conjugacy class, so in this case it must be shown that
 the relevant $\kappa$-combination of two-regular Shalika
-germs on $Sp(4)$ vanishes.  The split endoscopic group
-$H=SO(4)$ has already been treated in [H1].  
+germs on $\text{Sp}(4)$ vanishes.  The split endoscopic group
+$H=\text{SO}(4)$ has already been treated in [H1].  
 
 Suppose that
-$H$ is a quasisplit form ${}^ESO(4)$ of $SO(4)$, split over
+$H$ is a quasisplit form ${}^ESO(4)$ of $\text{SO}(4)$, split over
 a nontrivial quadratic extension $E/F$.  The adjoint group
 of $H$ is isomorphic to the restriction of scalars
-$\hbox{Res}_{E/F}PSL(2)$.  Under this identification,
+$\text{Res}_{E/F}PSL(2)$.  Under this identification,
 the stable two-regular germ
 of $H$ coincides with the subregular germ of
 $PSL(2)/E$.
 Let $T$ be an elliptic torus in ${}^ESO(4)$.
-Write $T/\{\pm1\} = \hbox{Res}_{E/F} T_1$, for some
+Write $T/\{\pm1\} = \text{Res}_{E/F} T_1$, for some
 elliptic torus $T_1\subset PSL(2)/E$.  Let $Q$ be the twisted form
-of $\P^1\times \P^1$, defined over $E$, attached to the
+of $\bP^1\times \bP^1$, defined over $E$, attached to the
 torus $T_1/E$ (see [LS1]).  We conjugate an element of the
 Lie algebra of $T$ by $H(\bF)$ to a diagonal parameter
 $\diag(t_1,t_2,-t_2,-t_1)\in \so(4)$.
@@ -2192,7 +2222,7 @@ Set $I_{ram}(q):= -(1+q)/q^{3/2}$, and $I_{unr}(q):= -2/q$.
 
 \bigskip
 \noindent
-{\bf Lemma 5.1.}\ The stable two-regular germ of $T$ in ${}^ESO(4)$,
+\begin{cthm}{Lemma 5.1} The stable two-regular germ of $T$ in ${}^ESO(4)$,
 evaluated at the element $\diag(t_1,t_2,-t_2,-t_1)$ of the
 Lie algebra, is
 $$|t_1^2-t_2^2| \int_{Q(E)} |\omega_Q|,$$
@@ -2203,31 +2233,32 @@ $$\int_{Q(E)} |\omega_Q| = I_{ram}(q_E),$$
 and if $T_1$ splits over an unramified extension of $E$, then
 $$\int_{Q(E)} |\omega_Q| = I_{unr}(q_E),$$
 where $q_E$ is the cardinality of the residue field of $E$.
+\end{cthm}
 
 \bigskip
 \noindent
-{\bf Proof.}\  The variety $Q$, the differential form $\omega_Q=
+\begin{proof}   The variety $Q$, the differential form $\omega_Q=
 dx_1\wedge dx_2/(x_1-x_2)^2$, and their relation to Shalika germs
 are treated thoroughly in [LS1].  The explicit formulas for the integrals
 appear in [SS,Lemma 2.5], after one accounts for different
 normalizations of measures.  The
 integral over $Q$ is the the constant denoted
 $-2 (q+1)/(q^2 \kappa_T)$  in [SS].
-\hfill\x
+\end{proof}
 \bigskip
 
-Fix a Cartan subgroup $T$ in $Sp(4)$ and attach to it a homomorphism
+Fix a Cartan subgroup $T$ in $\text{Sp}(4)$ and attach to it a homomorphism
 $\phi:\Gal(\bF/F)\to W$ as in previous sections.  If
-$\Ima(\phi)\subset \langle\sigma_\alpha,\sigma_\beta\sigma_\alpha\sigma_\beta\rangle$, then the endoscopic group is the split group $SO(4)$ and
+$\Ima(\phi)\subset \langle\sigma_\alpha,\sigma_\beta\sigma_\alpha\sigma_\beta\rangle$, then the endoscopic group is the split group $\text{SO}(4)$ and
 the transfer of Shalika germs is carried out in [H1].  For
-any Cartan subgroup in $Sp(4)$, the regular, subregular, and
+any Cartan subgroup in $\text{Sp}(4)$, the regular, subregular, and
 four-regular (trivial) unipotent classes are treated in [H1].
 If $T$ is not elliptic, then the theory of descent relates
 the Shalika germs to the Shalika germs on $SL(2)$. The
 two-regular germ is then zero, because $SL(2)$ does not
 contain any
 two-regular unipotent elements.  These considerations show
-that the transfer of Shalika germs on $Sp(4)$ will follow
+that the transfer of Shalika germs on $\text{Sp}(4)$ will follow
 from the transfer of two-regular Shalika germs in the
 six cases enumerated in Lemma 3.2.
 
@@ -2265,9 +2296,9 @@ unipotent class.   Thus we assume $x(\delta)=1$.
 We set $z = 1-t c_1$ and  $z' = z/(1-z) = (1- t c_1)/(t c_1)$.
 If we let $(u,v)$ represent
 the element $\diag(u,v,v^{-1},u^{-1})$ in a Cartan subgroup
-$T$ of $Sp(4)$, then the cocycle $t_\sigma$ of $W$, written
+$T$ of $\text{Sp}(4)$, then the cocycle $t_\sigma$ of $W$, written
 out in full,  is
-$$\align
+\begin{align*}
  1,\ \sigma_\alpha &\mapsto (1,1),\\
  \sigma_\beta,\ \sigma_\beta\sigma_\alpha&\mapsto (1,z'/\Delta),\\
  \sigma_\alpha\sigma_\beta,\  
@@ -2275,15 +2306,14 @@ $$\align
  \sigma_\beta\sigma_\alpha\sigma_\beta,\ 
  \sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_\beta&\mapsto
      (z/\Delta,z'/\Delta).
-\endalign
-$$
+\end{align*}
 
 
 We evaluate $\kappa(t_\sigma)$ by Shapiro's lemma, as in
 Example 3 of Section 4.  In Cases 1 and 2, the Cartan
 subgroup  $T$ is a product $T_1\times
 T_2$, and $\kappa(t_\sigma)$ is
-$$\eta(z\Delta),\ \ \eta'(z'\Delta),\ \hbox{ or }\ \eta(z\Delta)\eta'%
+$$\eta(z\Delta),\ \ \eta'(z'\Delta),\ \text{ or }\ \eta(z\Delta)\eta'%
 (z'\Delta).$$
 The characters $\eta,\eta':F^\times\to \C^\times$ 
 of order two are 
@@ -2302,7 +2332,7 @@ character of $E_1 := K^{\langle
 \sigma_\beta,\sigma_\alpha\sigma_\beta
 \sigma_\alpha\rangle}$ attached to the quadratic extension
 $K^{\langle\sigma_\beta\rangle}/E_1$.  The endoscopic group is
-the quasisplit form of $SO(4)$ that splits over $K^{\langle
+the quasisplit form of $\text{SO}(4)$ that splits over $K^{\langle
 \sigma_\alpha,\sigma_\beta\sigma_\alpha\sigma_\beta\rangle}$.
 
 Since the cocycle depends on $X^*(F)$ only through the square
@@ -2310,9 +2340,9 @@ root $c_1$ of the cross-ratio, we may easily insert the
 factor $\kappa(t_\sigma)$ into the formulas we have
 obtained in Section 3 to obtain expressions for the $\kappa$-germs.
 In light of Lemma 5.1, the following theorem establishes
-the transfer to the endoscopic groups of $Sp(4)$.  In the
+the transfer to the endoscopic groups of $\text{Sp}(4)$.  In the
 following theorem fix an elliptic Cartan subgroup $T$
-in $Sp(4)$.  Fix a character $\kappa:H^1(\Gal(\bF/F),T)\to \C^\times$
+in $\text{Sp}(4)$.  Fix a character $\kappa:H^1(\Gal(\bF/F),T)\to \C^\times$
 and an associated endoscopic group $H$.  If $H= {}^ESO(4)$,
 then we let $Q$ be the variety attached to $T$ and $H$
 as in Lemma 5.1.  Let $\omega_Q = dx_1\wedge dx_2/(x_1-x_2)^2$
@@ -2320,7 +2350,7 @@ as above.
 
 \bigskip
 \noindent
-{\bf Theorem 5.2.}\ The integral 
+\begin{cthm}{Theorem 5.2} The integral 
 $\int_{X^*(F)} \kappa(t_\sigma)|\omega|$ equals
 
 \noindent
@@ -2334,10 +2364,11 @@ $H = {}^ESO(4)$ and $E/F$ is an unramified extension,
 \noindent
 (3)\ \  $\displaystyle{2\over q} |t_1^2-t_2^2| \int_{Q(E)} |\omega_Q|$, if
 $H = {}^ESO(4)$ and $E/F$ is ramified.
+\end{cthm}
 
 \bigskip
 \noindent
-{\bf Proof.}\ We compute the integral $\int_{X^*(F)} \kappa(t_\sigma))
+\begin{proof}  We compute the integral $\int_{X^*(F)} \kappa(t_\sigma))
 |\omega|$ and compare the results with Lemma 5.1.
 
 Part 1 of the theorem is elementary.
@@ -2347,9 +2378,9 @@ into
 Equation 3.4, and using $dz/z^2= dz'/z^{\prime\,2}
  = -t dc_1/(1 - t c_1)^2$, we find
 that the Shalika germ is a factor times
-$$ \int_{\P^1} \eta'(z' \Delta) \left|
-{ dz'\over z^{\prime\,2}}\right | \ \hbox{ or }
-\int_{\P^1} \eta(z \Delta) \left|
+$$ \int_{\bP^1} \eta'(z' \Delta) \left|
+{ dz'\over z^{\prime\,2}}\right | \ \text{ or }
+\int_{\bP^1} \eta(z \Delta) \left|
 { dz\over z^2}\right |.$$
 These integrals vanish by Lemma 2.2.
 
@@ -2357,7 +2388,7 @@ Before continuing further, we analyze the term $\eta(\Delta)$
 for the various quadratic characters $\eta$ appearing in
 $\kappa(t_\sigma)$.  Recall that the character 
 $\eta:E_1^\times\to\C^\times$ and the field $E_1$ 
-depend on the case we are in.  Let $\hbox{sgn}(x)$, for
+depend on the case we are in.  Let $\text{sgn}(x)$, for
 $x\in F$, be $1$ if $x$ is a square in $F$, and $-1$
 otherwise.
 In Cases 3,4, and 5, we see that $-(t_1+t_2)^2$ is a norm,
@@ -2366,18 +2397,19 @@ In Case 3, $\eta$ is an unramified character, and
 $(1-t)/(1+t)$ is a unit, so $\eta(\Delta)=1$.  In Case 4,
 $t$ is congruent to a square root $\jota\in F$ of $-1$, and
 $\eta$ is a ramified quadratic character, so
-$\eta(\Delta)=\eta(-\jota) = \hbox{sgn}(2)$.  In Case 5,
+$\eta(\Delta)=\eta(-\jota) = \text{sgn}(2)$.  In Case 5,
 $u:= (1-t)/(1+t)$ satisfies $\sigma_{\alpha}\sigma_\beta(u)u= -1$,
 and $\eta$ is a ramified character on $E_1$.  Such a unit 
 $u$ will be a square in $E_1$ if and only if $-1$ is a square in $F$,
-so $\eta(\Delta) = \hbox{sgn}(-1)$.
+so $\eta(\Delta) = \text{sgn}(-1)$.
 In Case 6, $\Delta = -t_1^2 (1-t^2)$,
 where $t^2 \equiv -1 \mod\pp$, so $\eta(\Delta) =\eta(-2t_1^2)$.
-Also $-t_1^2$ is the norm of $t_1$, so $\eta(\Delta) = \hbox{sgn}(2)$.
+Also $-t_1^2$ is the norm of $t_1$, so $\eta(\Delta) = \text{sgn}(2)$.
 In Cases 1 and 2, we must analyze 
 $\eta''(\Delta)=\eta(\Delta)\eta'(\Delta) $,
 where $\eta''$ is the character attached to the quadratic
-extension $K^{\langle\sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_\beta\rangle}/F$.  In Case 1, $\eta''$ is unramified, and $\Delta$ has odd
+extension $K^{\langle\sigma_\alpha\sigma_\beta\sigma_\alpha\sigma_\beta\rangle}/F$.  
+In Case 1, $\eta''$ is unramified, and $\Delta$ has odd
 valuation, so $\eta''(\Delta) = -1$.  In Case 2, $\eta''$ is
 ramified, and $t_2^2$ has even valuation, but is not a square
 in $F$,
@@ -2387,16 +2419,16 @@ As we discuss Cases 1 through 6, we adopt the notation and
 conventions from the corresponding passages in Section 3.
 Turn to Cases 1 and 2 (biquadratic extensions).  
 We assume the endoscopic group is
-a quasisplit form of $SO(4)$.  Inserting $\kappa(t_\sigma)
+a quasisplit form of $\text{SO}(4)$.  Inserting $\kappa(t_\sigma)
 = -\eta(z)\eta'(z/(1-z))$ into Equation 3.4, we see that
 the germ is
 $$2\left({1\over q} +{1\over q^2}\right) |t_2^2-t_1^2|
-\int_{\P^1} \eta(z)\eta'(z/(1-z)) \left| {dz\over z^2}\right |.$$
-In Case 1, $SO(4)$ splits over an unramified extension, and
+\int_{\bP^1} \eta(z)\eta'(z/(1-z)) \left| {dz\over z^2}\right |.$$
+In Case 1, $\text{SO}(4)$ splits over an unramified extension, and
 the characters $\eta,\eta'$ are distinct and ramified.
-In Case 2, $SO(4)$ splits over a ramified extension, and
+In Case 2, $\text{SO}(4)$ splits over a ramified extension, and
 the character $\eta'$ is unramified, but $\eta$ is ramified.
-The integral over $\P^1$ evaluates to $-(1+q^2)/(q^2+q)$ in 
+The integral over $\bP^1$ evaluates to $-(1+q^2)/(q^2+q)$ in 
 Case 1 and to $-2/(q+1)$ in Case 2.  The germ is
 then $2|t_2^2-t_1^2|I_{ram}(q^2)$ in Case 1 and
 $2|t_2^2-t_1^2|I_{unr}(q)/q$ in Case 2.
@@ -2406,15 +2438,13 @@ in Cases 1 and 2.
 
 In the remaining cases, we insert the factor $\kappa(t_\sigma)$
 into the formula of Lemma 3.6 to obtain the expression
-$$
-\align
+\begin{align*}\tag{5.3}
 {1\over |t_2^2-t_1^2|} &\int_{X^*(F)}\kappa(t_\sigma)|\omega| \\
  &=
 {2\over 1-q} Z^\kappa_0 + {q^{1/4} (q+1)\over q (1-q)} Z^\kappa_1 +
 {q^{1/2} (q+1)\over q (1-q)} Z^\kappa_2 + {q^{3/4} (q+1)\over q (1-q)}
-Z^\kappa_3,\tag5.3
-\endalign
-$$
+Z^\kappa_3,
+\end{align*}
 where $Z_\ell^\kappa = \int_{Y_\ell}\kappa(t_\sigma) |\omega'|$.
 In Cases 3, 4, and 5, the extension $E_1/F$ is equal to the
 quadratic extension $E/F$ in $K$.
@@ -2427,8 +2457,7 @@ Referring to Equation 3.7, we see that $\kappa(t_\sigma)
 and that when $ -1+\xi t \equiv 0$, we may choose $z$ and
 $g_1$ to be equal up to a unit so that $\eta(z\Delta)=\eta(g_1)$.
 Equations 3.7 and 5.3 then give the germ $2|t_1^2-t_2^2| Z_0^\kappa/(1-q)$, where
-$$
-\align
+\begin{align*}
 Z_0^\kappa &=
   \sum_{\xi\atop -1+ \xi t\not\equiv 0}
   \sum_{R(\xi)}
@@ -2440,8 +2469,7 @@ Z_0^\kappa &=
 q\cdot r\cdot {1\over q^3} + 1\cdot r\cdot {1-q\over 1+q}
       \cdot {1\over q^2}\\
   &= {-2(1-q)\over q^2} = (1-q) I_{unr}(q^2).
-\endalign
-$$
+\end{align*}
 By Lemma 5.1 (with $T_1$ unramified and $q_E=q^2$), 
 Theorem 5.2 holds in Case 3.
 
@@ -2456,7 +2484,7 @@ is zero, so the terms associated with the set $Y'$ in Equations
 3.9 and 3.10 are zero.  By Equation 5.3,
 this shows that the germ is the
 constant $|t_1^2-t_2^2|$ times
-$$\align
+\begin{align*}
 &\phantom{ =} {q^{1/4}(q+1)\over q(1-q)}
        (Z_1^\kappa + q^{1/2} Z_3^\kappa)\\
 &={q^{1/4}(q+1)\over q(1-q)} 
@@ -2465,8 +2493,7 @@ $$\align
 &= {-2 (q+1)\over q\cdot q^{3/2}} =
 {2\over q} I_{ram}(q) = 
 {2\over q} \int_{Q(E)} |\omega_Q|.
-\endalign
-$$
+\end{align*}
 
 Case 5 requires more effort.  
 The character $\eta$ on the
@@ -2485,7 +2512,7 @@ the finite field has the form $(u+e)/(u-e)$ for some $u$
 in the residue field $k$ of $F$. We have 
 $$\kappa(t_\sigma) = \eta(\Delta)\eta\left(
 1-\left({u+e\over u-e}\right)\right) =
-\hbox{sgn}(-1)\eta\left({-2e\over u-e}\right) = -\eta(u-e).$$
+\text{sgn}(-1)\eta\left({-2e\over u-e}\right) = -\eta(u-e).$$
 If the element $u-e$ is a square in $k_2$, then by taking
 norms, we find that $u$ has the form $(a+ e^2/a)/2$, for $a\in k^\times$;
 and conversely for any element of this form, we find that $u-e$
@@ -2499,7 +2526,7 @@ $F$-coordinate $g_1$ to be $(-1+ c_1 t)/(e (1+c_1 t))$
 Then $\eta(z\Delta) = -\eta_{E/F}(g_1)$.  The unstable
 version of Equation 3.11 leads to the following formula
 for $Z_2^\kappa$:
-$$\align
+\begin{align*}
 q^{-1/2}\hskip-1em\sum_{\xi\atop  -1+t\xi \not\equiv0}
 &\sum_{R(\xi)} \int \kappa(t_\sigma)|dg_1\,dg_2\,dg_3| + q^{-1/2} 
 \hskip-1em
@@ -2511,8 +2538,7 @@ q^{-1/2}\hskip-1em\sum_{\xi\atop  -1+t\xi \not\equiv0}
 \left( 1-q\over 1+q\right)\cdot {1\over q^2}\\
  &= {2 (q-1) (1+q^2)\over q^{5/2} (1+q)}=
    2{q(1-q)\over q^{1/2}(1+q)} I_{ram}(q^2).
-\endalign
-$$
+\end{align*}
 Inserting this into Formula 5.3 for the germ, and
 comparing to Lemma 5.1 (with $T_1$ ramified and $q_E=q^2$), 
 we see that Theorem 5.2 holds
@@ -2524,13 +2550,13 @@ is ramified, and the integral of $\eta(x)$ over the set $Y'$ vanishes
 in Equations 3.12 and 3.13.  The factor $\kappa(t_\sigma)$
 equals 1 on $Y''$.  The germ is then given by the same
 formula as in Case 4, and Theorem 5.2 holds in this final case.
-This concludes the proof of the transfer of germs on $Sp(4)$
-to its endoscopic groups. \break\hbox{}\hfill\x
+This concludes the proof of the transfer of germs on $\text{Sp}(4)$
+to its endoscopic groups. \end{proof}
 
-
-\vfill\break
-\centerline{\headfont Appendix. A Table of Integrals.}
-\bigskip      
+\section{Appendix. A Table of Integrals}
+%\vfill\break
+%\centerline{\headfont Appendix. A Table of Integrals.}
+%\bigskip      
 
 
 In this appendix, $F$ is a nonarchimedean 
@@ -2539,47 +2565,75 @@ of odd residual characteristic.  Let $\eta_i:F^\times\to \C^\times$
 be the quadratic characters introduced in Section 2, associated with
 quadratic field extensions $E_i/F$, for $i=1,2,3$.
 Set
-$$\LOG(a) = \int_F \log|1-a x^2| \leftdx,\ \ \hbox{ for } a\in F,$$
+$$\LOG(a) = \int_F \log|1-a x^2| \leftdx,\ \ \text{ for } a\in F,$$
 and
-$$H_i(a) = \int_F \eta_i(1-a x^2) \leftdx,\ \ \hbox{ for } a\in F,
-\hbox{ \ and } i=1,2,3.$$
+$$H_i(a) = \int_F \eta_i(1-a x^2) \leftdx,\ \ \text{ for } a\in F,
+\text{ \ and } i=1,2,3.$$
 
 \bigskip
-\hrule
-\bigskip
 
-$$\int_F\theta(x)\left|{dx\over x}\right| = 0, \ 
-\hbox{\  for any nontrivial quasicharacter\  }
+
+\begin{equation}\tag{1}
+\int_F\theta(x)\left|{dx\over x}\right| = 0, \ 
+\text{\  for any nontrivial quasicharacter\  }
  \theta: F^\times\to \C^\times. 
-\tag1$$
-$$I_1(a):= \int_F \log|1-a x| \leftdx = |a|I_1(1) = 0.\tag2$$
-$$\LOG(a) = I_1(\alpha) + I_1(-\alpha) =0,\ \hbox{ if } a=\alpha^2\in F^{\times\,2}.\tag3$$
-$$\LOG(a) = {2|a|^{1/2}\over q-1}, \ \hbox{ if } \val(a) \in 2{\Bbb Z},
-		\hbox{ and } a\not\in F^{\times\,2}.\tag4$$
+\end{equation}
 %
-$$\LOG(a) = {(q+1)|a\pi^{-1}|^{1/2}\over q(q-1)}, \hbox{ if }
-		\val(a) \in 2{\Bbb Z}+1.\tag5$$
+\begin{equation}\tag{2}
+I_1(a):= \int_F \log|1-a x| \leftdx = |a|I_1(1) = 0.
+\end{equation}
 %
-$$H_i(a) = 0, \hbox{ if } \sqrt{a} \in E_i \hbox{ and } a\not\in 
-		F^{\times\,2}.\tag6$$
+\begin{equation}\tag{3}
+\LOG(a) = I_1(\alpha) + I_1(-\alpha) =0,\ \text{ if } a=\alpha^2\in F^{\times\,2}.
+\end{equation}
 %
-$$H_1(a) = {-4|a|^{1/2}\over (1+q)}, \ \hbox{ if } a\in F^{\times\,2}.\tag7$$
+\begin{equation}\tag{4}
+\LOG(a) = \frac{2|a|^{1/2}} {q-1}, \ \text{ if } \val(a) \in 2{\mathbb Z},
+		\text{ and } a\not\in F^{\times\,2}.
+\end{equation}
 %
 %
-$$H_1(a) = {-2|a\pi^{-1}|^{1/2}\over q},\ \hbox{ if }
-		\val(a)\in 2{\Bbb Z} + 1.\tag8$$
+\begin{equation}\tag{5}
+\LOG(a) = {(q+1)|a\pi^{-1}|^{1/2}\over q(q-1)}, \text{ if }
+		\val(a) \in 2{\mathbb Z}+1.
+\end{equation}
 %
-$$H_i(a) = {-|a|^{1/2}(q+1)\over q},\ \hbox{ if }
-		\val(a)\in 2{\Bbb Z}, \hbox{ for } i=2,3.\tag9$$
 %
-$$H_i(a) = {-2|a\pi^{-1}|^{1/2}\over q},\ \hbox{ if }
-		\val(a)\in 2{\Bbb Z}+1 \hbox{ and }
-		\sqrt{a}\not\in E_i, \hbox{ for } i=2,3.\tag10$$
+\begin{equation}\tag{6}
+H_i(a) = 0, \text{ if } \sqrt{a} \in E_i \text{ and } a\not\in 
+		F^{\times\,2}.
+\end{equation}
+%
+%
+\begin{equation}\tag{7}
+H_1(a) = {-4|a|^{1/2}\over (1+q)}, \ \text{ if } a\in F^{\times\,2}.
+\end{equation}
+%
+%
+%
+\begin{equation}\tag{8}
+H_1(a) = {-2|a\pi^{-1}|^{1/2}\over q},\ \text{ if }
+		\val(a)\in 2{\mathbb Z} + 1.
+\end{equation}
+%
+%
+\begin{equation}\tag{9}
+H_i(a) = {-|a|^{1/2}(q+1)\over q},\ \text{ if }
+		\val(a)\in 2{\mathbb Z}, \text{ for } i=2,3.
+\end{equation}
+%
+%
+\begin{equation}\tag{10}
+H_i(a) = {-2|a\pi^{-1}|^{1/2}\over q},\ \text{ if }
+		\val(a)\in 2{\mathbb Z}+1 \text{ and }
+		\sqrt{a}\not\in E_i, \text{ for } i=2,3.
+\end{equation}
 
+\section{References}
+%\vfill\break
+%\centerline{\headfont References}
+%\bigskip
 
-\vfill\break
-\centerline{\headfont References}
-\bigskip
 {
 \parindent=0pt
 \baselineskip=.7\baselineskip
@@ -2647,4 +2701,4 @@ Ast\'erisque 171-172, (1989), 275-277.
 Lecture Notes in Math. vol 1041, Springer-Verlag, 1984, 303-340.
 
 }
-\bye
+\end{document}
