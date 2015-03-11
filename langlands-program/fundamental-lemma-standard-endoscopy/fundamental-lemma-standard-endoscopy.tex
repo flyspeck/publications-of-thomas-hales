@@ -4,46 +4,60 @@
 %  Format: Ams-Tex, amsppt
 %  to be published in the Canadian Journal.
 
+\documentclass{amsart}
 
-\magnification=\magstep1   %MM steps depending on magnification are marked %MM
-\input amstex
-\documentstyle{amsppt}
+%Packages
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{alltt}
+\usepackage{amsrefs}
+
+\newtheorem{thm}{}
+\newenvironment{cthm}[1]
+  {\renewcommand\thethm{\sc #1}\thm}
+  {\endthm}
+
+
+%\magnification=\magstep1   %MM steps depending on magnification are marked %MM
+%\input amstex
+%\documentstyle{amsppt}
 %\voffset=0.5in    %MM use only if unmagnified
 %\hoffset=.5in 
-\rightheadtext{Fundamental Lemma for Standard Endoscopy}
-\leftheadtext{Thomas C. Hales}
+%\rightheadtext{Fundamental Lemma for Standard Endoscopy}
+%\leftheadtext{Thomas C. Hales}
 % Minor corrections June 7, 1994
 % Minor revisions Jan 30, 1995 
 % principle -> principal Feb 24, 1995
 
-\def\Fr{\text{$F\hskip-.1em r$}}
-\def\FrG{\text{$F\hskip-.1em r_G$}}
-\def\FrH{\text{$F\hskip-.1em r_H$}}
-\def\tr{\text{trace\,}}
-\def\s{{\text{sc}}}
-\def\adj{{\text{adj}}}
-\def\d{{\text{der}}}
-\def\Fq{{\Bbb F}_q}
-\def\Gal{\text{Gal}}
-\def\Ind{\text{Ind}}
-\def\aa{\text{\bf a}}
-\let\sc=\it
+\newcommand\Fr{\text{$F\hskip-.1em r$}}
+\newcommand\FrG{\text{$F\hskip-.1em r_G$}}
+\newcommand\FrH{\text{$F\hskip-.1em r_H$}}
+\newcommand\tr{\text{trace\,}}
+\newcommand\s{{\text{sc}}}
+\newcommand\adj{{\text{adj}}}
+\newcommand\der{{\text{der}}}
+\newcommand\Fq{{\Bbb F}_q}
+\newcommand\Gal{\text{Gal}}
+\newcommand\Ind{\text{Ind}}
+\newcommand\bfa{\text{\bf a}}
+%\let\sc=\it
 
-\topmatter\title{On the fundamental 
+\begin{document}
+
+\title[Fundamental Lemma for Standard Endoscopy]{On the fundamental 
 		 lemma for standard endoscopy:
-		 \\ reduction to unit elements }\endtitle
+		 \\ reduction to unit elements }
 
-\author Thomas C. Hales\endauthor
+\author {Thomas C. Hales}
 
-\affil University of Michigan\endaffil
+\address{ University of Michigan}
 
-\address Ann Arbor, Michigan\endaddress
 
-\email  hales\@math.lsa.umich.edu\endemail
 
-%\date May 10, 1994\enddate
-
-\abstract 
+\begin{abstract}
 The fundamental lemma for standard endoscopy 
 follows from the matching of unit elements in Hecke algebras. 
 A simple form of the stable trace formula,
@@ -51,22 +65,25 @@ based on the matching of unit elements, shows the
 fundamental lemma to be equivalent to a collection of
 character identities.  These character identities are
 established by comparing them to a compact-character
-expansion of orbital integrals.\endabstract
+expansion of orbital integrals.
+\end{abstract}
 
-\thanks
-I would like to thank R. Kottwitz for guiding me repeatedly
+\thanks{I would like to thank R. Kottwitz for guiding me repeatedly
 in the right direction on this project.  I would also like to
 thank G. Henniart for explaining the method of Section 5 to me
-and L. Clozel for providing an argument at the archimedean places.
-\endthanks
+and L. Clozel for providing an argument at the archimedean places.}
 
-\endtopmatter
+\thanks{Canadian Journal of Mathematics 47.5 (1995): 974--994.}
 
-\document
-\vsize=.85\vsize
-\parskip=.4\baselineskip
 
-\head 1. Introduction \endhead
+
+\maketitle
+
+%\document
+%\vsize=.85\vsize
+%\parskip=.4\baselineskip
+
+\section{Introduction }%1
 
 L. Clozel has deduced the {\it fundamental lemma} for stable
 base change from the corresponding result for the unit elements
@@ -97,7 +114,7 @@ may be used to prove the existence of local data.  This argument
 assumes the matching of unit elements of Hecke algebras at almost
 all places of a global situation that we construct.
 
-\head 2. Notation and Terminology \endhead
+\section{Notation and Terminology }%2
 
 Let $F$, $\bar F$, and $\varpi$  denote a $p$-adic
 field of characteristic zero, 
@@ -108,9 +125,9 @@ on the next few definitions can be found in the survey article by
 Borel \cite{B}.
 If $G$ is a reductive
 group, then  $\hat G$ is the connected component of the
-complex dual group ${}^L\!G$.  The group $\hat G_\d$ is
+complex dual group ${}^L\!G$.  The group $\hat G_\der$ is
 its derived group and is not to be confused with the connected
-complex dual of $G_\d$.  We write $Z(G)$ for
+complex dual of $G_\der$.  We write $Z(G)$ for
 the center of $G$.  
 For any torus $S$, let $X^*(S)$ and 
 $X_*(S)$ be the character and cocharacter groups of $S$.
@@ -206,23 +223,25 @@ minor results from that paper.
 
 The definition of unramified endoscopic group should be
 amended as follows to include standard endoscopy with
-quasicharacters.  Let $(H,{\Cal H},s,\xi)$ be endoscopic
+quasicharacters.  Let $(H,{\mathcal H},s,\xi)$ be endoscopic
 data for $G$ in the sense of \cite{KS1}.  We say that
-$(H,{\Cal H},s,\xi)$ are {\it unramified} endoscopic data
+$(H,{\mathcal H},s,\xi)$ are {\it unramified} endoscopic data
 for $(G,\omega)$ if
-  \item{(1)} $G$ is defined over $O_F$, $G(O_F)$ is hyperspecial,
+\begin{enumerate}[label=(\arabic*)]
+  \item $G$ is defined over $O_F$, $G(O_F)$ is hyperspecial,
 and $G$ is unramified,
 
-\item{(2)} $H$ is defined over $O_F$, $H(O_F)$ is hyperspecial,
+\item $H$ is defined over $O_F$, $H(O_F)$ is hyperspecial,
 and $H$ is unramified,
 
-\item{(3)} ${\Cal H}$ is the $L$-group of $H$,
+\item ${\mathcal H}$ is the $L$-group of $H$,
 
-\item{(4)} The embedding $\xi$ descends to an unramified
+\item The embedding $\xi$ descends to an unramified
 field extension $E/F$, and
 
-\item{(5)}  $\omega$ is an unramified quasicharacter of
+\item  $\omega$ is an unramified quasicharacter of
 $G(F)$.
+\end{enumerate}
 
 The changes to the definition from the paper \cite{H2}
 are minor.  The reference to \cite{LS1} has been changed
@@ -299,29 +318,28 @@ Write $\Lambda'(\gamma_H,f)$, when $f$ is
  by replacing  $b$ with $b'$.
 
 
-\head 3. Routine Facts and Routine Reductions \endhead
+\section{Routine Facts and Routine Reductions }%3
 
 
-\proclaim{Lemma 3.1}  Every quasicharacter
+\begin{cthm}{Lemma 3.1}  Every quasicharacter
 on $G$ is constant on each stable conjugacy
 class.
-\endproclaim
+\end{cthm}
 
-\demo{Proof}  By a $z$-extension argument \cite{Ko1,3.1.2},
+\begin{proof}  By a $z$-extension argument \cite{Ko1,3.1.2},
 we may assume that the derived group of $G$ is simply connected.
 If $\gamma$ and $\gamma^g$ are stably conjugate, then
-$\gamma^{-1}\gamma^g$ lies in both $G_{\d}(\bar F)$ and
+$\gamma^{-1}\gamma^g$ lies in both $G_{\der}(\bar F)$ and
 $G(F)$, and hence also in $G_{\s}(F)$.  Any quasicharacter
-vanishes on $G_{\s}(F)$, and from this the result follows.\qed
-\enddemo
+vanishes on $G_{\s}(F)$, and from this the result follows.\end{proof}
 
 
-\proclaim{Lemma 3.2}
+\begin{cthm}{Lemma 3.2}
 Every unramified character is constant on the support
 of each Hecke function $\phi_\lambda$.
-\endproclaim
+\end{cthm}
 
-\demo{Proof}  Fix an unramified character $\theta$.
+\begin{proof}  Fix an unramified character $\theta$.
 The function
 $\gamma\mapsto\tilde\phi_\lambda (\gamma)$, defined to be $\phi_\lambda(\gamma)$
 when $\theta(\gamma) = \theta(\varpi^\lambda)$ and zero otherwise,
@@ -332,8 +350,7 @@ equal orbital integrals on this torus,
 then the functions are equal.  Hence $\phi_\lambda
 =\tilde\phi_\lambda$.  Consequently, the unramified character
 $\theta$ is constant on the support of $\phi_\lambda$.
-\qed
-\enddemo
+\end{proof}
 
 The rest of the section carries out some routine
 reductions that simplify the exposition in later
@@ -343,12 +360,12 @@ the fundamental lemma for a nonelliptic endoscopic
 group is equivalent to a fundamental lemma for
 an elliptic endoscopic group obtained by descent (see \cite{H2}, \cite{LS2}).
 
-\proclaim{Lemma 3.3}  If the fundamental lemma holds
+\begin{cthm}{Lemma 3.3}  If the fundamental lemma holds
 for one choice of embedding $\xi$, then it holds for all
 choices of embeddings.
-\endproclaim
+\end{cthm}
 
-\demo{Proof}
+\begin{proof}
 Compare two embeddings of $L$-groups $\xi$ and $\xi'$.  Because
 of the standing assumption that the endoscopic data is unramified,
 both $\xi$ and $\xi'$ are unramified.
@@ -387,8 +404,10 @@ $$\sum_{\gamma_G} \Delta^{\xi'}(\gamma_H,\gamma_G)
   \sum_{\gamma_G}\Delta^\xi(\gamma_H,\gamma_G)
   \Phi(\gamma_G,f) = \theta(\gamma_H)\Phi^{\text{st}}(\gamma_H,b_\xi(f)).$$
 Lemma 3.3 will then follow from the identity
-$$\theta(\gamma_H)\Phi^{\text{st}}(\gamma_H,b_\xi(f)) =
-  \Phi^{\text{st}}(\gamma_H,b_{\xi'}(f)),\tag{*}$$
+\begin{equation}\tag{*}
+ \theta(\gamma_H)\Phi^{\text{st}}(\gamma_H,b_\xi(f)) =
+  \Phi^{\text{st}}(\gamma_H,b_{\xi'}(f)),
+\end{equation}
   for all $\gamma_H$ in $H(F)_{G\text{-reg}}$.
 There are three separate cases to consider in the
 proof of this identity.
@@ -398,7 +417,7 @@ is an elliptic torus of $G$.  We may identify $\hat H$ with
 the complex dual of $T_G$ in $\hat G$.
 An ordered pair $(t,z)$ will
 represent the element $tz$ of $\hat G$ 
-according to the decomposition $\hat G =\hat G_\d Z(\hat G)^0$.
+according to the decomposition $\hat G =\hat G_\der Z(\hat G)^0$.
 With a slight shift in notation,
 the embedding
 $\xi:{}^L\!H\to{}^L\!G$ takes the form $(t,z)\rtimes\FrH\mapsto (tx_0m_0,zx)\rtimes \FrG$,
@@ -406,13 +425,13 @@ where $m_0$ lies in the normalizer of $\hat H$
 and is independent of the embedding.
 The subscripts $H$ and $G$ have been added to the Frobenius element to
 distinguish the $L$-actions coming from $H$ and $G$.  
-Set $\hat T_\d=\hat G_\d\cap \hat T_G$.
-Since $\hat T_\d$ with its $H$-induced Frobenius action
+Set $\hat T_\der=\hat G_\der\cap \hat T_G$.
+Since $\hat T_\der$ with its $H$-induced Frobenius action
 is dual to an unramified elliptic torus, 
-$tx_0m_0$ is $\FrG$-conjugate to an element $\rho\in\hat T_\d$
+$tx_0m_0$ is $\FrG$-conjugate to an element $\rho\in\hat T_\der$
 that is independent of $t$ and $x_0$.  In other words, 
-the map $\hat T_\d \to
-\hat T_\d$ given by $t\mapsto t^{-1}m_0\FrG(t)m_0^{-1}
+the map $\hat T_\der \to
+\hat T_\der$ given by $t\mapsto t^{-1}m_0\FrG(t)m_0^{-1}
 = t^{-1}\FrH(t)$ is surjective.
 We obtain the conjugate element $(\rho,zx)\rtimes\FrG\in \hat T\rtimes\FrG$.
 
@@ -428,12 +447,12 @@ the Frobenius element $\FrG$.
 The 
 group $W'$ acts trivially on $Z(\hat G)^0$, so that this expression simplifies
 to $c_\lambda\,\lambda(1,zx)$, where $c_\lambda = \sum_{w\in W'} w\cdot \lambda(\rho,1)$.
-The ambiguity by $\hat T_\d\cap Z(\hat G)^0$ in the decomposition 
-$\hat T=\hat T_\d Z(\hat G)^0$
+The ambiguity by $\hat T_\der\cap Z(\hat G)^0$ in the decomposition 
+$\hat T=\hat T_\der Z(\hat G)^0$
 may be used to show that $c_\lambda=0$, unless the restriction of $\lambda$ to 
-$\hat T_\d\cap Z(\hat G)^0$ is trivial.  Hence, for nonvanishing terms, 
+$\hat T_\der\cap Z(\hat G)^0$ is trivial.  Hence, for nonvanishing terms, 
 the character $\lambda$
-descends to a character on $Z(\hat G)^0/(Z(\hat G)^0\cap \hat T_\d)$,
+descends to a character on $Z(\hat G)^0/(Z(\hat G)^0\cap \hat T_\der)$,
 which is the complex dual to $Z(G)^0$.
 The
 actions of $\FrG$ and $\FrH$ coincide on $Z(\hat G)^0$.  Thus, the invariance
@@ -488,8 +507,7 @@ all $\lambda$.  Select $\lambda_0$ such that $\theta(\gamma_H)
  = \theta(\varpi^{\lambda_0})$.
 Then (*) holds generally,
 because
-$$
-\align
+\begin{align*}
 \theta(\gamma_H)\Phi^{\text{st}}(\gamma_H,b_\xi(f)) &= 
 \sum_{\lambda}\theta(\gamma_H)c_{\xi,\lambda}
 	\Phi^{\text{st}}(\gamma_H,\phi^H_\lambda)
@@ -497,10 +515,9 @@ $$
 \theta(\varpi^{\lambda_0}) 
 	c_{\xi,\lambda}\Phi^{\text{st}}(\gamma_H,\phi^H_\lambda)\\
  &= \sum c_{\xi',\lambda}\Phi^{\text{st}}(\gamma_H,\phi^H_\lambda) =
-  \Phi^{\text{st}}(\gamma_H,b_{\xi'}(f)).\qed
-\endalign
-$$
-\enddemo
+  \Phi^{\text{st}}(\gamma_H,b_{\xi'}(f)).
+\end{align*}
+\end{proof}
 %
 
 Let $\theta$ be an unramified character of $G(F)$ with parameter $t\rtimes \Fr$
@@ -508,12 +525,12 @@ in $Z(\hat G)\rtimes \Fr$.  The canonical inclusion of $Z(\hat G)\to Z(\hat H)$
 leads to a character $\theta_H$ on $H(F)$ with the same parameter, now
 in $Z(\hat H)\rtimes \Fr$.
 
-\proclaim{Lemma 3.4} With $\theta_H$ constructed as above, $\theta_H$ is
+\begin{cthm}{Lemma 3.4} With $\theta_H$ constructed as above, $\theta_H$ is
 constant on the support of $b(\phi_\lambda)$.  Moreover,
 $\theta(\text{supp}(\phi_\lambda)) = \theta_H(\text{supp}(b(\phi_\lambda)))$.
-\endproclaim
+\end{cthm}
 
-\demo{Proof}
+\begin{proof}
 Certainly $b(\phi_\lambda)$ is determined by its values on the elements
 $\varpi^{\lambda'}$, for $\lambda'\in X^*(Y_H)$, and $\theta_H$ is
 constant on every double coset of $H(O_F)$.  Thus, we consider 
@@ -529,15 +546,14 @@ $T_d^H\subset Z(G)^0$, where $T_d^H$ is the maximally split
 torus in the elliptic Cartan subgroup $H$.  One then easily finds that
 $\theta_H(\varpi^{\bar\lambda}) = \langle t,\lambda'\rangle 
 = \theta(\varpi^\lambda)$.
-\qed
-\enddemo
+\end{proof}
 
-\proclaim{Lemma 3.5}  The fundamental lemma is true for a reductive
+\begin{cthm}{Lemma 3.5}  The fundamental lemma is true for a reductive
 group if it is true for the $Z(G)^0(F)$-invariant Hecke functions
 on the group.
-\endproclaim
+\end{cthm}
 
-\demo{Proof}  
+\begin{proof}  
 By Lemma 3.3, we may pick whatever embedding is the most
 convenient.  As the proof of Lemma 3.6 will explain in
 greater detail, there exists an embedding for which
@@ -547,9 +563,10 @@ $z\in Z(G)^0(F)$.
 We refer the reader to the definition
 of $b'(\phi'_\lambda)$ in Section 2.
 We have
-$$
+\begin{equation}\tag{*}
 \Lambda'(\gamma_H,\phi'_\lambda) = \sum_z \Lambda(\gamma_H,R_z\phi_\lambda) =
-\sum_z \Lambda(z\gamma_H,\phi_\lambda).\tag{*}$$
+\sum_z \Lambda(z\gamma_H,\phi_\lambda).
+\end{equation}
 The second equality makes use of the compatibility of the
 fundamental lemma with translations by $Z(G)^0(F)$, as proved in
 \cite{H2,11}.  (With a different choice of embedding, a character
@@ -571,38 +588,37 @@ does not meet the support of $b(\phi_\lambda)$
 unless $z$ belongs to $Z(G)^0(O_F)$.  Consequently,
 (*) becomes $\Lambda(\gamma_H,\phi_\lambda)=0$, and the fundamental
 lemma holds.
-\qed
-\enddemo
+\end{proof}
 
 
-\proclaim{Lemma 3.6}  If the fundamental lemma holds
+\begin{cthm}{Lemma 3.6}  If the fundamental lemma holds
 whenever $G$ is an adjoint group, then it holds in
-general.  \endproclaim
+general.  \end{cthm}
 
-\demo{Proof}
+\begin{proof}
 By Lemma 3.3, we may pick whatever embedding is the most
 convenient.  For our purposes, it is best to pick an embedding
 for which the image in ${}^L\!G$ of the Frobenius element $\Fr$
-lies in $\hat G_\d\rtimes\Fr$.  Such embeddings
+lies in $\hat G_\der\rtimes\Fr$.  Such embeddings
 exist (see for example \cite{H2,6.1}).  By adjusting the
 choice of the element $s$, which is
 a given of the unramified endoscopic data, 
 by a central element in $\hat G$,
 we may assume that $s$ lies in the derived group of $\hat G$.
-With these choices the endoscopic data $(H,{\Cal H},s,\xi)$ easily
+With these choices the endoscopic data $(H,{\mathcal H},s,\xi)$ easily
 lead to endoscopic data $(\bar H,{}^L\!\bar H,s,\bar\xi)$
-of the semisimple group $\bar G$ dual to $\hat G_\d$.
+of the semisimple group $\bar G$ dual to $\hat G_\der$.
 
 As an initial step toward the proof, let us deduce the fundamental
-lemma associated with the data  $(H,{\Cal H},s,\xi)$
+lemma associated with the data  $(H,{\mathcal H},s,\xi)$
 from the fundamental lemma associated with the data
 $(\bar H,{}^L\!\bar H,s,\bar\xi)$.
 There is nothing difficult here, but a number of small facts
-must be checked.  The sequence $1\to \hat G_\d\to\hat G
-\to \hat G/\hat G_\d\to 1$ is dual to the sequence
+must be checked.  The sequence $1\to \hat G_\der\to\hat G
+\to \hat G/\hat G_\der\to 1$ is dual to the sequence
 $1\to Z(G)^0 \to G \to G/Z(G)^0\to 1$.  In fact, in the
 sequence $1\to A\to G\to \bar G\to 1$ dual to 
-$1\to  \hat G_\d\to\hat G\to\hat G/\hat G_\d\to 1$,
+$1\to  \hat G_\der\to\hat G\to\hat G/\hat G_\der\to 1$,
 we know that 
 $A$ is central and connected, and $\bar G$ is semisimple, and these properties
 characterize the sequence $1\to Z(G)^0 \to G \to G/Z(G)^0\to 1$.
@@ -648,9 +664,7 @@ to that on $G_{\text{adj}}$, since the center of $G$
 is contained in $G(O_F)$.  There
 is a corresponding injection on the Hecke algebra of $H$.  The
 remaining details are similar to those already given for the reduction
-to the semisimple case.\qed
-
-\enddemo
+to the semisimple case.\end{proof}
 
 
 
@@ -667,16 +681,18 @@ group to be used for this.
 The reductive groups $G$ constructed in the next lemma will be called the
 {\it basic cases}.
 
-\proclaim{Lemma 3.7}  For any simple 
+\begin{cthm}{Lemma 3.7}  For any simple 
 unramified adjoint group $G_{\text{adj}}$,
 there is an unramified reductive group $G$
 (whose adjoint group is $G_{\text{adj}}$) with the following properties:
-\item{(1)}  The center of $G$ is connected and anisotropic;
-\item{(2)} The image of $G(F)$ in the adjoint group is equal to the
+\begin{enumerate}[label=(\arabic*)]
+\item  The center of $G$ is connected and anisotropic;
+\item The image of $G(F)$ in the adjoint group is equal to the
 kernel of $\omega$;
-\endproclaim
+\end{enumerate}
+\end{cthm}
 
-\demo{Proof}  If we construct an unramified 
+\begin{proof}  If we construct an unramified 
 group $G_1$ whose center is connected,
 whose derived group is $G_\s$, and whose image in $G_\adj(F)$ is the
 kernel of $\omega$, then we may define $G$ to be the quotient of $G_1$
@@ -717,7 +733,7 @@ $\Fr(y,x_1,\dots,x_\ell)
  = (y,x_2,\dots,x_\ell,x_1)$ on $X^*(Z(G_1))$.
 
 \bigskip
-{ Case 2}. (${}^2A_{2k-1}$,
+{Case 2}. (${}^2A_{2k-1}$,
   ${}^2D_{2\ell+1}$) $\omega$ has order 2, $X^*(Z(G_{\text{sc}})) = {\Bbb Z}/2k{\Bbb Z}
 $,
 and $\Fr$ acts by $\Fr(x) = -x$ on $X^*(Z(G_{\text{sc}}))$.
@@ -739,17 +755,16 @@ forth.
 
 Cases 1, 2, and 3 cover the only possibilities that arise when
 $\omega$ is nontrivial.
-\qed
-\enddemo
+\end{proof}
 
 
 
-\proclaim{Lemma 3.8}  If the fundamental lemma holds for
+\begin{cthm}{Lemma 3.8}  If the fundamental lemma holds for
 the basic cases $G$,
 then it holds in general.
-\endproclaim
+\end{cthm}
 
-\demo{Proof}  The fundamental lemma holds for elementary
+\begin{proof}  The fundamental lemma holds for elementary
 reasons for functions on $G_{\text{adj}}$ whose support
 does not meet the kernel of the quasicharacter $\omega$.  
 To see this, consider
@@ -777,11 +792,10 @@ gives the argument for $GL(n)$, but the argument is general.
 The orbital integral on the adjoint group is equal 
 to a $\kappa$-orbital integral of a 
 Hecke function on $G$.  This lift to $G$ is compatible with endoscopy.
-\qed
-\enddemo
+\end{proof}
 
 
-\head 4. Local Data\endhead
+\section{Local Data}%4
 
 We are now ready to undertake the nontrivial part of the local argument
 needed for the fundamental lemma. 
@@ -796,23 +810,29 @@ that $G$ is a basic case.
  of irreducible admissible representations of $H(F)$ with an
  Iwahori fixed vector.
 
- \definition{4.1} {\it Local data\/}  for $(G,H)$ consist of
+ \begin{cthm}{Definition 4.1} {\it Local data\/}  for $(G,H)$ consist of
  the data (a), (b), and (c) 
 subject to Conditions 1 and 2 below.
- \item{(a)} An indexing set $I$ (possibly infinite) 
- \item{(b)} A collection of complex constants $a_i^G(\pi)$ for $i\in I$
+\begin{enumerate}[label=(\alph*)]
+ \item An indexing set $I$ (possibly infinite) 
+ \item A collection of complex constants $a_i^G(\pi)$ for $i\in I$
  and $\pi\in R(G)$
- \item{(c)} A collection of complex constants $a_i^H(\pi')$ for
+ \item A collection of complex constants $a_i^H(\pi')$ for
  $i\in I$ and $\pi'\in R(H)$
- \item{(1)}
+\end{enumerate}
+\begin{enumerate}[label=(\arabic*)]
+ \item
  For $i$ fixed, the constants $a_i^G(\pi)$ and
  $a_i^H(\pi')$ are zero for all but finitely many $\pi$ and $\pi'$.
- \item{(2)} For every function $f$ in the Hecke algebra of $G$,
+ \item For every function $f$ in the Hecke algebra of $G$,
  the following are equivalent:
- \item{(A)} for all $i\in I$, we have $\sum_\pi a^G_i(\pi)\tr\,\pi(f) =
+\begin{enumerate}[label=(\Alph*)]
+ \item for all $i\in I$, we have $\sum_\pi a^G_i(\pi)\tr\,\pi(f) =
 	\sum_{\pi'} a_i^H(\pi')\tr\,\pi'(b(f))$, and
-\item{(B)} for all $\gamma_H\in H(F)_{G\text{-reg}}$, we have $\Lambda(\gamma_H,f)=0$.
-\enddefinition
+\item for all $\gamma_H\in H(F)_{G\text{-reg}}$, we have $\Lambda(\gamma_H,f)=0$.
+\end{enumerate}
+\end{enumerate}
+\end{cthm}
 
 The essential part of the definition is Condition 2.  Roughly, local
 data indicate how to translate the fundamental lemma
@@ -830,13 +850,13 @@ Langlands and Shelstad have shown how to obtain
 an endoscopic group of a Levi factor by descent from
 an endoscopic group of $G$ (see \cite{LS2}).
 
-\proclaim{Theorem 4.2}  Let $G$ be a basic case.
+\begin{cthm}{Theorem 4.2}  Let $G$ be a basic case.
 Suppose that there exist local data
 for $(G,H)$.  Suppose that the fundamental lemma holds for all proper
 Levi factors of $G$ for the endoscopic groups obtained
 by descent from $H$.  Then the fundamental lemma holds
 for the endoscopic group $H$ of $G$.
-\endproclaim
+\end{cthm}
 
 Let local data be given.  It consists of an indexing
 set $I$, and functions $a_i^G$ and $a_i^H$, for $i\in I$.  In
@@ -865,7 +885,7 @@ Similarly, we form $\text{trace}_c\,\pi'$, for
 $\pi'\in R(H)$.  
 
 
-\proclaim{Proposition 4.3}  
+\begin{cthm}{Proposition 4.3}  
 Under the hypotheses of Theorem 4.2, the linear functional
 $f\mapsto A(f)$ on the Hecke algebra is a finite linear combination of
 the linear functionals $\Lambda(\gamma_H,\cdot)$, for 
@@ -875,9 +895,9 @@ as a finite linear combination of linear functionals of the form
 $$f\mapsto \text{trace}_c\,\pi(f)\ \ \text{and}\ \ 
   f\mapsto \text{trace}_c\,\pi'(b(f)),\ \ \text{for} \ \
   \pi\in R(G)\ \ \text{and}\ \ \pi'\in R(H).$$
-\endproclaim
+\end{cthm}
 
-\demo{Proof}  
+\begin{proof}  
 By the hypothesis on Levi factors in Theorem 4.2, we
 may assume that $\Lambda(\gamma_H,f)=0$, if $\gamma_H$ is not
 elliptic.  Thus, the expansion to be produced in Proposition 4.3 will
@@ -894,19 +914,20 @@ of distributions $f\mapsto \Lambda(\gamma_H,f)$ on the Hecke
 algebra of $G$ is finite dimensional.  Thus, the Condition 2.B
 in the definition of local data may be replaced with the
 condition
-$$\Lambda(\gamma_j,f) = 0,\quad \text{for } j=1,\dots,k,\tag{$B'$}$$
+\begin{equation}\tag{$B'$}
+\Lambda(\gamma_j,f) = 0,\quad \text{for } j=1,\dots,k,
+\end{equation}
 for an appropriate finite collection $\{\gamma_j\}$ of strongly $G$-regular
 semisimple elements in $H$.  Condition 2 now implies that, if $\Lambda(\gamma_j,f)=0$,
 for $j=1,\ldots,k$, then $A(f)=0$.  This means that the functional
 $A$ is a linear combination of the functionals $\Lambda(\gamma_j,\cdot)$.
-\qed
-\enddemo
+\end{proof}
 
-\proclaim{Lemma 4.4}  The functional $A$ vanishes identically
+\begin{cthm}{Lemma 4.4}  The functional $A$ vanishes identically
 on the Hecke algebra.
-\endproclaim
+\end{cthm}
 
-\demo{Proof} The parameters $s$,
+\begin{proof} The parameters $s$,
 finite in number, for which $a(s)\ne 0$
 are tempered.  This temperedness argument is given by Clozel \cite{Cl2,5.5}.  In the
 present context the argument is even easier because we avoid the complications
@@ -969,7 +990,7 @@ of order $n$,
 $n=2$).
 
 In every other case, we observe that the intertwining
-operators ${\Cal A}(w,\lambda)$ forming the commuting algebra are
+operators ${\mathcal A}(w,\lambda)$ forming the commuting algebra are
 formed by $R$-group elements $w\in W$
 that are realized in proper Levi subgroups. In particular,
 the constituents
@@ -1000,22 +1021,22 @@ integration over the unipotent radical of a standard parabolic
 subgroup $P=MN$. 
 The function $\hat\chi_N$ factors as a product of three
 maps
-$$M(F) \to \aa_M \to \aa_{M_0} \to {\Bbb R},$$
-where $\aa_M$ is the real Lie algebra of the split center
+$$M(F) \to \bfa_M \to \bfa_{M_0} \to {\Bbb R},$$
+where $\bfa_M$ is the real Lie algebra of the split center
 of $M$, and $M_0\subset M$ is a Levi subgroup of 
 a minimal parabolic subgroup $P_0\subset P$.
 The first map 
-is the Harish-Chandra map $H_M: M\to \aa_M$. The second
+is the Harish-Chandra map $H_M: M\to \bfa_M$. The second
 map is a natural
-identification of $\aa_M$ with a subspace of
-$\aa_{M_0}$ (defined by Arthur \cite{A1}).
+identification of $\bfa_M$ with a subspace of
+$\bfa_{M_0}$ (defined by Arthur \cite{A1}).
 The third map is
 the characteristic function $\hat\tau_P^G$ of
 the {\it obtuse\/} Weyl chamber \cite{A1,p.936}, \cite{Cl2,2.1}.
 In particular, for $\mu\in X^*(Y)$ and $m\in M(F)$, we have
 $\hat\chi_N(m \varpi^\mu m^{-1}) = \hat\tau_P^G(\mu)$,
 where we have identified
-$X^*(Y)$ with a lattice in $\aa_{M_0}$.
+$X^*(Y)$ with a lattice in $\bfa_{M_0}$.
 Then
 $$(\hat\chi_N\phi_\lambda^{(P)})\hat{\phantom o} (z) = 
    \sum_{w\in W'} \hat\tau_P^G({}^w\!\lambda)\, {}^w\!\lambda(z),$$
@@ -1056,7 +1077,9 @@ in a suitable open cone of $X^*(Y)$.
 By passing to a smaller open cone $C'\subset C$, if necessary, to accomodate the
 terms $\text{trace}_c\,\pi'(b(f))$, 
 the identity then takes the form
-    $$\sum_i a_i \lambda(s_i) = \sum_j a_j'\lambda(z_j),\tag{*}$$
+    \begin{equation}\tag{*}
+    \sum_i a_i \lambda(s_i) = \sum_j a_j'\lambda(z_j),
+    \end{equation}
 for $\lambda\in C'$.
 The sums are finite, the parameters $s_i\in Y$ are unitary, and
 the parameters $z_i\in Y$ are nonunitary.
@@ -1068,10 +1091,9 @@ Integral combinations
 of elements in $C'$ span $X^*(Y)$.
 Thus, if both sides vanish on the cone, then both sides vanish
 for all $\lambda\in X^*(Y)$.
-\qed
-\enddemo
+\end{proof}
 
-\head 5. Local Transfer \endhead
+\section{Local Transfer }%5
 
 To stabilize the simple trace formula of Deligne and Kazhdan,
 as established in \cite{He}, we transfer the $\kappa$-orbital integrals
@@ -1092,7 +1114,7 @@ that $T(F)\subset H(O_F)$. We identify $T$ with a Cartan subgroup
 $T(F)\subset G(O_F)$ by an isomorphism $\psi:T\to G$ defined over
 $O_F$.
 
-\proclaim{Lemma 5.1}  In this context, there exists a linear
+\begin{cthm}{Lemma 5.1}  In this context, there exists a linear
 combination of matrix coefficients of supercuspidal representations
 of $G$ whose orbital integrals are supported on the $G(F)$-orbit
 of the set of strongly regular semisimple elements of $T(F)$.
@@ -1100,10 +1122,10 @@ The same conclusion holds on $H$, with the additional property
 that the orbital integrals of $\gamma$ and $\gamma^n\in T(F)\subset H(F)$ 
 are equal if $n\in N_G(T,F)$.
 (By $\gamma^n$ we mean $\psi^{-1}(\psi(\gamma)^n)$.)
-\endproclaim
+\end{cthm}
 
 
-\demo{Proof}  Consider the Deligne-Lusztig characters
+\begin{proof}  Consider the Deligne-Lusztig characters
 $R_{T_0,\theta}$ of $G_0(\Fq)$, where $\theta$ is in general
 position. (See \cite{C} for a definition and the standard
 facts about these generalized characters.)
@@ -1168,34 +1190,33 @@ $\sim q^r/w_0$) of functions invariant under $W(T_0,H_0)$, they
 have nontrivial intersection for $q$ sufficiently large.
 Thus, the desired
 linear combinations of Deligne-Lusztig characters exist, when
-$q$ is sufficiently large.\qed\enddemo
+$q$ is sufficiently large.\end{proof}
 
 We match functions with regular support on $G$ and $H$ by
 the following characterization of orbital integrals.
 
-\proclaim{Lemma 5.2}  Let $C_c^\infty(T^{'G})$ be the set of locally
+\begin{cthm}{Lemma 5.2}  Let $C_c^\infty(T^{'G})$ be the set of locally
 constant
 compactly supported functions on the $G(F)$-orbit of the
 strongly regular semisimple elements of $T(F)$.  Set
 $\Phi(\gamma) = \Phi(\gamma,f)$, for $f\in C_c^\infty(T^{'G})$.
 Then $\Phi(\gamma)$, for $\gamma\in T(F)$,  satisfies
+\begin{enumerate}[label=(\roman*)]
+\item  $\Phi(\gamma^n) = \Phi(\gamma)$, for $n\in N_G(T,F)$,
 
-(i)  $\Phi(\gamma^n) = \Phi(\gamma)$, for $n\in N_G(T,F)$,
-
-(ii) $\Phi(\gamma)$ is a locally constant compactly supported
+\item $\Phi(\gamma)$ is a locally constant compactly supported
 	function on $T(F)$,
 
-(iii) $\Phi(\gamma)$ is supported on the strongly regular semisimple
+\item $\Phi(\gamma)$ is supported on the strongly regular semisimple
 	elements of $T(F)$.
-
+\end{enumerate}
 Conversely, a function $\Phi$ on $T(F)$
 satisfying (i), (ii), and (iii) is realized
 as the
 orbital integrals of some function in $C_c^\infty(T^{'G})$.
-\endproclaim
+\end{cthm}
 
-\demo{Proof}  This is a special case of \cite{Vi}.\qed
-\enddemo
+\begin{proof}  This is a special case of \cite{Vi}.\end{proof}
 
 \bigskip
 To obtain the simple trace formula for a global group, at some place
@@ -1213,7 +1234,7 @@ The hypotheses in \cite{He} for a simple trace formula
 are then satisfied for $G$ and $H$.
 
 
-\head 6.  Global Arguments \endhead
+\section{Global Arguments }%6
 
 This section uses the
 matching of the unit elements in the Hecke algebra, 
@@ -1227,7 +1248,7 @@ Hecke algebra.  A reductive group, defined over a number field,
 will be associated with each $G$ and endoscopic group $H$.
 We are now ready for the main theorem of the paper.
 
-\proclaim{Theorem 6.1}  Suppose that $G$ is a basic case with
+\begin{cthm}{Theorem 6.1}  Suppose that $G$ is a basic case with
 elliptic endoscopic group $H$.  
 Suppose that $\Lambda(\gamma_H,f)$ is zero
 when $\gamma_H$ is not elliptic.  
@@ -1235,9 +1256,9 @@ Suppose that the matching of units holds
 at almost all unramified places of the global group and corresponding
 endoscopic group associated with
 $G$ and $H$.  Then the fundamental lemma holds for $(G,H)$.
-\endproclaim
+\end{cthm}
 
-\demo{Proof} 
+\begin{proof} 
 To simplify notation in the proof, we now shift notation and add a subscript
 $w$ to data over the local field $F$.  Thus we have the
 local field $F_w$, functions $f_w$, the group $G_w$, an endoscopic
@@ -1389,11 +1410,11 @@ of $G_\infty$.
 Fix a regular character $\delta_0\in \hat M$ of $M$ and consider the
 principal series representation $\pi_{\delta_0,\lambda}
 	=\Ind(\delta\otimes\lambda)$, obtained by
-unitary induction, for $\lambda\in\aa^*$,
-$\aa_0=Lie(A)$, 
-and $\aa = \aa_0\otimes {\Bbb C}$. 
+unitary induction, for $\lambda\in\bfa^*$,
+$\bfa_0=Lie(A)$, 
+and $\bfa = \bfa_0\otimes {\Bbb C}$. 
 We may select $\delta_0$ in such a way that
-for all $\lambda\in i\aa_0^*$, the representation $\pi_{\delta_0,\lambda}$
+for all $\lambda\in i\bfa_0^*$, the representation $\pi_{\delta_0,\lambda}$
 comes from a parameter $\phi'$ (depending on $\lambda$) for
 $H_\infty$ in the manner described in the previous paragraph.
 
@@ -1403,20 +1424,20 @@ Consider the subspace $C_c^\infty(G_\infty,\delta_0)$ of
 $C_c^\infty(G_\infty,K)$
 satisfying the condition
 $$\langle \tr \pi_{\delta,\lambda},f\rangle = 0,$$
-for all $\lambda\in \aa^*$ and all 
+for all $\lambda\in \bfa^*$ and all 
 $\delta\in \hat M\setminus \{W\cdot \delta_0\}$.  By the identities
 of \cite{Vo,6.6.7} and the irreducibility of $\pi_{\delta_0,\lambda}$,
 we find that
 $$\langle \tr \pi,f\rangle = 0,$$
 for all irreducible admissible $\pi$ inequivalent
 to $\pi_{w\delta_0,\lambda}$,
-for $w\in W$ and $\lambda\in \aa^*$.  
+for $w\in W$ and $\lambda\in \bfa^*$.  
 
 The invariant Paley-Wiener theorem theorem states that the
 vector space of functions
 	$$F_f(\lambda) = \langle \tr \pi_{\delta_0,\lambda},f\rangle,$$
 for $f\in C_c^\infty(G,\delta_0)$, consists of all functions in the Paley-Wiener
-space (on the complex vector space $\aa^*$) 
+space (on the complex vector space $\bfa^*$) 
 and that
 	$$F_f(w\lambda) = \langle\tr \pi_{w^{-1}\delta_0,\lambda},f\rangle$$
 for $w\in W$ \cite{CD}.
@@ -1430,11 +1451,13 @@ orbital integrals match $f$.  The construction of $f^H$ in \cite{CD,A.4}
 shows that the invariant distribution attached to a parameter $\phi_H$
 for $H_\infty$ vanishes on $f^H$ except when the parameter
 $\xi_\infty\circ\phi_H$ for $G_\infty$ gives the $L$-packet of
-$\pi_{\delta_0,\lambda}$ for some $\lambda\in\aa^*$ (not necessarily
-in $i\aa_0^*$).
+$\pi_{\delta_0,\lambda}$ for some $\lambda\in\bfa^*$ (not necessarily
+in $i\bfa_0^*$).
 
 Suppose that we have an equality of absolutely convergent sums
-$$\sum a(\pi) \tr \pi(f) = \sum b(\pi') \tr \pi'(f^H)\tag 6.2$$
+\begin{equation}\tag {6.2}
+\sum a(\pi) \tr \pi(f) = \sum b(\pi') \tr \pi'(f^H)
+\end{equation}
 of characters of irreducible unitary representations of $G_\infty$
 and $H_\infty$ that holds whenever $f\in C_c^\infty(G_\infty)$ 
 and $f^H\in C_c^\infty(H_\infty)$ have matching
@@ -1449,25 +1472,27 @@ of $G_\infty$.  By our restriction on the function $f$, the
 character identity between $G_\infty$ and $H_\infty$ 
 takes the form of an
 absolutely convergent sum 
-	$$\sum_{\lambda\in\aa^*} a(\lambda) F_f(\lambda) = 0,\tag 6.3$$
+	\begin{equation}\tag {6.3}
+        \sum_{\lambda\in\bfa^*} a(\lambda) F_f(\lambda) = 0,
+        \end{equation}
 for all $f\in C_c^\infty(G,\delta_0)$.
 
 When $\pi_{\delta_0,\lambda}$ is unitary, we must have
-$\lambda\in i\aa_0^*$, so $a(\lambda)F_f(\lambda)$ vanishes off
-$i\aa_0^*$ (see \cite{Kn,16.6}).
+$\lambda\in i\bfa_0^*$, so $a(\lambda)F_f(\lambda)$ vanishes off
+$i\bfa_0^*$ (see \cite{Kn,16.6}).
 Fix $f\in C_c^\infty(G,\delta_0)$.
 We claim that $a(\lambda) F_f(\lambda) = 0$, for all $\lambda$.
 Otherwise, there exists a nonzero constant $c = |a(\lambda_0)F_f(\lambda_0)|$ for some
 $\lambda_0$.  The sum (6.3)
 may be broken into the term $a(\lambda_0)F_f(\lambda_0)$,
-a sum over a finite set $S_0\subset i\aa_0^*$, and 
+a sum over a finite set $S_0\subset i\bfa_0^*$, and 
 a sum over the remaining terms.  By choosing $S_0$ large enough,
 we may assume that
-$$\sum_{\lambda\in \aa^*\setminus S_0} |a(\lambda)F_f(\lambda)|< {c}.$$
-Pick a Paley-Wiener function $h$ on $\aa^*$
+$$\sum_{\lambda\in \bfa^*\setminus S_0} |a(\lambda)F_f(\lambda)|< {c}.$$
+Pick a Paley-Wiener function $h$ on $\bfa^*$
 such that $h(\lambda_0)=1$,
 $h(\lambda)=0$, for $\lambda\in S_0$, and $|h(\lambda)|\le1$,
-for all $\lambda\in i\aa_0^*$.  
+for all $\lambda\in i\bfa_0^*$.  
 $h(\lambda)F_f(\lambda)$ is a Paley-Wiener function,
 so there exists $f_1\in C_c^\infty(G_\infty,K)$ such that
 $$F_{f_1}(\lambda)=
@@ -1479,7 +1504,7 @@ Apply equation (6.3) to $f_1$ to conclude that
 $\sum a(\lambda)h(\lambda)F_f(\lambda)=0$,
 with absolute convergence.  We then obtain the contradiction
 $$ c = |a(\lambda_0)h(\lambda_0)F_f(\lambda_0)|
-	= \left|\sum_{\aa^*\setminus\{\lambda_0\}} 
+	= \left|\sum_{\bfa^*\setminus\{\lambda_0\}} 
 	a(\lambda)h(\lambda)F_f(\lambda)\right| < c.$$
 
 
@@ -1513,11 +1538,10 @@ to the support of $f$ anyway.  Similarly, the expression $ST_e^{**}$
 stands for the stable elliptic term of the trace formula.
 The main identity of Kottwitz, applied to both
 $G$ and $H$, becomes
-$$\align
+\begin{align*}
 T_e^{**}(f) &= i(G,H) ST_e^{**}(f^{H}),\ \text{and}\\
 T_e^{**}(f^{H}) &= i(H,H) ST_e^{**}(f^{H}),
-\endalign
-$$
+\end{align*}
 where 
 $i(\cdot,\cdot)$ are nonzero constants.
 We take $f$ and $f^H$ to be products of compactly supported smooth
@@ -1594,11 +1618,10 @@ the implication (Condition 2.A implies Condition 2.B) in the definition of
 local data. Note that the constant in the normalization of the
 transfer factor at $v$ is fixed by the condition that $\Lambda(\gamma_H,f_v)=0$
 when $\gamma_H$ is not elliptic.
-\qed
-\enddemo
+\end{proof}
 
 
-\head References \endhead
+\section{References }
 \widestnumber\key{DMOS}
 
 \ref\key A1
