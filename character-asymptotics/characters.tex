@@ -258,18 +258,18 @@
 
 \maketitle
 
-\rightline{-23.5 hours}
+\rightline{-4919.5 hours}
 \section{Introduction}
-The present version of article is inspired by \cite{unsuccessful self-treatment of writer's block}. 
+The present version of article is still inspired by \cite{unsuccessful self-treatment of writer's block}. 
  
 We try to prove that the coefficients of Harish-Chandra's local character expansion are motivic functions of the parameters defining the group and the representation. 
 
 \section{Reductive groups}
-\subsection{fixed choices and cocycle spaces}
+\subsection{Fixed choices and cocycle spaces}
 Define field extensions, fixed data, the cocycle space $Z$, and a family of reductive groups $G$ over $Z$ as in \cite{transfer transfer}. Define Haar measure on $G_z$ the same way as well.
 Will also use the term ``fixed choices'' in the same sense. 
 
-\subsection{nilpotent orbits} Let $\NF_G^k$ be the space of 
+\subsection{Nilpotent orbits} Let $\NF_G^k$ be the space of 
 $k$-tuples of Barbasch-Moy pairs $\Upsilon=(N, \ff)$ as in  \cite{transfertransfer}. 
 For all $F\in \Loc_m$ with sufficiently large $m$, 
 a point in $\NF_G^k(F)$ gives a tuple of $(N_i, \ff_i)_{i=1}^k$ with $N_i$ representing distinct nilpotent orbits in $\fg(F)$, with $\ff_i$ being their corresponding facets in Barbasch-Moy classification. We also have a family of definable test functions $1_{\Upsilon}$ for 
@@ -285,7 +285,7 @@ Let $\NF_{G^0}^k$ be the corresponding parametrizing set for these orbits.
 \section{Representations}
 We assume that $p$ is large. 
 Supercuspidal representations $\pi$ of $G_z$ are parametrized by J.-K. Yu's data 
-$(\bar G, \bar\phi, \pi_0, x)$, where $\bar G=(G^1, \dots G^d)$ is a sequence of twisted Levi subgroups with $G^d=G$, $\phi_i$ is a character of $G^i$, $\pi_0$ is a depth-zero supercuspidal representation of $G^0$, and $x$ is a point in the reduced building of $G$.
+$(\vec G, \vec\phi, \pi_0, x)$, where $\vec G=(G^0, \dots G^d)$ is a sequence of twisted Levi subgroups with $G^d=G$, $\phi_i$ is a character of $G^i$, $\pi_0$ is a depth-zero supercuspidal representation of $G^0$, and $x$ is a point in the reduced building of $G$.
 Let us fix the depth of $\pi$. 
 
 The groups $G^i$ are encoded by appropriate  cocycle spaces $Z^i$.
@@ -326,6 +326,12 @@ The representation $\pi_0$ is determined by its inducing datum: a parahoric subg
 \newcommand\topcite[1]{\gdef\t@pic{#1}\cite{#1}}
 \newcommand\loccit{\expandafter\cite\expandafter{\t@pic}}
 \makeatother
+
+
+Suppose the depth of the representation $\pi$ is fixed. Then there are finitely many points in the alcove that can arise in J.-K. Yu's construction. This list will become part of fixed choices. In this section we describe this finite (and field-independent) set of points. 
+\todo{Julia: I am not sure that defining the motivic building is the way to go; I do not really like the whole copy of 
+$\R$ for every root sitting there; I wonder if we can simply describe a finite set of points in the building (baricentres of ...) such that any $x$ that can arise in J-K construction of a representation of $G$ of a given depth occurs in that set (just that: we do not need to make sure that every element of the set does occur). I think that's all we need from this section, we might not actually need the resulting paregorics, even, since we are not redoing the construction, just describing the parameters that go into it. In fact, I think here there's no need to do it motivically; we can use a $p$-adic field, just make a note that the construction does not depend on the field since the alcove, etc. does not. }
+
 
 Let \(\bS\) be a maximal split torus in \(\bG\),
 %There is a torus \(\bS^\sharp\) in \(C_\bG(\bS)\) such that
@@ -464,7 +470,6 @@ in writing \(\fg_{\xi, r}\) (and so on), as long as we care
 about the mentioned group only up to (simultaneous)
 \(G\)-conjugacy.
 
-Suppose the depth of the representation $\pi$ is fixed. Then there are finitely many points in the alcove that can arise in J.-K. Yu's construction. This list will become part of fixed choices. 
 
 \subsection{Deligne-Lusztig representations} 
 For now, consider the case when $\rho_0$ is a Deligne-Luszting representation. 
@@ -472,7 +477,7 @@ Then it is determined by an elliptic torus $\fT$ in $\fG$, which is determined b
 The element $w$ becomes  part of the fixed choices.
   
 The multiplicative characters $\phi_i$, as well as $\chi$, will play no role, so we will group 
-representations into families with the same $(\bar G, x, w)$. 
+representations into families with the same $(\vec G, x, w)$. 
 
 Thus, fixed choices determine: the root system of $G$, root systems of $G_i$, 
 the point $x$ that determines the parahoric $K_0$, and an element $w$ that determines 
@@ -481,7 +486,7 @@ Every fixed choice gives a family of representations of each of the groups $G_z$
 For a given fixed choice, we have the cocycle spaces $Z$ (determining $G$), and $Z^i$ (determining $G^i$), and from this we can reconstruct the representations. 
 Let $\cF_d$ be the set of fixed choices for fixed $d$.
 The elements of $\cF_d$ are tuples 
-$(X^\ast, X_\ast, \Phi, \Phi^\vee), \Sigma, (\Phi^i, {\Phi^\vee}^i)_{i=0}^d, \Sigma^i, x, w)$, where 
+$\left((X^\ast, X_\ast, \Phi, \Phi^\vee), \Sigma, (\Phi^i, {\Phi^\vee}^i)_{i=0}^d, \Sigma^i, x, w\right)$, where 
 \begin{enumerate}
 \item  $(X^\ast, X_\ast, \Phi, \Phi^\vee)$  determines the absolute root datum of $G$, 
 \item $\Sigma$ is an enumerated Galois group (with a choice of inertia subgroup and a 
@@ -516,8 +521,15 @@ General case: should include the decomposition of a general character near the i
 That determines the cocycle space $Z$ whose elements give rise to the groups $G_z$. This fixed 
 choice also contains a point in the building of $G$ that gives rise to a maximal parahoric  $K^0$
  with reductive quotient $\fG$, and an elliptic torus $\fT$ in $\fG$. 
-Given a cuspidal character $\chi$ of $\fT$, there is an associated irreducible Deligne--Lusztig representation $R_{\fT, \chi}^\fG$. Let $\Theta_{\fT, \chi, x}$ be the character of the associated depth-zero representation of $G$. 
-\begin{prop} There exists $m$ and motivic functions $C_{\cO}$ on $\NF_{G}^k$, such that 
+Given a cuspidal character $\chi$ of $\fT$, there is an associated irreducible Deligne--Lusztig representation $R_{\fT, \chi}^\fG$. Let $\Theta_{\fT, \chi, x}$ be the character of the associated depth-zero representation of $G$.
+In the proposition below, everything depends on our fixed choice, but we drop it from the notation in order to lighten it. 
+\begin{prop} There exists $m$, and 
+%positve integers $m$ and $a$, and 
+a motivic function $C$ on $Z\times \cN_{G}$, such that for every $F\in \Loc_m$, 
+for all $z\in Z(F)$, for every $\chi$ -- a multiplicative character of the residue field of $F$, 
+for every $g\in \fg_{0^+}$, we have, for every $(N, \ff)=(N_i, \ff_i)_{i=1}^k\in NF_G^k$,  
+$$\theta_{\fT, \chi, x}(\mexp(Y)) = \sum_{i=1}^k C_F(N_i)\widehat \cO_{N_i}(Y).$$
+(Recall that the representation of $G_z$ whose character we are considering is determined by the data that is part of the  fixed choice that we have specified at the beginning of this subsection).  
 \end{prop}
 
 \subsubsection{The general case}
