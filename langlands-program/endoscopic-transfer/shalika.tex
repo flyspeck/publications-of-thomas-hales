@@ -151,6 +151,8 @@ integration that have been inspired by the Igusa zeta function.
 
 \bigskip
 
+\section*{Introduction}
+
 This article establishes the endoscopic matching of smooth functions
 in sufficiently large residual characteristic.  The main conclusions
 are based on four fundamental results: Langlands-Shelstad descent for
@@ -165,19 +167,19 @@ field~\cite{CLe}.  We use recent extensions of the transfer principle
 to transfer linear dependencies from one field to another \cite{CGH2}.
 
 We note that the term transfer is used with two separate meanings in
-this article.  {\it Endoscopic matching}\footnote{It is called
-  endoscopic transfer in the literature, title, and abstract, but we
-  prefer to call it endoscopic matching in the body of the article
-  because of the other uses of the word transfer. We avoid the awkward
-  but apt phrase ``transfer of transfer.''}  refers to the matching of
+this article.  {\it Endoscopic matching} refers to the matching of
 $\kappa$-orbital integrals on a reductive group with stable orbital
 integrals on an endoscopic group, in a form made precise by the
-Langlands-Shelstad transfer factor.  On the other hand, {\it transfer
-  principles} refer to the transfer of first-order statements or
-properties of constructible functions from one nonarchimedean field to
-another nonarchimedean field with the same residual characteristic.  In
-this article, we will refer to endoscopic matching, transfer factors,
-and transfer principles.
+Langlands-Shelstad transfer factor.  It is called endoscopic transfer
+in the literature, title, and abstract, but we prefer to call it
+endoscopic matching in the body of the article because of the other
+uses of the word transfer. We avoid the awkward but apt phrase
+``transfer of transfer.'' On the other hand, {\it transfer principles}
+refer to the transfer of first-order statements or properties of
+constructible functions from one nonarchimedean field to another
+nonarchimedean field with the same residual characteristic.  In this
+article, we will refer to endoscopic matching, transfer factors, and
+transfer principles.
 
 In our main results, the constraints on the size of the residual
 characteristic are not effective.  This means that our results are not
@@ -363,16 +365,16 @@ for all $\gamma_H\in H^{G-\reg}_z(F)$ near $1$.
 \end{theorem}
 
 Our wording in Theorem~\ref{thm:local} is based on definition of {\it
-  local $\Delta$-matching\footnote{It is called local $\Delta$-transfer in
-    \cite{LSd}.} at the identity} in \cite{LSd}.  It can be
-expressed equivalently in terms of Shalika germs.  The wording in
-Theorem~\ref{thm:xfer} is based on the definition of {\it
-  $\Delta$-matching} in \cite{LSd}.  Recall that $\Delta$-matching
-(and the definition of the Langlands-Shelstad transfer factor away
-from $1$) requires a choice of central extension $\tilde H$ of the
-endoscopic group $H$ and a character $\theta$ on the center of
-$\tilde H(F)$ \cite{LSxf}*{\S 4.4}.  The following theorem  is our main
-result.  The proof appears in Section~\ref{sec:xfer}.
+  local $\Delta$-matching at the identity} in \cite{LSd} (where it is called local
+  $\Delta$-transfer).  It can be expressed equivalently in terms of
+  Shalika germs.  The wording in Theorem~\ref{thm:xfer} is based on
+  the definition of {\it $\Delta$-matching} in \cite{LSd}.  Recall
+  that $\Delta$-matching (and the definition of the Langlands-Shelstad
+  transfer factor away from $1$) requires a choice of central
+  extension $\tilde H$ of the endoscopic group $H$ and a character
+  $\theta$ on the center of $\tilde H(F)$ \cite{LSxf}*{\S 4.4}.  The
+  following theorem is our main result.  The proof appears in
+  Section~\ref{sec:xfer}.
 
 \begin{theorem}[endoscopic matching of orbital integrals]\label{thm:xfer}
   Let $(G,H)_{/Z}$ be a definable reductive group $G$ with definable
@@ -459,7 +461,7 @@ $(B^{**},T^{**})$.
 We let $\Sigma$ be a (large) abstract finite group (that plays the
 role of a Galois group), with a fixed enumeration
 $1=\sigma_1,\ldots,\sigma_n$ of its elements, where $n =
-\op{card}{\Sigma}$.
+\op{card}\,{\Sigma}$.
 We assume that $\Sigma$ comes with a fixed short exact sequence
 \[
 1 \to \Sigma^t \to \Sigma \to \Sigma^{unr} \to 1,
@@ -597,15 +599,17 @@ variables of the valued field sort.
 
 \subsubsection{Field extensions}
 
-The parameter space of field extensions\footnote{When we work with
-  field extensions, we will write $E/\VF$, rather than the more
-  cumbersome $\op{VE}/\VF$, etc.} $E/\VF$ of a fixed degree $n$ is defined
+The parameter space of field extensions $E/\VF$ of a fixed degree $n$ is defined
 to be the parameter space of $(a_0,\ldots,a_{n-1})\in \VF^n$ (that is,
 $n$ variables of the valued field sort) such that
 \[
 p_a(t) = t^n + a_{n-1} t^{n-1} + \cdots a_0
 \]
-is an irreducible polynomial.  Field arithmetic is expressed in terms
+is an irreducible polynomial.  
+When we work with
+  field extensions, we will write $E/\VF$, rather than the more
+  cumbersome $\op{VE}/\VF$, etc.
+Field arithmetic is expressed in terms
 of operations on $\VF^n$ by means of the identifications
 \[
 E = \VF[t]/(p_a(t)) \simeq \VF^n.
@@ -642,7 +646,7 @@ $E/\VF$ and $K/\VF$.  It is specified by irreducible polynomials
 $p$ and $q$ for $E = \VF[t]/(p(t))$ and $K = \VF[t']/(q(t'))$, and an
 element $t''\in \VF[t']/(q(t'))$ (the image of $t$ under $E\to K$) such
 that $p(t'') = 0$.  There is a space of Galois field extensions
-$K/E/\VF$ for fixed degrees for $E/\VF$ and $K/\VF$ with enumerations
+$K/E/\VF$ for fixed degrees of $E/\VF$ and $K/\VF$ with enumerations
 of the Galois groups of $K/\VF$ and $K/E$, together with a table
 describing the homomorphism $\op{Gal}(K/\VF)$ to $\op{Gal}(E/\VF)$.
 
@@ -663,7 +667,7 @@ The space of Galois cocycles is given as tuples
 (K,\sigma_1,\ldots,\sigma_n,a_1,\ldots,a_n),
 \]
 where $a_i \in K^k$ for some $k$.  Here $K/\VF$ is a Galois extension of
-fixed degre $n$, with enumerated Galois group $\sigma_i$ subject to
+fixed degree $n$, with enumerated Galois group elements $\sigma_i$ subject to
 the cocycle relations:
 \[
 \sigma_i \sigma_j 
@@ -739,13 +743,13 @@ differential form of top degree, as explained in Section~\ref{sec:volume}.
 \subsubsection{Nilpotent elements}\label{sec:nilpotent}
 
 The properties of nilpotent elements are well-known.  Here we
-summarize the properties that we use.
+summarize those that we use.
 
 \begin{theorem} 
   Let $G_{/Z}$ be a definable reductive group with Lie algebra
   $\fg_{/Z}$ over a cocycle space $Z$.  There exists $m\in\ring{N}$
   such that for all $F\in\op{Loc}_m$, and all $z\in Z(F)$, the
-  following properties are equivalent properties of $N\in \fg_z(F)$:
+  following are equivalent properties of $N\in \fg_z(F)$:
 \begin{enumerate}
 \item $\rho(N)$ is nilpotent for {\it some} faithful rational
   representation $\rho$ of $\fg_z$;
@@ -755,7 +759,7 @@ summarize the properties that we use.
 \item $0$ lies in the $p$-adic closure of the adjoint orbit of $N$;
 \item there exists $\lambda\in X_*^F(G_z)$ such that $\lim_{t\to 0}
   \op{Ad}(\lambda(t))N = 0$; and
-\item the image of $N$ under the morphism $\fg_z\mapsto \fc_{\fg^*_z}$
+\item the image of $N$ under the morphism $\fg_z\to \fc_{\fg^*_z}$
   is $0$.
 \end{enumerate}
 \end{theorem}
@@ -838,14 +842,16 @@ $u$ under $G\to \fc_{G^*}$ is $1$.
 \begin{proof} First, we show that (1) and (2) are first-order
   statements in the Denef-Pas language.  The statement (2) is
   first-order because the set $G_{z,\s,0+}$ is definable, by
-  \cite{CGH2}*{Lemma 3.4}. The set $G_{z,\s,0}$ appearing in (1) is
-  not currently known to be definable in general, but by the same
-  lemma, it is contained in a slightly larger definable set $G_\s^0$
-  of Galois-fixed points of $G_z(K)_{\s, 0}$ (where $K$ is an
-  extension that splits $G_z$).  However, if $u$ is a unipotent
-  element contained in $G_\s^0$, then in fact $u$ is contained in
-  $G_{z, \s, 0}$ by \cite{debacker:nilp}*{Lemma 4.5.1}.  Thus (2) is a
-  first-order statement as well.
+  \cite{CGH2}*{Lemma 3.4}. The set $G_{z,\s,0}$ appearing in (1) has
+  recently been shown to be definable in general~\cite{gordon2015canonical}.  
+  %We may also
+  %argue as follows. By the same
+  %lemma, the set is contained in a slightly larger definable set $G_\s^0$
+  %of Galois-fixed points of $G_z(K)_{\s, 0}$ (where $K$ is an
+  %extension that splits $G_z$).  However, if $u$ is a unipotent
+  %element contained in $G_\s^0$, then in fact $u$ is contained in
+  %$G_{z, \s, 0}$ by \cite{debacker:nilp}*{Lemma 4.5.1}.  Thus (2) is a
+  %first-order statement as well.
    
   Because these statements are first order in the Denef-Pas language,
   by a transfer principle, it is enough to prove the result when $F$
@@ -909,7 +915,7 @@ reductive groups are explained in \cite{CGH}.  We follow those
 sources.
 
 We recall that each nilpotent orbit can be endowed with an invariant
-motivic measure $d\mu^{\op{nil}}$ that comes from the the canonical
+motivic measure $d\mu^{\op{nil}}$ that comes from the canonical
 symplectic form on coadjoint orbits~\cite[Prop.~4.3]{CGH}.  
 
 We obtain an invariant volume form on the unipotent set in the
@@ -958,7 +964,7 @@ $G$ as a subset of $G_K\subset \VF^{n}$, for some
 $n\in\ring{N}$.
 
 We may extend the top invariant form $\omega$ to $\omega_K$, from
-$\VF$ to $K = \VF[t]/(p_a(t)) = \VF^k$, by taking each coordinate
+$\VF$ to $K = \VF[x]/(p_a(x)) = \VF^k$, by taking each coordinate
 $x_\alpha$, and so forth to be a monic polynomial of degree $k$ with
 coefficients in $\VF$.  This does not change the degree $d$ of the
 differential form, but expanding in $t$, it takes values in $\VF^k$.
@@ -987,7 +993,7 @@ parameter $b$ into the cocycle space $Z$ taking values in $K^\times$
 that is subject to the relation $a_\sigma = \sigma(b)^{-1} b$.
 
 Set $\omega_0 = b\, dz\land\omega_K$.  It is Galois stable on
-$G$, so on this definable set, the $d+\dim Z$-form takes values in $F$.
+$G$, so on this definable set, the $(\dim Z+d)$-form takes values in $F$.
 Also, since $\omega_K$ is invariant by $G_K$, this implies the
 invariance of $\omega_0$ by $G$ (acting fiberwise over $Z$).  
 
@@ -1021,7 +1027,7 @@ characters.
 Although we may speak of unramified extensions and their Galois
 groups, when working motivically, we have no way to single out the
 canonical Frobenius generator of the Galois group of an unramified
-extension.  Indeed, we do not have access the cardinality of the
+extension.  Indeed, we do not have access to the cardinality of the
 residue field $q$, until we specialize to a particular nonarchimedean field
 $F$.
 
@@ -1075,7 +1081,7 @@ The transfer factor is defined to be $0$ unless $X_H$ and $X_G$
 correspond under the definable condition requiring the image of
 $\psi(X_G)$ in the Chevalley quotient $\fc_{\fg^*}$ to equal the image
 of $X_H$ in $\fc_{\fh}$ under $\fc_{\fh}\to\fc_{\fg^*}$, and similarly
-for $(\bar X_H,\bar X_G)$.  (Note that the endoscopic groups $H$ is
+for $(\bar X_H,\bar X_G)$.  (Note that the endoscopic group $H$ is
 quasi-split by definition, so that $H=H^*$ and $\fh=\fh^*$.)  We now
 assume that the parameters are restricted to the definable subsets
 satisfying these constraints.  The factor $\ring{L}^{d(X_H,X_G)}$ is
@@ -1108,11 +1114,11 @@ have integer coefficients, but there is no harm in extending scalars
 to $\ring{C}$ to allow the given roots of unity.
 
 We will give further definable sets $D_{j,{\rom{1}}}$ and
-$D_{j,\rom{3}}$.  The definable set $D_{j,\rom{3}}$ is a subset of the
+$D_{j,\rom{3}}$.  The definable set $D_{j,\rom{3}}$ is a subset of
 $D$.  The definable set
 $D_{j,\rom{1}}$ is a subset of $\fh^{G-\reg}\times_Z\fg^\reg$, which
 we pull back to sets $D^{12}_{j,\rom1}$ and $D^{34}_{j,\rom1}$ on
-$D$ under the projections maps onto the first two
+$D$ under the projection maps onto the first two
 factors, and the last two factors of $D$,
 respectively:
 \[
@@ -1160,28 +1166,28 @@ of $(G^*_{\text{sc}},B^*_{\text{sc}},T^*_{\text{sc}})$, and so forth.
 
 
 We take $K/\VF$ to be a splitting field of $G$, and take $L/\VF$ to be
-a Galois extension that splits $T_{\text{sc}}$.  There are bound parameters
+a Galois extension that splits $T$.  There are bound parameters
 running over $L/\VF$ and its enumerated Galois group.  We let $h$ be a
-bound parameter in $G^*$ such that $(T_{\text{sc}},B_{\text{sc}}) =
+bound parameter in $G^*$ such that $(T,B) =
 \op{Ad}(h)\,(T^*,B^*)$.
 
 If $w$ is any element of the Weyl group of $T^*$ in $G^*$ with reduced
 expression $w = s_{\alpha_1}\cdots s_{\alpha_r}$, we set $n(w) =
 n(s_{\alpha_1})\cdots n(s_{\alpha_r})$ where
 $n(s_\alpha)$ is the image
-in $\op{Norm}_{G_{\text{sc}}^*}(T_{\text{sc}}^*)$ of
+in $\op{Norm}_{G^*}(T^*)$ of
 \[
 \begin{pmatrix}0 &1\\ -1 & 0\end{pmatrix} = \op{exp} X_\alpha \op{exp} -
   X_{-\alpha} \op{exp} X_\alpha
 \]
-under the homomorphism $SL(2)\to G^*_{\text{sc}}$ attached to the Lie triple
+under the homomorphism $SL(2)\to G^*$ attached to the Lie triple
 $\{ X_\alpha,X_{-\alpha},H_\alpha \}$ coming from a pinning
-$(B^*,T^*,\{X_\alpha\})$).  The transfer factor does not depend on the
+$(B^*,T^*,\{X_\alpha\})$.  The transfer factor does not depend on the
 pinning, and we treat the pinning as a bound parameter.  The
 exponential map used to define $n(s_\alpha)$ is a polynomial function
 on nilpotent elements.
 
-The cocycle $\lambda(T_{\text{sc}})$ is defined using the $a$-data by an enumerated
+The cocycle $\lambda(T)$ is defined using the $a$-data by an enumerated
 cocycle of $\op{Gal}(K/\VF)$ as described above, with
 \[
 \sigma \mapsto h m(\sigma_T) \sigma(h)^{-1},\quad \text{where}\quad
@@ -1193,7 +1199,7 @@ $\alpha^\vee$.  An inspection of each element of the formula shows
 that this cocycle is definable.  See \cite{LSxf} for the combinatorial
 description of the gauge $p$ and the choice $\omega_T$ of Weyl group
 elements (coming from the twisted action of the Galois group on
-$T^*_{\text{sc}}$).
+$T^*$).
 
 \subsection{Another cocycle}
 
@@ -1230,7 +1236,7 @@ endoscopic data.  The article \cite{CHL} shows how to treat this
 element as an enumerated cocycle $\kappa_T$ with values in $X^*(T)$
 for various Cartan subgroups $T$.  It uses this to give the
 Tate-Nakayama pairing in terms of the Denef-Pas language.  (This
-requires the cocycle space of $Z$ to include the space of pairs
+requires the cocycle space $Z$ to include the space of pairs
 $(E,\op{qFr})$ of an unramified extension of sufficiently large fixed
 degree and generator $\op{qFr}$ of the Galois group $E/\VF$.)  In
 particular, with the fixed choice of a highly divisible integer $k$ as
@@ -1240,7 +1246,7 @@ definable set
 \[
 \op{TN}( c(\sigma),\kappa_T)_j
 \]
-of all cocycles such that the Tate-Nakayama pairing of the cocycle with
+of all cocycles $c(\sigma)$ such that the Tate-Nakayama pairing of the cocycle with
 $\kappa_T$ has value $e^{2\pi j/k}$.  We define $D_{j,\rom1}(X_H,X_G)$ to
 be
 \[
@@ -1334,7 +1340,7 @@ The set $S_a$ is definable.  Assume that $g_{|S_a,F_1} = 0$.  Then on
 any part $Z$,
 \[
 0 = g_{|S_a\cap Z,F_1} = p^*_{F_1} g_{C_a,F_1}, 
-\quad\text{where}\quad C_a = f_C^{-1}(a)
+\quad\text{where}\quad C_a = f_C^{-1}(a).
 \]
 Since $p_{F_1}$ is onto, $g_{C_a,F_1}$ is identically zero, and thus
 so is $g_{C_a,F_2}$ and $0 = p^*_{F_2} g_{C_a,F_2} = g_{|S_a\cap
@@ -1442,7 +1448,8 @@ these sets, $\locus{g}$ has the form
 \]
 where $q_F$ is the cardinality of the residue field of $F$,  each
 $c_i$ depends only on residue field variables, the integers $k_i$ and
-$\ell_i$ do not depend on any variables in the Denef-Pas language, and
+the rational numbers $\ell_i$ 
+do not depend on any variables in the Denef-Pas language, and
 we can assume that $(k_i,\ell_i)$ are mutually different for different
 $i$.
 
@@ -1475,7 +1482,7 @@ requirements of smooth endoscopic matching.
   corresponding tuple of constructible functions on the fiber
   $P_\lambda$.  Then there exists a natural number $m$ with the
   following property.  For every $F_1,F_2 \in \Loc_{m}$ such that
-  $F_1$ and and $F_2$ have isomorphic residue fields, the following
+  $F_1$ and $F_2$ have isomorphic residue fields, the following
   holds: if for each $\lambda\in \Lambda({F_1})$, the tuple of
   functions $\bf_{\lambda,F_1}$ is linearly dependent, then also
   for each $\lambda_2\in \Lambda({F_2})$, the tuple of functions
@@ -1724,7 +1731,7 @@ $V_1\otimes\cdots\otimes V_r$, then
 
 In what follows, to use this lemma, we regularly identify finite
 dimensional subspaces of $C(U_1\times\cdots\times U_r)$ of the
-continuous functions on $U_1\times\cdots U_r$, for various choices of spaces
+continuous functions on $U_1\times\cdots \times U_r$, for various choices of spaces
 $U_i$, with corresponding finite dimensional subspaces of the tensor
 product $C(U_1)\otimes \cdots\otimes C(U_r)$, under the map
 \[
@@ -1822,12 +1829,12 @@ If $j\in\ring{N}$ and $\epsilon\in\{\pm\}$, write
 \end{cases}
 \]
 We
-define:
+define
 \[
 P^1_i = \{(X_H,\lambda_i) \mid \lambda_i\in \Lambda^1_i,
-\quad z = z(\lambda_i),\quad X_H \in \fh_z\}.
+\quad X_H \in \fh_z, ~\text{where}~z = z(\lambda_i)\}.
 \]
-Also, set:
+Also, set
 \[
 P^r = P^r_\xi = \{(X_H,\lambda) \mid \lambda = 
 (\lambda_1,\ldots,\lambda_r)\in \Lambda^r_\xi,\quad
@@ -1852,7 +1859,7 @@ functions of small balls around $0$ in $\fc_{\fg^*}$ tending to $0$ as
 $a$ tends to infinity.  We take the preimage of these balls in
 $\fc_{\fh}$ and $\fh$ and denote that support sequence $1_a$ as well,
 by abuse of notation.  We may truncate the orbital integrals using
-these functions: $1_a SO(X,f^H)$ and $1_a O^\kappa(X_H,\bar
+these functions: $1_a SO(X_H,f^H)$ and $1_a O^\kappa(X_H,\bar
 X_H,\bar X_G,f)$.  Integrals now have an extra integer parameter
 $a\in\ring{Z}$ that we may use to study $a$-asymptotic linear
 dependence.  
@@ -1863,7 +1870,7 @@ set
 \begin{equation}\label{eqn:psi}
 \psi_{i,\ell_i}(X_{H,i},\lambda_i) = 
 \begin{cases}   
-  O^\kappa(X_{H,i},\bar X_H(\lambda_i),\ldots,1_{\Y(\lambda_i,\ell_i)}),
+  O^\kappa(X_{H,i},\bar X_H(\lambda_i),\bar X_G(\lambda_i),1_{\Y(\lambda_i,\ell_i)}),
    & \text{if } \ell_i\in L^-_i \\
   SO(X_{H,i},1_{\Y(\lambda_i,\ell_i)}),
    & \text{if } \ell_i\in L^+_i.
@@ -1918,7 +1925,7 @@ set $\Xi$.
 As a result of this discussion, we have a constant $m$ that is not
 tied to any particular parameter $\xi$.  This constant will be used to
 satisfy the claim in the statement of Theorem~\ref{thm:local} of the
-existence of a constant $m$ with desirable properties.
+existence of a number $m$ with desirable properties.
 
 Let $F_2\in\op{Loc}_m$.  Choose a second field $F_1\in \op{Loc}_m$
 that has characteristic zero and a residue field isomorphic to that of
@@ -2246,14 +2253,7 @@ and let $H$ be an endoscopic group of $G$.  We recall \cite[\S
 2.1]{LSd} that $(G,H)$ admits {\it endoscopic $\Delta$-matching} if
 for each $f\in C_c^\infty(G(F))$ there exists $f^{\tilde H}\in
 C_c^\infty(\tilde H(F),\theta)$ such that $f$ and $f^{\tilde H}$
-have\footnote{Langlands and Shelstad fix $\tilde{\bar \gamma}_H$ and
-  $\bar\gamma_G$ in the transfer factor and then drop them from
-  notation, so that only the first two variables of $\Delta$ are
-  displayed.  Throughout most of \cite{LSxf}, they assume that the
-  split extension of $\hat H$ by $W_F$ (the Weil group of $F$) is an
-  $L$-group (\S1.2).  When they drop the assumption in \S4.4, the
-  general transfer factor is denoted $\Delta$ and the local factor
-  becomes denoted $\Delta_{loc}$.  We follow their conventions here.}
+have
 $\Delta$-matching orbital integrals:
 \[
 SO(\tilde \gamma_H,f^{\tilde H}) 
@@ -2266,6 +2266,14 @@ $\Delta(\tilde\gamma_H,\gamma_G)\ne0$.  The group $\tilde H$ is
 obtained as an admissible $z$-extension from $H$ as explained in
 \cite[\S 4.4]{LSxf}. It has an associated multiplicative character
 $\theta$ on $Z(H)(F)$.
+Langlands and Shelstad fix $\tilde{\bar \gamma}_H$ and
+  $\bar\gamma_G$ in the transfer factor and then drop them from
+  notation, so that only the first two variables of $\Delta$ are
+  displayed.  Throughout most of \cite{LSxf}, they assume that the
+  split extension of $\hat H$ by $W_F$ (the Weil group of $F$) is an
+  $L$-group (\S1.2).  When they drop the assumption in \S4.4, the
+  general transfer factor is denoted $\Delta$ and the local factor
+  becomes denoted $\Delta_{loc}$.  We follow their conventions here.
 
 We recall that $(G,H)$ admits {\it local endoscopic $\Delta$-matching}
 if for any $f\in C_c^\infty(G(F))$ we can find $f^H \in C_c^\infty(H(F))$
@@ -2369,12 +2377,13 @@ obvious cases when this occurs:
 In the second case, the group of automorphisms of a connected
     Dynkin diagram, when nontrivial, is cyclic of prime degree except
     in the case of $D_4$, which has automorphism group $S_3$.  From
-    this it follows that different tamely ramified extensions of the
+    this, it follows in this case 
+    that different tamely ramified extensions of the
     same degree have isomorphic Galois groups and isomorphic inertia
     subgroups.
 \end{rem}
 
-\begin{lem} Let $G$ and $G'$ are forms of a simple, simply connected
+\begin{lem} Let $G$ and $G'$ be forms of a simple, simply connected
   split group $G^{**}$ over a nonarchimedean field $F$, for which the
   fixed choices can be chosen to be equal.  Assume the groups split
   over a tamely ramified extension of $F$.  Then $G$ and $G'$ fall
@@ -2419,8 +2428,8 @@ on $\R$, which is enough to determine the group $G$ up to isomorphism.
 Thus the fixed data leaves no flexibility in the isomorphism class of the group.
 
 When $e=1$ and $\R = \cal{A}_n$, the image of $\phi$ determines
-a choice of Tits index (or equivalently to the set of simple roots
-specifying the minimal parabolic subgroup).  We can specify the
+a choice of Tits index (or equivalently, the set of simple roots
+specifying the minimal parabolic subgroup).  Fixed choices determine the
 minimal parabolic but not the particular form of the anisotropic
 kernel (unless we are given the Frobenius generator).  In other words,
 fixing the group $\phi(\Sigma^{unr})$ rather than $\phi(\op{Fr})$ is
