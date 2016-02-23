@@ -1,0 +1,1999 @@
+
+% The Optimal Packing of Regular Pentagons in the Plane, I
+% Tex file started June 23, 2015.
+% Notation: c = rho = cos pi /5.
+% 
+
+%Title: Packings of Regular Pentagons in the Plane,
+%Part I, preliminaries.
+% draft Nov, 2015.
+
+%Authors: Thomas Hales, Woden Kusner.
+
+\def\area{\op{area}}
+\def\areta{\op{areta}}
+\def\c{{\mathbf c}}
+\def\K{\op{K}}
+\def\aK{a_K}
+\def\rat{\Rightarrow}
+\def\ra#1{\Rightarrow_{#1}}
+\def\na#1{{\not\Rightarrow}_{#1}}
+
+\def\epso{\epsilon_0}
+\def\C{\mathcal C}
+\def\S{\mathcal S}
+\def\N{\mathcal N}
+\def\cong{\equiv}
+\def\r{{\mathbf r}}
+\def\bl{\bar\ell}
+
+% tikz.
+\def\smalldot#1{\draw[fill=black] (#1) node [inner sep=0.8pt,shape=circle,fill=black] {}}
+\def\graydot#1{\draw[fill=gray] (#1) node [inner sep=1.3pt,shape=circle,fill=gray] {}}
+\def\whitedot#1{\draw[fill=gray] (#1) node [inner sep=1.3pt,shape=circle,fill=white,draw=black] {}}
+\tikzset{dartstyle/.style={fill=black,rotate=-90,inner sep=0.7pt,dart,shape border uses incircle}}
+\tikzset{grayfatpath/.style={line width=1ex,line cap=round,line join=round,draw=gray}}
+
+% parameters (x,y) center coords, theta vertex angle, rho radius in cm.
+\def\pent#1#2#3#4{%
+\draw[red] (#1,#2) + (#3:#4cm) -- + (#3+72:#4cm) -- +(#3+144:#4cm) -- +(#3+216:#4cm) -- + (#3+288:#4cm) -- cycle
+}
+
+% parameters (x,y) center coords, theta vertex angle.
+\def\pen#1#2#3{%
+\draw[red] (#1,#2) + (#3:1cm) -- + (#3+72:1cm) -- +(#3+144:1cm) -- +(#3+216:1cm) -- + (#3+288:1cm) -- cycle
+}
+
+\def\threepent#1#2#3#4#5#6#7#8#9{%
+\pen{#1}{#2}{#3};
+\pen{#4}{#5}{#6};
+\pen{#7}{#8}{#9};
+\draw[blue] (#1,#2) -- (#4,#5) -- (#7,#8) -- cycle
+}
+
+\def\threepentnoD#1#2#3#4#5#6#7#8#9{%
+\pen{#1}{#2}{#3};
+\pen{#4}{#5}{#6};
+\pen{#7}{#8}{#9}
+}
+
+
+\centerline{\it We dedicate this article to W. Kuperberg.}
+
+\section{Introduction}
+
+Kuperberg and Kuperberg
+ have conjectured that the
+densest packing of congruent regular pentagons in the plane is
+achieved by a double-lattice arrangement: verticals column of aligned
+pentagons pointing upward, alternating with vertical columns of
+aligned pentagons pointing downward (Figure~\ref{fig:double-lattice}) \cite{Kup}.  We call this the {\it Kuperberg
+  conjecture,}  and we call this packing of pentagons the {\it Kuperberg packing}.
+This packing has density
+\[
+\frac{5 - \sqrt{5}}3 \approx 0.921311.
+\] % Checked 2016/2/18. In Vallentin, p.3.  calcs.ml.
+Until now, the best known bound on the density of packings of regular
+pentagons is $0.98103$ \cite{Val}.
+Our research is a continuation of W. Kusner's thesis \cite{Kus}, which proves
+the local optimality of the Kuperberg packing.
+% 0.98103 page 27 of Vallentin. Checked 2016/2/18.
+
+
+\tikzfig{double-lattice}{Kuperbergs' double-lattice packing of regular pentagons.  All figures show
+pentagons in red and Delaunay triangles in blue.}
+{
+\pent{0.0}{0.0}{-90}{0.4};  % s = 0.4
+\pent{0.0}{0.724}{-90}{0.4};  % (1+kappa)*s
+\pent{0.0}{2*0.724}{-90}{0.4};  
+\pent{0.57}{-0.3854}{90}{0.4};  % 3kappa*sigma*s,(3sigma^2-2)*s
+\pent{0.57}{-0.3854+0.724}{90}{0.4}; 
+\pent{0.57}{-0.3854+2*0.724}{90}{0.4};  
+\pent{0.57}{-0.3854+3*0.724}{90}{0.4};  
+\pent{-0.57}{-0.3854}{90}{0.4};  % 3kappa*sigma*s,(3sigma^2-2)*s
+\pent{-0.57}{-0.3854+0.724}{90}{0.4}; 
+\pent{-0.57}{-0.3854+2*0.724}{90}{0.4};  
+\pent{-0.57}{-0.3854+3*0.724}{90}{0.4};  
+\pent{2*0.57}{0.0}{-90}{0.4};  % s = 0.4
+\pent{2*0.57}{0.724}{-90}{0.4};  % (1+kappa)*s
+\pent{2*0.57}{2*0.724}{-90}{0.4}; 
+\pent{3*0.57}{-0.3854}{90}{0.4};  % 3kappa*sigma*s,(3sigma^2-2)*s
+\pent{3*0.57}{-0.3854+0.724}{90}{0.4}; 
+\pent{3*0.57}{-0.3854+2*0.724}{90}{0.4};  
+\pent{3*0.57}{-0.3854+3*0.724}{90}{0.4};   
+}
+
+
+%\section{Introduction}
+
+This paper gives a computer-assisted proof of the upper
+bound $0.9611$ on the density of a packing of
+regular pentagon
+(Corollary~\ref{lemma:961}).{\let\thefootnote\relax\footnote{The
+    results of this paper were announced in 
+Veszpr\'em, Hungary, July 2015.}}
+More significantly, we set up the structures aimed
+towards an eventual computer-assisted proof of the Kuperberg
+conjecture.  Our strategy reduces the Kuperberg conjecture to 
+area minimization problems that involve at most four acute Delaunay triangles.
+
+\begin{remark}\label{rem:interval}
+  The code for the computer-assisted proofs is written in Objective
+  Caml.  There are several hundred lines of code, available for
+  download from github \cite{Git}.  The computer calculations for this
+  paper take less than one minute in total to run.  To control
+  rounding errors on the computer, we use an interval arithmetic
+  package for OCaml by Alliot and Gotteland, which runs on the Linux
+  operating system and Intel processors \cite{All}.
+\end{remark}
+
+
+In this paper, we consider packings of congruent regular pentagons in
+the Euclidean plane.  All pentagons are regular pentagons of fixed
+circumradius $1$.  The inradius of each pentagon is $\kappa:= \cos
+(\pi/5) = (1+\sqrt{5})/4 \approx 0.809$. We set $\sigma := \sin(\pi/5)
+\approx 0.5878$.  The length of each pentagon edge is $2\sigma$.
+% checked 2016/2/18 in calcs.ml.
+
+All pentagon packings will be assumed to be saturated; that is, no
+further regular pentagons can be added to the packing without overlap.
+The assumption of saturation can be made without loss of generality,
+because our ultimate aim is to give upper bounds on the density of
+pentagon packings, and the saturation of a packing cannot decrease its
+density.
+
+We form the Delaunay triangulations of the pentagon packings.  The
+vertices of the triangles are alway taken to be the centers of the
+pentagons.  The saturation hypothesis implies that no Delaunay
+triangle has circumradius greater than $2$.  This property of Delaunay
+triangles is crucial.  It also follows that every edge of a Delaunay
+triangle has length at most $4$.
+
+For most of the paper, we consider a fixed saturated packing and its
+Delaunay triangulation.  Generally, unless otherwise stated,
+every triangle is a  Delaunay triangle.
+Statements of lemmas and theorems implicitly
+assume this fixed context.
+
+Initially, pentagons in a packing play two roles: they constrain the
+shapes of the Delaunay triangles and they carry mass for the density.
+We prefer to we change our model slightly so pentagons are only used
+to constrain the shapes of triangles.  We replace the mass of each
+pentagon by a small, massive, circular disk (each of the same small
+radius) centered at the center of the pentagon, and of uniform density
+and the same total mass as the pentagon.  In this model, each Delaunay
+triangle contains exactly one-half the mass of a pentagon.  By
+distributing the pentagon mass uniformly among the Delaunay triangles,
+we may replace density maximization with Delaunay triangle area
+minimization.
+
+We write 
+\[
+\aK := \frac{3}{2}{ \sigma \kappa(1+\kappa)} \approx 1.29036
+\] % checked 2016/2/18 in calcs.ml
+for the common area of every Delaunay triangle in the 
+Kuperberg packing.  
+
+\section{Clusters of Delaunay triangles}
+
+The area of a Delaunay triangle in a saturated pentagon packing can be
+smaller than $\aK$.  Our strategy for proving the Kuperberg conjecture
+is to collect triangles into finite clusters such that the average
+area over each cluster is at least $\aK$.  The clusters are defined by
+various equivalence relations.  These equivalence relations, in turn,
+are defined as the reflexive, symmetric, transitive closure of further
+relations on the set of Delaunay triangles in a pentagon packing.
+
+In more detail, below, we define various relations $(\ra{x})$, viewing
+relations in the usual way as sets of ordered pairs.  For each
+relation $(\ra{x})$, we write ${(\equiv_{x})}$ for the equivalence
+relation obtained as the reflexive, symmetric, transitive closure of
+$(\ra{x})$.  We call a corresponding equivalence classes $\C$ an
+$x$-cluster, or simply a {\it cluster}, when the relation $(\ra{x})$
+has been fixed.  In other words, each relation defines a directed
+graph whose nodes are the Delaunay triangles of a pentagon packing,
+with directed edges given as arrows $T_1\ra{x} T_2$.  An $x$-cluster
+is the set of nodes in a connected component of the underlying
+undirected graph.
+
+We say that a Delaunay triangle (in any pentagon packing) is {\it
+  subcritical} if its area is at most $\aK$.  We will obtain a lower
+bound $a_0 := 1.237$ on the area of a nonobtuse Delaunay triangle
+(Lemma~\ref{lemma:a0}).  This is a very good bound.  It is very close
+to the numerically smallest achievable area, which is approximately
+$1.23719$.\footnote{In the notation of the appendix, the numerical 
+minimum is achieved by a pinwheel with parameters $\alpha=\beta=0$
+and $x_\gamma\approx 0.16246$.}  
+We write $\epso := \aK - a_0 \approx 0.05336$, for the
+difference between the desired bound $\aK$ on averages of triangles
+and the bound $a_0$ for a single nonobtuse triangle.
+% Numerical page 8. of nonobtuse notes.
+% numerical min checked 2016/2/18 in Mathematica.
+
+We say that Delaunay triangle $T_1$ {\it attaches to Delaunay
+  triangle} $T_2$, provided that the following condition holds: $T_2$
+is the adjacent triangle to $T_1$ along the longest edge of $T_1$.
+(If the triangle $T_1$ has more than one equally longest edge, fix
+once and for all a choice among them, and use this choice to determine
+the triangle that $T_1$ attaches to.  Thus, $T_1$ always attaches to
+exactly one triangle $T_2$.  We can assume that the tie-breaking
+choices are made according to a translation invariant rule.)  We write
+$T_1 \Rightarrow T_2$ for the attachment relation.
+
+
+We define the relation $(\ra{a})$ by $T_1 \ra{a} T_2$ iff
+$T_1\Rightarrow T_2$ and $T_1$ is subcritical.
+
+Let $\N$ be the set of pairs $(T_1,T_2)$ such that $T_1$ is nonobtuse
+subcritical, $T_2$ is obtuse, and $T_1\Rightarrow T_2$.  Write $n_1(T)
+= \card \{T_2\mid (T,T_2)\in \N\}$ and $n_2(T) = \card \{T_1\mid
+(T_1,T)\in \N\}$.  Define
+\[
+b(T) := \op{area}(T) + \epso (n_1(T) - n_2(T)).
+\]
+We say that $T$ is {\it $b$-subcritical} if $b(T) \le \aK$.  We write
+$T_1\ra{b} T_2$, if $T_1\Rightarrow T_2$ and $T_1$ is $b$-subcritical.
+The equivalence classes of triangles under the corresponding
+equivalence relation $(\equiv_b)$ are called {\it $b$-clusters}.
+
+\begin{remark}
+  Note that a triangle is not both nonobtuse and obtuse, so that at
+  least one of the two terms $n_1(T), n_2(T)$ is zero for each $T$.
+  Note also that $n_1(T)\le 1$, because each triangle attaches to
+  exactly one other triangle.  Also, $n_2(T)\le 3$, because each
+  attachment forms along an edge of the triangle $T$.
+\end{remark}
+
+We write $T_1\ra{c} T_2$ iff ($T_1 \ra{b} T_2$ and ($T_1$ is obtuse or
+$T_2$ is not $b$-subcritical)).  A $c$-cluster $\C$ is an equivalence
+class of Delaunay triangles under the relation $(\equiv_c)$.
+
+
+\begin{lemma}\label{lemma:main}  
+  Let $(\ra{x})$ be a subset of $(\ra{b})$.  Assume that $(\ra{x})$ is
+  given by a translation-invariant rule.  Form $x$-clusters of
+  Delaunay triangles under the equivalence relation $(\equiv_x)$. If
+  every $x$-cluster $\C$ in every saturated packing of regular
+  pentagons is finite, and if for some $a$ every $x$-cluster average
+  satisfies
+\begin{equation}\label{eqn:main}
+\frac{\sum_{T\in \C} b(T)}{\card(\C)} \ge a,
+\end{equation}
+then the density of a packing of regular pentagons never exceeds 
+\[
+\frac{\area_P} {2 a},
+\]
+where $\area_P = 5\kappa\sigma$ is the area of a regular pentagon of
+circumradius $1$.  In particular, if the inequality holds for $a=\aK$,
+then the density never exceeds
+\[
+\frac{\area_P}{2 \aK} = \frac{5 - \sqrt{5}}{3},
+\] % checked 2016/2/18 in calcs.ml
+the density of the Kuperberg packing.
+\end{lemma}
+
+For any finite set $\C$ of triangles, we will call the inequality
+(\ref{eqn:main}) with the constant $a=\aK$ the {\it main inequality}
+(for $\C$).  We call the strict inequality,
+\begin{equation}\label{eqn:strict-main}
+\frac{\sum_{T\in \C} b(T)}{\card(\C)} > \aK,
+\end{equation}
+the {\it strict main inequality} (for $\C$).
+
+
+\begin{proof} The maximum density can be obtained as the limit of the
+  densities of a sequence of saturated periodic packings.  Thus, it is
+  enough to consider the case when the packing is periodic.  A
+  periodic packing descends to a packing on a flat torus
+  $\ring{R}^2/\Lambda$, for some lattice $\Lambda$.  The rule defining
+  $\N$ is translation invariant, and $\N$ descends to the torus.  On
+  the torus, the set of pentagons, the set of triangles, and the set
+  $\N$ are finite.  The equivalence relation $(\equiv_x)$ defining
+  clusters is translation invariant, and each cluster is finite, so
+  that no cluster contains both a triangle and a translate of the
+  triangle under a nonzero element of $\Lambda$.  Thus, each cluster
+  $\C$ in $\ring{R}^2$ maps bijectively to a cluster $\C$ in the flat
+  torus.  Let $m$ be the number of pentagons in the torus.  By the
+  Euler formula for a torus triangulation, the number of Delaunay
+  triangles is $2m$.  We have
+\[
+\sum_{T} n_2(T) =  \sum_{T} n_1(T) = 
+\card(\N).
+\]
+Thus, the terms in $b(T)$ involving $n_1(T)$ and $n_2(T)$ cancel:
+\[
+\area(\ring{R}^2/\Lambda) = \sum_T \area(T) = \sum_T b(T).
+\]    
+Let $\area_P$ be the area of a regular pentagon.  Making use of the
+hypothesis of the lemma, we see that the density is
+\[
+\frac{m\, \area_P}{\sum_T \area(T)} 
+=\frac{m\, \area_P}{\sum_T b(T)} \le\frac{m\, \area_P}{2 m\, a} 
+= \frac{\area_P}{2\, a}.
+\]
+When $a=\aK$, the term on the right is the density of the Kuperberg
+packing, as desired.
+\end{proof}
+
+
+\begin{conjecture}\label{conj:main}
+  Let $\C$ be a $b$-cluster of Delaunay triangles in a saturated
+  packing of regular pentagons.  Then $\C$ is finite and the average
+  of $b(T)$ over the cluster is at least $\aK$.  That is, $\C$
+  satisfies the main inequality.  Equality holds exactly when $\C$
+  consists of two adjacent Delaunay triangles from the Kuperberg
+  packing, attached along their common longest edge.
+\end{conjecture}
+
+Analyzing the proof of Lemma~\ref{lemma:main}, we see that for a
+periodic packing, the maximum density is achieved exactly when each
+ cluster in the packing gives exact equality in the main inequality.
+Thus, the conjecture implies that the Kuperberg packing is the
+unique periodic packing that achieves maximal density.
+
+
+\section{Pentagons in contact}
+
+
+\subsection{notation}
+
+By way of general notation, we use uppercase $A,B,C,\ldots$ for
+pentagons; $\v_A,\v_B,\ldots$ for the vertices of pentagons;
+$\c_A,\c_B,\ldots$ for centers of pentagons; $\p,\q,\ldots$ for
+general points in the plane; $\normo{\p}$ for the Euclidean norm;
+$\norm{\c_A}{\c_B}$ for center-to-center distances;
+$\alpha,\beta,\gamma,\phi,\psi,\ldots$ for angles; and $T_1,T_2,\ldots$
+for Delaunay triangles.
+
+We let $\eta(T) = \eta(d_1,d_2,d_3)$ be the circumradius of a triangle
+$T$ with edge lengths $d_1,d_2$, and $d_3$.
+
+Let $\angle(\p,\q,\r)$ be the angle at $\p$ of the triangle with
+vertices $\p$, $\q$, and $\r$.  Let $\arc(d_1,d_2,d_3)$ be the angle
+of a triangle (when it exists) with edge lengths $d_1$, $d_2$, and
+$d_3$, where $d_3$ is the edge length of the edge opposite the
+calculated angle.
+
+
+
+% page 7 pdf obtuse.
+
+We write $\area(T)= \area(d_1,d_2,d_3)$ for the area of triangle $T$
+with edge lengths $d_1,d_2,d_3$.  We write
+$\areta(d_1,d_2,\eta)$ for the area of a triangle with two edges
+$d_1,d_2$ and circumradius $\eta$.  There are in general two
+noncongruent triangles with data $d_1,d_2,\eta$.  We choose
+$\areta(d_1,d_2,\eta)$ to give the area of the triangle such that its
+third edge $d_3$ is as long as possible.
+
+A Delaunay triangle has edge lengths at least $2\kappa$.  This minimum
+Delaunay edge length is attained exactly when the the two
+corresponding pentagons have an edge in common.  The following lemma
+shows that under quite general conditions, we are justified in our
+decision to choose $d_3$ as long as possible in the definition of the
+function $\areta(d_1,d_2,\eta)$.  It is justified in the sense that
+the other choice does not usually give a Delaunay triangle of a pentagon
+packing, according to the following simple test.
+
+\begin{lemma}\label{lemma:areta}  Let $d_1$, $d_2$
+and  $\eta$ be positive real numbers.
+Assume that $T$ and $T'$ are triangles with edge lengths
+$d_1,d_2,d_3$ and $d_1,d_2,d_3'$,  and with the same circumradius
+$\eta$. Assume $2\kappa\le d_1\le d_2$.  Set
+ $\alpha = \arc(\eta,\eta,d_1)+\arc(\eta,\eta,2\kappa)$.
+If $2\kappa \le d_3' < d_3$, then $\alpha < \pi$ and $2\eta\sin(\alpha/2) \le d_2$.
+\end{lemma}
+
+In contraposition, if $\alpha\ge\pi$ or if $d_2 < 2\eta\sin(\alpha/2)$,
+then the triangle $T'\ne T$, with $d_3' < d_3$,
+cannot satisfy the constraint $2\kappa\le d_3'$ of a  Delaunay triangle.
+
+
+\begin{proof} See Figure \ref{fig:areta}.
+Let $\p$, $\q$, and $\r$ (resp. $\p$, $\q$, and $\r'$) be the vertices of $T$
+(resp. $T'$) on a common  circle, with
+\[
+\norm{\p}{\q} =d_1, \quad\norm{\p}{\r}=\norm{\p}{\r'}=d_2, \quad\text{and } 
+\norm{\q}{\r'} = d_3' \le d_3=\norm{\q}{\r}.
+\]
+If $\alpha\ge\pi$, a point $\r'\ne \r$ satisfying the constraints does not exist.
+Assume $\alpha < \pi$. 
+As the figure indicates, $\norm{\p}{\r'}$ is minimized (as a function of $d_2$)
+when $d_3' = 2\kappa$, the lower constraint.  Then
+$d_2 = \norm{\p}{\r'}\ge 2\eta\sin(\alpha/2)$.
+\end{proof}
+
+\tikzfig{areta}{There can be two positions $\r,\r'$ on the circumcircle for
+the third vertex of the triangle.}{
+[scale=1]
+\draw (0,0) circle (1cm);
+\draw (1,0) node[anchor=west] {$\p$} --  (70:1cm) node[anchor=south] {$\q$};
+\draw (1,0) -- node[above=1pt] {$d_2$} (130:1cm) node[anchor=south] {$\r'$};
+\draw (1,0) -- node[below=1pt] {$d_2$} (-130:1cm) node[anchor=north] {$\r$};
+\draw (130:1cm) -- (-130:1cm);
+\draw[thin,gray] (1,0) -- (-1,0);
+}
+
+
+
+\subsection{triple contact}
+
+In this subsection, we describe possible contacts between pentagons.
+
+When two pentagons touch each other, some vertex of one touches an
+edge of the other.  We call the pentagon with the vertex contact the
+{\it pointer} pentagon, and the pentagon with the edge contact the
+{\it receptor} pentagon (Figure~\ref{fig:receptor}).  We also call the
+vertex in contact the {\it pointer vertex} of the pointer pentagon. There are
+degenerate cases, when the contact set between two pentagons contains
+of a vertex of both pentagons.  In these degenerate cases, the
+designation of one pentagon as a pointer and the other as a receptor
+is ambiguous.
+
+\tikzfig{receptor}{Pointer and receptor pairs of pentagons.  In each pair, the pentagon on the
+left can be considered a pointer pentagon, with receptor on the right.  The first pair is nondegenerate,
+and the other two pairs are degenerate.}{
+[scale=0.5]
+\pent{0}{0}{0}{1};
+\pent{1.8}{0}{0}{1};
+\pent{5}{0}{0}{1};
+\pent{7}{0}{180}{1};
+\pent{10+0.176}{0.243}{0}{1};  % 0.3 {Cos [54^o],Sin[54^o]}
+\pent{12-0.172}{-0.243}{180}{1};
+}
+
+
+% nonobtuse.
+We consider a single Delaunay triangle and the three nonoverlapping
+pentagons centered at the triangle's vertices
+(Figure~\ref{fig:3C-type}).  We call such a configuration a {\it
+  $P$-triangle}.  A $P$-triangle is determined up to congruence by six
+parameters: the lengths of the edges of the Delaunay triangle and the
+rotation angles of the regular pentagons.  When we refer to the area
+or edges of a $P$-triangle, we mean the area or edges of the
+underlying Delaunay triangle.  More generally, we allow $P$-triangles
+to inherit properties from Delaunay triangles, such as obtuseness or
+nonobtuseness, the relations $(\ra{x})$, clusters, and so forth. In
+clusters of $P$-triangles it is to be understood that the pentagons
+coincide at coincident vertices of the triangles.  When there is a
+fixed backdrop of a Delaunay triangulation of a pentagon packing, it
+is not necessary to make a careful distinction between a
+$P$-triangle and its underlying Delaunay triangle.
+
+We say that a $P$-triangle is $3C$ (triple contact),
+if each of the three pentagons contacts the other two.
+
+We may direct the edges of a $3C$ triangle by drawing an arrow from
+the pointer pentagon to the receptor pentagon.  We may classify $3C$
+triangles according to the types of triangles with directed edges.
+There are two possibilities for the directed graph.
+\begin{enumerate}
+\item Some vertex is a source of two directed edges and another vertex
+is the target of two directed edges  ($L$-junction, $T$-junction or
+  $\Delta$-junction).
+\item Every vertex is both a source and a target (pinwheel, pin-$T$).
+\end{enumerate}
+
+As indicated in parentheses, we have named each of the various contact
+types.  An example of each of the contact types is shown in
+Figure~\ref{fig:3C-type}.  An exact description of these contact types
+appears later.  The name $L$-junction is suggested by the $L$-shaped
+region bounded by the three pentagons.  Similarly, the name
+$T$-junction is suggested by the $T$-shaped region bounded by the
+three pentagons.  Similarly, for $\Delta$-junctions.  We will see
+below that the types in the figure exhaust the geometric types of
+$3C$ contact.
+
+
+\tikzfig{3C-type}{Types of $3C$-contact from left-to-right:
+a pinwheel, a pin-$T$ junction, a $\Delta$-junction, an $L$-junction, and a $T$-junction.}
+{
+[scale=0.6]
+\threepentnoD{0.00}{0.00}{46.69}{0.82}{1.53}{218.09}{1.73}{0.00}{163.28};
+\begin{scope}[xshift=4.5cm,yshift=1.5cm]
+\threepentnoD{0.00}{0.00}{90}{1.40}{-1.377}{0}{-0.35}{-1.628}{-18.89};
+\end{scope}
+\begin{scope}[xshift=8cm]
+\threepentnoD{0.00}{0.00}{-5.16}{0.99}{1.70}{235.38}{1.98}{0.00}{183.43};
+\end{scope}
+\begin{scope}[xshift=12cm]
+\threepentnoD{0.00}{0.00}{80.86}{0.97}{1.58}{232.21}{1.82}{0.00}{223.24};
+\end{scope}
+\begin{scope}[xshift=16cm]
+\threepentnoD{0.00}{0.00}{114.48}{0.90}{1.59}{237.18}{1.66}{0.00}{219.24};
+\end{scope}
+}
+
+% formatpent3deg (delToPent3 (delAf pinwheeldelA (0.15) (0.15) (0.5)));;  
+% formatpent3deg (delToPent3 (delAf pinwheeldelA (0.15) (0.15) (0.0)));;  
+
+% formatpent3deg (delToPent3 (delAf deltajdelA (0.2) (0.15) (0.05)));;  
+% formatpent3deg (delToPent3 (delAf ljdelA (0.5) (0.6) (0.90)));;  
+% formatpent3deg (delToPent3 (delAf tjdelA (1.0) (1.2) (1.3*. ee)));;  
+
+% graphics for pin-T brute forced in Mathematica.
+
+%Note that the figures give two different geometric types
+%associated to the combinatorial structure of a vertex that
+%is the target of two edges.  
+
+A {\it cloverleaf} arrangement is a $3C$ triangle that has a point at
+which vertices from all three pentagons meet
+(Figure~\ref{fig:clover}).  This is degenerate because this shared
+vertex can be considered as a pointer or receptor.
+
+\tikzfig{clover}{A cloverleaf (degenerate pinwheel)}
+{
+[scale=0.6]
+\begin{scope}[xshift=4cm]
+\threepentnoD{0.00}{0.00}{31.70}{0.76}{1.52}{203.11}{1.70}{0.00}{148.30};
+\end{scope}
+}
+
+
+In general, in this paper, a {\it non-anomaly} lemma refers to a
+geometrical lemma that shows that certain geometric configurations are
+impossible.  Generally, it is obvious from the informal pictures that
+various configurations cannot exist.  The non-anomaly lemmas then
+translate the intuitive impossibilities into mathematically precise
+statements.  We give a few non-anomaly lemmas as follows.
+They are expressed as separation results, asserting that
+two pentagons $A$ and $C$ do not touch.
+
+\begin{lemma}\label{lemma:sep1} 
+Let $T$ be a $3C$-triangle with pentagons $A$, $B$, and $C$ such that
+$B$ is a pointer to both of the other pentagons $A$ and $C$.  
+Assume that $T$ is not a cloverleaf.
+Then the two pointer vertices $\v_B$ and $\v_B'$ are adjacent
+vertices of $B$.
+\end{lemma}
+
+\begin{lemma}\label{lemma:sep2}  
+Let $T$ be a $3C$-triangle with pentagons $A$, $B$, and $C$.
+Suppose that pentagon
+$A$ is a pointer to $B$ at $\v_A$ and that $B$ is a pointer to $C$
+at $\v_B$.  Then on $B$, the vertex
+$\v_B$ is not opposite to the edge of $B$ containing
+$\v_A$.
+\end{lemma}
+
+\begin{lemma}\label{lemma:sep3} 
+Let $T$ be a $3C$-triangle with pentagons $A$, $B$, and $C$ 
+such that $B$ is a receptor of both of
+  the other pentagons.  Then the two pointer vertices
+  $\v_A$ and $\v_C$ lie on the same edge or adjacent pentagon edges of
+  $B$. 
+\end{lemma}
+
+
+
+\tikzfig{sep}{A line through the center 
+of the middle pentagon $B$
+through one of its vertices 
+separates the two extremal 
+pentagons $A$ and $C$.}{
+[scale=0.5]
+\pen{0}{0}{90};
+\pen{1.72}{0.56}{90};  % (1+kappa) {Cos pi/10 , sin pi/10}
+\pen{-1.72}{0.56}{90};  
+\draw (0,-1.5) -- (0,1.5);
+\begin{scope}[xshift=6cm]
+\pen{0}{0}{90};
+\pen{1.72}{0.56}{90};  
+\pen{-1.72}{-0.56}{90};  
+\draw (0,-1.5) -- (0,1.5);
+\end{scope}
+\begin{scope}[xshift=12cm]
+\pen{0}{0}{90};
+\pen{1.72}{-0.56}{90};  
+\pen{-1.72}{-0.56}{90};  
+\draw (0,-1.5) -- (0,1.5);
+\end{scope}
+}
+
+
+\begin{proof} The Lemmas~\ref{lemma:sep1}, \ref{lemma:sep2}, and
+  \ref{lemma:sep3} can be proved in the same way.  In each case, we
+  prove the contrapositive, assuming the negation of the geometric
+  conclusion, and proving that the configuration is not $3C$.  We show
+  that the configuration is not $3C$ by constructing a separating
+  hyperplane between the pentagons $A$ and $C$.  In each case, the
+  separating hyperplane is a line through the center of the middle
+  pentagon $B$ and passing through a vertex $\v$ of that pentagon.  See
+  Figure~\ref{fig:sep}.  In the case of Lemma~\ref{lemma:sep1}, there
+  is a degenerate case of a cloverleaf, where all three pentagons meet
+  at the vertex $\v$ on the separating line.
+\end{proof}
+
+\begin{definition}[$\Delta$]
+  We say that a $3C$-triangle has type $\Delta$ if we are in the first
+  case of Lemma~\ref{lemma:sep3} (the two pointer vertices $\v_A$ and
+  $\v_C$ of $A$ and $C$ lie on the same edge of $B$) provided the line $\lambda$
+  through that edge of $B$ separates $B$ from $A$ and $C$. (See
+  Figure~\ref{fig:delta}.)
+\end{definition}
+
+\tikzfig{delta}{In type $\Delta$, a line separates pentagon 
+$B$ from
+the other two pentagons. The second figure (which is degenerate of type $L$) does not have
+type $\Delta$.}{
+[scale=0.5]
+\pen{0}{0}{90};
+\draw (0,0) node {$B$};
+\draw (-2.0,-0.809) node[above] {$\lambda$} --  (2.0,-0.809);
+\pen{-1.05}{-2*0.809}{-90};
+\pen{1.9 - 1.05}{-2*0.809}{-90};
+\begin{scope}[xshift=6cm]
+\pen{0}{0}{90};
+\draw (0,0) node {$B$};
+\draw (-2.0,-0.809) node[above] {$\lambda$} --  (2.0,-0.809);
+\pen{-0.428}{-2*0.809}{-90};
+\pen{1.36}{ -1.44}{ 212.704};
+\end{scope}
+}
+
+
+In type $\Delta$, say $A$ is a pointer into $C$ at $\v$.  Then $\v_A$
+and $\v$ are the two endpoints of some edge of $A$.  Also, $\v_C$ and
+$\v$ lie on the same edge of $C$.  If the line $\lambda$ does not
+separate $B$ from $A$ and $C$, then $\v_C$ is a shared vertex of $B$
+and $C$, and we have a degeneracy that can also be viewed as $\v_A$
+and $\v_C$ on adjacent pentagon edges of $B$.  This case will be
+classified as a degenerate $L$-junction below.
+
+\begin{definition} Let $T$ be a $P$-triangle with pentagons $A$, $B$,
+  and $C$.  Suppose that $A$ is in contact with $B$ and $C$ at points
+  $\v_B$, $\v_C$ of $A$ that lie on adjacent edges of $A$.  Then we
+  call the common endpoint $\v$ of those adjacent edges an {\it inner
+    vertex} of $A$.  (The definition of inner vertex includes the
+  degenerate case when a vertex of $A$ is $\v_B$ or $\v_C$.)
+\end{definition}
+
+\begin{definition} We say that a $3C$-triangle $T$ is type {\it
+    pin}-$k$, for $k\in \{0,1,2,3\}$ if $A$ points into $B$, $B$
+  points into $C$, $C$ points into $A$, and if there are exactly $k$
+  pentagons (in $\{A,B,C\}$) that have an inner vertex.  We use {\it
+    pinwheel} as a synonym for pin-$0$ and {\it pin-T} as a synonym
+  for pin-$2$.
+\end{definition}
+
+%\begin{definition}
+%  A {\it pinwheel} is a $3C$-triangle in which all three pentagons are
+%  both pointers and receptors.  The following lemma identifies the
+%  geometric structure of such a $P$-triangle.  The two contact ponts
+%  on each pentagon are a vertex and another point on the same pentagon
+%  edge.
+%\end{definition}
+
+% page 23-nonobtuse.
+\begin{lemma} Let $T$ be a $3C$-triangle of type pin-$1$ with
+  pentagons $A$, $B$, and $C$.  Then $T$ is degenerate of type
+  $\Delta$.
+% or type pin-$2$.
+%  Assume that $C$ points to $A$ at $\v_{CA}$, that $A$ points to $B$
+%  at $\v_{AB}$, and that $B$ points to $C$ at $\v_{BC}$.  Assume that
+%  $T$ is not (degenerately) type $\Delta$ (Figure~\ref{fig:delta}).
+%  Then $\v_{CA}$ and $\v_{BC}$ lie on the same edge of $C$.
+\end{lemma}
+
+\tikzfig{pinwheel}{A pin-$1$ configuration.}{
+\begin{scope}[scale=1.0]
+\pen{0}{0}{-90};
+\pen{-0.974}{ 1.543}{ 32.70422};
+\draw[red] ++ (-0.974,1.543) 
+  ++ (0.842,0.532) node[black,anchor=west] {$\v_{CA}$} -- 
+  ++ (115:0.2) -- ++ (-65:1.6) node[black,anchor=south west] {$\v_{AB}$}
+   -- ++ (7:1.17);
+\draw (0,0) node {$B$};
+\draw (0,0) + (3*72-90:1) node[anchor=north west] {$\v_{BC}$};
+\draw (-0.974,1.543) node {$C$};
+\draw (1.1,1.543) node {$A$};
+%\draw (0.57,0.809) -- (2.1,0.809) node[anchor=south] {$\gamma$};
+\end{scope}
+}
+
+\begin{proof}  We draw a (distorted) picture of a
+  pinwheel that violates the conclusion (Figure~\ref{fig:pinwheel}).
+ %(There are
+ % other configurations (and associated figure) that must be ruled out,
+ % when additionally $\v_{AB}$ and $\v_{BC}$ lie on adjacent edge of
+ % pentagon $B$ or when $\v_{CA}$ and $\v_{AB}$ lie on adjacent edges
+ % of pentagon $A$.  We leave these cases to the reader's imagination.)
+%XX
+  We let $\p$ be the inner vertex of $C$; that is, the vertex that is
+  interior to the triangle $(\v_{AB},\v_{BC},\v_{CA})$.  It is an
+  endpoint of the edge of the pentagon $C$ containing $\v_{BC}$.  We have
+\[
+\angle (\p,\v_{BC},\v_{AB}) \le \pi,\quad \angle(\p,\v_{CA},v_{BC}) = 3\pi/5,\quad
+\angle(\v_{AB},\v_{CA},\v_{BC})\le 2\pi/5.
+\]
+(The last inequality uses the fact that $T$ is not pin-$2$, so
+that $\v_{AB}$ is not a vertex of $B$.)
+We also have
+\[
+\angle(\p,\v_{CA},\v_{AB}) \ge 2\pi /5 \ge \angle(\v_{AB},\v_{CA},\v_{BC}) \ge \angle(\v_{AB},\v_{CA},\p).
+\]
+The law of sines applied to the triangle $(\p,\v_{CA},\v_{AB})$ then gives
+\[
+2\sigma =\norm{\v_{CA}}{\p}\le\norm{\v_{CA}}{\v_{AB}}\le 2\sigma.
+\]
+%\[
+%2e\le \norm{\p}{\v_{CA}} \le \norm{\v_{CA}}{\v_{AB}} = 2e.
+%\]
+Thus, we have equality everywhere.  In particular, $\angle(\p,\v_{BC},\v_{AB})=\pi$.  This
+has type $\Delta$.
+\end{proof}
+
+\begin{lemma}  The type pin-$3$ does not exist.  
+\end{lemma}
+
+\begin{proof} Suppose for a contradiction that a $P$-triangle $T$ of
+  type pin-$3$ exists.  The region $X$ bounded by the three pentagons
+  is a nonconvex star-shaped hexagon, with interior angles $\alpha'$,
+  $7\pi/5$, $\beta'$, $7\pi/5$, $\gamma'$, and $7\pi/5$.  The vertices
+  of $X$ with angles $7\pi/5$ are the inner vertices of the three
+  pentagons of $T$.  The sum of the interior angles in a hexagon is $4\pi$:
+\[
+4\pi = \alpha'+\beta'+\gamma' + 3 (7\pi/5),
+\]
+which implies that $\alpha'+\beta'+\gamma' = -\pi/5$, which is
+impossible.
+\end{proof}
+
+\begin{definition}[$T$ and $L$-junction]
+  We say that a $3C$-triangle is a type $T$- or $L$-junction if it is
+  not type $\Delta$ and if we are in the second case of
+  Lemma~\ref{lemma:sep3} (the two pointer vertices $\v_A$ and $\v_C$
+  lie on adjacent edges of $B$).  Say $A$ is a pointer into $C$ at
+  $\v$.  We say that it has type {\it $L$-junction} if $\v_C$ and $\v$
+  lie on the same pentagon edge of $C$, and otherwise we say it has
+  type {\it $T$-junction}.
+\end{definition}
+
+We can be more precise about the structure of a $T$-junction.  In the
+context of the definition, Lemma~\ref{lemma:sep2} implies that $\v$
+and $\v_C$ lie on adjacent pentagon edges of $C$.
+
+This completes the classification of $3C$-triangles.  Useful
+coordinate systems for the various types can be found in the appendix
+(Section~\ref{sec:appendix}).
+
+\section{Delaunay triangle areas}
+
+As an application of the classification from the previous section,
+this section makes a computer calculation of a lower bound on the
+longest edge length of a subcritical triangle.  We also obtain a lower
+bound on the area of a nonobtuse Delaunay triangle.
+
+
+%The next lemma gives a slight improvement on the edge length bound
+%$\kappa\sqrt{8}\approx 2.288$.
+
+\begin{lemma}\label{lemma:21} A nonobtuse subcritical triangle has edge lengths
+  at most $2.1$.
+\end{lemma}
+
+\begin{proof} By the monotonicity of area as a function of edge length
+  for nonobtuse triangles, a triangle with an edge length at least
+  $2.1$ has area at least
+\[
+\area(2.1,2\kappa,2\kappa) > \aK,
+\] % checked 2016/2/18 in Mathematica.
+which is not subcritical.
+\end{proof}
+
+\begin{lemma}\label{lemma:right} 
+  A nonobtuse subcritical triangle has edge length less than
+  $\kappa\sqrt8$.  In particular, a right-angled Delaunay triangle is
+  not subcritical.
+\end{lemma}
+
+\begin{proof}  
+This is a corollary of the previous lemma, because $\kappa\sqrt8 >
+2.1$.
+%
+%  The area of a nonobtuse triangle is monotonic increasing in its edge
+%  lengths.  A nonobtuse Delaunay triangle with an edge of length at
+%  least $\kappa\sqrt{8}$ has area at least that of the isosceles right
+%  triangle
+%\begin{equation}\label{eqn:right}
+%\area(T) \ge \area(2 \kappa,2 \kappa,\kappa\sqrt{8}) = 2 \kappa ^2 \approx 1.30902 > \aK.
+%\end{equation} % checked 2016/2/18 in calcs.ml
+%This is not subcritical.  
+\end{proof}
+
+
+\begin{definition}
+In a $P$-triangle, we say that a pentagon $A$ has {\it primary
+  contact} if some of the following three conditions hold:
+\begin{enumerate}
+\item (slider contact) The pentagon $A$ and one $B$ of the other two pentagons
+share a positive length edge segment;
+\item (midpointer contact)  A vertex of one of the other two pentagons
+is  the midpoint of one of the edges of the pentagon $A$; or
+\item (double contact) The pentagon $A$ is in contact
+with both of the other pentagons.
+\end{enumerate}
+\end{definition}
+
+The next lemma is used to give area
+estimates when an edge has length at most $\kappa\sqrt{8}$.
+
+\begin{lemma}\label{lemma:primary-contact} 
+  Let $A$ be a pentagon in a nonobtuse $P$-triangle.  Assume that the
+  triangle edge opposite $\c_A$ has length at most $\kappa\sqrt{8}$.
+  Then the $P$-triangle can be continuously deformed until $A$ is in
+  primary contact, while preserving the following constraints: the
+  deformation (1) maintains nonobtuseness, (2) is non-increasing in
+  the edge lengths, and (3) keeps fixed the other two pentagons $B$
+  and $C$.
+\end{lemma}
+
+\begin{proof} Fixing $B$ and $C$, we move $A$ to contract the two
+  edges of the triangle at $\c_A$.  For a contradiction, assume that
+  none of the primary contact conditions occur throughout the
+  deformation.  Continue the contractions, until $A$ contacts another
+  pentagon, then continue by rotating $A$ about its center $\c_A$ to
+  break the contact and continue.  Eventually, the assumption of
+  nonobtuseness must be violated.  However, this triangle cannot be
+  obtuse at $\c_A$, because the triangle edge lengths are at least $2
+  \kappa$, $2 \kappa$ with opposite edge at most
+  $\kappa\sqrt{8}$. This is a contradiction.
+\end{proof}
+
+% page 30.
+\begin{lemma} A subcritical $3C$-triangle does not have type $\Delta$.
+  In fact, such a $P$-triangle $T$ has area greater than $1.5$.
+\end{lemma}
+
+\begin{proof} The proof is computer-assisted.  The $3C$-triangles of
+  type $\Delta$ form a three-dimensional configuration space.  The
+  appendix (Section~\ref{sec:appendix}) introduces good coordinate
+  systems for each of the various $3C$-triangle types.  We make a
+  computer calculation of the area of the Delaunay triangle as a
+  function of these coordinates.  We use interval arithmetic to
+  control the computer error.  The lemma follows from these computer
+  calculations.
+\end{proof}
+
+
+
+\begin{lemma}\label{lemma:mid-172}  
+  If a pentagon $A$ has midpointer contact with a pentagon $B$, then
+  $\norm{\c_A}{\c_B} > 1.72$.
+\end{lemma}
+
+\begin{proof} Suppose a pointer vertex $\v_A$ of $A$ is the midpoint of an
+  edge of pentagon $B$.  Rotating $A$ about the vertex $\v_A$, keeping
+  $B$ fixed, we may decrease $\norm{\c_A}{\c_B}$ until $A$ and $B$
+  have slider contact.  This determines the configuration of $A$ and
+  $B$ up to rigid motion.  By the Pythagorean theorem, the
+  distance between pentagon centers is
+\[
+\norm{\c_A}{\c_B} = \sqrt{(2\kappa)^2 + \sigma^2} \approx 1.72149 > 1.72.
+\] % checked 2016/2/18 in calcs.ml
+\end{proof}
+
+\begin{lemma}\label{lemma:172}
+  If every edge of a $P$-triangle $T$ is at most $1.72$, then the
+  triangle is not subcritical.
+\end{lemma}
+
+\begin{proof} This is a computer-assisted proof.\footnote{The constant
+    $1.72$ is nearly optimal.  For example, in the notation of the
+    appendix, the pinwheel with parameters $\alpha=\beta=\pi/15$,
+    $x_\gamma = 0.18$ is subcritical equilateral with edge lengths
+    approximately $1.72256$.} Such a triangle is nonobtuse.  By
+  Lemma~\ref{lemma:primary-contact}, we may deform $T$, decreasing its
+  edge lengths and area, until each pentagon is in primary contact
+  with the other two.  By the previous lemma, we may assume that the
+  contact is not midpointer contact.  Thus, each pentagon has double
+  contact or slider contact with the other pentagons.
+
+  If the $P$-triangle does not have $3C$ contact, then obvious
+  geometry forces one pentagon to have double contact and the other
+  two pentagons to have slider contact (Figure~\ref{fig:172-slider}).
+  The nonoverlapping of the pentagons forces one of slider contacts to
+  be such that a sliding motion along the edges of contact decreases
+  area and edge lengths of $T$.  Thus, the $P$-contact can be deformed
+  until $3C$ contact results.
+
+\tikzfig{172-slider}{We can slide pentagons to decrease
+lengths and the area of the Delaunay triangle}{
+[scale=0.5]
+\threepent{0}{0}{-90}{0.63}{-1.54}{90}{-1.27}{ -1.07}{90};
+}
+
+
+Now assume that the $P$-triangle has $3C$ contact.
+We have classified all $3C$ triangles.  We obtain the proof
+by expressing each family of triangles in terms of explicit
+coordinates from the appendix (Section~\ref{sec:appendix}) and
+computing bounds on the areas and edge lengths of the triangles using
+interval arithmetic.  The result follows.
+\end{proof}
+
+\begin{lemma}\label{lemma:2C} 
+  Let $T$ be a subcritical nonobtuse $P$-triangle with pentagons $A$,
+  $B$, and $C$.  Then fixing $B$ and $C$, we may deform $T$ by moving
+  the third pentagon $A$, without increasing the area of $T$, until
+  $A$ has double contact (with $B$ and $C$).
+\end{lemma}
+
+\begin{proof}
+  By Lemma~\ref{lemma:right}, the edge lengths of $T$ are at most
+  $\kappa\sqrt8$.  By Lemma~\ref{lemma:primary-contact}, we may assume
+  that the pentagon $A$ has primary contact.  If the primary contact
+  of a pentagon $A$ is slider contact, we may slide $A$ along the edge
+  of contact in the direction to decrease the area of $T$ until it has
+  double contact.  If the contact of $A$ is midpointer contact, then
+  we may rotate $A$ about the point of contact with a second pentagon
+  $B$, in the direction to decrease the area of $T$ until it has
+  double contact.  These area-decreasing deformations never transform
+  the nonobtuse subcritical triangle into a right triangle
+  (Lemma~\ref{lemma:right}).
+\end{proof}
+
+
+\begin{lemma}\label{lemma:a0}  
+A nonobtuse $P$-triangle $T$ has area at least $a_0$.
+\end{lemma}
+
+\begin{proof} This is a computer-assisted proof.  We may assume for a
+  contradition that $T$ has area less than $a_0$.  In particular, it
+  is subcritical.  By Lemma~\ref{lemma:2C}, we may assume that each
+  pentagon has double contact with the other two, and that $T$ is
+  $3C$.  We have classified all $3C$ triangles.  We obtain the proof
+by expressing each family of triangles in terms of explicit
+coordinates from the appendix (Section~\ref{sec:appendix}) and
+computing bounds on the areas and edge lengths of the triangles using
+interval arithmetic.  The result follows.
+\end{proof}
+
+\section{Obtuse Clusters}\label{sec:obtuse}
+
+
+% Fig 1. 1-obtuse.pdf page 13b.
+
+\begin{remark}\label{rem:delaunay}
+  Recall that the Delaunay property implies that two adjacent Delaunay
+  triangles $T_1$ and $T_2$ have the property that the angle
+  $\alpha_1$ of $T_1$ and $\alpha_2$ of $T_2$ satisfy $\alpha_1 +
+  \alpha_2\le \pi$, where $\alpha_i$ is the angle of $T_i$ that is not
+  on the shared edge of $T_1$ and $T_2$.  In particular, {\it two
+    obtuse Delaunay triangles cannot be joined along an edge that is
+    the longest on both triangles.}  The extreme case
+  $\alpha_1+\alpha_2=\pi$ corresponds to the degenerate situation
+  where $T_1$ and $T_2$ form a cocircular quadrilateral. When
+  cocircular, either diagonal of the quadrilateral gives an acceptable
+  Delaunay triangulation.
+\end{remark}
+
+\subsection{structure of obtuse clusters}
+
+We continue with our analysis of the clusters in a fixed saturated
+packing of regular pentagons.  
+%By an {\it obtuse cluster}, we mean any
+%$b$-cluster of $P$-triangles that contains at least one obtuse
+%triangle.
+
+\begin{lemma}\label{lemma:notlong}  
+Let $T_1$ and $T_2$ be $P$-triangles, such that $T_1\Rightarrow T_2$, where $T_1$ is nonobtuse subcritical and
+  $T_2$ is obtuse.  Then the edge of attachment is not the longest
+  edge of $T_2$.
+\end{lemma}
+
+\begin{proof} We have seen that each edge of a nonobtuse subcritical
+  triangle has length less than $\kappa\sqrt8$ and that the longest edge of an
+  obtuse Delaunay triangle has length at least $\kappa\sqrt{8}$.  These are
+  incompatible conditions on a shared edge.
+\end{proof}
+
+\begin{lemma}  
+  Let $(T_1,T_2)\in\N$.  Then the edge shared between the triangles is
+  not the longest edge of $T_2$.  In particular, $n_2(T_2)\le 2$.
+\end{lemma}
+
+\begin{proof} If $(T_1,T_2)\in \N$, then $T_1$ and $T_2$ satisfy the
+  assumptions of Lemma~\ref{lemma:notlong}.
+\end{proof}
+
+\begin{lemma}\label{lemma:no-ao} 
+  There is no arrow $T_1 \ra{b} T_2$ with $T_1$ nonobtuse and $T_2$
+  obtuse.
+\end{lemma}
+
+\begin{proof}  
+  Assume for a contradiction that such a pair $(T_1,T_2)$ exists.
+
+  We claim that $(T_1,T_2)\not\in \N$.  Otherwise, by
+  Lemma~\ref{lemma:a0} we have
+\[
+b(T_1) = \area(T_1) + \epso > a_0 + \epso =  \aK.
+\]
+This implies that $T_1$ is not $b$-subcritical, contrary to the
+definition of $b$-attachment $(\ra{b})$.
+
+Since $(T_1,T_2)\not\in \N$, we have $b(T_1) = \area(T_1)$.  So $T_1$
+is subcritical and nonobtuse, $T_2$ is obtuse, and $T_1\Rightarrow
+T_2$.  By the definition of $\N$, this gives $(T_1,T_2)\in\N$, a
+contradiction.
+\end{proof}
+
+
+\begin{lemma}\label{lemma:t2b}
+  If $T_1$ is obtuse, and $T_1 \ra{b} T_2$, then $T_2$ is not
+  $b$-subcritical.
+\end{lemma}
+
+\begin{proof} 
+  If $T_1$ is obtuse, then its longest edge, which is shared with
+  $T_2$, has length at least $\kappa\sqrt8$.
+
+  Assume first that $T_2$ is nonobtuse.  Then $\area(T_2) > a_K$ by
+  Lemma~\ref{lemma:right}.  Thus, $T_2$ is not $b$-subcritical:
+\[
+b(T_2) = \area(T_2) + \epso n_1(T_2) > \aK.
+\]
+
+Now assume that $T_2$ is obtuse.  By basic properties of Delaunay
+triangles (Remark~\ref{rem:delaunay}), Delaunay triangles never join
+along an edge that is the longest on both triangles.  Thus, $T_1$
+attaches to $T_2$ along an edge adjacent to the obtuse angle of $T_2$.
+To bound the area of $T_2$, we deform $T_2$ decreasing its area and
+increasing its longest edge and its circumradius, until we obtain a
+triangle of circumradius $\eta=2$, and shortest edges $2\kappa$ and
+$\kappa\sqrt{8}$.  Then a numerical calculation gives
+\[
+b(T_2) = \area(T_2) - \epso n_2(T_2) \ge 
+\areta(2\kappa,\kappa\sqrt{8},2) - 2\epso > \aK.
+\] % checked 2016/2/18 in Mathematica. It holds by a margin 0.1856....
+The use of the function $\areta$ is justified by
+Lemma~\ref{lemma:areta} and the numerical estimate
+\[
+d_2 = \kappa\sqrt8 <  4 \sin(\arc(2,2,2\kappa)) = 2\eta\sin(\alpha/2).
+\] % checked 2016/2/18 in Mathematica.
+\end{proof}
+
+\subsection{obtuse theorem}
+
+Recall from above that we refine the $b$-clusters into $c$-clusters by
+defining a relation $(\ra{c})$ and corresponding equivalence relation
+$(\equiv_c)$, where $T_1 \ra{c} T_2$ iff ($T_1 \ra{b} T_2$ and ($T_1$
+is obtuse or $T_2$ is not $b$-subcritical)).  Recall that a
+$c$-cluster $\C$ is an equivalence class of Delaunay triangles under
+the corresponding equivalence relation $(\equiv_c)$.
+
+\begin{lemma}\label{lemma:c-weak}
+  Let $\C$ be a $c$-cluster that does not contain an obtuse triangle.
+  Then $\C$ is finite of cardinality at most $4$,
+  and we have the following weak form of the main
+  inequality on $\C$:
+\[
+\frac{\sum_{T\in \C} b(T)}{\card(\C)} > a_0,
+\]
+\end{lemma}
+
+\begin{proof}  
+  We claim that every $c$-cluster $\C$ that does not contain
+ an obtuse triangle is finite.
+  In fact, on such a cluster $T_1\ra{c} T_2$ implies that $T_1$ is
+  $b$-subcritical nonobtuse and $T_2$ is nonobtuse but not
+  $b$-subcritical.  The $b$-criticality conditions on $T_1$ and $T_2$
+  are incompatible, so that there are no paths of length greater than
+  $1$ in the directed graph of $(\ra{c})$.  Also, the out-degree is at
+  most $1$, and in-degree at most $3$ at each node of the directed
+  graph.   The bound on cardinality follows.
+
+  If $T$ is any nonobtuse Delaunay triangle, then by the definition of
+  $b(T)$ and by Lemma~\ref{lemma:a0}, we have
+\[
+b(T) = \area(T)+\epso n_1(T) \ge \area(T) > a_0.
+\]
+Thus, the average is also greater than $a_0$.
+\end{proof}
+
+The following theorem and its corollary are the main results of this
+section.  We will prove the theorem after presenting the corollary.
+
+\begin{theorem}\label{lemma:obtuse}  
+  Let $\C$ be any $c$-cluster that contains an obtuse triangle.  Then
+  $\C$ is finite, and the strict main inequality
+  (\ref{eqn:strict-main}) holds for $\C$.
+\end{theorem}
+
+\begin{corollary}\label{lemma:961}  
+  The density of a packing of regular pentagons is at most
+\[
+\frac{\area_P}{2a_0} < 0.9611,
+\] % checked calcs.ml 2016/2/18.
+where $\area_P$ is the area of a regular pentagon of circumradius $1$.
+\end{corollary}
+
+\begin{proof}[Proof (corollary).] 
+  Combining the Theorem~\ref{lemma:obtuse} with
+  Lemma~\ref{lemma:c-weak}, 
+  each $c$-cluster $\C$ satisfies
+  the main inequality with constant $a=a_0$.  By
+  Lemma~\ref{lemma:main}, this gives the density bound.
+\end{proof}
+
+We remark that $b$-clusters will be used later more directly in our
+strategy to prove the Kuperberg conjecture.  We now turn to the proof
+of the main result in this section.
+
+\begin{proof}[Proof (theorem).] 
+  The proof involves several relatively simple cases.  
+  We recall that each Delaunay triangle has edge lengths at
+  least $2\kappa$ and circumradius at most $2$.
+
+  If the $c$-cluster is a singleton $\{T_1\}$, where $T_1$ is obtuse,
+  then there does not exist an arrow 
+$T_1\ra{c} T_2$.  This implies that the triangle $T_1$ is
+  not $b$-subcritical, and $b(T_1) > \aK$.  This completes this case.
+  We now assume that $\C$ is not a singleton.
+
+  Let $\C$ be a $c$-cluster with an obtuse triangle.  Then there
+  exists an arrow $T_1 \ra{c} T_0$ in $\C$ with $T_1$ or $T_0$ obtuse.
+  By Lemma~\ref{lemma:no-ao}, $T_1$ is obtuse.  By the definition of
+  $(\ra{c})$, the triangle $T_1$ is $b$-subcritical.  By
+  Lemma~\ref{lemma:t2b}, $T_0$ is not $b$-subcritical, so there is no
+  further arrow $T_0\ra{c} T$.
+
+  Let $\C_0 = \{ T \mid T\ra{c} T_0\}$.  We claim that for all $T\in
+  \C_0$, there does not exist an arrow $T' \ra{c} T$.  Otherwise, by
+  the definition of $(\ra{c})$ applied to the arrows $T'\ra{c} T\ra{c}
+  T_0$, we have that $T$ is $b$-subcritical and $T'$ is obtuse.  Then
+  by Lemma~\ref{lemma:t2b} applied to the arrow $T'\ra{c} T$, the
+  triangle $T$ is not $b$-subcritical, which is a contradiction.
+
+  Hence, all arrows in the $c$-cluster have been determined, and $\C =
+  \C_0 \cup \{T_0\}$.  The cluster is finite, consisting of a single
+  triangle $T_0$, together with all the arrows $T\ra{c} T_0$ into it.
+  Before continuing with the proof of the theorem, we need the
+  following lemma.
+
+\begin{lemma} Let $\C$ be any $c$-cluster that contains an obtuse
+  triangle.  Write $\C = \C_0 \cup \{T_0\}$ as above.  Let
+  $\C_0'\subset \C_0$ be the obtuse triangles in $\C_0$ and let $\C' =
+  \C_0' \cup \{T_0\}$.  Set
+\[
+\S = \{T \mid T \text{ is nonobtuse subcritical such that } \exists
+T'\in \C' \text{ with } T\rat T'\}.
+\]
+If
+\begin{equation}\label{eqn:S}
+\sum_{T\in \C'} \area(T) > a_K \card(\C') + \epso \card(\S),
+\end{equation}
+then the strict main inequality holds for $\C$.
+\end{lemma}
+
+\begin{proof}
+  We note that $\C_0' \cap \S$ is empty, because triangles in $\C_0'$
+  are obtuse and triangles in $\S$ are not.
+  We break the proof into two cases depending on whether $T_0$ is
+  obtuse.
+
+  Assume first that $T_0$ is obtuse.  If $T\in \C_0\setminus \C_0'$,
+  then $T$ is nonobtuse.  By the construction of $\C_0$, we have
+  $T\ra{c} T_0$, so $T\ra{b} T_0$.  By Lemma~\ref{lemma:no-ao}, $T$
+  does not exist.  Hence $\C_0' = \C_0$ and $\C'=\C$.  That is, every
+  triangle in $\C$ is obtuse.  Note that
+\[
+\sum_{T\in \C} n_2(T) = \card(S).
+\]
+Then by the assumption (\ref{eqn:S}), we have
+\begin{align*}
+\sum_{T\in \C} b(T) &=\sum_{T\in \C} (\area(T) - \epso n_2(T)) \\
+&= \sum_{T\in \C} \area(T) - \epso \card(S) \\
+&> a_K \card(\C).
+\end{align*}
+This is the strict main inequality.
+
+Finally, assume that $T_0$ is nonobtuse.  We have
+\[
+b(T_0) = \area(T_0) + \epso n_1(T_0) \ge \area(T_0).
+\]
+
+We claim that 
+\[
+\card(\S) \ge \card(\C_0 \setminus \C_0') + \card(S\setminus \C_0).
+\]
+In fact, it is enough to show that if $T\in \C_0\setminus \C_0'$, then
+$T\in \S$.  Any such $T$ is nonobtuse and $T\ra{c}T_0$.  Expanding
+the definition of $(\ra{c})$, we get $T\rat T_0$, and $T$ is
+$b$-subcritical, $(T,T_0)\not\in\N$, so $b(T) = \area(T)$, and $T$ is
+subcritical.   This gives $T\in \S$.
+
+We have
+\[
+\sum_{\C_0'} n_2(T) = \card\{T'\in\S \mid T' \text{ nonobtuse
+  subcritical, and } T'\rat T\in \C_0' \} \le \card(\S\setminus \C_0 ),
+\]
+
+Using (\ref{eqn:S}) and Lemma~\ref{lemma:a0}, we have
+\begin{align*}
+\sum_{T\in \C} b(T) &= \sum_{\C_0\setminus \C_0'} b(T) + b(T_0) +
+\sum_{\C_0'} b(T) \\
+&\ge \sum_{\C_0\setminus \C_0'} \area(T) + \area(T_0) +
+\sum_{\C_0'} (\area(T) - \epso n_2(T)) \\
+&\ge \card({\C_0\setminus \C_0'}) a_0 + (\area(T_0) +
+\sum_{\C_0'} \area(T)) - \epso \card(\S\setminus \C_0)\\
+&> \card({\C_0\setminus \C_0'}) (\aK  - \epso) + (\aK \card(\C') +
+\epso \card(\S)) - \epso \card(\S\setminus \C_0)\\
+&\ge a_K \card(\C).
+\end{align*}
+This is the strict main inequality for $\C$.
+\end{proof}
+
+\begin{remark} If $T'\in\S$, then $T'$ is nonobtuse subcritical.
+  Also, $T'\rat T$, for some $T\in \C'$.  By construction, $T'$
+  attaches to $T$ along the longest edge of $T'$.  By
+  Lemmas~\ref{lemma:21} and \ref{lemma:172}, the longest edge has
+  length in $[1.72,2.1]$.  Thus, we can get an upper bound on
+  $\card(\S)$ by counting the number $n'$ of edges of $\C'$ in this
+  range.  Note that the longest edge of each $T\in \C_0'$ is at least
+  $\kappa\sqrt8 > 2.1$, hence is not in this range.  Thus, to prove the
+  strict main inequality, it is enough to show that
+\begin{equation}\label{eqn:n'}
+\sum_{T\in \C'} \area(T) > a_K \card(\C') + n'\epso.
+\end{equation}
+\end{remark}
+
+We now continue with the proof of Theorem~\ref{lemma:obtuse}.  
+Without loss of generality, we may assume that
+$\C'$ is not empty.  Otherwise, the unique obtuse
+triangle in $\C$ is $T_0$.  The proof of the preceeding lemma shows
+that when $T_0$ is obtuse, then $\C_0 \setminus \C_0' = \emptyset$.
+Thus, $\C = \{T_0\}$, which is a case that has already been treated.
+
+We break the proof into six cases depending on whether $T_0$ is
+nonobtuse, and depending on $\card(\C')\in \{1,2,3\}$.
+In each case we prove inequality (\ref{eqn:n'}).
+
+
+{\it Case 1. The triangle $T_0$ is a nonobtuse triangle, and
+  $\C'=\{T_0,T_1\}$.}  The triangle $T_0$ has a vertex $\v$ that is
+not shared with $T_1$.  By the Delaunay property, $\v$ lies outside
+the circumcircle of $T_1$.  The triangles $T_0$ and $T_1$ form a
+quadrilateral $Q$ whose diagonal is the shared edge of $T_0$ and
+$T_1$.  We deform the quadrilateral $Q$ to decrease its area while
+maintaining the following constraints:
+\begin{enumerate}
+\item The vertex $\v$ lies on or outside the circumcircle of
+  $T_1$. The circumradius of $T_1$ is at most $2$.
+\item The edge length of the $i$th edge of $Q$ is at least
+  $d_i\in\{2\kappa,1.72\}$,
+where $n'$ is the number of $d_i$ that equal $1.72$; and
+\item $T_1$ is not acute.
+\end{enumerate}
+We drop all other constraints as we deform. (In particular, we do not
+enforce the nonoverlapping of pentagons in the $P$-triangles.)
+We continue to deform $Q$ until one of the following two subcases hold:
+\begin{enumerate}
+\item $Q$ is cocircular; or
+\item For all $i=1,2,3,4$, the $i$th edge of $Q$ has reached its lower
+  bound $d_i$.
+\end{enumerate}
+
+In the first subcase (cocircularity), we drop the third constraint
+(non-acuteness) and continue area decreasing deformations for $Q$
+under the constraint of a fixed circumcircle.  We note that the area of
+a cocircular quadrilateral $Q$ depends only on the lengths of the
+edges and not on their cyclic order on $Q$.  We may thus rearrange the
+edge order as we deform.  For a given circumcircle, the area is
+minimized when three of the edges attain their lower bound $d_i$.  By
+suitable reordering of the edges, we may assume that $Q$ is an
+isosceles trapezoid and that the ``free'' edge is parallel to and
+longer than its opposite edge on $Q$.  For such $Q$, the area as a
+function of the circumradius is concave, so that the minimum occurs
+when the circumradius is as small (that is, all edges attain the
+minimum $d_i$) or as large (that is, $\eta(Q)=2$) as possible.
+When $\eta(Q)=2$, we relax the edge lengths constraints further
+to allow three edges to have length $2\kappa$.
+Explicit numerical calculations in these two extremal configurations
+show that the inequality (\ref{eqn:n'}) is satisfied (for each $n'$).
+
+In the second subcase (every edge attains its minimal length $d_i$), the
+four edge lengths are fixed.  The area of $Q$ is a concave function of
+the length of the diagonal.  We thus minimize the area of $Q$ when the
+diagonal is as small as possible (that is, $T_1$ is a right triangle
+-- when this satisfies the other constraints) or as large as possible
+(that is, $Q$ is cocircular).  The cocircular case has already been
+considered.  Explicit numerical calculations of $Q$ when $T_1$ is
+right gives the inequality (\ref{eqn:n'}) in each case.
+% checked 2016/2/18 in Mathematica.
+
+
+
+
+{\it Case 2. The triangle $T_0$ is a nonobtuse triangle, and $\C'=\{T_0,T_1,T_1'\}$.}
+The long edges of the obtuse triangles $T_1$ and $T_1'$ have length at least
+$\kappa\sqrt{8}$.
+
+We consider a subcase where $\eta(T_1)\le 1.7$ and $\eta(T_1') \le
+1.7$.  Then calculations based on the monotonicity of the area
+functions give
+\[
+\area(T_0) \ge \area(d,\kappa\sqrt{8},\kappa\sqrt{8}) > 
+   \begin{cases}1.73,&\text{if } d \ge 2\kappa\\ 
+     1.73+\epso, & \text{if } d \ge 1.72 \end{cases}.
+\]
+The areas of $T=T_1,T_1'$ are at least
+\begin{equation}\label{eqn:173}
+\area(T) \ge \areta(d,2\kappa,1.7) >
+   \begin{cases}1.08,&\text{if } d \ge 2\kappa\\
+     1.08+2\epso, & \text{if } d \ge 1.72 \end{cases}.
+\end{equation}
+These bounds give
+\[
+\area(T_1) + \area(T_1') + \area(T_0) > 1.73 + 2(1.08) + n'\epso > 
+3 \aK + n' \epso.
+\]
+% checked 2016/2/18 in Mathematica.
+
+By symmetry, we may now assume that $\eta(T_1) \ge 1.7$.  By the
+Delaunay condition, since $T_1$ is obtuse and $T_0$ is nonobtuse, this
+forces $\eta(T_0)\ge 1.7$.  We minimize the area of $T_0$ subject to
+the constraints that its circumradius is at least $1.7$, that it is
+nonobtuse, and its edge lengths are at least $\kappa\sqrt{8}$,
+$\kappa\sqrt{8}$, and $2\kappa$.  If two edges are $2\kappa$,
+$\kappa\sqrt{8}$, then $T_0$ is obtuse, so the binding constraints for
+the optimization become $\eta(T_0)=1.7$, $2\kappa$ edge length, and a
+right triangle.  Such a triangle has area at least 
+\[
+2\kappa\sqrt{\eta^2 - \kappa^2} \ge 2.41.
+\]  
+The areas of $T_1$ and $T_1'$ are at least
+\begin{equation}\label{eqn:968}
+\areta(2\kappa,2\kappa,2) > 0.968.
+\end{equation}
+This completes this case:
+\[
+\area(T_1) + \area(T_1') + \area(T_0) 
+>
+2(0.968) + 2.41 > 3\aK + 5 \epso \ge 3\aK + n'\epso.
+\] %checked 2016/2/18 in Mathematica.
+
+{\it Case 3. The triangle $T_0$ is a nonobtuse triangle, and $C'=\{T_0,T_1,T_1',T_1''\}$.}
+
+This case is almost identical to case 2.  We use the same bounds
+(Equations (\ref{eqn:173}) and (\ref{eqn:968})) on $\area(T)$ as
+before, for $T = T_1, T_1', T_1''$.  We can improve the bound on the
+area of $T_0$:
+\[
+\area(T_0) \ge \area(\kappa\sqrt{8},\kappa\sqrt{8},\kappa\sqrt{8}) > 2.2668.
+\]
+Moreover, in the subcase where $\eta(T_0)\ge 1.7$, we have
+(even after dropping the nonobtuseness constraint):
+\[
+\area(T_0) \ge \areta(\kappa\sqrt{8},\kappa\sqrt{8},1.7) > 2.6.
+\]
+In this case, $n'\le 6$.  Proceeding as before, we get
+\[
+\area(T_0)  + \area(T_1) + \area(T_1') + \area(T_1'') > 
+\begin{cases}
+2.2668 + 3 (1.08) \\
+2.6 + 3(0.968)
+\end{cases}
+> 4\aK + n' \epso.
+\] %checked 2016/2/18 in Mathematica.
+
+
+This completes the proof for cases involving a nonobtuse triangle
+$T_0$.  In the remaining cases, we assume that $T_0$ is obtuse.  In
+fact, every triangle in $\C'$ is obtuse.
+
+{\it Case 4. The triangle $T_0$ is an obtuse triangle, and $\C'=\{T_0,T_1\}$.}  
+
+In this case, $n'\le 3$.  It will not be necessary to create subcases
+according to whether short edges are at least $2\kappa$ or $1.72$.  We
+will show that we can relax the lower bound on the edge to $2\kappa$
+and still obtain the bound (\ref{eqn:n'}).
+
+We minimize area by flattening $T_0$ by stretching its long edge until
+$\eta(T_0)=2$.  We further decrease area, keeping the circumradius
+fixed, by contracting the shorter edge not shared with $T_1$, until
+the edge has length $2\kappa$.
+
+Next continue to minimize area by contracting an edge of $T_1$,
+keeping its circumradius fixed, until an edge has length $2\kappa$.
+Then, allowing the circumradius of $T_1$ to increase, we contine until
+both shorter edges have length $2\kappa$ or until the circumradius
+reaches $2$.
+
+First assume that both shorter edges of $T_1$ have length $2\kappa$.
+We have reduced to a one-parameter family of quadrilaterals.  We can
+choose the parameter to be the length $x$ of the diagonal, the common
+edge of $T_1$ and $T_0$.  The parameter $x$ ranges between
+$\kappa\sqrt{8}$ and $x_{\max}\approx 2.9594$, determined by the
+condition $\eta(2\kappa,2\kappa,x_{\max}) = 2$.  We check numerically
+that
+\[
+\area(T_1) + \area(T_0) \ge \area(2\kappa,2\kappa,x) +
+\areta(x,2\kappa,2) > 2\aK + 3 \epso \ge 2\aK + n'\epso.
+\] % checked 2016/2/18 in Mathematica.
+
+Next, assume the circumradius of $\eta(T_1)$ reaches $2$, then we
+have a cocircular quadrilateral that can be treated as in Case 1.  In
+particular, the minimizing cocircular quadrilateral has three edges of
+length $2\kappa$ and circumradius $2$.  This is precisely the limiting
+case of a quadrilateral with diagonal $x_{\max}$ considered above.
+
+This completes the argument in this case.
+
+{\it Case 5. The triangle $T_0$ is an obtuse triangle, and $\C'=\{T_0,T_1,T_1'\}$.}  
+
+By Remark~\ref{rem:delaunay}, there is no arrow $T \rat T_0$ in $\C'$
+such that the shared edge is the long edge of $T_0$.  In particular,
+there cannot exist (Case 6) with $\C'=\{T_0,T_1,T_1',T_1''\}$ with
+every triangle obtuse.  Thus, Case 5 is the last case to be
+considered.
+
+We have $n'\le 4$.
+The area of $T_0$ is at least
+$\areta(\kappa\sqrt{8},\kappa\sqrt{8},2) > 2.45$.  
+Using our earlier estimates (\ref{eqn:968})
+for $\area(T)$, for $T=T_1,T_1'$, we
+have
+\[
+\area(T_1) + \area(T_1') + \area(T_0) > 2 (0.968) + 2.45 > 3\aK + n'\epso.
+\] % checked 2016/2/18 in Mathematica.
+%If some shorter edge of $T_1$ or $T_1'$ is at least $1.72$, then we
+%again use the estimates from earlier cases to
+%obtain % specify earlier cases XX
+%\[
+%\area(T_1) + \area(T_1') + \area(T_0) >  3\aK  + n'\epso.
+%\]
+This completes the proof of the theorem.
+\end{proof}
+
+\section{Conjectures}
+
+In this section, we give refinements of Conjecture~\ref{conj:main}.  A
+proof of Conjecture \ref{conj:dimer} would represent a strengthening
+of the local optimality results in~\cite{Kus}.
+
+\begin{definition}
+  We define a {\it dimer} to be a pair $\{T_1,T_2\}$ such that $T_1$
+  and $T_2$ are both nonobtuse subcritical $P$-triangles, and $T_1\rat
+  T_2$ or $T_2\rat T_1$.
+\end{definition}
+
+\begin{conjecture}\label{conj:dimer}[Dimer conjecture]
+  If $\{T_1,T_2\}$ is a dimer, then $T_1$ and $T_2$ are joined along
+  their common (uniquely) longest edge. Furthermore, the
+$P$-triangles, $T_1$ and $T_2$, are
+  congruent to those in the Kuperberg packing.
+\end{conjecture}
+
+The dimer conjecture implies in particular that $\area(T_1)=\area(T_2)
+= \aK$.  Also, $T_1\rat T_2$ and $T_2\rat T_1$.  We note that dimer
+conjecture would allow us to simplify a number of the arguments in
+earlier sections.  The following lemmas give a number of other
+consequences of the dimer conjecture.
+
+\begin{lemma}\label{lemma:dimer}
+  The dimer conjecture implies that there does not exist a pair of
+  arrows $T_1 \ra{b} T_2 \ra{b} T_3$, with $T_1$ nonobtuse, unless
+  $T_1= T_3$ and $\{T_1,T_2\}$ is a dimer.
+\end{lemma}
+
+\begin{proof} Assume for a contradiction that the arrows exist.  By
+  Lemma~\ref{lemma:no-ao}, $T_2$ and $T_3$ are nonobtuse.  By the
+  definition of $b$ and $\N$, we have $b(T_1) = \area(T_1)$ and $b(T_2) =
+  \area(T_2)$.  Hence $T_1$ and $T_2$ are nonobtuse subcritical.  By
+  the dimer conjecture, $T_2\rat T_1$.  Thus, an arrow $T_2\rat T_3\ne
+  T_1$ does not exist.
+\end{proof}
+
+\begin{lemma}\label{lemma:dimer-obtuse} 
+Assume the dimer conjecture.  There does not exist an
+arrow $T\rat T_1$, where $T$ is obtuse, and $T_1$ is part of a dimer.
+\end{lemma}
+
+
+\begin{proof}  
+  If $T$ is obtuse, its longest edge has length greater than
+  $\kappa\sqrt8$, but the edges of $T_1$ in a dimer are shorter than
+  this, so we do not have the given arrow $T\rat T_1$.
+\end{proof}
+
+\begin{lemma}
+  Assume the dimer conjecture.  There does not exist an arrow $T\rat
+  T_1$, where $T$ is nonobtuse subcritical, and $T_1$ is part of a
+  dimer, unless the dimer pair is $\{T,T_1\}$.
+\end{lemma}
+
+
+\begin{proof}
+  With $T$ nonobtuse subcritical, the dimer conjecture implies that
+  $\{T,T_1\}$ is a dimer.
+\end{proof}
+
+\begin{lemma}\label{lemma:dimer-cluster}
+Assume the dimer conjecture.  A dimer $\{T_1,T_2\}$ is an $a$-cluster and
+a $b$-cluster.
+\end{lemma}
+
+\begin{proof}  
+We have $T_1 \ra{a} T_2$ and $T_1 \ra{b} T_2$.
+
+Assume $T\rat T_1$, where $T\ne T_2$.  Then by
+Lemma~\ref{lemma:dimer-obtuse}, we see that $T$ is nonobtuse.  By the
+dimer conjecture, $T$ is not subcritical.  Also $n_1(T) = 0$ and
+$b(T)=\area(T)$, so $T$ is not $b$-subcritical.  So
+\[
+T\na{a} T_1,\quad\text{and}\quad T\na{b} T_1.
+\]
+The result follows.
+\end{proof}
+
+
+
+\begin{lemma}\label{lemma:b=c}  
+The dimer conjecture implies that if $\C$ is a $b$-cluster
+that contains an obtuse triangle $T$, then $(\ra{c})$ restricted to $\C$ is
+equal to $(\ra{b})$ restricted to $\C$.
+\end{lemma}
+
+\begin{proof} By definition, we have $(\ra{c})\subseteq (\ra{b})$.
+  Suppose that $T_1\ra{b} T_2$ but not $T_1 \ra{c} T_2$, for some
+  $T_1,T_2\in\C$.  By the definition of $(\ra{c})$, the triangle $T_1$
+  is nonobtuse and $T_2$ is $b$-subcritical.
+
+  Let $T_3$ be such that $T_2\rat T_3$.  Then $T_1\ra{b} T_2\ra{b}
+  T_3$.  By Lemma~\ref{lemma:dimer}, $T_1=T_3$ and $\{T_1,T_2\}$ is a
+  dimer.  By Lemma~\ref{lemma:dimer-cluster}, $\{T_1,T_2\}$ is a full
+  $b$-cluster and contains no obtuse triangles, which is contrary to
+  assumption.
+\end{proof}
+
+\begin{lemma}\label{lemma:b-structure} 
+  Assume the dimer conjecture.  Then every $b$-cluster $\C$ is finite.
+  Specifically, one of the following holds:
+\begin{enumerate}
+\item $\C$ is a singleton $\{T_0\}$, where $T_0$ is not
+  $b$-subcritical; or
+\item $\card(\C)>1$ and there exists $T_0\in \C$ such that
+\[
+\C = \{T \mid T\ra{b} T_0\} \cup \{T_0\}.
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof} If $\C$ contains an obtuse triangle, then the
+  $b$-cluster $\C$ is also a $c$-cluster by Lemma~\ref{lemma:b=c}.
+  These structure results for $c$-clusters were obtained in
+  Section~\ref{sec:obtuse} in the proof of Theorem~\ref{lemma:obtuse}.
+
+  Now assume that every triangle in $\C$ is nonobtuse.  We consider
+  three cases depending on whether $\C$ is a singleton, a dimer, or
+  general.
+
+  Assume first that $\C = \{T_0\}$, a singleton.  Then $T_0\rat T$ for
+  some triangle $T$.  Because $T$ is not in the $b$-cluster of $C$, we
+  do not have $T_0\ra{b} T$, which implies that $T_0$ is not
+  $b$-subcritical.
+
+  Next, assume that $\C = \{T_0,T_1\}$ a dimer.  Then it is easy to
+  see that the conclusions of the lemma hold.
+
+  Finally assume that $\C$ is not a singleton nor a dimer.  We have
+  $T'\ra{b} T_0$, for some $T',T_0\in \C$.  Set
+\[
+\C_1 = \{T \mid T\ra{b} T_0\} \cup \{T_0\}.
+\]
+By the definition of a $b$-cluster, we have $\C\supseteq \C_1$.  By
+Lemma~\ref{lemma:dimer} there are no other arrows $(\ra{b})$ between
+triangles in $\C_1$, so $\C_1 = \C$.
+\end{proof}
+
+\begin{lemma}\label{lemma:obtuse-main} 
+  The dimer conjecture implies that every $b$-cluster with an obtuse
+  triangle satisfies the strict main inequality.
+\end{lemma}
+
+\begin{proof} By Theorem~\ref{lemma:obtuse}, the strict main
+  inequality holds for a $c$-cluster with an obtuse triangle.  By the
+  lemma~\ref{lemma:b=c}, this $c$-cluster coincides with the
+  $b$-cluster.
+\end{proof}
+
+Our strategy of proof for the Kuperberg conjecture is to prove the
+main inequality for every $b$-cluster.  The next lemma places strong
+restrictions on the structure of a possible counterexample to the
+Kuperberg conjecture.
+
+\begin{lemma}\label{lemma:props}  
+  Assume the dimer conjecture.  Let $\C$ be a $b$-cluster that
+  violates the strict main inequality.  Then
+\begin{enumerate}
+\item All triangles in $\C$ are nonobtuse.
+%\item $T\ra{b} T'$ iff $T \ra{a} T'$ if $T\in C$ or if $T'\in\C$.
+%\item $\C$ is an $a$-cluster.
+\item $b(T) \ge \area(T)$ for all $T\in \C$.  
+\item There is $T_0\in \C$ such that $\C = \{T_0\}\cup \{T \mid
+  T\ra{a} T_0\}$.
+\item The cardinality of $\C$ is $2$, $3$, or $4$.
+\item All edges of $\C$ have length at most $2.1$.
+\end{enumerate}
+\end{lemma}
+
+In particular, the Kuperberg conjecture is reduced to calculations of
+areas involving clusters of at most four acute triangles, each with
+edge lengths at most $2.1$.
+
+\begin{proof}  By Lemma~\ref{lemma:obtuse-main},  every triangle in
+  the counterexample $\C$ is nonobtuse.  Hence (1).
+
+
+Next we prove (2).  If $T\in \C$, then $T$ is nonobtuse, so that $b(T)
+= \area(T) + \epso n_1(T)\ge \area(T)$.  
+
+For part (3), we use Lemma~\ref{lemma:b-structure}.  We can eliminate
+the case when $\C$ is a singleton, because in that case the single
+triangle is not $b$-subcritical, and it satisfies the strict main
+inequality.  The lemma now gives $T_0\in \C$ such that
+\[\C = \{T_0\}\cup \{T \mid
+  T\ra{b} T_0\}.
+\]
+We show that we can replace the arrows $(\ra{b})$ with $(\ra{a})$.
+Suppose $T\rat T_0$.  We claim that $T\ra{a} T_0$ iff $T\ra{b} T_0$.
+In fact, $T_0$ is nonobtuse so $(T,T_0)\not\in \N$ and
+\[
+b(T) = \area(T) - \epso n_2(T) \le \area(T).
+\]
+If $T\ra{a} T_0$ then $b(T)\le \area(T)\le \aK$, so $T\ra{b} T_0$.
+Conversely, if $T\ra{b} T_0$, then $T\in \C$, so $T$ is nonobtuse and
+$n_2(T) = 0$.  Thus, $\area(T) = b(T)\le \aK$, and $T\ra{a}T_0$.  This
+completes the proof of the claim and the proof of (3).
+
+There are at most three triangles in addition to $T_0$ in $\C$,
+corresponding to the three edges of $T_0$.  This gives (4).
+
+We have now completed the proof of all but the last property of $\C$
+(concerning edge lengths $2.1$).  All the edges of a subcritical
+triangle have lengths at most $2.1$ by Lemma~\ref{lemma:21}.  All the
+triangles, except possibly $T_0$ are subcritical.  The edges of $T_0$
+shared with $T\in \C\setminus\{T_0\}$ have length at least $1.72$ by
+Lemma~\ref{lemma:172}.
+
+Let $c = \card(\C\setminus \{T_0\})$. Assume $T_0$ has an edge length
+at least $2.1$.  Then $c\le 2$, because that edge is not on a
+subcritical triangle.  We show that $\C$ satisfies the strict main
+inequality by showing that $\area(T_0) > \aK + c \epso$ so that
+\[
+\sum_{\C} b(T) \ge \sum_{\C}\area(T) 
+   > (\aK + c\epso) + \sum_{\C\setminus\{T_0\}}\area(T) > (\aK + c\epso) + c a_0
+ = \card(\C) \aK.
+\]
+Explicitly,  the following area estimates complete the proof:
+\[
+\area(T_0)\ge \begin{cases}
+\area(1.72,2\kappa,2.1) > \aK+\epso,& \text{if } c = 1,\\
+\area(1.72,1.72,2.1) > \aK+2\epso,& \text{if } c = 2.
+\end{cases}
+\] %checked 2016/2/18 in Mathematica.
+\end{proof}
+
+\section{Appendix on Explicit Coordinates}
+\label{sec:appendix}
+
+Let $A$ and $B$ be pentagons in contact, with $B$ the pointer at
+vertex $\v_B$ to the receptor pentagon $A$.  Label vertices
+$(\u_A,\w_A,\u_B,\v_B,\w_B)$ of $A$ and $B$ as in
+Figure~\ref{fig:theta}.  Let $x=\norm{\v_B}{\w_A}$ and $\beta =
+\angle(\v_B,\u_B,\u_A)$.  We have $0\le x\le 2\sigma$ and $0\le
+\beta\le 2\pi/5$.
+
+\tikzfig{theta}{coordinates for a pair of pentagons in contact}{
+[scale=1.2]
+\pen{0}{0}{0};
+\pen{1.616}{0.598}{168.54};
+\draw[blue] (0,0) node[anchor=south,black] {$B$}
+ -- (1.616,0.598) node[anchor=south,black] {$A$};
+\draw (0,0) node[anchor=north,black] {$\c_B$};
+\smalldot{0,0};
+\draw (1.616,0.598) node[anchor=north,black] {$\c_A$};
+\smalldot{1.616,0.598};
+\draw (72:1) node[anchor=south] {$\w_B$};
+\draw (0:1) node[anchor=west] {$\v_B$};
+\draw (-72:1) node[anchor=north] {$\u_B$};
+\smalldot{72:1};
+\smalldot{0:1};
+\smalldot{-72:1};
+\smalldot{0.636,0.797};
+\draw (0.636,0.797) node[anchor=west] {$\w_A$}
+node[anchor=north west] {$x$};
+\smalldot{1.124,-0.2727};
+\draw (1.124,-0.2727) node[anchor=north west] {$\u_A$}
+node[anchor=north east] {$\beta$};
+}
+
+
+Let $\bl = \bl(x,\beta) = \norm{\c_A}{\c_B}$, viewed as a function of
+$x$ and $\beta$.  We omit the explicit formula for $\bl$, but it is
+obtained by simple trigonometry.  Under the symmetry
+$\u_A\leftrightarrow \w_A$, $\u_B\leftrightarrow\w_B$, we have the
+symmetries $x\leftrightarrow 2\sigma-x$, $\beta\leftrightarrow
+2\pi/5-\beta$ and
+\[
+\bl(x,\beta) = \bl(2\sigma-x,2\pi/5 - \beta).
+\]
+
+If we have coordinates on a $3C$-triangle that determine the variables
+$(x,\beta)$ for each of the pairs $\{A,B\}$, $\{B,C\}$, and $\{A,C\}$
+of pentagons, then we may use the function $\bl$ to calculate the edge
+lengths and area of the $3C$-triangle.
+
+The space of all $P$-triangles is six-dimensional, described by the
+three edge lengths of the Delaunay triangle and the three rotation
+angles of the pentagons at its vertices.  The space of $3C$-triangles
+is three dimensional, obtained by imposing three contact constraints
+between pairs of pentagons.
+
+\subsection{$\Delta$-junction}
+
+We describe a coordinate system on $3C$-triangles of $\Delta$-junction
+type.  As indicated in Figure~\ref{fig:cord-delta}, we use coordinates
+$(x_\alpha,\alpha,\beta)$, where $x_\alpha$ is a length and $\alpha$
+and $\beta$ are each angles between lines through edges of pentagons
+in contact.  We assume that $B$ points into $A$ and into $C$ and that
+$A$ points into $C$. The length $x_\alpha$ is the (small) distance
+between the nearly coincident vertices of pentagons $B$ and $C$.  The
+coordinates satisfy the conditions $0\le\beta\le\alpha\le\pi/5$,
+$\alpha+\beta\le \pi/5$, and $x_\alpha\in[0, 2\sigma -
+\sigma/\kappa]$.  Starting from these coordinates, we define $\gamma$
+by $\alpha+\beta+\gamma=\pi/5$, and angles of the triangle $\Delta$ by
+\begin{align}\label{eqn:abc}
+\alpha+\alpha' &= 2\pi/5,\\
+\beta+\beta' &= 2\pi/5,\nonumber\\
+\gamma+\gamma' &= 2\pi/5.\nonumber
+\end{align}
+The edges $y_\alpha$, $y_\beta = 2\sigma$, and $y_\gamma$ of the
+triangle $\Delta$ opposite the angles $\alpha'$, $\beta'$, $\gamma'$,
+respectively are easily computed by the law of sines.  Define
+$x_\beta$ by $x_\alpha+y_\gamma+x_\beta=2\sigma$, and $x_\gamma$ by
+$y_\alpha+x_\gamma=2\sigma$.  The value $x_\beta$ is the distance
+between the nearly coincident vertices of pentagons $A$ and $C$, and
+$x_\gamma$ is the distance between the nearly coincident vertices of
+pentagons $A$ and $B$.  The edges of the $3C$ Delaunay triangle have
+lengths
+\[
+\bl(x_\alpha,\alpha'),\quad \bl(x_\beta,\beta'),\quad \bl(x_\gamma,\gamma').
+\]
+
+\tikzfig{cord-delta}{Coordinates for $\Delta$-types}
+{
+[scale=1.0]
+\threepentnoD
+{0.00}{0.00}{-5.16}%C
+{0.99}{1.70}{235.38}%B
+{1.98}{0.00}{183.43}; %A
+\draw (0,0) node {$C$};
+\draw (0.99,1.70) node {$B$};
+\draw (1.98,0.0) node {$A$};
+\draw (1.0,0.6) node {$\Delta$};
+%\draw[blue] (0,0) -- (1.98,0);
+\draw (-5.16:1) -- ++ (126 - 5.16 :2.5) node[anchor=south] {$\alpha$};
+\draw (-5.16:1) -- ++ (- 180 + 126 - 5.16 :1.5) node[anchor=west] {$\beta$};
+\draw ++ (1.98,0) ++ (183.43 - 72:1) -- ++ (54 + 3.43:1) node[anchor=south] {$\gamma$};
+\draw (72-5.16:1) -- ++ (126 + 90 - 5.16:0.5);
+\draw (0.99,1.70) ++ (235.38:1) node[anchor = south west] {$x_\alpha$} -- ++ (126+90 - 5.16:0.5);
+}
+
+
+
+\subsection{Pinwheel type}
+
+We describe a coordinate system on $3C$-triangles of pinwheel type.
+We assume that $C$ points into $B$, that $B$ points into $A$, and that
+$A$ points into $C$.  As indicated in Figure~\ref{fig:cord-pinwheel},
+we use coordinates $(\alpha,\beta,x_\gamma)$.  The angles $\alpha$ and
+$\beta$ are angles between pentagon edges on touching pentagons.  The
+value $x_\gamma$ is the distance between the pointer vertex of
+pentagon $A$ and the pointer vertex of pentagon $B$.  The coordinates
+satisfy constraints: $0\le\alpha$, $0\le\beta$, $\alpha+\beta\le
+\pi/5$, and $0\le x_\gamma\le 2\sigma$.  Define $\gamma$ by
+$\alpha+\beta+\gamma=\pi/5$.  The angles $\alpha'$, $\beta'$, and
+$\gamma'$ of the inner background triangle $P$ of the pinwheel are
+given by Equation~\ref{eqn:abc}.  The edge lengths $x_\alpha$,
+$x_\beta$, $x_\gamma$ of the inner triangle $P$ are easily computed by
+the law of sines.  The edges of the $3C$-triangle have lengths
+\[
+\bl(x_\alpha,\alpha),\quad \bl(x_\beta,\beta),\quad \bl(x_\gamma,\gamma).
+\]
+
+\tikzfig{cord-pinwheel}{Coordinates for pinwheel type}{
+\begin{scope}[xshift=4cm,scale=1.2]
+\threepentnoD{0.00}{0.00}{46.69}%A
+{0.82}{1.53}{218.09}%C
+{1.73}{0.00}{163.28};%B
+\draw(0,0) node {$A$};
+\draw(0.82,1.53) node {$C$};
+\draw(1.73,0) node {$B$};
+\draw(1.8,1.2) node {$\alpha$};
+\draw(-0.2,1.0) node {$\beta$};
+\draw(0.85,-0.7) node {$\gamma$};
+\draw(0.9,0.5) node {$P$};
+\draw(0.5,0.5) node {$x_\gamma$};
+\smalldot{0.772,0.288}; %B pointer.
+\smalldot{0.686,0.728}; %A pointer.
+\end{scope}
+}
+
+
+\subsection{$L$-junction type}
+
+We describe a coordinate system on $3C$-triangles of $L$-junction
+type.  As indicated in Figure~\ref{fig:cord-L}, we use coordinates
+$(\alpha,\beta,x_\alpha)$.  The angles $\alpha$ and $\beta$ are each
+formed by edges of two pentagons in contact.  Let $x_\alpha$ be the
+distance between the pointer vertex of $C$ to $A$ and the pointer
+vertex of $B$ to $C$.  The coordinates satisfy relations:
+$\alpha,\beta\in [0,2\pi/5]$, $\pi/5\le\alpha+\beta\le 3\pi/5$, and
+$0\le x_\gamma\le 2\sigma$.  Define $\gamma$ by
+$\alpha+\beta+\gamma=3\pi/5$.  The angles $\alpha'$, $\beta'$, and
+$\gamma'$ of the inner $L$-shaped quadrilateral are given by
+Equation~\ref{eqn:abc}.  The edge lengths of the $L$-shaped
+quadrilateral are easily computed by triangulating the quadrilateral
+into two triangles and applying the law of sines.  (Triangulate
+$L$ by extending the line through the edge of $A$ containing the
+pointer vertex of $C$ into $A$.)  This gives
+$x_\beta$, the distance between the pointer vertex of $C$ to $B$ and
+the inner vertex of $A$.  This gives $x_\gamma$, the distance between
+the pointer vertex of $B$ and the inner vertex of pentagon $A$.
+As before, the edges of the $3C$-triangle have lengths
+\[
+\bl(x_\alpha,\alpha),\quad \bl(x_\beta,\beta),\quad \bl(x_\gamma,\gamma).
+\]
+
+\tikzfig{cord-L}{Coordinates for $L$-junction type}{
+\begin{scope}[xshift=8cm,scale=1.2]
+\threepentnoD{0.00}{0.00}{80.86}
+{0.97}{1.58}{232.21}
+{1.82}{0.00}{223.24};
+\draw (0,0) node {$C$};
+\draw (0.97,1.58) node {$B$};
+\draw (1.82,0) node {$A$};
+\draw (2.0,1.2) node {$\gamma$};
+\draw (-0.1,1.2) node {$\alpha$};
+\draw (0.85,-0.8) node {$\beta$};
+\draw (0.85,0.75) node {$L$};
+\draw (0.55,0.4) node {$x_\alpha$};
+%\smalldot{0.94,0.48};
+%\smalldot{1.532,0.753};
+\end{scope}
+}
+
+
+\subsection{$T$-junction type}
+
+We describe a coordinate system on $3C$-triangles of $T$-junction
+type.  As indicated in Figure~\ref{fig:cord-T}, we use coordinates
+$(\alpha,\beta,x_\gamma)$.  The angles $\alpha$ and $\beta$ are each
+formed by edges of two pentagons in contact.  The length $x_\gamma$ is
+the distance between the pointer vertex of $B$ and the inner vertex of
+$A$.  The coordinates satisfy: $\alpha,\beta\in[\pi/5,2\pi/5]$,
+$3\pi/5\le \alpha+\beta\le 4\pi/5$, $0\le x_\gamma\le 2\sigma$.
+Define $\gamma$ by $\alpha+\beta+\gamma=\pi$.  The angles $\alpha'$,
+$\beta'$, and $\gamma'$ of the inner irregular $T$-shaped pentagon $P$
+are given by Equation~\ref{eqn:abc}.  The edge lengths of the
+$T$-shaped pentagon are easily computed by triangulating $P$ into
+three triangles and applying the law of sines.  (Triangulate by
+extending the edge of $P$ shared with $A$ that ends at the pointer
+vertex of $A$ into $C$ and by extending the edge of $P$ shared with
+$C$ that contains pointer vertex of $B$ into $C$.)  This gives
+$x_\alpha$, the distance between the pointer vertex of $B$ to $C$ and
+the inner vertex of $C$.  This gives $x_\beta$, the distance between
+the pointer vertex of $A$ to $C$ and the inner vertex of $C$.  As
+before, the edges of the $3C$-triangle have lengths
+\[
+\bl(x_\alpha,\alpha),\quad \bl(x_\beta,\beta),\quad \bl(x_\gamma,\gamma).
+\]
+
+
+
+\tikzfig{cord-T}{Coordinates for $T$-junction types}{
+\begin{scope}[xshift=12cm,scale=1.2]
+\threepentnoD{0.00}{0.00}{114.48} %A
+{0.90}{1.59}{237.18} %B
+{1.66}{0.00}{219.24}; %C
+\draw (0,0) node {$A$};
+\draw (0.9,1.59) node {$B$};
+\draw (1.66,0) node {$C$};
+\draw (0.9,0.9) node {$P$};
+\draw (0,1.1) node {$\gamma$};
+\draw (0.75,-0.9) node {$\beta$};
+\draw (1.9,1.2) node {$\alpha$};
+\draw (0.45,0.5) node {$x_\gamma$};
+\smalldot{0.737,0.675};
+\smalldot{0.358,0.75};
+\end{scope}
+}
+
+\subsection{pin-$T$ junction type} We describe a coordinate system on
+$3C$-triangles of pin-$T$ junction type.  As indicated in
+Figure~\ref{fig:cord-pint}, we use coordinates $\alpha$, $\beta$, and
+$x_\alpha$.  The angles $\alpha$ and $\beta$ are each formed by edges
+of two pentagons in contact.  The length $x_\alpha$ is the distance
+between the nearly coincident vertices of $B$ and $C$.
+The coordinates satisfy $\pi/5 \le \alpha \le 2\pi/5$, $\pi/5\le
+\beta \le 2\pi/5$, and $3\pi/5 \le \alpha+\beta$.
+Lemma~\ref{lemma:0605} shows that $0\le x_\alpha\le 0.0605$.  Define
+$\gamma$ by $\alpha+\beta+\gamma = \pi$.  The angles $\alpha'$,
+$\beta'$, and $\gamma'$ of the inner irregular $T$-shaped pentagon are
+given by Equation~\ref{eqn:abc}.  The edge lengths of the $T$-shaped
+pentagon $P$ are easily computed by triangulating $P$ into three
+triangles and applying the law of sines.  (Triangulate by extending
+the two edges of $P$ that meet at the pointer vertex of $C$ into $A$.)
+This gives $x_\beta$, the distance between the pointer vertex of $C$
+to $A$ and the inner vertex of $A$.  This gives $x_\gamma$, the
+distance between the pointer vertex of $A$ to $B$ and the pointer
+vertex of $B$ into $C$.  As before, the edges of the $3C$-triangle
+have lengths
+\[
+\bl(x_\alpha,\alpha),\quad \bl(x_\beta,\beta),\quad \bl(x_\gamma,\gamma).
+\]
+
+\tikzfig{cord-pint}{Coordinates for pin-$T$ junction types. Although
+  it is difficult to tell from the figure, $A$ points into $B$, $B$
+  into $C$, and $C$ into $A$.  The nearly horizontal edges of $A$ and $C$
+  need not be parallel. The parameter $\beta'$ measures their
+  incidence angle.  The region bounded by the three pentagons is a
+  $T$-shaped pentagon, with stem between the nearly parallel
+  edges of $A$ and $C$ and two arms along $B$.  The arm between $B$
+  and $C$ is imperceptibly small.}{
+\begin{scope}[xshift=4.5cm,yshift=1.5cm]
+\threepentnoD{0.00}{0.00}{90} %C
+{1.40}{-1.377}{0} % B
+{-0.35}{-1.628}{-18.89}; % A
+\draw (0,0) node {$C$};
+\draw (1.4,-1.37) node {$B$};
+\draw (-0.35,-1.62) node {$A$};
+\draw (0.36,-2.4) node {$\gamma$};
+\draw (-1.1,-0.5) node {$\beta$};
+\draw (1.0,-0.3) node {$\alpha$};
+\draw (0.4,-0.49) node {$x_\alpha$};
+\draw (1.4 - 0.809,-1.377 - 0.5878) -- +(0,-0.75);
+\end{scope}
+}
+
+
+
+\begin{lemma}\label{lemma:0605}
+  Let $T$ be a $3C$ triangle of type pin-$T$.  The coordinates
+  $\alpha$, $\beta$, and $x_\alpha$ satisfy the relation
+\[
+x_\alpha \sin(2\pi/5) \le 2\sigma (\sin(\alpha+\pi/5) - \sin(\beta+\pi/5)).
+\]
+In particular, $x_\alpha \le 0.0605$.
+\end{lemma}
+
+\begin{proof} Let $\v_{AB}$ be the pointer vertex of $A$ to $B$, and
+  let $\v_{BC}$ be the pointer vertex of $B$ to $C$.  Let $\v$ and
+  $\v_{BC}$ be the endpoints of the edge of $B$ containing $\v_{AB}$.
+  We represent $T$ as in Figure~\ref{fig:cord-pint}, with the lower edge of
+  $C$ along the $x$-axis.  Since $\v_{AB}$ lies on the segment between
+  $\v$ and $\v_{BC}$, The $y$-coordinate $y(\v_{AB})$ of $\v_{AB}$ is
+  nonpositive and lies between the $y$-coordinates $y(\v)$ and
+  $y(\v_{BC})$.  We have
+\begin{align*}
+y(\v) &= x_\alpha \sin(2\pi/5) - 2\sigma\sin(\alpha+\pi/5)\\
+y(\v_{AB}) & = -x_\beta \sin(\beta') - 2\sigma\sin(\beta+\pi/5).
+\end{align*}
+Using $x_\beta \sin(\beta')\ge 0$ and $y(\v) \le y(\v_{AB})$, we
+obtain the claimed inequality.
+
+Recall that $\pi/5\le \beta \le 2\pi/5$.  In particular, we have
+$\sin(\alpha+\pi/5) \le 1$ and $\sin(\beta+\pi/5)\ge \sin(2\pi/5)$.
+This gives
+\[
+x_\alpha \le 2\sigma(1/\sin(2\pi/5) - 1) < 0.0605.
+\]
+\end{proof}
+
+
+This completes our discussion of coordinates used for computations.
+
