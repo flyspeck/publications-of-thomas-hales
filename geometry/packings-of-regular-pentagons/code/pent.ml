@@ -22,6 +22,7 @@ let m r = mk_interval(r,r);;
 
 let mk x y = mk_interval(x,y);;
 
+
 let zero = m 0.0;;
 
 let one = m 1.0;;
@@ -32,13 +33,25 @@ let four = m 4.0;;
 
 let i16 = m 16.0;;
 
+let eps_I = mk (- 1.0e-8) (1.0e-8);;
+
+let merge_I x y = {low = min x.low y.low;high = max x.high y.high};;
+
+let inter_I x y =
+  let t = {low = max x.low y.low; high = min x.high y.high} in
+  let _ = t.low <= t.high or failwith "inter_I void" in
+  t;;
+
 let min_I y = {low = y.low;high = y.low};;
 
 let max_I y = {low = y.high;high = y.high};;
 
+let min2_I x y = min_I (merge_I x y);;
+
+let max2_I x y = max_I (merge_I x y);;
+
 let mem_I r i = (i.low <= r && r <= i.high);;
 
-let merge_I x y = {low = min x.low y.low;high = max x.high y.high};;
 
 (* let eps = (1.0e-10);; *)
 
@@ -46,6 +59,17 @@ let ( >> ) x y = x.low > y.high;;
 let ( >>= ) x y = x.low >= y.high;;
 let ( << ) x y = x.high < y.low;;
 let ( <<= ) x y = x.high <= y.low;;
+
+let disjoint_I x y = (x >> y) or (y >> x);;
+
+let meet_I x y = not (disjoint_I x y);;
+
+let the x = match x with
+  | None -> failwith "the"
+  | Some t -> t;;
+
+let (/) x y = 
+  if disjoint_I eps_I y then x /$ y else raise Unstable;;
 
 
 (* ******************************************************************************** *)
@@ -71,6 +95,7 @@ let rat i j =   (one *$. float_of_int i) /$. float_of_int j;;
 let kappa = cos_I (pi /$. 5.0);;
 let sigma = sin_I (pi /$. 5.0);;
 
+(* deprecated *)
 let ee = sigma;;
 let iee = ee;;
 let ff = ee /$ (2.0 *.$ kappa);;
@@ -125,11 +150,12 @@ let ilawbeta alpha a b =
 
 (* law of cosines, with special cases for monotonicity *)
 
+let ilocc a b costh = 
+    sqrt_I(a * a + b * b - two * a * b * costh);;
+
 let iloc =
   let mx = max_I in
   let mn = min_I in
-  let ilocc a b costh = 
-    sqrt_I(a * a + b * b - two * a * b * costh) in
   let ilocc2 a b cth a' b' cth' = merge_I (ilocc a b cth) (ilocc a' b' cth') in
     fun a b theta -> 
         let costh = cos_I theta in
@@ -154,13 +180,6 @@ ilawbeta (m 0.4) (m 1.1) (m 1.2);;
 (* ell, ellx, thetax, fillout. *)
 (* ******************************************************************************** *)
 
-(*
-let ell_deprecated h psi =
-  let r = sqrt_I (h * h + kappa* kappa) in
-  let theta = acos_I (h / r) in
-    sqrt_I (one + r * r - two * r * cos_I (psi + theta));;
-*)
-
 let ell_aux h psi =
   let r = sqrt_I (h * h + kappa* kappa) in
   let theta = acos_I (h / r) in
@@ -171,7 +190,7 @@ ell_aux (mk 1.1 1.2) (mk 1.3 1.4);;
 let ellx  = 
   let pi310 = ratpi 3 10 in 
   fun x alpha ->
-    ell_aux (iee - x) (alpha + pi310);;
+    ell_aux (sigma - x) (alpha + pi310);;
 
 (* N.B.  theta has a jump discontinuity near pm pi/5, which is an inconvenience
    for the interval calculation. We try to deal with this gracefully
@@ -187,30 +206,92 @@ let ellx  =
    We assume the pentagons are in contact.
 *)
 
+(* rewritten 2/28/2016 
 let thetax =
   let pi710 = ratpi 7 10 in
   let pi1710 = ratpi 17 10 in
   fun xalpha alpha ->
-    let h = xalpha - iee in
+    let h = xalpha - sigma in
     let r = sqrt_I (h*h + kappa*kappa) in
     let phi = acos_I (h / r) in
     let psi = pi710 - alpha in
     let psi' = psi + phi in
     let elx = iloc r one psi' in
-    let ely = iloc r (two * iee) (pi1710 - psi') in
+    let ely = iloc r (two * sigma) (pi1710 - psi') in
     let theta' = (iarc one elx ely) - pi25 in
     let theta = alpha - theta' in
     (elx,theta,theta');;
+*)
+
+let thetax =
+  let pi310 = ratpi 3 10 in
+  let pi65 = ratpi 6 5 in
+  let pi25 = ratpi 2 5 in
+  fun xalpha alpha ->
+    let h = xalpha - sigma in
+    let r = sqrt_I (h*h + kappa*kappa) in
+    let phi' = asin_I (h / r) in
+    let delta = pi65 - (alpha + phi') in
+    let elx = iloc r one delta in
+    let ely = iloc r (two * sigma) (delta  - pi310) in
+    let theta' = pi25 - (iarc one elx ely) in
+    let theta = alpha - theta' in
+    (elx,theta,theta');;
+
 
 thetax (m 0.1) (m 0.2);;
 thetax (m 0.2) (m 0.19);;
 thetax (mk 0.1 0.11) (mk 0.2 0.22);;
 thetax (ee+ mk 0.0 0.01) (pi15 + mk 0.0 0.01);;
 
-let ellthetax xalpha alpha sgn =  (* swap if false *)
+(* redone later more accurately.
+let ellthetax_sgn xalpha alpha sgn =  (* swap if false *)
   let (el,th,th') = thetax xalpha alpha in
   let (th,th') = if sgn then (th,th') else (th',th) in
     (el,th,th');;
+*)
+
+(* monotonicity *)
+
+  let theta'mono xa alpha = 
+    let (_,_,th1) = thetax (min_I xa) (min_I alpha) in
+    let (_,_,th2) = thetax (max_I xa) (max_I alpha) in
+    merge_I th1 th2;;
+  
+  let thetamono xa alpha =
+    let (_,th1,_) = thetax (min_I xa) (max_I alpha) in
+    let (_,th2,_) = thetax (max_I xa) (min_I alpha) in
+    merge_I th1 th2;;
+
+  let ellxmono xa alpha = 
+    let ellmax x = 
+      let h = x - sigma in 
+      let r = sqrt_I (kappa*kappa+ h* h) in
+      let alpham = ratpi 1 5 - asin_I (h / r) in
+      if (meet_I alpham alpha) 
+      then ellx x alpham
+      else max2_I (ellx x (min_I alpha)) (ellx x (max_I alpha)) in
+    let ellM = max2_I (ellmax (min_I xa)) (ellmax (max_I xa)) in
+    let ellmin alp = 
+      let xm = sigma + sin_I (alp - ratpi 1 5) in
+      if (meet_I xm xa) 
+      then ellx xm alp
+      else min2_I (ellx (min_I xa) alp) (ellx (max_I xa) alp) in
+    let ellm = min2_I (ellmin (min_I alpha)) (ellmin (max_I alpha)) in
+    merge_I ellm ellM;;
+
+  let ellthetax xa alpha = 
+    (ellxmono xa alpha,thetamono xa alpha,theta'mono xa alpha);;
+
+
+let ellthetax_sgn xalpha alpha sgn =  (* swap if false *)
+  let (el,th,th') = ellthetax xalpha alpha in
+  let (th,th') = if sgn then (th,th') else (th',th) in
+    (el,th,th');;
+
+thetax (mk 0.2 0.25) (mk 0.3 0.35);;    
+ellxmono (mk 0.2 0.25) (mk 0.3 0.35);;
+
 
 (* ******************************************************************************** *)
 (* pinwheel *)
@@ -220,7 +301,9 @@ let pinwheeledge =
     let gamma = pi15 - (alpha + beta) in
     let (xalpha,xbeta) = 
       lawsines xgamma (pi25 - alpha) (pi25 - beta) (pi25 - gamma) in
-    ((ellx xalpha alpha), (ellx xbeta beta), (ellx xgamma gamma));;
+    ((ellxmono xalpha alpha), 
+     (ellxmono xbeta beta), 
+     (ellxmono xgamma gamma));;
 
 pinwheeledge (m 0.1) (m 0.2)  (m 0.3);;
 
@@ -235,11 +318,12 @@ let pintedge =
     let delta = pi - (beta' + eps) in
     let delta' = pi - delta in
     let (w1,w2) = lawsines xalpha eps' pi25 alpha' in
-    let (w3,w4) = lawsines (two * iee + w2) delta beta' eps in
-    let (w5,w6) = lawsines (two * iee) delta' pi25 gamma' in
-    ((ellx xalpha alpha),
-     (ellx (w4 - w6) beta),
-     (ellx (w1 + w3 + w5) gamma));;
+    let (w3,w4) = lawsines (two * sigma + w2) delta beta' eps in
+    let (w5,w6) = lawsines (two * sigma) delta' pi25 gamma' in
+    ((ellxmono xalpha alpha),
+     (ellxmono (w4 - w6) beta),
+     (ellxmono (w1 + w3 + w5) gamma));;
+
 
 (* Delta junction *)
 
@@ -249,17 +333,18 @@ let deltajedge =
     let alpha' = pi25 - alpha in
     let beta' = pi25 - beta in
     let gamma' = pi25 - gamma in
-    let (yalpha,ygamma) = lawsines (two * iee) (beta') (alpha') (gamma') in
-    let xbeta = two * iee - (ygamma + xalpha) in
-    let xgamma = two * iee - yalpha in
-    ((ellx xalpha alpha'), (ellx xbeta beta'), (ellx xgamma gamma'));;
+    let (yalpha,ygamma) = lawsines (two * sigma) (beta') (alpha') (gamma') in
+    let xbeta = two * sigma - (ygamma + xalpha) in
+    let xgamma = two * sigma - yalpha in
+    ((ellxmono xalpha alpha'), (ellxmono xbeta beta'), (ellxmono xgamma gamma'));;
+
 
 deltajedge (m 0.05) (m 0.06)  (m 0.1);;
 area_I (m 1.94) (m 1.88) (m 1.93);;
 deltajedge (m 0.0) (m 0.0) (m 0.0);;
-pinwheeledge (m 0.0) (pi15) (two * iee);; (* same as deltajedge, up rto symmetry *)
-ellx (m 0.0) (m 0.0);;
-ellx (m 0.0) (pi25);;
+pinwheeledge (m 0.0) (pi15) (two * sigma);; (* same as deltajedge, up rto symmetry *)
+ellxmono (m 0.0) (m 0.0);;
+ellxmono (m 0.0) (pi25);;
 
 (* L-junction Delaunay triangle edge lengths *)
 
@@ -272,11 +357,12 @@ let ljedge_full =
   let delta1 = pi - (gammap + pi25) in
   let delta2 = pi - delta1 in
   let (x3,x5) = lawsines xalpha delta2 betap alphap in
-  let x1 = two*iee - x3 in
+  let x1 = two*sigma - x3 in
   let (xgamma,x2) = lawsines x1 pi25 delta1 gammap in
-  let x6 = x5 - x2 in
+  let x6 = x5 - x2 in    
     ((alpha,beta,gamma,alphap,betap,gammap,x1,x2,x3,xalpha,x5,x6),
-    ((ellx xalpha alpha),(ellx x6 beta),(ellx xgamma gamma)));;    
+    ((ellxmono xalpha alpha),(ellxmono x6 beta),(ellxmono xgamma gamma)));;
+
 
 let ljedge alpha beta xalpha =
   let (_,ll) = ljedge_full alpha beta xalpha in
@@ -297,12 +383,12 @@ let tjedge =
   let delta3 = pi - (alphap + delta2) in
   let delta4 = pi - (betap + pi25) in
   let (x1,x2) = lawsines xgamma delta1 pi25 gammap in
-  let x3 = two * iee - x1 in
+  let x3 = two * sigma - x1 in
   let (x4, x5) = lawsines x3 delta3 delta2 alphap in
-  let x6 = two * iee - (x5 - x2) in
+  let x6 = two * sigma - (x5 - x2) in
   let (x7,x8) = lawsines x6 pi25 betap delta4 in
   let x9 = x4 - x7 in
-    ((ellx x9 alpha),(ellx x6 beta),(ellx xgamma gamma));;
+    ((ellxmono x9 alpha),(ellxmono x6 beta),(ellxmono xgamma gamma));;
 
 tjedge (m 0.1) (m 0.2) (m 0.3);;
 
@@ -355,7 +441,19 @@ let rec recurser eps n onef = function
 	      splitlist eps abx in
 	      recurser eps (succ n) onef (a1::a2::xs);;
 
+let rec recurserpair eps n onef = function
+  | [] -> (n,true)
+  | abx :: xs -> 
+      if onef abx then recurserpair eps (succ n) onef xs 
+	  else
+	    let (a1,a2) = 
+	      splitlist eps (fst abx) in
+	      recurserpair eps (succ n) onef 
+		((a1,snd abx)::(a2,snd abx)::xs);;
+
 let recursetoeps = recurser (1.0e-8) 0;;
+
+let recursepairtoeps = recurserpair (1.0e-8) 0;;
 
 let recursetofinish onef = 
   let wrap3 onef abx = 
@@ -369,7 +467,7 @@ let recursetofinish onef =
 (* Set up computational instances *)
 (* ******************************************************************************** *)
 
-(* test that all subcritical pinwheels have an edge > 1.72.
+(* test that all subcritical pinwheels have an edge > 1.7215.
    test returns true if out of domain or ineq holds.
 
   *)
@@ -379,7 +477,7 @@ let area_exceeds l1 l2 l3 a = (area_I l1 l2 l3 >> a);;
 let longest_exceeds l1 l2 l3 r = max l1.low (max l2.low l3.low) > r.high;;
 
 let longgt172 =
-  let i172 = rat 172 100 in
+  let i172 = rat 17215 10000in
   fun l1 l2 l3 -> longest_exceeds l1 l2 l3 i172;;
 
 let one172 disjoint_from_domain edges abx = 
@@ -426,7 +524,7 @@ let types3C =
 
 (* returns true, so that all subcritical pinwheels have an edge > 1.72 *)
 
-map (tester "172" one172) types3C;;
+map (tester "17215" one172) types3C;;
 
 
 
@@ -471,7 +569,7 @@ let oneJJZ =
       disjoint_from_lj alpha beta or
 	let ((_,_,gamma,alphap,betap,gammap,x1,x2,x3,_,x5,x6),
 		 (l1,l2,l3)) = ljedge_full alpha beta xalpha in
-	(area_exceeds l1 l2 l3 m1345) or (x6 >> iee) or (iee >> x6) 
+	(area_exceeds l1 l2 l3 m1345) or (x6 >> sigma) or (sigma >> x6) 
     with | Unstable -> false;;
 
 mktest ("oneJJZ",fun() ->
