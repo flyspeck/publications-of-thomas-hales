@@ -53,35 +53,36 @@ let periodize_pent ix =
 
 (* now run the pent existence tests for same sign and mixed sign cases *)
       
-let case_pet_pos l (itheta,itheta'') =
+let case_pet_pos l (itheta',iabstheta) =
   let pi5 = ratpi 1 5 in
-  let theta'' = max_I itheta'' in 
+  let abstheta = max_I iabstheta in 
   let locx th = iloc l one th in
   let beta th = ilawbeta th (locx th) one in
-  let r th = kappa / cos_I (beta th + pi5 - theta'') in 
+  let r th = kappa / cos_I (beta th + pi5 - abstheta) in 
   let f th = (locx th).high >= (r th).low in
-    f (min_I itheta) or f (max_I itheta);;
+(*  (beta th).low <= abstheta.high in *)
+    f (min_I itheta') or f (max_I itheta');;
 
-let case_pet_neg l (itheta,itheta'') =
+let case_pet_neg l (itheta',iabstheta) =
   let pi5 = ratpi 1 5 in
-  let theta = max_I itheta in
-  let itheta'' = inter_I itheta'' (mk (theta.high) (itheta''.high)) in
-  let locx = iloc l one theta in
-  let beta = ilawbeta theta locx one in
+  let theta' = max_I itheta' in
+  let iabstheta = inter_I iabstheta (mk (theta'.high) (iabstheta.high)) in
+  let locx = iloc l one theta' in
+  let beta = ilawbeta theta' locx one in
   let target = pi5 - beta in
-  let theta'' = 
-    if itheta'' >> target then min_I itheta''
-    else if itheta'' << target then max_I itheta''
+  let abstheta = 
+    if iabstheta >> target then min_I iabstheta
+    else if iabstheta << target then max_I iabstheta
     else target in
-  let r = kappa / cos_I (pi5 - (beta + theta'')) in
+  let r = kappa / cos_I (pi5 - (beta + abstheta)) in
     locx.high >= r.low;;
 
-let pet0 l (itheta, itheta'',samesign) = 
-  let locx = iloc one l (max_I itheta) in
+let pet0 l (itheta', iabstheta,samesign) = 
+  let locx = iloc one l (max_I itheta') in
     if locx.high >= one.low then true
     else if locx <<  kappa then false
-    else if not(samesign) then case_pet_neg l (itheta,itheta'') 
-    else case_pet_pos l (itheta,itheta'');;
+    else if not(samesign) then case_pet_neg l (itheta',iabstheta) 
+    else case_pet_pos l (itheta',iabstheta);;
 
 let splitat0 itheta = 
   if (itheta >>= zero) then [(itheta,true)]
@@ -102,6 +103,8 @@ let reorder (th1,b1) (th2,b2) =
   if (th1 << th2) then [(th1,th2,samesign)]
   else if (th2 << th1) then [(th2,th1,samesign)]
   else [resize(th1,th2,samesign);resize(th2,th1,samesign)];;
+
+(* symmetrical in itheta itheta' *)
 
 let pet il itheta itheta' = 
   let split i = List.flatten (map splitat0  (periodize_pent i)) in

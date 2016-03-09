@@ -16,6 +16,11 @@ let sqrt_I x =
     Interval.sqrt_I x 
   with Failure _ -> raise Unstable;;
 
+let acos_I x = 
+  try
+    Interval.acos_I x
+  with Failure _ -> raise Unstable;;
+
 let mk_interval(a,b) = {low=a;high=b};;
 
 let m r = mk_interval(r,r);;
@@ -52,6 +57,9 @@ let max2_I x y = max_I (merge_I x y);;
 
 let mem_I r i = (i.low <= r && r <= i.high);;
 
+let width_I x = max_I x - min_I x;;
+
+width_I eps_I;;
 
 (* let eps = (1.0e-10);; *)
 
@@ -102,6 +110,8 @@ let ff = ee /$ (2.0 *.$ kappa);;
 
 (* critical area: *)
 let aK = (1.0 +.$ kappa)*$ (3.0 *.$ (kappa *$ sigma)) /$. 2.0;;
+
+let epso_I = aK - rat 1237 1000;;
 
 let ups_I x1 x2 x3 = 
   two * (x1 * x2 + x2 * x3 + x3 * x1) - x1*x1 - x2*x2 - x3*x3;;
@@ -244,12 +254,6 @@ thetax (m 0.2) (m 0.19);;
 thetax (mk 0.1 0.11) (mk 0.2 0.22);;
 thetax (ee+ mk 0.0 0.01) (pi15 + mk 0.0 0.01);;
 
-(* redone later more accurately.
-let ellthetax_sgn xalpha alpha sgn =  (* swap if false *)
-  let (el,th,th') = thetax xalpha alpha in
-  let (th,th') = if sgn then (th,th') else (th',th) in
-    (el,th,th');;
-*)
 
 (* monotonicity *)
 
@@ -283,13 +287,11 @@ let ellthetax_sgn xalpha alpha sgn =  (* swap if false *)
   let ellthetax xa alpha = 
     (ellxmono xa alpha,thetamono xa alpha,theta'mono xa alpha);;
 
-
 let ellthetax_sgn xalpha alpha sgn =  (* swap if false *)
   let (el,th,th') = ellthetax xalpha alpha in
-  let (th,th') = if sgn then (th,th') else (th',th) in
-    (el,th,th');;
+  if sgn then (el,th,th') else (el,th',th);;
 
-thetax (mk 0.2 0.25) (mk 0.3 0.35);;    
+ellthetax_sgn (mk 0.2 0.25) (mk 0.3 0.35) false;;    
 ellxmono (mk 0.2 0.25) (mk 0.3 0.35);;
 
 
@@ -307,7 +309,7 @@ let pinwheeledge =
 
 pinwheeledge (m 0.1) (m 0.2)  (m 0.3);;
 
-let pintedge = 
+let pintedge_extended = 
   fun alpha beta xalpha ->
     let gamma = pi - (alpha+beta) in
     let alpha' = pi25 - alpha in
@@ -322,7 +324,11 @@ let pintedge =
     let (w5,w6) = lawsines (two * sigma) delta' pi25 gamma' in
     ((ellxmono xalpha alpha),
      (ellxmono (w4 - w6) beta),
-     (ellxmono (w1 + w3 + w5) gamma));;
+     (ellxmono (w1 + w3 + w5) gamma),w1+w3+w5,w4-w6);;
+
+let pintedge alpha beta xalpha = 
+  let (d1,d2,d3,_,_) = pintedge_extended alpha beta xalpha in
+  (d1,d2,d3);;
 
 
 (* Delta junction *)
