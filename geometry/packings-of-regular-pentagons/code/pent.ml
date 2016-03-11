@@ -352,52 +352,214 @@ pinwheeledge (m 0.0) (pi15) (two * sigma);; (* same as deltajedge, up rto symmet
 ellxmono (m 0.0) (m 0.0);;
 ellxmono (m 0.0) (pi25);;
 
-(* L-junction Delaunay triangle edge lengths *)
+(* L-junction Delaunay triangle edge lengths. Rewritten 3/10/2016. *)
 
-let ljedge_full =
+let ljedge_extended =
   fun alpha beta xalpha ->
   let gamma = pi35 - (alpha+beta) in
-  let alphap = pi25 - alpha in
-  let betap = pi25 - beta in
-  let gammap = pi25 - gamma in
-  let delta1 = pi - (gammap + pi25) in
-  let delta2 = pi - delta1 in
-  let (x3,x5) = lawsines xalpha delta2 betap alphap in
-  let x1 = two*sigma - x3 in
-  let (xgamma,x2) = lawsines x1 pi25 delta1 gammap in
-  let x6 = x5 - x2 in    
-    ((alpha,beta,gamma,alphap,betap,gammap,x1,x2,x3,xalpha,x5,x6),
-    ((ellxmono xalpha alpha),(ellxmono x6 beta),(ellxmono xgamma gamma)));;
+  let alpha' = pi25 - alpha in
+  let beta' = pi25 - beta in
+  let gamma' = pi25 - gamma in
+  let delta' = pi - (alpha' + beta') in
+  let (s1,b1) = lawsines xalpha delta' beta' alpha' in
+  let s2 = two*sigma - s1 in
+  let (b2,xgamma) = lawsines s2 pi25 gamma' delta' in
+  let xbeta = b1 - b2 in
+    ((xbeta,xgamma),
+    ((ellxmono xalpha alpha),(ellxmono xbeta beta),(ellxmono xgamma gamma)));;
 
 
 let ljedge alpha beta xalpha =
-  let (_,ll) = ljedge_full alpha beta xalpha in
+  let (_,ll) = ljedge_extended alpha beta xalpha in
   ll;;
 
 ljedge (m 0.1) (m 0.2) (m 0.753251);;
 
 (* T-junction edge lengths *)
 
+(*
 let tjedge =
     fun alpha beta xgamma ->
   let gamma = pi - (alpha + beta) in
-  let alphap = pi25 - alpha in
-  let betap = pi25 - beta in
-  let gammap = pi25 - gamma in
-  let delta1 = pi - (gammap + pi25) in
+  let alpha' = pi25 - alpha in
+  let beta' = pi25 - beta in
+  let gamma' = pi25 - gamma in
+  let delta1 = pi - (gamma' + pi25) in
   let delta2 = pi - delta1 in
-  let delta3 = pi - (alphap + delta2) in
-  let delta4 = pi - (betap + pi25) in
-  let (x1,x2) = lawsines xgamma delta1 pi25 gammap in
+  let delta3 = pi - (alpha' + delta2) in
+  let delta4 = pi - (beta' + pi25) in
+  let (x1,x2) = lawsines xgamma delta1 pi25 gamma' in
   let x3 = two * sigma - x1 in
-  let (x4, x5) = lawsines x3 delta3 delta2 alphap in
+  let (x4, x5) = lawsines x3 delta3 delta2 alpha' in
   let x6 = two * sigma - (x5 - x2) in
-  let (x7,x8) = lawsines x6 pi25 betap delta4 in
+  let (x7,x8) = lawsines x6 pi25 beta' delta4 in
   let x9 = x4 - x7 in
-    ((ellxmono x9 alpha),(ellxmono x6 beta),(ellxmono xgamma gamma));;
+  let t = x1,x2,x3,x4,x5,x6,x7,x8,x9 in
+  (* x6 -> x8 3/10/2016 *)
+    ((ellxmono x9 alpha),(ellxmono x8 beta),(ellxmono xgamma gamma));;
+*)
 
-tjedge (m 0.1) (m 0.2) (m 0.3);;
+let tjedge_extended =
+  fun alpha beta xgamma ->
+    let gamma = pi - (alpha + beta) in
+    let alpha' = pi25 - alpha in
+    let beta' = pi25 - beta in
+    let gamma' = pi25 - gamma in
+    let delta' = pi - (pi25 + gamma') in
+    let eps' = pi - (pi25 + beta') in
+    let (t1,s1) = lawsines xgamma delta' gamma' pi25 in
+    let s2 = two*sigma - s1 in
+    let (a2,t2) = lawsines s2 eps' delta' alpha' in
+    let t3 = two*sigma - (t2-t1) in
+    let (a3,xbeta) = lawsines t3 pi25 beta' eps' in 
+    let xalpha = a2-a3 in
+    let t = (xbeta,t1,s1,s2,a2,t2,t3,a3,xalpha) in
+    let t = xbeta in
+    ((ellxmono xalpha alpha),(ellxmono xbeta beta),(ellxmono xgamma gamma),xbeta);;
 
+let tjedge alpha beta xgamma =
+  let (l1,l2,l3,_) = tjedge_extended alpha beta xgamma in
+  (l1,l2,l3);;
+
+tjedge (m 0.9) (m 1.0) (m 0.5);;
+
+(* uniform coordinate systems for 3C dimers, 3/2016 *)
+let dimer_pintedge alpha beta xbeta = 
+  let dAC,dBC,dAB = pintedge beta alpha xbeta in
+  dBC,dAC,dAB;;
+
+let dimer_pinwheeledge alpha beta xbeta = 
+  let dAB,dBC,dAC = pinwheeledge ((ratpi 1 5) - (alpha+beta)) alpha xbeta in
+  dBC,dAC,dAB;;
+
+let dimer_lj1edge_extended =
+  let pi25 = ratpi 2 5 in
+  let pi35 = ratpi 3 5 in
+  fun alpha' beta xbeta ->
+    let alpha = pi25 - alpha' in
+    let gamma = pi35 - (alpha + beta) in
+    let beta' = pi25 - beta in
+    let gamma' = pi25 - gamma in
+    let delta' = pi - (alpha'+gamma') in
+    let (c1,xaa) = lawsines (two*sigma) delta' alpha' gamma' in
+    let (a,c2) = lawsines xbeta delta' beta' pi25 in
+    let xa = xaa - a in
+    let xc = c1 + c2 in
+    (ellx xa alpha,ellx xbeta beta,ellx xc gamma,xa,xc);;
+
+let dimer_lj1edge alpha' beta xbeta = 
+  let l1,l2,l3,_,_ = dimer_lj1edge_extended alpha' beta xbeta in
+  l1,l2,l3;;
+
+let dimer_lj2edge alpha beta xbeta =
+  let (dAC,dBC,dAB) = ljedge beta alpha xbeta in
+  dBC,dAC,dAB;;
+
+let dimer_lj2edge_extended alpha beta xbeta = 
+  let t,(dAC,dBC,dAB) = ljedge_extended beta alpha xbeta in
+  dBC,dAC,dAB,t;;
+
+let dimer_lj3edge_extended =
+  let pi25 = ratpi 2 5 in
+  let pi35 = ratpi 3 5 in
+  fun alpha beta xbeta ->
+    let gamma = pi35 - (alpha + beta) in
+    let alpha' = pi25 - alpha in
+    let beta' = pi25 - beta in
+    let gamma' = pi25 - gamma in
+    let delta' = pi - (alpha'+gamma') in
+    let (s1,a1) = lawsines xbeta delta' pi25 beta' in
+    let s2 = two*sigma - s1 in
+    let (xgamma,aa) = lawsines s2 alpha' delta' gamma' in
+    (ellx (aa-a1) alpha,ellx xbeta beta,ellx xgamma gamma,aa-a1);;
+
+let dimer_lj3edge alpha beta xbeta = 
+  let (d1,d2,d3,_) = dimer_lj3edge_extended alpha beta xbeta in
+  (d1,d2,d3);;
+
+let dimer_tj1edge = 
+    fun alpha beta xbeta ->
+    let gamma = pi - (alpha + beta) in
+    let alpha' = pi25 - alpha in
+    let beta' = pi25 - beta in
+    let gamma' = pi25 - gamma in
+    let delta' = pi - (alpha'+gamma') in
+    let eps' = pi - (pi25  + beta') in
+    let (s1,a2) = lawsines xbeta eps' pi25 beta' in
+    let (a1,cc) = lawsines (two*sigma) delta' gamma' alpha' in
+    let s2 = two*sigma - s1 in
+    let (c2,a3) = lawsines s2 delta' eps' pi25 in
+    (ellx ((a1+a3)-a2) alpha,ellx xbeta beta,ellx (cc-c2) gamma);;
+
+let dimer_tj2edge alpha beta xbeta = 
+  let (dAB,dBC,dAC) = tjedge (pi - (alpha+beta)) alpha xbeta in
+  dBC,dAC,dAB;;
+
+let dimer_tj2edge_extended alpha beta xbeta = 
+  let (dAB,dBC,dAC,t) = tjedge_extended (pi - (alpha+beta)) alpha xbeta in
+  dBC,dAC,dAB,t;;
+
+let dimer_tj3edge alpha' beta xbeta = 
+    let alpha = pi25 - alpha' in
+    let gamma = pi - (alpha + beta) in
+    let beta' = pi25 - beta in
+    let gamma' = pi25 - gamma in
+    let eps' = pi - (alpha' + pi25) in
+    let delta' = pi - (beta'+ pi25) in
+    let (c2,a2) = lawsines (two*sigma) eps' alpha' pi25 in
+    let (a1,s1) = lawsines xbeta delta' beta' pi25 in
+    let s2 = two*sigma - s1 in
+    let (a3,cc) = lawsines s2 eps' gamma' delta' in
+    let xalpha = (a2+a3)-a1 in
+    (ellx xalpha alpha,ellx xbeta beta,ellx (cc-c2) gamma);;
+
+let disjoint_from_dimer_pint alpha beta xbeta = 
+  let ab = alpha+beta in
+  if pi35 >> ab or xbeta >> m 0.0605 then true
+  else
+    let (_,_,_,xgamma,_) = pintedge_extended beta alpha xbeta in
+    xgamma >> two*sigma;;
+
+let disjoint_from_dimer_pinwheel alpha beta xbeta =
+   alpha+beta  >> pi15 or xbeta >> m 0.8;; (* 0.8 from one_pinwheelx *)
+
+let disjoint_from_15_35 alpha beta = 
+  let ab = alpha+beta in
+  pi15 >> ab or ab >> pi35;;
+  
+let disjoint_from_dimer_lj1 alpha' beta xbeta =
+  let alpha = pi25 - alpha' in
+  if disjoint_from_15_35 alpha beta then true
+  else 
+    let (_,_,_,xa,xc) = dimer_lj1edge_extended alpha' beta xbeta in
+    (xa << zero) or (xc >> two*sigma);;
+
+let disjoint_from_dimer_lj2 alpha beta xbeta = 
+  disjoint_from_15_35 alpha beta;;
+
+let disjoint_from_dimer_lj3 alpha beta xbeta  = 
+  if disjoint_from_15_35 alpha beta or alpha >> m 0.9 then true
+  else 
+    let (_,_,_,xalpha) = dimer_lj3edge_extended alpha beta xbeta in
+    xalpha << zero;;
+
+let disjoint_from_35_45 alpha beta =
+  let ab = alpha+beta in
+  pi35 >> ab or ab >> pi45;;
+
+let disjoint_from_dimer_tj3 alpha' beta xbeta = 
+  let alpha = pi25 - alpha' in
+  disjoint_from_35_45 alpha beta;;
+
+let disjoint_from_dimer_tj2 alpha beta xbeta = 
+  if disjoint_from_35_45 alpha beta then true
+  else 
+    let (_,_,_,x) = dimer_tj2edge_extended alpha beta xbeta in
+    (x >> two * sigma);;
+
+let disjoint_from_dimer_tj1 alpha beta xbeta = 
+  disjoint_from_35_45 alpha beta or (beta << one);;
+  
 (* ******************************************************************************** *)
 (* split domain along largest dimension *)
 (* ******************************************************************************** *)
@@ -573,9 +735,8 @@ let oneJJZ =
     try
       let (alpha,beta,xalpha) = abx in
       disjoint_from_lj alpha beta or
-	let ((_,_,gamma,alphap,betap,gammap,x1,x2,x3,_,x5,x6),
-		 (l1,l2,l3)) = ljedge_full alpha beta xalpha in
-	(area_exceeds l1 l2 l3 m1345) or (x6 >> sigma) or (sigma >> x6) 
+	let ((xbeta,_),(l1,l2,l3)) = ljedge_extended alpha beta xalpha in
+	(area_exceeds l1 l2 l3 m1345) or (xbeta >> sigma) or (sigma >> xbeta) 
     with | Unstable -> false;;
 
 mktest ("oneJJZ",fun() ->
