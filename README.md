@@ -7,7 +7,7 @@
 
 + Top 10 publications
 + Most highly cited papers
-+ Most recent papers.
++ [Most recent preprints](most-recent-preprints.md).
 
 ## Publications by research areas
 
