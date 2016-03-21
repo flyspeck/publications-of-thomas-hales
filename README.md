@@ -5,9 +5,8 @@
 
 ## "Best-of" lists
 
-+ Top 10 publications
-+ Most highly cited papers
-+ [Most recent preprints](most-recent-preprints.md).
++ [Top 10 publications](top-10-publications.md)
++ [Most recent preprints](most-recent-preprints.md)
 
 ## Publications by research areas
 
