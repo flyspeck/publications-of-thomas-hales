@@ -17,7 +17,7 @@ This paper describes the main ideas going into the proof of the Kepler Conjectur
 
 + **What is motivic measure?** [arxiv-link](http://arxiv.org/abs/math/0312229) This article was solicited by D. Eisenbud during his tenure as President of the American Mathematical Society and was presented at the annual meetings of the American Mathematical Session at the special session on "Current Events" in Mathematics.  It is an expository article on Denef and Loeser's theory of motivic integration.
 
-+ **Formal proof** [arxiv-link](http://www.ams.org/notices/200811/tx081101370p.pdf) This was the lead article of a special issue of the Notices of the AMS on Formal Proof that Hales helped to edit.  This issue helped to move the subject of Formal Proof from computer science departments into the mathematical mainstream.
++ **Formal proof** [arxiv-link](http://www.ams.org/notices/200811/tx081101370p.pdf) This was the lead article of a special issue of the Notices of the AMS on Formal Proof that Hales helped to edit, with other contributions to the issue from J. Harrison, G. Gonthier, and F. Wiedijk.  This issue helped to move the subject of Formal Proof from computer science departments into the mathematical mainstream.
 
 + **On the fundamental lemma for standard endoscopy: reduction to unit elements.**
 The fundamental lemma, as originally conjectured by Langlands and Shelstad, was a statement about transfer
