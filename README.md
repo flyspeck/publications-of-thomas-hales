@@ -11,7 +11,8 @@
 
 ## Publications by research areas
 
-+ Formal Proof
++ Expository articles
++ Formal Proof and computer proofs
 + Discrete geometry (Kepler conjecture, honeycomb conjecture, etc.)
 + Motivic Integration
 + Langlands Program (fundamental lemma, representations of p-adic reductive groups, etc.)
