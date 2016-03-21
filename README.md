@@ -17,7 +17,7 @@
 + Motivic Integration
 + Langlands Program (fundamental lemma, representations of p-adic reductive groups, etc.)
 
-## supplementary materials.
+## Supplementary materials.
 
 + All publications
 + All abstracts
