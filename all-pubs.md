@@ -25,11 +25,11 @@ Picard modular surfaces, 303--333, Univ. Montr\'eal, Montreal, QC,
 no. 476, [not-online]. {L}
 
 + **The sphere packing problem.**  J. Comput. Appl. Math.  44
-(1992), no. 1, 41--76, [pdf-link](geometry/sphere-packing-problem-scan.pdf). {D}
+(1992), no. 1, 41--76, [pdf-link](geometry/sphere-packing-problem/sphere-packing-problem-scan.pdf). {D}
 
 + **A simple definition of transfer factors for unramified
 groups. Representation theory of groups and algebras,**  109--134,
-Contemp. Math., 145, Amer. Math. Soc., Providence, RI, 1993,  [pdf-link](langlands-program/simple-definition-transfer-factors-unramified-groups-scan.pdf). {L}
+Contemp. Math., 145, Amer. Math. Soc., Providence, RI, 1993,  [pdf-link](langlands-program/simple-definition-transfer-factors/simple-definition-transfer-factors-unramified-groups-scan.pdf). {L}
 
 + **Remarks on the density of sphere packings in three
 dimensions.** Combinatorica 13 (1993), no. 2, 181--197 [pdf-link](geometry/remarks-density-sphere-packings-3dimensions/remarks-density-sphere-packings-3dimensions-pdf-only.pdf). {D}
@@ -62,7 +62,7 @@ no. 1, 1--51, [arXiv:math/9811073](http://arxiv.org/abs/math/9811073). {D}
 (1997), no. 2, 135--149, [arXiv:math/9811074](http://arxiv.org/abs/math/9811074). {D}
 
 + **Cannonballs and honeycombs.** Notices Amer. Math. Soc.
-47 (2000), no. 4, 440--449, [arxiv-link](http://www.ams.org/notices/200004/fea-hales.pdf). {D}
+47 (2000), no. 4, 440--449, [AMS-link](http://www.ams.org/notices/200004/fea-hales.pdf). {D}
 
 + **(with P. Sarnak and M. C. Pugh) Advances in random matrix
 theory, zeta functions, and sphere packing.** Proc. Natl. Acad.
@@ -70,7 +70,7 @@ Sci. USA 97 (2000), no. 24, 12963--12964, [pdf-link](geometry/advances-random-ma
 
 + **Sphere packings in 3 dimensions,** Arbeitstagung proceedings,
   June 2001, 
-  http://www.mpim-bonn.mpg.de/preprints/send?bid=1176 [http://arxiv.org/abs/math/0205208](http://arxiv.org/abs/math/0205208). {D}
+   [arXiv:math/0205208](http://arxiv.org/abs/math/0205208). {D}
 
 + **The honeycomb conjecture.** Discrete Comput. Geom. 25
 (2001), no. 1, 1--22, [arXiv:math/9906042](http://arxiv.org/abs/math/9906042). {D}
@@ -81,14 +81,14 @@ III (Beijing, 2002), 795--804, Higher Ed. Press, Beijing, 2002, [arXiv:math/0305
 {D}
 
 + **The honeycomb problem on the sphere,** preprint 2002,
-math.MG/0211234, [arXiv:math/0211234](http://arxiv.org/abs/math/0211234). {D}
+ [arXiv:math/0211234](http://arxiv.org/abs/math/0211234). {D}
 
 + **(with J. Gordon)  Virtual transfer factors.** 
 Represent. Theory 7 (2003), 81--100, [arXiv:math/0209001](http://arxiv.org/abs/math/0209001). {M}{L}
 
 + **Some algorithms arising in the proof of the Kepler
 conjecture.** Discrete Comput. Geom., 489--507,
-Algorithms Combin., 25, Springer, Berlin, 2003, [http://arxiv.org/abs/math/0205209](http://arxiv.org/abs/math/0205209). {D}
+Algorithms Combin., 25, Springer, Berlin, 2003, [arXiv:math/0205209](http://arxiv.org/abs/math/0205209). {D}
 
 + **Can p-adic integrals be computed?** Contributions to
 automorphic forms, geometry, and number theory, 313--329, Johns
@@ -116,7 +116,7 @@ Soc. 133 (2005),  no. 5, 1515--1525, [arXiv:math/0212236](http://arxiv.org/abs/m
 + **Sphere packings IV: detailed bounds**. Discrete Comput. Geom., 36 (2006), 111--166, [arXiv:math/9811076](http://arxiv.org/abs/math/9811076). {D}
 
 + **Sphere packings VI: tame graphs and linear programs**. Discrete Comput. Geom., 36 (2006), 
-205--266, [http://arxiv.org/abs/math/9811078](http://arxiv.org/abs/math/9811078). {D}
+205--266, [arXiv:math/9811078](http://arxiv.org/abs/math/9811078). {D}
 
 + **A statement of the fundamental lemma**. Harmonic Analysis, The Trace Formula, and Shimura Varieties, 643--658, Clay Math. Proc., 4, Amer. Math. Soc., Providence, RI, 2006,  [arXiv:math/0312227](http://arxiv.org/abs/math/0312227). {L}
   
@@ -129,7 +129,7 @@ Soc. 133 (2005),  no. 5, 1515--1525, [arXiv:math/0212236](http://arxiv.org/abs/m
 + **Some methods of problem solving in elementary geometry**. LICS '07: Proceedings of the 22nd Annual IEEE Symposium on Logic in Computer Science, IEEE Society Press, (2007), 35--40, [not-online]. {D}
 
 + **Formal proof**.
-Notices Amer. Math. Soc. 55 (2008), no. 11, 1370--1380, [arxiv-link](http://www.ams.org/notices/200811/tx081101370p.pdf). {F}
+Notices Amer. Math. Soc. 55 (2008), no. 11, 1370--1380, [AMS-link](http://www.ams.org/notices/200811/tx081101370p.pdf). {F}
 
 + **(with J. Harrison, S. McLaughlin, T. Nipkow, S. Obua, R. Zumkeller) A revision of the proof of the Kepler conjecture**.
          Discrete Comput. Geom., (2009),  [arXiv:0902.0350](http://arxiv.org/abs/0902.0350). {D}
@@ -150,7 +150,7 @@ Transfer principle for the fundamental lemma**. Stabilization of the trace formu
 
 + **(with A. Solovyev) Efficient formal verification of bounds of linear programs**, LNCS 6824, 2011, [pdf-link](formal-proof/efficient-formal-verification-bounds-linear-programs/efficient-formal-verification-bounds-linear-programs-pdf-only.pdf). {F}
 
-+ **The fundamental lemma and the Hitchin fibration [after Ngo Bao Chau]**, Bourbaki seminar 2010-2011, no. 1035, April 2011, [arXiv:1103.4066](http://arxiv.org/abs/1103.4066_. {L}
++ **The fundamental lemma and the Hitchin fibration [after Ngo Bao Chau]**, Bourbaki seminar 2010-2011, no. 1035, April 2011, [arXiv:1103.4066](http://arxiv.org/abs/1103.4066). {L}
 
 + **Dense Sphere Packings: a blueprint for formal proofs,** Cambridge
   University Press, LMS volume 400, 2012, [pdf-link](https://github.com/flyspeck/flyspeck/blob/master/downloads/DenseSpherePackings.pdf). {F}{D}
