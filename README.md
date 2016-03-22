@@ -12,9 +12,10 @@
 
 + [Books](books.md)
 + [Expository articles](expository.md)
-+ Articles on and popular accounts of Hales's research by other writers
++ [Slides from talks](slides.md)
++ [Articles on and popular accounts of Hales's research by other writers](other-writers.md)
 
-## Publications by research areas
+## Publications by research area
 
 + Formal Proof and computer proofs
 + Discrete geometry (Kepler conjecture, honeycomb conjecture, etc.)
@@ -23,7 +24,7 @@
 
 ## Supplementary materials.
 
-+ All publications
++ [All publications](all-pubs.md)
 + All abstracts
 + [Computer software](software.md)
 + Export citations
