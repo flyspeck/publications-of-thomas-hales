@@ -153,7 +153,7 @@ Transfer principle for the fundamental lemma**. Stabilization of the trace formu
 + **The fundamental lemma and the Hitchin fibration [after Ngo Bao Chau]**, Bourbaki seminar 2010-2011, no. 1035, April 2011, [arXiv:1103.4066](http://arxiv.org/abs/1103.4066). {L}
 
 + **Dense Sphere Packings: a blueprint for formal proofs,** Cambridge
-  University Press, LMS volume 400, 2012, [pdf-link](https://github.com/flyspeck/flyspeck/blob/master/downloads/DenseSpherePackings.pdf). {F}{D}
+  University Press, LMS volume 400, 2012, [pdf-link (click-on-raw)](https://github.com/flyspeck/flyspeck/blob/master/downloads/DenseSpherePackings.pdf). {F}{D}
 
 + **On the Reinhardt Conjecture**, Vietnam Journal of Mathematics, 39(3), 2012, [arxiv:1103.4518](http://arxiv.org/abs/1103.4518). {D}
 
