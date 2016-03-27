@@ -236,7 +236,7 @@ recursepairtoeps one_pintx (dummybool pintdomain);;
 recursepairtoeps one_pinwheelx (dummybool pinwheeldomain);;
 recursepairtoeps one_ljx (dummybool ljdomain);;
 recursepairtoeps one_tjx (dummybool tjdomain);;
-      
+
 
 (* dimer stuff *)
 
@@ -253,7 +253,7 @@ let dimer_constraint1 = dimer_constraint_eps (m 0.1);;
 
 let dimer_constraint2 = dimer_constraint_eps (m 0.01);;
 
-let one_dimer_eps eps dimer_constraint xs = 
+let one_dimer_eps pseudo eps dimer_constraint xs = 
   let ([alphaB;betaB;xbetaB;alphaD],
        ((sB,edgeB,disjointB),(sD,edgeD,disjointD))) = xs in
   try
@@ -271,11 +271,13 @@ let one_dimer_eps eps dimer_constraint xs =
       else 
 	let (dCD,dAC',dAD) = edgeD alphaD betaD xbetaD in
 	let aADC = areamin_acute dCD dAC' dAD in
+	let pseudodimer = dAD >> dAC' + m 0.03 && dAD >> m 1.8 in 
 	aABC + aADC >> two * aK - eps or 
+	  (pseudo && pseudodimer) or
 	  dimer_constraint alphaB betaB xbetaB alphaD
   with | Unstable -> false;;
 
-let one_dimer = one_dimer_eps zero;;
+let one_dimer = one_dimer_eps false zero;;
 
 let dimer_types = [
   ("pint",dimer_pintedge,disjoint_from_dimer_pint)  ;
@@ -297,20 +299,18 @@ let dtype_labels xs =
   let (_,((sB,_,_),(sD,_,_))) = xs in
   (sB,sD);;
 
-dtype_labels (dimer_domain(0,0));;
-dimer_domain(0,0);;
-
-let recurse_dimer eps f d =
+let recurse_dimer pseudo eps f d =
     try 
       let _ = report "..." in
-      recurserpair (1.0e-8) 0 (one_dimer_eps eps f) [d]
+      recurserpair (1.0e-8) 0 (one_dimer_eps pseudo eps f) [d]
     with Failure s ->
       let (sB,sD) = dtype_labels d in
       failwith ("one_dimer("^sB^","^sD^") "^s);;
 
 (* This does cases that don't approach the Kuperberg dimer. *)
 (* all run on 3/10/2016: *)
-let recurse0 s = recurse_dimer zero dimer_constraint0 (dimer_domain s);;
+let recurse0 s = recurse_dimer false zero 
+  dimer_constraint0 (dimer_domain s);;
 map (fun i -> recurse0 (0,i)) (0--7);;
 map (fun i -> recurse0 (i,0)) (0--7);;
 map (fun i -> recurse0 (4,i)) (0--7);;
@@ -324,33 +324,41 @@ let needsmore = [1;2;3;7];;
 
 let morecases = outer (fun x y -> (x,y)) needsmore needsmore;;
 
-let recurse1 s = recurse_dimer zero dimer_constraint1 (dimer_domain s);;
-let recurse2 s = recurse_dimer zero dimer_constraint2 (dimer_domain s);;
+let recurse1 pseudo s = recurse_dimer pseudo zero 
+  dimer_constraint1 (dimer_domain s);;
+let recurse2 pseudo s = recurse_dimer pseudo zero 
+  dimer_constraint2 (dimer_domain s);;
 
-(* try_do (recurse1) morecases;; *)
-recurse2 (1,1);;
-recurse2 (2,1);;
-recurse2 (3,1);;
-recurse2 (7,1);;
+(* This reduces dimers to 0.01 nbd of Kuperberg dimer.
+   The "true" cases also explicitly exclude pseudo-dimers. *)
+recurse2 false (1,1);;
+recurse2 false (2,1);;
+recurse2 false (3,1);;
+recurse2 false (7,1);;
 
-recurse2 (1,2);;
-recurse2 (2,2);;
-recurse2 (3,2);;
-recurse2 (7,2);;
+recurse2 false (1,2);;
+recurse2 false (2,2);;
+recurse2 false (3,2);;
+recurse2 false (7,2);;
+
+recurse2 false (2,3);;
+recurse2 false (7,3);;
+
+recurse2 false (2,7);;
+recurse2 false (7,7);;
+
+(* last 4 cases exclude pseudo-dimers.
+   These tests fail with input pseudo=false. *)
+recurse2 true (1,3);;  
+recurse2 true (3,3);; 
+recurse2 true (1,7);;
+recurse2 true (3,7);;
 
 
-(* recurse1 (1,3);; fail *)
-recurse2 (2,3);;
-(* recurse1 (3,3);; fail *)
-recurse2 (7,3);;
-
-(* recurse1 (1,7);; fail *)
-recurse2 (2,7);;
-(* recurse1 (3,7);; fail *)
-recurse2 (7,7);;
-
-(* 0.007 good, 0.006 fails, so area sum is off by at most 0.007 *)
-let recurseN s = recurse_dimer (m 0.007) dimer_constraint0 (dimer_domain s);;
+(* 0.007 good, 0.006 fails, 
+   so pseudo-dimer area sum is off by at most 0.007 *)
+let recurseN s = recurse_dimer false (m 0.007)
+  dimer_constraint0 (dimer_domain s);;
 recurseN (1,3);;
 recurseN (3,3);;
 recurseN (1,7);;
@@ -358,7 +366,7 @@ recurseN (3,7);;
 (* 0.007 good *)
 
 
-(* check that the second part of 
+(* Junk: check that the second part of 
    pseudo-dimer can be subcritical away from Kup.
 (*	aABC + aADC >> two * aK - eps or *)
 	  aADC >> aK or
@@ -383,16 +391,18 @@ let ce33 = map mk_interval [(0.314159255996,0.314159265359);(0.314159255996,0.31
 let ce17 = map mk_interval [(0.157040665223,0.157040674586);(0.235959772919,0.235959782281);(0.237636333545,0.237636342304);(0.,9.36267570731e-09)];;
 let ce37 = map mk_interval [(0.314159255996,0.314159265359);(0.314159255996,0.314159265359);(0.301264967108,0.301264975867);(0.,9.36267570731e-09)];;
 
-let ce = map mk_interval [(0.14725940301,0.147259412373);(0.241714279387,0.24171428875);(0.290869934645,0.290869943404);(0.,9.36267570731e-09)];;
+"pinw,lj2";;
+let ce = map mk_interval [(0.313957621412,0.313957630775);(0.307715338265,0.307715347627);(0.416314741265,0.416314750024);(0.,9.36267570731e-09)];;
 let [ce'alphaB;ce'beta;ce'xbeta;ce'alphaD] = ce;;
 let ce'betaD = pi25 - ce'beta;;
 let ce'xbetaD = two*sigma - ce'xbeta;;
 
+let (d1,d2,d3)=dimer_lj2edge ce'alphaD ce'betaD ce'xbetaD;;
 disjoint_from_dimer_lj2 ce'alphaD ce'betaD ce'xbetaD;;
 areamin_acute d1 d2 d3;;
 aK;;
 aK;;
-let (d1,d2,d3)=dimer_lj2edge ce'alphaD ce'betaD ce'xbetaD;;
+
 dimer_lj3edge_extended ce'alphaD ce'betaD ce'xbetaD;;
 ce'alphaD;;
 ce'betaD;;
