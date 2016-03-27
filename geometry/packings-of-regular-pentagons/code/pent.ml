@@ -55,6 +55,8 @@ let min2_I x y = min_I (merge_I x y);;
 
 let max2_I x y = max_I (merge_I x y);;
 
+let max3_I x y z = max2_I (max2_I x y) z;;
+
 let mem_I r i = (i.low <= r && r <= i.high);;
 
 let width_I x = max_I x - min_I x;;
@@ -160,12 +162,12 @@ let ilawbeta alpha a b =
 
 (* law of cosines, with special cases for monotonicity *)
 
-let ilocc a b costh = 
-    sqrt_I(a * a + b * b - two * a * b * costh);;
 
 let iloc =
   let mx = max_I in
   let mn = min_I in
+  let ilocc a b costh = 
+    sqrt_I(a * a + b * b - two * a * b * costh);;
   let ilocc2 a b cth a' b' cth' = merge_I (ilocc a b cth) (ilocc a' b' cth') in
     fun a b theta -> 
         let costh = cos_I theta in
