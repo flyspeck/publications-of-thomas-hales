@@ -1,3 +1,8 @@
+(* needs init.ml, pent.ml open Pent. pet.ml *)
+
+needs "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pent.ml";;
+needs "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pet.ml";;
+
 
 (*
 Meet-in-the-middle verifications of
@@ -16,9 +21,7 @@ March 2016
 
 module Meet = struct
 
-
-
-end;;
+  open Pent;;
 
 let int_floor x = int_of_float (floor x);;
 
@@ -27,10 +30,20 @@ let int_ceil x = int_of_float (ceil x);;
 let affine width offset r = 
   ((r - offset)/width);;
 
+(* We rarely use integer arithmetic. *)
+let ( +~ ) = Pervasives.( + );;
+let ( *~) = Pervasives.( * );;
+let ( -~ ) = Pervasives.( - );;
+
+let ( >. ) (x:float) (y:float) = x > y;;
+let ( <. ) (x:float) (y:float) = x < y;;
+
+(* Hashtable keys are discretizations of interval domains. *)
+
 let make_a_key width offset t =
   let im = int_floor (affine width offset t).low in
   let iM = int_ceil (affine width offset t).high in
-  (im -- (Pervasives.(-) iM 1));;
+  (im -- (iM -~ 1));;
 
 make_a_key (m 0.2) (m 0.1) (mk 1.01 1.1);;
 
@@ -49,7 +62,7 @@ let make_keys width offsets ranges =
   let k123 = outer pair k1 ((* map sort *) (outer pair k2 k3)) in
     map (fun (i,(j,k)) -> (i,j,k)) k123;;
 
-make_keys (m 0.2) ((m 1.0),(m 1.0),(m 1.0)) 
+make_keys (m 0.2) ((m 1.0),(m 1.0)) 
   ((mk 1.1 1.2),(mk 1.4 1.5),(mk 2.01 2.3));;
 
 (* set up hashtables *)
@@ -68,8 +81,8 @@ let edgewidth (a,b,c) =
 
 let normal_edge_keys width offsets edgedata = 
   let (l,t,t') = edgedata in
-  let ts = periodize_pent t in
-  let ts' = periodize_pent t' in
+  let ts = Pet.periodize_pent t in
+  let ts' = Pet.periodize_pent t' in
   let lpair x y = l,x,y in
   let ls = outer lpair ts ts' in
   map (make_keys width offsets) ls;;
@@ -109,7 +122,7 @@ let repopulate_area_tbl
   let f k (_,area) =
     try 
       let currentarea = Hashtbl.find area_tbl k in
-      if (area < currentarea) then Hashtbl.add area_tbl k area else () 
+      if (area <. currentarea) then Hashtbl.add area_tbl k area else () 
     with Not_found -> () in
   Hashtbl.iter f local_tbl;;
       
@@ -134,6 +147,8 @@ let findsome tbl key =
       Some (Hashtbl.find tbl key)
     with Not_found -> None;;
 
+(* fix: This can't be used on hashtables of different types *)
+
 let depopulate_local_tbl =
   let temp_tbl = Hashtbl.create 20000 in
   fun width offsets local_tbl edgecuts ->
@@ -146,7 +161,7 @@ let depopulate_local_tbl =
     match findsome temp_tbl key with
     | None -> Hashtbl.add temp_tbl key area
     | Some current ->
-      if (area > current) then Hashtbl.add temp_tbl key area in
+      if (area >. current) then Hashtbl.add temp_tbl key area in
   let _ = map add_temp keypairs in
   let f k (lp,area) buffer = 
     try
@@ -157,6 +172,9 @@ let depopulate_local_tbl =
   Hashtbl.fold f local_tbl [];;
 
 let add_area_cutoff_tbl = 0;;
+
+(* sws is the subwidth list that must be rechecked later for
+   a small width *)
 
 let recurse_central 
     width compute_one disjoint_from_central_domain
@@ -236,7 +254,7 @@ let rec meet_in_the_middle count width_denom offsets
     compute_peripherals 
     disjoint_from_peripheral_domains peripheral_tolists peripheral_fromlists peripheral_paramss in
   if sws = [] then (print "done! count=%d" count) else
-    meet_in_the_middle (count+1) (2*width_denom) offsets
+    meet_in_the_middle (count +~ 1) (2 *~ width_denom) offsets
     compute_central disjoint_from_central_domain
     others_outofbounds mk_edgecuts
     areacutoff central_edgewidthfn central_tolist central_fromlist 
@@ -245,3 +263,119 @@ let rec meet_in_the_middle count width_denom offsets
     compute_peripherals 
     disjoint_from_peripheral_domains peripheral_tolists peripheral_fromlists buffs;;
 		 
+
+(* now start implementation of specific calculations *)
+
+
+end;;
+
+let r2_coord ell theta' = 
+  one + ell*ell - two*ell*cos_I theta';;
+
+let pushabovepi x = 
+  if x << pi then (twopi - x)
+  else if x >> pi then x
+  else inter_I (merge_I pi twopi) (merge_I x (twopi-x));;
+
+(* need to reduce theta' to [-pi/5,pi/5] *)
+
+let two_contact_coord_ell_theta' ell theta' hpos = 
+  let r_range = merge_I kappa one in
+  let r = iloc one ell theta' in
+    if disjoint_I r r_range then None 
+    else
+      let r = inter_I r r_range in
+      let ely = iloc ell one (pi25 - theta') in
+      let abs_h = sqrt_I (r*r - kappa*kappa) in
+      let h = if hpos then abs_h else - abs_h in
+      let xalpha = h + sigma in
+      let phi' = asin_I (h / r) in
+      let unstable = (ell + m 0.1 >> r + one) in
+      let delta0 = 
+	if unstable then (ratpi 3 10) + iarc r (two*sigma) ely
+	else iarc r one ell in
+      let delta = if (theta' << zero) then pushabovepi delta0
+	else if (theta' >> zero) then delta0
+	else merge_I (delta0) (twopi - delta0) in
+      let alpha = ratpi 6 5 - (delta + phi') in
+      let theta = alpha - theta' in
+      Some (xalpha,Pet.periodize_pent0 alpha,Pet.periodize_pent theta);;
+
+let ranged_two_contact_coord_ell_theta' ell theta' hpos = 
+  let theta's = Pet.periodize_pent theta' in
+  let s = map (fun t -> two_contact_coord_ell_theta' ell t hpos) theta's in
+  let xalpha_alpha_thetas = selectsome s in
+  let cleanup (x,y,z) = outer (fun u v -> (x,u,v)) y z in
+  List.flatten (map cleanup (xalpha_alpha_thetas));;
+
+(* input constraint: theta must be in [0,2Pi/5] *)
+let two_contact_coord_ell_theta ell theta phi_obtuse = 
+  let s310 = sin_I (ratpi 3 10) in
+  let sth = sin_I (theta + ratpi 3 10) in
+  let x = s310 / sth in
+  let asin_range = mk (-1.0) 1.0 in
+  let ell' = (ell-x)*sth in
+  if disjoint_I ell' asin_range then None
+  else 
+    let sinphi0 = inter_I asin_range ell' in
+    let phi0 = asin_I sinphi0 in
+    let phi = if phi_obtuse then (pi-phi0) else phi0 in
+    let theta' = ratpi 7 10 - (phi + theta) in
+    let alpha = theta+theta' in
+    Some (Pet.periodize_pent theta',Pet.periodize_pent0 alpha);;
+
+(* Here we put everything in range *)
+let fit_two_contact_coord_ell_theta = 0;;
+let ranged_two_contact_coord_ell_theta ell theta phi_obtuse = 
+  let thetas = Pet.periodize_pent0 theta in
+  let s = map 
+    (fun t -> two_contact_coord_ell_theta ell t phi_obtuse) thetas in
+  let theta'_alphas = selectsome s in
+  let cleanup (x,y) = outerpair x y in
+  List.flatten (map cleanup theta'_alphas);;
+  
+Random.self_init();;
+
+let test _ = 
+  let xalpha = m (Random.float (two*sigma).low) in
+  let alpha = m (Random.float pi25.low) in
+  let (ell1,theta1,theta1') = thetax xalpha alpha in
+  let theta2' =  Pet.periodize_pent theta1' in
+  let phiobtuse = 
+    if alpha << pi15 then [true]
+    else if alpha >> pi15 then [false]
+    else [true;false] in
+  let theta'_alphas = List.flatten 
+    (map (ranged_two_contact_coord_ell_theta ell1 theta1) phiobtuse) in
+  let theta'_theta'_alphas = outer (fun a b -> a,b) theta2' theta'_alphas in
+  let meetb = exists 
+    (fun (th',(th'',a)) -> meet_I th' th'' && meet_I a alpha) 
+    theta'_theta'_alphas in
+  meetb;;
+
+let test' _ = 
+  let xalpha = m (Random.float (two*sigma).low) in
+  let alpha = m (Random.float pi25.low) in
+  let (ell1,theta1,theta1') = thetax xalpha alpha in
+  let theta1dize =  Pet.periodize_pent theta1 in
+  let h = xalpha - sigma in
+  let hpos = if (h >> zero) then [true]
+    else if (h << zero) then [false]
+    else [true;false] in
+  let xalpha_alpha_thetas = List.flatten 
+    (map (ranged_two_contact_coord_ell_theta' ell1 theta1') hpos) in
+  let alpha_ = (map (fun (_,a,_) -> a) xalpha_alpha_thetas) in
+  let meet_alpha = exists (meet_I alpha) alpha_ in
+  let xalpha_ =     (map (fun (x,_,_) -> x) xalpha_alpha_thetas) in
+  let meet_xalpha = exists (meet_I xalpha) xalpha_ in
+  let theta_ = (map (fun (_,_,t)->t) xalpha_alpha_thetas) in
+  let theta_theta = outerpair theta1dize theta_ in
+  let meet_theta = exists
+    (fun (t,t') -> meet_I t t') theta_theta in
+  (meet_alpha && meet_xalpha && meet_theta,
+   (xalpha,xalpha_,alpha,alpha_,theta1dize,theta_));;
+
+
+   
+let it = test'();; 
+filter (fun (b,_) -> not b) (map test' (1--100000));;

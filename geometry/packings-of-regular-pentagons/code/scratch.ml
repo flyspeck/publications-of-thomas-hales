@@ -1,5 +1,5 @@
 reneeds "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pent.ml";;
-reneeds "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/work-in-progress/pet.ml";;
+reneeds "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pet.ml";;
 
 
 
@@ -15,11 +15,6 @@ let try_do f =
       |  Failure s  -> report s; [] 
       | _ -> [] in 
   try_dof;;
-
-let rec outer f xs =
-  function
-  | [] -> []
-  | y::ys -> map (fun t -> f t y) xs @ outer f xs ys;;
 
 
 acos_I (mk 0.5 1.1);;

@@ -10,6 +10,17 @@ load through init.ml.
 
 module Pent = struct
 
+let rec outer f xs =
+  function
+  | [] -> []
+  | y::ys -> map (fun t -> f t y) xs @ outer f xs ys;;
+
+let outerpair = outer (fun x y -> x,y);;
+
+let rec selectsome = function
+  | [] -> []
+  | None::xs -> selectsome xs
+  | Some x::xs -> x:: selectsome xs;;
 
 let sqrt_I x = 
   try
@@ -162,12 +173,11 @@ let ilawbeta alpha a b =
 
 (* law of cosines, with special cases for monotonicity *)
 
-
 let iloc =
   let mx = max_I in
   let mn = min_I in
   let ilocc a b costh = 
-    sqrt_I(a * a + b * b - two * a * b * costh);;
+    sqrt_I(a * a + b * b - two * a * b * costh) in
   let ilocc2 a b cth a' b' cth' = merge_I (ilocc a b cth) (ilocc a' b' cth') in
     fun a b theta -> 
         let costh = cos_I theta in

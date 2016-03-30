@@ -51,6 +51,9 @@ angle if necessary *)
 let periodize_pent ix = 
   periodize_min ix (ratpi 2 5) (- ratpi 1 5);;
 
+let periodize_pent0 ix =
+  periodize_min ix pi25 zero;;
+
 (* now run the pent existence tests for same sign and mixed sign cases *)
       
 let case_pet_pos l (itheta',iabstheta) =
