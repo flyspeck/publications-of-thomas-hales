@@ -1,0 +1,357 @@
+\documentclass[18pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{alltt}
+\usepackage{url}
+\usepackage{ellipsis}
+% 
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+
+
+\newcommand{\ring}[1]{\mathbb{#1}}
+\newcommand{\op}[1]{\hbox{#1}}
+\newcommand{\f}[1]{\frac{1}{#1}}
+\newcommand{\text}[1]{\hbox{#1}}
+
+\title{An Elementary Proof and Partial Formalization of the Group Law  for Complete Edwards Elliptic Curves}
+\author{Thomas C. Hales}
+\date{May 7, 2016}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract} We give an elementary proof and partial formal proof
+of the group axioms for complete Edwards elliptic curves.  
+The proof avoids concepts from algebraic geometry.  
+Instead, the proof relies on the basic properties of rings and ring homomorphisms,
+including the localization of rings.  
+In particular,
+we present an eleven-line elementary computational proof of associativity.
+Following an approach introduced
+by Friedl, the associativity law is expressed as a
+polynomial identity over the integers that is constructed by Groebner basis methods. 
+Edwards curves avoid the case-by-case analysis
+that complicates previous proofs based on Groebner bases.
+After the polynomial identity is found, 
+ it can be verified directly and independently of the algorithm that
+produces it.  The main polynomial identities in this paper have been formally verified
+in the HOL Light proof assistant.  
+\end{abstract}
+
+\parskip=\baselineskip
+
+\newenvironment{blockquote}{%
+  \par%
+  \medskip%
+  \baselineskip=0.7\baselineskip%
+  \leftskip=2em\rightskip=2em%
+  \noindent\ignorespaces}{%
+  \par\medskip}
+
+
+\section{Introduction}
+
+The group law on elliptic curves is a fundamental part of cryptography.  In my undergraduate cryptography course this 
+past semester (Spring 2016),
+it was unpleasant for 
+me to tell my students that the associative law for elliptic curve addition is too advanced for an undergraduate course.
+It is clearly desirable to have a proof for an undergraduate course that is short and elementary.
+Here, I present an eleven-line elementary computational proof of associativity (Lemma~\ref{lemma:assoc}).
+
+There is another reason why we should care about having a simple proof of the group axioms for an elliptic curve.
+The difficulty of the verification has been a impediment to the formalization of elliptic curve cryptography.  Th\'ery,
+and more recently Bartzia and Strub, have
+obtained formal proofs in the proof assistant 
+Coq of the group axioms for an elliptic curve, but this project has a long history~\cite{thery2007primality}, \cite{thery2007proving},  \cite{bartzia2014formal}.
+See also \cite{russinoffcomputationally}.
+
+I confine my remarks to Edwards elliptic curves.  They have become popular in recent  years
+in cryptography.  Some elliptic curves cannot
+be represented as Edwards curves, but Edwards curves include a large fraction of elliptic curves (up to isomorphism) over finite fields and are sufficient for many
+cryptographic purposes.  
+
+Proofs based on Groebner basis algorithms carry a particular appeal for those of us interested in formalization, because
+many proof assistants support such proofs.
+Buchberger's algorithm has previously been used
+to prove the associativity of the group law for Weierstrass curves, but it encounters complications from the case-by-case
+treatment of the group law.  As expected, Edwards elliptic curves avoid these complications.  A number of calculations here can be
+viewed as small reworkings of calculations found in Edwards, Bernstein, and Lange~\cite{edwards2007normal}, \cite{bernstein2008twisted}, \cite{bernstein2007faster}.
+
+\section{Group Axioms}
+
+Our primary aim is to prove the group axioms for addition on Edwards elliptic curves (Theorem~\ref{thm:group}).
+
+We have tried to keep our presentation at an undergraduate level.
+We will assume a basic background in abstract algebra at the level of a first course (rings, fields, homomorphisms, and kernels).
+We set things up in a way that all of the main identities to be proved are identities of polynomials with integer coefficients.
+
+If $R$ is a ring (specifically, a ring of polynomials with integer coefficients), and if $\delta\in R$, then we write
+$R[\f{\delta}]$ for the localization of $R$ with respect to the multiplicative set $S=\{1,\delta,\delta^2,\ldots\}$.  That is,
+$R[\f{\delta}]$ is the ring of fractions with numerators in $R$ and denominators in $S$.  We will need the 
+well-known fact that if $\phi:R\to A$
+is a ring homomorphism that sends $\delta$ to a unit in $A$, then $\phi$ extends uniquely to a homomorphism
+$R[\f{\delta}]\to A$ that maps a fraction $g/\delta^i$ to $\phi(g)\phi(\delta^i)^{-1}$.
+
+We begin with an easy lemma.
+\begin{lemma}[kernel property]  Suppose that an identity $g = r_1 e_1 + r_2 e_2 +\cdots + r_k e_k$ holds in a ring $R$.  If $\phi:R\to A$ is a ring homomorphism
+such that $\phi(e_i) =0$ for all $i$, then $\phi(g)=0$.
+\end{lemma}
+
+\begin{proof}
+\[
+\phi(g) = \sum_{i=1}^k \phi(r_i) \phi(e_i) = 0.
+\]
+\end{proof}
+
+We will use the following rings: $R_0 := \ring{Z}[c,d]$, that is, the ring of polynomials in $c$ and $d$ with integer coefficients;
+and $R_n := R_0[x_1,y_1,\ldots,x_n,y_n]$, that is, the ring of polynomials in $c,d,x_1,\ldots,y_n$ with integer coefficients.  Let 
+\begin{equation}
+e(x,y) = c x^2 + y^2 -1 - d x^2 y^2 \in  R_0[x,y].
+\end{equation}
+
+
+For a given field $k$ and specializations $c,d\mapsto \bar c,\bar d \in k$, the zero set of $e(x,y)$ in $k^2$ is 
+the set of points on the 
+\emph{twisted affine Edwards elliptic curve}.  If $\bar c=1$, the curve is said to be \emph{untwisted}.
+Except in incidental remarks such as this one, we avoid the  language of curves, working instead algebraically with rings.
+
+We write $e_i = e(x_i,y_i)$ for the image of the polynomial in $R_j$, for $i\le j$, under $x\mapsto x_i$ and $y\mapsto y_i$.
+Set
+$\delta^\pm=\delta^{\pm} (x_1,y_1,x_2,y_2) = 1\pm d x_1 y_1 x_2 y_2$ and
+\[
+\delta=\delta(x_1,y_1,x_2,y_2) = 1 - d^2 x_1^2 y_1^2 x_2^2 y_2^2 =\delta^+(x_1,y_1,x_2,y_2)\delta^-(x_1,y_1,x_2,y_2)\in R_2.
+\]
+We write $\delta_{ij}$ for its image of $\delta$ under $(x_1,y_1,x_2,y_2)\mapsto (x_i,y_i,x_j,y_j)$.  In particular, $\delta=\delta_{12}$.
+
+We define a pair of rational functions that we denote using the symbol $\oplus$:
+\begin{equation}\label{eqn:add}
+(x_1,y_1) \oplus (x_2,y_2) =  \left(\frac{x_1 y_2 + y_1 x_2}{1+d x_1 x_2 y_1 y_2},\frac{y_1 y_2 - c x_1 x_2}{1 - d x_1 x_2 y_1 y_2}\right) \in R_2[\f{\delta}]\times R_2[\f{\delta}].
+\end{equation}
+Commutivity is an obvious consequence of the symmetry $1\leftrightarrow 2$:
+\[
+(x_1,y_1) \oplus (x_2,y_2) = (x_2,y_2) \oplus (x_1,y_1).
+\]
+If $\phi:R_2[\f{\delta}]\to A$ is a ring homomorphism, we also write $(a_1,b_1)\oplus (a_2,b_2)\in A^2$ for the image
+of $(x_1,y_1)\oplus (x_2,y_2)$, where $x_1,y_1,x_2,y_2 \mapsto^\phi a_1,b_1,a_2,b_2$.  We write $\bar e_i=e(a_i,b_i)\in A$ for the
+image of $e_i$ under $\phi$.  Geometrically,
+$\bar e_i=0$ asserts that $(a_i,b_i)$ is a point on the Edwards curve.
+More generally, we often mark the image $\bar g=\phi(g)$ of an element with a bar accent.
+
+There is an obvious identity element $(0,1)$, expressed as follows.  Under a homomorphism
+$\phi:R_2[\f{\delta}]\to A$, mapping $x_1,y_1,x_2,y_2\mapsto a,b,0,1$,
+we have $(a,b)\oplus(0,1) = (a,b)$.
+
+\begin{lemma} [inverse] 
+Under a homomorphism
+$\phi:R_2[\f{\delta}]\to A$, with $x_1,y_1,x_2,y_2\mapsto a_1,b_1,-a_1,b_1$,
+we have $(a_1,b_1)\oplus (-a_1,b_1) = (0,1)$, provided $\bar e_1=0$. 
+\end{lemma}
+
+\begin{proof}
+This is elementary from the definitions of $\oplus$ and $\phi$.
+\end{proof}
+
+
+
+To develop informal intuition about the Edwards curve and the addition law, it can help to graph the
+equation $e(x,y)=0$ over the real numbers with specializations $c\mapsto\bar c = 1$ and $d\mapsto\bar d\in\ring{R}$.  The graph has evident
+symmetries $x\leftrightarrow -x$, $y\leftrightarrow -y$.  When $\bar d$ is small, the curve is a symmetrical deformation of the circle, which corresponds to parameter values $(\bar c,\bar d) = (1,0)$.
+The group addition law is also a deformation of the addition law of the addition law for the circle:
+the numerators of Equation (\ref{eqn:add}) give the usual group law for the circle%
+\footnote{It is not quite the usual formula for circle addition, because elliptic curvologists follow the mixed-up
+convention of placing the
+identity of the group at the point $z = x + i y = i$ rather than $z = 1$, so that to relate the usual multiplication of
+complex numbers on the circle $|z|=1$
+\[
+z_1 = x_1 + i y_1,\quad z_2 = x_2 + i y_2,\quad z_1 z_2 = (x_1 x_2 - y_1 y_2) + i (x_1 y_2 + x_2 y_1) = x_3 + i y_3
+\]
+to the numerator of the elliptic curve addition law, we must interchange axes: $(x_i\leftrightarrow y_i)$.
+}
+ and the denominators are
+the \emph{correction factors} needed to bring the sum of two points on the curve back onto the curve,
+as the following lemma shows.
+
+
+
+\begin{lemma}[closure under addition]
+Let $\phi:R_2[\f{\delta}]\to A$ be a ring homomorphism with $x_1,y_1,x_2,y_2 \mapsto^\phi a_1,b_1,a_2,b_2$.
+If $\bar e_1 = \bar e_2 = 0$ then ${\bar e}(a_3,b_3) = 0$, where $(a_3,b_3) = (a_1,b_1)\oplus (a_2,b_2)$.
+\end{lemma}
+
+\begin{proof} This proof will serve as a model of other proofs.
+We write
+\[
+e(x_3',y_3') = \frac{g}{\delta^2},\quad \text{ where } (x_3',y_3')=(x_1,y_1) \oplus (x_2,y_2) ,\quad 
+\]
+for some polynomial $g \in R_2$.  It is enough to show that $\phi(g)=0$.
+Buchberger's algorithm for ideal membership gives
+\begin{equation}\label{eqn:closure}
+g= r_1 e_1 + r_2 e_2,
+\end{equation}
+for some polynomials 
+$r_i\in R_2$.  Concretely, the polynomials $r_i$ are obtained as the output of the one-line Mathematica command
+\[
+\op{PolynomialReduce}[g,\{e_1,e_2\},\{x_1,x_2,y_1,y_2\}].
+\]
+Thus, the result follows from the kernel property and (\ref{eqn:closure}); $\bar e_1 = \bar e_2 = 0$ implies $\phi(g)= 0$, giving ${\bar e}(a_3,b_3)=0$.
+\end{proof}
+
+This next step (associativity) is generally considered the hardest part of the verification of the group law.
+The polynomials $\delta^\pm$ appear as  denominators in the addition rule.  The polynomial denominators $\Delta^\pm$ that
+appear
+when we add twice are more involved.  Specifically, let $ (x_3',y_3')=(x_1,y_1) \oplus (x_2,y_2)$, 
+ let $(x_1',y_1')=(x_2,y_2) \oplus (x_3,y_3) $, and set
+\[
+\Delta^{\pm} = \delta^\pm(x_3',y_3',x_3,y_3)\delta^\pm(x_1,y_1,x_1',y_1')\delta_{12}\delta_{23}\in R_3.
+\]
+
+\begin{lemma}[associativity] \label{lemma:assoc} Let $\phi:R_3[\f{\Delta^+\Delta^-}]\to A$ be a homomorphism sending $x_i,y_i\mapsto a_i,b_i$.
+Assume $\bar e_1 = \bar e_ 2= \bar e_3 = 0$. Then 
+\[
+((a_1,b_1)\oplus (a_2,b_2)) \oplus (a_3,b_3)=
+(a_1,b_1)\oplus ((a_2,b_2) \oplus (a_3,b_3)).
+\]
+\end{lemma}
+
+\begin{proof}  The proof is almost identical to the previous proof.
+We work in the ring $R_3[\f{\Delta^+\Delta^-}]$ and take the component-wise difference of the two sides, writing
+\[
+((x_1,y_1)\oplus (x_2,y_2)) \oplus (x_3,y_3)-
+(x_1,y_1)\oplus ((x_2,y_2) \oplus (x_3,y_3)) = (\frac{g_1}{\Delta^+},\frac{g_2}{\Delta^-}),
+\]
+for some polynomials $g_1,g_2 \in R_3$.  It is enough to show that $\phi(g_1)=\phi(g_2)=0$. 
+Buchberger's algorithm for ideal membership gives
+\begin{equation}\label{eqn:assoc}
+g_i = r_i^1 e_1 + r_i^2 e_2 + r_i^3 e_3,
+\end{equation}
+for some polynomials $r_i^j\in R_3$.  
+Concretely, the polynomials $r_i^j$ are obtained as the output of the one-line Mathematica command
+\begin{equation}\label{eqn:mathca}
+\op{PolynomialReduce}[\{g_1,g_2\},\{e_1,e_2,e_3\},\{x_1,y_1,x_2,y_2,x_3,y_3\}].
+\end{equation}
+Thus, the result follows from the kernel property and (\ref{eqn:assoc}); $\bar e_1 = \bar e_2 = \bar e_3 = 0$ implies $\phi( g_1) = \phi( g_2) = 0$, giving the result.
+\end{proof}
+
+The following result is traditionally called completeness, even though it has nothing to do with the notion of
+complete varieties in algebraic geometry.  The meaning of the 
+word \emph{complete} in the title and abstract  is that of the lemma: the affine plane contains all $k$-points, 
+and denominators are nonzero at every $k$-point.  Because of this result, the addition law is free of the
+case-by-case analysis that plagues other approaches.
+
+\begin{lemma}[completeness]  Let $k$ be a field (of char$\ne 2$), and let $\phi:R_2\to k$ be a homomorphism
+such that $\bar d$, the image of $d$, is not a square and such that $\bar c =\tau^2\in k$, the image of $c$, is a nonzero square.  
+Then $\phi(\delta)=\phi(\delta^+)\phi(\delta^-)\ne 0$.
+\end{lemma}
+
+\begin{proof} The proof follows Bernstein and Lange~\cite{bernstein2007faster}.  We prove the lemma in the following contrapositive form:
+assuming that $\phi(\delta) = 0$ together with the other assumptions, we show that $\bar d$ is a square.
+
+Set $\epsilon = d x_1 y_1 x_2 y_2\in R_2$ so that 
+\begin{equation}\label{eqn:delta-epsilon}
+\epsilon^2 = 1-\delta.
+\end{equation}
+We check
+the following polynomial identity in the ring $R_2[t]$
+by substituting the definitions of $e_1,e_2,\delta$, and $\epsilon$, and expanding:
+\begin{equation}\label{eqn:squares}
+(t x_1 \pm \epsilon y_1)^2 =  d x_1^2 y_1^2 (t x_2 \pm y_2)^2 - e_2 d x_1^2 y_1^2 + e_1 + (1-y_1^2)\delta + (c-t^2)x_1^2 (-1+d x_2^2 y_1^2).
+\end{equation}
+The image in $k$ of the polynomial identity under $\phi$, 
+sending 
+\[
+e_1,e_2,\delta,\mapsto 0,0,0,\quad
+t,c,d,\epsilon\mapsto \tau,\tau^2,\bar d,\bar\epsilon,\quad
+x_1,y_1,x_2,y_2\mapsto a_1,b_1,a_2,b_2
+\]
+is
+\begin{equation}\label{eqn:d}
+(\tau a_1 \pm \bar \epsilon b_1)^2 = \bar d a_1^2 b_1^2 (\tau b_2\pm a_2)^2.
+\end{equation}
+Note that every factor in this equation, except $\bar d$, is evidently squared.  To show that $\bar d$ is a square,
+it is enough to show that each square on the right-hand side is nonzero for some choice of sign $(\pm)$.
+The image of Equation (\ref{eqn:delta-epsilon}) under $\phi$ is $\bar\epsilon^2 = 1$, which implies that $\bar\epsilon$ and
+its factors $\bar d,a_1,b_1,a_2,b_2\in k$ are all nonzero.  By assumption $\bar c$ and hence $\tau$ are nonzero.
+Furthermore, either $\tau b_2+a_2$ or $\tau b_2 - a_2$ is nonzero; (otherwise if they are both zero, then
+by solving these two homogeneous equations for $a_2$ and $b_2$, we get $a_2 = b_2 = 0$, which is contrary to recent fact).
+This means that we can solve Equation (\ref{eqn:d}) for $\bar d$, expressing it as a square, which completes the proof.
+\end{proof}
+
+We are ready to state and prove the main result of the paper.
+
+\begin{theorem}[group law]\label{thm:group} 
+Let $k$ be a field (of char$\ne 2$), let $\bar c \in k^\times$ be a nonzero square, and let $\bar d\in k$ be a non-square.
+Let $\bar e(x,y) \in k[x,y]$ be the specialization of $e(x,y)$, obtained by $(c,d)\mapsto (\bar c,\bar d)$.
+ Then $E= \{(a,b)\in k^2 \mid \bar e(a,b) = 0\}$ is a group with binary operation $\oplus$.
+\end{theorem}
+
+\begin{proof} This follows directly from the earlier results.  For example, to check associativity of 
+$(a_1,b_1)\oplus (a_2,b_2) \oplus (a_3,b_3)$, where $(a_i,b_i)\in E$, we define a homomorphism
+$\phi:R_3\to k$ sending $(x_i,y_i)\mapsto (a_i,b_i)$ and $(c,d)\mapsto (\bar c,\bar d)$.   By a repeated use of the completeness lemma,
+$\phi(\Delta^+\Delta^-)$ is nonzero and invertible in the field $k$.
+The universal property of localization extends $\phi$ to a homomorphism $\phi:R_3[\f{\Delta^+\Delta^-}]\to k$.  
+By the associativity lemma applied to $\phi$, we obtain the
+associativity for these three (arbitrary) elements of $E$.  The other properties follow similarly from the lemmas on closure,
+inverse, and completeness. 
+\end{proof}
+
+\section{Formalization in HOL Light}
+
+We have formally verified the main polynomial identities Equations (\ref{eqn:closure}), (\ref{eqn:assoc}), (\ref{eqn:squares}) in
+the proof assistant HOL Light using its tactic \verb!REAL_ARITH!, which checks polynomials identities
+over the real numbers. By the ring injection $\ring{Z}\subset \ring{R}$, these identities must then also hold over $\ring{Z}$.
+Most of our software development took place in Mathematica, using the \verb!PolynomialReduce! function.  These
+Mathematica calculations are very fast. For example, the associativity certificate (\ref{eqn:mathca})
+takes about $0.12$ second to compute
+on a 2.13 GHz processor.
+Once the
+Mathematica code was in final form, it took us less than 30 minutes of development time in HOL Light to copy the polynomial identities
+over to the proof assistant and formally verify them.  All these polynomial identities combined 
+can be formally verified in less than 2 seconds of CPU time
+on a 2.13 GHz Intel Core 2 Duo processor. The most difficult formal verification is the associativity identity (\ref{eqn:assoc}), 
+which takes
+about 1.5 seconds.  The computer code is available at 
+\url{www.github.com/flyspeck/publications-of-thomas-hales}.
+
+These verification times are significantly faster than times reported in other projects.  In 2007, L. Th\'ery described
+the formalization in Coq of elliptic curves in Weierstrass form~\cite{thery2007proving}:
+\begin{blockquote}
+This work has a long story.  Joe Hurd was the first to draw our attention to the possibility of formalising elliptic curves
+inside a prover.  At that time, we had a go but were quickly convinced that a prover like Coq, which requires
+a formal justification of every step of a proof, could not cope with the necessary computations.  Last september, we emailed
+to John Harrison the example of the $x$ component of the generic case and to our great surprise he managed to prove
+it in less than 3 minutes inside HOL Light with his integrated version of Buchberger algorithm.  So the
+situation was not as hopeless as we thought.  Indeed, the proof presented here is checked by Coq, computations included,
+in 1 minute 20 seconds.  This is a striking example of how crucial it is in a prover to be able to mix proof and computation.
+\end{blockquote}
+
+Friedl  was the first to carry out the computer algebra required for an elementary proof of the elliptic curve group axioms.  
+He wrote in 1998 about the difficulty of these computations \cite{friedl}:
+\begin{blockquote}
+We will give a completely elementary proof, just using the above explicit definition of the group structure through formulas. It was always clear that such a proof exists, but it turns out that this direct proof is more difficult than one might have imagined initially. Many special cases have to be dealt with separately and some are non trivial. Furthermore it turns out that the explicit computations in the proof are very hard. The verification of some identities took several hours on a modern computer; this proof could not have been carried out before the 1980Õs.
+\end{blockquote}
+
+In closing, we remark that we have not carried our formalization as far as some other teams.  In particular, we have not formally verified the group law (Theorem~\ref{thm:group}).  It would be desirable to do so.
+
+\bibliography{refs} 
+\bibliographystyle{alpha}
+
+\end{document}
+
+% Friedl's elementary 
+% http://math.rice.edu/~friedl/papers/AAELLIPTIC.PDF
+
+
+\end{document}
