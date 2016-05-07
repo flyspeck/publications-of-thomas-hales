@@ -2,7 +2,7 @@ kappa = Cos[Pi/5];
 sigma = Sin[Pi/5];
 aK = (1 + kappa) (3 kappa sigma)/2.0;
 densityK = (5 - Sqrt[5])/3 // N;
-epso = areadl - 1.237;
+epso = aK - 1.237;
 
 rads[r_, theta_] := r {Cos[theta], Sin[theta]};
 
@@ -22,34 +22,28 @@ aretaEdgeMin[a_,b_,r_]:= aretaEdge[a,b,r]//Min;
 areta[a_, b_, r_] := area[a, b, aretaEdgeMax[a, b, r]];
 
 ell[h_, psi_] := Module[{r, theta},
-   r = Sqrt[h^2 + rho^2];
+   r = Sqrt[h^2 + kappa^2];
    theta = ArcCos[h/r];
    Sqrt[1 + r^2 - 2 *r * Cos[psi + theta]]];
 
-ellx[x_, alpha_] := ell[ee - x, 3 Pi/10 + alpha];
+ellx[x_, alpha_] := 
+  ell[sigma - x, 3 Pi/10 + alpha];
 
 lawsines[a_, alpha_, beta_, gamma_] := 
    (a/Sin[alpha]) {Sin[beta], Sin[gamma]};
    
 thetax[xalpha_, alpha_] := 
-  Module[{gamma, h, r, psi, elx, ispos, thetapp, phipp, phi, theta1, 
+  Module[{ h, r, phi,psi, psip, elx, ely,
     theta, thetap},
-   h = xalpha - ee;
-   r = Sqrt[h^2 + (rho)^2];
-   psi = ArcSin[h/r];
-   elx = ellx[xalpha, alpha];
-   gamma = arc[r, (2 ee - xalpha), 1];
-   ispos = (N[(3 Pi/10 + alpha + gamma - Pi)] >= 0.0);
-   thetapp = arc[elx, 1, r];
-   phipp = arc[elx, r, 1];
-   phi = If[ispos, phipp, -phipp];
-   theta1 = Pi/5 + phi - psi; 
-   theta = If[N[theta1] <= N[Pi/5], theta1, theta1 - 2 Pi/5];
-   thetap = If[ispos, thetapp, -thetapp];
-   (* Print[" h ",h," r ",r," psi: ",psi," elx: ",elx,
-   " gamma=",gamma," ispos=",ispos," thetapp=",thetapp," phipp=",
-   phipp," phi=",phi," theta1=",theta1]; *)
-   {theta, thetap}
+   h = xalpha - sigma;
+   r = Sqrt[h^2 + kappa^2];
+   phip = ArcSin[h/r];
+   delta = 6 Pi/5 - (alpha + phip);
+   elx = iloc[r,1,delta];
+   ely = iloc[r,2 sigma,delta- 3Pi/10];
+   thetap = 2Pi/5 - arc[one,elx,ely];
+   theta = alpha - thetap;
+   {elx,theta, thetap}
    	];
   
 pinwheeledge[alpha_, beta_, xgamma_] := 
@@ -99,7 +93,7 @@ Module[{x1, x2, x3, xgamma, x5, x6, gamma, alphap, betap, gammap,
    delta1 = Pi - (gammap + 2 Pi/5);
    delta2 = Pi - delta1;
    {x3, x5} = lawsines[x4, delta2, betap, alphap];
-   x1 = 2 ee - x3;
+   x1 = 2 sigma - x3;
    {xgamma, x2} = lawsines[x1, 2 Pi/5, delta1, gammap];
    x6 = x5 - x2;
     Print[{"x4", N[x4], "xgamma", N[xgamma]}];
@@ -122,9 +116,9 @@ tjedge[alpha_, beta_, xgamma_] :=
    delta3 = Pi - (alphap + delta2);
    delta4 = Pi - (betap + 2 Pi/5);
    {x1, x2} = lawsines[xgamma, delta1, 2 Pi/5, gammap];
-   x3 = 2 ee - x1;
+   x3 = 2 sigma - x1;
    {x4, x5} = lawsines[x3, delta3, delta2, alphap];
-   x6 = 2 ee - (x5 - x2);
+   x6 = 2 sigma - (x5 - x2);
    {x7, x8} = lawsines[x6, 2 Pi/5, betap, delta4];
    x9 = x4 - x7;
    (* Print[{x1,x2,x3,x4,x5,x6,x7,x8,x9}//

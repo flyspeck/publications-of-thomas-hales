@@ -52,12 +52,13 @@ let ( <<= ) x y = x.high <= y.low;;
 (* trig functions *)
 (* ******************************************************************************** *)
 
-let pi2 = pi_I /$. 2.0;;
-let pi =  pi_I;;
-let twopi = 2.0 *.$ pi_I;;
-
 let ratpi i j =  
-  (pi *$. float_of_int i) /$. float_of_int j;;
+  (pi_I *$. float_of_int i) /$. float_of_int j;;
+
+let pi =  pi_I;;
+
+let pi2 = ratpi 1 2;;
+let twopi = ratpi 2 1;;
 
 let pi15 = ratpi 1 5;;
 let pi25 = ratpi 2 5;;
@@ -72,8 +73,8 @@ let kappa = cos_I (pi /$. 5.0);;
 let sigma = sin_I (pi /$. 5.0);;
 
 let ee = sigma;;
-let iee = ee;;
-let ff = ee /$ (2.0 *.$ kappa);;
+let iee = sigma;;
+let ff = sigma /$ (2.0 *.$ kappa);;
 
 (* critical area: *)
 let aK = (1.0 +.$ kappa)*$ (3.0 *.$ (kappa *$ sigma)) /$. 2.0;;
@@ -171,7 +172,7 @@ ell_aux (mk 1.1 1.2) (mk 1.3 1.4);;
 let ellx  = 
   let pi310 = ratpi 3 10 in 
   fun x alpha ->
-    ell_aux (iee - x) (alpha + pi310);;
+    ell_aux (sigma - x) (alpha + pi310);;
 
 (* N.B.  theta has a jump discontinuity near pm pi/5, which is an inconvenience
    for the interval calculation. We try to deal with this gracefully
@@ -191,13 +192,13 @@ let thetax =
   let pi710 = ratpi 7 10 in
   let pi1710 = ratpi 17 10 in
   fun xalpha alpha ->
-    let h = xalpha - iee in
+    let h = xalpha - sigma in
     let r = sqrt_I (h*h + kappa*kappa) in
     let phi = acos_I (h / r) in
     let psi = pi710 - alpha in
     let psi' = psi + phi in
     let elx = iloc r one psi' in
-    let ely = iloc r (two * iee) (pi1710 - psi') in
+    let ely = iloc r (two * sigma) (pi1710 - psi') in
     let theta' = (iarc one elx ely) - pi25 in
     let theta = alpha - theta' in
     (elx,theta,theta');;
@@ -205,7 +206,7 @@ let thetax =
 thetax (m 0.1) (m 0.2);;
 thetax (m 0.2) (m 0.19);;
 thetax (mk 0.1 0.11) (mk 0.2 0.22);;
-thetax (ee+ mk 0.0 0.01) (pi15 + mk 0.0 0.01);;
+thetax (sigma+ mk 0.0 0.01) (pi15 + mk 0.0 0.01);;
 
 let ellthetax xalpha alpha sgn =  (* swap if false *)
   let (el,th,th') = thetax xalpha alpha in
@@ -235,8 +236,8 @@ let pintedge =
     let delta = pi - (beta' + eps) in
     let delta' = pi - delta in
     let (w1,w2) = lawsines xalpha eps' pi25 alpha' in
-    let (w3,w4) = lawsines (two * iee + w2) delta beta' eps in
-    let (w5,w6) = lawsines (two * iee) delta' pi25 gamma' in
+    let (w3,w4) = lawsines (two * sigma + w2) delta beta' eps in
+    let (w5,w6) = lawsines (two * sigma) delta' pi25 gamma' in
     ((ellx xalpha alpha),
      (ellx (w4 - w6) beta),
      (ellx (w1 + w3 + w5) gamma));;
@@ -249,15 +250,15 @@ let deltajedge =
     let alpha' = pi25 - alpha in
     let beta' = pi25 - beta in
     let gamma' = pi25 - gamma in
-    let (yalpha,ygamma) = lawsines (two * iee) (beta') (alpha') (gamma') in
-    let xbeta = two * iee - (ygamma + xalpha) in
-    let xgamma = two * iee - yalpha in
+    let (yalpha,ygamma) = lawsines (two * sigma) (beta') (alpha') (gamma') in
+    let xbeta = two * sigma - (ygamma + xalpha) in
+    let xgamma = two * sigma - yalpha in
     ((ellx xalpha alpha'), (ellx xbeta beta'), (ellx xgamma gamma'));;
 
 deltajedge (m 0.05) (m 0.06)  (m 0.1);;
 area_I (m 1.94) (m 1.88) (m 1.93);;
 deltajedge (m 0.0) (m 0.0) (m 0.0);;
-pinwheeledge (m 0.0) (pi15) (two * iee);; (* same as deltajedge, up rto symmetry *)
+pinwheeledge (m 0.0) (pi15) (two * sigma);; (* same as deltajedge, up rto symmetry *)
 ellx (m 0.0) (m 0.0);;
 ellx (m 0.0) (pi25);;
 
@@ -272,7 +273,7 @@ let ljedge_full =
   let delta1 = pi - (gammap + pi25) in
   let delta2 = pi - delta1 in
   let (x3,x5) = lawsines xalpha delta2 betap alphap in
-  let x1 = two*iee - x3 in
+  let x1 = two*sigma - x3 in
   let (xgamma,x2) = lawsines x1 pi25 delta1 gammap in
   let x6 = x5 - x2 in
     ((alpha,beta,gamma,alphap,betap,gammap,x1,x2,x3,xalpha,x5,x6),
@@ -297,9 +298,9 @@ let tjedge =
   let delta3 = pi - (alphap + delta2) in
   let delta4 = pi - (betap + pi25) in
   let (x1,x2) = lawsines xgamma delta1 pi25 gammap in
-  let x3 = two * iee - x1 in
+  let x3 = two * sigma - x1 in
   let (x4, x5) = lawsines x3 delta3 delta2 alphap in
-  let x6 = two * iee - (x5 - x2) in
+  let x6 = two * sigma - (x5 - x2) in
   let (x7,x8) = lawsines x6 pi25 betap delta4 in
   let x9 = x4 - x7 in
     ((ellx x9 alpha),(ellx x6 beta),(ellx xgamma gamma));;
@@ -459,7 +460,7 @@ let onedeltajamin abx =
 
 mktest ("onedeltajmin",fun() ->
 	  (recursetofinish onedeltajamin) 
-	    [[zero2 pi15;zero2 pi15;zero2 (two * (ee-ff))]]);;
+	    [[zero2 pi15;zero2 pi15;zero2 (two * (sigma-ff))]]);;
 
 (* non anonaly test JJZ area > 1.345 *)
 
@@ -471,7 +472,7 @@ let oneJJZ =
       disjoint_from_lj alpha beta or
 	let ((_,_,gamma,alphap,betap,gammap,x1,x2,x3,_,x5,x6),
 		 (l1,l2,l3)) = ljedge_full alpha beta xalpha in
-	(area_exceeds l1 l2 l3 m1345) or (x6 >> iee) or (iee >> x6) 
+	(area_exceeds l1 l2 l3 m1345) or (x6 >> sigma) or (sigma >> x6) 
     with | Unstable -> false;;
 
 mktest ("oneJJZ",fun() ->
