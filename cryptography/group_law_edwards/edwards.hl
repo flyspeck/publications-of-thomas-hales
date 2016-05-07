@@ -1,0 +1,337 @@
+REAL_ARITH;;
+REAL_RING;;
+(* 8:32 am, Monday May 6, 2016 *)
+
+let complete1 = time REAL_ARITH `((-- &1)+(c*(x1 pow 2))+(y1 pow 2)+((-- &1)*d*(x1 pow 2)*(y1 pow 
+2))+((c+((-- &1)*(t pow 2)))*(x1 pow 2)*((-- &1)+(d*(x2 pow 2)*(y1 
+pow 2))))+(d*(x1 pow 2)*(y1 pow 2)*(((t*x2)+y2) pow 2))+((-- 
+&1)*(((t*x1)+(d*x1*x2*(y1 pow 2)*y2)) pow 2))+((-- &1)*d*(x1 pow 
+2)*(y1 pow 2)*((-- &1)+(c*(x2 pow 2))+(y2 pow 2)+((-- &1)*d*(x2 pow 
+2)*(y2 pow 2))))+((&1+((-- &1)*(y1 pow 2)))*(&1+((-- &1)*(d pow 
+2)*(x1 pow 2)*(x2 pow 2)*(y1 pow 2)*(y2 pow 2))))) = &0`;;
+
+(* 0.024 sec *)
+
+let complete2 = time REAL_ARITH `((-- &1)+(c*(x1 pow 2))+(y1 pow 2)+((-- &1)*d*(x1 pow 2)*(y1 pow 
+2))+((c+((-- &1)*(t pow 2)))*(x1 pow 2)*((-- &1)+(d*(x2 pow 2)*(y1 
+pow 2))))+(d*(x1 pow 2)*(y1 pow 2)*(((t*x2)+((-- &1)*y2)) pow 2))+((-- 
+&1)*(((t*x1)+((-- &1)*d*x1*x2*(y1 pow 2)*y2)) pow 2))+((-- &1)*d*(x1 
+pow 2)*(y1 pow 2)*((-- &1)+(c*(x2 pow 2))+(y2 pow 2)+((-- &1)*d*(x2 
+pow 2)*(y2 pow 2))))+((&1+((-- &1)*(y1 pow 2)))*(&1+((-- &1)*(d pow 
+2)*(x1 pow 2)*(x2 pow 2)*(y1 pow 2)*(y2 pow 2))))) = &0`;;
+
+(* 0.026 sec *)
+
+(* 8:38 *)
+
+let groupclosure =  time REAL_ARITH 
+`((-- &1)+((c pow 2)*(x1 pow 2)*(x2 pow 2))+(c*(x2 pow 2)*(y1 pow 
+2))+((-- &1)*(c pow 2)*d*(x1 pow 2)*(x2 pow 4)*(y1 pow 2))+(c*(x1 pow 
+2)*(y2 pow 2))+((-- &1)*(c pow 2)*d*(x1 pow 4)*(x2 pow 2)*(y2 pow 
+2))+((y1 pow 2)*(y2 pow 2))+((-- &4)*c*d*(x1 pow 2)*(x2 pow 2)*(y1 
+pow 2)*(y2 pow 2))+(&2*(d pow 2)*(x1 pow 2)*(x2 pow 2)*(y1 pow 2)*(y2 
+pow 2))+((c pow 2)*(d pow 2)*(x1 pow 4)*(x2 pow 4)*(y1 pow 2)*(y2 pow 
+2))+((-- &1)*d*(x2 pow 2)*(y1 pow 4)*(y2 pow 2))+(c*(d pow 2)*(x1 pow 
+2)*(x2 pow 4)*(y1 pow 4)*(y2 pow 2))+((-- &1)*d*(x1 pow 2)*(y1 pow 
+2)*(y2 pow 4))+(c*(d pow 2)*(x1 pow 4)*(x2 pow 2)*(y1 pow 2)*(y2 pow 
+4))+((d pow 2)*(x1 pow 2)*(x2 pow 2)*(y1 pow 4)*(y2 pow 4))+((-- 
+&1)*(d pow 4)*(x1 pow 4)*(x2 pow 4)*(y1 pow 4)*(y2 pow 4)))
+
+- (
+
+((-- &1)+(c*(x1 pow 2))+(y1 pow 2)+((-- &1)*d*(x1 pow 2)*(y1 pow 2)))
+*
+(((c pow 2)*(x2 pow 4))+(&4*c*(x2 pow 2)*(y2 pow 2))+((-- &2)*d*(x2 
+pow 2)*(y2 pow 2))+((-- &2)*(c pow 2)*(x2 pow 4)*(y2 pow 2))+((-- 
+&1)*(c pow 2)*d*(x1 pow 2)*(x2 pow 4)*(y2 pow 2))+((-- &1)*c*d*(x2 
+pow 4)*(y1 pow 2)*(y2 pow 2))+(y2 pow 4)+((-- &2)*c*(x2 pow 2)*(y2 
+pow 4))+((-- &1)*c*d*(x1 pow 2)*(x2 pow 2)*(y2 pow 4))+(&2*c*d*(x2 
+pow 4)*(y2 pow 4))+((-- &1)*(d pow 2)*(x2 pow 4)*(y2 pow 4))+(c*(d 
+pow 2)*(x1 pow 2)*(x2 pow 4)*(y2 pow 4))+((-- &1)*d*(x2 pow 2)*(y1 
+pow 2)*(y2 pow 4))+((d pow 2)*(x2 pow 4)*(y1 pow 2)*(y2 pow 4))+((d 
+pow 3)*(x1 pow 2)*(x2 pow 4)*(y1 pow 2)*(y2 pow 4)))
++
+((-- &1)+(c*(x2 pow 2))+(y2 pow 2)+((-- &1)*d*(x2 pow 2)*(y2 pow 2)))
+*
+(&1+(c*(x2 pow 2))+((-- &1)*(c pow 2)*(x1 pow 2)*(x2 pow 2))+((-- 
+&1)*c*(x2 pow 2)*(y1 pow 2))+(y2 pow 2)+((-- &1)*c*(x1 pow 2)*(y2 pow 
+2))+((-- &2)*c*(x2 pow 2)*(y2 pow 2))+(d*(x2 pow 2)*(y2 pow 
+2))+(&2*(c pow 2)*(x1 pow 2)*(x2 pow 2)*(y2 pow 2))+((-- &2)*c*d*(x1 
+pow 2)*(x2 pow 2)*(y2 pow 2))+((c pow 2)*d*(x1 pow 4)*(x2 pow 2)*(y2 
+pow 2))+((-- &1)*(y1 pow 2)*(y2 pow 2))+(&2*c*(x2 pow 2)*(y1 pow 
+2)*(y2 pow 2))+((-- &2)*d*(x2 pow 2)*(y1 pow 2)*(y2 pow 2))+(d*(x2 
+pow 2)*(y1 pow 4)*(y2 pow 2)))
+
+) = &0`;;
+
+(* 0.15882 *)
+
+(* 8:46am *)
+
+(* associativity *)
+
+let assoc1 = time REAL_ARITH `
+((-- &1)*d*x2*y2*((c*(x1 pow 2)*x2*x3*y1)+((-- &1)*(c pow 2)*(x1 pow 
+2)*x2*(x3 pow 3)*y1)+((-- &1)*x1*x3*(y1 pow 2)*y2)+(c*d*(x1 pow 
+3)*(x2 pow 2)*x3*(y1 pow 2)*y2)+(c*x1*(x3 pow 3)*(y1 pow 2)*y2)+((-- 
+&1)*(c pow 2)*d*(x1 pow 3)*(x2 pow 2)*(x3 pow 3)*(y1 pow 2)*y2)+((-- 
+&1)*d*(x1 pow 2)*x2*x3*(y1 pow 3)*(y2 pow 2))+(c*d*(x1 pow 2)*x2*(x3 
+pow 3)*(y1 pow 3)*(y2 pow 2))+((-- &1)*c*x1*x2*(x3 pow 2)*y3)+((c pow 
+2)*(x1 pow 3)*x2*(x3 pow 2)*y3)+(x1*x2*(y1 pow 2)*y3)+((-- &1)*(c pow 
+2)*d*(x1 pow 3)*(x2 pow 3)*(x3 pow 2)*(y1 pow 2)*y3)+((x1 pow 
+2)*y1*y2*y3)+((-- &1)*(x3 pow 2)*y1*y2*y3)+((-- &1)*d*(x1 pow 2)*(x2 
+pow 2)*(y1 pow 3)*y2*y3)+((x3 pow 2)*(y1 pow 3)*y2*y3)+((-- &1)*d*(x1 
+pow 3)*x2*(y1 pow 2)*(y2 pow 2)*y3)+(c*(d pow 2)*(x1 pow 3)*(x2 pow 
+3)*(x3 pow 2)*(y1 pow 2)*(y2 pow 2)*y3)+((-- &1)*d*(x1 pow 2)*(x3 pow 
+2)*(y1 pow 3)*(y2 pow 3)*y3)+((d pow 2)*(x1 pow 2)*(x2 pow 2)*(x3 pow 
+2)*(y1 pow 3)*(y2 pow 3)*y3)+((-- &1)*x2*x3*y1*(y3 pow 2))+((c pow 
+2)*d*(x1 pow 2)*(x2 pow 3)*(x3 pow 3)*y1*(y3 pow 2))+(x2*x3*(y1 pow 
+3)*(y3 pow 2))+((-- &1)*c*d*(x1 pow 2)*(x2 pow 3)*x3*(y1 pow 3)*(y3 
+pow 2))+(x1*x3*y2*(y3 pow 2))+((-- &1)*c*(x1 pow 3)*x3*y2*(y3 pow 
+2))+((-- &1)*c*d*x1*(x2 pow 2)*(x3 pow 3)*y2*(y3 pow 2))+((c pow 
+2)*d*(x1 pow 3)*(x2 pow 2)*(x3 pow 3)*y2*(y3 pow 2))+(d*x2*(x3 pow 
+3)*y1*(y2 pow 2)*(y3 pow 2))+((-- &1)*c*(d pow 2)*(x1 pow 2)*(x2 pow 
+3)*(x3 pow 3)*y1*(y2 pow 2)*(y3 pow 2))+((d pow 2)*(x1 pow 2)*(x2 pow 
+3)*x3*(y1 pow 3)*(y2 pow 2)*(y3 pow 2))+((-- &1)*d*x2*(x3 pow 3)*(y1 
+pow 3)*(y2 pow 2)*(y3 pow 2))+(d*(x1 pow 3)*x3*(y1 pow 2)*(y2 pow 
+3)*(y3 pow 2))+((-- &1)*(d pow 2)*(x1 pow 3)*(x2 pow 2)*x3*(y1 pow 
+2)*(y2 pow 3)*(y3 pow 2))+((-- &1)*d*x1*(x3 pow 3)*(y1 pow 2)*(y2 pow 
+3)*(y3 pow 2))+((d pow 2)*x1*(x2 pow 2)*(x3 pow 3)*(y1 pow 2)*(y2 pow 
+3)*(y3 pow 2))+((-- &1)*x1*x2*(y1 pow 2)*(y3 pow 3))+(c*d*x1*(x2 pow 
+3)*(x3 pow 2)*(y1 pow 2)*(y3 pow 3))+((-- &1)*(x1 pow 2)*y1*y2*(y3 
+pow 3))+(d*(x2 pow 2)*(x3 pow 2)*y1*y2*(y3 pow 3))+(d*(x1 pow 2)*(x2 
+pow 2)*(y1 pow 3)*y2*(y3 pow 3))+((-- &1)*d*(x2 pow 2)*(x3 pow 2)*(y1 
+pow 3)*y2*(y3 pow 3))+(d*x1*x2*(x3 pow 2)*(y2 pow 2)*(y3 pow 3))+((-- 
+&1)*c*d*(x1 pow 3)*x2*(x3 pow 2)*(y2 pow 2)*(y3 pow 3))+(d*(x1 pow 
+3)*x2*(y1 pow 2)*(y2 pow 2)*(y3 pow 3))+((-- &1)*(d pow 2)*x1*(x2 pow 
+3)*(x3 pow 2)*(y1 pow 2)*(y2 pow 2)*(y3 pow 3))+(d*(x1 pow 2)*(x3 pow 
+2)*y1*(y2 pow 3)*(y3 pow 3))+((-- &1)*(d pow 2)*(x1 pow 2)*(x2 pow 
+2)*(x3 pow 2)*y1*(y2 pow 3)*(y3 pow 3))))
+
+= 
+
+((-- &1)+(c*(x1 pow 2))+(y1 pow 2)+((-- &1)*d*(x1 pow 2)*(y1 pow 
+2)))
+*
+((c*d*x1*(x2 pow 3)*x3*(y2 pow 2))+((-- &1)*(c pow 2)*d*x1*(x2 pow 
+3)*(x3 pow 3)*(y2 pow 2))+((-- &1)*d*(x2 pow 2)*x3*y1*(y2 pow 
+3))+(c*d*(x2 pow 2)*(x3 pow 3)*y1*(y2 pow 3))+((-- &1)*(c pow 
+2)*d*x1*(x2 pow 4)*(x3 pow 2)*y2*y3)+((-- &1)*d*(x2 pow 3)*y1*(y2 pow 
+2)*y3)+((-- &1)*d*x1*(x2 pow 2)*(y2 pow 3)*y3)+(c*(d pow 2)*x1*(x2 
+pow 4)*(x3 pow 2)*(y2 pow 3)*y3)+((-- &1)*d*x2*(x3 pow 2)*y1*(y2 pow 
+4)*y3)+((d pow 2)*(x2 pow 3)*(x3 pow 2)*y1*(y2 pow 4)*y3)+((-- 
+&1)*c*d*(x2 pow 4)*x3*y1*y2*(y3 pow 2))+((d pow 2)*(x2 pow 
+4)*x3*y1*(y2 pow 3)*(y3 pow 2))+(d*x1*x2*x3*(y2 pow 4)*(y3 pow 2))+((-- 
+&1)*(d pow 2)*x1*(x2 pow 3)*x3*(y2 pow 4)*(y3 pow 2))+(d*(x2 pow 
+3)*y1*(y2 pow 2)*(y3 pow 3))+(d*x1*(x2 pow 2)*(y2 pow 3)*(y3 pow 3)))
+
++
+
+((-- &1)+(c*(x2 pow 2))+(y2 pow 2)+((-- &1)*d*(x2 pow 2)*(y2 pow 2)))
+*
+(((-- &1)*c*x1*x2*x3)+((c pow 2)*(x1 pow 3)*x2*x3)+((c pow 
+2)*x1*x2*(x3 pow 3))+((-- &1)*(c pow 3)*(x1 pow 3)*x2*(x3 pow 
+3))+(c*x1*x2*x3*(y1 pow 2))+((-- &1)*(c pow 2)*x1*x2*(x3 pow 3)*(y1 
+pow 2))+(x3*y1*y2)+((-- &1)*c*(x1 pow 2)*x3*y1*y2)+((-- &1)*c*(x3 pow 
+3)*y1*y2)+((c pow 2)*(x1 pow 2)*(x3 pow 3)*y1*y2)+((-- &1)*x3*(y1 pow 
+3)*y2)+(c*(x3 pow 3)*(y1 pow 3)*y2)+(x2*y1*y3)+((-- &1)*c*(x1 pow 
+2)*x2*y1*y3)+((-- &1)*c*x2*(x3 pow 2)*y1*y3)+((c pow 2)*(x1 pow 
+2)*x2*(x3 pow 2)*y1*y3)+((-- &1)*x2*(y1 pow 3)*y3)+(c*x2*(x3 pow 
+2)*(y1 pow 3)*y3)+(x1*y2*y3)+((-- &1)*c*(x1 pow 3)*y2*y3)+((-- 
+&1)*c*x1*(x3 pow 2)*y2*y3)+((c pow 2)*(x1 pow 3)*(x3 pow 2)*y2*y3)+((-- 
+&1)*c*d*x1*(x2 pow 2)*(x3 pow 2)*y2*y3)+((c pow 2)*d*(x1 pow 3)*(x2 
+pow 2)*(x3 pow 2)*y2*y3)+((-- &1)*x1*(y1 pow 2)*y2*y3)+(c*x1*(x3 pow 
+2)*(y1 pow 2)*y2*y3)+(c*d*x1*(x2 pow 2)*(x3 pow 2)*(y1 pow 
+2)*y2*y3)+((-- &1)*d*x2*(x3 pow 2)*y1*(y2 pow 2)*y3)+(c*d*(x1 pow 
+2)*x2*(x3 pow 2)*y1*(y2 pow 2)*y3)+(d*x2*(x3 pow 2)*(y1 pow 3)*(y2 
+pow 2)*y3)+(c*x1*x2*x3*(y3 pow 2))+((-- &1)*(c pow 2)*(x1 pow 
+3)*x2*x3*(y3 pow 2))+((-- &1)*c*d*x1*x2*(x3 pow 3)*(y3 pow 2))+((c 
+pow 2)*d*(x1 pow 3)*x2*(x3 pow 3)*(y3 pow 2))+((-- &1)*c*x1*x2*x3*(y1 
+pow 2)*(y3 pow 2))+(c*d*x1*x2*(x3 pow 3)*(y1 pow 2)*(y3 pow 2))+((-- 
+&1)*x3*y1*y2*(y3 pow 2))+(c*(x1 pow 2)*x3*y1*y2*(y3 pow 2))+((-- 
+&1)*d*(x2 pow 2)*x3*y1*y2*(y3 pow 2))+(c*d*(x1 pow 2)*(x2 pow 
+2)*x3*y1*y2*(y3 pow 2))+(d*(x3 pow 3)*y1*y2*(y3 pow 2))+((-- 
+&1)*c*d*(x1 pow 2)*(x3 pow 3)*y1*y2*(y3 pow 2))+((-- &1)*c*(d pow 
+2)*(x1 pow 2)*(x2 pow 2)*(x3 pow 3)*y1*y2*(y3 pow 2))+(x3*(y1 pow 
+3)*y2*(y3 pow 2))+(d*(x2 pow 2)*x3*(y1 pow 3)*y2*(y3 pow 2))+((-- 
+&1)*d*(x3 pow 3)*(y1 pow 3)*y2*(y3 pow 2))+(d*x1*x2*x3*(y2 pow 2)*(y3 
+pow 2))+((-- &1)*c*d*(x1 pow 3)*x2*x3*(y2 pow 2)*(y3 pow 2))+((-- 
+&1)*d*x1*x2*x3*(y1 pow 2)*(y2 pow 2)*(y3 pow 2))+((d pow 2)*x1*x2*(x3 
+pow 3)*(y1 pow 2)*(y2 pow 2)*(y3 pow 2))+((-- &1)*x2*y1*(y3 pow 
+3))+(c*(x1 pow 2)*x2*y1*(y3 pow 3))+(d*x2*(x3 pow 2)*y1*(y3 pow 
+3))+((-- &1)*c*d*(x1 pow 2)*x2*(x3 pow 2)*y1*(y3 pow 3))+(x2*(y1 pow 
+3)*(y3 pow 3))+((-- &1)*d*x2*(x3 pow 2)*(y1 pow 3)*(y3 pow 3))+((-- 
+&1)*x1*y2*(y3 pow 3))+(c*(x1 pow 3)*y2*(y3 pow 3))+(d*x1*(x3 pow 
+2)*y2*(y3 pow 3))+((-- &1)*c*d*(x1 pow 3)*(x3 pow 2)*y2*(y3 pow 
+3))+(x1*(y1 pow 2)*y2*(y3 pow 3))+((-- &1)*d*x1*(x3 pow 2)*(y1 pow 
+2)*y2*(y3 pow 3))+((-- &1)*(d pow 2)*x1*(x2 pow 2)*(x3 pow 2)*(y1 pow 
+2)*y2*(y3 pow 3))+((-- &1)*(d pow 2)*(x1 pow 2)*x2*(x3 pow 2)*y1*(y2 
+pow 2)*(y3 pow 3)))
+
++
+
+((-- &1)+(c*(x3 pow 2))+(y3 pow 2)+((-- &1)*d*(x3 pow 2)*(y3 pow 2)))
+*
+((c*x1*x2*x3)+((-- &1)*(c pow 2)*(x1 pow 3)*x2*x3)+((-- &1)*(c pow 
+2)*x1*(x2 pow 3)*x3)+((c pow 3)*(x1 pow 3)*(x2 pow 3)*x3)+((-- 
+&1)*c*x1*x2*x3*(y1 pow 2))+((c pow 2)*x1*(x2 pow 3)*x3*(y1 pow 2))+((-- 
+&1)*x3*y1*y2)+(c*(x1 pow 2)*x3*y1*y2)+(c*(x2 pow 2)*x3*y1*y2)+((-- 
+&1)*(c pow 2)*(x1 pow 2)*(x2 pow 2)*x3*y1*y2)+(c*d*(x1 pow 2)*(x2 pow 
+2)*x3*y1*y2)+(x3*(y1 pow 3)*y2)+((-- &1)*c*(x2 pow 2)*x3*(y1 pow 
+3)*y2)+((-- &1)*c*x1*x2*x3*(y2 pow 2))+((c pow 2)*(x1 pow 
+3)*x2*x3*(y2 pow 2))+(c*x1*x2*x3*(y1 pow 2)*(y2 pow 2))+((-- 
+&1)*d*x1*x2*x3*(y1 pow 2)*(y2 pow 2))+(x3*y1*(y2 pow 3))+((-- 
+&1)*c*(x1 pow 2)*x3*y1*(y2 pow 3))+((-- &1)*x3*(y1 pow 3)*(y2 pow 
+3))+((-- &1)*x2*y1*y3)+(c*(x1 pow 2)*x2*y1*y3)+(c*(x2 pow 
+3)*y1*y3)+((-- &1)*(c pow 2)*(x1 pow 2)*(x2 pow 3)*y1*y3)+(x2*(y1 pow 
+3)*y3)+((-- &1)*c*(x2 pow 3)*(y1 pow 3)*y3)+((-- &1)*x1*y2*y3)+(c*(x1 
+pow 3)*y2*y3)+(c*x1*(x2 pow 2)*y2*y3)+((-- &1)*(c pow 2)*(x1 pow 
+3)*(x2 pow 2)*y2*y3)+(x1*(y1 pow 2)*y2*y3)+((-- &1)*c*x1*(x2 pow 
+2)*(y1 pow 2)*y2*y3)+(d*x1*(x2 pow 2)*(y1 pow 2)*y2*y3)+(x2*y1*(y2 
+pow 2)*y3)+((-- &1)*c*(x1 pow 2)*x2*y1*(y2 pow 2)*y3)+(d*(x1 pow 
+2)*x2*y1*(y2 pow 2)*y3)+((-- &1)*x2*(y1 pow 3)*(y2 pow 2)*y3)+(x1*(y2 
+pow 3)*y3)+((-- &1)*c*(x1 pow 3)*(y2 pow 3)*y3)+((-- &1)*x1*(y1 pow 
+2)*(y2 pow 3)*y3))
+
+`;;
+
+(* CPU time (user): 0.708286 *)
+
+(* 8:51 *)
+
+let assoc2 = time REAL_ARITH `(d*x2*y2*((c*x1*x2*x3*(y1 pow 2))+((-- &1)*(c pow 2)*x1*x2*(x3 pow 
+3)*(y1 pow 2))+(c*(x1 pow 2)*x3*y1*y2)+((-- &1)*(c pow 2)*(x1 pow 
+2)*(x3 pow 3)*y1*y2)+((-- &1)*c*d*(x1 pow 2)*(x2 pow 2)*x3*(y1 pow 
+3)*y2)+((c pow 2)*d*(x1 pow 2)*(x2 pow 2)*(x3 pow 3)*(y1 pow 
+3)*y2)+((-- &1)*c*d*(x1 pow 3)*x2*x3*(y1 pow 2)*(y2 pow 2))+((c pow 
+2)*d*(x1 pow 3)*x2*(x3 pow 3)*(y1 pow 2)*(y2 pow 2))+((-- &1)*c*(x1 
+pow 2)*x2*y1*y3)+(c*x2*(x3 pow 2)*y1*y3)+((-- &1)*c*x2*(x3 pow 2)*(y1 
+pow 3)*y3)+((c pow 2)*d*(x1 pow 2)*(x2 pow 3)*(x3 pow 2)*(y1 pow 
+3)*y3)+((-- &1)*c*x1*(x3 pow 2)*y2*y3)+((c pow 2)*(x1 pow 3)*(x3 pow 
+2)*y2*y3)+(x1*(y1 pow 2)*y2*y3)+((-- &1)*c*d*(x1 pow 3)*(x2 pow 
+2)*(y1 pow 2)*y2*y3)+(d*(x1 pow 2)*x2*(y1 pow 3)*(y2 pow 2)*y3)+((-- 
+&1)*c*(d pow 2)*(x1 pow 2)*(x2 pow 3)*(x3 pow 2)*(y1 pow 3)*(y2 pow 
+2)*y3)+((-- &1)*c*d*(x1 pow 3)*(x3 pow 2)*(y1 pow 2)*(y2 pow 
+3)*y3)+(c*(d pow 2)*(x1 pow 3)*(x2 pow 2)*(x3 pow 2)*(y1 pow 2)*(y2 
+pow 3)*y3)+((-- &1)*c*x1*x2*x3*(y3 pow 2))+((c pow 2)*(x1 pow 
+3)*x2*x3*(y3 pow 2))+((-- &1)*(c pow 2)*d*(x1 pow 3)*(x2 pow 
+3)*x3*(y1 pow 2)*(y3 pow 2))+((c pow 2)*d*x1*(x2 pow 3)*(x3 pow 
+3)*(y1 pow 2)*(y3 pow 2))+((-- &1)*x3*y1*y2*(y3 pow 2))+(c*d*(x2 pow 
+2)*(x3 pow 3)*y1*y2*(y3 pow 2))+(x3*(y1 pow 3)*y2*(y3 pow 2))+((-- 
+&1)*c*d*(x2 pow 2)*(x3 pow 3)*(y1 pow 3)*y2*(y3 pow 
+2))+(c*d*x1*x2*(x3 pow 3)*(y2 pow 2)*(y3 pow 2))+((-- &1)*(c pow 
+2)*d*(x1 pow 3)*x2*(x3 pow 3)*(y2 pow 2)*(y3 pow 2))+(c*(d pow 2)*(x1 
+pow 3)*(x2 pow 3)*x3*(y1 pow 2)*(y2 pow 2)*(y3 pow 2))+((-- &1)*c*(d 
+pow 2)*x1*(x2 pow 3)*(x3 pow 3)*(y1 pow 2)*(y2 pow 2)*(y3 pow 
+2))+(c*d*(x1 pow 2)*(x3 pow 3)*y1*(y2 pow 3)*(y3 pow 2))+((-- 
+&1)*c*(d pow 2)*(x1 pow 2)*(x2 pow 2)*(x3 pow 3)*y1*(y2 pow 3)*(y3 
+pow 2))+((-- &1)*d*(x1 pow 2)*x3*(y1 pow 3)*(y2 pow 3)*(y3 pow 
+2))+((d pow 2)*(x1 pow 2)*(x2 pow 2)*x3*(y1 pow 3)*(y2 pow 3)*(y3 pow 
+2))+(c*(x1 pow 2)*x2*y1*(y3 pow 3))+((-- &1)*(c pow 2)*d*(x1 pow 
+2)*(x2 pow 3)*(x3 pow 2)*y1*(y3 pow 3))+(c*d*x1*(x2 pow 2)*(x3 pow 
+2)*y2*(y3 pow 3))+((-- &1)*(c pow 2)*d*(x1 pow 3)*(x2 pow 2)*(x3 pow 
+2)*y2*(y3 pow 3))+((-- &1)*x1*(y1 pow 2)*y2*(y3 pow 3))+(c*d*(x1 pow 
+3)*(x2 pow 2)*(y1 pow 2)*y2*(y3 pow 3))+((-- &1)*d*x2*(x3 pow 
+2)*y1*(y2 pow 2)*(y3 pow 3))+(c*(d pow 2)*(x1 pow 2)*(x2 pow 3)*(x3 
+pow 2)*y1*(y2 pow 2)*(y3 pow 3))+((-- &1)*d*(x1 pow 2)*x2*(y1 pow 
+3)*(y2 pow 2)*(y3 pow 3))+(d*x2*(x3 pow 2)*(y1 pow 3)*(y2 pow 2)*(y3 
+pow 3))+(d*x1*(x3 pow 2)*(y1 pow 2)*(y2 pow 3)*(y3 pow 3))+((-- 
+&1)*(d pow 2)*x1*(x2 pow 2)*(x3 pow 2)*(y1 pow 2)*(y2 pow 3)*(y3 pow 
+3))))
+
+=
+
+((-- &1)+(c*(x1 pow 2))+(y1 pow 2)+((-- &1)*d*(x1 pow 2)*(y1 pow 
+2)))
+*
+((c*d*(x2 pow 3)*x3*y1*(y2 pow 2))+((-- &1)*(c pow 2)*d*(x2 pow 
+3)*(x3 pow 3)*y1*(y2 pow 2))+(c*d*x1*(x2 pow 2)*x3*(y2 pow 3))+((-- 
+&1)*(c pow 2)*d*x1*(x2 pow 2)*(x3 pow 3)*(y2 pow 3))+((-- &1)*(c pow 
+2)*d*(x2 pow 4)*(x3 pow 2)*y1*y2*y3)+(c*d*x1*(x2 pow 3)*(y2 pow 
+2)*y3)+((-- &1)*d*(x2 pow 2)*y1*(y2 pow 3)*y3)+(c*(d pow 2)*(x2 pow 
+4)*(x3 pow 2)*y1*(y2 pow 3)*y3)+(c*d*x1*x2*(x3 pow 2)*(y2 pow 
+4)*y3)+((-- &1)*c*(d pow 2)*x1*(x2 pow 3)*(x3 pow 2)*(y2 pow 
+4)*y3)+((c pow 2)*d*x1*(x2 pow 4)*x3*y2*(y3 pow 2))+((-- &1)*c*(d pow 
+2)*x1*(x2 pow 4)*x3*(y2 pow 3)*(y3 pow 2))+(d*x2*x3*y1*(y2 pow 4)*(y3 
+pow 2))+((-- &1)*(d pow 2)*(x2 pow 3)*x3*y1*(y2 pow 4)*(y3 pow 2))+((-- 
+&1)*c*d*x1*(x2 pow 3)*(y2 pow 2)*(y3 pow 3))+(d*(x2 pow 2)*y1*(y2 pow 
+3)*(y3 pow 3)))
+
++
+((-- &1)+(c*(x2 pow 2))+(y2 pow 2)+((-- &1)*d*(x2 pow 2)*(y2 pow 2)))
+*
+(((-- &1)*c*x2*x3*y1)+((c pow 2)*(x1 pow 2)*x2*x3*y1)+((c pow 
+2)*x2*(x3 pow 3)*y1)+((-- &1)*(c pow 3)*(x1 pow 2)*x2*(x3 pow 
+3)*y1)+(c*x2*x3*(y1 pow 3))+((-- &1)*(c pow 2)*x2*(x3 pow 3)*(y1 pow 
+3))+((-- &1)*c*x1*x3*y2)+((c pow 2)*(x1 pow 3)*x3*y2)+((c pow 
+2)*x1*(x3 pow 3)*y2)+((-- &1)*(c pow 3)*(x1 pow 3)*(x3 pow 
+3)*y2)+(c*x1*x3*(y1 pow 2)*y2)+((-- &1)*(c pow 2)*x1*(x3 pow 3)*(y1 
+pow 2)*y2)+((-- &1)*c*x1*x2*y3)+((c pow 2)*(x1 pow 3)*x2*y3)+((c pow 
+2)*x1*x2*(x3 pow 2)*y3)+((-- &1)*(c pow 3)*(x1 pow 3)*x2*(x3 pow 
+2)*y3)+(c*x1*x2*(y1 pow 2)*y3)+((-- &1)*(c pow 2)*x1*x2*(x3 pow 
+2)*(y1 pow 2)*y3)+(y1*y2*y3)+((-- &1)*c*(x1 pow 2)*y1*y2*y3)+((-- 
+&1)*c*(x3 pow 2)*y1*y2*y3)+((c pow 2)*(x1 pow 2)*(x3 pow 
+2)*y1*y2*y3)+((-- &1)*c*d*(x2 pow 2)*(x3 pow 2)*y1*y2*y3)+((c pow 
+2)*d*(x1 pow 2)*(x2 pow 2)*(x3 pow 2)*y1*y2*y3)+((-- &1)*(y1 pow 
+3)*y2*y3)+(c*(x3 pow 2)*(y1 pow 3)*y2*y3)+(c*d*(x2 pow 2)*(x3 pow 
+2)*(y1 pow 3)*y2*y3)+(c*d*x1*x2*(x3 pow 2)*(y2 pow 2)*y3)+((-- &1)*(c 
+pow 2)*d*(x1 pow 3)*x2*(x3 pow 2)*(y2 pow 2)*y3)+((-- 
+&1)*c*d*x1*x2*(x3 pow 2)*(y1 pow 2)*(y2 pow 2)*y3)+(c*x2*x3*y1*(y3 
+pow 2))+((-- &1)*(c pow 2)*(x1 pow 2)*x2*x3*y1*(y3 pow 2))+((-- 
+&1)*c*d*x2*(x3 pow 3)*y1*(y3 pow 2))+((c pow 2)*d*(x1 pow 2)*x2*(x3 
+pow 3)*y1*(y3 pow 2))+((-- &1)*c*x2*x3*(y1 pow 3)*(y3 pow 
+2))+(c*d*x2*(x3 pow 3)*(y1 pow 3)*(y3 pow 2))+(c*x1*x3*y2*(y3 pow 
+2))+((-- &1)*(c pow 2)*(x1 pow 3)*x3*y2*(y3 pow 2))+(c*d*x1*(x2 pow 
+2)*x3*y2*(y3 pow 2))+((-- &1)*(c pow 2)*d*(x1 pow 3)*(x2 pow 
+2)*x3*y2*(y3 pow 2))+((-- &1)*c*d*x1*(x3 pow 3)*y2*(y3 pow 2))+((c 
+pow 2)*d*(x1 pow 3)*(x3 pow 3)*y2*(y3 pow 2))+((-- &1)*c*x1*x3*(y1 
+pow 2)*y2*(y3 pow 2))+((-- &1)*c*d*x1*(x2 pow 2)*x3*(y1 pow 2)*y2*(y3 
+pow 2))+(c*d*x1*(x3 pow 3)*(y1 pow 2)*y2*(y3 pow 2))+(c*(d pow 
+2)*x1*(x2 pow 2)*(x3 pow 3)*(y1 pow 2)*y2*(y3 pow 2))+(d*x2*x3*y1*(y2 
+pow 2)*(y3 pow 2))+((-- &1)*c*d*(x1 pow 2)*x2*x3*y1*(y2 pow 2)*(y3 
+pow 2))+(c*(d pow 2)*(x1 pow 2)*x2*(x3 pow 3)*y1*(y2 pow 2)*(y3 pow 
+2))+((-- &1)*d*x2*x3*(y1 pow 3)*(y2 pow 2)*(y3 pow 2))+(c*x1*x2*(y3 
+pow 3))+((-- &1)*(c pow 2)*(x1 pow 3)*x2*(y3 pow 3))+((-- 
+&1)*c*d*x1*x2*(x3 pow 2)*(y3 pow 3))+((c pow 2)*d*(x1 pow 3)*x2*(x3 
+pow 2)*(y3 pow 3))+((-- &1)*c*x1*x2*(y1 pow 2)*(y3 pow 
+3))+(c*d*x1*x2*(x3 pow 2)*(y1 pow 2)*(y3 pow 3))+((-- &1)*y1*y2*(y3 
+pow 3))+(c*(x1 pow 2)*y1*y2*(y3 pow 3))+(d*(x3 pow 2)*y1*y2*(y3 pow 
+3))+((-- &1)*c*d*(x1 pow 2)*(x3 pow 2)*y1*y2*(y3 pow 3))+((-- 
+&1)*c*(d pow 2)*(x1 pow 2)*(x2 pow 2)*(x3 pow 2)*y1*y2*(y3 pow 
+3))+((y1 pow 3)*y2*(y3 pow 3))+((-- &1)*d*(x3 pow 2)*(y1 pow 
+3)*y2*(y3 pow 3))+((d pow 2)*x1*x2*(x3 pow 2)*(y1 pow 2)*(y2 pow 
+2)*(y3 pow 3)))
+
++
+
+((-- &1)+(c*(x3 pow 2))+(y3 pow 2)+((-- &1)*d*(x3 pow 2)*(y3 pow 2)))
+*
+((c*x2*x3*y1)+((-- &1)*(c pow 2)*(x1 pow 2)*x2*x3*y1)+((-- &1)*(c pow 
+2)*(x2 pow 3)*x3*y1)+((c pow 3)*(x1 pow 2)*(x2 pow 3)*x3*y1)+((-- 
+&1)*c*x2*x3*(y1 pow 3))+((c pow 2)*(x2 pow 3)*x3*(y1 pow 
+3))+(c*x1*x3*y2)+((-- &1)*(c pow 2)*(x1 pow 3)*x3*y2)+((-- &1)*(c pow 
+2)*x1*(x2 pow 2)*x3*y2)+((c pow 3)*(x1 pow 3)*(x2 pow 2)*x3*y2)+((-- 
+&1)*c*x1*x3*(y1 pow 2)*y2)+((c pow 2)*x1*(x2 pow 2)*x3*(y1 pow 
+2)*y2)+((-- &1)*c*d*x1*(x2 pow 2)*x3*(y1 pow 2)*y2)+((-- 
+&1)*c*x2*x3*y1*(y2 pow 2))+((c pow 2)*(x1 pow 2)*x2*x3*y1*(y2 pow 
+2))+((-- &1)*c*d*(x1 pow 2)*x2*x3*y1*(y2 pow 2))+(c*x2*x3*(y1 pow 
+3)*(y2 pow 2))+((-- &1)*c*x1*x3*(y2 pow 3))+((c pow 2)*(x1 pow 
+3)*x3*(y2 pow 3))+(c*x1*x3*(y1 pow 2)*(y2 pow 3))+(c*x1*x2*y3)+((-- 
+&1)*(c pow 2)*(x1 pow 3)*x2*y3)+((-- &1)*(c pow 2)*x1*(x2 pow 
+3)*y3)+((c pow 3)*(x1 pow 3)*(x2 pow 3)*y3)+((-- &1)*c*x1*x2*(y1 pow 
+2)*y3)+((c pow 2)*x1*(x2 pow 3)*(y1 pow 2)*y3)+((-- 
+&1)*y1*y2*y3)+(c*(x1 pow 2)*y1*y2*y3)+(c*(x2 pow 2)*y1*y2*y3)+((-- 
+&1)*(c pow 2)*(x1 pow 2)*(x2 pow 2)*y1*y2*y3)+(c*d*(x1 pow 2)*(x2 pow 
+2)*y1*y2*y3)+((y1 pow 3)*y2*y3)+((-- &1)*c*(x2 pow 2)*(y1 pow 
+3)*y2*y3)+((-- &1)*c*x1*x2*(y2 pow 2)*y3)+((c pow 2)*(x1 pow 
+3)*x2*(y2 pow 2)*y3)+(c*x1*x2*(y1 pow 2)*(y2 pow 2)*y3)+((-- 
+&1)*d*x1*x2*(y1 pow 2)*(y2 pow 2)*y3)+(y1*(y2 pow 3)*y3)+((-- 
+&1)*c*(x1 pow 2)*y1*(y2 pow 3)*y3)+((-- &1)*(y1 pow 3)*(y2 pow 3)*y3))
+
+`;;
+
+(* CPU time (user): 0.738775 *)
+
+(* 8:55 done *)
+
+(* total CPU time less than 2 seconds *)
