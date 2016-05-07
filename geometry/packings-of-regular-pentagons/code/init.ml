@@ -56,7 +56,7 @@ let needs s =
 (* Various tweaks to OCaml and general library functions.                    *)
 (* ------------------------------------------------------------------------- *)
 
-loads "/home/hasty/Desktop/pentagon/lib.ml";;
+loads "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/lib.ml";;
 
 open Lib;;
 
@@ -88,7 +88,7 @@ open Interval;;
 let succ n = Pervasives.(+) n 1;;
 let (+) = (+$);;
 let (-) = (-$);;
-let (/) = (/$);;
+(* let (/) = (/$);; *)
 let ( * ) = ( *$ );;
 let (~-) = (~-$);;
 let sqrt = Pervasives.sqrt;;
@@ -109,7 +109,7 @@ let runtest s =
 let runalltest() = 
   map runtest (gettest());;
 
-reneeds "/home/hasty/Desktop/pentagon/pent.ml";;
+reneeds "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pent.ml";;
 
 runalltest();;
 
