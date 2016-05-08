@@ -1,26 +1,16 @@
 REAL_ARITH;;
 REAL_RING;;
-(* 8:32 am, Monday May 6, 2016 *)
+(* 8:32 am, Friday May 6, 2016 *)
+(* redone, Sunday May 8, 2016 *)
 
-let complete1 = time REAL_ARITH `((-- &1)+(c*(x1 pow 2))+(y1 pow 2)+((-- &1)*d*(x1 pow 2)*(y1 pow 
-2))+((c+((-- &1)*(t pow 2)))*(x1 pow 2)*((-- &1)+(d*(x2 pow 2)*(y1 
-pow 2))))+(d*(x1 pow 2)*(y1 pow 2)*(((t*x2)+y2) pow 2))+((-- 
-&1)*(((t*x1)+(d*x1*x2*(y1 pow 2)*y2)) pow 2))+((-- &1)*d*(x1 pow 
-2)*(y1 pow 2)*((-- &1)+(c*(x2 pow 2))+(y2 pow 2)+((-- &1)*d*(x2 pow 
-2)*(y2 pow 2))))+((&1+((-- &1)*(y1 pow 2)))*(&1+((-- &1)*(d pow 
-2)*(x1 pow 2)*(x2 pow 2)*(y1 pow 2)*(y2 pow 2))))) = &0`;;
+let complete1 = time REAL_ARITH `(((d pow 2)*(x1 pow 2)*(x2 pow 2)*((-- &1)+(c*(x1 pow 2))+(y1 pow 
+2)+((-- &1)*d*(x1 pow 2)*(y1 pow 2)))*(y2 pow 2))+((-- &1)*d*(x1 pow 
+2)*((-- &1)+(c*(x2 pow 2))+(y2 pow 2)+((-- &1)*d*(x2 pow 2)*(y2 pow 
+2))))+((&1+((-- &1)*d*(x1 pow 2)))*(&1+((-- &1)*(d pow 2)*(x1 pow 
+2)*(x2 pow 2)*(y1 pow 2)*(y2 pow 2))))) = ((&1+((-- &1)*c*d*(x1 pow 
+2)*(x2 pow 2)))*(&1+((-- &1)*d*(x1 pow 2)*(y2 pow 2))))`;;
 
-(* 0.024 sec *)
-
-let complete2 = time REAL_ARITH `((-- &1)+(c*(x1 pow 2))+(y1 pow 2)+((-- &1)*d*(x1 pow 2)*(y1 pow 
-2))+((c+((-- &1)*(t pow 2)))*(x1 pow 2)*((-- &1)+(d*(x2 pow 2)*(y1 
-pow 2))))+(d*(x1 pow 2)*(y1 pow 2)*(((t*x2)+((-- &1)*y2)) pow 2))+((-- 
-&1)*(((t*x1)+((-- &1)*d*x1*x2*(y1 pow 2)*y2)) pow 2))+((-- &1)*d*(x1 
-pow 2)*(y1 pow 2)*((-- &1)+(c*(x2 pow 2))+(y2 pow 2)+((-- &1)*d*(x2 
-pow 2)*(y2 pow 2))))+((&1+((-- &1)*(y1 pow 2)))*(&1+((-- &1)*(d pow 
-2)*(x1 pow 2)*(x2 pow 2)*(y1 pow 2)*(y2 pow 2))))) = &0`;;
-
-(* 0.026 sec *)
+(* 0.02 sec *)
 
 (* 8:38 *)
 
