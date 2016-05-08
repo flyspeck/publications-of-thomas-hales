@@ -75,7 +75,8 @@ There is another reason why we should care about having a simple proof of the gr
 The difficulty of the verification has been a impediment to the formalization of elliptic curve cryptography.  Th\'ery,
 and more recently Bartzia and Strub, have
 obtained formal proofs in the proof assistant 
-Coq of the group axioms for an elliptic curve, but this project has a long history~\cite{thery2007primality}, \cite{thery2007proving},  \cite{bartzia2014formal}.
+Coq of the group axioms for an elliptic curve, 
+but this project has a long history~\cite{thery2007primality}, \cite{thery2007proving},  \cite{bartzia2014formal}.
 See also \cite{russinoffcomputationally}.
 
 I confine my remarks to Edwards elliptic curves.  They have become popular in recent  years
@@ -170,7 +171,7 @@ This is elementary from the definitions of $\oplus$ and $\phi$.
 
 To develop informal intuition about the Edwards curve and the addition law, it can help to graph the
 equation $e(x,y)=0$ over the real numbers with specializations $c\mapsto\bar c = 1$ and $d\mapsto\bar d\in\ring{R}$.  The graph has evident
-symmetries $x\leftrightarrow -x$, $y\leftrightarrow -y$.  When $\bar d$ is small, the curve is a symmetrical deformation of the circle, which corresponds to parameter values $(\bar c,\bar d) = (1,0)$.
+symmetries $x\leftrightarrow -x$, $y\leftrightarrow -y$.  When $\bar d$ is small and negative, the curve is a symmetrical deformation of the circle, which corresponds to parameter values $(\bar c,\bar d) = (1,0)$.
 The group addition law is also a deformation of the addition law of the addition law for the circle:
 the numerators of Equation (\ref{eqn:add}) give the usual group law for the circle%
 \footnote{It is not quite the usual formula for circle addition, because elliptic curvologists follow the mixed-up
@@ -199,7 +200,7 @@ We write
 e(x_3',y_3') = \frac{g}{\delta^2},\quad \text{ where } (x_3',y_3')=(x_1,y_1) \oplus (x_2,y_2) ,\quad 
 \]
 for some polynomial $g \in R_2$.  It is enough to show that $\phi(g)=0$.
-Buchberger's algorithm for ideal membership gives
+Polynomial division gives
 \begin{equation}\label{eqn:closure}
 g= r_1 e_1 + r_2 e_2,
 \end{equation}
@@ -235,7 +236,7 @@ We work in the ring $R_3[\f{\Delta^+\Delta^-}]$ and take the component-wise diff
 (x_1,y_1)\oplus ((x_2,y_2) \oplus (x_3,y_3)) = (\frac{g_1}{\Delta^+},\frac{g_2}{\Delta^-}),
 \]
 for some polynomials $g_1,g_2 \in R_3$.  It is enough to show that $\phi(g_1)=\phi(g_2)=0$. 
-Buchberger's algorithm for ideal membership gives
+Polynomial division gives
 \begin{equation}\label{eqn:assoc}
 g_i = r_i^1 e_1 + r_i^2 e_2 + r_i^3 e_3,
 \end{equation}
@@ -254,47 +255,37 @@ and denominators are nonzero at every $k$-point.  Because of this result, the ad
 case-by-case analysis that plagues other approaches.
 
 \begin{lemma}[completeness]  Let $k$ be a field (of char$\ne 2$), and let $\phi:R_2\to k$ be a homomorphism
-such that $\bar d$, the image of $d$, is not a square and such that $\bar c =\tau^2\in k$, the image of $c$, is a nonzero square.  
-Then $\phi(\delta)=\phi(\delta^+)\phi(\delta^-)\ne 0$.
+such that $\bar d$, the image of $d$, is not a nonzero square and such that 
+$\bar c =\tau^2\in k$, the image of $c$, is a square.  
+If $\bar e_1 = \bar e_2= 0$, then $\phi(\delta)\ne 0$.
 \end{lemma}
 
-\begin{proof} The proof follows Bernstein and Lange~\cite{bernstein2007faster}.  We prove the lemma in the following contrapositive form:
-assuming that $\phi(\delta) = 0$ together with the other assumptions, we show that $\bar d$ is a square.
-
-Set $\epsilon = d x_1 y_1 x_2 y_2\in R_2$ so that 
-\begin{equation}\label{eqn:delta-epsilon}
-\epsilon^2 = 1-\delta.
-\end{equation}
-We check
-the following polynomial identity in the ring $R_2[t]$
-by substituting the definitions of $e_1,e_2,\delta$, and $\epsilon$, and expanding:
+\begin{proof}   We prove the lemma in the following contrapositive form:
+assuming that $\phi(\delta) = 0$ together with the other assumptions, we show that $\bar d$ is a nonzero square.
+Let $g = (1 - c d x_1^2 x_2 ^2) (1 - d x_1^2 y_2^2)$.   
+We have
 \begin{equation}\label{eqn:squares}
-(t x_1 \pm \epsilon y_1)^2 =  d x_1^2 y_1^2 (t x_2 \pm y_2)^2 - e_2 d x_1^2 y_1^2 + e_1 + (1-y_1^2)\delta + (c-t^2)x_1^2 (-1+d x_2^2 y_1^2).
+g = r_0 
+\delta + r_1 e_1 + r_2 e_2, 
 \end{equation}
-The image in $k$ of the polynomial identity under $\phi$, 
-sending 
-\[
-e_1,e_2,\delta,\mapsto 0,0,0,\quad
-t,c,d,\epsilon\mapsto \tau,\tau^2,\bar d,\bar\epsilon,\quad
-x_1,y_1,x_2,y_2\mapsto a_1,b_1,a_2,b_2
-\]
-is
-\begin{equation}\label{eqn:d}
-(\tau a_1 \pm \bar \epsilon b_1)^2 = \bar d a_1^2 b_1^2 (\tau b_2\pm a_2)^2.
+where
+\begin{equation}
+r_0 = (1-d x_1^2),\quad r_1 = d^2 x_1^2 x_2^2 y_2^2,\quad r_2 = d x_1^2.
 \end{equation}
-Note that every factor in this equation, except $\bar d$, is evidently squared.  To show that $\bar d$ is a square,
-it is enough to show that each square on the right-hand side is nonzero for some choice of sign $(\pm)$.
-The image of Equation (\ref{eqn:delta-epsilon}) under $\phi$ is $\bar\epsilon^2 = 1$, which implies that $\bar\epsilon$ and
-its factors $\bar d,a_1,b_1,a_2,b_2\in k$ are all nonzero.  By assumption $\bar c$ and hence $\tau$ are nonzero.
-Furthermore, either $\tau b_2+a_2$ or $\tau b_2 - a_2$ is nonzero; (otherwise if they are both zero, then
-by solving these two homogeneous equations for $a_2$ and $b_2$, we get $a_2 = b_2 = 0$, which is contrary to recent fact).
-This means that we can solve Equation (\ref{eqn:d}) for $\bar d$, expressing it as a square, which completes the proof.
+The kernel property gives $\phi(g) = (1 - \tau^2 \bar d a_1^2 a_2^2)(1 - \bar d a_1^2 b_2^2) =0$.
+We solve this equation for $\bar d$, which expresses it as the square of $1/(\tau a_1 a_2)$ or $1/(a_1 b_2)$.
 \end{proof}
 
-We are ready to state and prove the main result of the paper.
+We are ready to state and prove the main result of the paper.  The group law is expressed generally enough
+to include the circle (and ellipse) as a special case $\bar d = 0$.  Cryptography textbooks are emphatic
+that elliptic curves are not ellipses, but here we give a unified treatment of both group laws!  
+Bernstein and Lange
+gave a beautiful elliptic-curve tutorial from this unified point of view at the 31st Chaos Communication Congress.
+
+
 
 \begin{theorem}[group law]\label{thm:group} 
-Let $k$ be a field (of char$\ne 2$), let $\bar c \in k^\times$ be a nonzero square, and let $\bar d\in k$ be a non-square.
+Let $k$ be a field (of char$\ne 2$), let $\bar c \in k^\times$ be a square, and let $\bar d\in k\setminus k^{\times 2}$.
 Let $\bar e(x,y) \in k[x,y]$ be the specialization of $e(x,y)$, obtained by $(c,d)\mapsto (\bar c,\bar d)$.
  Then $E= \{(a,b)\in k^2 \mid \bar e(a,b) = 0\}$ is a group with binary operation $\oplus$.
 \end{theorem}
