@@ -79,9 +79,11 @@ Coq of the group axioms for an elliptic curve, but this project has a long histo
 See also \cite{russinoffcomputationally}.
 
 I confine my remarks to Edwards elliptic curves.  They have become popular in recent  years
-in cryptography.  Some elliptic curves cannot
-be represented as Edwards curves, but Edwards curves include a large fraction of elliptic curves (up to isomorphism) over finite fields and are sufficient for many
-cryptographic purposes.  
+in cryptography.  Over an algebraically closed field, every elliptic curve is isomorphic to an Edwards curve.
+Over arbitrary fields, some elliptic curves cannot
+be represented as Edwards curves, but Edwards curves include a large fraction of 
+isomorphism classes of elliptic curves over finite fields and are sufficient for many
+cryptographic purposes~\cite{bernstein2008twisted}.  
 
 Proofs based on Groebner basis algorithms carry a particular appeal for those of us interested in formalization, because
 many proof assistants support such proofs.
@@ -309,9 +311,13 @@ inverse, and completeness.
 
 \section{Formalization in HOL Light}
 
+% We implicity assume the fact that the ring R[x1,...,xk] injects into the ring of functions on R^n.
 We have formally verified the main polynomial identities Equations (\ref{eqn:closure}), (\ref{eqn:assoc}), (\ref{eqn:squares}) in
 the proof assistant HOL Light using its tactic \verb!REAL_ARITH!, which checks polynomials identities
-over the real numbers. By the ring injection $\ring{Z}\subset \ring{R}$, these identities must then also hold over $\ring{Z}$.
+over the real numbers. The statements in HOL Light implicitly use an identification of the ring
+$\ring{R}[x_1,\ldots,x_k]$ with a ring of real-valued functions on $\ring{R}^k$.
+By the ring injection $\ring{Z}\subset \ring{R}$, these polynomial identities must then also hold over $\ring{Z}$.
+
 Most of our software development took place in Mathematica, using the \verb!PolynomialReduce! function.  These
 Mathematica calculations are very fast. For example, the associativity certificate (\ref{eqn:mathca})
 takes about $0.12$ second to compute

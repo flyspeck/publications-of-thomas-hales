@@ -1,4 +1,4 @@
-(* Edwards elliptic curve *)
+(* Mathematica code for the Edwards elliptic curve group law verification *)
 Clear[plus,c,d,e,delta,deltad];
 
 e[x_, y_] := (c x^2 + y^2 - 1 - d x^2 y^2);
