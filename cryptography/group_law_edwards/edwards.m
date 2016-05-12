@@ -58,6 +58,23 @@ d x1^2 y1^2 (t x2 + y2)^2 - e2 d x1^2 y1^2 +
       e1 + (1 - y1^2) delta12 - (t x1 - d x1 y1 x2 y2 y1)^2 +
            (c - t^2) x1^2 (-1 + d x2^2 y1^2)};
 *)
+
+(* group addition and family of hyperbolas *)
+
+hyp[{x_, y_}] := x y + a y + b x + a;
+
+absub = First[
+   Solve[{hyp[{x1, y1}] == 0, hyp[{x2, y2}] == 0}, {a, b}] // 
+    Simplify];
+
+neg[{x_, y_}] := {-x, y};
+
+hypsum = delta[x1, y1, x2, y2]*
+   (x1 (1 + y2) - x2 (1 + y1))*
+   (hyp[neg[plus[{x1, y1}, {x2, y2}]]] /. absub) // 
+   Factor;
+
+hypreduce= PolynomialReduce[hypsum, {e1, e2}, {x1, y1, x2, y2}]
      
 (* convert to HOL Light *)
 
