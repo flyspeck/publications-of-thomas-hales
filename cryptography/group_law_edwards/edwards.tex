@@ -2,6 +2,8 @@
 % Hyperbolic Addition on Edwards Curves
 % May 2016.
 % May 11, 2016. Added hyperbolic material.
+% May 12, 2016. Submission to MAA (with blinded author).
+
 \documentclass[18pt]{article}
 
 \usepackage{graphicx}
@@ -53,8 +55,6 @@
 \begin{document}
 
 \maketitle
-
-\centerline{\it I dedicate this article to Harold Edwards on his 80th birthday.}
 
 \begin{abstract} 
 This article is an attempt to explain and prove the group law on elliptic curves in the simplest possible way, following
@@ -122,16 +122,16 @@ $i^2 = -1$.  The multiplication of complex numbers $z_1 z_2$ is given by
 z_1 z_2 = (x_1 + i y_1) (x_2 + i y_2) = (x_1 x_2 - y_1 y_2) + i (x_1 y_2 + y_1 x_2).
 \end{equation}
 Multiplication is commutative: $z_1 z_2 = z_2 z_1$
-The unit circle $U$ is the set of complex numbers of norm one: $|z|^2 := x^2 + y^2 = 1$.  
+The unit circle $U$ is the set of complex numbers of norm one: $x^2 + y^2 = 1$.  
 The identity element $1 \in \ring{C}$,
 inverse $z^{-1}$, and product $z_1 z_2$ all belong to $U$,  provided $z,z_1,z_2\in U$.
 
-\subsection{Hyperbolic addition}
+%\subsection{Hyperbolic addition}
 
 We give an unusual interpretation of the group law on the unit circle that we call {\it hyperbolic addition}.
 
 We now shift notation away from complex numbers and represent points in the plane by ordered pairs $(x,y)$.
-We write $\iota(z) = (x,-y)$, where $z=(x,y)$, for the operation on ordered pairs corresponding to complex conjugation.
+We write $\iota(z) = (x,-y)$, where $z=(x,y)$, for the operation on ordered pairs corresponding to complex conjugation and inverse in the group.
 
 We consider the family of hyperbolas in the plane
 that pass through the point $z=(-1,0)$ and whose asymptotes are parallel to the coordinate axes.
@@ -171,7 +171,7 @@ The lemma is a special case of a much more general lemma (Lemma~\ref{lemma:hyper
 We wait until then to give the proof.  The proof relies on the explicit formula (\ref{eqn:cx}) for the group law.
 
 The lemma implies that the product of the two points $z_1$ and $z_2$ on the unit circle
-is $\iota(z_3)$, and this gives a geometrical construction
+is $\iota(z_3)$, and this gives a geometric construction
 of the group law. 
 Rather than starting with the formula (\ref{eqn:cx}) for the binary operation  and using it to prove that $\iota(z_3)$
 is the product of $z_1$ and $z_2$, we can reverse the process.  That is, we forget the standard definition
@@ -183,7 +183,7 @@ when $z_1$, $z_2$, and $z_3$ are related by the circle and hyperbola intersectio
 We call the binary operation $\oplus$ {\it hyperbolic addition}
 on the circle.  If we want an explicit formula for hyperbolic addition, we can use its geometric description
 and coordinate geometry to calculate the point  $z_3$ of intersection
-in terms of $z_1$ and $z_2$.  This calculation rediscovers the recently forgotten standard formula (\ref{eqn:cx}).
+in terms of $z_1$ and $z_2$.  This calculation recovers the recently forgotten standard formula (\ref{eqn:cx}).
 
 It might seem that there is no point in reinterpreting complex multiplication on the unit circle as hyperbolic addition, 
 because they are actually the same binary operation, and 
@@ -194,7 +194,7 @@ we have found a better description of the group law on the circle.
 
 % Fig1
 
-\tikzfig{fig1}{A unit circle with center $(0,0)$
+\tikzfig{fig1}{A unit circle centered at the origin
 and hyperbola meet at four points $z_0 = (-1,0)$, $z_1$, $z_2$, and $z_3$,
 where $z_1 z_2 z_3 = 1$, which we write alternatively in additive notation 
 as $z_1\oplus z_2 = \iota(z_3)$.}{
@@ -224,7 +224,7 @@ easily directly check our result by multiplying $z_1$ and $z_2$ as complex numbe
 \]
 
 
-\subsection{Deforming the circle}
+\section{Deforming the Circle}
 
 What happens when we replace the circle with a different curve?
 We can use exactly the same hyperbola construction to define a binary operation $\oplus$ on other curves.
@@ -260,7 +260,7 @@ x^2 + c y^2 - 1 - d x^2 y^2
 \end{equation} (up to a nonzero constant factor) for some parameters $c$ and $d$.
 This zero locus of this polynomial is called an {\it Edwards curve}.%
 \footnote{This definition is more inclusive than definitions stated elsewhere.  
-Most writers prefer to restrict to curves of genus $1$
+Most writers prefer to restrict to curves of genus one
 and generally call a curve with $c\ne 1$ a {\it twisted Edwards curve}.  We have interchanged the $x$ and $y$
 coordinates on the Edwards curve to make it consistent with the group law on the circle.}  
 The unit circle corresponds to
@@ -328,9 +328,11 @@ makes the Edwards curve into a group.
 
 Our primary aim is to give an elementary proof of the
 group axioms for hyperbolic addition on Edwards curves (Theorem~\ref{thm:group}).
-In this section, we start afresh, setting aside just about everything except for the definition of the Edwards curve (\ref{eqn:ed})
+In this section, we start afresh, setting aside just about everything, except for the definition of the Edwards curve (\ref{eqn:ed})
 and the definition of hyperbolic addition (\ref{eqn:sum}). 
 We shift away from a geometric language and work entirely algebraically over an arbitrary field $k$.
+
+\subsection{rings and homomorphisms}
 
 We try to keep our presentation at an undergraduate level.
 We will assume a basic background in abstract algebra at the level of a first course (rings, fields, homomorphisms, and kernels).
@@ -374,7 +376,9 @@ Set
 \]
 We write $\delta_{ij}$ for its image of $\delta$ under $(x_1,y_1,x_2,y_2)\mapsto (x_i,y_i,x_j,y_j)$.  So, $\delta=\delta_{12}$.
 
-Borrowing the definition from the previous section of hyperbolic addition,
+\subsection{inverse and closure}
+
+Borrowing the definition of hyperbolic addition from the previous section,
 we define a pair of rational functions that we denote using the symbol $\oplus$:
 \begin{equation}\label{eqn:add}
 (x_1,y_1) \oplus (x_2,y_2) =  \left(\frac{x_1 x_2 - c y_1 y_2}{1 - d x_1 x_2 y_1 y_2},\frac{x_1 y_2 + y_1 x_2}{1+d x_1 x_2 y_1 y_2}\right) \in R_2[\f{\delta}]\times R_2[\f{\delta}].
@@ -474,7 +478,7 @@ and denominators are nonzero at every $k$-point.  Because of this result, the ad
 case-by-case analysis that plagues other approaches.
 
 \begin{lemma}[completeness] \label{lemma:complete} Let $k$ be a field, and let $\phi:R_2\to k$ be a homomorphism
-such that $\bar d\in k\setminus k^{\times 2}$, the image of $d$, is not a nonzero square and such that 
+such that $\bar d\not\in  k^{\times 2}$, the image of $d$, is not a nonzero square and such that 
 $\bar c =\tau^2\in k$, the image of $c$, is a square.  
 If $\bar e_1 = \bar e_2= 0$, then $\phi(\delta)\ne 0$.
 \end{lemma}
@@ -504,7 +508,7 @@ within a single family of curves with a uniformly defined group law.
 
 
 \begin{theorem}[group law]\label{thm:group} 
-Let $k$ be a field, let $\bar c \in k$ be a square, and let $\bar d\in k\setminus k^{\times 2}$.
+Let $k$ be a field, let $\bar c \in k$ be a square, and let $\bar d\not\in k^{\times 2}$.
 Let $\bar e(x,y) \in k[x,y]$ be the specialization of $e(x,y)$, obtained by $(c,d)\mapsto (\bar c,\bar d)$.
  Then $C= \{(a,b)\in k^2 \mid \bar e(a,b) = 0\}$ is an abelian group with binary operation $\oplus$.
 \end{theorem}
@@ -519,11 +523,11 @@ associativity for these three (arbitrary) elements of $C$.  The other properties
 inverse, and completeness. 
 \end{proof}
 
-\section{Hyperbola lemma}
+\section{Hyperbola Lemma}
 
 Our proof of the group axioms in the previous section
-does not logically depend on the geometric interpretation of addition as intersection points with a hyperbola; 
-this is a bonus section.
+does not logically depend on the geometric interpretation of addition as intersection points with a hyperbola.
+This is a bonus section, and we slack off a bit with assumptions.
 
 
 It is well-known that three points $(x_0,y_0)$, $(x_1,y_1)$, and $(x_2,y_2)$ in the plane are collinear if and only if
@@ -537,8 +541,8 @@ x_2 & y_2 & 1
 \]
 When $(x_0,y_0) = (-1,0)$, the three points are collinear exactly when
 $D=0$, where $D= (x_1+1) y_2 - (x_2+1) y_1$ is the determinant.  We treat $D$ as an element of $R_2$.
-In this subsection, we will need a noncollinearity condition, which we impose by inverting $D$.
-This condition could be relaxed to include degenerate cases, but we do not do so here.
+In this subsection, we will need a non-collinearity condition, which we impose by inverting $D$.
+This condition could be relaxed to include collinear cases, but we do not do so here.
 
 We now return to the family of hyperbolas that was introduced at the beginning of this article.
 We recall that the polynomial
@@ -553,7 +557,7 @@ h(x_1,y_1)=h(x_2,y_2)=0
 \]
 uniquely for $p$ and $q$ in the ring $R_2[\f{D}]$.  Identifying $p$ and $q$ with these ring elements, we now
 take $h(x,y) \in R_2[\f{D}][x,y]$.  It represents the unique 
-hyperbola passing through points and $(-1,0)$, $(x_1,y_1)$, and $(x_2,y_2)$.
+hyperbola in the family passing through points and $(-1,0)$, $(x_1,y_1)$, and $(x_2,y_2)$.
  
 \begin{lemma}[hyperbolic addition]\label{lemma:hyperbola}
 Let $\phi:R_2[\f{D\delta}]\to A$ be a ring homomorphism sending $x_1,y_1,x_2,y_2\mapsto a_1,b_1,a_2,b_2$.
@@ -567,7 +571,7 @@ h(x_3',-y_3') = \frac{g}{D\delta},\quad \text{where } (x_3',y_3') = (x_1,y_1)\op
 \]
 for some polynomial $g \in R_2$.  It is enough to show that $\phi(g)=0$. 
 Polynomial division gives
-\begin{equation}
+\begin{equation}\label{eqn:h}
 g = r_1 e_1 + r_2 e_2,
 \end{equation}
 for some polynomials $r_i\in R_2$.
@@ -575,7 +579,7 @@ Concretely, the polynomials $r_i$ are obtained as the output of the one-line Mat
 \begin{equation}
 \op{PolynomialReduce}[\{g\},\{e_1,e_2\},\{x_1,y_1,x_2,y_2\}].
 \end{equation}
-Thus, the result follows from the kernel property: $\bar e_1 = \bar e_2 = 0$ implies $\phi(g)  = 0$, as desired.
+Thus, the result follows from the kernel property and (\ref{eqn:h}): $\bar e_1 = \bar e_2 = 0$ implies $\phi(g)  = 0$, as desired.
 \end{proof}
 
 As the reader has no doubt observed, all the major proofs in this article follow exactly the same template, simply plugging
@@ -593,12 +597,7 @@ w^2 = (1 - d y^2) (1 - c y^2),
 \]
 where  $w = x (1 - d y^2)$.
 This a Jacobi quartic.  It is an elliptic curve whenever the polynomial in $y$ on the right-hand side
-has degree four and is separable.  If the quartic has a root in the field $k$,
-we may apply a Moebius transform in $y$ 
-that maps the root
-to infinity, to transform the curve into Weierstrass form: $w^2$ equals a separable cubic
-polynomial in $y$.
-
+has degree four and is separable.  
 
 Over an algebraically closed field, every elliptic curve is isomorphic to an Edwards curve.
 Over arbitrary fields, some elliptic curves cannot
@@ -607,7 +606,10 @@ isomorphism classes of elliptic curves over finite fields and are sufficient for
 cryptographic purposes~\cite{bernstein2008twisted}.  
 
 Interpreted in this light, we have proved the group law for for a significant
-portion of all elliptic curves.  Other writers sweat much more than we have to prove the group
+portion of all elliptic curves.%
+\footnote{We fail to be general especially because of the restriction $\bar d\not\in k^{\times 2}$ in Theorem~\ref{thm:group} and in the completeness lemma.  
+Without that restriction, we could pass to an algebraic closure and use that every elliptic curve is isomorphic to an Edwards curve.}  
+Other writers sweat much more than we have to prove the group
 law for elliptic curves.  In particular, as far as we know,
 our eleven-line computational proof of the associativity of elliptic-curve addition is the
 shortest proof on record (Lemma~\ref{lemma:assoc}).  Of course, to claim the record,
@@ -632,7 +634,7 @@ treatment of the group law.  As expected, Edwards elliptic curves avoid these co
 
 
 
-\section{Formalization in HOL Light}\label{sec:hol}
+\section{Formal Proof}\label{sec:hol}
 
 The source code for Mathematica is not public and is therefore inscrutable. 
 It is dangerous to trust its calculations in any proof that matters.
@@ -661,8 +663,8 @@ over to the proof assistant and formally verify them.  All these polynomial iden
 can be formally verified in less than 2 seconds of CPU time
 on a 2.13 GHz Intel Core 2 Duo processor. The most difficult formal verification is the associativity identity (\ref{eqn:assoc}), 
 which takes
-about 1.5 seconds.  The computer code is available at 
-\url{www.github.com/flyspeck/publications-of-thomas-hales}.
+about 1.5 seconds.  
+The computer code is available at  \url{www.github.com/flyspeck/publications-of-thomas-hales}.
 
 Part of my motivation for seeking a simple proof of the group law for elliptic curves was
 to find a proof I could teach in an undergraduate cryptography class.
@@ -706,7 +708,7 @@ viewed as reworkings of calculations found in Edwards, Bernstein, and Lange~\cit
 Inspiration for this article comes from 
 Bernstein and Lange's
 wonderfully  gentle introduction to 
-elliptic-curve cryptography at the 31st Chaos Communication Congress on December 27, 2014.
+elliptic-curve cryptography at the 31st Chaos Communication Congress in December, 2014.
 They use the group law on the circle to motivate the group law on Edwards elliptic curves.
 Hyperbolic addition is introduced for Edwards elliptic curves in \cite{arene2011faster}.
 
