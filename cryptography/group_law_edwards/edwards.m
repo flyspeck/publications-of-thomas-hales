@@ -1,81 +1,73 @@
-(* Mathematica code for the Edwards elliptic curve group law verification *)
+(* Mathematica code for the Edwards elliptic curve group law verification.
+    May 13, 2016: swapped x and y coordinates for consistency with unit circle. *)
+        
 Clear[plus,c,d,e,delta,deltad];
 
-e[x_, y_] := (c x^2 + y^2 - 1 - d x^2 y^2);
-{e1,e2,e3} = {e[x1,y1],e[x2,y2],e[x3,y3]};
+e[x_, y_] := (x^2 + c y^2 - 1 - d x^2 y^2);
+{e1, e2, e3} = {e[x1, y1], e[x2, y2], e[x3, y3]};
 
 delta[x1_, y1_, x2_, y2_] := 1 - d^2 x1^2 x2^2 y1^2 y2^2;
-delta12 = delta[x1,y1,x2,y2];
-delta23 = delta[x2,y2,x3,y3];
+delta12 = delta[x1, y1, x2, y2];
+delta23 = delta[x2, y2, x3, y3];
 deltad[d_, x1_, y1_, x2_, y2_] := 1 + d x1 x2 y1 y2;
 
-delta12 - deltad[d, x1, y1, x2, y2] deltad[-d, x1, y1, x2, y2] // Simplify
+delta12 - 
+  deltad[d, x1, y1, x2, y2] deltad[-d, x1, y1, x2, y2] // Simplify
 
-plus[{x1_, y1_}, {x2_, y2_}] :=
-  {
-   (x1 y2 + y1 x2)/(1 + d x1 x2 y1 y2),
-   (y1 y2 - c x1 x2)/(1 - d x1 x2 y1 y2)
-   };
+plus[{x1_, y1_}, {x2_, y2_}] := 
+ {(x1 x2 - c y1 y2)/(1 - d x1 x2 y1 y2), 
+  (x1 y2 + y1 x2)/(1 + d x1 x2 y1 y2)};
 {x3p, y3p} = plus[{x1, y1}, {x2, y2}];
 {x1p, y1p} = plus[{x2, y2}, {x3, y3}];
 
-(* group closure *)
-groupclosure = e[x3p, y3p] delta[x1, x2, y1, y2]^2 // Together // Factor;
-polyclosure = PolynomialReduce[
-  groupclosure, {e1,e2}, {x1, y1, x2, y2}] // Expand;
+(*group closure*)
 
-(* associativity *)
-deltaX =
-delta12 * delta23 *
-deltad[d,x3p, y3p, x3, y3] * 
-deltad[d,x1, y1, x1p, y1p] // Factor;
+groupclosure = 
+  e[x3p, y3p] delta[x1, x2, y1, y2]^2 // Together // Factor;
+polyclosure = 
+  PolynomialReduce[groupclosure, {e1, e2}, {x1, y1, x2, y2}] // Expand;
 
-deltaY = deltaX/.{d->(-d)};
+(*associativity*)
 
-{gx, gy} = (plus[{x3p,y3p}, {x3, y3}] - 
-       plus[{x1, y1}, {x1p,y1p}]) // Together // Factor;
-       
-gxpoly = gx * deltaX//Factor;
-gypoly = gy * deltaY//Factor;
+deltaY = delta12*delta23*deltad[d, x3p, y3p, x3, y3]*
+    deltad[d, x1, y1, x1p, y1p] // Factor;
 
-polyassoc = PolynomialReduce[{gxpoly, gypoly}, {e1,e2,e3}, 
-                    {x1, y1, x2, y2, x3, y3}] // Simplify // Expand;
+deltaX = deltaY /. {d -> (-d)};
 
-(* completeness identity *)
+{gx, gy} = (plus[{x3p, y3p}, {x3, y3}] - plus[{x1, y1}, {x1p, y1p}]) //
+     Together // Factor;
 
-complete = 
-{d^2 x1^2 x2^2 y2^2 e1 +  (1 - d x1^2) delta[x1, y1, x2, y2] - 
-  d x1^2 e2 , (1 - c d x1^2 x2^2) (1 - d x1^2 y2^2) };
+gxpoly = gx*deltaX // Factor;
+gypoly = gy*deltaY // Factor;
 
-completereduce = complete//Expand;
+polyassoc = 
+  PolynomialReduce[{gxpoly, gypoly}, {e1, e2, e3}, {x1, y1, x2, y2, 
+      x3, y3}] // Simplify // Expand;
 
-(* Bernstein-Lange version of completeness
-complete = {
-d x1^2 y1^2 (t x2 + y2)^2 - e2 d x1^2 y1^2 + 
-      e1 + (1 - y1^2) delta12 - (t x1 + d x1 y1 x2 y2 y1)^2 +
-    (c - t^2) x1^2 (-1 + d x2^2 y1^2),
-           d x1^2 y1^2 (t x2 - y2)^2 - e2 d x1^2 y1^2 + 
-      e1 + (1 - y1^2) delta12 - (t x1 - d x1 y1 x2 y2 y1)^2 +
-           (c - t^2) x1^2 (-1 + d x2^2 y1^2)};
-*)
+(*completeness identity*)
 
-(* group addition and family of hyperbolas *)
+complete = {d^2 y1^2 y2^2 x2^2 e1 + (1 - d y1^2) delta[x1, y1, x2, 
+      y2] - d y1^2 e2, (1 - c d y1^2 y2^2) (1 - d y1^2 x2^2)};
 
-hyp[{x_, y_}] := x y + a y + b x + a;
+completereduce = complete // Factor;
 
-absub = First[
-   Solve[{hyp[{x1, y1}] == 0, hyp[{x2, y2}] == 0}, {a, b}] // 
+(*group addition and family of hyperbolas*)
+
+hyp[{x_, y_}] := x y + p (x + 1) + q y;
+
+subpq = First[
+   Solve[{hyp[{x1, y1}] == 0, hyp[{x2, y2}] == 0}, {p, q}] // 
     Simplify];
 
-neg[{x_, y_}] := {-x, y};
+iota[{x_, y_}] := {x, -y};
 
-hypsum = delta[x1, y1, x2, y2]*
-   (x1 (1 + y2) - x2 (1 + y1))*
-   (hyp[neg[plus[{x1, y1}, {x2, y2}]]] /. absub) // 
+hypsum = delta[x1, y1, x2, 
+     y2]*(y1 (1 + x2) - 
+      y2 (1 + x1))*(hyp[iota[plus[{x1, y1}, {x2, y2}]]] /. subpq) // 
    Factor;
 
-hypreduce= PolynomialReduce[hypsum, {e1, e2}, {x1, y1, x2, y2}]
-     
+hypreduce = PolynomialReduce[hypsum, {e1, e2}, {x1, y1, x2, y2}];
+
 (* convert to HOL Light *)
 
 Clear[ToHOL];
