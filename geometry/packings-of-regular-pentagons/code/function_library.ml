@@ -1,6 +1,6 @@
 (* May 16, 2016 *)
 
-
+module Function_library = struct
 
 (* output provably in range [0,2pi/5] on valid inputs
    even without inter_I *)
@@ -10,9 +10,9 @@ let theta_hpos lx theta' =
   let r = iloc one lx theta' in
   let h = sqrt_I (r*r - kappa*kappa) in
   let xa = h + sigma in
-  let delta = ratpi 3 10 + iarc r (two*sigma) ly in
+  let delta = pi310 + iarc r (two*sigma) ly in
   let phi' = asin_I (h / r) in
-  let alpha = ratpi 6 5 - (delta + phi') in
+  let alpha = pi65 - (delta + phi') in
   let theta = alpha - theta' in
   inter_I theta (zero2 pi25);;
 
@@ -52,13 +52,13 @@ let theta'ks = acos_I (two*kappa/ks);;
 let k1s = (sqrt_I (square_I (one+kappa)+square_I sigma));;
 
 (* box0 has ridge *)
-let box0 = (merge_I zero (ratpi 1 10), merge_I (one+kappa) (k1s));;
+let box0 = (merge_I zero (pi110), merge_I (one+kappa) (k1s));;
 let box1 = (merge_I (theta'ks - pi15) zero, merge_I ks two);;
-let box2 = (merge_I zero (ratpi 1 10), merge_I  k1s two);;
+let box2 = (merge_I zero (pi110), merge_I  k1s two);;
 
 let box3 = (merge_I zero (pi15 - theta'ks), merge_I ks (one+kappa));;
-let box4 = (merge_I (pi15-theta'ks) (ratpi 1 10),merge_I (two*kappa) (one+kappa));;
-let box5 = (merge_I (ratpi 1 10) (pi15),merge_I (two*kappa) k1s);;
+let box4 = (merge_I (pi15-theta'ks) (pi110),merge_I (two*kappa) (one+kappa));;
+let box5 = (merge_I (pi110) (pi15),merge_I (two*kappa) k1s);;
 
 let ridgeless_boxes = [
   (box1,Some(curveIVth,curveIVtneg),Some(curveIth,curveIt));
@@ -202,8 +202,6 @@ curveIt (m 1.9);;
 k1s;;
 *)
 
-let pi310 = ratpi 3 10;;
-
 let theta'_acute lx theta = 
   let s = sin_I (pi310 + theta) in
   let x = sin_I (pi310) / s in
@@ -236,26 +234,26 @@ durveIIIt (durveIIIth (m 1.0));;
 durveIVtpos (durveIVth (m 0.7));;
 durveIVtneg (durveIVth (m (0.4)));;
 durveVt (durveVth (m 0.7));;
-ratpi 1 10;;
-durveIth  (ratpi 1 10);;
+pi110;;
+durveIth  (pi110);;
 durveIth (pi15);;
 durveIIth (pi15);;
 durveIIth (pi25);;
 durveIIIth(pi25);;
-durveIIIth(ratpi 3 10);;
-durveIVth (ratpi 3 10);;
+durveIIIth(pi310);;
+durveIVth (pi310);;
 durveIVth (pi15);;
 one+kappa;;
-durveIVth (ratpi 1 10);;
+durveIVth (pi110);;
 *)
 
 (* dox0 has ridge *)
 let dox0 = (merge_I pi15 (theta'ks + pi15), merge_I ks (one+kappa));;
-let dox1 = (merge_I (ratpi 1 10) pi15, merge_I (two*kappa) (sqrt_I (two*(one+kappa))));;
-let dox2 = (merge_I pi15 (ratpi 3 10),merge_I (one+kappa) (sqrt_I (two*(one+kappa))));;
+let dox1 = (merge_I (pi110) pi15, merge_I (two*kappa) (sqrt_I (two*(one+kappa))));;
+let dox2 = (merge_I pi15 (pi310),merge_I (one+kappa) (sqrt_I (two*(one+kappa))));;
 
 let dox3 = (merge_I pi15 (theta'ks+pi15), merge_I (two*kappa) ks);;
-let dox4 = (merge_I (ratpi 3 10) (theta'ks+pi15),merge_I (one+kappa) two);;
+let dox4 = (merge_I (pi310) (theta'ks+pi15),merge_I (one+kappa) two);;
 let dox5 = (merge_I (theta'ks+pi15) pi25,merge_I ks two);;
 
 let ridgeless_doxes = [
@@ -283,7 +281,7 @@ let critical_theta_dox_ridge ridget = function
 let critical_points_danana (x,y) = 
   let v1 = List.flatten (List.map (critical_points_box (x,y)) ridgeless_doxes) in
   let x_gmax,y_gmax = (pi15,two*kappa) in
-  let x_gmin,y_gmin = (ratpi 3 10,sqrt_I (two*(one+kappa))) in
+  let x_gmin,y_gmin = (pi310,sqrt_I (two*(one+kappa))) in
   let meets_global_max = meet_I x_gmax x && meet_I y_gmax y in
   let meets_global_min = meet_I x_gmin x && meet_I y_gmin y in
   let v = v1 @ (critical_theta_dox_ridge durveVt (restrict_to_box (x,y) dox0)) in
@@ -303,6 +301,7 @@ let theta'_danana (theta,lx) =
 
 (* tests *)
 
+(*
 let ttheta'  (theta',lx) = theta'_acute lx theta';;
 let p2 = ((pi15 - theta'ks), mk 1.72 1.722);;
 let cp2 = critical_points_banana p2;;
@@ -314,3 +313,6 @@ let cp4 = critical_points_banana p4;;
 curveIIth (m 0.1);;
 curveIt (m 1.9);;
 k1s;;
+*)
+
+end;;

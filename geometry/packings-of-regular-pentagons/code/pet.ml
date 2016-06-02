@@ -1,9 +1,5 @@
 module Pet = struct
 
-let rec allpair acc f l1 l2 = 
-    match l1 with 
-      [] ->  acc
-    | (h1::t1) ->  allpair ((List.map (f h1) l2) @ acc) f t1 l2;;
 
 
 (* reduces interval modulo 1 so that interval is in [0,1] *)
@@ -49,7 +45,7 @@ angle if necessary *)
 (* let periodize_angle = 0;; *)
 
 let periodize_pent ix = 
-  periodize_min ix (ratpi 2 5) (- ratpi 1 5);;
+  periodize_min ix (pi25) (- pi15);;
 
 let periodize_pent0 ix =
   periodize_min ix pi25 zero;;
@@ -57,27 +53,25 @@ let periodize_pent0 ix =
 (* now run the pent existence tests for same sign and mixed sign cases *)
       
 let case_pet_pos l (itheta',iabstheta) =
-  let pi5 = ratpi 1 5 in
   let abstheta = max_I iabstheta in 
   let locx th = iloc l one th in
   let beta th = ilawbeta th (locx th) one in
-  let r th = kappa / cos_I (beta th + pi5 - abstheta) in 
+  let r th = kappa / cos_I (beta th + pi15 - abstheta) in 
   let f th = (locx th).high >= (r th).low in
 (*  (beta th).low <= abstheta.high in *)
     f (min_I itheta') or f (max_I itheta');;
 
 let case_pet_neg l (itheta',iabstheta) =
-  let pi5 = ratpi 1 5 in
   let theta' = max_I itheta' in
   let iabstheta = inter_I iabstheta (mk (theta'.high) (iabstheta.high)) in
   let locx = iloc l one theta' in
   let beta = ilawbeta theta' locx one in
-  let target = pi5 - beta in
+  let target = pi15 - beta in
   let abstheta = 
     if iabstheta >> target then min_I iabstheta
     else if iabstheta << target then max_I iabstheta
     else target in
-  let r = kappa / cos_I (pi5 - (beta + abstheta)) in
+  let r = kappa / cos_I (pi15 - (beta + abstheta)) in
     locx.high >= r.low;;
 
 let pet0 l (itheta', iabstheta,samesign) = 
@@ -113,7 +107,7 @@ let pet il itheta itheta' =
   let split i = List.flatten (map splitat0  (periodize_pent i)) in
   let ithetas = split itheta in
   let ithetas' = split itheta' in
-  let cases = List.flatten (allpair [] reorder ithetas ithetas') in
+  let cases = List.flatten (Lib.allpairs reorder ithetas ithetas') in
   exists (pet0 (max_I il)) cases;;
 
 end;;

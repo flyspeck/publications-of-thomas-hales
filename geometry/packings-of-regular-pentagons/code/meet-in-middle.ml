@@ -1,7 +1,7 @@
 (* needs init.ml, pent.ml open Pent. pet.ml *)
 
-needs "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pent.ml";;
-needs "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pet.ml";;
+needs "pent.ml";;
+needs "pet.ml";;
 
 
 (*
@@ -23,13 +23,6 @@ module Meet = struct
 
   open Pent;;
 
-let int_floor x = int_of_float (floor x);;
-
-let int_ceil x = int_of_float (ceil x);;
-
-let affine width offset r = 
-  ((r - offset)/width);;
-
 (* We rarely use integer arithmetic. *)
 let ( +~ ) = Pervasives.( + );;
 let ( *~) = Pervasives.( * );;
@@ -38,6 +31,18 @@ let ( -~ ) = Pervasives.( - );;
 let ( >. ) (x:float) (y:float) = x > y;;
 let ( <. ) (x:float) (y:float) = x < y;;
 
+let int_floor x = int_of_float (floor x);;
+
+(* should be strictly larger than x *)
+let int_ceil x = 
+  let c = ceil x in 
+  let i = int_of_float c in
+  if (c = x) then i +~ 1 else i;;
+  
+let affine width offset r = 
+  ((r - offset)/width);;
+
+
 (* Hashtable keys are discretizations of interval domains. *)
 
 let make_a_key width offset t =
@@ -45,7 +50,9 @@ let make_a_key width offset t =
   let iM = int_ceil (affine width offset t).high in
   (im -- (iM -~ 1));;
 
+int_ceil 3.0;;
 make_a_key (m 0.2) (m 0.1) (mk 1.01 1.1);;
+make_a_key one zero (m 3.0);;
 
 (* Sorting the angle keys j,k would allow the
    peripheral triangle to be reflected before attaching to 
@@ -57,10 +64,12 @@ let make_keys width offsets ranges =
   let k1 = make_a_key width o1 r1 in
   let k2 = make_a_key width o23 r2 in
   let k3 = make_a_key width o23 r3 in
-  let pair x y = (x,y) in
-(*  let sort (j,k) = if (j<k) then (j,k) else (k,j) in *)
-  let k123 = outer pair k1 ((* map sort *) (outer pair k2 k3)) in
-    map (fun (i,(j,k)) -> (i,j,k)) k123;;
+  outertriple k1 k2 k3;;
+
+(*  let pair x y = (x,y) in 
+    let sort (j,k) = if (j<k) then (j,k) else (k,j) in 
+  let k123 = outerpair k1 ((* map sort *) (outerpair k2 k3)) in
+    map (fun (i,(j,k)) -> (i,j,k)) k123;; *)
 
 make_keys (m 0.2) ((m 1.0),(m 1.0)) 
   ((mk 1.1 1.2),(mk 1.4 1.5),(mk 2.01 2.3));;

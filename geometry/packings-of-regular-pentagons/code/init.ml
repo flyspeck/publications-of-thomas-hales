@@ -27,7 +27,8 @@ let hol_expand_directory s =
   else if String.sub s 0 2 = "$$" then (String.sub s 1 (String.length s - 1))
   else s;;
 
-let load_path = ref ["."; "$"];;
+let load_path = ref ["."; "$";
+"/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/"];;
 
 let loaded_files = ref [];;
 
@@ -52,21 +53,19 @@ let needs s =
   if List.mem fileid (!loaded_files)
   then Format.print_string("File \""^s^"\" already loaded\n") else loadt s;;
 
+let reneeds s = loadt ( s);;
+
 (* ------------------------------------------------------------------------- *)
 (* Various tweaks to OCaml and general library functions.                    *)
 (* ------------------------------------------------------------------------- *)
 
-loads "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/lib.ml";;
+loadt "lib.ml";;
+
 
 open Lib;;
 
 (* load pent libraries *)
 
-load_path := [
-  "/home/hasty/Desktop"]
-  @ !load_path;;
-
-!load_path;;
 
 (*
 type interval = {
@@ -79,7 +78,7 @@ exception Unstable;;  (* generally thrown when there is a divide by zero *)
 
 exception Fatal;;  (* generally indicates an uncorrected bug *)
 
-let reneeds s = loadt ( s);;
+
 (* needs "informal_code/port_interval/interval.hl";; *)
 
 open Interval;;
@@ -109,8 +108,16 @@ let runtest s =
 let runalltest() = 
   map runtest (gettest());;
 
-reneeds "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pent.ml";;
+reneeds "pent.ml";;
 
 runalltest();;
 
 open Pent;;
+
+
+reneeds "pent.ml";;
+reneeds "pet.ml";;
+reneeds "function_library.ml";;
+reneeds "dimer.ml";;
+reneeds "autodiff.ml";;
+reneeds "scratch.ml";;

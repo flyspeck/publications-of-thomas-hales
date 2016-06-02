@@ -10,12 +10,42 @@ load through init.ml.
 
 module Pent = struct
 
+
+let try_do f = 
+  let rec try_dof = function
+    | [] -> []
+    | (x::t) ->
+      try let y = f x in y :: try_dof t
+      with 
+      |  Failure s  -> report s; [] 
+      | _ -> [] in 
+  try_dof;;
+
+(*
 let rec outer f xs =
   function
   | [] -> []
   | y::ys -> map (fun t -> f t y) xs @ outer f xs ys;;
 
-let outerpair = outer (fun x y -> x,y);;
+
+let rec allpair acc f l1 l2 = 
+    match l1 with 
+      [] ->  acc
+    | (h1::t1) ->  allpair ((List.map (f h1) l2) @ acc) f t1 l2;;
+*)
+
+(* let outer = Lib.allpairs;; *)
+
+
+let pair x y = x,y;;
+
+let outerpair = Lib.allpairs pair;;
+
+let outertriple k1 k2 k3 = 
+  let k123 = outer pair k1 (outer pair k2 k3) in
+    map (fun (i,(j,k)) -> (i,j,k)) k123;;
+
+outer pair [0;1;2] [3;4];;
 
 let rec selectsome = function
   | [] -> []
@@ -93,6 +123,15 @@ let (/) x y =
   if disjoint_I eps_I y then x /$ y else raise Unstable;;
 
 
+(*
+acos_I (mk 0.5 1.1);;
+thetax (m 0.1) (m 0.2);;
+sqrt_I (m (- 0.1));;
+inter_I (mk 1.0 2.0) (mk 2.1 3.0);;
+
+meet_I (mk 1.0 2.0) (mk 0.0 0.5);;
+*)
+
 (* ******************************************************************************** *)
 (* trig functions *)
 (* ******************************************************************************** *)
@@ -109,8 +148,16 @@ let pi15 = ratpi 1 5;;
 let pi25 = ratpi 2 5;;
 let pi35 = ratpi 3 5;;
 let pi45 = ratpi 4 5;;
+let pi65 = ratpi 6 5;;
+
+let pi110 = ratpi 1 10;;
+let pi310 = ratpi 3 10;;
+
+
 
 let rat i j =   (one *$. float_of_int i) /$. float_of_int j;;
+
+let ( // ) = rat;;
 
 (* let mpi i j = (ratpi i j);; *)
 
@@ -118,14 +165,17 @@ let kappa = cos_I (pi /$. 5.0);;
 let sigma = sin_I (pi /$. 5.0);;
 
 (* deprecated *)
-let ee = sigma;;
-let iee = sigma;;
-let ff = sigma /$ (2.0 *.$ kappa);;
+(* let ee = sigma;;
+let iee = sigma;; *)
+
 
 (* critical area: *)
 let aK = (1.0 +.$ kappa)*$ (3.0 *.$ (kappa *$ sigma)) /$. 2.0;;
 
-let epso_I = aK - rat 1237 1000;;
+(* let a0 =  1237 // 1000;; *)
+let amin =  1237 // 1000;;
+
+let epso_I = aK - amin;;
 
 let ups_I x1 x2 x3 = 
   two * (x1 * x2 + x2 * x3 + x3 * x1) - x1*x1 - x2*x2 - x3*x3;;
@@ -211,7 +261,6 @@ let ell_aux h psi =
 ell_aux (mk 1.1 1.2) (mk 1.3 1.4);;
 
 let ellx  = 
-  let pi310 = ratpi 3 10 in 
   fun x alpha ->
     ell_aux (sigma - x) (alpha + pi310);;
 
@@ -247,9 +296,6 @@ let thetax =
 *)
 
 let thetax =
-  let pi310 = ratpi 3 10 in
-  let pi65 = ratpi 6 5 in
-  let pi25 = ratpi 2 5 in
   fun xalpha alpha ->
     let h = xalpha - sigma in
     let r = sqrt_I (h*h + kappa*kappa) in
@@ -261,7 +307,32 @@ let thetax =
     let theta = alpha - theta' in
     (elx,theta,theta');;
 
+(* merged version on enlarged domain *)
 
+let shifted_thetax xalpha alpha = 
+  let (elx,theta,theta') = thetax (two*sigma - xalpha) (alpha - pi25) in
+  elx,(theta'+ pi25),theta;;
+
+
+let mergefn f0 f1 m cutax  = 
+  fun x ->
+    if x << cutax then f0 x
+    else if x >> cutax then f1 x
+    else 
+      let x0 = merge_I (min_I x) cutax in
+      let x1 = merge_I (max_I x) cutax in
+      m (f0 x0) (f1 x1);;
+
+let ethetax xalpha alpha = 
+  if alpha << pi25 then thetax xalpha alpha
+  else if alpha >> pi25 then shifted_thetax xalpha alpha
+  else
+    mergefn (thetax xalpha) (shifted_thetax xalpha)
+    (fun (x1,y1,z1) (x2,y2,z2) -> merge_I x1 x2,merge_I y1 y2, merge_I z1 z2) 
+      (pi25) alpha;;
+
+ethetax (m 0.1) pi25;;
+ethetax (m 0.5) pi25;;
 thetax (m 0.1) (m 0.2);;
 thetax (m 0.2) (m 0.19);;
 thetax (mk 0.1 0.11) (mk 0.2 0.22);;
@@ -271,34 +342,51 @@ thetax (sigma+ mk 0.0 0.01) (pi15 + mk 0.0 0.01);;
 (* monotonicity *)
 
   let theta'mono xa alpha = 
-    let (_,_,th1) = thetax (min_I xa) (min_I alpha) in
-    let (_,_,th2) = thetax (max_I xa) (max_I alpha) in
+    let (_,_,th1) = ethetax (min_I xa) (min_I alpha) in
+    let (_,_,th2) = ethetax (max_I xa) (max_I alpha) in
     merge_I th1 th2;;
   
   let thetamono xa alpha =
-    let (_,th1,_) = thetax (min_I xa) (max_I alpha) in
-    let (_,th2,_) = thetax (max_I xa) (min_I alpha) in
+    let (_,th1,_) = ethetax (min_I xa) (max_I alpha) in
+    let (_,th2,_) = ethetax (max_I xa) (min_I alpha) in
     merge_I th1 th2;;
 
-  let ellxmono xa alpha = 
+  let ellxmono_r xa alpha =  (* restricted domain 0 <= alpha <= pi25 *)
     let ellmax x = 
       let h = x - sigma in 
       let r = sqrt_I (kappa*kappa+ h* h) in
-      let alpham = ratpi 1 5 - asin_I (h / r) in
+      let alpham = pi15 - asin_I (h / r) in
       if (meet_I alpham alpha) 
       then ellx x alpham
       else max2_I (ellx x (min_I alpha)) (ellx x (max_I alpha)) in
     let ellM = max2_I (ellmax (min_I xa)) (ellmax (max_I xa)) in
     let ellmin alp = 
-      let xm = sigma + sin_I (alp - ratpi 1 5) in
+      let xm = sigma + sin_I (alp - pi15) in
       if (meet_I xm xa) 
       then ellx xm alp
       else min2_I (ellx (min_I xa) alp) (ellx (max_I xa) alp) in
     let ellm = min2_I (ellmin (min_I alpha)) (ellmin (max_I alpha)) in
     merge_I ellm ellM;;
 
+(* exploits symmery alpha-> pi25 - alpha, xa -> 2sigma-xa of ellx on
+   unextended domain.
+    So when alpha > pi25,  
+   (xa,alpha)-> (2sigma-xa,alpha-pi25) -> (xa,pi45-alpha) *)
+
+  let ellxmono xa alpha =  (* unrestricted domain alpha <= pi45 *)
+    let alpha2 = 
+      if alpha << pi25 then alpha
+      else if alpha >> pi25 then (pi45-alpha)
+      else (merge_I (min2_I alpha (pi45-alpha)) pi25) in
+    ellxmono_r xa alpha2;;
+
+  let ellxmono_merge =0;;
+
   let ellthetax xa alpha = 
     (ellxmono xa alpha,thetamono xa alpha,theta'mono xa alpha);;
+
+ellthetax (m 0.1) pi25;;
+ethetax (m 0.1) pi25;;
 
 let ellthetax_sgn xalpha alpha sgn =  (* swap if false *)
   let (el,th,th') = ellthetax xalpha alpha in
@@ -306,6 +394,122 @@ let ellthetax_sgn xalpha alpha sgn =  (* swap if false *)
 
 ellthetax_sgn (mk 0.2 0.25) (mk 0.3 0.35) false;;    
 ellxmono (mk 0.2 0.25) (mk 0.3 0.35);;
+
+(* ******************************************************************************** *)
+(* 2C coordinates *)
+(* ******************************************************************************** *)
+
+(* start of mk_isosceles *)
+  let hasint x = 
+    let t = x - m (floor x.low) in
+    mem_I 0.0 t or mem_I 1.0 t;;
+
+(* gets the integer in x, raises unstable if solution not unique *)
+
+  let getint x = 
+    let k = m (floor x.low) in
+    let k' = if disjoint_I k x then k+one else k in
+    let _ = disjoint_I (k'+one) x or raise Unstable in
+    if meet_I k' x then Some k' else None;;
+
+
+getint (mk 1.1 1.3);;
+
+hasint (mk  (-0.9) (-0.8));;
+
+(*
+let mk_isosceles sgnalpha sgnbeta xs =
+  let [xalpha; alpha;  xbeta; beta] = xs in
+  let range = mk 172.0 179.0 / m 100.0 in
+  let range' = merge_I (two * kappa) range in
+    try
+      let (dAB,thABC,thBAC) = ellthetax_sgn xalpha alpha sgnalpha in
+      let (dBC,thCBA,thBCA) = ellthetax_sgn xbeta beta sgnbeta in
+      if disjoint_I range dAB or disjoint_I range' dBC then None
+      else
+	let dAB = inter_I range dAB in
+	let dBC = inter_I range' dBC in
+	let dAC = dAB in
+	let arcB = iarc dAB dBC dAC in
+	let arcC = arcB in
+	let arcA = iarc dAC dAB dBC in
+	let a = areamin_acute dAC dAB dBC in
+	let thACB = pi25 - (arcA + thABC) in
+	let thCAB = pi25 - (arcC + thCBA) in
+	if (a >> aK) or 
+	  not(hasint ((arcB+thBAC+thBCA)/pi25)) or
+	  not(pet dAC thACB thCAB)
+	then None
+	else
+	  Some (a,dAB,dAC,dBC,arcA,arcB,arcC,thABC,thBAC,thCBA,thBCA,thACB,thCAB)
+    with e -> raise e;;
+*)
+
+(* Constructs all the key variables on a "2C" P-triangle.
+   B is the pentagon that touches both others.
+   alpha variables between A and B
+   beta variables between B and C.
+   when signs are true, then B is the pointer.
+   dACrange give a priori bounds on the length of dAC. 
+
+   Can be used on the extended range with alpha beta up to 4pi/5.
+   In that case, take both signs to be true.
+   Get pointers both ways,
+   when alpha up to 2pi/5, then B is the pointer,
+   for alpha larger than 2pi/5 A becomes the pointer.
+   Similar for beta.
+
+   Extended range is equivalent to taking alpha beta up to 2pi/5 and both signs.
+   We should deprecate the signed version.
+
+*)
+
+(* fillout2C takes coordinates on two edges (at pentagon B) and generates
+   full coordinate system  
+   th... angles are only defined up to a multiple of 2pi/5.
+
+   The output is ordered as follows.
+   a= area comes first.
+   The next output echoes the input (dAB,thABC,thBAC)
+   The next output echoes the input (dBC,thCBA,thBCA)
+   The last output is data along the remaining edge.  Its first angle thACB is at the
+   vertex of the first input angle thABC.
+*)
+
+  let fillout2C dACrange (dAB,thABC,thBAC) (dBC,thCBA,thBCA) =
+    try
+      let arcBrange = iarc dAB dBC dACrange in
+      let prearc = pi25 - (thBAC+thBCA) in
+      let k = getint ((arcBrange - prearc)/pi25) in
+      if (k=None) then None
+      else
+	let arcB = prearc + the k*pi25 in
+	let dAC = iloc dAB dBC arcB in
+	  if (dAC << two*kappa) then None
+	  else
+	    let dAC = merge_I (max2_I (two*kappa) (min_I dAC)) (max_I dAC) in
+	    let arcC = iarc dAC dBC dAB in
+	    let arcA = iarc dAC dAB dBC in
+	    let a = areamin_acute dAC dAB dBC in
+	    let thACB = pi25 - (arcA + thABC) in
+	    let thCAB = pi25 - (arcC + thCBA) in
+	    if arcA >> pi2 or arcB >> pi2 or arcC >> pi2 or not(pet dAC thACB thCAB)
+	    then None
+	    else
+	      Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB))
+(*	  Some (a,dAB,dAC,dBC,arcA,arcB,arcC,thABC,thBAC,thCBA,thBCA,thACB,thCAB) *)
+    with e -> raise e;;
+
+
+let mk2C dACrange (xs,(sgnalpha,sgnbeta)) = 
+  let [xalpha; alpha;  xbeta; beta] = xs in
+  try
+      let (dAB,thABC,thBAC) = ellthetax_sgn xalpha alpha sgnalpha in
+      let (dBC,thCBA,thBCA) = ellthetax_sgn xbeta beta sgnbeta in
+      fillout2C dACrange (dAB,thABC,thBAC) (dBC,thCBA,thBCA)
+    with e -> raise e;;
+
+let mk2Ce dACrange xs = mk2C dACrange (xs,(true,true));;
 
 
 (* ******************************************************************************** *)
@@ -441,12 +645,10 @@ let dimer_pintedge alpha beta xbeta =
   dBC,dAC,dAB;;
 
 let dimer_pinwheeledge alpha beta xbeta = 
-  let dAB,dBC,dAC = pinwheeledge ((ratpi 1 5) - (alpha+beta)) alpha xbeta in
+  let dAB,dBC,dAC = pinwheeledge ((pi15) - (alpha+beta)) alpha xbeta in
   dBC,dAC,dAB;;
 
 let dimer_lj1edge_extended =
-  let pi25 = ratpi 2 5 in
-  let pi35 = ratpi 3 5 in
   fun alpha' beta xbeta ->
     let alpha = pi25 - alpha' in
     let gamma = pi35 - (alpha + beta) in
@@ -472,8 +674,6 @@ let dimer_lj2edge_extended alpha beta xbeta =
   dBC,dAC,dAB,t;;
 
 let dimer_lj3edge_extended =
-  let pi25 = ratpi 2 5 in
-  let pi35 = ratpi 3 5 in
   fun alpha beta xbeta ->
     let gamma = pi35 - (alpha + beta) in
     let alpha' = pi25 - alpha in
@@ -621,19 +821,32 @@ let rec recurser eps n onef = function
 	      splitlist eps abx in
 	      recurser eps (succ n) onef (a1::a2::xs);;
 
+let print_stats n xs = 
+  if (n mod 100000 = 0) then 
+    let ws = map (map width_I) (map fst xs) in
+    let vol = end_itlist ( + ) (map (end_itlist ( * )) ws) in
+    report (Printf.sprintf "count=%d, length=%d, vol=%4.4f" n (List.length ws) vol.high)
+  else ();;
+
 let rec recurserpair eps n onef = function
   | [] -> (n,true)
-  | abx :: xs -> 
-      if onef abx then recurserpair eps (succ n) onef xs 
-	  else
-	    let (a1,a2) = 
-	      splitlist eps (fst abx) in
-	      recurserpair eps (succ n) onef 
-		((a1,snd abx)::(a2,snd abx)::xs);;
+  | abx :: xs as xss -> 
+    let _ = print_stats n xss in
+    if onef abx then recurserpair eps (succ n) onef xs 
+    else
+      let (a1,a2) = splitlist eps (fst abx) in
+      recurserpair eps (succ n) onef 
+	((a1,snd abx)::(a2,snd abx)::xs);;
 
 let recursetoeps = recurser (1.0e-8) 0;;
 
 let recursepairtoeps = recurserpair (1.0e-8) 0;;
+
+(* version for no extra args *)
+let recurserpair_x eps n onef xs  = 
+  recurserpair eps n (fun (t,_) -> onef t) (map (fun x -> x,()) xs);;
+
+let recurs_xeps = recurserpair_x (1.0e-8) 0;;
 
 let recursetofinish onef = 
   let wrap3 onef abx = 
@@ -657,7 +870,7 @@ let area_exceeds l1 l2 l3 a = (area_I l1 l2 l3 >> a);;
 let longest_exceeds l1 l2 l3 r = max l1.low (max l2.low l3.low) > r.high;;
 
 let longgt172 =
-  let i172 = rat 17215 10000in
+  let i172 =  17215 // 10000 in
   fun l1 l2 l3 -> longest_exceeds l1 l2 l3 i172;;
 
 let one172 disjoint_from_domain edges abx = 
@@ -710,8 +923,6 @@ map (tester "17215" one172) types3C;;
 
 (* next: absolute area minimization *)
 
-let amin = rat 1237 1000;;
-
 let one1237 disjoint_from_domain edges abx = 
   try
     let (alpha,beta,xgamma) = abx in
@@ -732,17 +943,18 @@ let onedeltajamin abx =
     let (alpha,beta,xalpha) = abx in
     disjoint_from_delta alpha beta or
       let (l1,l2,l3) = deltajedge alpha beta xalpha in
-      areamin_acute l1 l2 l3 >> rat 15 10
+      areamin_acute l1 l2 l3 >>  15 // 10
   with | Unstable -> false;;
 
 mktest ("onedeltajmin",fun() ->
+  let ff = sigma / (two * kappa) in
 	  (recursetofinish onedeltajamin) 
 	    [[zero2 pi15;zero2 pi15;zero2 (two * (sigma-ff))]]);;
 
 (* non anonaly test JJZ area > 1.345 *)
 
 let oneJJZ = 
-  let m1345 = rat 1345 1000 in
+  let m1345 =  1345 // 1000 in
   fun abx ->
     try
       let (alpha,beta,xalpha) = abx in

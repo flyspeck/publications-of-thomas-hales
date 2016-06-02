@@ -5,112 +5,24 @@
    and excluding pseudo-dimers *)
 
 
-reneeds "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pent.ml";;
-reneeds "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pet.ml";;
+reneeds "pent.ml";;
+reneeds "pet.ml";;
 
 
+module Dimer = struct
 
 open Pent;;
 open Pet;;
 
-let try_do f = 
-  let rec try_dof = function
-    | [] -> []
-    | (x::t) ->
-      try let y = f x in y :: try_dof t
-      with 
-      |  Failure s  -> report s; [] 
-      | _ -> [] in 
-  try_dof;;
-
-
-acos_I (mk 0.5 1.1);;
-thetax (m 0.1) (m 0.2);;
-sqrt_I (m (- 0.1));;
-inter_I (mk 1.0 2.0) (mk 2.1 3.0);;
-
-meet_I (mk 1.0 2.0) (mk 0.0 0.5);;
   let range = mk 172.0 178.0 / m 100.0;;
 
 
   let inf = one / mk_interval (-1.0,1.0);;
 disjoint_I eps_I inf;;
 
-(* start of mk_isosceles *)
-  let hasint x = 
-    let t = x - m (floor x.low) in
-    mem_I 0.0 t or mem_I 1.0 t;;
-
-(* gets the integer in x, raises unstable if solution not unique *)
-
-  let getint x = 
-    let k = m (floor x.low) in
-    let k' = if disjoint_I k x then k+one else k in
-    let _ = disjoint_I (k'+one) x or raise Unstable in
-    if meet_I k' x then Some k' else None;;
 
 
-getint (mk 1.1 1.3);;
-
-hasint (mk  (-0.9) (-0.8));;
-
-(*
-let mk_isosceles sgnalpha sgnbeta xs =
-  let [xalpha; alpha;  xbeta; beta] = xs in
-  let range = mk 172.0 179.0 / m 100.0 in
-  let range' = merge_I (two * kappa) range in
-  let pi25 = ratpi 2 5 in
-    try
-      let (dAB,thABC,thBAC) = ellthetax_sgn xalpha alpha sgnalpha in
-      let (dBC,thCBA,thBCA) = ellthetax_sgn xbeta beta sgnbeta in
-      if disjoint_I range dAB or disjoint_I range' dBC then None
-      else
-	let dAB = inter_I range dAB in
-	let dBC = inter_I range' dBC in
-	let dAC = dAB in
-	let arcB = iarc dAB dBC dAC in
-	let arcC = arcB in
-	let arcA = iarc dAC dAB dBC in
-	let a = areamin_acute dAC dAB dBC in
-	let thACB = pi25 - (arcA + thABC) in
-	let thCAB = pi25 - (arcC + thCBA) in
-	if (a >> aK) or 
-	  not(hasint ((arcB+thBAC+thBCA)/pi25)) or
-	  not(pet dAC thACB thCAB)
-	then None
-	else
-	  Some (a,dAB,dAC,dBC,arcA,arcB,arcC,thABC,thBAC,thCBA,thBCA,thACB,thCAB)
-    with e -> raise e;;
-*)
-
-(* B is the pentagon that touches both others.
-   alpha variables between A and B
-   beta variables between B and C.
-   when signs are true, then B is the pointer *)
-
-let mk2C dACrange (xs,(sgnalpha,sgnbeta)) = 
-  let [xalpha; alpha;  xbeta; beta] = xs in
-  let pi25 = ratpi 2 5 in
-    try
-      let (dAB,thABC,thBAC) = ellthetax_sgn xalpha alpha sgnalpha in
-      let (dBC,thCBA,thBCA) = ellthetax_sgn xbeta beta sgnbeta in
-      let arcBrange = iarc dAB dBC dACrange in
-      let prearc = pi25 - (thBAC+thBCA) in
-      let k = getint ((arcBrange - prearc)/pi25) in
-      if (k=None) then None
-      else
-	let arcB = prearc + the k*pi25 in
-	let dAC = iloc dAB dBC arcB in
-	let arcC = iarc dAC dBC dAB in
-	let arcA = iarc dAC dAB dBC in
-	let a = areamin_acute dAC dAB dBC in
-	let thACB = pi25 - (arcA + thABC) in
-	let thCAB = pi25 - (arcC + thCBA) in
-	if not(pet dAC thACB thCAB)
-	then None
-	else
-	  Some (a,dAB,dAC,dBC,arcA,arcB,arcC,thABC,thBAC,thCBA,thBCA,thACB,thCAB)
-    with e -> raise e;;
+(* true if isosceles subcritical, with condition on thABC *)
 
 let one_iso2C xs = 
   let dACrange = mk 1.72 1.79 in
@@ -118,8 +30,10 @@ let one_iso2C xs =
     let v = mk2C dACrange xs in
     if (v = None) then true
     else 
-      let (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
+      let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = the v in 
+(*
+(a,dAB,dAC,dBC,arcA,arcB,arcC,
+	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in *)
       let th = Pet.periodize_pent thABC in
        (a >> aK) or disjoint_I dAB dAC or 
 	 forall (fun t -> t >> zero) th
@@ -131,8 +45,9 @@ let one_iso2C' xs =
     let v = mk2C dACrange xs in
     if (v = None) then true
     else 
-      let (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
+      let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = the v in
+(* (a,dAB,dAC,dBC,arcA,arcB,arcC,
+	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in *)
        (a >> aK) or disjoint_I dBC dAB or dAC >> dAB
   with Unstable -> false;;
 
@@ -149,15 +64,16 @@ let one_scaleneto3C xs =
       let v = mk2C dACrange xs in
       if (v = None) then true
       else 
-	let (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	     thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
+	let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = the v in 
+(* (a,dAB,dAC,dBC,arcA,arcB,arcC,
+	     thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in *)
 	(a >> aK) or (dAC >> m 1.79) 
     with Unstable -> false;;
 
 let pint_domain_constraint (a,alpha,beta,xa,xb,xc,dBC,dAC,dAB) =
-  (dAC << rat 172 100) &&
-    (xb >>= m 0.9) && (* 1.0 fails *)
-    (beta >>= m 1.2) ;;   (* 1.25 fails *)
+  (dAC << 172 // 100) &&
+    (xb >>= 9 // 10) && (* 1.0 fails *)
+    (beta >>= 12 // 10) ;;   (* 1.25 fails *)
 
 
 let one_pintx xs = 
@@ -273,8 +189,8 @@ let one_dimer_eps pseudo eps dimer_constraint xs =
       else 
 	let (dCD,dAC',dAD) = edgeD alphaD betaD xbetaD in
 	let aADC = areamin_acute dCD dAC' dAD in
-	let pseudodimer = dAD >> dAC' + rat 3 100 (*  m 0.03 *) 
-	  && dAD >> rat 18 10 (* m 1.8 *) in 
+	let pseudodimer = dAD >> dAC' +  3 // 100 (*  m 0.03 *) 
+	  && dAD >>  18 // 10 (* m 1.8 *) in 
 	aABC + aADC >> two * aK - eps or 
 	  (pseudo && pseudodimer) or
 	  dimer_constraint alphaB betaB xbetaB alphaD
@@ -325,7 +241,7 @@ map (fun i -> recurse0 (i,6)) (0--7);;
 
 let needsmore = [1;2;3;7];;
 
-let morecases = outer (fun x y -> (x,y)) needsmore needsmore;;
+let morecases = outer pair needsmore needsmore;;
 
 let recurse1 pseudo s = recurse_dimer pseudo zero 
   dimer_constraint1 (dimer_domain s);;
@@ -382,6 +298,7 @@ recurseM (3,7);;
 
 *)
 
+(*
 ratpi 1 5;;
 ratpi 2 5;;
 sigma;;
@@ -420,7 +337,7 @@ areamin_acute (m 1.85) (m 1.85) (two*kappa) - aK;;
 aK + epso_I;;
 ratpi 2 5;;
 
-
+*)
 
 
 let one127 (sgnalpha,sgnbeta) xs  = 
@@ -429,9 +346,10 @@ let one127 (sgnalpha,sgnbeta) xs  =
   let v = mk2C dACrange (xs,( sgnalpha, sgnbeta)) in
   if (v = None) then true
   else 
-    let (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
-       (a >> rat 127 100) or disjoint_I dAB dAC or
+    let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = the v in 
+(* (a,dAB,dAC,dBC,arcA,arcB,arcC,
+	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in *)
+       (a >> 127 // 100) or disjoint_I dAB dAC or
 	 dAC >> dAB
   with Unstable -> false;;
 
@@ -443,6 +361,9 @@ let recursesgn f dom =
 
 recursesgn one127 domain2C;;
 
+end;;
+
+(*
 let onedACfail (sgnalpha,sgnbeta) xs  = 
   try
   let v = mk_isosceles sgnalpha sgnbeta xs in
@@ -450,7 +371,7 @@ let onedACfail (sgnalpha,sgnbeta) xs  =
   else 
     let (a,dAB,dAC,dBC,arcA,arcB,arcC,
 	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
-       (dAC >> rat 173 100)
+       (dAC >> 173 // 100)
   with Unstable -> false;;
   
 recursesgn onedACfail domain2C;;
@@ -464,7 +385,8 @@ let onedACmaxfail (sgnalpha,sgnbeta) xs  =
   else 
     let (a,dAB,dAC,dBC,arcA,arcB,arcC,
 	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
-       (dAC << rat 178 100) (* 179, 178 fails *)
+       (dAC <<  178 // 100) (* 179, 178 fails *)
   with Unstable -> false;;
 [(0.,8.75868279178e-09);(0.313545663681,0.313545673044);(0.,8.75868279178e-09);(0.00122708164088,0.00122709100355)];;
 
+*)
