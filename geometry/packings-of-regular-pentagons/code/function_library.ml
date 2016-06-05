@@ -1,6 +1,6 @@
 (* May 16, 2016 *)
 
-module Function_library = struct
+(* module Function_library = struct *)
 
 (* output provably in range [0,2pi/5] on valid inputs
    even without inter_I *)
@@ -47,11 +47,12 @@ let square_I t = t * t;;
 let someinter_I x y = 
   try Some (inter_I x y) with _ -> None;;
 
+(* coordinates to describe banana *)
 let ks = sqrt_I (square_I (two*kappa) + square_I sigma);;
 let theta'ks = acos_I (two*kappa/ks);;
 let k1s = (sqrt_I (square_I (one+kappa)+square_I sigma));;
 
-(* box0 has ridge *)
+(* Partition of banana into boxes. box0 has ridge. The "ridge" is the local max. *)
 let box0 = (merge_I zero (pi110), merge_I (one+kappa) (k1s));;
 let box1 = (merge_I (theta'ks - pi15) zero, merge_I ks two);;
 let box2 = (merge_I zero (pi110), merge_I  k1s two);;
@@ -75,27 +76,27 @@ let restrict_to_box (x,y) (bx,by) =
   |_,None -> None
   |(Some u1),(Some v1) -> Some (u1,v1);;
 
-let max_critical_theta_box_ridge ridget (x,y) =
+let max_theta_box0 ridget (x,y) =
   let lx = min_I y in
   let th' = ridget lx in
   if (th' << x) then [min_I x,lx]
   else if (th' >> x) then [max_I x,lx]
   else [th',lx];;
 
-let critical_theta_box_ridge ridget = function
+let critical_theta_box0 ridget = function
   | None -> []
   | Some (x,y) ->
     let lx = max_I y in
-    [(min_I x,lx);(max_I x,lx)] @ max_critical_theta_box_ridge ridget (x,y);;
+    [(min_I x,lx);(max_I x,lx)] @ max_theta_box0 ridget (x,y);;
 
-let extract_function shift = function
+let some_function shift = function
   | None ->
     (fun x -> shift),(fun y -> failwith "invalid function extraction")
   | Some (fx,fy) -> (fx,fy);;
 
 let find_critical_points x y lowerc upperc = 
-  let (uppercx,uppercy) = extract_function (max_I y + one) upperc in
-  let (lowercx,lowercy) = extract_function (min_I y - one) lowerc in
+  let (uppercx,uppercy) = some_function (max_I y + one) upperc in
+  let (lowercx,lowercy) = some_function (min_I y - one) lowerc in
   let (xmin,xmax,ymin,ymax) = (min_I x,max_I x,min_I y,max_I y) in
   let (lowerLHS,upperLHS) = lowercx xmin, uppercx xmin in
   let (lowerRHS,upperRHS) = lowercx xmax, uppercx xmax in
@@ -140,10 +141,10 @@ let critical_points_banana (x,y) =
   let x_gmin,y_gmin = (zero,two) in
   let meets_global_max = meet_I x_gmax x && meet_I y_gmax y in
   let meets_global_min = meet_I x_gmin x && meet_I y_gmin y in
-  let v = v1 @ (critical_theta_box_ridge curveVt (restrict_to_box (x,y) box0)) in
+  let v = v1 @ (critical_theta_box0 curveVt (restrict_to_box (x,y) box0)) in
   let (xmin,xmax,ymin,ymax) = (min_I x,max_I x,min_I y,max_I y) in
   let rectangle_boundary_filter = filter (fun (x0,y0) -> 
-    meet_I x0 xmin or meet_I x0 xmax or meet_I y0 ymin or meet_I y0 ymax) in
+     meet_I x0 xmin or meet_I x0 xmax or meet_I y0 ymin or meet_I y0 ymax) in
   let global_points = if meets_global_max then [(x_gmax,y_gmax)] else [] @
       if meets_global_min then [x_gmin,y_gmin] else [] in
   let vv = global_points @ rectangle_boundary_filter v in 
@@ -157,14 +158,21 @@ let critical_points_banana (x,y) =
     if meet_I x0 x1 && meet_I y0 y1 then (merge_I x0 x1,merge_I y0 y1) 
     else failwith "compressor" in
 
+NB: the variable order is lx theta', but in
+the "graphical" procedures is is (theta',lx), following our graphing conventions.
 *)
 
-let theta_banana (theta',lx) = 
+let theta_banana lx theta' = 
   let v = critical_points_banana (theta',lx) in
   let theta_values = map (fun (theta',lx) -> theta_hpos lx theta') v in
- end_itlist merge_I theta_values;;
+  if theta_values = [] then None
+  else 
+    Some (end_itlist merge_I theta_values);;
 
-
+let theta_banana_neg lx theta' = 
+  match theta_banana lx (- theta') with
+  | None -> None
+  | Some theta -> Some (pi25 - theta);;
 
 (* tests *)
 (*
@@ -315,4 +323,76 @@ curveIt (m 1.9);;
 k1s;;
 *)
 
-end;;
+(* first version is flawed. We don't know which it theta, which is theta'.
+let pent_contact_deprecated lx theta theta' = 
+  let theta's = Pet.periodize_pent theta' in
+  let thetas = Pet.periodize_pent theta in
+  let mx x = max_I (
+  let sort (th,th') = 
+  let thetas2 = selectsome (map (theta_banana lx) theta's @
+		   map (theta_banana_neg lx) theta's) in
+  exists (fun (a,b) -> meet_I a b) (outerpair thetas thetas2);;
+*)
+
+(* ordering makes theta' positive and smaller in absolute value than theta *)
+
+let pent_contact lx itheta itheta' =
+  let split i = List.flatten (map splitat0  (periodize_pent i)) in
+  let ithetas = split itheta in
+  let ithetas' = split itheta' in
+  let cases = List.flatten (Lib.allpairs reorder ithetas ithetas') in
+  let up0 (th',th,samesign) = if samesign then (th',th) else (th',pi25 - th) in
+  let cases0 = map up0 cases in
+  let p = List.flatten (
+    map (fun (th',th) -> [(theta_banana lx th',th);(theta_banana_neg lx th',th)]) cases0) in
+  exists (fun (s,th) ->
+    match s with
+    | None -> false
+    | Some th2 -> meet_I th2 th) p;;
+
+(* theta must be between 0 2pi/5, theta' in [-pi/5,pi/5] .
+   Must have th' <= th, th' <= 2pi/5 - th *)
+
+let ell_ofth theta theta' = 
+  let alpha = theta + theta' in
+  let x = sin_I (pi310) / sin_I (theta+ pi310) in
+  let y = sin_I (pi710 - alpha) / sin_I (pi710 - theta) in
+  x + y;;
+
+(* essentially the same as pent_contact, but more concise and a bit faster. *)
+
+let pent_contact2 lx itheta itheta' =
+  let split i = List.flatten (map splitat0  (periodize_pent i)) in
+  let ithetas = split itheta in
+  let ithetas' = split itheta' in
+  let cases = List.flatten (Lib.allpairs reorder ithetas ithetas') in
+  let up0 (th',th,samesign) = if samesign then (th',th) else (th',pi25 - th) in
+  let cases0 = map up0 cases in
+  exists (fun (th',th) -> meet_I lx (ell_ofth th th')) cases0;;
+
+  
+(* test  
+
+let ffx a b = 
+  let  (ell,th,th') = ellthetax (m a) (m b) in
+  (ell,th,th',pent_contact (ell + mk ( 0.001) 0.00001) th th');;
+
+let fg _ =
+  let w = Random.float  0.0011 in
+  let xa = random (zero2 (two*sigma)) w in
+  let alpha = random (zero2 pi45) w in
+  let (ell,th,th') = ellthetax xa alpha in
+  pent_contact2 (ell +  m 0.1) th' th;;
+
+setify (time (map fg) (0--10000));;
+ffx 0.1 0.1;;
+ffx 0.2 0.2;;
+ffx 0.3 0.3;;
+ffx 0.9 0.9;;
+time (ffx 0.3) 0.4;;
+
+1;;
+
+*)
+
+(* end;; *)

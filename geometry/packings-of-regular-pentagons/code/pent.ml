@@ -21,6 +21,14 @@ let try_do f =
       | _ -> [] in 
   try_dof;;
 
+(* We rarely use integer arithmetic. *)
+let ( +~ ) = Pervasives.( + );;
+let ( *~) = Pervasives.( * );;
+let ( -~ ) = Pervasives.( - );;
+
+let ( >. ) (x:float) (y:float) = x > y;;
+let ( <. ) (x:float) (y:float) = x < y;;
+
 (*
 let rec outer f xs =
   function
@@ -102,6 +110,8 @@ let mem_I r i = (i.low <= r && r <= i.high);;
 
 let width_I x = max_I x - min_I x;;
 
+
+
 width_I eps_I;;
 
 (* let eps = (1.0e-10);; *)
@@ -114,6 +124,12 @@ let ( <<= ) x y = x.high <= y.low;;
 let disjoint_I x y = (x >> y) or (y >> x);;
 
 let meet_I x y = not (disjoint_I x y);;
+
+let abs_I x = if (x.low >= 0.0) then x
+  else if (x.high <= 0.0) then (- x)
+  else mk 0.0 (max x.high (~-. (x.low)));;
+
+abs_I (mk (~-. 0.3) (~-. 0.2));;
 
 let the x = match x with
   | None -> failwith "the"
@@ -152,6 +168,7 @@ let pi65 = ratpi 6 5;;
 
 let pi110 = ratpi 1 10;;
 let pi310 = ratpi 3 10;;
+let pi710 = ratpi 7 10;;
 
 
 

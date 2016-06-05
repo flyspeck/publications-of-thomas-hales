@@ -102,19 +102,23 @@ let hyp1_Tin_disjoint_from_domain d_in =
 
 let hyp1_drange_T0 = merge_I (two*kappa) (232 // 100);;
 
-let hyp1_T0_disjoint_from_domain d_in d0 = 
+
+
+let hyp1_T0_disjoint_from_domain is_2C d_in d0 = 
   let (a_in,_,_,_) = d_in in
   let (a,(dAD,thADC,thDAC,arcC),(dDC,thCDA,thDCA,arcA),(dAC,thACD,thCAD,arcD)) = d0 in
   (a_in + a >> two*aK) or (max2_I dAD dDC << 18 // 10) or 
-    (dAD << two*kappa) or (dDC << two*kappa) 
-   (* XX need to add touching constraint on 2C case *);;
+    (dAD << two*kappa) or (dDC << two*kappa) or (is_2C && not(pent_contact2 dAC thACD thCAD));;
 
 let hyp1 = 0;;
-let recurse_hyp1 (f,dom) = recurs_xeps (one_Tin_T0 hyp1_drange_Tin hyp1_Tin_disjoint_from_domain 
-		    f
-		    hyp1_drange_T0 hyp1_T0_disjoint_from_domain) [(dom_Tin @ dom)];;
 
-(* debug test *)
+let recurse_hyp1 (f,dom,is_2C) = 
+  recurs_xeps 
+    (one_Tin_T0 hyp1_drange_Tin hyp1_Tin_disjoint_from_domain 
+		    f
+		    hyp1_drange_T0 (hyp1_T0_disjoint_from_domain is_2C)) [(dom_Tin @ dom)];;
+
+(* test 
 let xx = two*sigma - zero2 (m 0.1);;
 let xx2 = pi25 + mk (- 0.1) (0.1);;
 let xx2 = pi45 - zero2 (m 0.1);;
@@ -138,15 +142,18 @@ qq1 (* 74 secs *)
 let qq2 = qq;;
 dom_Tin;;
 
-
-
+theta'_banana;;
+*)
 
 (* run hyp1 cases *)
-time recurse_hyp1 (mkT0_sliderAD,dom_slider);;
-recurse_hyp1 (mkT0_sliderDC,dom_slider);;
-recurse_hyp1 (mkT0_midpointerAD,dom_midpointer);; (* completes in 8*10^6 steps *)
-recurse_hyp1 (mkT0_midpointerDC,dom_midpointer);;
-recurse_hyp1 (mkT0_generalAD,dom_general);;
+time recurse_hyp1 (mkT0_sliderAD,dom_slider,false);; (* CPU time (user): 14541.908 : int * bool = (24811279, true) *)
+recurse_hyp1 (mkT0_sliderDC,dom_slider,false);;  (* exclude by symmetry *)
+recurse_hyp1 (mkT0_midpointerAD,dom_midpointer,false);; (* completes in 8*10^6 steps *)
+recurse_hyp1 (mkT0_midpointerDC,dom_midpointer,false);; (* done by symmetry *)
+recurse_hyp1 (mkT0_generalAD,dom_general,true);;  (* running, interrupted,
+  ran all night, making gradual progress,
+  reached count=128400000, length=9, vol=19.3444, starting with vol=25.3297.
+  So it might terminate after a few days.  *)
 
 (* let's try hypothesis 2. *)
 
@@ -171,3 +178,40 @@ let recurse_hyp2 (f,dom) = recurs_xeps (one_Tin_T0 hyp2_drange_Tin hyp2_Tin_disj
 		    hyp2_drange_Tin hyp2_T0_disjoint_from_domain) [(dom_Tin @ dom)];;
 
 
+time recurse_hyp2 (mkT0_sliderAD,dom_slider);; (* CPU time (user): 1730.108
+- : int * bool = (2967249, true)  *)
+recurse_hyp2 (mkT0_sliderDC,dom_slider);;  (* exclude by symmetry *)
+time recurse_hyp2 (mkT0_midpointerAD,dom_midpointer);;  (* CPU time (user): 5809.192
+- : int * bool = (9918329, true) *)
+recurse_hyp2 (mkT0_midpointerDC,dom_midpointer);;  (* exclude by symmetry *)
+recurse_hyp2 (mkT0_generalAD,dom_general);;   (* not done yet *)
+
+(* Old hyp 3 *)
+area_I (m 1.8) (m 1.72) (m 1.77) - (aK + epso_I);;
+
+(* Now hypothesis 4. XX not done yet. *)
+
+let hyp4_drange_Tin = merge_I (172 // 100) (18 // 10);;  
+
+let hyp4_Tin_disjoint_from_domain d_in = 
+  let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = d_in in
+  (a >> aK) or (disjoint_I dAC hyp4_drange_Tin) or (dAB >> dAC) or (dBC >> dAC);;
+
+
+(* let hyp4_drange_T0 = merge_I (18 // 100) (195 // 100);; *)
+
+
+let hyp4_T0_disjoint_from_domain d_in d0 = 
+  let (a_in,_,_,_) = d_in in
+  let (a,(dAD,thADC,thDAC,arcC),(dDC,thCDA,thDCA,arcA),(dAC,thACD,thCAD,arcD)) = d0 in
+  (a_in + a >> two*aK) or 
+    (disjoint_I dAD hyp4_drange_T0) or 
+    (disjoint_I dDC hyp4_drange_T0) or
+    max2_I dAD dDC << dAC;;
+
+let recurse_hyp4 (f,dom) = recurs_xeps (one_Tin_T0 hyp4_drange_Tin hyp4_Tin_disjoint_from_domain 
+		    f
+		    hyp4_drange_Tin hyp4_T0_disjoint_from_domain) [(dom_Tin @ dom)];;
+
+(* hyp4 only has the generic case *)
+recurse_hyp4 (mkT0_generalAD,dom_general);; (* not done *)

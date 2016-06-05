@@ -110,4 +110,16 @@ let pet il itheta itheta' =
   let cases = List.flatten (Lib.allpairs reorder ithetas ithetas') in
   exists (pet0 (max_I il)) cases;;
 
+(* now test for pent contact *)
+
+(* -- not implemented --
+let pent_contact il itheta itheta' = 
+  let split i = List.flatten (map splitat0  (periodize_pent i)) in
+  let ithetas = split itheta in
+  let ithetas' = split itheta' in
+  let cases = List.flatten (Lib.allpairs reorder ithetas ithetas') in
+  exists (pent_contact1 il) cases;;
+*)
+  
+
 end;;
