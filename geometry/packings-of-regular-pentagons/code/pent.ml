@@ -21,13 +21,40 @@ let try_do f =
       | _ -> [] in 
   try_dof;;
 
+let rec selectsome = function
+  | [] -> []
+  | None::xs -> selectsome xs
+  | Some x::xs -> x:: selectsome xs;;
+
+let the x = match x with
+  | None -> failwith "the"
+  | Some t -> t;;
+
+let issome x = match x with
+  | None -> false
+  | _ -> true;;
+
 (* We rarely use integer arithmetic. *)
+let succ n = Pervasives.(+) n 1;;
+let pred n = Pervasives.(-) n 1;;
+
 let ( +~ ) = Pervasives.( + );;
 let ( *~) = Pervasives.( * );;
 let ( -~ ) = Pervasives.( - );;
 
 let ( >. ) (x:float) (y:float) = x > y;;
 let ( <. ) (x:float) (y:float) = x < y;;
+
+let sqrt = Pervasives.sqrt;;
+let sin = Pervasives.sin;;
+let cos = Pervasives.cos;;
+
+(* prioritize interval operations *)
+let ( + ) = ( +$ );;
+let ( - ) = ( -$ );;
+let ( * ) = ( *$ );;
+let ( ~- ) = ( ~-$ );;
+
 
 (*
 let rec outer f xs =
@@ -42,8 +69,7 @@ let rec allpair acc f l1 l2 =
     | (h1::t1) ->  allpair ((List.map (f h1) l2) @ acc) f t1 l2;;
 *)
 
-(* let outer = Lib.allpairs;; *)
-
+let outer = Lib.allpairs;; 
 
 let pair x y = x,y;;
 
@@ -54,11 +80,6 @@ let outertriple k1 k2 k3 =
     map (fun (i,(j,k)) -> (i,j,k)) k123;;
 
 outer pair [0;1;2] [3;4];;
-
-let rec selectsome = function
-  | [] -> []
-  | None::xs -> selectsome xs
-  | Some x::xs -> x:: selectsome xs;;
 
 let sqrt_I x = 
   try
@@ -131,9 +152,6 @@ let abs_I x = if (x.low >= 0.0) then x
 
 abs_I (mk (~-. 0.3) (~-. 0.2));;
 
-let the x = match x with
-  | None -> failwith "the"
-  | Some t -> t;;
 
 let (/) x y = 
   if disjoint_I eps_I y then x /$ y else raise Unstable;;
@@ -174,6 +192,8 @@ let pi710 = ratpi 7 10;;
 
 let rat i j =   (one *$. float_of_int i) /$. float_of_int j;;
 
+let int i = (one *$. float_of_int i);;
+
 let ( // ) = rat;;
 
 (* let mpi i j = (ratpi i j);; *)
@@ -193,6 +213,8 @@ let aK = (1.0 +.$ kappa)*$ (3.0 *.$ (kappa *$ sigma)) /$. 2.0;;
 let amin =  1237 // 1000;;
 
 let epso_I = aK - amin;;
+
+let epso'_I = 7 // 1000;;
 
 let ups_I x1 x2 x3 = 
   two * (x1 * x2 + x2 * x3 + x3 * x1) - x1*x1 - x2*x2 - x3*x3;;
@@ -492,41 +514,6 @@ let mk_isosceles sgnalpha sgnbeta xs =
    The last output is data along the remaining edge.  Its first angle thACB is at the
    vertex of the first input angle thABC.
 *)
-
-  let fillout2C dACrange (dAB,thABC,thBAC) (dBC,thCBA,thBCA) =
-    try
-      let arcBrange = iarc dAB dBC dACrange in
-      let prearc = pi25 - (thBAC+thBCA) in
-      let k = getint ((arcBrange - prearc)/pi25) in
-      if (k=None) then None
-      else
-	let arcB = prearc + the k*pi25 in
-	let dAC = iloc dAB dBC arcB in
-	  if (dAC << two*kappa) then None
-	  else
-	    let dAC = merge_I (max2_I (two*kappa) (min_I dAC)) (max_I dAC) in
-	    let arcC = iarc dAC dBC dAB in
-	    let arcA = iarc dAC dAB dBC in
-	    let a = areamin_acute dAC dAB dBC in
-	    let thACB = pi25 - (arcA + thABC) in
-	    let thCAB = pi25 - (arcC + thCBA) in
-	    if arcA >> pi2 or arcB >> pi2 or arcC >> pi2 or not(pet dAC thACB thCAB)
-	    then None
-	    else
-	      Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB))
-(*	  Some (a,dAB,dAC,dBC,arcA,arcB,arcC,thABC,thBAC,thCBA,thBCA,thACB,thCAB) *)
-    with e -> raise e;;
-
-
-let mk2C dACrange (xs,(sgnalpha,sgnbeta)) = 
-  let [xalpha; alpha;  xbeta; beta] = xs in
-  try
-      let (dAB,thABC,thBAC) = ellthetax_sgn xalpha alpha sgnalpha in
-      let (dBC,thCBA,thBCA) = ellthetax_sgn xbeta beta sgnbeta in
-      fillout2C dACrange (dAB,thABC,thBAC) (dBC,thCBA,thBCA)
-    with e -> raise e;;
-
-let mk2Ce dACrange xs = mk2C dACrange (xs,(true,true));;
 
 
 (* ******************************************************************************** *)

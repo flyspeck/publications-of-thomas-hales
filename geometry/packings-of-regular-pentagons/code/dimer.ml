@@ -14,12 +14,14 @@ module Dimer = struct
 open Pent;;
 open Pet;;
 
+
+(*
   let range = mk 172.0 178.0 / m 100.0;;
 
 
   let inf = one / mk_interval (-1.0,1.0);;
 disjoint_I eps_I inf;;
-
+*)
 
 
 (* true if isosceles subcritical, with condition on thABC *)
@@ -147,13 +149,14 @@ let domain_scaleneto3C =
 
 let dummybool = (map (fun t->(t,(true,true))));;
 
-recursepairtoeps one_iso2C domain_iso2C;;
-recursepairtoeps one_iso2C' domain_iso2C';;
-recursepairtoeps one_scaleneto3C domain_scaleneto3C;;
-recursepairtoeps one_pintx (dummybool pintdomain);;
-recursepairtoeps one_pinwheelx (dummybool pinwheeldomain);;
-recursepairtoeps one_ljx (dummybool ljdomain);;
-recursepairtoeps one_tjx (dummybool tjdomain);;
+let run_group1() = 
+  [recursepairtoeps one_iso2C domain_iso2C;
+   recursepairtoeps one_iso2C' domain_iso2C';
+   recursepairtoeps one_scaleneto3C domain_scaleneto3C;
+   recursepairtoeps one_pintx (dummybool pintdomain);
+   recursepairtoeps one_pinwheelx (dummybool pinwheeldomain);
+   recursepairtoeps one_ljx (dummybool ljdomain);
+   recursepairtoeps one_tjx (dummybool tjdomain)];;
 
 
 (* dimer stuff *)
@@ -230,14 +233,17 @@ let recurse_dimer pseudo eps f d =
 (* all run on 3/10/2016: *)
 let recurse0 s = recurse_dimer false zero 
   dimer_constraint0 (dimer_domain s);;
-map (fun i -> recurse0 (0,i)) (0--7);;
-map (fun i -> recurse0 (i,0)) (0--7);;
-map (fun i -> recurse0 (4,i)) (0--7);;
-map (fun i -> recurse0 (i,4)) (0--7);;
-map (fun i -> recurse0 (5,i)) (0--7);;
-map (fun i -> recurse0 (i,5)) (0--7);;
-map (fun i -> recurse0 (6,i)) (0--7);;
-map (fun i -> recurse0 (i,6)) (0--7);;
+
+let run_group2 () = 
+  [
+    map (fun i -> recurse0 (0,i)) (0--7);
+    map (fun i -> recurse0 (i,0)) (0--7);
+    map (fun i -> recurse0 (4,i)) (0--7);
+    map (fun i -> recurse0 (i,4)) (0--7);
+    map (fun i -> recurse0 (5,i)) (0--7);
+    map (fun i -> recurse0 (i,5)) (0--7);
+    map (fun i -> recurse0 (6,i)) (0--7);
+    map (fun i -> recurse0 (i,6)) (0--7)];;
 
 let needsmore = [1;2;3;7];;
 
@@ -250,38 +256,46 @@ let recurse2 pseudo s = recurse_dimer pseudo zero
 
 (* This reduces dimers to 0.01 nbd of Kuperberg dimer.
    The "true" cases also explicitly exclude pseudo-dimers. *)
-recurse2 false (1,1);;
-recurse2 false (2,1);;
-recurse2 false (3,1);;
-recurse2 false (7,1);;
 
-recurse2 false (1,2);;
-recurse2 false (2,2);;
-recurse2 false (3,2);;
-recurse2 false (7,2);;
+let run_group3() = 
+  [
+    recurse2 false (1,1);
+    recurse2 false (2,1);
+    recurse2 false (3,1);
+    recurse2 false (7,1);
 
-recurse2 false (2,3);;
-recurse2 false (7,3);;
+    recurse2 false (1,2);
+    recurse2 false (2,2);
+    recurse2 false (3,2);
+    recurse2 false (7,2);
+    
+    recurse2 false (2,3);
+    recurse2 false (7,3);
 
-recurse2 false (2,7);;
-recurse2 false (7,7);;
+    recurse2 false (2,7);
+    recurse2 false (7,7);
 
 (* last 4 cases exclude pseudo-dimers.
    These tests fail with input pseudo=false. *)
-recurse2 true (1,3);;  
-recurse2 true (3,3);; 
-recurse2 true (1,7);;
-recurse2 true (3,7);;
+    recurse2 true (1,3);
+    recurse2 true (3,3);
+    recurse2 true (1,7);
+    recurse2 true (3,7)];;
 
 
 (* 0.007 good, 0.006 fails, 
    so pseudo-dimer area sum is off by at most 0.007 *)
 let recurseN s = recurse_dimer false (m 0.007)
   dimer_constraint0 (dimer_domain s);;
-recurseN (1,3);;
-recurseN (3,3);;
-recurseN (1,7);;
-recurseN (3,7);;
+
+let run_group4() = 
+  [
+    recurseN (1,3);
+    recurseN (3,3);
+    recurseN (1,7);
+    recurseN (3,7);
+  ];;
+
 (* 0.007 good *)
 
 
@@ -359,7 +373,8 @@ let recursesgn f dom =
   map (fun t -> recursetoeps (f t) dom)
     [(true,true);(true,false);(false,true);(false,false)];;
 
-recursesgn one127 domain2C;;
+let run_group5() = 
+  recursesgn one127 domain2C;;
 
 end;;
 

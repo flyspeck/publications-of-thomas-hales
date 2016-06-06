@@ -337,10 +337,10 @@ let pent_contact_deprecated lx theta theta' =
 (* ordering makes theta' positive and smaller in absolute value than theta *)
 
 let pent_contact lx itheta itheta' =
-  let split i = List.flatten (map splitat0  (periodize_pent i)) in
+  let split i = List.flatten (map Pet.splitat0  (Pet.periodize_pent i)) in
   let ithetas = split itheta in
   let ithetas' = split itheta' in
-  let cases = List.flatten (Lib.allpairs reorder ithetas ithetas') in
+  let cases = List.flatten (Lib.allpairs Pet.reorder ithetas ithetas') in
   let up0 (th',th,samesign) = if samesign then (th',th) else (th',pi25 - th) in
   let cases0 = map up0 cases in
   let p = List.flatten (
@@ -362,10 +362,10 @@ let ell_ofth theta theta' =
 (* essentially the same as pent_contact, but more concise and a bit faster. *)
 
 let pent_contact2 lx itheta itheta' =
-  let split i = List.flatten (map splitat0  (periodize_pent i)) in
+  let split i = List.flatten (map Pet.splitat0  (Pet.periodize_pent i)) in
   let ithetas = split itheta in
   let ithetas' = split itheta' in
-  let cases = List.flatten (Lib.allpairs reorder ithetas ithetas') in
+  let cases = List.flatten (Lib.allpairs Pet.reorder ithetas ithetas') in
   let up0 (th',th,samesign) = if samesign then (th',th) else (th',pi25 - th) in
   let cases0 = map up0 cases in
   exists (fun (th',th) -> meet_I lx (ell_ofth th th')) cases0;;
@@ -395,4 +395,41 @@ time (ffx 0.3) 0.4;;
 
 *)
 
+  let fillout2C dACrange (dAB,thABC,thBAC) (dBC,thCBA,thBCA) =
+    try
+      let arcBrange = iarc dAB dBC dACrange in
+      let prearc = pi25 - (thBAC+thBCA) in
+      let k = getint ((arcBrange - prearc)/pi25) in
+      if (k=None) then None
+      else
+	let arcB = prearc + the k*pi25 in
+	let dAC = iloc dAB dBC arcB in
+	  if (dAC << two*kappa) then None
+	  else
+	    let dAC = merge_I (max2_I (two*kappa) (min_I dAC)) (max_I dAC) in
+	    let arcC = iarc dAC dBC dAB in
+	    let arcA = iarc dAC dAB dBC in
+	    let a = areamin_acute dAC dAB dBC in
+	    let thACB = pi25 - (arcA + thABC) in
+	    let thCAB = pi25 - (arcC + thCBA) in
+	    if arcA >> pi2 or arcB >> pi2 or arcC >> pi2 or not(Pet.pet dAC thACB thCAB)
+	    then None
+	    else
+	      Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB))
+    with e -> raise e;;
+
+
+let mk2C dACrange (xs,(sgnalpha,sgnbeta)) = 
+  let [xalpha; alpha;  xbeta; beta] = xs in
+  try
+      let (dAB,thABC,thBAC) = ellthetax_sgn xalpha alpha sgnalpha in
+      let (dBC,thCBA,thBCA) = ellthetax_sgn xbeta beta sgnbeta in
+      fillout2C dACrange (dAB,thABC,thBAC) (dBC,thCBA,thBCA)
+    with e -> raise e;;
+
+let mk2Ce dACrange xs = mk2C dACrange (xs,(true,true));;
+
+
+
 (* end;; *)
+

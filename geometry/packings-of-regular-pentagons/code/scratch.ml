@@ -146,6 +146,8 @@ theta'_banana;;
 *)
 
 (* run hyp1 cases *)
+
+(* commented out to make reload easier ...
 time recurse_hyp1 (mkT0_sliderAD,dom_slider,false);; (* CPU time (user): 14541.908 : int * bool = (24811279, true) *)
 recurse_hyp1 (mkT0_sliderDC,dom_slider,false);;  (* exclude by symmetry *)
 recurse_hyp1 (mkT0_midpointerAD,dom_midpointer,false);; (* completes in 8*10^6 steps *)
@@ -154,6 +156,7 @@ recurse_hyp1 (mkT0_generalAD,dom_general,true);;  (* running, interrupted,
   ran all night, making gradual progress,
   reached count=128400000, length=9, vol=19.3444, starting with vol=25.3297.
   So it might terminate after a few days.  *)
+*)
 
 (* let's try hypothesis 2. *)
 
@@ -177,7 +180,7 @@ let recurse_hyp2 (f,dom) = recurs_xeps (one_Tin_T0 hyp2_drange_Tin hyp2_Tin_disj
 		    f
 		    hyp2_drange_Tin hyp2_T0_disjoint_from_domain) [(dom_Tin @ dom)];;
 
-
+(* commented out to speed up reload 
 time recurse_hyp2 (mkT0_sliderAD,dom_slider);; (* CPU time (user): 1730.108
 - : int * bool = (2967249, true)  *)
 recurse_hyp2 (mkT0_sliderDC,dom_slider);;  (* exclude by symmetry *)
@@ -185,6 +188,7 @@ time recurse_hyp2 (mkT0_midpointerAD,dom_midpointer);;  (* CPU time (user): 5809
 - : int * bool = (9918329, true) *)
 recurse_hyp2 (mkT0_midpointerDC,dom_midpointer);;  (* exclude by symmetry *)
 recurse_hyp2 (mkT0_generalAD,dom_general);;   (* not done yet *)
+*)
 
 (* Old hyp 3 *)
 area_I (m 1.8) (m 1.72) (m 1.77) - (aK + epso_I);;

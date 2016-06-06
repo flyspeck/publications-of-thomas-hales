@@ -238,6 +238,8 @@ let one_twist_claim_lj1 xs =
         (xa >> sigma)
     with Unstable -> false;;
 
+let dummybool = Dimer.dummybool;;
+
 let twist_claim_lj1 =
   let ee = mk (-0.01) (0.01) in
   let eps_domain =[[zero2 (m 0.01);pi15 + ee;sigma+ee]] in

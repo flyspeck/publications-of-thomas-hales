@@ -84,15 +84,6 @@ exception Fatal;;  (* generally indicates an uncorrected bug *)
 open Interval;;
 
 
-let succ n = Pervasives.(+) n 1;;
-let (+) = (+$);;
-let (-) = (-$);;
-(* let (/) = (/$);; *)
-let ( * ) = ( *$ );;
-let (~-) = (~-$);;
-let sqrt = Pervasives.sqrt;;
-let sin = Pervasives.sin;;
-let cos = Pervasives.cos;;
 
 
 

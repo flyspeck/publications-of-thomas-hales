@@ -1,3 +1,5 @@
+open Pent;;
+
 module Pet = struct
 
 
