@@ -6,7 +6,11 @@ If starting *ocaml-toplevel*,
 start with ocamlfpu in *shell*
 then rename buffer to *ocaml-toplevel*
 
+#directory "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/";;
+#use "init.ml";;
 *)
+
+#directory "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/";;
 
 #use "topfind";;
 #list;;
@@ -111,4 +115,6 @@ reneeds "pet.ml";;
 reneeds "function_library.ml";;
 reneeds "dimer.ml";;
 reneeds "autodiff.ml";;
-reneeds "scratch.ml";;
+reneeds "meet-in-middle.ml";;
+(* reneeds "scratch.ml";; *)
+(* reneeds "hypotheses.ml";; *)

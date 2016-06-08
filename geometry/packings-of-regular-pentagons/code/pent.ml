@@ -34,6 +34,8 @@ let issome x = match x with
   | None -> false
   | _ -> true;;
 
+let isnone x = not(issome x);;
+
 (* We rarely use integer arithmetic. *)
 let succ n = Pervasives.(+) n 1;;
 let pred n = Pervasives.(-) n 1;;
@@ -137,10 +139,13 @@ width_I eps_I;;
 
 (* let eps = (1.0e-10);; *)
 
-let ( >> ) x y = x.low > y.high;;
+let ( >> ) x y = x.low >. y.high;;
 let ( >>= ) x y = x.low >= y.high;;
-let ( << ) x y = x.high < y.low;;
+let ( << ) x y = x.high <. y.low;;
 let ( <<= ) x y = x.high <= y.low;;
+
+let ( >>. ) x y = x.low >. y;;
+let ( <<. ) x y = x.high <. y;;
 
 let disjoint_I x y = (x >> y) or (y >> x);;
 
