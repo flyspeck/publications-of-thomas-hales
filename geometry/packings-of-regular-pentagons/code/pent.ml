@@ -1,6 +1,6 @@
 (* 
 This code is in the public domain.
-Thomas Hales April 12, 2015. Nov 2015. 
+Thomas Hales April 12, 2015-- June 2016.
 *)
 
 (*
@@ -21,6 +21,8 @@ let try_do f =
       | _ -> [] in 
   try_dof;;
 
+(* options *)
+
 let rec selectsome = function
   | [] -> []
   | None::xs -> selectsome xs
@@ -36,28 +38,7 @@ let issome x = match x with
 
 let isnone x = not(issome x);;
 
-(* We rarely use integer arithmetic. *)
-let succ n = Pervasives.(+) n 1;;
-let pred n = Pervasives.(-) n 1;;
-
-let ( +~ ) = Pervasives.( + );;
-let ( *~) = Pervasives.( * );;
-let ( -~ ) = Pervasives.( - );;
-
-let ( >. ) (x:float) (y:float) = x > y;;
-let ( <. ) (x:float) (y:float) = x < y;;
-
-let sqrt = Pervasives.sqrt;;
-let sin = Pervasives.sin;;
-let cos = Pervasives.cos;;
-
-(* prioritize interval operations *)
-let ( + ) = ( +$ );;
-let ( - ) = ( -$ );;
-let ( * ) = ( *$ );;
-let ( ~- ) = ( ~-$ );;
-
-
+(* Cartesian products *)
 (*
 let rec outer f xs =
   function
@@ -83,15 +64,32 @@ let outertriple k1 k2 k3 =
 
 outer pair [0;1;2] [3;4];;
 
-let sqrt_I x = 
-  try
-    Interval.sqrt_I x 
-  with Failure _ -> raise Unstable;;
 
-let acos_I x = 
-  try
-    Interval.acos_I x
-  with Failure _ -> raise Unstable;;
+(* We rarely need integer arithmetic.
+   Calculations are done systematically in interval arithmetic. *)
+
+(*
+let succ = Pervasives.succ;;
+let pred = Pervasives.pred;;
+*)
+
+let ( +~ ) = Pervasives.( + );;
+let ( *~) = Pervasives.( * );;
+let ( -~ ) = Pervasives.( - );;
+
+let ( >. ) (x:float) (y:float) = x > y;;
+let ( <. ) (x:float) (y:float) = x < y;;
+
+let sqrt = Pervasives.sqrt;;
+let sin = Pervasives.sin;;
+let cos = Pervasives.cos;;
+
+(* prioritize interval operations *)
+let ( + ) = ( +$ );;
+let ( - ) = ( -$ );;
+let ( * ) = ( *$ );;
+let ( ~- ) = ( ~-$ );;
+
 
 let mk_interval(a,b) = {low=a;high=b};;
 
@@ -112,7 +110,8 @@ let i16 = m 16.0;;
 
 let eps_I = mk (- 1.0e-8) (1.0e-8);;
 
-let merge_I x y = {low = min x.low y.low;high = max x.high y.high};;
+(* same as Interval.union_I_I *)
+let merge_I x y = {low = min x.low y.low;high = max x.high y.high};; 
 
 let inter_I x y =
   let t = {low = max x.low y.low; high = min x.high y.high} in
@@ -123,21 +122,24 @@ let min_I y = {low = y.low;high = y.low};;
 
 let max_I y = {low = y.high;high = y.high};;
 
+(* different on upper endpoint from Interval.min_I_I *)
 let min2_I x y = min_I (merge_I x y);;
 
+(* different on lower endpoint from Interval.max_I_I *)
 let max2_I x y = max_I (merge_I x y);;
 
 let max3_I x y z = max2_I (max2_I x y) z;;
 
 let mem_I r i = (i.low <= r && r <= i.high);;
 
+(* related to but not identical to Interval.size_I *)
 let width_I x = max_I x - min_I x;;
 
 
 
 width_I eps_I;;
 
-(* let eps = (1.0e-10);; *)
+(* deprecated: let eps = (1.0e-10);; *)
 
 let ( >> ) x y = x.low >. y.high;;
 let ( >>= ) x y = x.low >= y.high;;
@@ -151,29 +153,29 @@ let disjoint_I x y = (x >> y) or (y >> x);;
 
 let meet_I x y = not (disjoint_I x y);;
 
+(*
 let abs_I x = if (x.low >= 0.0) then x
   else if (x.high <= 0.0) then (- x)
   else mk 0.0 (max x.high (~-. (x.low)));;
+*)
+let abs_I = Interval.abs_I;;
 
-abs_I (mk (~-. 0.3) (~-. 0.2));;
+abs_I (mk (~-. 0.1) ( 0.2));;
 
 
 let (/) x y = 
   if disjoint_I eps_I y then x /$ y else raise Unstable;;
 
+let int = Interval.float_i;;
 
-(*
-acos_I (mk 0.5 1.1);;
-thetax (m 0.1) (m 0.2);;
-sqrt_I (m (- 0.1));;
-inter_I (mk 1.0 2.0) (mk 2.1 3.0);;
+let rat i j =   (int i) / (int j);;
 
-meet_I (mk 1.0 2.0) (mk 0.0 0.5);;
-*)
+let ( // ) = rat;;
 
-(* ******************************************************************************** *)
+
+(************************************************************************* *)
 (* trig functions *)
-(* ******************************************************************************** *)
+(************************************************************************* *)
 
 let ratpi i j =  
   (pi_I *$. float_of_int i) /$. float_of_int j;;
@@ -193,15 +195,10 @@ let pi110 = ratpi 1 10;;
 let pi310 = ratpi 3 10;;
 let pi710 = ratpi 7 10;;
 
+(* deprecated: let mpi i j = (ratpi i j);; *)
 
 
-let rat i j =   (one *$. float_of_int i) /$. float_of_int j;;
 
-let int i = (one *$. float_of_int i);;
-
-let ( // ) = rat;;
-
-(* let mpi i j = (ratpi i j);; *)
 
 let kappa = cos_I (pi /$. 5.0);;
 let sigma = sin_I (pi /$. 5.0);;
@@ -220,6 +217,18 @@ let amin =  1237 // 1000;;
 let epso_I = aK - amin;;
 
 let epso'_I = 7 // 1000;;
+
+(* basic geometry *)
+
+let sqrt_I x = 
+  try
+    Interval.sqrt_I x 
+  with Failure _ -> raise Unstable;;
+
+let acos_I x = 
+  try
+    Interval.acos_I x
+  with Failure _ -> raise Unstable;;
 
 let ups_I x1 x2 x3 = 
   two * (x1 * x2 + x2 * x3 + x3 * x1) - x1*x1 - x2*x2 - x3*x3;;
@@ -292,10 +301,10 @@ ilawbeta (m 0.4) (m 1.1) (m 1.2);;
 
 
 
-(* ******************************************************************************** *)
+(************************************************************************* *)
 
 (* ell, ellx, thetax, fillout. *)
-(* ******************************************************************************** *)
+(************************************************************************* *)
 
 let ell_aux h psi =
   let r = sqrt_I (h * h + kappa* kappa) in
@@ -320,6 +329,11 @@ let ellx  =
    and pentagon theta is the receptor.
 
    We assume the pentagons are in contact.
+
+   NB. June 2016.  theta domain is naturally [0,pi25].
+   theta' domain is naturally [-pi15,pi15].
+   We now have functions that are continuous and return values
+   in those domains.
 *)
 
 (* rewritten 2/28/2016 
@@ -439,9 +453,9 @@ let ellthetax_sgn xalpha alpha sgn =  (* swap if false *)
 ellthetax_sgn (mk 0.2 0.25) (mk 0.3 0.35) false;;    
 ellxmono (mk 0.2 0.25) (mk 0.3 0.35);;
 
-(* ******************************************************************************** *)
+(************************************************************************* *)
 (* 2C coordinates *)
-(* ******************************************************************************** *)
+(************************************************************************* *)
 
 (* start of mk_isosceles *)
   let hasint x = 
@@ -521,9 +535,9 @@ let mk_isosceles sgnalpha sgnbeta xs =
 *)
 
 
-(* ******************************************************************************** *)
+(************************************************************************* *)
 (* pinwheel *)
-(* ******************************************************************************** *)
+(************************************************************************* *)
 let pinwheeledge =
   fun alpha beta xgamma ->
     let gamma = pi15 - (alpha + beta) in
@@ -781,9 +795,9 @@ let disjoint_from_dimer_tj2 alpha beta xbeta =
 let disjoint_from_dimer_tj1 alpha beta xbeta = 
   disjoint_from_35_45 alpha beta or (beta << one);;
   
-(* ******************************************************************************** *)
+(************************************************************************* *)
 (* split domain along largest dimension *)
-(* ******************************************************************************** *)
+(************************************************************************* *)
 
 let rec maxwidth c (i,w) = function 
   | [] -> (i,w)
@@ -865,9 +879,9 @@ let recursetofinish onef =
 
 
 
-(* ******************************************************************************** *)
+(************************************************************************* *)
 (* Set up computational instances *)
-(* ******************************************************************************** *)
+(************************************************************************* *)
 
 (* test that all subcritical pinwheels have an edge > 1.7215.
    test returns true if out of domain or ineq holds.
@@ -977,9 +991,9 @@ mktest ("oneJJZ",fun() ->
 	    [[zero2 pi25;zero2 pi25;two*sigma]]);;
 
 
-(* ******************************************************************************** *)
+(************************************************************************* *)
 (* timing tests *)
-(* ******************************************************************************** *)
+(************************************************************************* *)
 
 (* pinwheel 1.237 benchmarks *)    
 (* 1041153 cases, 51 sec. before revision *)

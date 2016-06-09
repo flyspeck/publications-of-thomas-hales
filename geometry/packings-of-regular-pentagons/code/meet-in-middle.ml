@@ -54,7 +54,11 @@ let int_ceil x =
   let i = int_of_float c in
   if (c = x) then succ i else i;;
 
-(* Hashtable keys are discretizations of interval domains. *)
+(* Hashtable keys are discretizations of interval domains.
+   We must have the property that if two domains have nonempty
+   intersection, then they have at least one key in common.  
+   We achieve this by enlarging the domains to a union of cubes
+   of a fixed width and attaching a key to each cube.  *)
 
 let make_a_key width  t =
   let rescale = t/width in
@@ -78,11 +82,6 @@ let make_keys widths ranges =
   let k2 = make_a_key w2 r2 in
   let k3 = make_a_key w3 r3 in
   map (Hashtbl.hash) (outertriple k1 k2 k3);;
-
-(*  let pair x y = (x,y) in 
-    let sort (j,k) = if (j<k) then (j,k) else (k,j) in 
-  let k123 = outerpair k1 ((* map sort *) (outerpair k2 k3)) in
-    map (fun (i,(j,k)) -> (i,j,k)) k123;; *)
 
 make_keys (m 0.2,m 0.2,m 0.2)
   ((mk 1.1 1.2),(mk 1.4 1.5),(mk 2.01 2.3));;
@@ -237,7 +236,7 @@ let periareas width some_phash keyfns fill =
       Some (periareas,total_periarea,keys');;
 
 
-(* hashtables are mutable here: *)
+(* hashtable is mutable here: *)
   
 let  mk_one_cencoord width cluster_areacut some_phash fn (ccoord,cencut) = 
   let (extra,fillfn,outdomfn,areafn,keyfns) = fn in
@@ -317,12 +316,16 @@ let rec mitm_recursion i initialized cluster_areacut width some_pdata cfn ccs =
       let _ = report_stats (i,width,some_pdata',ccs) in
       mitm_recursion (succ i) true cluster_areacut (width/two) some_pdata' cfn ccs;;
 
+(* deprecated:
 let mk_cendata = 0;;
 let mk_one_cendata = 0;;
+*)
+
 (***********************************************************************)
 (* set up hashtable *)
 (***********************************************************************)
 
+(* A single global hashtable is used for all the peripheral triangles *)
 
 let mk_hashtbl() = 
   let tbl = Hashtbl.create 100000 in
@@ -331,7 +334,7 @@ let mk_hashtbl() =
 
 (* let phash1 = mk_hashtbl();; *)
 
-let phash = mk_hashtbl();;
+let phash = mk_hashtbl();;  
 
 (*
 let phashBC = mk_hashtbl();;
@@ -343,7 +346,8 @@ let phashAC = mk_hashtbl();;
 (***********************************************************************)
 
 (* fillout 5D.  Acute triangle.
-   One pent contact between A and C. A points to C. *)
+   One pent contact between A and C. A points to C. 
+   Full input coordinates (dAB,thABC,thBAC) given along edge AB. *)
 
 let fillout5D ((dAB,thABC,thBAC),dBC,dAC) = 
   if not(Pet.pet dAB thABC thBAC) then None 
@@ -408,29 +412,5 @@ let test1_centralpent_172 = (* repeated calc from pent.ml *)
   let ccs = [(ccoord,cencut);] in 
   let initialized = false in
   mitm_recursion i initialized cluster_areacut width pdata cfn ccs;;
-
-
-(*
-aK;;
-let _ = merge_I (two*kappa) (172//100);;
-172//100;;
-let k2 = merge_I (two*kappa) in
-  map zero2 [k2 (21//10);z2 pi25;z2 pi25;k2 (21//10);k2 two] ;;
-let ce1 = map mk_interval [(1.74991455078,1.75);(0.31408256632,0.314159265359);(0.942401097038,0.942477796077);(0.349914550781,0.35);(0.333251953125,0.333333333333)];;
-  let fillfn1 _ [dAB;thABC;thBAC;dBC;dAC] = fillout5D ((dAB,thABC,thBAC),dBC,dAC);;
-  fillfn1 () ce1;;
-
-  let ccoordx = 
-  let z2 = zero2 pi25 in
-  let k2 = merge_I (two*kappa) (172//100) in
-  let ccoord = [k2 ;z2;z2;k2;k2] in
-  ccoord;;
-
-  let ccxx =  (subdivide_subwidth (m 0.1) ccoordx);;
-
-  let fillxx = 
-    let fillfn _ [dAB;thABC;thBAC;dBC;dAC] = fillout5D ((dAB,thABC,thBAC),dBC,dAC) in
-    List.length (setify (map (fillfn ()) ccxx));;
-  *)
 
 end;;
