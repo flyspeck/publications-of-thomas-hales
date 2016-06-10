@@ -4,6 +4,9 @@
    excluding local optimality near the Kuperberg arrangement
    and excluding pseudo-dimers *)
 
+(* The documentation for this file is contained in 
+   notebook "Dimer March 2016"
+*)
 
 reneeds "pent.ml";;
 reneeds "pet.ml";;
@@ -15,41 +18,32 @@ open Pent;;
 open Pet;;
 
 
-(*
-  let range = mk 172.0 178.0 / m 100.0;;
-
-
-  let inf = one / mk_interval (-1.0,1.0);;
-disjoint_I eps_I inf;;
-*)
-
 
 (* true if isosceles subcritical, with condition on thABC *)
+
+(* true if param xs fall outside domain of subcrit AB=AC isosc tri *)
 
 let one_iso2C xs = 
   let dACrange = mk 1.72 1.79 in
   try
-    let v = mk2C dACrange xs in
-    if (v = None) then true
-    else 
-      let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = the v in 
-(*
-(a,dAB,dAC,dBC,arcA,arcB,arcC,
-	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in *)
-      let th = Pet.periodize_pent thABC in
+    match  mk2C dACrange xs with
+    | None -> true
+    | Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	    (dAC,thACB,thCAB,arcB)) ->
+      (let th = Pet.periodize_pent thABC in
        (a >> aK) or disjoint_I dAB dAC or 
-	 forall (fun t -> t >> zero) th
+	 forall (fun t -> t >> zero) th)
   with Unstable -> false;;
+
+(* true if params xs out of domain of subcrit BC AB isosc tri *)
 
 let one_iso2C' xs = 
   let dACrange = merge_I (two*kappa) (m 1.79) in
   try
-    let v = mk2C dACrange xs in
-    if (v = None) then true
-    else 
-      let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = the v in
-(* (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in *)
+    match  mk2C dACrange xs with
+    | None -> true
+    | Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	    (dAC,thACB,thCAB,arcB)) ->
        (a >> aK) or disjoint_I dBC dAB or dAC >> dAB
   with Unstable -> false;;
 
@@ -67,8 +61,6 @@ let one_scaleneto3C xs =
       if (v = None) then true
       else 
 	let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = the v in 
-(* (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	     thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in *)
 	(a >> aK) or (dAC >> m 1.79) 
     with Unstable -> false;;
 
@@ -158,8 +150,9 @@ let run_group1() =
    recursepairtoeps one_ljx (dummybool ljdomain);
    recursepairtoeps one_tjx (dummybool tjdomain)];;
 
-
+(* ************************************************************ *)
 (* dimer stuff *)
+(* ************************************************************ *)
 
 let dimer_constraint0 alphaB betaB xbetaB alphaD = false;;
 
@@ -282,6 +275,11 @@ let run_group3() =
     recurse2 true (1,7);
     recurse2 true (3,7)];;
 
+(* ************************************************************ *)
+(* pseudo-dimer stuff *)
+(* ************************************************************ *)
+
+(* Calculate 3C+3C bound on dimer/pseudo-dimer *)
 
 (* 0.007 good, 0.006 fails, 
    so pseudo-dimer area sum is off by at most 0.007 *)
@@ -298,6 +296,10 @@ let run_group4() =
 
 (* 0.007 good *)
 
+(* ************************************************************ *)
+(* unsorted stuff *)
+(* ************************************************************ *)
+
 
 (* Junk: check that the second part of 
    pseudo-dimer can be subcritical away from Kup.
@@ -312,47 +314,7 @@ recurseM (3,7);;
 
 *)
 
-(*
-ratpi 1 5;;
-ratpi 2 5;;
-sigma;;
-
-"pinw,lj2";;
-let ce13 = map mk_interval [(0.157041264434,0.157041273797);(0.23595946395,0.235959473313);(0.237635650368,0.237635659127);(0.,9.36267570731e-09)];;
-"lj2,lj2";;
-let ce33 = map mk_interval [(0.314159255996,0.314159265359);(0.314159255996,0.314159265359);(0.301264967108,0.301264975867);(0.,9.36267570731e-09)];;
-"pinw,tj3";;
-let ce17 = map mk_interval [(0.157040665223,0.157040674586);(0.235959772919,0.235959782281);(0.237636333545,0.237636342304);(0.,9.36267570731e-09)];;
-let ce37 = map mk_interval [(0.314159255996,0.314159265359);(0.314159255996,0.314159265359);(0.301264967108,0.301264975867);(0.,9.36267570731e-09)];;
-
-"pinw,lj2";;
-let ce = map mk_interval [(0.313957621412,0.313957630775);(0.307715338265,0.307715347627);(0.416314741265,0.416314750024);(0.,9.36267570731e-09)];;
-let [ce'alphaB;ce'beta;ce'xbeta;ce'alphaD] = ce;;
-let ce'betaD = pi25 - ce'beta;;
-let ce'xbetaD = two*sigma - ce'xbeta;;
-
-let (d1,d2,d3)=dimer_lj2edge ce'alphaD ce'betaD ce'xbetaD;;
-disjoint_from_dimer_lj2 ce'alphaD ce'betaD ce'xbetaD;;
-areamin_acute d1 d2 d3;;
-aK;;
-aK;;
-
-dimer_lj3edge_extended ce'alphaD ce'betaD ce'xbetaD;;
-ce'alphaD;;
-ce'betaD;;
-ce'xbetaD;;
-dimer_lj3edge;;
-let [ce'alpha;ce'beta;ce'xc] = ce;;
-tjedge ce'alpha ce'beta ce'xc;;
-let [alpha1;beta1;xa1] = ce;;
-pintedge_extended alpha1 beta1 xa1;;
-two*sigma;;
-areamin_acute (m 1.85) (m 1.85) (two*kappa) - aK;;
-aK + epso_I;;
-ratpi 2 5;;
-
-*)
-
+(* this verifies a lower bound 1.27 on subcritical isosceles triangles *)
 
 let one127 (sgnalpha,sgnbeta) xs  = 
   try
@@ -361,8 +323,6 @@ let one127 (sgnalpha,sgnbeta) xs  =
   if (v = None) then true
   else 
     let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = the v in 
-(* (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in *)
        (a >> 127 // 100) or disjoint_I dAB dAC or
 	 dAC >> dAB
   with Unstable -> false;;

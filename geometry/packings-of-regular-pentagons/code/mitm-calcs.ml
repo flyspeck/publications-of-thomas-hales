@@ -34,7 +34,7 @@ let init2Cps = (* standard 2C settings for peripheral triangles *)
   let area = amin in
   (fn,[(pcoord,keys,area)]);;
 
-let init2Cps_isosceles = (* 2C settings with isosceles AB=AC *)
+let init2Cps_isosceles_AB_AC = (* 2C settings with isosceles AB=AC *)
   let (fn,ps) = init2Cps in
   let (extra,fillfn,outdomfn,areafn,keyfn) = fn in
   let outdomfn' (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
@@ -42,6 +42,16 @@ let init2Cps_isosceles = (* 2C settings with isosceles AB=AC *)
     (disjoint_I dAB dAC or dBC >> dAC or a >> aK) in
   let fn = (extra,fillfn,outdomfn',areafn,keyfn) in
   (fn,ps);;
+
+let init2Cps_isosceles_BC_AC = (* 2C settings with isosceles BC=AC *)
+  let (fn,ps) = init2Cps in
+  let (extra,fillfn,outdomfn,areafn,keyfn) = fn in
+  let outdomfn' (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+		 (dAC,thACB,thCAB,arcB)) = 
+    (disjoint_I dBC dAC or dAB >> dAC or a >> aK) in
+  let fn = (extra,fillfn,outdomfn',areafn,keyfn) in
+  (fn,ps);;
+
     
 (* June 7, 2016: completed running : *)
 (* Needs about 1GB of memory. A few hours to run on my laptop. *)
@@ -216,7 +226,7 @@ i=6, w=0.00781, length(ccs)=6670
 CPU time (user): 3701.076
 val calc_pent3AC_postcluster : bool = true
   *)
-let calc_pent3AC_postcluster = 
+let calc_pent3AC_postcluster() = 
   let i = 0 in
   let cluster_areacut = int 3*aK in
   let width = (1//2) in
@@ -526,6 +536,290 @@ let calc_pent2_postcluster_case4() =
   let _ = report("pent2_postcluster_case4:BC shared, AB egressive. ") in
   time (mitm_recursion i initialized cluster_areacut width pdata cfn) ccs;;
 
+(*
+ precluster1_case0
+i=0, w=0.50000, length(ccs)=117
+ length(ps)=210 maxkey=18 keysum=2290 phash=32
+i=1, w=0.25000, length(ccs)=242
+ length(ps)=1145 maxkey=64 keysum=28215 phash=160
+i=2, w=0.12500, length(ccs)=1316
+ length(ps)=5923 maxkey=80 keysum=116268 phash=494
+i=3, w=0.06250, length(ccs)=6575
+ length(ps)=24180 maxkey=100 keysum=546726 phash=1824
+i=4, w=0.03125, length(ccs)=25772
+ length(ps)=94159 maxkey=75 keysum=1964242 phash=4137
+i=5, w=0.01562, length(ccs)=31544
+ length(ps)=305333 maxkey=75 keysum=6064392 phash=6673
+i=6, w=0.00781, length(ccs)=19239
+ length(ps)=722584 maxkey=60 keysum=14248464 phash=7068
+i=7, w=0.00391, length(ccs)=33
+ length(ps)=511557 maxkey=60 keysum=9880684 phash=5928
+CPU time (user): 4609.216
+val precluster1_case0 : bool = true
+*)
+(* done June 10 *)
+let precluster1_case0() = 
+  let i = 0 in
+  let cluster_areacut = two*aK in
+  let width = (1//2) in
+  (* init peripheral *)
+  let ps = init2Cps in
+  let _ = Hashtbl.reset phash in
+  let pdata = Some(phash,ps) in
+  (* init central *)
+  let extra = () in
+  let range = merge_I (18 // 10) (192//100) in
+  let fillfn () = mk2Ce range in
+  let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = 
+    (disjoint_I dAC range or disjoint_I dAB range or disjoint_I dBC (merge_I (two*kappa) (17//10))) in
+  let areafn (a,_,_,_) = a in
+  let keyfn w (_,_,_,(dAC,thACB,thCAB,_)) = key_invert w (dAC,thACB,thCAB) in
+  let keyfns = [keyfn] in
+  let cfn = (extra,fillfn,outdomfn,areafn,keyfns) in
+  let xalpha = zero2 (two*sigma) in
+  let alpha = (zero2 pi45) in (* extended coords *)
+  let ccoord = 
+    [xalpha;alpha;xalpha;alpha] in
+  (* init central ccs *)
+  let cencut = (aK + epso_I).high in 
+  let ccs = [(ccoord,cencut);] in 
+  let initialized = false in
+  let _ = area_I (18//10) (192//100) (two*kappa) >> aK+epso_I or 
+    failwith "range_check" in
+  let _ = area_I (18//10) (18//10) (17//10) >> aK+epso_I or
+    failwith "range_check" in
+  let _ = report "precluster1_case0" in
+  time (mitm_recursion i initialized cluster_areacut width pdata cfn) ccs;;
+
+(*
+precluster1 case1 midpointer
+i=0, w=0.50000, length(ccs)=4
+ length(ps)=210 maxkey=18 keysum=2290 phash=20
+i=1, w=0.25000, length(ccs)=12
+ length(ps)=1025 maxkey=64 keysum=25304 phash=96
+i=2, w=0.12500, length(ccs)=28
+ length(ps)=4942 maxkey=80 keysum=97104 phash=273
+i=3, w=0.06250, length(ccs)=96
+ length(ps)=17352 maxkey=100 keysum=402550 phash=1042
+i=4, w=0.03125, length(ccs)=144
+ length(ps)=27954 maxkey=60 keysum=589836 phash=1469
+i=5, w=0.01562, length(ccs)=19
+ length(ps)=51395 maxkey=60 keysum=1078836 phash=1391
+CPU time (user): 168.652
+val precluster1_case1 : bool = true
+*)
+let precluster1_case1 = 
+  let i = 0 in
+  let cluster_areacut = two*aK in
+  let width = (1//2) in
+  (* init peripheral *)
+  let ps = init2Cps in
+  let _ = Hashtbl.reset phash in
+  let pdata = Some(phash,ps) in
+  (* init central *)
+  let extra = () in
+  (* the midpointer edge AC gives triangle 1,kappa,1.8 *)
+  let theta' = iarc one (18//10) kappa in
+  let out_of_theta' t = 
+    let t' = map abs_I (Pet.periodize_pent t) in 
+    forall (disjoint_I theta') t' in
+  let fillfn _ [dAB;thABC;thBAC;dBC;dAC] = 
+    fillout5D ((dAB,thABC,thBAC),dBC,dAC) in
+  let outdom1 ((dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	       (dAC,thACB,thCAB,arcB)) = out_of_theta' thACB in
+  let outdomfn (_,dds) = forall outdom1 dds in
+    (* note AB is shared, AC is egressive and contact *)
+  let areafn (a,_) = a in
+  let keyfn w fs = key_inverts w (edge5D_ABs fs) in (* case *)
+  let keyfns = [keyfn] in
+  let cfn = (extra,fillfn,outdomfn,areafn,keyfns) in
+  (* init central ccs *)
+  let z2 = zero2 pi25 in
+  let k18 = (18//10) in
+  let kshared = merge_I (18//10) (192//100) in
+  let kshort = merge_I (two*kappa) (17//10) in
+  let (dAB,dBC,dAC) = (kshared,kshort,k18) in
+  let ccoord = [dAB;z2;z2;dBC;dAC] in 
+  let cencut = (aK + epso_I).high in 
+  let ccs = [(ccoord,cencut);] in 
+  let initialized = false in
+  let _ = report("precluster1 case1 midpointer") in
+  time (mitm_recursion i initialized cluster_areacut width pdata cfn) ccs;;
+
+(* done June 10, 2016:
+precluster1 case2 slider
+i=0, w=0.50000, length(ccs)=9
+ length(ps)=210 maxkey=18 keysum=2290 phash=20
+i=1, w=0.25000, length(ccs)=66
+ length(ps)=1145 maxkey=64 keysum=28215 phash=96
+i=2, w=0.12500, length(ccs)=286
+ length(ps)=5923 maxkey=80 keysum=116268 phash=337
+i=3, w=0.06250, length(ccs)=1247
+ length(ps)=24179 maxkey=100 keysum=546710 phash=1459
+i=4, w=0.03125, length(ccs)=1871
+ length(ps)=84884 maxkey=75 keysum=1802461 phash=3383
+i=5, w=0.01562, length(ccs)=1717
+ length(ps)=137741 maxkey=75 keysum=2858631 phash=4165
+i=6, w=0.00781, length(ccs)=926
+ length(ps)=119119 maxkey=60 keysum=2293112 phash=3467
+CPU time (user): 809.716
+val precluster1_case2 : bool = true
+  *)
+let precluster1_case2() = 
+  let i = 0 in
+  let cluster_areacut = two*aK in
+  let width = (1//2) in
+  (* init peripheral *)
+  let ps = init2Cps in
+  let _ = Hashtbl.reset phash in
+  let pdata = Some(phash,ps) in
+  (* init central *)
+  let extra = () in
+  let notslider1 (t, t') = disjoint_I zero (t+t') in
+  let notslider (t, t') = 
+    let s = Pet.periodize_pent t in
+    let s'= Pet.periodize_pent t' in
+    forall (notslider1) (outerpair s s') in
+  let fillfn _ [dAB;thABC;thBAC;dBC;dAC] = 
+    fillout5D ((dAB,thABC,thBAC),dBC,dAC) in
+  let outdom1 ((dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	       (dAC,thACB,thCAB,arcB)) = 
+    (disjoint_I dAC (18//10) && disjoint_I dBC (18//10) or
+       notslider (thACB,thCAB)) in 
+  let outdomfn (_,dds) = forall outdom1 dds in
+    (* note AB is shared, AC is contact slider, either AB,AC egressive *)
+  let areafn (a,_) = a in
+  let keyfn w fs = key_inverts w (edge5D_ABs fs) in (* case *)
+  let keyfns = [keyfn] in
+  let cfn = (extra,fillfn,outdomfn,areafn,keyfns) in
+  (* init central ccs *)
+  let z2 = zero2 pi25 in
+  let kshared = merge_I (18//10) (192//100) in
+  let kfull = merge_I (two*kappa) (192//100) in
+  let (dAB,dBC,dAC) = (kshared,kfull,kfull) in
+  let ccoord = [dAB;z2;z2;dBC;dAC] in 
+  let cencut = (aK + epso_I).high in 
+  let ccs = [(ccoord,cencut);] in 
+  let initialized = false in
+  let _ = report("precluster1 case2 slider") in
+  time (mitm_recursion i initialized cluster_areacut width pdata cfn) ccs;;
+
+(* next precluster2, running. *)
+let precluster2_case0() = 
+  let i = 0 in
+  let cluster_areacut = two*aK in
+  let width = (1//2) in
+  (* init peripheral *)
+  let ps = init2Cps in
+  let _ = Hashtbl.reset phash in
+  let pdata = Some(phash,ps) in
+  (* init central, 2C+2C, AB is longest edge on T0 *)
+  let extra = () in
+  let sharedrange = merge_I (172 // 100) (18//10) in
+  let fillfn () = mk2Ce sharedrange in
+  let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+		(dAC,thACB,thCAB,arcB)) = 
+    (disjoint_I dAC sharedrange or disjoint_I dAB sharedrange or 
+       disjoint_I dBC (merge_I (two*kappa) (18//10)) or
+    dAB << dAC or dAB << dBC) in
+  let areafn (a,_,_,_) = a in
+  let keyfn w (_,_,_,(dAC,thACB,thCAB,_)) = key_invert w (dAC,thACB,thCAB) in
+  let keyfns = [keyfn] in
+  let cfn = (extra,fillfn,outdomfn,areafn,keyfns) in
+  let xalpha = zero2 (two*sigma) in
+  let alpha = (zero2 pi45) in (* extended coords *)
+  let ccoord = 
+    [xalpha;alpha;xalpha;alpha] in
+  (* init central ccs *)
+  let cencut = (aK + epso_I).high in 
+  let ccs = [(ccoord,cencut);] in 
+  let initialized = false in
+  let _ = report "precluster2_case0" in
+  time (mitm_recursion i initialized cluster_areacut width pdata cfn) ccs;;
+
+
+(* ready to run *)
+let precluster2_case1 = 
+  let i = 0 in
+  let cluster_areacut = two*aK in
+  let width = (1//2) in
+  (* init peripheral *)
+  let ps = init2Cps in
+  let _ = Hashtbl.reset phash in
+  let pdata = Some(phash,ps) in
+  (* init central, midpointer A->C, isosceles, AB shared. *)
+  let extra = () in
+  (* midpointer edge AC gives triangle 1,kappa,1.8 *)
+  let sharedrange = merge_I (172//100) (18//10) in
+  let fullrange = merge_I (two*kappa) (18//10) in
+  let out_of_midpointer dAC thACB =
+    forall (fun t -> disjoint_I kappa (iloc one dAC t))
+      (Pet.periodize_pent thACB) in
+  let fillfn _ [dAB;thABC;thBAC;dBC;dAC] = 
+    fillout5D ((dAB,thABC,thBAC),dBC,dAC) in
+  let outdom1 ((dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	       (dAC,thACB,thCAB,arcB)) = out_of_midpointer dAC thACB 
+    or (disjoint_I dAB dAC && disjoint_I dBC dAC) 
+    or (disjoint_I dAB sharedrange) 
+    or (disjoint_I dAC fullrange)
+    or (disjoint_I dBC fullrange) in
+  let outdomfn (_,dds) = forall outdom1 dds in
+  let areafn (a,_) = a in
+  let keyfn w fs = key_inverts w (edge5D_ABs fs) in (* caseAB *)
+  let keyfns = [keyfn] in
+  let cfn = (extra,fillfn,outdomfn,areafn,keyfns) in
+  (* init central ccs *)
+  let z2 = zero2 pi25 in
+  let (dAB,dBC,dAC) = (sharedrange,fullrange,fullrange) in
+  let ccoord = [dAB;z2;z2;dBC;dAC] in 
+  let cencut = (aK + epso_I).high in 
+  let ccs = [(ccoord,cencut);] in 
+  let initialized = false in
+  let _ = report("precluster2 case1 midpointer") in
+  time (mitm_recursion i initialized cluster_areacut width pdata cfn) ccs;;
+
+(* need to edit *)
+let precluster2_case2() = 
+  let _ = failwith "in prep" in 
+  let i = 0 in
+  let cluster_areacut = two*aK in
+  let width = (1//2) in
+  (* init peripheral *)
+  let ps = init2Cps in
+  let _ = Hashtbl.reset phash in
+  let pdata = Some(phash,ps) in
+  (* init central *)
+  let extra = () in
+  let notslider1 (t, t') = disjoint_I zero (t+t') in
+  let notslider (t, t') = 
+    let s = Pet.periodize_pent t in
+    let s'= Pet.periodize_pent t' in
+    forall (notslider1) (outerpair s s') in
+  let fillfn _ [dAB;thABC;thBAC;dBC;dAC] = 
+    fillout5D ((dAB,thABC,thBAC),dBC,dAC) in
+  let outdom1 ((dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	       (dAC,thACB,thCAB,arcB)) = 
+    (disjoint_I dAC (18//10) && disjoint_I dBC (18//10) or
+       notslider (thACB,thCAB)) in 
+  let outdomfn (_,dds) = forall outdom1 dds in
+    (* note AB is shared, AC is contact slider, either AB,AC egressive *)
+  let areafn (a,_) = a in
+  let keyfn w fs = key_inverts w (edge5D_ABs fs) in (* case *)
+  let keyfns = [keyfn] in
+  let cfn = (extra,fillfn,outdomfn,areafn,keyfns) in
+  (* init central ccs *)
+  let z2 = zero2 pi25 in
+  let kshared = merge_I (18//10) (192//100) in
+  let kfull = merge_I (two*kappa) (192//100) in
+  let (dAB,dBC,dAC) = (kshared,kfull,kfull) in
+  let ccoord = [dAB;z2;z2;dBC;dAC] in 
+  let cencut = (aK + epso_I).high in 
+  let ccs = [(ccoord,cencut);] in 
+  let initialized = false in
+  let _ = report("precluster2 case2 slider") in
+  time (mitm_recursion i initialized cluster_areacut width pdata cfn) ccs;;
+
+1;;
 (* done: June 8, dimer.
 dimer with Tin isosceles
 i=0, w=0.50000, length(ccs)=261
@@ -547,12 +841,12 @@ i=7, w=0.00391, length(ccs)=18442
 CPU time (user): 4955.264
 val dimer_isosceles_precluster : bool = true
 *)
-let dimer_isosceles_precluster = 
+let dimer_isosceles_precluster() = 
   let i = 0 in
   let cluster_areacut = two*aK in
   let width = (1//2) in
   (* init peripheral *)
-  let ps = init2Cps_isosceles in (* note isosceles contraint on Tin *)
+  let ps = init2Cps_isosceles_AB_AC in (* note isosceles contraint on Tin *)
   let _ = Hashtbl.reset phash in
   let pdata = Some(phash,ps) in
   (* init central *)
@@ -576,10 +870,8 @@ let dimer_isosceles_precluster =
   let _ = report ("dimer with Tin isosceles") in
   time (mitm_recursion i initialized cluster_areacut width pdata cfn) ccs;;
 
-1;;
-(* June 7, 2016. Goes out to i=6, then come close
-   to exhausting memory. Process killed.  *)
-(* partial data:
+(* June 9, 2016. Memory failure: (on 3.7GB computer) *)
+(* 
 i=0, w=0.50000, length(ccs)=252
  length(ps)=210 maxkey=18 keysum=2290 phash=32
 i=1, w=0.25000, length(ccs)=950
@@ -594,14 +886,25 @@ i=5, w=0.01562, length(ccs)=129534
  length(ps)=377416 maxkey=75 keysum=7540074 phash=8495
 i=6, w=0.00781, length(ccs)=176206
  length(ps)=982750 maxkey=60 keysum=19206568 phash=10958
-  C-c C-cFailed after (user) CPU time of 11434.192: Interrupted.
+Failed after (user) CPU time of 12897.904: Out of memory during evaluation.
+
+Rerunning with isosceles constraint, the process
+gets killed (not by me):
+...
+i=10, w=0.00049, length(ccs)=449541
+ length(ps)=692552 maxkey=36 keysum=12078074 phash=19039
+i=11, w=0.00024, length(ccs)=580385
+ length(ps)=1009136 maxkey=36 keysum=17587311 phash=27470
+i=12, w=0.00012, length(ccs)=626882
+Killed
 *)
-let precluster4 = 
+(* June 9, it dies on me: *)
+let precluster4_case0() = 
   let i = 0 in
   let cluster_areacut = two*aK - epso'_I in
   let width = (1//2) in
   (* init peripheral *)
-  let ps = init2Cps in
+  let ps = init2Cps_isosceles_AB_AC in
   let _ = Hashtbl.reset phash in
   let pdata = Some(phash,ps) in
   (* init central *)
@@ -622,18 +925,37 @@ let precluster4 =
   let cencut = (aK + epso_I - epso'_I).high in 
   let ccs = [(ccoord,cencut);] in 
   let initialized = false in
-  let _ = report "precluster4" in
+  let _ = report "precluster4_case0 isosceles Tin AB=AC" in
   time (mitm_recursion i initialized cluster_areacut width pdata cfn) ccs;;
 
-Hashtbl.reset phash;;
-Gc.full_major();;
+(* not run *)
+let precluster4_case1 = 
+  let i = 0 in
+  let cluster_areacut = two*aK - epso'_I in
+  let width = (1//2) in
+  (* init peripheral *)
+  let ps = init2Cps_isosceles_BC_AC in
+  let _ = Hashtbl.reset phash in
+  let pdata = Some(phash,ps) in
+  (* init central *)
+  let extra = () in
+  let range = merge_I (172 // 100) (18//10) in
+  let fillfn () = mk2Ce range in
+  let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = 
+    (dAB << 18 // 10 or dBC >> 18 // 10 or disjoint_I dAC range) in
+  let areafn (a,_,_,_) = a in
+  let keyfn w (_,_,_,(dAC,thACB,thCAB,_)) = key_invert w (dAC,thACB,thCAB) in
+  let keyfns = [keyfn] in
+  let cfn = (extra,fillfn,outdomfn,areafn,keyfns) in
+  let xalpha = zero2 (two*sigma) in
+  let alpha = (zero2 pi45) in (* extended coords *)
+  let ccoord = 
+    [xalpha;alpha;xalpha;alpha] in
+  (* init central ccs *)
+  let cencut = (aK + epso_I - epso'_I).high in 
+  let ccs = [(ccoord,cencut);] in 
+  let initialized = false in
+  let _ = report "precluster4_case1 isosceles Tin BC=AC" in
+  time (mitm_recursion i initialized cluster_areacut width pdata cfn) ccs;;
 
-Obj.size(Obj.repr (Some (pi45,pi15,zero,one,pi),Some 3,Some 1.0));;
-pi45;;
-1_345;;
-1345n;;
-(Obj.magic(Obj.field (Obj.repr pi45) 1):int);;
-(Obj.magic(Obj.field (Obj.repr pi45.low) 3):int);;
-aK + four*epso_I;;
-float_of_int(1 lsl 30) /. (1.0e9);;
-aK - epso_I;;
+(* end of file *)
