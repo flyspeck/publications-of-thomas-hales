@@ -218,6 +218,8 @@ let epso_I = aK - amin;;
 
 let epso'_I = 7 // 1000;;
 
+let epso''_I = 8 // 1000;;
+
 (* basic geometry *)
 
 let sqrt_I x = 
