@@ -219,3 +219,81 @@ let recurse_hyp4 (f,dom) = recurs_xeps (one_Tin_T0 hyp4_drange_Tin hyp4_Tin_disj
 
 (* hyp4 only has the generic case *)
 recurse_hyp4 (mkT0_generalAD,dom_general);; (* not done *)
+
+
+(* June 13, 2016 addition 
+Test deformability and badness of 2C isosceles triangles.
+
+
+*)
+
+(* repeat from mitm-calcs.ml *)
+let forall_alpha0 f t = 
+  let ts = Pet.periodize_pent0 t in
+  forall f ts;;
+
+let forall_alpha f t = 
+  let ts = Pet.periodize_pent t in
+  forall f ts;;
+
+let forall_alpha_pair f (t,t') = 
+    let s = Pet.periodize_pent t in
+    let s'= Pet.periodize_pent t' in
+    forall f (outerpair s s');;
+
+let coord2Ce = 
+  let xalpha = zero2 (two*sigma) in
+  let alpha = (zero2 pi45) in (* extended coords *)
+    [xalpha;alpha;xalpha;alpha];;
+
+(* end repeat *)
+
+recursetoeps;;
+
+
+let outofdomain_2Cisos_ZE = 
+  let _ = area_I (178//100) (178//100) (two*kappa) >> (aK - epso''_I) or
+    failwith "178" in
+  fun xs ->
+    try 
+      let range = merge_I (172//100) (178//100) in 
+      match mk2Ce range xs with
+      | None -> true
+      | Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	      (dAC,thACB,thCAB,arcB)) ->
+	a >> aK - epso''_I or
+	  disjoint_I dAC range or
+	  disjoint_I dAC dBC or
+	  forall_alpha (fun th -> th << zero) thCBA or
+	  forall_alpha_pair 
+	  (fun (thCBA,thBCA) -> abs_I thCBA >> abs_I thBCA) (thCBA,thBCA)
+    with Unstable -> false ;;
+
+(* - : int * bool = (265215, true) *)
+recursetoeps outofdomain_2Cisos_ZE [coord2Ce];;
+
+let outofdomain_2Cisos_ZF = 
+  let _ = area_I (179//100) (179//100) (two*kappa) >> (aK) or
+    failwith "179" in
+  fun xs ->
+    try 
+      let range = merge_I (172//100) (177//100) in 
+      match mk2Ce range xs with
+      | None -> true
+      | Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	      (dAC,thACB,thCAB,arcB)) ->
+	a >> aK  or
+	  disjoint_I dAC range or
+	  disjoint_I dAC dBC or
+	  forall_alpha (fun th -> th << zero) thCBA or
+	  forall_alpha_pair 
+	  (fun (thCBA,thBCA) -> abs_I thCBA >> abs_I thBCA) (thCBA,thBCA)
+    with Unstable -> false ;;
+
+(* - : int * bool = (329467, true) *)
+let _ = report "single triangle, isosceles 2C, edge length" in
+recursetoeps outofdomain_2Cisos_ZF [coord2Ce];;
+
+area_I (177//100) (177//100) (168//100) - (aK + two*epso''_I);;
+
+      

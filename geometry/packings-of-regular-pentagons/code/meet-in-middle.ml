@@ -413,4 +413,21 @@ let test1_centralpent_172 = (* repeated calc from pent.ml *)
   let initialized = false in
   mitm_recursion i initialized cluster_areacut width pdata cfn ccs;;
 
+
+let fillout6D ((dAB,thABC,thBAC),(dBC,thCBA),dAC) = 
+  if not(Pet.pet dAB thABC thBAC) then None 
+  else
+    let arcC = iarc dAC dBC dAB in
+    let arcA = iarc dAC dAB dBC in
+    let arcB = iarc dAB dBC dAC in
+    let a = areamin_acute dAC dAB dBC in
+    let thACB = - (arcA + thABC) in
+    let thBCA = - (arcB + thBAC) in
+    let thCAB = - (arcC + thCBA) in
+    if Pet.pet dAC thACB thCAB && Pet.pet dBC thBCA thCBA then
+      Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+      (dAC,thACB,thCAB,arcB))
+    else None;;
+
+
 end;;

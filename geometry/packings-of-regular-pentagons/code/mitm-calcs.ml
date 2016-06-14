@@ -38,6 +38,9 @@ let coord2Ce =
 let fillfn5 _ [dAB;thABC;thBAC;dBC;dAC] = 
   fillout5D ((dAB,thABC,thBAC),dBC,dAC);;
 
+let fillfn6 _ [dAB;thABC;thBAC;dBC;thCBA;dAC] =
+  fillout6D ((dAB,thABC,thBAC),(dBC,thCBA),dAC);;
+
 let areafn5 (a,_) = a;;
 
 let areafn2Ce (a,_,_,_) = a;;
@@ -81,7 +84,14 @@ let d_subcrit_shared =
 let d_subcrit_contact = 
   merge_I (172//100) two;;
 
-let d_shared_dimer = merge_I (172//100) (18//10);;
+let d_shared_pseudo = merge_I (172//100) (18//10);;
+
+let d_egress = 
+  let _ = area_I (172//100) (two*kappa) (204//100) >> aK + epso_I or
+      failwith "204" in
+  merge_I (18//10) (204//100);;
+
+let d_third_pseudo = merge_I (two*kappa) (18//10);;
 
 let ckeyfnBC w fs = key_inverts w (edge5D_BCs fs);;
 let ckeyfnAC w fs = key_inverts w (edge5D_ACs fs);;
@@ -122,23 +132,12 @@ let reset_peri ps =
   Some(phash,ps);;
 
 let mk_peri = 0;;
+
+(* ************************************************************ *)
+(* start calcs *)
+(* ************************************************************ *)
     
 (* June 7, 2016: completed running : *)
-(* Needs about 1GB of memory. A few hours to run on my laptop. *)
-let calc_pent4_postcluster() = 
-  let cluster_areacut = four*aK in
-  let pdata = reset_peri init2Cps in 
-  (* init central *)
-  let outdomfn _ = false in 
-  let keyfns = [ckeyfnAB;ckeyfnBC;ckeyfnAC] in
-  let cfn = (unit_extra,fillfn5,outdomfn,areafn5,keyfns) in
-  (* init central ccs *)
-  let dAB_dBC_dAC = (d_subcrit_shared,d_subcrit_shared,d_subcrit_contact) in
-  let cencut = (aK + int 3*epso_I).high in
-  let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
-  let _ = report "pent4_postcluster" in
-  time_mitm cluster_areacut pdata cfn ccs;;
-
 (*
 i=0, w=0.50000, length(ccs)=9
  length(ps)=210 maxkey=18 keysum=2290 phash=24
@@ -154,143 +153,171 @@ i=5, w=0.01562, length(ccs)=20528
  length(ps)=640510 maxkey=75 keysum=12656700 phash=10937
 val calc_pent4 : bool = true
 *)
+(* Needs about 1GB of memory. A few hours to run on my laptop. *)
+let calc_pent4_postcluster() = 
+  let cluster_areacut = four*aK in
+  let pdata = reset_peri init2Cps in 
+  let outdomfn _ = false in 
+  let keyfns = [ckeyfnAB;ckeyfnBC;ckeyfnAC] in
+  let cfn = (unit_extra,fillfn5,outdomfn,areafn5,keyfns) in
+  let dAB_dBC_dAC = (d_subcrit_shared,d_subcrit_shared,d_subcrit_contact) in
+  let cencut = (aK + int 3*epso_I).high in
+  let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
+  let _ = report "pent4_postcluster" in
+  time_mitm cluster_areacut pdata cfn ccs;;
+
+(* experimental XX *)
+let calc_pent4_6D_postcluster() = 
+  let cluster_areacut = four*aK in
+  let pdata = reset_peri init2Cps in 
+  let outdomfn _ = false in 
+  let keyfns = [ckeyfnAB;ckeyfnBC;ckeyfnAC] in
+  let cfn = (unit_extra,fillfn6,outdomfn,areafn2Ce,keyfns) in
+  let dAB_dBC_dAC = (d_subcrit_shared,d_subcrit_shared,d_subcrit_shared) in
+  let cencut = (aK + int 3*epso_I).high in
+  let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
+  let _ = report "pent4_6D_postcluster_experimental" in
+  time_mitm cluster_areacut pdata cfn ccs;;
+
 
 (* up to i=3 the peripheral numbers are the same as in pent4.
    This suggests that no case-dependent filtering happens *)
 (*
+  -- this comes very close to running out of memory.
 pent3AB
 i=0, w=0.50000, length(ccs)=9
  length(ps)=210 maxkey=18 keysum=2290 phash=24
-i=1, w=0.25000, length(ccs)=166
+i=1, w=0.25000, length(ccs)=178
  length(ps)=1145 maxkey=64 keysum=28215 phash=128
-i=2, w=0.12500, length(ccs)=1751
+i=2, w=0.12500, length(ccs)=1872
  length(ps)=5923 maxkey=80 keysum=116268 phash=409
-i=3, w=0.06250, length(ccs)=13628
- length(ps)=24180 maxkey=100 keysum=546726 phash=1789
-i=4, w=0.03125, length(ccs)=46829
- length(ps)=104154 maxkey=75 keysum=2171842 phash=4703
-i=5, w=0.01562, length(ccs)=47768
- length(ps)=567307 maxkey=75 keysum=11271902 phash=10771
-i=6, w=0.00781, length(ccs)=15484
- length(ps)=1347131 maxkey=60 keysum=26105694 phash=15760
-i=7, w=0.00391, length(ccs)=48
- length(ps)=425746 maxkey=45 keysum=8053812 phash=9154
-CPU time (user): 9183.764
+i=3, w=0.06250, length(ccs)=16012
+ length(ps)=24180 maxkey=100 keysum=546726 phash=1781
+i=4, w=0.03125, length(ccs)=63824
+ length(ps)=104194 maxkey=75 keysum=2172586 phash=4732
+i=5, w=0.01562, length(ccs)=77121
+ length(ps)=579101 maxkey=75 keysum=11492761 phash=11308
+i=6, w=0.00781, length(ccs)=42474
+ length(ps)=1676426 maxkey=60 keysum=32468871 phash=18190
+i=7, w=0.00391, length(ccs)=3202
+ length(ps)=1189092 maxkey=60 keysum=22413008 phash=18315
+CPU time (user): 17214.976
 val calc_pent3AB_postcluster : bool = true
 *)
+
 let calc_pent3AB_postcluster() =
-  let cluster_areacut = int 3*aK in
+  let cluster_areacut = int 3*aK + epso''_I in
   let pdata = reset_peri init2Cps in
-  (* init central *)
   let outdomfn _ = false in 
   let keyfns = [ckeyfnBC; ckeyfnAC] in
   let cfn = (unit_extra,fillfn5,outdomfn,areafn5,keyfns) in
-  (* init central ccs *)
-  let d_short = merge_I (two*kappa) (21//10) in
+  let _ = area_I (172//100) (172//100) (202//100) >> 
+    (aK + two * epso_I + epso''_I) or failwith "202" in
+  let d_short = merge_I (two*kappa) (202//100) in
   (* AB is not shared with a subcritical. It can be short. *)
   let dAB_dBC_dAC = (d_short,d_subcrit_shared,d_subcrit_contact) in
-  let cencut = (aK + int 2*epso_I).high in
+  let cencut = (aK + two*epso_I + epso''_I).high in
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent3AB") in
   time_mitm cluster_areacut pdata cfn ccs;;
 
-(* done, June 8, 2016 restarted ocaml to clear memory 
-pent3BC
+(* done, June 12, 2016 restarted ocaml to clear memory 
+ pent3BC
 i=0, w=0.50000, length(ccs)=9
  length(ps)=210 maxkey=18 keysum=2290 phash=24
-i=1, w=0.25000, length(ccs)=168
+i=1, w=0.25000, length(ccs)=204
  length(ps)=1145 maxkey=64 keysum=28215 phash=128
-i=2, w=0.12500, length(ccs)=2170
+i=2, w=0.12500, length(ccs)=2470
  length(ps)=5923 maxkey=80 keysum=116268 phash=409
-i=3, w=0.06250, length(ccs)=18109
- length(ps)=24180 maxkey=100 keysum=546726 phash=1793
-i=4, w=0.03125, length(ccs)=68760
- length(ps)=104229 maxkey=75 keysum=2173302 phash=4572
-i=5, w=0.01562, length(ccs)=51299
- length(ps)=451150 maxkey=75 keysum=8895515 phash=9427
-i=6, w=0.00781, length(ccs)=5563
- length(ps)=796653 maxkey=60 keysum=15629999 phash=11215
-CPU time (user): 5576.392
+i=3, w=0.06250, length(ccs)=21713
+ length(ps)=24180 maxkey=100 keysum=546726 phash=1787
+i=4, w=0.03125, length(ccs)=90059
+ length(ps)=104230 maxkey=75 keysum=2173318 phash=4650
+i=5, w=0.01562, length(ccs)=79275
+ length(ps)=487032 maxkey=75 keysum=9597249 phash=9805
+i=6, w=0.00781, length(ccs)=17076
+ length(ps)=891165 maxkey=60 keysum=17473751 phash=12487
+i=7, w=0.00391, length(ccs)=242
+ length(ps)=433719 maxkey=60 keysum=8296300 phash=9928
+CPU time (user): 7679.304
 val calc_pent3BC_postcluster : bool = true
 *)
 let calc_pent3BC_postcluster() = 
-  let cluster_areacut = int 3*aK in
+  let cluster_areacut = int 3*aK + epso''_I in
   let pdata = reset_peri init2Cps in
-  (* init central *)
   let outdomfn _ = false in 
   let keyfns = [ckeyfnAB;ckeyfnAC] in
   let cfn = (unit_extra,fillfn5,outdomfn,areafn5,keyfns) in
-  (* init central ccs *)
-  let d_short = merge_I (two*kappa) (21//10) in
-  (* BC not shared with a subcritical, can be short. *)
+  let d_short = merge_I (two*kappa) (202//100) in
   let dAB_dBC_dAC=(d_subcrit_shared,d_short,d_subcrit_contact) in
-  let cencut = (aK + int 2*epso_I).high in
+  let cencut = (aK + int 2*epso_I +epso''_I).high in
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent3BC") in
   time_mitm cluster_areacut pdata cfn ccs;;
 
 
-(* done June 9, 2016 
+(* (re)done June 12, 2016 
 pent3AC
 i=0, w=0.50000, length(ccs)=9
  length(ps)=210 maxkey=18 keysum=2290 phash=24
-i=1, w=0.25000, length(ccs)=144
+i=1, w=0.25000, length(ccs)=180
  length(ps)=1145 maxkey=64 keysum=28215 phash=128
-i=2, w=0.12500, length(ccs)=2282
+i=2, w=0.12500, length(ccs)=2619
  length(ps)=5923 maxkey=80 keysum=116268 phash=409
-i=3, w=0.06250, length(ccs)=25118
- length(ps)=24180 maxkey=100 keysum=546726 phash=1837
-i=4, w=0.03125, length(ccs)=99087
- length(ps)=104229 maxkey=75 keysum=2173302 phash=4856
-i=5, w=0.01562, length(ccs)=53598
- length(ps)=464768 maxkey=75 keysum=9342866 phash=9320
-i=6, w=0.00781, length(ccs)=6670
- length(ps)=255324 maxkey=60 keysum=4840764 phash=7661
-CPU time (user): 3701.076
+i=3, w=0.06250, length(ccs)=27287
+ length(ps)=24180 maxkey=100 keysum=546726 phash=1840
+i=4, w=0.03125, length(ccs)=114408
+ length(ps)=104229 maxkey=75 keysum=2173302 phash=4919
+i=5, w=0.01562, length(ccs)=81368
+ length(ps)=510482 maxkey=75 keysum=10203859 phash=10036
+i=6, w=0.00781, length(ccs)=22518
+ length(ps)=357195 maxkey=60 keysum=6849153 phash=9474
+i=7, w=0.00391, length(ccs)=247
+ length(ps)=146631 maxkey=45 keysum=2635204 phash=4944
+CPU time (user): 4953.868
 val calc_pent3AC_postcluster : bool = true
   *)
 let calc_pent3AC_postcluster() = 
-  let cluster_areacut = int 3*aK in
+  let cluster_areacut = int 3*aK +epso''_I in
   let pdata = reset_peri init2Cps in
-  (* init central *)
   let outdomfn _ = false in 
   let keyfns = [ckeyfnAB; ckeyfnBC] in
   let cfn = (unit_extra,fillfn5,outdomfn,areafn5,keyfns) in
-  (* init central ccs *)
-  let d_short = merge_I (two*kappa) two in
+  let d_short = merge_I (two*kappa) (202//100) in
   (* AC not shared with a subcritical. It can be short. *)
   let dAB_dBC_dAC=(d_subcrit_shared,d_subcrit_shared,d_short) in
-  let cencut = (aK + int 2*epso_I).high in
+  let cencut = (aK + int 2*epso_I + epso''_I).high in
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent3AC") in
   time_mitm cluster_areacut pdata cfn ccs;;
 
 
-
-(*
+(* redone June 13, 2016
 pent2_case0 covers 2C+2C situation
-i=0, w=0.50000, length(ccs)=201
+i=0, w=0.50000, length(ccs)=204
  length(ps)=210 maxkey=18 keysum=2290 phash=32
 i=1, w=0.25000, length(ccs)=673
  length(ps)=1145 maxkey=64 keysum=28215 phash=160
-i=2, w=0.12500, length(ccs)=2932
- length(ps)=5923 maxkey=80 keysum=116268 phash=490
-i=3, w=0.06250, length(ccs)=14729
- length(ps)=24180 maxkey=100 keysum=546726 phash=2014
-i=4, w=0.03125, length(ccs)=57444
- length(ps)=102762 maxkey=75 keysum=2145040 phash=4859
-i=5, w=0.01562, length(ccs)=54214
- length(ps)=372398 maxkey=75 keysum=7473699 phash=8591
-i=6, w=0.00781, length(ccs)=1078
- length(ps)=263475 maxkey=48 keysum=5119546 phash=7036
-CPU time (user): 2657.424
+i=2, w=0.12500, length(ccs)=2952
+ length(ps)=5923 maxkey=80 keysum=116268 phash=493
+i=3, w=0.06250, length(ccs)=14883
+ length(ps)=24180 maxkey=100 keysum=546726 phash=2015
+i=4, w=0.03125, length(ccs)=58672
+ length(ps)=102809 maxkey=75 keysum=2146056 phash=4871
+i=5, w=0.01562, length(ccs)=58365
+ length(ps)=376767 maxkey=75 keysum=7558950 phash=8679
+i=6, w=0.00781, length(ccs)=1531
+ length(ps)=287414 maxkey=48 keysum=5584270 phash=7523
+i=7, w=0.00391, length(ccs)=1
+ length(ps)=11061 maxkey=45 keysum=215495 phash=915
+CPU time (user): 2830.476
 val calc_pent2_postcluster_case0 : bool = true
-*)
-let calc_pent2_postcluster_case0() = (* done June 8 2016 *)
-  let cluster_areacut = two*aK + epso'_I in
+ *)
+let calc_pent2_postcluster_case0() = 
+  let cluster_areacut = two*aK + epso''_I in
   let pdata = reset_peri init2Cps in
   (* init central *)
-  let range = merge_I (172//100) (192//100) in
+  let range = merge_I (172//100) (193//100) in
   let fillfn () = mk2Ce range in
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = 
     (dAB << 18//10 or dBC >> 179//100 or disjoint_I dAC range or
@@ -299,9 +326,9 @@ let calc_pent2_postcluster_case0() = (* done June 8 2016 *)
   let keyfns = [ckeyfn2Ce] in
   let cfn = (unit_extra,fillfn,outdomfn,areafn2Ce,keyfns) in
   (* init central ccs *)
-  let cencut = (aK + epso_I + epso'_I).high in 
-  let assertAC = area_I (192//100) (18//10) (two*kappa) >>. cencut or 
-    failwith "please reset 1.92 bound and rerun" in
+  let cencut = (aK + epso_I + epso''_I).high in 
+  let assertAC = area_I (193//100) (18//10) (two*kappa) >>. cencut or 
+    failwith "please reset 1.93 bound and rerun" in
   let assertBC = area_I (18//10) (172//100) (179//100) >>. cencut or
     failwith "please reset 1.79 bound and rerun" in
   let ccs = [(coord2Ce,cencut);] in 
@@ -309,45 +336,44 @@ let calc_pent2_postcluster_case0() = (* done June 8 2016 *)
   time_mitm cluster_areacut pdata cfn ccs;;
 
 
-(* June 8, 2016. done:
-pent2_postcluster_case1:AB shared, AC egressive. 
+
+(* rerun June 13, 2016
+ pent2_postcluster_case1:AB shared, AC egressive. 
 i=0, w=0.50000, length(ccs)=9
  length(ps)=210 maxkey=18 keysum=2290 phash=24
-i=1, w=0.25000, length(ccs)=60
+i=1, w=0.25000, length(ccs)=54
  length(ps)=1145 maxkey=64 keysum=28215 phash=128
-i=2, w=0.12500, length(ccs)=247
- length(ps)=5923 maxkey=80 keysum=116268 phash=397
-i=3, w=0.06250, length(ccs)=738
- length(ps)=24060 maxkey=100 keysum=544590 phash=1373
-i=4, w=0.03125, length(ccs)=1892
- length(ps)=64905 maxkey=75 keysum=1378153 phash=2795
-i=5, w=0.01562, length(ccs)=521
- length(ps)=60505 maxkey=60 keysum=1220138 phash=3021
-i=6, w=0.00781, length(ccs)=43
- length(ps)=42695 maxkey=48 keysum=816152 phash=1353
-CPU time (user): 425.74
-val calc_pent2_postcluster_case1 : bool = true *)
+i=2, w=0.12500, length(ccs)=205
+ length(ps)=5923 maxkey=80 keysum=116268 phash=385
+i=3, w=0.06250, length(ccs)=781
+ length(ps)=23503 maxkey=100 keysum=532919 phash=1346
+i=4, w=0.03125, length(ccs)=2183
+ length(ps)=60670 maxkey=75 keysum=1307955 phash=2786
+i=5, w=0.01562, length(ccs)=555
+ length(ps)=62091 maxkey=60 keysum=1270767 phash=2752
+i=6, w=0.00781, length(ccs)=37
+ length(ps)=25793 maxkey=45 keysum=493034 phash=1066
+CPU time (user): 393.188
+val calc_pent2_postcluster_case1 : bool = true
+*)
 let calc_pent2_postcluster_case1() = 
-  let cluster_areacut = two*aK + epso'_I in
+  let cluster_areacut = two*aK + epso''_I in
   let pdata = reset_peri init2Cps in
-  (* init central *)
-  let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = 
-    (dAB << 172//100 or 
-       disjoint_I dBC (merge_I (two*kappa) (21//10)) or
-       forall_alpha_constraint_pseudo_dimer (thACB,thCAB)) in
-    (* note AB is shared, AC is egressive *)
+  let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+		(dAC,thACB,thCAB,arcB)) = 
+       forall_alpha_constraint_pseudo_dimer (thACB,thCAB) in
+  (* note AB is shared, AC is egressive *)
   let keyfns = [ckeyfnAB] in
   let cfn = (unit_extra,fillfn5,forall_dom outdomfn,areafn5,keyfns) in
-  (* init central ccs *)
   let d_18 = (18//10) in
-  let d_short = merge_I (two*kappa) (21//10) in
-  let dAB_dBC_dAC=(d_subcrit_shared,d_short,d_18) in
-  let cencut = (aK + epso_I + epso'_I).high in 
+  let dAB_dBC_dAC=(d_subcrit_shared,d_third_pseudo,d_18) in
+  let cencut = (aK + epso_I + epso''_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent2_postcluster_case1:AB shared, AC egressive. ") in
   time_mitm cluster_areacut pdata cfn ccs;;
 
-(* June 8, 2016 done:
+(*
+rerun June 13, 2016
 pent2_postcluster_case2:AB shared, BC egressive. 
 i=0, w=0.50000, length(ccs)=9
  length(ps)=210 maxkey=18 keysum=2290 phash=24
@@ -356,77 +382,73 @@ i=1, w=0.25000, length(ccs)=72
 i=2, w=0.12500, length(ccs)=333
  length(ps)=5923 maxkey=80 keysum=116268 phash=406
 i=3, w=0.06250, length(ccs)=1320
- length(ps)=24086 maxkey=100 keysum=545010 phash=1491
-i=4, w=0.03125, length(ccs)=2833
- length(ps)=70442 maxkey=75 keysum=1502796 phash=3254
-i=5, w=0.01562, length(ccs)=2195
- length(ps)=61152 maxkey=75 keysum=1219198 phash=3709
-i=6, w=0.00781, length(ccs)=461
- length(ps)=31550 maxkey=60 keysum=612688 phash=2484
-i=7, w=0.00391, length(ccs)=6
- length(ps)=4551 maxkey=45 keysum=87700 phash=738
-CPU time (user): 492.764
+ length(ps)=24093 maxkey=100 keysum=545130 phash=1491
+i=4, w=0.03125, length(ccs)=3005
+ length(ps)=71321 maxkey=75 keysum=1520743 phash=3267
+i=5, w=0.01562, length(ccs)=2381
+ length(ps)=64337 maxkey=75 keysum=1282728 phash=3840
+i=6, w=0.00781, length(ccs)=543
+ length(ps)=37205 maxkey=60 keysum=723806 phash=2637
+i=7, w=0.00391, length(ccs)=33
+ length(ps)=7684 maxkey=45 keysum=148313 phash=937
+CPU time (user): 516.204
 val calc_pent2_postcluster_case2 : bool = true
-  *)
+*)
+
 let calc_pent2_postcluster_case2() = 
-  let cluster_areacut = two*aK + epso'_I in
+  let cluster_areacut = two*aK + epso''_I in
   let pdata = reset_peri init2Cps in
-  (* init central *)
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
 	       (dAC,thACB,thCAB,arcB)) = 
     forall_alpha_constraint_pseudo_dimer (thBCA,thCBA) in (* case *)
     (* note AB is shared, BC is egressive *)
   let keyfns = [ckeyfnAB] in
   let cfn = (unit_extra,fillfn5,forall_dom outdomfn,areafn5,keyfns) in
-  (* init central ccs *)
   let d_18 = (18//10) in
-  let d_short = merge_I (two*kappa) (21//10) in
   let d_contact = merge_I (two*kappa) two in
   let dAB_dBC_dAC=(d_subcrit_shared,d_18,d_contact) in (* case *)
-  let cencut = (aK + epso_I + epso'_I).high in 
+  let cencut = (aK + epso_I + epso''_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent2_postcluster_case2:AB shared, BC egressive. ") in
   time_mitm cluster_areacut pdata cfn ccs;;
 
-(* June 8, done 
+(*
+rerun June 13, 2016
 pent2_postcluster_case3:BC shared, AC egressive. 
-i=0, w=0.50000, length(ccs)=9
+i=0, w=0.50000, length(ccs)=7
  length(ps)=210 maxkey=18 keysum=2290 phash=24
-i=1, w=0.25000, length(ccs)=56
+i=1, w=0.25000, length(ccs)=46
  length(ps)=1145 maxkey=64 keysum=28215 phash=128
-i=2, w=0.12500, length(ccs)=155
- length(ps)=5923 maxkey=80 keysum=116268 phash=375
-i=3, w=0.06250, length(ccs)=480
- length(ps)=21847 maxkey=100 keysum=501983 phash=1316
-i=4, w=0.03125, length(ccs)=852
- length(ps)=54718 maxkey=75 keysum=1180580 phash=2675
-i=5, w=0.01562, length(ccs)=112
- length(ps)=52448 maxkey=60 keysum=1031616 phash=2543
-i=6, w=0.00781, length(ccs)=16
- length(ps)=2870 maxkey=45 keysum=55307 phash=557
-CPU time (user): 295.116
+i=2, w=0.12500, length(ccs)=108
+ length(ps)=5923 maxkey=80 keysum=116268 phash=363
+i=3, w=0.06250, length(ccs)=533
+ length(ps)=22932 maxkey=100 keysum=523218 phash=1293
+i=4, w=0.03125, length(ccs)=908
+ length(ps)=46753 maxkey=75 keysum=1024227 phash=2500
+i=5, w=0.01562, length(ccs)=142
+ length(ps)=32599 maxkey=60 keysum=625233 phash=2094
+i=6, w=0.00781, length(ccs)=21
+ length(ps)=5172 maxkey=45 keysum=100067 phash=674
+CPU time (user): 266.188
 val calc_pent2_postcluster_case3 : bool = true
 *)
 let calc_pent2_postcluster_case3() = 
-  let cluster_areacut = two*aK + epso'_I in
+  let cluster_areacut = two*aK + epso''_I in
   let pdata = reset_peri init2Cps in
-  (* init central *)
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
 	       (dAC,thACB,thCAB,arcB)) = 
     forall_alpha_constraint_pseudo_dimer (thACB,thCAB) in (* case *)
   let keyfns = [ckeyfnBC] in (* case *)
   let cfn = (unit_extra,fillfn5,forall_dom outdomfn,areafn5,keyfns) in
-  (* init central ccs *)
   let d_18 = (18//10) in
-  let d_short = merge_I (two*kappa) (21//10) in
-  let d_contact = merge_I (two*kappa) two in
-  let dAB_dBC_dAC = (d_short,d_subcrit_shared,d_18) in (*case*)
-  let cencut = (aK + epso_I + epso'_I).high in 
+  let dAB_dBC_dAC = (d_third_pseudo,d_subcrit_shared,d_18) in (*case*)
+  let cencut = (aK + epso_I + epso''_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent2_postcluster_case3:BC shared, AC egressive. ") in
   time_mitm cluster_areacut pdata cfn ccs;;
 
-(* done June 8, 2016:
+(*
+rerun June 13, 2016
 pent2_postcluster_case4:BC shared, AB egressive. 
 i=0, w=0.50000, length(ccs)=7
  length(ps)=210 maxkey=18 keysum=2290 phash=24
@@ -435,33 +457,30 @@ i=1, w=0.25000, length(ccs)=56
 i=2, w=0.12500, length(ccs)=227
  length(ps)=5923 maxkey=80 keysum=116268 phash=393
 i=3, w=0.06250, length(ccs)=1220
- length(ps)=23887 maxkey=100 keysum=541495 phash=1464
-i=4, w=0.03125, length(ccs)=3398
- length(ps)=59859 maxkey=75 keysum=1264131 phash=3214
-i=5, w=0.01562, length(ccs)=3192
- length(ps)=86227 maxkey=75 keysum=1752765 phash=4065
-i=6, w=0.00781, length(ccs)=759
- length(ps)=48511 maxkey=60 keysum=940549 phash=3108
-i=7, w=0.00391, length(ccs)=17
- length(ps)=11138 maxkey=45 keysum=215872 phash=1033
-CPU time (user): 547.272
+ length(ps)=23910 maxkey=100 keysum=541885 phash=1464
+i=4, w=0.03125, length(ccs)=3560
+ length(ps)=60291 maxkey=75 keysum=1272339 phash=3233
+i=5, w=0.01562, length(ccs)=3425
+ length(ps)=89268 maxkey=75 keysum=1814594 phash=4151
+i=6, w=0.00781, length(ccs)=867
+ length(ps)=56043 maxkey=60 keysum=1087994 phash=3297
+i=7, w=0.00391, length(ccs)=73
+ length(ps)=16614 maxkey=45 keysum=322667 phash=1284
+CPU time (user): 584.42
 val calc_pent2_postcluster_case4 : bool = true
 *)
 let calc_pent2_postcluster_case4() = 
-  let cluster_areacut = two*aK + epso'_I in
+  let cluster_areacut = two*aK + epso''_I in
   let pdata = reset_peri init2Cps in
-  (* init central *)
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
 	       (dAC,thACB,thCAB,arcB)) = 
     forall_alpha_constraint_pseudo_dimer (thABC,thBAC) in (* case *)
   let keyfns = [ckeyfnBC] in (* case *)
   let cfn = (unit_extra,fillfn5,forall_dom outdomfn,areafn5,keyfns) in
-  (* init central ccs *)
   let d_18 = (18//10) in
-  let d_short = merge_I (two*kappa) (21//10) in
   let d_contact = merge_I (two*kappa) two in
   let dAB_dBC_dAC = (d_18,d_subcrit_shared,d_contact) in (* case *)
-  let cencut = (aK + epso_I + epso'_I).high in 
+  let cencut = (aK + epso_I + epso''_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent2_postcluster_case4:BC shared, AB egressive. ") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -617,11 +636,11 @@ let precluster2_case0() =
   let cluster_areacut = two*aK in
   let pdata = reset_peri init2Cps in
   (* init central, 2C+2C, AB is longest edge on T0 *)
-  let fillfn () = mk2Ce d_shared_dimer in
+  let fillfn () = mk2Ce d_shared_pseudo in
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
 		(dAC,thACB,thCAB,arcB)) = 
-    (disjoint_I dAC d_shared_dimer or disjoint_I dAB d_shared_dimer or 
-       disjoint_I dBC (merge_I (two*kappa) (18//10)) or
+    (disjoint_I dAC d_shared_pseudo or disjoint_I dAB d_shared_pseudo or 
+       disjoint_I dBC d_third_pseudo or
     dAB << dAC or dAB << dBC) in
   let keyfns = [ckeyfn2Ce] in
   let cfn = (unit_extra,fillfn,outdomfn,areafn2Ce,keyfns) in
@@ -657,19 +676,18 @@ let precluster2_case1() =
   let pdata = reset_peri init2Cps in
   (* init central, midpointer A->C, isosceles, AB shared. *)
   (* midpointer edge AC gives triangle 1,kappa,1.8 *)
-  let d_fullrange = merge_I (two*kappa) (18//10) in
   let out_of_midpointer dAC thACB =
     forall_alpha (fun t -> disjoint_I kappa (iloc one dAC (abs_I t))) thACB in
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
 	       (dAC,thACB,thCAB,arcB)) = out_of_midpointer dAC thACB 
     or (disjoint_I dAB dAC && disjoint_I dBC dAC) 
-    or (disjoint_I dAB d_shared_dimer) 
-    or (disjoint_I dAC d_fullrange)
-    or (disjoint_I dBC d_fullrange) in
+    or (disjoint_I dAB d_shared_pseudo) 
+    or (disjoint_I dAC d_third_pseudo)
+    or (disjoint_I dBC d_third_pseudo) in
   let keyfns = [ckeyfnAB] in (* case AB *)
   let cfn = (unit_extra,fillfn5,forall_dom outdomfn,areafn5,keyfns) in
   (* init central ccs *)
-  let dAB_dBC_dAC = (d_shared_dimer,d_fullrange,d_fullrange) in
+  let dAB_dBC_dAC = (d_shared_pseudo,d_third_pseudo,d_third_pseudo) in
   let cencut = (aK + epso_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("precluster2 case1 midpointer") in
@@ -707,8 +725,7 @@ let precluster2_case2() =
   let keyfns = [ckeyfnAB] in (* case *)
   let cfn = (unit_extra,fillfn5,forall_dom outdomfn,areafn5,keyfns) in
   (* init central ccs *)
-  let d_full = merge_I (two*kappa) (18//10) in
-  let dAB_dBC_dAC = (d_shared_dimer,d_full,d_full) in
+  let dAB_dBC_dAC = (d_shared_pseudo,d_third_pseudo,d_third_pseudo) in
   let cencut = (aK + epso_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("precluster2 case2 slider") in
@@ -810,16 +827,14 @@ val precluster4_case0_experimental : bool = true
 *)
 let precluster4_case0_experimental() = 
   let epso'_I = epso''_I in (* experimental *)
-  let cluster_areacut = two*aK - epso'_I in
+  let cluster_areacut = two*aK - epso''_I in
   let pdata = reset_peri init2Cps_isosceles_AB_AC in
-  (* init central *)
-  let fillfn () = mk2Ce d_shared_dimer in
+  let fillfn () = mk2Ce d_shared_pseudo in
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = 
-    (dAB << 18//10 or dBC >> 18//10 or disjoint_I dAC d_shared_dimer) in
+    (dAB << 18//10 or dBC >> 18//10 or disjoint_I dAC d_shared_pseudo) in
   let keyfns = [ckeyfn2Ce] in
   let cfn = (unit_extra,fillfn,outdomfn,areafn2Ce,keyfns) in
-  (* init central ccs *)
-  let cencut = (aK + epso_I - epso'_I).high in 
+  let cencut = (aK + epso_I - epso''_I).high in 
   let ccs = [(coord2Ce,cencut);] in 
   let _ = report "precluster4_case0 isosceles Tin AB=AC --experimental" in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -855,16 +870,14 @@ val precluster4_case1_experimental : bool = true
 *)
 let precluster4_case1_experimental() = 
   let epso'_I = epso''_I in (* experimental *)
-  let cluster_areacut = two*aK - epso'_I in
+  let cluster_areacut = two*aK - epso''_I in
   let pdata = reset_peri init2Cps_isosceles_BC_AC in
-  (* init central *)
-  let fillfn () = mk2Ce d_shared_dimer in
+  let fillfn () = mk2Ce d_shared_pseudo in
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = 
-    (dAB << 18//10 or dBC >> 18//10 or disjoint_I dAC d_shared_dimer) in
+    (dAB << 18//10 or dBC >> 18//10 or disjoint_I dAC d_shared_pseudo) in
   let keyfns = [ckeyfn2Ce] in
   let cfn = (unit_extra,fillfn,outdomfn,areafn2Ce,keyfns) in
-  (* init central ccs *)
-  let cencut = (aK + epso_I - epso'_I).high in 
+  let cencut = (aK + epso_I - epso''_I).high in 
   let ccs = [(coord2Ce,cencut);] in 
   let _ = report "precluster4_case1 isosceles Tin BC=AC experimental" in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -878,24 +891,207 @@ let init2Cps_precluster6 = (* T_S for precluster6 *)
   let fn = (extra,fillfn,outdomfn',areafn,keyfn) in
   (fn,ps);;
 
+(* done June 13, 2016
+precluster6 case1 AB shared Tin, egress BC
+i=0, w=0.50000, length(ccs)=7
+ length(ps)=244 maxkey=18 keysum=2650 phash=24
+i=1, w=0.25000, length(ccs)=28
+ length(ps)=1314 maxkey=64 keysum=31051 phash=128
+i=2, w=0.12500, length(ccs)=239
+ length(ps)=7071 maxkey=80 keysum=136916 phash=409
+i=3, w=0.06250, length(ccs)=2698
+ length(ps)=31771 maxkey=100 keysum=734798 phash=1610
+i=4, w=0.03125, length(ccs)=16650
+ length(ps)=128432 maxkey=100 keysum=2681334 phash=4623
+i=5, w=0.01562, length(ccs)=21352
+ length(ps)=419912 maxkey=75 keysum=8457559 phash=9809
+i=6, w=0.00781, length(ccs)=640
+ length(ps)=379620 maxkey=60 keysum=7202886 phash=9174
+CPU time (user): 2461.944
+val precluster6_case1 : bool = true
+*)
+
 let precluster6_case1() = 
-  let _ = failwith "in prep" in
   let cluster_areacut = (int 3)*aK + epso''_I in
   let pdata = reset_peri init2Cps_precluster6 in
-  (* init central *)
   let outdomfn _ = false in
   let keyfnT = ckeyfnAB in (* case *)
   let keyfnS = ckeyfnBC in (* case *)
   let cfn = 
     (unit_extra,fillfn5,forall_dom outdomfn,areafn5,[keyfnT;keyfnS]) in
-  (* init central ccs *)
-  let d_S = merge_I (18//10) (21//10) in
-  let d_AC = merge_I (two*kappa) two in
-  let d_third = merge_I (two*kappa) (18//10) in
-  let dAB_dBC_dAC = (d_shared_dimer,d_S,d_third) in
+  let dAB_dBC_dAC = (d_shared_pseudo,d_egress,d_third_pseudo) in
   let cencut = (aK + epso_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
-  let _ = report("precluster6 case1 AB shared Tin, S shared BC") in
+  let _ = report("precluster6 case1 AB shared Tin, egress BC") in
   time_mitm cluster_areacut pdata cfn ccs;;
+
+(* June 13, 2016
+precluster6 case2 AB shared Tin, egress AC
+i=0, w=0.50000, length(ccs)=7
+ length(ps)=244 maxkey=18 keysum=2650 phash=24
+i=1, w=0.25000, length(ccs)=28
+ length(ps)=1314 maxkey=64 keysum=31051 phash=127
+i=2, w=0.12500, length(ccs)=155
+ length(ps)=7071 maxkey=80 keysum=136916 phash=380
+i=3, w=0.06250, length(ccs)=1386
+ length(ps)=31771 maxkey=100 keysum=734798 phash=1380
+i=4, w=0.03125, length(ccs)=8327
+ length(ps)=118667 maxkey=100 keysum=2476272 phash=3917
+i=5, w=0.01562, length(ccs)=26215
+ length(ps)=374015 maxkey=75 keysum=7403943 phash=7378
+i=6, w=0.00781, length(ccs)=8039
+ length(ps)=1017129 maxkey=60 keysum=20105264 phash=11018
+CPU time (user): 5665.572
+val precluster6_case2 : bool = true
+*)
+let precluster6_case2() = 
+  let cluster_areacut = (int 3)*aK + epso''_I in
+  let pdata = reset_peri init2Cps_precluster6 in
+  let outdomfn _ = false in
+  let keyfnT = ckeyfnAB in (* case *)
+  let keyfnS = ckeyfnAC in (* case *)
+  let cfn = 
+    (unit_extra,fillfn5,forall_dom outdomfn,areafn5,[keyfnT;keyfnS]) in
+  let dAB_dBC_dAC = (d_shared_pseudo,d_third_pseudo,d_egress) in
+  let cencut = (aK + epso_I).high in 
+  let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
+  let _ = report("precluster6 case2 AB shared Tin, egress AC") in
+  time_mitm cluster_areacut pdata cfn ccs;;
+
+(* June 13, 2016
+precluster6 case3 BC shared Tin, egress AB
+i=0, w=0.50000, length(ccs)=9
+ length(ps)=244 maxkey=18 keysum=2650 phash=24
+i=1, w=0.25000, length(ccs)=36
+ length(ps)=1314 maxkey=64 keysum=31051 phash=128
+i=2, w=0.12500, length(ccs)=335
+ length(ps)=7071 maxkey=80 keysum=136916 phash=417
+i=3, w=0.06250, length(ccs)=3380
+ length(ps)=31771 maxkey=100 keysum=734798 phash=1741
+i=4, w=0.03125, length(ccs)=17734
+ length(ps)=134072 maxkey=100 keysum=2788537 phash=4807
+i=5, w=0.01562, length(ccs)=41632
+ length(ps)=446935 maxkey=75 keysum=9008284 phash=10798
+i=6, w=0.00781, length(ccs)=1117
+ length(ps)=524489 maxkey=60 keysum=10001913 phash=11008
+CPU time (user): 3206.716
+val precluster6_case3 : bool = true
+ *)
+let precluster6_case3() = 
+  let cluster_areacut = (int 3)*aK + epso''_I in
+  let pdata = reset_peri init2Cps_precluster6 in
+  let outdomfn _ = false in
+  let keyfnT = ckeyfnBC in (* case *)
+  let keyfnS = ckeyfnAB in (* case *)
+  let cfn = 
+    (unit_extra,fillfn5,forall_dom outdomfn,areafn5,[keyfnT;keyfnS]) in
+  let dAB_dBC_dAC = (d_egress,d_shared_pseudo,d_third_pseudo) in 
+  let cencut = (aK + epso_I).high in 
+  let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
+  let _ = report("precluster6 case3 BC shared Tin, egress AB") in
+  time_mitm cluster_areacut pdata cfn ccs;;
+
+(* June 13 
+precluster6 case4: BC shared Tin, egress AC
+i=0, w=0.50000, length(ccs)=7
+ length(ps)=244 maxkey=18 keysum=2650 phash=24
+i=1, w=0.25000, length(ccs)=27
+ length(ps)=1314 maxkey=64 keysum=31051 phash=127
+i=2, w=0.12500, length(ccs)=107
+ length(ps)=7071 maxkey=80 keysum=136916 phash=383
+i=3, w=0.06250, length(ccs)=826
+ length(ps)=31771 maxkey=100 keysum=734798 phash=1456
+i=4, w=0.03125, length(ccs)=2874
+ length(ps)=123965 maxkey=100 keysum=2600210 phash=3898
+i=5, w=0.01562, length(ccs)=2762
+ length(ps)=325598 maxkey=75 keysum=6562016 phash=7031
+i=6, w=0.00781, length(ccs)=682
+ length(ps)=769424 maxkey=60 keysum=14816718 phash=10114
+CPU time (user): 3061.752
+val precluster6_case4 : bool = true
+*)
+let precluster6_case4() = 
+  let cluster_areacut = (int 3)*aK + epso''_I in
+  let pdata = reset_peri init2Cps_precluster6 in
+  let outdomfn _ = false in
+  let keyfnT = ckeyfnBC in (* case *)
+  let keyfnS = ckeyfnAC in (* case *)
+  let cfn = 
+    (unit_extra,fillfn5,forall_dom outdomfn,areafn5,[keyfnT;keyfnS]) in
+  let dAB_dBC_dAC = (d_third_pseudo,d_shared_pseudo,d_egress) in 
+  let cencut = (aK + epso_I).high in 
+  let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
+  let _ = report("precluster6 case4: BC shared Tin, egress AC") in
+  time_mitm cluster_areacut pdata cfn ccs;;
+
+(* June 13, 2016
+precluster6 case5: AC shared Tin, egress AB
+i=0, w=0.50000, length(ccs)=9
+ length(ps)=244 maxkey=18 keysum=2650 phash=24
+i=1, w=0.25000, length(ccs)=36
+ length(ps)=1314 maxkey=64 keysum=31051 phash=128
+i=2, w=0.12500, length(ccs)=326
+ length(ps)=7071 maxkey=80 keysum=136916 phash=411
+i=3, w=0.06250, length(ccs)=2798
+ length(ps)=31771 maxkey=100 keysum=734798 phash=1672
+i=4, w=0.03125, length(ccs)=12119
+ length(ps)=134072 maxkey=100 keysum=2788537 phash=4481
+i=5, w=0.01562, length(ccs)=23075
+ length(ps)=439025 maxkey=75 keysum=8697877 phash=9282
+i=6, w=0.00781, length(ccs)=3582
+ length(ps)=1054823 maxkey=60 keysum=20897865 phash=13857
+CPU time (user): 5322.54
+val precluster6_case5 : bool = true
+ *)
+let precluster6_case5() = 
+  let cluster_areacut = (int 3)*aK + epso''_I in
+  let pdata = reset_peri init2Cps_precluster6 in
+  let outdomfn _ = false in
+  let keyfnT = ckeyfnAC in (* case *)
+  let keyfnS = ckeyfnAB in (* case *)
+  let cfn = 
+    (unit_extra,fillfn5,forall_dom outdomfn,areafn5,[keyfnT;keyfnS]) in
+  let dAB_dBC_dAC = (d_egress,d_third_pseudo,d_shared_pseudo) in 
+  let cencut = (aK + epso_I).high in 
+  let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
+  let _ = report("precluster6 case5: AC shared Tin, egress AB") in
+  time_mitm cluster_areacut pdata cfn ccs;;
+
+(* June 13, 2016
+ precluster6 case6: AC shared Tin, egress BC
+i=0, w=0.50000, length(ccs)=7
+ length(ps)=244 maxkey=18 keysum=2650 phash=24
+i=1, w=0.25000, length(ccs)=28
+ length(ps)=1314 maxkey=64 keysum=31051 phash=128
+i=2, w=0.12500, length(ccs)=150
+ length(ps)=7071 maxkey=80 keysum=136916 phash=403
+i=3, w=0.06250, length(ccs)=1183
+ length(ps)=31771 maxkey=100 keysum=734798 phash=1532
+i=4, w=0.03125, length(ccs)=3455
+ length(ps)=121944 maxkey=100 keysum=2559754 phash=3994
+i=5, w=0.01562, length(ccs)=4571
+ length(ps)=258808 maxkey=75 keysum=5264459 phash=6592
+i=6, w=0.00781, length(ccs)=6537
+ length(ps)=521777 maxkey=60 keysum=10091869 phash=7954
+i=7, w=0.00391, length(ccs)=751
+ length(ps)=643076 maxkey=45 keysum=12248922 phash=10324
+CPU time (user): 3654.536
+val precluster6_case6 : bool = true
+*)
+let precluster6_case6 = 
+  let cluster_areacut = (int 3)*aK + epso''_I in
+  let pdata = reset_peri init2Cps_precluster6 in
+  let outdomfn _ = false in
+  let keyfnT = ckeyfnAC in (* case *)
+  let keyfnS = ckeyfnBC in (* case *)
+  let cfn = 
+    (unit_extra,fillfn5,forall_dom outdomfn,areafn5,[keyfnT;keyfnS]) in
+  let dAB_dBC_dAC = (d_third_pseudo,d_egress,d_shared_pseudo) in 
+  let cencut = (aK + epso_I).high in 
+  let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
+  let _ = report("precluster6 case6: AC shared Tin, egress BC") in
+  time_mitm cluster_areacut pdata cfn ccs;;
+
+
 
 (* end of file *)

@@ -51,24 +51,23 @@ let one_iso2C' xs =
    a cloverleaf *)
 
 let one_scaleneto3C xs = 
-  let pi310 = ratpi 3 10 in
-  let dACrange = mk 1.72 2.0 in
-  let ([xalpha; alpha;  xbeta; beta],_) = xs in
-  if (alpha + beta >> pi310) or (xalpha + xbeta << m 0.1) then true
-  else
-    try
-      let v = mk2C dACrange xs in
-      if (v = None) then true
-      else 
-	let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = the v in 
+  try
+    let pi310 = ratpi 3 10 in
+    let dACrange = mk 1.72 2.0 in
+    let ([xalpha; alpha;  xbeta; beta],_) = xs in
+    if (alpha + beta >> pi310) or (xalpha + xbeta << m 0.1) then true
+    else
+      match  mk2C dACrange xs with
+      |None -> true
+      |Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	     (dAC,thACB,thCAB,arcB)) ->
 	(a >> aK) or (dAC >> m 1.79) 
-    with Unstable -> false;;
+  with Unstable -> false;;
 
 let pint_domain_constraint (a,alpha,beta,xa,xb,xc,dBC,dAC,dAB) =
   (dAC << 172 // 100) &&
     (xb >>= 9 // 10) && (* 1.0 fails *)
     (beta >>= 12 // 10) ;;   (* 1.25 fails *)
-
 
 let one_pintx xs = 
   let ([alpha;beta;xa],_) = xs in
