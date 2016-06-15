@@ -316,10 +316,6 @@ let rec mitm_recursion i initialized cluster_areacut width some_pdata cfn ccs =
       let _ = report_stats (i,width,some_pdata',ccs) in
       mitm_recursion (succ i) true cluster_areacut (width/two) some_pdata' cfn ccs;;
 
-(* deprecated:
-let mk_cendata = 0;;
-let mk_one_cendata = 0;;
-*)
 
 (***********************************************************************)
 (* set up hashtable *)
@@ -332,14 +328,8 @@ let mk_hashtbl() =
   let _ = Hashtbl.clear tbl in
   tbl;;
 
-(* let phash1 = mk_hashtbl();; *)
-
 let phash = mk_hashtbl();;  
 
-(*
-let phashBC = mk_hashtbl();;
-let phashAC = mk_hashtbl();;
-*)
 
 (***********************************************************************)
 (* implement specific calculations *)
