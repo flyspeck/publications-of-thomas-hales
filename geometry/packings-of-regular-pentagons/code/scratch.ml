@@ -1,462 +1,299 @@
-reneeds "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pent.ml";;
-reneeds "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pet.ml";;
+(* prove the pre-cluster hypotheses *)
 
+(* extend slider to the domain [0,4sigma], swapping sign above 2sigma *)
+(* the extension is continuous across 2sigma *)
 
+let ellthetax_slider xalpha = 
+  let swap xa = 
+    let (d,th,th') = ellthetax (four*sigma  - xa) zero in
+    (d,th',th) in
+  mergefn (fun xalpha -> ellthetax xalpha zero) swap
+    (fun (x1,y1,z1) (x2,y2,z2) -> merge_I x1 x2,merge_I y1 y2, merge_I z1 z2) 
+    (two*sigma)
+    xalpha;;
 
-open Pent;;
-open Pet;;
+let ellthetax_midpointer  = 
+  ellthetax sigma ;;
 
-let try_do f = 
-  let rec try_dof = function
-    | [] -> []
-    | (x::t) ->
-      try let y = f x in y :: try_dof t
-      with 
-      |  Failure s  -> report s; [] 
-      | _ -> [] in 
-  try_dof;;
-
-
-acos_I (mk 0.5 1.1);;
-thetax (m 0.1) (m 0.2);;
-sqrt_I (m (- 0.1));;
-inter_I (mk 1.0 2.0) (mk 2.1 3.0);;
-
-meet_I (mk 1.0 2.0) (mk 0.0 0.5);;
-  let range = mk 172.0 178.0 / m 100.0;;
-
-
-  let inf = one / mk_interval (-1.0,1.0);;
-disjoint_I eps_I inf;;
-
-(* start of mk_isosceles *)
-  let hasint x = 
-    let t = x - m (floor x.low) in
-    mem_I 0.0 t or mem_I 1.0 t;;
-
-(* gets the integer in x, raises unstable if solution not unique *)
-
-  let getint x = 
-    let k = m (floor x.low) in
-    let k' = if disjoint_I k x then k+one else k in
-    let _ = disjoint_I (k'+one) x or raise Unstable in
-    if meet_I k' x then Some k' else None;;
-
-
-getint (mk 1.1 1.3);;
-
-hasint (mk  (-0.9) (-0.8));;
-
-(*
-let mk_isosceles sgnalpha sgnbeta xs =
-  let [xalpha; alpha;  xbeta; beta] = xs in
-  let range = mk 172.0 179.0 / m 100.0 in
-  let range' = merge_I (two * kappa) range in
-  let pi25 = ratpi 2 5 in
-    try
-      let (dAB,thABC,thBAC) = ellthetax_sgn xalpha alpha sgnalpha in
-      let (dBC,thCBA,thBCA) = ellthetax_sgn xbeta beta sgnbeta in
-      if disjoint_I range dAB or disjoint_I range' dBC then None
-      else
-	let dAB = inter_I range dAB in
-	let dBC = inter_I range' dBC in
-	let dAC = dAB in
-	let arcB = iarc dAB dBC dAC in
-	let arcC = arcB in
-	let arcA = iarc dAC dAB dBC in
-	let a = areamin_acute dAC dAB dBC in
-	let thACB = pi25 - (arcA + thABC) in
-	let thCAB = pi25 - (arcC + thCBA) in
-	if (a >> aK) or 
-	  not(hasint ((arcB+thBAC+thBCA)/pi25)) or
-	  not(pet dAC thACB thCAB)
-	then None
-	else
-	  Some (a,dAB,dAC,dBC,arcA,arcB,arcC,thABC,thBAC,thCBA,thBCA,thACB,thCAB)
-    with e -> raise e;;
+(* notation for ps-dimers:
+   AC is the shared  edge and B is the nonshared pentagon on T_in
+   D is the nonshared edge on T0.
+	  Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB))
 *)
 
-(* B is the pentagon that touches both others.
-   alpha variables between A and B
-   beta variables between B and C.
-   when signs are true, then B is the pointer *)
+let mkT0_sliderAD dDCrange [xalphaAD] (dAC,thACD,thCAD) = 
+  let (dAD,thADC,thDAC) = ellthetax_slider xalphaAD in
+  match fillout2C dDCrange (dAD,thDAC,thADC) (dAC,thCAD,thACD) with
+  | None -> None
+  | Some (a,(dAD,thDAC,thADC,arcC),(dAC,thCAD,thACD,arcD),(dDC,thDCA,thCDA,arcA)) ->
+    Some (a,(dAD,thADC,thDAC,arcC),(dDC,thCDA,thDCA,arcA),(dAC,thACD,thCAD,arcD));;
 
-let mk2C dACrange (xs,(sgnalpha,sgnbeta)) = 
-  let [xalpha; alpha;  xbeta; beta] = xs in
-  let pi25 = ratpi 2 5 in
-    try
-      let (dAB,thABC,thBAC) = ellthetax_sgn xalpha alpha sgnalpha in
-      let (dBC,thCBA,thBCA) = ellthetax_sgn xbeta beta sgnbeta in
-      let arcBrange = iarc dAB dBC dACrange in
-      let prearc = pi25 - (thBAC+thBCA) in
-      let k = getint ((arcBrange - prearc)/pi25) in
-      if (k=None) then None
-      else
-	let arcB = prearc + the k*pi25 in
-	let dAC = iloc dAB dBC arcB in
-	let arcC = iarc dAC dBC dAB in
-	let arcA = iarc dAC dAB dBC in
-	let a = areamin_acute dAC dAB dBC in
-	let thACB = pi25 - (arcA + thABC) in
-	let thCAB = pi25 - (arcC + thCBA) in
-	if not(pet dAC thACB thCAB)
-	then None
-	else
-	  Some (a,dAB,dAC,dBC,arcA,arcB,arcC,thABC,thBAC,thCBA,thBCA,thACB,thCAB)
-    with e -> raise e;;
 
-let one_iso2C xs = 
-  let dACrange = mk 1.72 1.79 in
+let mkT0_sliderDC dADrange [xalphaDC] (dAC,thACD,thCAD) =
+  let (dDC,thCDA,thDCA) = ellthetax_slider xalphaDC in
+  match fillout2C dADrange (dAC,thACD,thCAD) (dDC,thDCA,thCDA) with
+  | None -> None
+  | Some (a, (dAC,thACD,thCAD,arcD), (dDC,thDCA,thCDA,arcA), (dAD,thADC,thDAC,arcC)) ->
+    Some (a,(dAD,thADC,thDAC,arcC),(dDC,thCDA,thDCA,arcA),(dAC,thACD,thCAD,arcD));;
+
+let dom_slider = [zero2 (four*sigma)];;
+
+let mkT0_midpointerAD dDCrange [alphaAD] (dAC,thACD,thCAD) = 
+  let (dAD,thADC,thDAC) = ellthetax_midpointer alphaAD in
+  match fillout2C dDCrange (dAD,thDAC,thADC) (dAC,thCAD,thACD) with
+  | None -> None
+  | Some (a,(dAD,thDAC,thADC,arcC),(dAC,thCAD,thACD,arcD),(dDC,thDCA,thCDA,arcA)) ->
+    Some (a,(dAD,thADC,thDAC,arcC),(dDC,thCDA,thDCA,arcA),(dAC,thACD,thCAD,arcD));;
+
+let mkT0_midpointerDC dADrange [alphaDC] (dAC,thACD,thCAD) =
+  let (dDC,thCDA,thDCA) = ellthetax_midpointer alphaDC in
+  match fillout2C dADrange (dAC,thACD,thCAD) (dDC,thDCA,thCDA) with
+  | None -> None
+  | Some (a, (dAC,thACD,thCAD,arcD), (dDC,thDCA,thCDA,arcA), (dAD,thADC,thDAC,arcC)) ->
+    Some (a,(dAD,thADC,thDAC,arcC),(dDC,thCDA,thDCA,arcA),(dAC,thACD,thCAD,arcD));;
+
+let dom_midpointer = [zero2 pi45];;
+
+let mkT0_generalAD dDCrange [xalphaAD;alphaAD] (dAC,thACD,thCAD) = 
+  let (dAD,thADC,thDAC) = ellthetax xalphaAD alphaAD in
+  match fillout2C dDCrange (dAD,thDAC,thADC) (dAC,thCAD,thACD) with
+  | None -> None
+  | Some (a,(dAD,thDAC,thADC,arcC),(dAC,thCAD,thACD,arcD),(dDC,thDCA,thCDA,arcA)) ->
+    Some (a,(dAD,thADC,thDAC,arcC),(dDC,thCDA,thDCA,arcA),(dAC,thACD,thCAD,arcD));;
+
+let dom_general = [(zero2 (two*sigma));zero2 pi45];;
+
+let mkTin_T0 = 0;;
+
+let one_Tin_T0 
+    drange_Tin
+    disjoint_from_domain_Tin
+    mkT0 drange_T0
+    disjoint_from_domain_T0  xs = 
   try
-    let v = mk2C dACrange xs in
-    if (v = None) then true
-    else 
-      let (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
-      let th = Pet.periodize_pent thABC in
-       (a >> aK) or disjoint_I dAB dAC or 
-	 forall (fun t -> t >> zero) th
+    match xs with
+    | xalphaAB :: alphaAB :: xalphaBC :: alphaBC :: xss ->
+      let v_in = mk2Ce drange_Tin [xalphaAB;alphaAB;xalphaBC;alphaBC] in
+      (match v_in with
+      | None -> true
+      | Some d_in ->  (disjoint_from_domain_Tin d_in) or 
+	let _,_,_,(dAC,thACB,thCAB,_) = d_in in
+	let v0 = mkT0 drange_T0 xss (dAC,-thACB,-thCAB) in
+	(match v0 with
+	| None -> true
+	| Some d0 -> disjoint_from_domain_T0 d_in d0))
+    | _ -> failwith "wrong number of args"
   with Unstable -> false;;
 
-let one_iso2C' xs = 
-  let dACrange = merge_I (two*kappa) (m 1.79) in
-  try
-    let v = mk2C dACrange xs in
-    if (v = None) then true
-    else 
-      let (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
-       (a >> aK) or disjoint_I dBC dAB or dAC >> dAB
-  with Unstable -> false;;
+let dom_Tin = [(zero2 (two*sigma));(zero2 pi45);(zero2 (two*sigma));(zero2 pi45)];;  
 
-(* the xalpha + xbeta condition removes the trivial case of
-   a cloverleaf *)
+ellthetax_slider (merge_I (two*sigma - m 0.1) (two*sigma + m 0.2));;
 
-let one_scaleneto3C xs = 
-  let pi310 = ratpi 3 10 in
-  let dACrange = mk 1.72 2.0 in
-  let ([xalpha; alpha;  xbeta; beta],_) = xs in
-  if (alpha + beta >> pi310) or (xalpha + xbeta << m 0.1) then true
-  else
-    try
-      let v = mk2C dACrange xs in
-      if (v = None) then true
-      else 
-	let (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	     thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
-	(a >> aK) or (dAC >> m 1.79) 
-    with Unstable -> false;;
-
-let pint_domain_constraint (a,alpha,beta,xa,xb,xc,dBC,dAC,dAB) =
-  (dAC << rat 172 100) &&
-    (xb >>= m 0.9) && (* 1.0 fails *)
-    (beta >>= m 1.2) ;;   (* 1.25 fails *)
-
-
-let one_pintx xs = 
-  let ([alpha;beta;xa],_) = xs in
-  if disjoint_from_pint alpha beta then true
-      else 
-      let (dBC,dAC,dAB,xc,xb)= pintedge_extended alpha beta xa in
-      let a = areamin_acute dBC dAC dAB in
-      let inadmissible xc a = xc >> two*sigma or (a >> aK+epso_I) in
-      inadmissible xc a or 
-	pint_domain_constraint (a,alpha,beta,xa,xb,xc,dBC,dAC,dAB);;
-
-let one_pinwheelx xs =
-  let ([alpha;beta;xc],_) = xs in
-  if alpha+beta >> pi15 then true
-      else 
-      let (d1,d2,d3)= pinwheeledge alpha beta xc in
-      let a = areamin_acute d1 d2 d3 in
-      let inadmissible = (a >> aK+epso_I) in
-      let domain_constraint = (xc << m 0.8) in (* 0.7 fails 0.8 works *)
-      inadmissible or domain_constraint;;
-
-(* needed for the numerical stability of L3 type L-junctions
-   in 3C dimer coordinates *)
-
-let one_ljx xs =
-  let ([alpha;beta;xa],_) = xs in
-  if disjoint_from_lj alpha beta then true
-  else 
-    try
-      let (d1,d2,d3)= ljedge alpha beta xa in
-      let a = areamin_acute d1 d2 d3 in
-      let inadmissible = (a >> aK+epso_I) in
-      let domain_constraint = (beta << m 0.9) in (* 0.8 fails *)
-      inadmissible or domain_constraint
-    with Unstable -> false;;
-
-let one_tjx xs =
-  let ([alpha;beta;xc],_) = xs in
-  if disjoint_from_tj alpha beta then true
-  else 
-    try
-      let (d1,d2,d3)= tjedge alpha beta xc in
-      let a = areamin_acute d1 d2 d3 in
-      let inadmissible = (a >> aK+epso_I) in
-      let domain_constraint = (beta >>  m 1.0) in (* 1.0 works *)
-      inadmissible or domain_constraint
-    with Unstable -> false;;
-
-let domain_iso2C =   (* sgnalpha=false means A points to B *)
-  let zpi25 = zero2 (ratpi 2 5) in
-  let z2sig = zero2 (two*sigma) in
-  let r_slider = [z2sig;zero;z2sig;zpi25] in
-  let r_midpointer = [sigma;zpi25;z2sig;zpi25] in
-  let b = [(false,true);(false,false)] in
-  let f r = map (fun t -> (r,t)) b in
-  f r_slider @ f r_midpointer;;
-
-let domain_iso2C' =   (* sgnbeta=true means B points to C *)
-  let zpi25 = zero2 (ratpi 2 5) in
-  let zpi5 = zero2 (ratpi 1 5) in
-  let z2sig = zero2 (two*sigma) in
-  let r_slider = [z2sig;zpi25;z2sig;zero] in
-  let r_midpointer = [z2sig;zpi25;sigma;zpi5] in
-  let b = [(false,true);(true,true)] in
-  let f r = map (fun t -> (r,t)) b in
-  f r_slider @ f r_midpointer;;
-
-let domain_scaleneto3C = 
-  [(map zero2 [two*sigma;pi25;two*sigma;pi25],(true,true))];;
-
-let dummybool = (map (fun t->(t,(true,true))));;
-
-recursepairtoeps one_iso2C domain_iso2C;;
-recursepairtoeps one_iso2C' domain_iso2C';;
-recursepairtoeps one_scaleneto3C domain_scaleneto3C;;
-recursepairtoeps one_pintx (dummybool pintdomain);;
-recursepairtoeps one_pinwheelx (dummybool pinwheeldomain);;
-recursepairtoeps one_ljx (dummybool ljdomain);;
-recursepairtoeps one_tjx (dummybool tjdomain);;
-
-
-(* dimer stuff *)
-
-let dimer_constraint0 alphaB betaB xbetaB alphaD = false;;
-
-let dimer_constraint_eps eps alphaB betaB xbetaB alphaD = 
-  let nearlyt t x = (x << t + eps) && x >> t - eps in
-  nearlyt pi15 betaB && 
-    nearlyt sigma xbetaB &&
-    nearlyt zero alphaB &&
-    nearlyt zero alphaD;;
-
-let dimer_constraint1 = dimer_constraint_eps (m 0.1);;
-
-let dimer_constraint2 = dimer_constraint_eps (m 0.01);;
-
-let one_dimer_eps pseudo eps dimer_constraint xs = 
-  let ([alphaB;betaB;xbetaB;alphaD],
-       ((sB,edgeB,disjointB),(sD,edgeD,disjointD))) = xs in
-  try
-    (* subcritical triangle ABC: *)
-    if disjointB alphaB betaB xbetaB then true 
-    else
-      let (dBC,dAC,dAB) = edgeB alphaB betaB xbetaB in
-      let aABC = areamin_acute dBC dAC dAB in
-      if aABC >> aK or dAC << dAB or dAC << dBC then true
-      else
-      (* second triangle ADC of dimer: *)
-      let betaD = pi25 - betaB in
-      let xbetaD = two*sigma - xbetaB in
-      if disjointD alphaD betaD xbetaD then true
-      else 
-	let (dCD,dAC',dAD) = edgeD alphaD betaD xbetaD in
-	let aADC = areamin_acute dCD dAC' dAD in
-	let pseudodimer = dAD >> dAC' + m 0.03 && dAD >> m 1.8 in 
-	aABC + aADC >> two * aK - eps or 
-	  (pseudo && pseudodimer) or
-	  dimer_constraint alphaB betaB xbetaB alphaD
-  with | Unstable -> false;;
-
-let one_dimer = one_dimer_eps false zero;;
-
-let dimer_types = [
-  ("pint",dimer_pintedge,disjoint_from_dimer_pint)  ;
-  ("pinw",dimer_pinwheeledge,disjoint_from_dimer_pinwheel);
-  ("lj1",dimer_lj1edge,disjoint_from_dimer_lj1);
-  ("lj2",dimer_lj2edge,disjoint_from_dimer_lj2);
-  ("lj3",dimer_lj3edge,disjoint_from_dimer_lj3);
-  ("tj1",dimer_tj1edge,disjoint_from_dimer_tj1);
-  ("tj2",dimer_tj2edge,disjoint_from_dimer_tj2);
-  ("tj3",dimer_tj3edge,disjoint_from_dimer_tj3);];;
-
-let dtype = List.nth dimer_types;;
-
-let dimer_domain (i,j) = 
-  ((map zero2 [pi25;pi25;two*sigma;pi25]),
-  (dtype i,dtype j));;
-
-let dtype_labels xs = 
-  let (_,((sB,_,_),(sD,_,_))) = xs in
-  (sB,sD);;
-
-let recurse_dimer pseudo eps f d =
-    try 
-      let _ = report "..." in
-      recurserpair (1.0e-8) 0 (one_dimer_eps pseudo eps f) [d]
-    with Failure s ->
-      let (sB,sD) = dtype_labels d in
-      failwith ("one_dimer("^sB^","^sD^") "^s);;
-
-(* This does cases that don't approach the Kuperberg dimer. *)
-(* all run on 3/10/2016: *)
-let recurse0 s = recurse_dimer false zero 
-  dimer_constraint0 (dimer_domain s);;
-map (fun i -> recurse0 (0,i)) (0--7);;
-map (fun i -> recurse0 (i,0)) (0--7);;
-map (fun i -> recurse0 (4,i)) (0--7);;
-map (fun i -> recurse0 (i,4)) (0--7);;
-map (fun i -> recurse0 (5,i)) (0--7);;
-map (fun i -> recurse0 (i,5)) (0--7);;
-map (fun i -> recurse0 (6,i)) (0--7);;
-map (fun i -> recurse0 (i,6)) (0--7);;
-
-let needsmore = [1;2;3;7];;
-
-let morecases = outer (fun x y -> (x,y)) needsmore needsmore;;
-
-let recurse1 pseudo s = recurse_dimer pseudo zero 
-  dimer_constraint1 (dimer_domain s);;
-let recurse2 pseudo s = recurse_dimer pseudo zero 
-  dimer_constraint2 (dimer_domain s);;
-
-(* This reduces dimers to 0.01 nbd of Kuperberg dimer.
-   The "true" cases also explicitly exclude pseudo-dimers. *)
-recurse2 false (1,1);;
-recurse2 false (2,1);;
-recurse2 false (3,1);;
-recurse2 false (7,1);;
-
-recurse2 false (1,2);;
-recurse2 false (2,2);;
-recurse2 false (3,2);;
-recurse2 false (7,2);;
-
-recurse2 false (2,3);;
-recurse2 false (7,3);;
-
-recurse2 false (2,7);;
-recurse2 false (7,7);;
-
-(* last 4 cases exclude pseudo-dimers.
-   These tests fail with input pseudo=false. *)
-recurse2 true (1,3);;  
-recurse2 true (3,3);; 
-recurse2 true (1,7);;
-recurse2 true (3,7);;
-
-
-(* 0.007 good, 0.006 fails, 
-   so pseudo-dimer area sum is off by at most 0.007 *)
-let recurseN s = recurse_dimer false (m 0.007)
-  dimer_constraint0 (dimer_domain s);;
-recurseN (1,3);;
-recurseN (3,3);;
-recurseN (1,7);;
-recurseN (3,7);;
-(* 0.007 good *)
-
-
-(* Junk: check that the second part of 
-   pseudo-dimer can be subcritical away from Kup.
-(*	aABC + aADC >> two * aK - eps or *)
-	  aADC >> aK or
-
-let recurseM s = recurse_dimer zero dimer_constraint1 (dimer_domain s);;
-recurseM (1,3);;
-recurseM (3,3);;
-recurseM (1,7);;
-recurseM (3,7);;
-
-*)
-
-ratpi 1 5;;
-ratpi 2 5;;
-sigma;;
-
-"pinw,lj2";;
-let ce13 = map mk_interval [(0.157041264434,0.157041273797);(0.23595946395,0.235959473313);(0.237635650368,0.237635659127);(0.,9.36267570731e-09)];;
-"lj2,lj2";;
-let ce33 = map mk_interval [(0.314159255996,0.314159265359);(0.314159255996,0.314159265359);(0.301264967108,0.301264975867);(0.,9.36267570731e-09)];;
-"pinw,tj3";;
-let ce17 = map mk_interval [(0.157040665223,0.157040674586);(0.235959772919,0.235959782281);(0.237636333545,0.237636342304);(0.,9.36267570731e-09)];;
-let ce37 = map mk_interval [(0.314159255996,0.314159265359);(0.314159255996,0.314159265359);(0.301264967108,0.301264975867);(0.,9.36267570731e-09)];;
-
-"pinw,lj2";;
-let ce = map mk_interval [(0.313957621412,0.313957630775);(0.307715338265,0.307715347627);(0.416314741265,0.416314750024);(0.,9.36267570731e-09)];;
-let [ce'alphaB;ce'beta;ce'xbeta;ce'alphaD] = ce;;
-let ce'betaD = pi25 - ce'beta;;
-let ce'xbetaD = two*sigma - ce'xbeta;;
-
-let (d1,d2,d3)=dimer_lj2edge ce'alphaD ce'betaD ce'xbetaD;;
-disjoint_from_dimer_lj2 ce'alphaD ce'betaD ce'xbetaD;;
-areamin_acute d1 d2 d3;;
-aK;;
-aK;;
-
-dimer_lj3edge_extended ce'alphaD ce'betaD ce'xbetaD;;
-ce'alphaD;;
-ce'betaD;;
-ce'xbetaD;;
-dimer_lj3edge;;
-let [ce'alpha;ce'beta;ce'xc] = ce;;
-tjedge ce'alpha ce'beta ce'xc;;
-let [alpha1;beta1;xa1] = ce;;
-pintedge_extended alpha1 beta1 xa1;;
 two*sigma;;
-areamin_acute (m 1.85) (m 1.85) (two*kappa) - aK;;
-aK + epso_I;;
-ratpi 2 5;;
+
+(* let's try hypothesis 1. *)
+
+(* upper bound because otherwise not subcrtical *)
+let hyp1_drange_Tin = merge_I (18 // 10) (21 // 10);;  
+
+let hyp1_Tin_disjoint_from_domain d_in = 
+  let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = d_in in
+  (a >> aK) or (disjoint_I dAC hyp1_drange_Tin) or (dAB >> dAC) or (dBC >> dAC);;
+
+let hyp1_drange_T0 = merge_I (two*kappa) (232 // 100);;
 
 
 
+let hyp1_T0_disjoint_from_domain is_2C d_in d0 = 
+  let (a_in,_,_,_) = d_in in
+  let (a,(dAD,thADC,thDAC,arcC),(dDC,thCDA,thDCA,arcA),(dAC,thACD,thCAD,arcD)) = d0 in
+  (a_in + a >> two*aK) or (max2_I dAD dDC << 18 // 10) or 
+    (dAD << two*kappa) or (dDC << two*kappa) or (is_2C && not(pent_contact2 dAC thACD thCAD));;
 
-let one127 (sgnalpha,sgnbeta) xs  = 
-  try
-  let dACrange = mk 1.72 1.79 in
-  let v = mk2C dACrange (xs,( sgnalpha, sgnbeta)) in
-  if (v = None) then true
-  else 
-    let (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
-       (a >> rat 127 100) or disjoint_I dAB dAC or
-	 dAC >> dAB
-  with Unstable -> false;;
+let hyp1 = 0;;
 
-let domain2C =   [map zero2 [two*sigma;ratpi 2 5;two*sigma;ratpi 2 5]];;
+let recurse_hyp1 (f,dom,is_2C) = 
+  recurs_xeps 
+    (one_Tin_T0 hyp1_drange_Tin hyp1_Tin_disjoint_from_domain 
+		    f
+		    hyp1_drange_T0 (hyp1_T0_disjoint_from_domain is_2C)) [(dom_Tin @ dom)];;
 
-let recursesgn f dom = 
-  map (fun t -> recursetoeps (f t) dom)
-    [(true,true);(true,false);(false,true);(false,false)];;
+(* test 
+let xx = two*sigma - zero2 (m 0.1);;
+let xx2 = pi25 + mk (- 0.1) (0.1);;
+let xx2 = pi45 - zero2 (m 0.1);;
+let yy = zero2 (four * sigma);;
+Random.init 0;;
+let random x w = 
+  let z = inter_I x (min_I x + m(Random.float (width_I x).high) + zero2 (m w)) in
+  z;;
+let qq = 
+  let w = 0.4 in
+  let x1 = random (zero2 (two*sigma)) w in
+  let y1 = random (zero2 pi45) w in
+  let x2 = random (zero2 (two*sigma)) w in
+  let y2 = random (zero2 pi45) w in
+  let zz = random (zero2 (four*sigma)) w in
+  (w,x1,y1,x2,y2,zz,
+  time (recurs_xeps (one_Tin_T0 hyp1_drange_Tin hyp1_Tin_disjoint_from_domain 
+		    mkT0_sliderAD
+		    hyp1_drange_T0 hyp1_T0_disjoint_from_domain)) [[x1;y1;x2;y2;zz]]);;
+qq1 (* 74 secs *)
+let qq2 = qq;;
+dom_Tin;;
 
-recursesgn one127 domain2C;;
+theta'_banana;;
+*)
 
-let onedACfail (sgnalpha,sgnbeta) xs  = 
-  try
-  let v = mk_isosceles sgnalpha sgnbeta xs in
-  if (v = None) then true
-  else 
-    let (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
-       (dAC >> rat 173 100)
-  with Unstable -> false;;
-  
-recursesgn onedACfail domain2C;;
+(* run hyp1 cases *)
 
-[(0.0680620423078,0.0680620510665);(0.217492662825,0.217492672188);(0.0671386581745,0.0671386669332);(0.193473317509,0.193473326872)];;
+(* commented out to make reload easier ...
+time recurse_hyp1 (mkT0_sliderAD,dom_slider,false);; (* CPU time (user): 14541.908 : int * bool = (24811279, true) *)
+recurse_hyp1 (mkT0_sliderDC,dom_slider,false);;  (* exclude by symmetry *)
+recurse_hyp1 (mkT0_midpointerAD,dom_midpointer,false);; (* completes in 8*10^6 steps *)
+recurse_hyp1 (mkT0_midpointerDC,dom_midpointer,false);; (* done by symmetry *)
+recurse_hyp1 (mkT0_generalAD,dom_general,true);;  (* running, interrupted,
+  ran all night, making gradual progress,
+  reached count=128400000, length=9, vol=19.3444, starting with vol=25.3297.
+  So it might terminate after a few days.  *)
+*)
 
-let onedACmaxfail (sgnalpha,sgnbeta) xs  = 
-  try
-  let v = mk_isosceles sgnalpha sgnbeta xs in
-  if (v = None) then true
-  else 
-    let (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
-       (dAC << rat 178 100) (* 179, 178 fails *)
-  with Unstable -> false;;
-[(0.,8.75868279178e-09);(0.313545663681,0.313545673044);(0.,8.75868279178e-09);(0.00122708164088,0.00122709100355)];;
+(* let's try hypothesis 2. *)
 
+let hyp2_drange_Tin = merge_I (172 // 100) (18 // 10);;  
+
+let hyp2_Tin_disjoint_from_domain d_in = 
+  let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = d_in in
+  (a >> aK) or (disjoint_I dAC hyp2_drange_Tin) or (dAB >> dAC) or (dBC >> dAC);;
+
+let hyp2_drange_T0 = merge_I (172 // 100) (18 // 10);;
+
+let hyp2_T0_disjoint_from_domain d_in d0 = 
+  let (a_in,_,_,_) = d_in in
+  let (a,(dAD,thADC,thDAC,arcC),(dDC,thCDA,thDCA,arcA),(dAC,thACD,thCAD,arcD)) = d0 in
+  (a_in + a >> two*aK) or 
+    (disjoint_I dAD hyp2_drange_T0) or 
+    (disjoint_I dDC hyp2_drange_T0) or
+    max2_I dAD dDC << dAC;;
+
+let recurse_hyp2 (f,dom) = recurs_xeps (one_Tin_T0 hyp2_drange_Tin hyp2_Tin_disjoint_from_domain 
+		    f
+		    hyp2_drange_Tin hyp2_T0_disjoint_from_domain) [(dom_Tin @ dom)];;
+
+(* commented out to speed up reload 
+time recurse_hyp2 (mkT0_sliderAD,dom_slider);; (* CPU time (user): 1730.108
+- : int * bool = (2967249, true)  *)
+recurse_hyp2 (mkT0_sliderDC,dom_slider);;  (* exclude by symmetry *)
+time recurse_hyp2 (mkT0_midpointerAD,dom_midpointer);;  (* CPU time (user): 5809.192
+- : int * bool = (9918329, true) *)
+recurse_hyp2 (mkT0_midpointerDC,dom_midpointer);;  (* exclude by symmetry *)
+recurse_hyp2 (mkT0_generalAD,dom_general);;   (* not done yet *)
+*)
+
+(* Old hyp 3 *)
+area_I (m 1.8) (m 1.72) (m 1.77) - (aK + epso_I);;
+
+(* Now hypothesis 4. XX not done yet. *)
+
+let hyp4_drange_Tin = merge_I (172 // 100) (18 // 10);;  
+
+let hyp4_Tin_disjoint_from_domain d_in = 
+  let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = d_in in
+  (a >> aK) or (disjoint_I dAC hyp4_drange_Tin) or (dAB >> dAC) or (dBC >> dAC);;
+
+
+(* let hyp4_drange_T0 = merge_I (18 // 100) (195 // 100);; *)
+
+
+let hyp4_T0_disjoint_from_domain d_in d0 = 
+  let (a_in,_,_,_) = d_in in
+  let (a,(dAD,thADC,thDAC,arcC),(dDC,thCDA,thDCA,arcA),(dAC,thACD,thCAD,arcD)) = d0 in
+  (a_in + a >> two*aK) or 
+    (disjoint_I dAD hyp4_drange_T0) or 
+    (disjoint_I dDC hyp4_drange_T0) or
+    max2_I dAD dDC << dAC;;
+
+let recurse_hyp4 (f,dom) = recurs_xeps (one_Tin_T0 hyp4_drange_Tin hyp4_Tin_disjoint_from_domain 
+		    f
+		    hyp4_drange_Tin hyp4_T0_disjoint_from_domain) [(dom_Tin @ dom)];;
+
+(* hyp4 only has the generic case *)
+recurse_hyp4 (mkT0_generalAD,dom_general);; (* not done *)
+
+
+(* June 13, 2016 addition 
+Test deformability and badness of 2C isosceles triangles.
+
+
+*)
+
+(* repeat from mitm-calcs.ml *)
+let forall_alpha0 f t = 
+  let ts = Pet.periodize_pent0 t in
+  forall f ts;;
+
+let forall_alpha f t = 
+  let ts = Pet.periodize_pent t in
+  forall f ts;;
+
+let forall_alpha_pair f (t,t') = 
+    let s = Pet.periodize_pent t in
+    let s'= Pet.periodize_pent t' in
+    forall f (outerpair s s');;
+
+let coord2Ce = 
+  let xalpha = zero2 (two*sigma) in
+  let alpha = (zero2 pi45) in (* extended coords *)
+    [xalpha;alpha;xalpha;alpha];;
+
+(* end repeat *)
+
+recursetoeps;;
+
+
+let outofdomain_2Cisos_ZE = 
+  let _ = area_I (178//100) (178//100) (two*kappa) >> (aK - epso''_I) or
+    failwith "178" in
+  fun xs ->
+    try 
+      let range = merge_I (172//100) (178//100) in 
+      match mk2Ce range xs with
+      | None -> true
+      | Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	      (dAC,thACB,thCAB,arcB)) ->
+	a >> aK - epso''_I or
+	  disjoint_I dAC range or
+	  disjoint_I dAC dBC or
+	  forall_alpha (fun th -> th << zero) thCBA or
+	  forall_alpha_pair 
+	  (fun (thCBA,thBCA) -> abs_I thCBA >> abs_I thBCA) (thCBA,thBCA)
+    with Unstable -> false ;;
+
+(* - : int * bool = (265215, true) *)
+recursetoeps outofdomain_2Cisos_ZE [coord2Ce];;
+
+let outofdomain_2Cisos_ZF = 
+  let _ = area_I (179//100) (179//100) (two*kappa) >> (aK) or
+    failwith "179" in
+  fun xs ->
+    try 
+      let range = merge_I (172//100) (177//100) in 
+      match mk2Ce range xs with
+      | None -> true
+      | Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	      (dAC,thACB,thCAB,arcB)) ->
+	a >> aK  or
+	  disjoint_I dAC range or
+	  disjoint_I dAC dBC or
+	  forall_alpha (fun th -> th << zero) thCBA or
+	  forall_alpha_pair 
+	  (fun (thCBA,thBCA) -> abs_I thCBA >> abs_I thBCA) (thCBA,thBCA)
+    with Unstable -> false ;;
+
+(* - : int * bool = (329467, true) *)
+let _ = report "single triangle, isosceles 2C, edge length" in
+recursetoeps outofdomain_2Cisos_ZF [coord2Ce];;
+
+area_I (177//100) (177//100) (168//100) - (aK + two*epso''_I);;
+
+      

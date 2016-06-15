@@ -33,18 +33,26 @@ lawsines[a_, alpha_, beta_, gamma_] :=
    (a/Sin[alpha]) {Sin[beta], Sin[gamma]};
    
 thetax[xalpha_, alpha_] := 
-  Module[{ h, r, phi,psi, psip, elx, ely,
+  Module[{ h, r, phi,psi, psip, elx, ely, 
     theta, thetap},
    h = xalpha - sigma;
    r = Sqrt[h^2 + kappa^2];
    phip = ArcSin[h/r];
    delta = 6 Pi/5 - (alpha + phip);
-   elx = iloc[r,1,delta];
-   ely = iloc[r,2 sigma,delta- 3Pi/10];
-   thetap = 2Pi/5 - arc[one,elx,ely];
+   elx = loc[r,1,delta];
+   ely = loc[r,2 sigma,delta- 3Pi/10];
+   thetap = 2Pi/5 - arc[1,elx,ely];
    theta = alpha - thetap;
    {elx,theta, thetap}
    	];
+
+shifttheta[xalpha_,alpha_]:=
+  Module[{d,th,thp},
+	 {d,th,thp} = thetax[2*sigma - xalpha ,alpha - 2 Pi/5];
+	 {d,thp+2Pi/5,th}];
+
+ethetax[xalpha_,alpha_]:=
+  If[alpha > 2Pi/5,shifttheta[xalpha,alpha],thetax[xalpha,alpha]];
   
 pinwheeledge[alpha_, beta_, xgamma_] := 
   Module[{gamma, xalpha, xbeta},

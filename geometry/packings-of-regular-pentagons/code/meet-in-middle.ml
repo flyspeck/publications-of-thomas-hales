@@ -1,381 +1,433 @@
+(* Thomas Hales
+March 2016. Redone June 2016.
+
+*)
+
+
 (* needs init.ml, pent.ml open Pent. pet.ml *)
 
-needs "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pent.ml";;
-needs "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/pet.ml";;
+needs "pent.ml";;
+needs "pet.ml";;
 
 
 (*
 Meet-in-the-middle verifications of
 multi-triangle estimates.
 
-We make hash tables of areas of peripheral triangles.
-Then we compute area of central triangle, using hash tables
-to find total area of the cluster of triangles.
+One triangle is designated a central.
+The others are peripheral.
+Each peripheral triangle must share an edge with the central triangle.
 
-The keys for the hash tables are derived from shared data
+We make hash tables of areas of peripheral triangles.
+Then we compute area of central triangle and
+find total area of the cluster of triangles.
+
+The keys for the hash tables are derived from shared coords
 along common edges.
 
-Thomas Hales
-March 2016
+We structure the problems so that we wish to prove that
+various domains are empty.  
+That is, we subdivide until everything is out-of-domain.
+
 *)
 
 module Meet = struct
 
   open Pent;;
 
-let int_floor x = int_of_float (floor x);;
-
-let int_ceil x = int_of_float (ceil x);;
-
-let affine width offset r = 
-  ((r - offset)/width);;
-
-(* We rarely use integer arithmetic. *)
-let ( +~ ) = Pervasives.( + );;
-let ( *~) = Pervasives.( * );;
-let ( -~ ) = Pervasives.( - );;
-
-let ( >. ) (x:float) (y:float) = x > y;;
-let ( <. ) (x:float) (y:float) = x < y;;
-
-(* Hashtable keys are discretizations of interval domains. *)
-
-let make_a_key width offset t =
-  let im = int_floor (affine width offset t).low in
-  let iM = int_ceil (affine width offset t).high in
-  (im -- (iM -~ 1));;
-
-make_a_key (m 0.2) (m 0.1) (mk 1.01 1.1);;
-
-(* Sorting the angle keys j,k would allow the
-   peripheral triangle to be reflected before attaching to 
-   center triangle *)
-
-let make_keys width offsets ranges = 
-  let (o1,o23) = offsets in
-  let (r1,r2,r3) = ranges in
-  let k1 = make_a_key width o1 r1 in
-  let k2 = make_a_key width o23 r2 in
-  let k3 = make_a_key width o23 r3 in
-  let pair x y = (x,y) in
-(*  let sort (j,k) = if (j<k) then (j,k) else (k,j) in *)
-  let k123 = outer pair k1 ((* map sort *) (outer pair k2 k3)) in
-    map (fun (i,(j,k)) -> (i,j,k)) k123;;
-
-make_keys (m 0.2) ((m 1.0),(m 1.0)) 
-  ((mk 1.1 1.2),(mk 1.4 1.5),(mk 2.01 2.3));;
-
-(* set up hashtables *)
-
-let mk_hashtbl() = 
-  let tbl = Hashtbl.create 20000 in
-  let _ = Hashtbl.clear tbl in
-  tbl;;
-
-let subwidth width i =
-  width_I i << width / two;;
-
-let edgewidth (a,b,c) =
-  let (wa,wb,wc) = width_I a,width_I b,width_I c in
-  max3_I wa wb wc;;
-
-let normal_edge_keys width offsets edgedata = 
-  let (l,t,t') = edgedata in
-  let ts = Pet.periodize_pent t in
-  let ts' = Pet.periodize_pent t' in
-  let lpair x y = l,x,y in
-  let ls = outer lpair ts ts' in
-  map (make_keys width offsets) ls;;
-
-(*  let r =  map (fun t -> (make_keys width offsets t,t)) ls in
-    List.flatten (map (fun (ks,ed) -> map (fun k -> (k,ed)) ks) r);;
-*)
-
-let repopulate_local_tbl hash_add width offsets 
-    compute_one disjoint_from_local_domain tolist fromlist = 
-  let rec add' = function
-    | [] -> ()
-    | lp :: lps ->
-      try
-	(match compute_one lp with
-	| None -> add' lps
-	| Some (extradata,edgedata,area) ->
-	  if disjoint_from_local_domain extradata (* including area constraints *)
-	  then add' lps
-	  else 
-	    let wedge = edgewidth edgedata in
-	    let _ = subwidth width wedge or raise Unstable in
-	    let keys = normal_edge_keys width offsets edgedata in
-	    let _ =  map (fun k -> hash_add k (lp,area)) keys in
-	    add' lps)
-      with Unstable -> 
-	let ls = tolist lp in
-	let (ls1,ls2) = splitlist (1.0e-4) ls in
-	add' (fromlist (ls,ls1):: fromlist (ls,ls2):: lps) in
-  add';;
-
-(* let populate_local_hash = 0;; *)
-(* let populate_local_tbl = 0;; *)
-
-let repopulate_area_tbl 
-    local_tbl area_tbl = 
-  let f k (_,area) =
-    try 
-      let currentarea = Hashtbl.find area_tbl k in
-      if (area <. currentarea) then Hashtbl.add area_tbl k area else () 
-    with Not_found -> () in
-  Hashtbl.iter f local_tbl;;
-      
-let repopulate_peripheral 
-    area_tbl local_tbl 
-    width offsets compute_one 
-    disjoint_from_local_domain tolist fromlist localparams =
-  let _ = Hashtbl.reset area_tbl in
-  let _ = Hashtbl.reset local_tbl in
-  let _ = repopulate_local_tbl (Hashtbl.add local_tbl)  
-    width offsets
-    compute_one disjoint_from_local_domain
-    tolist fromlist localparams in
-  let _ = repopulate_area_tbl local_tbl area_tbl in
-  let l1 = Hashtbl.length local_tbl in
-  let l2 = Hashtbl.length area_tbl in
-  let _ = report (Format.sprintf "..peripheral table lengths = %d/%d" l2 l1) in
-  ();;
-
 let findsome tbl key = 
     try
       Some (Hashtbl.find tbl key)
     with Not_found -> None;;
 
-(* fix: This can't be used on hashtables of different types *)
 
-let depopulate_local_tbl =
-  let temp_tbl = Hashtbl.create 20000 in
-  fun width offsets local_tbl edgecuts ->
-  let _ = Hashtbl.reset temp_tbl in
-  let getkeys (ed,areacutoff) = 
-    let keys = normal_edge_keys width offsets ed in
-    map (fun k -> (k,areacutoff)) keys in
-  let keypairs = List.flatten (map getkeys edgecuts) in
-  let add_temp (key,area) = 
-    match findsome temp_tbl key with
-    | None -> Hashtbl.add temp_tbl key area
-    | Some current ->
-      if (area >. current) then Hashtbl.add temp_tbl key area in
-  let _ = map add_temp keypairs in
-  let f k (lp,area) buffer = 
+(***********************************************************************)
+(* set up keys *)
+(***********************************************************************)
+
+
+let int_floor x = int_of_float (floor x);;
+
+(* should be strictly larger than x *)
+let int_ceil x = 
+  let c = ceil x in 
+  let i = int_of_float c in
+  if (c = x) then succ i else i;;
+
+(* Hashtable keys are discretizations of interval domains.
+   We must have the property that if two domains have nonempty
+   intersection, then they have at least one key in common.  
+   We achieve this by enlarging the domains to a union of cubes
+   of a fixed width and attaching a key to each cube.  *)
+
+let make_a_key width  t =
+  let rescale = t/width in
+  let im = int_floor (rescale).low in
+  let iM = int_ceil (rescale).high in
+  (im -- (iM -~ 1));;
+
+int_ceil 3.0;;
+int_floor (- 2.5);;
+make_a_key (m 0.2)  (mk 1.01 1.1);;
+make_a_key one (m 3.0);;
+
+(* Sorting the angle keys j,k would allow the
+   peripheral triangle to be reflected before attaching to 
+   center triangle *)
+
+let make_keys widths ranges = 
+  let (r1,r2,r3) = ranges in
+  let (w1,w2,w3) = widths in
+  let k1 = make_a_key w1 r1 in
+  let k2 = make_a_key w2 r2 in
+  let k3 = make_a_key w3 r3 in
+  map (Hashtbl.hash) (outertriple k1 k2 k3);;
+
+make_keys (m 0.2,m 0.2,m 0.2)
+  ((mk 1.1 1.2),(mk 1.4 1.5),(mk 2.01 2.3));;
+
+let keys_of_edge width edgedata = 
+  let (l,t,t') = edgedata in
+  let ts = Pet.periodize_pent t in
+  let ts' = Pet.periodize_pent t' in
+  let triples = outertriple [l] ts ts' in
+  let s = two in (* scale factor, experimental design,
+		 used because areas are more sensitive to edge lengths
+		 than the theta variables. It reduces the size of the
+		 hash table. *)
+  List.flatten (map (make_keys (width,s*width,s*width)) triples);;
+
+let key_invert w (l,t,t') = 
+  keys_of_edge w (l,-t,-t');;  
+(* peripheral vs. central perspective.
+  We invert the central coordinates to get the peripheral ones and keys. *)
+
+let key_inverts w eds = 
+  setify (List.flatten (map (key_invert w) eds));;
+
+(***********************************************************************)
+(* peripheral triangles. *)
+(***********************************************************************)
+
+(* takes one peridatum and generates peridata at smaller width *)
+
+let widthlist xs = (* floating point ok here *)
+  let ws = map (fun x -> x.high -. x.low) xs in 
+  itlist (fun x y -> max x y) ws 0.0;;
+
+widthlist [mk 3.0 4.0; mk 7.0 9.1; mk 1.0 2.05];;
+
+let rec subdivide_subwidth width xs = 
+  let ns = map (fun t -> int_ceil (width_I t / width).high) xs in
+  let one1 (n,x) = let v =  (width_I x /int n) in
+		  let z = min_I x + zero2 v in
+		  map (fun i -> [z + v * int i]) (0--(n-~ 1)) in
+  let prs = map one1 (zip ns xs) in
+  end_itlist (fun x y -> outer ( @ ) x y) prs;;
+  
+
+let test = 
+ (subdivide_subwidth (m 2.1) [zero2 two;zero2 four;zero2 four]);;
+
+let test = 
+  let _ = time (subdivide_subwidth (one)) [mk 0.0 100.0;mk 0.0 100.7;mk 0.0 100.0] in
+  ();;
+
+let test = subdivide_subwidth one [mk 0.0 0.5];;
+
+
+(* cuts stored as snd in peripheral hashtable.
+   Any entry that has area above the cut can be discarded. *)
+
+let maxcut hash keys = 
+  let cuts = selectsome (map snd (map (Hashtbl.find hash) keys)) in
+  if cuts = [] then None
+  else
+    Some (end_itlist (fun x y -> if x >. y then x else y) cuts);;
+
+let testh = Hashtbl.create 20;;
+let _ =   Hashtbl.clear testh;;
+let _ = Hashtbl.add testh 0 (m 7.0,None);;
+let _ = Hashtbl.add testh 1 (m 7.1,Some 1.0);;
+let _ = Hashtbl.add testh 2 (m 7.2,Some 2.0);;
+let _ = Hashtbl.add testh 3 (m 7.3,Some 3.0);;
+Hashtbl.mem testh 3;;
+maxcut testh [0;3;1;3;2];;
+
+(* current min areas stored as fst in hashtable. Used by central procedures. *)
+
+let minarea hash keys = 
+  let areas = map fst (selectsome (map (findsome hash) keys)) in
+  if areas = [] then None
+  else 
+  Some  (min_I(end_itlist (fun x y -> if x.low <. y.low then x else y) areas));;
+
+minarea testh [3;1;3;2];;
+
+(* recut is used by central procedures to update periphery *)
+
+let recut phash cut' key = 
+    match findsome phash key with
+    | None -> ()
+    | Some (a,None) -> Hashtbl.add phash key (a,Some cut')
+    | Some (a,Some cut) -> 
+      if cut' >. cut then Hashtbl.replace phash key (a,Some cut');;
+
+
+(* peripheral record stored as list of (pcoord,keys,area,fn).
+   mk_one_pericoord subdivides it. 
+
+   The keys and phash here correspond to the stale width.
+*)
+
+let mk_one_pericoord initialized width phash fn (pcoord,keys,area) = 
+  let (extra,fillfn,outdomfn,areafn,keyfn) = fn in
+  let maxcut = maxcut phash keys in 
+  let overweight a = initialized &&
+    (* Don't delete anything during initialization round *)
+    (* if None, then no match was found with central triangle and can delete *)
+    (match maxcut with | None -> true | Some mx -> (a >>. mx)) in
+  let rec makesome pc = 
     try
-      let areacutoff = Hashtbl.find temp_tbl k in
-      if (area<= areacutoff) then lp::buffer
-      else buffer 
-    with Not_found -> buffer in
-  Hashtbl.fold f local_tbl [];;
+      match (fillfn extra pc) with
+      | None -> []
+      | Some fill -> (let area' = areafn fill in
+		      if (overweight area') or outdomfn fill then []
+		      else let keys' = keyfn width fill in 
+			   [(pc,keys',min_I area')])
+    with Unstable -> (let (pc1,pc2) = splitlist (1.0e-4) pc in 
+		      makesome pc1 @ makesome pc2) in
+  if overweight area then []
+  else
+    let pcs = subdivide_subwidth width pcoord in
+     (List.flatten (map makesome pcs));;
 
-let add_area_cutoff_tbl = 0;;
+(* Initial None area gets updated later by central procedures. *)
 
-(* sws is the subwidth list that must be rechecked later for
-   a small width *)
-
-let recurse_central 
-    width compute_one disjoint_from_central_domain
-    others_outofbounds 
-    areacutoff edgewidthfn tolist fromlist = 
-  let rec add' sws = 
-  function 
-  | [] -> sws
-  | lp::lps ->
-      try
-	match compute_one lp with
-	| None -> add' sws lps
-	| Some (extradata,edgedata,area) ->
-	  if area >> areacutoff or 
-	    disjoint_from_central_domain extradata or
-	    others_outofbounds edgedata (areacutoff-area) 
-	  then add' sws lps
-	  else 
-	    if subwidth width (edgewidthfn edgedata)
-	    then add' ((lp,extradata,edgedata,area)::sws) lps
-	    else raise Unstable
-      with Unstable -> 
-	let ls = tolist lp in
-	let (ls1,ls2) = splitlist (1.0e-4) ls in
-	add' sws (fromlist (ls,ls1):: fromlist (ls,ls2):: lps) in
-  add' [];;
+let update_one_perihash phash (pcoord,keys,area) = 
+  let area = min_I area in
+  let one_key k = match findsome phash k with
+    | None -> Hashtbl.add phash k (area,None)
+    | Some (ak,_) -> if area.low <. ak.low then Hashtbl.replace phash k (area,None) in
+  let _ = map one_key keys in
+  ();;
+    
+let mk_peridata initialized width (phash,(pfn,ps)) = 
+  let ps' = List.flatten (map (mk_one_pericoord initialized width phash pfn) ps) in
+  let _ = Hashtbl.clear phash in 
+  let _ = map (update_one_perihash phash) ps' in
+  (phash,(pfn,ps'));;
 
 
-let meet_one_round width_denom offsets
-    compute_central disjoint_from_central_domain
-    others_outofbounds mk_edgecuts
-    areacutoff central_edgewidthfn central_tolist central_fromlist 
-    central_params
-    peripheral_area_tbls peripheral_local_tbls 
-    compute_peripherals 
-    disjoint_from_peripheral_domains peripheral_tolists peripheral_fromlists peripheral_paramss =
-  let width = rat 1 width_denom in
-  let repopulate (area_tbl,local_tbl,c,disj,tos,froms,locals) = 
-    repopulate_peripheral area_tbl local_tbl width offsets c disj tos froms locals in
-  let zips a b c d e f g = zip a (zip b (zip c (zip d (zip e (zip f g))))) in
-  let zs = zips peripheral_area_tbls peripheral_local_tbls compute_peripherals disjoint_from_peripheral_domains peripheral_tolists peripheral_fromlists peripheral_paramss in
-  let zs1 = map (fun (a,(b,(c,(d,(e,(f,g))))))->(a,b,c,d,e,f,g)) zs in
-  let _ = map repopulate zs1 in
-  let sws = recurse_central 
-    width compute_central disjoint_from_central_domain
-    others_outofbounds 
-    areacutoff central_edgewidthfn central_tolist central_fromlist central_params in
-  let edgecutss = mk_edgecuts sws in
-  let depop (local_tbl,edgecuts) =
-    depopulate_local_tbl width offsets local_tbl edgecuts in
-  let z2 = zip peripheral_local_tbls edgecutss in
-  let buffs = map depop z2 in
-  let new_lps = map (fun (lp,_,_,_) -> lp) sws in
-  (new_lps,buffs);;
+(***********************************************************************)
+(* central triangle.  *)
+(***********************************************************************)
 
-let rec meet_in_the_middle count width_denom offsets
-    compute_central disjoint_from_central_domain
-    others_outofbounds mk_edgecuts
-    areacutoff central_edgewidthfn central_tolist central_fromlist 
-    central_params
-    peripheral_area_tbls peripheral_local_tbls 
-    compute_peripherals 
-    disjoint_from_peripheral_domains peripheral_tolists peripheral_fromlists peripheral_paramss =
-  let print ff d = report (Format.sprintf ff d) in
-  let len = List.length in
-  let _ = print "\n\nnew round: %d" count in
-  let _ = print "  width = 1/%d" width_denom in
-  let _ = print "  central list length = %d" (len central_params) in
-  let _ = map (fun r -> print "  peripheral length = %d" (len r)) peripheral_paramss in 
-  let (sws,buffs) = 
-    meet_one_round width_denom offsets
-    compute_central disjoint_from_central_domain
-    others_outofbounds mk_edgecuts
-    areacutoff central_edgewidthfn central_tolist central_fromlist 
-      central_params
-    peripheral_area_tbls peripheral_local_tbls 
-    compute_peripherals 
-    disjoint_from_peripheral_domains peripheral_tolists peripheral_fromlists peripheral_paramss in
-  if sws = [] then (print "done! count=%d" count) else
-    meet_in_the_middle (count +~ 1) (2 *~ width_denom) offsets
-    compute_central disjoint_from_central_domain
-    others_outofbounds mk_edgecuts
-    areacutoff central_edgewidthfn central_tolist central_fromlist 
-    sws
-    peripheral_area_tbls peripheral_local_tbls 
-    compute_peripherals 
-    disjoint_from_peripheral_domains peripheral_tolists peripheral_fromlists buffs;;
-		 
+let periareas width some_phash keyfns fill = 
+  if isnone(some_phash) then Some([],zero,[])
+  else
+    let phash = the some_phash in
+    let keys' = map (fun f -> f width fill) keyfns in
+    let someperiareas = map (fun keys -> minarea phash keys) keys' in
+    if exists ((=) None) someperiareas then None
+    else 
+      let periareas = map the someperiareas in
+      let total_periarea = min_I (itlist ( + ) periareas zero) in 
+      Some (periareas,total_periarea,keys');;
 
-(* now start implementation of specific calculations *)
+
+(* hashtable is mutable here: *)
+  
+let  mk_one_cencoord width cluster_areacut some_phash fn (ccoord,cencut) = 
+  let (extra,fillfn,outdomfn,areafn,keyfns) = fn in
+  let _ = ((keyfns = [])=(isnone(some_phash))) or 
+    failwith "number of peripherals" in
+  let perirecut gap some_phash (keys,periarea0) = 
+    map (recut (the some_phash) ((periarea0-gap).high)) keys in
+  let rec makesome cc = 
+    try
+      match (fillfn extra cc) with
+      | None -> []
+      | Some fill -> 
+	(let cenarea = min_I (areafn fill) in
+	 if (cenarea >>. cencut) or outdomfn fill then []
+	 else 
+	   match periareas width some_phash keyfns fill with
+	   | None -> []
+	   | Some (periareas,total_periarea,keys') ->
+	     (let clustarea = cenarea + total_periarea in
+	      let gap = clustarea - cluster_areacut in
+	      if gap >> zero then []
+	      else
+		(* mutable *)
+		let _ = map (perirecut gap some_phash) (zip keys' periareas) in
+		let cencut' = (cluster_areacut - total_periarea).high in
+		let cencut' = min cencut' cencut in
+		[(cc,cencut')]))
+    with Unstable ->
+      let (cc1,cc2) = splitlist (1.0e-4) cc in 
+      makesome cc1 @ makesome cc2 in
+  let ccs = subdivide_subwidth width ccoord in
+  List.flatten (map makesome ccs);;
+
+let mk_cencoord width cluster_areacut some_phash cfn ccs = 
+  List.flatten (map (mk_one_cencoord width cluster_areacut some_phash cfn) ccs);;
+
+let test c a p cfn ccs = 
+  (funpow 2 (mk_cencoord c a p cfn) ccs);;
+
+
+
+(***********************************************************************)
+(* main recursion *)
+(***********************************************************************)
+
+(* pdata is Some(phash,(pfn,ps)).*)
+
+let report_stats(i,width,pdata,ccs) = 
+  let s1 = Printf.sprintf "i=%d, w=%3.5f, length(ccs)=%d" 
+    i (width.low) (List.length ccs) in
+  let _ = report s1 in
+  let ls =  (function |None->0 | Some(_,(_,t)) -> List.length t) pdata in
+  let ks,kplus,ph = match pdata with
+    |None -> (0,0,0)
+    |Some(ph,(_,ps)) ->
+      let keyss = map (fun (_,k,_)-> List.length k) ps in
+      (itlist (fun x y -> max x y) keyss 0,
+       end_itlist ( +~) keyss,
+       Hashtbl.length ph) in
+  let _ = report (Printf.sprintf " length(ps)=%d maxkey=%d keysum=%d phash=%d" ls ks kplus ph) in
+  ();;
+
+
+let rec mitm_recursion i initialized cluster_areacut width some_pdata cfn ccs =
+  let _ = width >> (m (1.0e-6)) or failwith "I'm giving up at small width" in
+  let some_pdata',some_phash,empty = match some_pdata with
+    | None -> (None,None,false)
+    | Some pdata -> 
+      let pdata' = mk_peridata initialized width pdata in
+      let phash = fst pdata in
+      (Some pdata',Some phash,(snd (snd pdata')=[])) in
+  if empty then true
+  else 
+    let ccs = mk_cencoord width cluster_areacut some_phash cfn ccs in
+    if ccs = [] then true
+    else 
+      let _ = report_stats (i,width,some_pdata',ccs) in
+      mitm_recursion (succ i) true cluster_areacut (width/two) some_pdata' cfn ccs;;
+
+(* deprecated:
+let mk_cendata = 0;;
+let mk_one_cendata = 0;;
+*)
+
+(***********************************************************************)
+(* set up hashtable *)
+(***********************************************************************)
+
+(* A single global hashtable is used for all the peripheral triangles *)
+
+let mk_hashtbl() = 
+  let tbl = Hashtbl.create 100000 in
+  let _ = Hashtbl.clear tbl in
+  tbl;;
+
+(* let phash1 = mk_hashtbl();; *)
+
+let phash = mk_hashtbl();;  
+
+(*
+let phashBC = mk_hashtbl();;
+let phashAC = mk_hashtbl();;
+*)
+
+(***********************************************************************)
+(* implement specific calculations *)
+(***********************************************************************)
+
+(* fillout 5D.  Acute triangle.
+   One pent contact between A and C. A points to C. 
+   Full input coordinates (dAB,thABC,thBAC) given along edge AB. *)
+
+let fillout5D ((dAB,thABC,thBAC),dBC,dAC) = 
+  if not(Pet.pet dAB thABC thBAC) then None 
+  else
+    let arcC = iarc dAC dBC dAB in
+    let arcA = iarc dAC dAB dBC in
+    let arcB = iarc dAB dBC dAC in
+    let a = areamin_acute dAC dAB dBC in
+    let thACB = - (arcA + thABC) in
+    let thBCA = - (arcB + thBAC) in
+    let thACB0 = Pet.periodize_pent thACB in
+    let thACB_CAB_pos = map (fun t -> t,theta_banana dAC t) thACB0 in
+    let thACB_CAB_neg = map (fun t -> t,theta_banana_neg dAC t) thACB0 in
+    let thACB_CAB= mapfilter (fun (t,s) -> (t, the s)) (thACB_CAB_pos @ thACB_CAB_neg) in
+    let thACB_CAB_CBA = map (fun (t1,t) -> (t1,t,-(arcC + t))) thACB_CAB in
+    let thACB_CAB_CBA = filter (fun (_,_,th') -> Pet.pet dBC thBCA th') thACB_CAB_CBA in 
+    if (thACB_CAB_CBA = []) then None 
+    else
+	(Some (a,(map (fun (thACB,thCAB,thCBA) -> (dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB) ) thACB_CAB_CBA)));;
+
+let areafn5D (a,_) = a;;
+
+let edge5D_ABs (_,fs) = map (fun ((l,t,t',_),_,_)-> (l,t,t')) fs;;
+let edge5D_BCs (_,fs) = map (fun (_,(l,t,t',_),_)-> (l,t,t')) fs;;
+let edge5D_ACs (_,fs) = map (fun (_,_,(l,t,t',_))-> (l,t,t')) fs;;
+let test t = edge5D_ACs (the (fillout5D t));;
+
+let test1_centralpent_1237 = (* repeated calc from pent.ml *)
+  let i = 0 in
+  let cluster_areacut = (m 1.2 (* debug *)) in
+  let width = (m 0.4) in
+  let pdata = None in
+  let cencut = cluster_areacut.high in
+  let extra = () in
+  let fillfn _ [dAB;thABC;thBAC;dBC;dAC] = fillout5D ((dAB,thABC,thBAC),dBC,dAC) in
+  let outdomfn t = false in
+  let areafn (a,_) = a in
+  let keyfns = [] in
+  let z2 = zero2 in
+  let k2 = merge_I (two*kappa) in
+  let ccoord = [k2 (21//10);z2 pi25;z2 pi25;k2 (21//10);k2 two] in
+  let cfn = (extra,fillfn,outdomfn,areafn,keyfns) in
+  let ccs = [(ccoord,cencut);] in 
+  let initialized = false in
+  mitm_recursion i initialized cluster_areacut width pdata cfn ccs;;
+
+let test1_centralpent_172 = (* repeated calc from pent.ml *)
+  let i = 0 in
+  let cluster_areacut = aK in
+  let width = (m 0.1) in
+  let pdata = None in
+  let cencut = cluster_areacut.high in
+  let extra = () in
+  let fillfn _ [dAB;thABC;thBAC;dBC;dAC] = fillout5D ((dAB,thABC,thBAC),dBC,dAC) in
+  let outdomfn (_,ts) = false in 
+  let areafn (a,_) = a in
+  let keyfns = [] in
+  let z2 = zero2 pi25 in
+  let k2 = merge_I (two*kappa) (172//100) in
+  let ccoord = [k2 ;z2;z2;k2;k2] in
+  let cfn = (extra,fillfn,outdomfn,areafn,keyfns) in
+  let ccs = [(ccoord,cencut);] in 
+  let initialized = false in
+  mitm_recursion i initialized cluster_areacut width pdata cfn ccs;;
+
+
+let fillout6D ((dAB,thABC,thBAC),(dBC,thCBA),dAC) = 
+  if not(Pet.pet dAB thABC thBAC) then None 
+  else
+    let arcC = iarc dAC dBC dAB in
+    let arcA = iarc dAC dAB dBC in
+    let arcB = iarc dAB dBC dAC in
+    let a = areamin_acute dAC dAB dBC in
+    let thACB = - (arcA + thABC) in
+    let thBCA = - (arcB + thBAC) in
+    let thCAB = - (arcC + thCBA) in
+    if Pet.pet dAC thACB thCAB && Pet.pet dBC thBCA thCBA then
+      Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+      (dAC,thACB,thCAB,arcB))
+    else None;;
 
 
 end;;
-
-let r2_coord ell theta' = 
-  one + ell*ell - two*ell*cos_I theta';;
-
-let pushabovepi x = 
-  if x << pi then (twopi - x)
-  else if x >> pi then x
-  else inter_I (merge_I pi twopi) (merge_I x (twopi-x));;
-
-(* need to reduce theta' to [-pi/5,pi/5] *)
-
-let two_contact_coord_ell_theta' ell theta' hpos = 
-  let r_range = merge_I kappa one in
-  let r = iloc one ell theta' in
-    if disjoint_I r r_range then None 
-    else
-      let r = inter_I r r_range in
-      let ely = iloc ell one (pi25 - theta') in
-      let abs_h = sqrt_I (r*r - kappa*kappa) in
-      let h = if hpos then abs_h else - abs_h in
-      let xalpha = h + sigma in
-      let phi' = asin_I (h / r) in
-      let unstable = (ell + m 0.1 >> r + one) in
-      let delta0 = 
-	if unstable then (ratpi 3 10) + iarc r (two*sigma) ely
-	else iarc r one ell in
-      let delta = if (theta' << zero) then pushabovepi delta0
-	else if (theta' >> zero) then delta0
-	else merge_I (delta0) (twopi - delta0) in
-      let alpha = ratpi 6 5 - (delta + phi') in
-      let theta = alpha - theta' in
-      Some (xalpha,Pet.periodize_pent0 alpha,Pet.periodize_pent theta);;
-
-let ranged_two_contact_coord_ell_theta' ell theta' hpos = 
-  let theta's = Pet.periodize_pent theta' in
-  let s = map (fun t -> two_contact_coord_ell_theta' ell t hpos) theta's in
-  let xalpha_alpha_thetas = selectsome s in
-  let cleanup (x,y,z) = outer (fun u v -> (x,u,v)) y z in
-  List.flatten (map cleanup (xalpha_alpha_thetas));;
-
-(* input constraint: theta must be in [0,2Pi/5] *)
-let two_contact_coord_ell_theta ell theta phi_obtuse = 
-  let s310 = sin_I (ratpi 3 10) in
-  let sth = sin_I (theta + ratpi 3 10) in
-  let x = s310 / sth in
-  let asin_range = mk (-1.0) 1.0 in
-  let ell' = (ell-x)*sth in
-  if disjoint_I ell' asin_range then None
-  else 
-    let sinphi0 = inter_I asin_range ell' in
-    let phi0 = asin_I sinphi0 in
-    let phi = if phi_obtuse then (pi-phi0) else phi0 in
-    let theta' = ratpi 7 10 - (phi + theta) in
-    let alpha = theta+theta' in
-    Some (Pet.periodize_pent theta',Pet.periodize_pent0 alpha);;
-
-(* Here we put everything in range *)
-let fit_two_contact_coord_ell_theta = 0;;
-let ranged_two_contact_coord_ell_theta ell theta phi_obtuse = 
-  let thetas = Pet.periodize_pent0 theta in
-  let s = map 
-    (fun t -> two_contact_coord_ell_theta ell t phi_obtuse) thetas in
-  let theta'_alphas = selectsome s in
-  let cleanup (x,y) = outerpair x y in
-  List.flatten (map cleanup theta'_alphas);;
-  
-Random.self_init();;
-
-let test _ = 
-  let xalpha = m (Random.float (two*sigma).low) in
-  let alpha = m (Random.float pi25.low) in
-  let (ell1,theta1,theta1') = thetax xalpha alpha in
-  let theta2' =  Pet.periodize_pent theta1' in
-  let phiobtuse = 
-    if alpha << pi15 then [true]
-    else if alpha >> pi15 then [false]
-    else [true;false] in
-  let theta'_alphas = List.flatten 
-    (map (ranged_two_contact_coord_ell_theta ell1 theta1) phiobtuse) in
-  let theta'_theta'_alphas = outer (fun a b -> a,b) theta2' theta'_alphas in
-  let meetb = exists 
-    (fun (th',(th'',a)) -> meet_I th' th'' && meet_I a alpha) 
-    theta'_theta'_alphas in
-  meetb;;
-
-let test' _ = 
-  let xalpha = m (Random.float (two*sigma).low) in
-  let alpha = m (Random.float pi25.low) in
-  let (ell1,theta1,theta1') = thetax xalpha alpha in
-  let theta1dize =  Pet.periodize_pent theta1 in
-  let h = xalpha - sigma in
-  let hpos = if (h >> zero) then [true]
-    else if (h << zero) then [false]
-    else [true;false] in
-  let xalpha_alpha_thetas = List.flatten 
-    (map (ranged_two_contact_coord_ell_theta' ell1 theta1') hpos) in
-  let alpha_ = (map (fun (_,a,_) -> a) xalpha_alpha_thetas) in
-  let meet_alpha = exists (meet_I alpha) alpha_ in
-  let xalpha_ =     (map (fun (x,_,_) -> x) xalpha_alpha_thetas) in
-  let meet_xalpha = exists (meet_I xalpha) xalpha_ in
-  let theta_ = (map (fun (_,_,t)->t) xalpha_alpha_thetas) in
-  let theta_theta = outerpair theta1dize theta_ in
-  let meet_theta = exists
-    (fun (t,t') -> meet_I t t') theta_theta in
-  (meet_alpha && meet_xalpha && meet_theta,
-   (xalpha,xalpha_,alpha,alpha_,theta1dize,theta_));;
-
-
-   
-let it = test'();; 
-filter (fun (b,_) -> not b) (map test' (1--100000));;
