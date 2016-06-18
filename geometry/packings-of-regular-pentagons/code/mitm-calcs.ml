@@ -14,7 +14,7 @@
    I find that this does not completely free up memory, and
    I often restart ocaml between major calculations to force a 
    memory cleanup.
-   *)
+ *)
 
 open Meet;;
 
@@ -29,6 +29,10 @@ let unit_extra = ();;
 let coord5 (dAB,dBC,dAC) = 
   let z2pi25 = zero2 pi25 in
   [dAB;z2pi25;z2pi25;dBC;dAC];;
+
+let coord6 (dAB,dBC,dAC) = 
+  let z2pi25 = zero2 pi25 in
+  [dAB;z2pi25;z2pi25;dBC;z2pi25;dAC];;
 
 let coord2Ce = 
   let xalpha = zero2 (two*sigma) in
@@ -69,13 +73,7 @@ let forall_alpha_pair f (t,t') =
    the pseudo-dimer domain *)
 
 let forall_alpha_constraint_pseudo_dimer (th,th') = 
-  forall_alpha0 (fun a -> a >>pi15) (th+th');;
-
-(* dead code.
-  let alpha = th + th' in
-  let alpha' = Pet.periodize_pent0 alpha in
-  forall (fun a -> a >> pi15) alpha';;
-*)
+  forall_alpha0 (fun alpha -> alpha >>pi15) (th+th');;
 
 let d_subcrit_shared = 
   let _ = area_I (two*kappa) (two*kappa) (21//10) >> aK or failwith "21" in
@@ -94,10 +92,19 @@ let d_egress =
 let d_third_pseudo = merge_I (two*kappa) (18//10);;
 
 let ckeyfnBC w fs = key_inverts w (edge5D_BCs fs);;
+
 let ckeyfnAC w fs = key_inverts w (edge5D_ACs fs);;
+
 let ckeyfnAB w fs = key_inverts w (edge5D_ABs fs);;
+
 let ckeyfn2Ce w (_,_,_,(dAC,thACB,thCAB,_)) = 
   key_invert w (dAC,thACB,thCAB);;
+
+let ckeyfn6AB w (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = key_invert w (dAB,thABC,thBAC);;
+
+let ckeyfn6BC w (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = key_invert w (dBC,thCBA,thBCA);;
+
+let ckeyfn6AC w (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = key_invert w (dAC,thACB,thCAB);;
 
 let init2Cps = (* standard 2C settings for peripheral triangles *)
   let fillfn () = mk2Ce d_subcrit_shared in
@@ -126,6 +133,20 @@ let init2Cps_isosceles_BC_AC = (* 2C settings with isosceles BC=AC *)
     (disjoint_I dBC dAC or dAB >> dAC or a >> aK) in
   let fn = (extra,fillfn,outdomfn',areafn,keyfn) in
   (fn,ps);;
+
+(* XX could add more constraints
+   or dAB >> dAC or dBC >> dAC 
+   or disjoint_I dAC ( merge_I (two*kappa) (179//100)) *)
+
+let init2Cps_isosceles_AC = (* 2C settings with isosceles AC=either other *)
+  let (fn,ps) = init2Cps in
+  let (extra,fillfn,outdomfn,areafn,keyfn) = fn in
+  let outdomfn' (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+		 (dAC,thACB,thCAB,arcB)) = 
+    (a >> aK or (disjoint_I dBC dAC && disjoint_I dAB dAC)) in
+  let fn = (extra,fillfn,outdomfn',areafn,keyfn) in
+  (fn,ps);;
+
 
 let reset_peri ps = 
   let _ = Hashtbl.reset phash in
@@ -166,17 +187,73 @@ let calc_pent4_postcluster() =
   let _ = report "pent4_postcluster" in
   time_mitm cluster_areacut pdata cfn ccs;;
 
-(* experimental XX *)
+(* June 14, 2016. This includes calc_pent4_postcluster. So that can be removed.
+pent4_6D_postcluster_experimental
+i=0, w=0.50000, length(ccs)=27
+ length(ps)=210 maxkey=18 keysum=2290 phash=24
+i=1, w=0.25000, length(ccs)=864
+ length(ps)=1145 maxkey=64 keysum=28215 phash=128
+i=2, w=0.12500, length(ccs)=16545
+ length(ps)=5923 maxkey=80 keysum=116268 phash=409
+i=3, w=0.06250, length(ccs)=229169
+ length(ps)=24180 maxkey=100 keysum=546726 phash=1867
+i=4, w=0.03125, length(ccs)=648475
+ length(ps)=104230 maxkey=75 keysum=2173318 phash=4958
+i=5, w=0.01562, length(ccs)=29554
+ length(ps)=553293 maxkey=75 keysum=11021385 phash=9007
+CPU time (user): 14870.108
+val calc_pent4_6D_postcluster : bool = true
+*)
 let calc_pent4_6D_postcluster() = 
   let cluster_areacut = four*aK in
   let pdata = reset_peri init2Cps in 
-  let outdomfn _ = false in 
-  let keyfns = [ckeyfnAB;ckeyfnBC;ckeyfnAC] in
+  (* symmetry: in domain AB longest, then BC, then AC *)
+  let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = 
+    (dAB << dBC or dAB << dAC or dBC << dAC) in
+  let keyfns = [ckeyfn6AB;ckeyfn6BC;ckeyfn6AC] in
   let cfn = (unit_extra,fillfn6,outdomfn,areafn2Ce,keyfns) in
   let dAB_dBC_dAC = (d_subcrit_shared,d_subcrit_shared,d_subcrit_shared) in
   let cencut = (aK + int 3*epso_I).high in
-  let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
+  let ccs = [(coord6 dAB_dBC_dAC,cencut);] in 
   let _ = report "pent4_6D_postcluster_experimental" in
+  time_mitm cluster_areacut pdata cfn ccs;;
+
+(* started about 2:30pm on June 14, 2016
+pent3_6D_postcluster
+i=0, w=0.50000, length(ccs)=27
+ length(ps)=205 maxkey=18 keysum=2210 phash=24
+i=1, w=0.25000, length(ccs)=1080
+ length(ps)=1165 maxkey=64 keysum=25565 phash=128
+i=2, w=0.12500, length(ccs)=17694
+ length(ps)=6700 maxkey=60 keysum=122464 phash=359
+i=3, w=0.06250, length(ccs)=235618
+ length(ps)=31676 maxkey=100 keysum=726422 phash=1570
+i=4, w=0.03125, length(ccs)=1577180
+ length(ps)=94118 maxkey=100 keysum=2017786 phash=4337
+i=5, w=0.01562, length(ccs)=1039552
+ length(ps)=191231 maxkey=64 keysum=3787986 phash=7632
+i=6, w=0.00781, length(ccs)=100559
+ length(ps)=140157 maxkey=48 keysum=2590521 phash=6318
+i=7, w=0.00391, length(ccs)=183
+ length(ps)=55437 maxkey=45 keysum=986729 phash=2406
+CPU time (user): 73430.968
+val calc_pent3_6D_postcluster : bool = true
+*)
+let calc_pent3_6D_postcluster = 
+  let cluster_areacut = int 3*aK + epso''_I in
+  (* deform both sides separately so that both peripherals are isosceles *)
+  let pdata = reset_peri init2Cps_isosceles_AC in 
+  (* symmetry: in domain AB longer than BC. AC not shared. *)
+  let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),_) =
+    (dAB << dBC) in
+  let keyfns = [ckeyfn6AB;ckeyfn6BC] in
+  let cfn = (unit_extra,fillfn6,outdomfn,areafn2Ce,keyfns) in
+  let d_subcrit_isosc = merge_I (172//100) (179//100) in (* XX use this *)
+  let d_short = merge_I (two*kappa) (202//100) in (* see "202" *)
+  let dAB_dBC_dAC = (d_subcrit_shared,d_subcrit_shared,d_short) in
+  let cencut = (aK + two*epso_I + epso''_I).high in
+  let ccs = [(coord6 dAB_dBC_dAC,cencut);] in 
+  let _ = report "pent3_6D_postcluster" in
   time_mitm cluster_areacut pdata cfn ccs;;
 
 
@@ -220,6 +297,7 @@ let calc_pent3AB_postcluster() =
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent3AB") in
   time_mitm cluster_areacut pdata cfn ccs;;
+
 
 (* done, June 12, 2016 restarted ocaml to clear memory 
  pent3BC
