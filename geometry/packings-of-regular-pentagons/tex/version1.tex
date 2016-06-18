@@ -7,7 +7,6 @@
 %Title: Packings of Regular Pentagons in the Plane,
 %Part I, preliminaries.
 % draft Nov, 2015.
-% version 2, June 2016xs
 
 %Authors: Thomas Hales, Woden Kusner.
 
@@ -16,20 +15,14 @@
 \def\c{{\mathbf c}}
 \def\K{\op{K}}
 \def\aK{a_K}
-%\def\rat{\Rightarrow}
-\def\Ra{\Rightarrow}
-\def\nRa{\nRightarrow}
+\def\rat{\Rightarrow}
 \def\ra#1{\Rightarrow_{#1}}
-\def\na#1{{\nRightarrow}_{#1}}
+\def\na#1{{\not\Rightarrow}_{#1}}
 
 \def\epso{\epsilon_0}
-%\def\expo{\epsilon'_0}
 \def\C{\mathcal C}
 \def\S{\mathcal S}
 \def\N{\mathcal N}
-\def\M{\mathcal M}
-\def\T{\mathcal T}
-\def\PD{\Psi D}.
 \def\cong{\equiv}
 \def\r{{\mathbf r}}
 \def\bl{\bar\ell}
@@ -113,20 +106,30 @@ pentagons in red and Delaunay triangles in blue.}
 
 %\section{Introduction}
 
-This paper gives a computer-assisted proof of the Kuperberg conjecture.
+This paper gives a computer-assisted proof of the upper
+bound $0.9611$ on the density of a packing of
+regular pentagon
+(Corollary~\ref{lemma:961}).{\let\thefootnote\relax\footnote{The
+    results of this paper were announced in 
+Veszpr\'em, Hungary, July 2015.}}
+More significantly, we set up the structures aimed
+towards an eventual computer-assisted proof of the Kuperberg
+conjecture.  Our strategy reduces the Kuperberg conjecture to 
+area minimization problems that involve at most four acute Delaunay triangles.
 
-
-\begin{theorem}\label{thm:main}  No packing of congruent regular pentagons in the Euclidean
-plane has density greater than that of
-the Kuperberg-Kuperberg packing.   The Kuperberg-Kuperberg packing is the
-unique periodic packing of congruent regular pentagons that attains optimal density.
-\end{theorem}
-
+\begin{remark}\label{rem:interval}
+  The code for the computer-assisted proofs is written in Objective
+  Caml.  There are several hundred lines of code, available for
+  download from github \cite{Git}.  The computer calculations for this
+  paper take less than one minute in total to run.  To control
+  rounding errors on the computer, we use an interval arithmetic
+  package for OCaml by Alliot and Gotteland, which runs on the Linux
+  operating system and Intel processors \cite{All}.
+\end{remark}
 
 
 In this paper, we consider packings of congruent regular pentagons in
-the Euclidean plane.   Density is scale-invariant.  Without loss of generality,
-we may assume that all pentagons are regular pentagons of fixed
+the Euclidean plane.  All pentagons are regular pentagons of fixed
 circumradius $1$.  The inradius of each pentagon is $\kappa:= \cos
 (\pi/5) = (1+\sqrt{5})/4 \approx 0.809$. We set $\sigma := \sin(\pi/5)
 \approx 0.5878$.  The length of each pentagon edge is $2\sigma$.
@@ -176,7 +179,22 @@ Kuperberg packing.
 The area of a Delaunay triangle in a saturated pentagon packing can be
 smaller than $\aK$.  Our strategy for proving the Kuperberg conjecture
 is to collect triangles into finite clusters such that the average
-area over each cluster is at least $\aK$.  
+area over each cluster is at least $\aK$.  The clusters are defined by
+various equivalence relations.  These equivalence relations, in turn,
+are defined as the reflexive, symmetric, transitive closure of further
+relations on the set of Delaunay triangles in a pentagon packing.
+
+In more detail, below, we define various relations $(\ra{x})$, viewing
+relations in the usual way as sets of ordered pairs.  For each
+relation $(\ra{x})$, we write ${(\equiv_{x})}$ for the equivalence
+relation obtained as the reflexive, symmetric, transitive closure of
+$(\ra{x})$.  We call a corresponding equivalence classes $\C$ an
+$x$-cluster, or simply a {\it cluster}, when the relation $(\ra{x})$
+has been fixed.  In other words, each relation defines a directed
+graph whose nodes are the Delaunay triangles of a pentagon packing,
+with directed edges given as arrows $T_1\ra{x} T_2$.  An $x$-cluster
+is the set of nodes in a connected component of the underlying
+undirected graph.
 
 We say that a Delaunay triangle (in any pentagon packing) is {\it
   subcritical} if its area is at most $\aK$.  We will obtain a lower
@@ -192,85 +210,6 @@ and the bound $a_0$ for a single nonobtuse triangle.
 % Numerical page 8. of nonobtuse notes.
 % numerical min checked 2016/2/18 in Mathematica.
 
-\subsection{examples}
-
-To understand this paper, it is necessary to understand a series of examples.
-Some of these examples serve as counterexamples to naive approaches to this problem.
-
-[XX to do: add graphics]
-
-\begin{example} All Delaunay triangles in the Kuperberg-Kuperberg packing are congruent and have
-area $\aK$.
-We call them Kuperberg-Kuperberg triangles.
-\end{example}
-
-\begin{example}  The area of an obtuse Delaunay triangle can have area
-significantly less than $\aK$.  That is, obtuse subcritical triangles exist.
-\end{example}
-
-\begin{example} By the Delaunay condition, a triangle adjacent to an obtuse subcritical
-triangle along its longest edge tends to be large.
-\end{example}
-
-\begin{example} The area of an acute Delaunay triangle can have area less than
-$\aK$.  We show various examples.
-\end{example}
-
-\begin{example} The longest edge of an acute subcritical Delaunay triangle cannot be too short.
-(See Lemma~\ref{XX}.)
-\end{example}
-
-\begin{example}  The Kuperberg-Kuperberg triangle is not a local minimum of the area function.
-Numerically, it appears that the Kuperberg-Kuperberg triangle can be continuously deformed, along an area-decreasing
-path, into the acute Delaunay triangle of minimum area.
-\end{example}
-
-\begin{example}  The Kuperberg-Kuperberg packing can be partitioned into pairs
-of Delaunay triangles (called Kuperberg-Kuperberg dimers) in which the two triangles
-in each dimer share their common longest edge.  It is known that Kuperberg-Kuperberg dimer is a local
-minimimum of the area function \cite{Kus}.
-\end{example}
-
-\begin{example} The Kuperberg-Kuperberg dimer admits a shear motion that preserves all edges of contact.
-It is obvious by symmetry that total area of the dimer (that is, the sum of the areas of the two triangles)
-is preserved to first order by a shear transformation, 
-because a left shear is equivalent under a reflectional symmetry to a right shear.
-\end{example}
-
-\begin{example} There exist pairs of acute triangles $(T_1,T_0)$ such that the sum of their two areas
- is at most $2\aK$ and such that (1) $T_1$ is subcritical and is adjacent to $T_0$ 
-along the longest edge of $T_1$, but such that (2) the longest edge of $T_0$ is 
-not the edge shared with $T_1$.  We will call such pairs {\it pseudo-dimers}.
- Pseudo-dimers add significant complications to the proof.
-\end{example}
-
-\subsection{attachment}
-
-As mentioned above, our strategy for proving the Kuperberg conjecture
-is to collect triangles into finite clusters such that the average
-area over each cluster is at least $\aK$.  The clusters are defined by
-various equivalence relations.  These equivalence relations, in turn,
-are defined as the reflexive, symmetric, transitive closure of further
-relations on the set of Delaunay triangles in a pentagon packing.
-
-A second strategy is to replace the area function $\area(T)$ on Delaunay
-triangles with a modified area function $b(T)$.  The modification steals from
-nearby triangles that have area to spare and gives to triangles in need.  It will 
-be sufficient to prove that the average of $b(T)$ over each cluster is at least $\aK$.
-
-
-In more detail, below, we define various relations $(\ra{x})$, viewing
-relations in the usual way as sets of ordered pairs.  For each
-relation $(\ra{x})$, we write ${(\equiv_{x})}$ for the equivalence
-relation obtained as the reflexive, symmetric, transitive closure of
-$(\ra{x})$.  We call a corresponding equivalence classes $\C$ an
-$x$-cluster, or simply a {\it cluster}, when the relation $(\ra{x})$
-has been fixed.  In other words, each relation defines a directed
-graph whose nodes are the Delaunay triangles of a pentagon packing,
-with directed edges given as arrows $T_1\ra{x} T_2$.  An $x$-cluster
-is the set of nodes in a connected component of the underlying
-undirected graph.
-
 We say that Delaunay triangle $T_1$ {\it attaches to Delaunay
   triangle} $T_2$, provided that the following condition holds: $T_2$
 is the adjacent triangle to $T_1$ along the longest edge of $T_1$.
@@ -279,131 +218,43 @@ once and for all a choice among them, and use this choice to determine
 the triangle that $T_1$ attaches to.  Thus, $T_1$ always attaches to
 exactly one triangle $T_2$.  We can assume that the tie-breaking
 choices are made according to a translation invariant rule.)  We write
-$T_1 \Ra T_2$ for the attachment relation.
+$T_1 \Rightarrow T_2$ for the attachment relation.
 
 
 We define the relation $(\ra{a})$ by $T_1 \ra{a} T_2$ iff
-$T_1\Ra T_2$ and $T_1$ is subcritical.
+$T_1\Rightarrow T_2$ and $T_1$ is subcritical.
 
-If $\T$ is a finite set of Delaunay triangles, we set $\area(\T):=\sum_{T\in\T} \area(T)$.
-
-\begin{definition}[dimer pair]
-We define a dimer pair to be an ordered pair $(T_1,T_0)$ of Delaunay triangles
-such that 
-\begin{enumerate}
-\item $T_0$ and $T_1$ are both nonobtuse.
-\item $T_1\ra{a} T_0$.  (In particular $T_1$ is subcritical.)
-\item $T_0 \Ra T_1$.
-\item $\area\{T_1,T_0\} \le 2\aK$.
-\end{enumerate}
-We write $DP$ for the set of dimer pairs.
-\end{definition}
-
-\begin{definition}[pseudo-dimer]
-We define a pseudo-dimer to be an ordered pair $(T_1,T_0)$ of Delaunay triangles
-such that
-\begin{enumerate}
-\item $T_0$ and $T_1$ are both nonobtuse;
-\item $T_1\ra{a} T_0$;  (In particular $T_1$ is subcritical.)
-\item $T_0 \nRightarrow T_1$;
-\item $\area\{T_1,T_0\} \le 2\aK$;
-\end{enumerate}
-We write $\PD$ for the set of pseudo-dimers.
-\end{definition}
-
-We observe that dimer pairs differ from pseudo-dimers in the third defining condition, which is a condition
-on the location of the longest edge of $T_0$.   Every pseudo-dimer determines a third triangle $T$ by
-the condition $T_0\Ra T$.  The shared edge of $T_0$ and $T$, leading out of the pseudo-dimer
-is called the egressive edge of the pseudo-dimer or $T_0$.
-
-
-For any  set $\S$ of ordered pairs, let  $n_1(T,\S) 
-= \card \{T_2\mid (T,T_2)\in \S\}$ and $n_2(T,\N) = \card \{T_1\mid
-(T_1,T)\in \S\}$. 
-
-Let $\N_+$ be the set of pairs $(T_1,T_2)$ of Delaunay triangles such that
-\begin{enumerate}
-\item $T_1$ is nonobtuse and the longest edge of $T_1$ has length at least $1.72$;
-\item $T_2$ is obtuse;
-\item $T_1\Ra T_2$.
-\end{enumerate}
-
-Let $\N = \N_+ \cup \N_-$, where $\N_-$ is the set of pairs $(T_1,T_2)$ of Delaunay triangles such that
-\begin{enumerate}
-\item $T_1$ is nonobtuse and the longest edge of $T_1$ has length at least $1.72$;
-\item $T_2$ is nonobtuse;
-\item $T_1\Ra T_2$;
-\item there exists an obtuse triangle $T$ such that $T\Ra T_2$ and 
-$\area(T) \le \aK+  n_2(T,\N_+)\epso$.
-\end{enumerate}
-
-Let $\M$ be the set of pairs $(T_1,T_2)$ of Delaunay triangles such that
-\begin{enumerate}
-\item $(T_1,T_2)\not\in \N$;
-\item $T_1\Ra T_2$;
-\item The longest edge of $T_1$ has length  at least $1.72$.
-\item There exists a unique $T$ such that $(T_1,T)\in \PD$.
-\end{enumerate}
-
-We abbreviate $m_1(T) = n_1(T,\M)$, $m_2(T) = n_2(T,\M)$, $n_1(T) = n_1(T,\N)$, $n_2(T) = n_2(T,\N)$,
-and $n_2^+(T) = n_2(T,\N_+)$.
-
-Let $\epso' = 0.008$.  We define
+Let $\N$ be the set of pairs $(T_1,T_2)$ such that $T_1$ is nonobtuse
+subcritical, $T_2$ is obtuse, and $T_1\Rightarrow T_2$.  Write $n_1(T)
+= \card \{T_2\mid (T,T_2)\in \N\}$ and $n_2(T) = \card \{T_1\mid
+(T_1,T)\in \N\}$.  Define
 \[
-b(T) := \op{area}(T) + \epso (n_1(T) - n_2(T)) + \epso' (m_1(T) - m_2(T)).
+b(T) := \op{area}(T) + \epso (n_1(T) - n_2(T)).
 \]
 We say that $T$ is {\it $b$-subcritical} if $b(T) \le \aK$.  We write
-$T_1\ra{b} T_2$, if $T_1\Ra T_2$ and $T_1$ is $b$-subcritical.
+$T_1\ra{b} T_2$, if $T_1\Rightarrow T_2$ and $T_1$ is $b$-subcritical.
 The equivalence classes of triangles under the corresponding
 equivalence relation $(\equiv_b)$ are called {\it $b$-clusters}.
 
-We note that $\ra{b}$ is given by a translation-invariant rule.  The function $b(T)$ is also
-translation invariant and depends only on local information in the pentagon packing near  the triangle $T$.
-
-We remark that the modification $b(T)$ of the area function has two correction terms.
-The first term $\epso (n_1(T) - n_2(T))$ steals from obtuse triangles (and their neighbors) and gives 
- to acute triangles.  
-The intuition behind this correction terms is that the triangle adjacent to an obtuse triangle along its long edge
-has a very large surplus area that can be beneficially redistributed.  It allows us to make a clean separation of
-the proof of the main inequality into two cases: clusters that contain an obtuse triangle and clusters that do not.
-The second term $\epso' (m_1(T) - m_2(T))$ gives to pseudo-dimers, by stealing from
-their neighbor.   The intuition behind this correction term is that a pseudo-dimer can have area strictly less than
-the Kuperberg-Kuperberg dimer, and we need to boost its area with a correction term to make it satisfy the main
-inequality.  
-
-The correction terms allow us to keep the size of each cluster small.  Eventually, we show that each
-cluster contains at most four triangles.  This will be crucial when we turn to the computer calculations.
-
-We give  some simple consequences of our definitions.
-
-\begin{lemma} If $(T_1,T_2)\in \M$, then both $T_1$ and $T_2$ are nonobtuse.
-\end{lemma}
-
-\begin{proof}  $T_1$ is nonobtuse, becaue $(T_1,T)\in\PD$ for some $T$.
-If $T_2$ were obtuse, then we would have $(T_1,T_2)\in \N_+$, which is impossible
-because $\N\cap \M = \emptyset$.
-\end{proof}
-
-\begin{lemma}[obtuse $b$]  If $T$ is an obtuse Delaunay triangle, then $m_1(T)=m_2(T)=n_1(T)=0$.
-Thus, $b(T) = \area(T) - \epso n_2(T)$.
-\end{lemma}
-
-\begin{proof}  The previous lemma gives $m_1(T)=m_2(T)=0$.  The first component of
-$\N$ is nonobtuse by definition, so $n_1(T)=0$.
-\end{proof}
-
 \begin{remark}
+  Note that a triangle is not both nonobtuse and obtuse, so that at
+  least one of the two terms $n_1(T), n_2(T)$ is zero for each $T$.
   Note also that $n_1(T)\le 1$, because each triangle attaches to
   exactly one other triangle.  Also, $n_2(T)\le 3$, because each
-  attachment forms along an edge of the triangle $T$.  Similarly,
-  $m_1(T)\le 1$ and $m_2(T)\le 3$.
+  attachment forms along an edge of the triangle $T$.
 \end{remark}
 
+We write $T_1\ra{c} T_2$ iff ($T_1 \ra{b} T_2$ and ($T_1$ is obtuse or
+$T_2$ is not $b$-subcritical)).  A $c$-cluster $\C$ is an equivalence
+class of Delaunay triangles under the relation $(\equiv_c)$.
 
 
 \begin{lemma}\label{lemma:main}  
-If  every $b$-cluster $\C$ in every saturated packing of regular
-  pentagons is finite, and if for some $a$ every $b$-cluster average
+  Let $(\ra{x})$ be a subset of $(\ra{b})$.  Assume that $(\ra{x})$ is
+  given by a translation-invariant rule.  Form $x$-clusters of
+  Delaunay triangles under the equivalence relation $(\equiv_x)$. If
+  every $x$-cluster $\C$ in every saturated packing of regular
+  pentagons is finite, and if for some $a$ every $x$-cluster average
   satisfies
 \begin{equation}\label{eqn:main}
 \frac{\sum_{T\in \C} b(T)}{\card(\C)} \ge a,
@@ -437,7 +288,7 @@ the {\it strict main inequality} (for $\C$).
   $\ring{R}^2/\Lambda$, for some lattice $\Lambda$.  The rule defining
   $\N$ is translation invariant, and $\N$ descends to the torus.  On
   the torus, the set of pentagons, the set of triangles, and the set
-  $\N$ are finite.  The equivalence relation $(\equiv_b)$ defining
+  $\N$ are finite.  The equivalence relation $(\equiv_x)$ defining
   clusters is translation invariant, and each cluster is finite, so
   that no cluster contains both a triangle and a translate of the
   triangle under a nonzero element of $\Lambda$.  Thus, each cluster
@@ -464,25 +315,21 @@ When $a=\aK$, the term on the right is the density of the Kuperberg
 packing, as desired.
 \end{proof}
 
-This article gives a proof of the following theorem. In view of Lemma \ref{lemma:main},
-it implies the main result, Theorem \ref{thm:main}.
 
-\begin{theorem}\label{conj:main}
+\begin{conjecture}\label{conj:main}
   Let $\C$ be a $b$-cluster of Delaunay triangles in a saturated
   packing of regular pentagons.  Then $\C$ is finite and the average
   of $b(T)$ over the cluster is at least $\aK$.  That is, $\C$
   satisfies the main inequality.  Equality holds exactly when $\C$
   consists of two adjacent Delaunay triangles from the Kuperberg
   packing, attached along their common longest edge.
-\end{theorem}
+\end{conjecture}
 
 Analyzing the proof of Lemma~\ref{lemma:main}, we see that for a
 periodic packing, the maximum density is achieved exactly when each
  cluster in the packing gives exact equality in the main inequality.
-Thus, the theorem implies that the Kuperberg packing is the
+Thus, the conjecture implies that the Kuperberg packing is the
 unique periodic packing that achieves maximal density.
-
-
 
 
 \section{Pentagons in contact}
@@ -958,7 +805,7 @@ This is a corollary of the previous lemma, because $\kappa\sqrt8 >
 
 \begin{definition}
 In a $P$-triangle, we say that a pentagon $A$ has {\it primary
-  contact} if one or more of the following three conditions hold:
+  contact} if some of the following three conditions hold:
 \begin{enumerate}
 \item (slider contact) The pentagon $A$ and one $B$ of the other two pentagons
 share a positive length edge segment;
@@ -1103,232 +950,6 @@ computing bounds on the areas and edge lengths of the triangles using
 interval arithmetic.  The result follows.
 \end{proof}
 
-\section{Pseudo-Dimers}
-
-In this section, we determine the structure of pseudo-dimers and specialize
-the function $b$ to this context.
-
-On a nonobtuse triangle, the area is a monotonic function of its edge lengths.
-This makes it easy to give lower bounds on triangle areas.
-Here are some simple    area calculations that will be used repeatedly.
-\begin{align*}
-\area(1.8,1.8,1.8) &> \aK + 0.112\\
-\area(1.8,1.8,1.72) &> \aK + 0.069\\
-\area(1.8,1.72,1.72) &> \aK + 3\epso'\\
-\area(1.8,1.8,2\kappa) &> \aK + \epso'\\
-\area(\kappa\sqrt8,2\kappa,1.72) &> \aK +\epso.
-\end{align*}
-
-\subsection{a batch of computer calculations}\label{sec:calc}
-
-The proofs of the theorems in this article rely heavily on computer calculations.
-These computer calculations are stated and proof at the end of the paper.
-In this section, we make use of the following lemmas, which are proved by
-computer.  (We use results that have been pushed to the end of the paper, but
-there is no circular reasoning involved in using those results here.)  We state
-a few calculations that will not be needed until later to keep all  the calculations
-together.  They will be proved together using a meet-in-the-middle algorithm in
-Section~\ref{XX}.
-
-\begin{lemma}[computer-assisted]\label{NKQNXUN} \label{calc:pseudo1} 
-Let $(T_1,T_0)\in \PD$.  The edge shared between
-$T_0$ and $T_1$ has length less than $1.8$. 
-\end{lemma}
-
-\begin{lemma}[computer-assisted]\label{RWWHLQT}\label{calc:pseudo2} 
-Let $(T_1,T_0)\in \PD$.  The longest edge of $T_0$
-has length greater than $1.8$.
-\end{lemma}
-
-\begin{lemma}\label{calc:pseudo3}  
-Let $(T_1,T_0)\in \PD$.  The two edges of $T_0$ other than the longest edge have lengths less
-than $1.8$.
-\end{lemma}
-
-\begin{proof}
-The shared edge has length less than $1.8$ by Lemma~\ref{hyp1}.  
-It has length at least $1.72$ by Lemma~\ref{XX}.
-If the third edge has length at
-least $1.8$, then by the previous lemmas, its three edges have lengths at least $1.72$, $1.8$, $1.8$.
-Then 
-\[
-\area\{T_1,T_0\} > a_0 + \area(1.72,1.8,1.8) > a_0 + (\aK + \epso) = 2\aK.
-\]
-This area inequality contradicts a defining property of pseudo-dimers.
-\end{proof}
-
-\begin{lemma}[computer-assisted]\label{BXZBPJW}\label{calc:pseudo-area}
-Let $(T_1,T_0)\in\PD$.  Then $\area\{T_0,T_1\} \ge 2\aK - \epso'$.
-\end{lemma}
-
-\begin{lemma}[computer-assisted]\label{JQMRXTH}\label{calc:pseudo-area3}
-Let $(T_1,T_0)\in\PD$. Assume $T_0\Ra T$.  Then $\area\{T_0,T_1,T\} > 3\aK + \epso'$.
-\end{lemma}
-
-\begin{definition}[long isosceles]
-We say that a triangle is long isosceles if the two longest edges of the triangle have
-equal length.  We include equilateral triangles as a special case of long isosceles.
-\end{definition}
-
-\begin{definition}[O2C]
-We say that a triangle $T=T_0$ or $T=T_1$ in a dimer pair or a pseudo-dimer pair has outside double
-contact $(O2C)$ if the pentagon $A$ at the vertex that is not shared with the other triangle in the pair
-has double contact.
-\end{definition}
-
-\begin{lemma}[computer-assisted]\label{KUGAKIK}\label{calc:dimer-isosc}
-Let $(T_1,T_0)\in DP$.  Then $T_1$ is not both $O2C$  and long isosceles.
-\end{lemma}
-
-\begin{definition}[good angle]  Let $T$ be a $P$-triangle.  Let $e$ be an edge of the triangle with pentagons
-$A$ and $B$ at its endpoints.
-Let $\alpha = \alpha(T,e)$ be the angle between the two pentagons $A$ and $B$.  (See Figure~\ref{XX}.)  Modulo
-$2\pi/5$, we can assume that $\alpha\in  [0,2\pi/5]$.  We say that the angle is {\it good} along $(T,e)$ if $\alpha>\pi/5$.
-\end{definition}
-
-Let $T$ be a $P$-triangle and let $T'$ be the adjacent $P$-triangle along edge $e$.  
-We have the invariant $\alpha(T,e)+\alpha(T',e)=2\pi/5$.
-Hence if the angle is good along $(T,e)$ then it is not good along $(T',e)$.
-
-
-\begin{lemma}[computer-assisted]\label{FHBGHHY}\label{calc:good}
-Let $\{T_0,T_1\}$ be given $P$-triangles (not necessarily a pseudo-dimer) such that $\area(T_1)\le \aK$ and $T_1\Ra T_0$.
-Assume that there is a nonshared edge $e$ of $T_0$ of length greater than $1.8$ and that the angle is not good along $(T_0,e)$.
-Then $\area\{T_0,T_1\} > 2\aK + \epso'$.
-\end{lemma}
-
-\begin{corollary} If $(T_1,T_0)\in \PD$ and $e$ is the longest (that is, egressive) edge of $T_0$.  Then the angle
-is good along $(T_0,e)$.
-\end{corollary}
-
-\begin{proof} If the angle is not good, then we can apply the lemma to find tht the area of the pseudo-dimer is
-greater than $2\aK + \epso'$, which contradicts one of the defining properties of a pseudo-dimer.
-\end{proof}
-
-
-\begin{lemma}[computer-assisted]\label{HUQEJAT}\label{calc:pent3}
-Let $T_1^i\Ra T_0$ and $\area(T_1^i)\le\aK$ for $i=0,1$ for distinct $P$-triangles $T^1_0$ and $T^1_1$.
-Then $\area\{T_0,T^0_1,T^1_1\} > 3\aK + \epso'$.
-\end{lemma}
-
-\begin{lemma}[computer-assisted]\label{QPJDYDB}\label{calc:pent4}
-Let $T_1^i\Ra T_0$ and $\area(T_1^i)\le\aK$ for $i=0,1,2$ for distinct $P$-triangles $T^1_0$, $T^1_1$, and $T^2_1$.
-Then $\area\{T_0,T^0_1,T^1_1,T^2_1\} > 4\aK$.
-\end{lemma}
-
-\subsection{properties of pseudo-dimers}
-
-\begin{lemma}\label{lemma:pd-m2}  If $(T_1,T_0)\in\PD$, then $m_2(T_0)=0$.
-\end{lemma}
-
-\begin{proof} Assume for a contradiction that $m_2(T_0)>0$.  Then there exists $(T'_1,T_0')\in\PD$ and
-$(T'_0,T_0)\in\M$.  The shared edge between $T_0$ and $T'_0$ has length greater than $1.8$.
-This is the egressive edge $e$ of $T_0$.  This is impossible by Lemma~\ref{calc:good}, which states
-that the condition of having a good angle is not symmetrical.
-\end{proof}
-
-\begin{corollary}  For every triangle $T$, either $m_1(T)=0$ or $m_2(T)=0$.
-\end{corollary}
-
-\begin{proof}  Suppose $m_1(T)>0$, then $T=T_0$ for some $(T_1,T_0)\in\PD$.  The
-lemma gives $m_2(T)=0$.
-\end{proof}
-
-\begin{lemma}[pseudo-dimer disjointness]  Assume $(T_1,T_0)\in \PD$ and $(T'_1,T'_0)\in\PD$ and
-$\{T_0,T_1\}\cap\{T'_0,T'_1\} \ne \emptyset$.  Then $T_0 = T'_0$.
-\end{lemma}
-
-\begin{proof}  If we dismiss the other three cases $T_1=T'_1$ and $T_1=T'_0$ and $T_0=T'_1$ of a nonempty
-intersection, then the conclusion $T_0 = T'_0$ will stand.
-
-Assume first that $T_1 = T'_1$.  Then $T_1\Ra T_0$ and $T_1\Ra T'_0$, which gives $T_0=T'_0$.
-
-Next assume that $T_1=T'_0$.  We have $T'_1\Ra T'_0 = T_1 \Ra T_0$.  By the calculations above,
-this puts incompatible constraints on the length of the shared edge between $T_0$ and $T_1$.  It must have
-length less than $1.8$ and greater than $1.8$.
-
-The case $T_0=T'_1$ follows from the previous case by symmetry.
-\end{proof}
-
-\begin{lemma}[pseudo-dimer-obtuse]\label{lemma:pd-obtuse}
-Assume $(T_1,T_0)\in\PD$.  Then each edge of $T_0$ and $T_1$ has length less than $\sqrt8\kappa$.
-In particular, if  $T_2$ is obtuse then  $T_2\nRa T_0$ and $T_2 \nRa T_1$.
-\end{lemma}
-
-\begin{proof}  The shared edge between $T_0$ and $T_1$ has length less than $1.8 < \sqrt8\kappa$.  The shared
-edge is the longest edge of $T_1$, so that each edge of $T_1$ has length less than $1.8$.
-The only possibility is the egressive edge of $T_0$.  But if the egressive edge of $T_0$ has length at least $\sqrt8\kappa$,
-then
-\[
-\area\{T_1,T_0\} > a_0 + \area(\kappa\sqrt8,2\kappa,1.72) > a_0 + (\aK + \epso) = 2\aK.
-\]
-This contradicts the area condition in the definition of pseudo-dimer.  This completes the first claim of the lemma.
-
-If $T_2$ is obtuse, then its longest edge has length at least $\sqrt8\kappa$.  If $T_2\Ra T$, then the shared edge
-has length at least $\sqrt8\kappa$.
-\end{proof}
-
-\begin{corollary}\label{lemma:pd-n2}
-If $(T_1,T_0)\in\PD$, then $n_2(T_0)=0$.
-\end{corollary}
-
-\begin{proof} Suppose for a contradiction that $n_2(T_0)>0$.  Then $(T,T_0)\in \N$ for some $T$.  Since $T_0$ is
-nonobtuse, this implies that there exists some obtuse triangle $T_2$ such that $T_2\Ra T_0$.  This is contrary
-to the previous lemma.
-\end{proof}
-
-\begin{lemma} Let $(T_1,T_0)\in\PD$.  Then $n_1(T_1)=n_2(T_1)=m_1(T_1)=m_2(T_1)=0$.  In particular,
-$b(T_1) = \area(T_1)$.
-\end{lemma}
-
-\begin{proof}  We claim that $m_1(T_1)=m_2(T_1)=0$.  Otherwise $T_1$ shares an egressive edge with some
-peudo-dimer of length greater than $1.8$.  However, the longest edge of $T_1$ is its shared edge with $T_0$, which
-has length less than $1.8$.  This gives the claim.
-
-Next we claim that $n_1(T_1)=0$.  Otherwise, $(T_1,T_0)\in \N$.  Since $T_0$ is nonobtuse, this implies
-that there exists an obtuse triangle $T_2$ such that $T_2\Ra T_0$.  This contradicts Lemma~\ref{lemma:pd-obtuse}.
-
-Finally, we claim that $n_2(T_1)=0$.  Otherwise, $(T,T_1)\in \N$ for some $T$.  Since $T_1$ is nonobtuse,
-this implies that there exists an obtuse triangle $T_2$ such that $T_2\Ra T_1$.  This contradicts
-Lemma~\ref{lemma:pd-obtuse}.
-\end{proof}
-
-\begin{lemma}  Let $(T_1,T_0)\in\PD$.  Then $b(T_0) > \aK$.  That is, $T_0$ is not $b$-subcritical.
-\end{lemma}
-
-\begin{proof}
-We recall from Corollary~\ref{lemma:pd-n2} that $n_2(T_0)=0$.  From Lemma~\ref{lemma:pd-m2} we
-have $m_2(T_0)=0$.  Thus, $b(T_0) = \area(T_0) + \epso n_1(T_0) + \epso' m_1(T_0)$.
-We have
-\[
-\area(T_0) = \area\{T_0,T_1\} - \area(T_1) > (2\aK-\epso') -\aK = \aK - \epso'.
-\]
-
-We first treat the case that $n_1(T_0)>0$.  Then we have $n_1(T_0)\ge 1$.
-Thus, $b(T_0) \ge \area(T_0) + \epso n_1(T_0) > (\aK - \epso') + \epso > \aK$.
-This completes this case.  
-
-For the remainder of the proof, we assume that $n_1(T_0)=0$.  In particular, we have
-$b(T_0) = \area(T_0) + \epso' m_1(T_0)$.
-
-Next, we treat the case in which $T_1$ is the unique triangle $T$ such that $(T,T_0)\in\PD$.
-In this case, $(T_0,T_1)\not\in\M$, and $(T_0,T_1)\in\M$, so that $m_1(T_0)=1$.  Thus
-$b(T_0) > (\aK-\epso') + \epso' = \aK$.
-
-In the remaining case, there exists $T'_1\ne T_1$ such that $(T'_1,T_0)\in\PD$.  The edges of
-$T_0$ shared with $T_1$ and $T'_1$ have length at least $1.72$ and less than $1.8$.  The
-egressive edge of $T_0$ has length at least $1.8$.  Thus,
-\[
-b(T_0) \ge \area (T_0) \ge \area(1.72,1.72,1.8) > \aK.
-\]
-This completes the proof.
-\end{proof}
-
-
-\section{Dimer Pairs}
-
-XX TYPE IN
-
 \section{Obtuse Clusters}\label{sec:obtuse}
 
 
@@ -1357,7 +978,7 @@ packing of regular pentagons.
 %triangle.
 
 \begin{lemma}\label{lemma:notlong}  
-Let $T_1$ and $T_2$ be $P$-triangles, such that $T_1\Ra T_2$, where $T_1$ is nonobtuse subcritical and
+Let $T_1$ and $T_2$ be $P$-triangles, such that $T_1\Rightarrow T_2$, where $T_1$ is nonobtuse subcritical and
   $T_2$ is obtuse.  Then the edge of attachment is not the longest
   edge of $T_2$.
 \end{lemma}
@@ -1394,7 +1015,7 @@ This implies that $T_1$ is not $b$-subcritical, contrary to the
 definition of $b$-attachment $(\ra{b})$.
 
 Since $(T_1,T_2)\not\in \N$, we have $b(T_1) = \area(T_1)$.  So $T_1$
-is subcritical and nonobtuse, $T_2$ is obtuse, and $T_1\Ra
+is subcritical and nonobtuse, $T_2$ is obtuse, and $T_1\Rightarrow
 T_2$.  By the definition of $\N$, this gives $(T_1,T_2)\in\N$, a
 contradiction.
 \end{proof}
@@ -1538,7 +1159,7 @@ $T_1\ra{c} T_2$.  This implies that the triangle $T_1$ is
   \C_0' \cup \{T_0\}$.  Set
 \[
 \S = \{T \mid T \text{ is nonobtuse subcritical such that } \exists
-T'\in \C' \text{ with } T\Ra T'\}.
+T'\in \C' \text{ with } T\rat T'\}.
 \]
 If
 \begin{equation}\label{eqn:S}
@@ -1580,14 +1201,14 @@ We claim that
 \]
 In fact, it is enough to show that if $T\in \C_0\setminus \C_0'$, then
 $T\in \S$.  Any such $T$ is nonobtuse and $T\ra{c}T_0$.  Expanding
-the definition of $(\ra{c})$, we get $T\Ra T_0$, and $T$ is
+the definition of $(\ra{c})$, we get $T\rat T_0$, and $T$ is
 $b$-subcritical, $(T,T_0)\not\in\N$, so $b(T) = \area(T)$, and $T$ is
 subcritical.   This gives $T\in \S$.
 
 We have
 \[
 \sum_{\C_0'} n_2(T) = \card\{T'\in\S \mid T' \text{ nonobtuse
-  subcritical, and } T'\Ra T\in \C_0' \} \le \card(\S\setminus \C_0 ),
+  subcritical, and } T'\rat T\in \C_0' \} \le \card(\S\setminus \C_0 ),
 \]
 
 Using (\ref{eqn:S}) and Lemma~\ref{lemma:a0}, we have
@@ -1606,7 +1227,7 @@ This is the strict main inequality for $\C$.
 \end{proof}
 
 \begin{remark} If $T'\in\S$, then $T'$ is nonobtuse subcritical.
-  Also, $T'\Ra T$, for some $T\in \C'$.  By construction, $T'$
+  Also, $T'\rat T$, for some $T\in \C'$.  By construction, $T'$
   attaches to $T$ along the longest edge of $T'$.  By
   Lemmas~\ref{lemma:21} and \ref{lemma:172}, the longest edge has
   length in $[1.72,2.1]$.  Thus, we can get an upper bound on
@@ -1803,7 +1424,7 @@ This completes the argument in this case.
 
 {\it Case 5. The triangle $T_0$ is an obtuse triangle, and $\C'=\{T_0,T_1,T_1'\}$.}  
 
-By Remark~\ref{rem:delaunay}, there is no arrow $T \Ra T_0$ in $\C'$
+By Remark~\ref{rem:delaunay}, there is no arrow $T \rat T_0$ in $\C'$
 such that the shared edge is the long edge of $T_0$.  In particular,
 there cannot exist (Case 6) with $\C'=\{T_0,T_1,T_1',T_1''\}$ with
 every triangle obtuse.  Thus, Case 5 is the last case to be
@@ -1835,8 +1456,8 @@ of the local optimality results in~\cite{Kus}.
 
 \begin{definition}
   We define a {\it dimer} to be a pair $\{T_1,T_2\}$ such that $T_1$
-  and $T_2$ are both nonobtuse subcritical $P$-triangles, and $T_1\Ra
-  T_2$ or $T_2\Ra T_1$.
+  and $T_2$ are both nonobtuse subcritical $P$-triangles, and $T_1\rat
+  T_2$ or $T_2\rat T_1$.
 \end{definition}
 
 \begin{conjecture}\label{conj:dimer}[Dimer conjecture]
@@ -1847,7 +1468,7 @@ $P$-triangles, $T_1$ and $T_2$, are
 \end{conjecture}
 
 The dimer conjecture implies in particular that $\area(T_1)=\area(T_2)
-= \aK$.  Also, $T_1\Ra T_2$ and $T_2\Ra T_1$.  We note that dimer
+= \aK$.  Also, $T_1\rat T_2$ and $T_2\rat T_1$.  We note that dimer
 conjecture would allow us to simplify a number of the arguments in
 earlier sections.  The following lemmas give a number of other
 consequences of the dimer conjecture.
@@ -1862,24 +1483,24 @@ consequences of the dimer conjecture.
   Lemma~\ref{lemma:no-ao}, $T_2$ and $T_3$ are nonobtuse.  By the
   definition of $b$ and $\N$, we have $b(T_1) = \area(T_1)$ and $b(T_2) =
   \area(T_2)$.  Hence $T_1$ and $T_2$ are nonobtuse subcritical.  By
-  the dimer conjecture, $T_2\Ra T_1$.  Thus, an arrow $T_2\Ra T_3\ne
+  the dimer conjecture, $T_2\rat T_1$.  Thus, an arrow $T_2\rat T_3\ne
   T_1$ does not exist.
 \end{proof}
 
 \begin{lemma}\label{lemma:dimer-obtuse} 
 Assume the dimer conjecture.  There does not exist an
-arrow $T\Ra T_1$, where $T$ is obtuse, and $T_1$ is part of a dimer.
+arrow $T\rat T_1$, where $T$ is obtuse, and $T_1$ is part of a dimer.
 \end{lemma}
 
 
 \begin{proof}  
   If $T$ is obtuse, its longest edge has length greater than
   $\kappa\sqrt8$, but the edges of $T_1$ in a dimer are shorter than
-  this, so we do not have the given arrow $T\Ra T_1$.
+  this, so we do not have the given arrow $T\rat T_1$.
 \end{proof}
 
 \begin{lemma}
-  Assume the dimer conjecture.  There does not exist an arrow $T\Ra
+  Assume the dimer conjecture.  There does not exist an arrow $T\rat
   T_1$, where $T$ is nonobtuse subcritical, and $T_1$ is part of a
   dimer, unless the dimer pair is $\{T,T_1\}$.
 \end{lemma}
@@ -1898,7 +1519,7 @@ a $b$-cluster.
 \begin{proof}  
 We have $T_1 \ra{a} T_2$ and $T_1 \ra{b} T_2$.
 
-Assume $T\Ra T_1$, where $T\ne T_2$.  Then by
+Assume $T\rat T_1$, where $T\ne T_2$.  Then by
 Lemma~\ref{lemma:dimer-obtuse}, we see that $T$ is nonobtuse.  By the
 dimer conjecture, $T$ is not subcritical.  Also $n_1(T) = 0$ and
 $b(T)=\area(T)$, so $T$ is not $b$-subcritical.  So
@@ -1921,7 +1542,7 @@ equal to $(\ra{b})$ restricted to $\C$.
   $T_1,T_2\in\C$.  By the definition of $(\ra{c})$, the triangle $T_1$
   is nonobtuse and $T_2$ is $b$-subcritical.
 
-  Let $T_3$ be such that $T_2\Ra T_3$.  Then $T_1\ra{b} T_2\ra{b}
+  Let $T_3$ be such that $T_2\rat T_3$.  Then $T_1\ra{b} T_2\ra{b}
   T_3$.  By Lemma~\ref{lemma:dimer}, $T_1=T_3$ and $\{T_1,T_2\}$ is a
   dimer.  By Lemma~\ref{lemma:dimer-cluster}, $\{T_1,T_2\}$ is a full
   $b$-cluster and contains no obtuse triangles, which is contrary to
@@ -1950,7 +1571,7 @@ equal to $(\ra{b})$ restricted to $\C$.
   three cases depending on whether $\C$ is a singleton, a dimer, or
   general.
 
-  Assume first that $\C = \{T_0\}$, a singleton.  Then $T_0\Ra T$ for
+  Assume first that $\C = \{T_0\}$, a singleton.  Then $T_0\rat T$ for
   some triangle $T$.  Because $T$ is not in the $b$-cluster of $C$, we
   do not have $T_0\ra{b} T$, which implies that $T_0$ is not
   $b$-subcritical.
@@ -2018,7 +1639,7 @@ inequality.  The lemma now gives $T_0\in \C$ such that
   T\ra{b} T_0\}.
 \]
 We show that we can replace the arrows $(\ra{b})$ with $(\ra{a})$.
-Suppose $T\Ra T_0$.  We claim that $T\ra{a} T_0$ iff $T\ra{b} T_0$.
+Suppose $T\rat T_0$.  We claim that $T\ra{a} T_0$ iff $T\ra{b} T_0$.
 In fact, $T_0$ is nonobtuse so $(T,T_0)\not\in \N$ and
 \[
 b(T) = \area(T) - \epso n_2(T) \le \area(T).
@@ -2375,128 +1996,4 @@ x_\alpha \le 2\sigma(1/\sin(2\pi/5) - 1) < 0.0605.
 
 
 This completes our discussion of coordinates used for computations.
-
-\section{Computer Calculations}
-
-  The code for the computer-assisted proofs is written in Objective
-  Caml.  There are several thousand lines of code, available for
-  download from github \cite{Git}.  The computer calculations for this
-  paper take many hours in total to run.  
-
-To control
-  rounding errors on the computer, we use an interval arithmetic
-  package for OCaml by Alliot and Gotteland, which runs on the Linux
-  operating system and Intel processors \cite{All}.  Intervals are represented as 
-  pairs $(a,b)$ of floating point numbers, giving the lower $a$ and upper $b$ endpoints
-of the interval. 
-
-
-
-\subsection{meet-in-the-middle}
-
-A common algorithmic technique for reducing the time complexity of an algorithms
-through greater space complexity is called {\it meet-in-the-middle}.  This is very closely related to
-the  {\it linear assembly algorithms} used in the solution to the Kepler problem \cite{XX}.
-%% Algorithms Kepler.
-
-A number of introductory examples of meet-in-the-middle (MITM) algorithms can be found
-at the blog post \cite{XX}.
-% Cosmin Negruseri, 10 aug 2012. Coding contest trick: Meet in the middle.
-% www.infoarena.ro/blog/meet-in-the-middle.
-A simple example from there is to find if there are four numbers in a given finite set $S$ of integers
-that sum to zero, where repetitions of integers are allowed.  
-If we calculate all possible sums of four integers, testing if each is zero,
-then there are $n^4$ sums, where $n$ is the cardinality of $S$.  The MITM solution to
-the problem  computes and stores (in a hashset) all sums $a+b$ of unordered pairs of elements from $S$.
-We then search the hashset for a collision, meaning a sum $a+b$ that is the negative of another sum $c+b$:
-$a+b = -(c+b)$.
-Any such collision gives $a+b+c+d=0$.  The MITM solution involves the computation of
-$n^2$ sums $a+b$, rather than $n^4$, for a substantial reduction in complexity.  
-MITM techniques have numerous applications to
-cryptography, and it is there that we first encountered the technique.  See for example,
-\cite{XX}
-% http://www.ma.huji.ac.il/~nkeller/CACM2013.pdf
-which applies MITM to a general class of dissection problems, including the Rubik's cube.
-
-
-We obtain computational bounds on the area of clusters of Delaunay triangles (or more accurately, $P$-triangles).
-Each of our clusters will be assume to consist of one triangle (called the central triangle), flanked 
- by one, two, or three additional triangles along its edges.  We call the flanking triangles {\it peripheral triangles}.
-The aim of the algorithm is to give lower bounds
-on the sum of the areas of the triangles, subject to a collection of constraints.  Two types of constraints are
-allowed: (1) constraints that can be expressed in terms of a single triangle, and (2) assembly constraints.
-An assembly constraint states that the central $P$-triangle fits together with a flanking triangle.  
-In more detail, the central triangle $T_0$ shared an edge and two pentagons $A$, $B$ with a flanking triangle $T_1$.
-Associated with $T_0$ are parameters $d^0_{AB}$, $\theta^0_{ABC}$, $\theta^0_{BAC}$ giving the edge length of the
-common edge with $T_1$, and the inclination angles of the pentagons $A$ and $B$ with respect to that common edge.
-Similarly, associated with $T_1$ are parameters $d^1_{AB}$, $\theta^1_{ABC}$, $\theta^1_{BAC}$.  The assembly constraint
-along the common edge is
-\begin{equation}\label{eqn:assembly}
-d^0_{AB} = d^1_{AB},\quad \theta^0_{ABC} = -\theta^1_{ABC},\quad \theta^0_{BAC} = -\theta^1_{BAC}.
-\end{equation}
-The negative sign comes from the opposite orientations of the common edge with respect to $T_0$ and $T_1$.
-
-Each $P$-triangle is a point in a six dimensional space
-(described by three triangle edge lengths and three inclination angles of the pentagons
-at its vertices).  A cluster consisting of one central $P$-triangle and $k$ flanking triangles is a point in a
-space of dimension
-$6 + 3k$.  If we cover the space with cubes of edge-length $\epsilon$, then there are order $(1/\epsilon)^{6+3k}$
-cubes.  This is beyond our computational reach when $k>0$.
-
-We can use MITM techniques to reduce to order $(1/\epsilon)^6$ cubes, and this puts the computations (barely) within the
-reach of a laptop computer.  Specifically, we fix a edge size $\epsilon$ and cover the space of peripheral triangles
-by cubes of size $\epsilon$, calculating area, edge lengths, inclination angles, and other relevant quantities
- (using interval arithmetic) over each cube.   
-
-The idea of MITM is to place the data for each peripheral cube into a hash table, keyed by the  variables
-$d^1_{AB}$, $\theta^1_{ABC}$, $\theta^1_{BAC}$ that are shared with the central triangle through Equation~\ref{eqn:assembly}.
-We view Equation~\ref{eqn:assembly} as the analogue of the collision condition $(a+b) = -(c+d)$ in
-the simple example of MITM given above.  Of course, the variables $d^1_{AB}$ etc. are represented as intervals
-with floating point endpoints and cannot be used directly as keys to a hashtable.  Instead we cover these intervals
-with a secondary finite set of intervals with rational endpoints, which are indexed by integers.  These integer indices
-become the keys to the hash table.    For each key, the hash table records the smallest  area of a peripheral triangle with
-that key.
-
-Once the hash is created, we divide the space of central triangles into cubes and computes the relevant quantities
-(edge lengths, triangle area, and inclination angles) over each cube using interval arithmetic.   Bounds on the peripheral
-triangles are recovered from the hash table to get a lower bound on the sum of the areas of the triangles in the cluster.
-
-The entire process is iterated for smaller and smaller $\epsilon$ until the desired bound on the areas of the triangles
-in the cluster is obtained.   Each time $\epsilon$ is made smaller, only the peripheral cubes that were involved in a
-key collision with a central cube are carried into the next iteration for subdivision into smaller cubes.  Only the cubes
-with suitably small triangle area bounds are carried into the next iteration.  In practice, to achieve our bounds,
-the smallest $\epsilon$ that
-was required was approximately $0.00024$.
-
-\subsection{Automatic Differentiation}
-
-Recall that there are several ways to compute derivatives by computer, such as numerical approximation by
-a difference quotient $f(x + \Delta x)/\Delta x$, symbolic differentiation (as in computer algebra systems), and
-automatic differentiation.   In this project, we differentiate functions of a single variable using automatic differentiation.
-The value of a function and its derivative are represented as a pair (f,f') of intervals, where $f$ is an interval bound
-on the function, and $f'$ is an interval bound on the derivative of the function.    More complex expressions can be built
-from simpler expressions by extending arithmetic operations $(+)$, $(-)$, $(*)$, $(/)$ to pairs.  For example,
-\[
-(f,f') + (g,g') = (f+g,f'+g'),\quad (f,f') * (g,g') = (f g,f g' + f' g),
-\]
-where the component-wise addition and multiplication operations are given by interval arithmetic.
-
-Section~\ref{XX} describes the proof of the local minimality of the Kuperberg-Kuperberg dimer.  We review that
-argument here with an emphasis on automatic differentiation.
-Automatic differentiation allows us to show that the Kuperberg-Kuperberg dimer $D_K$ is the unique minimizer of area
-in an explicit neighborhood of $D_K$.  In Section~\ref{XX}, we give a curve $\Gamma$ 
-(in the space of dimers) with parameter $t\in\ring{R}$
-that passes through the point $D_K$ at $t=0$.  
-
-For any point $D$ in an explicit neighborhood of $D_K$ in the dimer space, that section describes a curve from $D$ to a point
-on the curve $\Gamma$.  
-Using automatic differentiation, we show that area decreases as we move from $D$ towards $\Gamma$.
-Thus, the area minimizer, lies on $\Gamma$.  We can compute an upper bound $|t|\le M$.
-
-By symmetry in the underlying geometry, 
-it is clear that the area function has derivative zero along $\Gamma$ at
-$t=0$.  By taking a second derivative with automatic differentiation, we find that the second derivative of
-the area function along this curve is positive
-when  $|t|\le M$.   Thus, $D_K$ is the unique area minimizer on this curve within this explicit neighborhood.
-
 
