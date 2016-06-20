@@ -20,6 +20,7 @@
 \def\Ra{\Rightarrow}
 \def\nRa{\nRightarrow}
 \def\ra#1{\Rightarrow_{#1}}
+\def\rab{\ra{b}}
 \def\na#1{{\nRightarrow}_{#1}}
 
 \def\epso{\epsilon_0}
@@ -35,6 +36,12 @@
 \def\bl{\bar\ell}
 
 \def\dd#1#2{\norm{\c_{#1}}{\c_{#2}}}
+\def\tb{\tilde b}
+\def\tn{\tilde n}
+
+\def\libel#1{{\sc [#1]}\label{#1}}
+\def\rif#1{(\ref{#1}-{\text{\sc #1})}}
+\def\raf#1{\rif{#1}}
 
 % tikz.
 \def\smalldot#1{\draw[fill=black] (#1) node [inner sep=0.8pt,shape=circle,fill=black] {}}
@@ -85,7 +92,7 @@ Kuperberg and Kuperberg
 densest packing of congruent regular pentagons in the plane is
 achieved by a double-lattice arrangement: verticals column of aligned
 pentagons pointing upward, alternating with vertical columns of
-aligned pentagons pointing downward (Figure~\ref{fig:double-lattice}) \cite{Kup}.  We call this the {\it Kuperberg
+aligned pentagons pointing downward (Figure~\raf{fig:double-lattice}) \cite{Kup}.  We call this the {\it Kuperberg
   conjecture,}  and we call this packing of pentagons the {\it Kuperberg packing}.
 This packing has density
 \[
@@ -127,7 +134,7 @@ pentagons in red and Delaunay triangles in blue.}
 This paper gives a computer-assisted proof of the Kuperberg conjecture.
 
 
-\begin{theorem}\label{thm:main}  No packing of congruent regular pentagons in the Euclidean
+\begin{theorem}\libel{thm:main}  No packing of congruent regular pentagons in the Euclidean
 plane has density greater than that of
 the Kuperberg-Kuperberg packing.   The Kuperberg-Kuperberg packing is the
 unique periodic packing of congruent regular pentagons that attains optimal density.
@@ -192,7 +199,7 @@ area over each cluster is at least $\aK$.
 We say that a Delaunay triangle (in any pentagon packing) is {\it
   subcritical} if its area is at most $\aK$.  We will obtain a lower
 bound $a_0 := 1.237$ on the area of a nonobtuse Delaunay triangle
-(Lemma~\ref{lemma:a0}).  This is a very good bound.  It is very close
+(Lemma~\rif{lemma:a0}).  This is a very good bound.  It is very close
 to the numerically smallest achievable area, which is approximately
 $1.23719$.\footnote{In the notation of the appendix, the numerical 
 minimum is achieved by a pinwheel with parameters $\alpha=\beta=0$
@@ -200,6 +207,7 @@ and $x_\gamma\approx 0.16246$.}
 We write $\epso := \aK - a_0 \approx 0.05336$, for the
 difference between the desired bound $\aK$ on averages of triangles
 and the bound $a_0$ for a single nonobtuse triangle.
+Let $\epso' = 0.008$.  
 % Numerical page 8. of nonobtuse notes.
 % numerical min checked 2016/2/18 in Mathematica.
 
@@ -228,7 +236,7 @@ $\aK$.  We show various examples.
 \end{example}
 
 \begin{example} The longest edge of an acute subcritical Delaunay triangle cannot be too short.
-(See Lemma~\ref{XX}.)
+(See Lemma~\rif{XX}.)
 \end{example}
 
 \begin{example}  The Kuperberg-Kuperberg triangle is not a local minimum of the area function.
@@ -265,7 +273,7 @@ are defined as the reflexive, symmetric, transitive closure of further
 relations on the set of Delaunay triangles in a pentagon packing.
 
 A second strategy is to replace the area function $\area(T)$ on Delaunay
-triangles with a modified area function $b(T)$.  The modification steals from
+triangles with a modified area function $b(T)$.  The modification steals area from
 nearby triangles that have area to spare and gives to triangles in need.  It will 
 be sufficient to prove that the average of $b(T)$ over each cluster is at least $\aK$.
 
@@ -359,31 +367,31 @@ Let $\M$ be the set of pairs $(T_1,T_2)$ of Delaunay triangles such that
 We abbreviate $m_1(T) = n_1(T,\M)$, $m_2(T) = n_2(T,\M)$, $n_1(T) = n_1(T,\N)$, $n_2(T) = n_2(T,\N)$,
 and $n_2^+(T) = n_2(T,\N_+)$.
 
-Let $\epso' = 0.008$.  We define
+We define
 \[
 b(T) := \op{area}(T) + \epso (n_1(T) - n_2(T)) + \epso' (m_1(T) - m_2(T)).
 \]
 We say that $T$ is {\it $b$-subcritical} if $b(T) \le \aK$.  We write
-$T_1\ra{b} T_2$, if $T_1\Ra T_2$ and $T_1$ is $b$-subcritical.
+$T_1\rab T_2$, if $T_1\Ra T_2$ and $T_1$ is $b$-subcritical.
 The equivalence classes of triangles under the corresponding
 equivalence relation $(\equiv_b)$ are called {\it $b$-clusters}.
 
-We note that $\ra{b}$ is given by a translation-invariant rule.  The function $b(T)$ is also
+We note that $\rab$ is given by a translation-invariant rule.  The function $b(T)$ is also
 translation invariant and depends only on local information in the pentagon packing near  the triangle $T$.
 
 We remark that the modification $b(T)$ of the area function has two correction terms.
-The first term $\epso (n_1(T) - n_2(T))$ steals from obtuse triangles (and their neighbors) and gives 
+The first term $\epso (n_1(T) - n_2(T))$ takes away from obtuse triangles (and their neighbors) and gives 
  to acute triangles.  
 The intuition behind this correction terms is that the triangle adjacent to an obtuse triangle along its long edge
 has a very large surplus area that can be beneficially redistributed.  It allows us to make a clean separation of
 the proof of the main inequality into two cases: clusters that contain an obtuse triangle and clusters that do not.
-The second term $\epso' (m_1(T) - m_2(T))$ gives to pseudo-dimers, by stealing from
+The second term $\epso' (m_1(T) - m_2(T))$ augments the area of pseudo-dimers, by taking from
 their neighbor.   The intuition behind this correction term is that a pseudo-dimer can have area strictly less than
 the $K$-dimer, and we need to boost its area with a correction term to make it satisfy the main
-inequality.  
+inequality.  A calculation given below shows that the neighbor of the pseudo-dimer has area to spare.
 
 The correction terms allow us to keep the size of each cluster small.  Eventually, we show that each
-cluster contains at most four triangles.  This will be crucial when we turn to the computer calculations.
+cluster contains at most four triangles.  This small size will be helpful when we turn to the computer calculations.
 
 We give  some simple consequences of our definitions.
 
@@ -410,13 +418,24 @@ $\N$ is nonobtuse by definition, so $n_1(T)=0$.
   $m_1(T)\le 1$ and $m_2(T)\le 3$.
 \end{remark}
 
+\begin{lemma}\label{lemma:n2m2}  Suppose $n_2(T_2)>0$.  Then $m_2(T_2)=0$.
+\end{lemma}
+
+\begin{proof} If $T_2$ is obtuse, then $m_2(T_2)=0$ by Lemma~\rif{XX}.
+We may assume that $T_2$ is nonobtuse.
+By the definition of $\N$, the condition $n_2(T_2)$ implies the existence of an obtuse $T$ with $T\Ra T_2$.
+Then the result follows from the definition of $\M$ and the disjointness $\N\cap\M = \emptyset$.
+\end{proof}
 
 
-\begin{lemma}\label{lemma:main}  
+
+\subsection{The main inequality}
+
+\begin{lemma}\libel{lemma:main}  
 If  every $b$-cluster $\C$ in every saturated packing of regular
   pentagons is finite, and if for some $a$ every $b$-cluster average
   satisfies
-\begin{equation}\label{eqn:main}
+\begin{equation}\libel{eqn:main}
 \frac{\sum_{T\in \C} b(T)}{\card(\C)} \ge a,
 \end{equation}
 then the density of a packing of regular pentagons never exceeds 
@@ -433,9 +452,9 @@ the density of the Kuperberg packing.
 \end{lemma}
 
 For any finite set $\C$ of triangles, we will call the inequality
-(\ref{eqn:main}) with the constant $a=\aK$ the {\it main inequality}
+(\rif{eqn:main}) with the constant $a=\aK$ the {\it main inequality}
 (for $\C$).  We call the strict inequality,
-\begin{equation}\label{eqn:strict-main}
+\begin{equation}\libel{eqn:strict-main}
 \frac{\sum_{T\in \C} b(T)}{\card(\C)} > \aK,
 \end{equation}
 the {\it strict main inequality} (for $\C$).
@@ -475,10 +494,10 @@ When $a=\aK$, the term on the right is the density of the Kuperberg
 packing, as desired.
 \end{proof}
 
-This article gives a proof of the following theorem. In view of Lemma \ref{lemma:main},
-it implies the main result, Theorem \ref{thm:main}.
+This article gives a proof of the following theorem. In view of Lemma \rif{lemma:main},
+it implies the main result, Theorem \rif{thm:main}.
 
-\begin{theorem}\label{conj:main}
+\begin{theorem}\libel{conj:main}
   Let $\C$ be a $b$-cluster of Delaunay triangles in a saturated
   packing of regular pentagons.  Then $\C$ is finite and the average
   of $b(T)$ over the cluster is at least $\aK$.  That is, $\C$
@@ -487,7 +506,7 @@ it implies the main result, Theorem \ref{thm:main}.
   packing, attached along their common longest edge.
 \end{theorem}
 
-Analyzing the proof of Lemma~\ref{lemma:main}, we see that for a
+Analyzing the proof of Lemma~\rif{lemma:main}, we see that for a
 periodic packing, the maximum density is achieved exactly when each
  cluster in the packing gives exact equality in the main inequality.
 Thus, the theorem implies that the Kuperberg packing is the
@@ -539,7 +558,7 @@ function $\areta(d_1,d_2,\eta)$.  It is justified in the sense that
 the other choice does not usually give a Delaunay triangle of a pentagon
 packing, according to the following simple test.
 
-\begin{lemma}\label{lemma:areta}  Let $d_1$, $d_2$
+\begin{lemma}\libel{lemma:areta}  Let $d_1$, $d_2$
 and  $\eta$ be positive real numbers.
 Assume that $T$ and $T'$ are triangles with edge lengths
 $d_1,d_2,d_3$ and $d_1,d_2,d_3'$,  and with the same circumradius
@@ -553,7 +572,7 @@ then the triangle $T'\ne T$, with $d_3' < d_3$,
 cannot satisfy the constraint $2\kappa\le d_3'$ of a  Delaunay triangle.
 
 
-\begin{proof} See Figure \ref{fig:areta}.
+\begin{proof} See Figure \raf{fig:areta}.
 Let $\p$, $\q$, and $\r$ (resp. $\p$, $\q$, and $\r'$) be the vertices of $T$
 (resp. $T'$) on a common  circle, with
 \[
@@ -587,7 +606,7 @@ In this subsection, we describe possible contacts between pentagons.
 When two pentagons touch each other, some vertex of one touches an
 edge of the other.  We call the pentagon with the vertex contact the
 {\it pointer} pentagon, and the pentagon with the edge contact the
-{\it receptor} pentagon (Figure~\ref{fig:receptor}).  We also call the
+{\it receptor} pentagon (Figure~\raf{fig:receptor}).  We also call the
 vertex in contact the {\it pointer vertex} of the pointer pentagon. There are
 degenerate cases, when the contact set between two pentagons contains
 of a vertex of both pentagons.  In these degenerate cases, the
@@ -610,7 +629,7 @@ and the other two pairs are degenerate.}{
 % nonobtuse.
 We consider a single Delaunay triangle and the three nonoverlapping
 pentagons centered at the triangle's vertices
-(Figure~\ref{fig:3C-type}).  We call such a configuration a {\it
+(Figure~\raf{fig:3C-type}).  We call such a configuration a {\it
   $P$-triangle}.  A $P$-triangle is determined up to congruence by six
 parameters: the lengths of the edges of the Delaunay triangle and the
 rotation angles of the regular pentagons.  When we refer to the area
@@ -640,7 +659,7 @@ is the target of two directed edges  ($L$-junction, $T$-junction or
 
 As indicated in parentheses, we have named each of the various contact
 types.  An example of each of the contact types is shown in
-Figure~\ref{fig:3C-type}.  An exact description of these contact types
+Figure~\raf{fig:3C-type}.  An exact description of these contact types
 appears later.  The name $L$-junction is suggested by the $L$-shaped
 region bounded by the three pentagons.  Similarly, the name
 $T$-junction is suggested by the $T$-shaped region bounded by the
@@ -683,7 +702,7 @@ a pinwheel, a pin-$T$ junction, a $\Delta$-junction, an $L$-junction, and a $T$-
 
 A {\it cloverleaf} arrangement is a $3C$ triangle that has a point at
 which vertices from all three pentagons meet
-(Figure~\ref{fig:clover}).  This is degenerate because this shared
+(Figure~\raf{fig:clover}).  This is degenerate because this shared
 vertex can be considered as a pointer or receptor.
 
 \tikzfig{clover}{A cloverleaf (degenerate pinwheel)}
@@ -704,7 +723,7 @@ statements.  We give a few non-anomaly lemmas as follows.
 They are expressed as separation results, asserting that
 two pentagons $A$ and $C$ do not touch.
 
-\begin{lemma}\label{lemma:sep1} 
+\begin{lemma}\libel{lemma:sep1} 
 Let $T$ be a $3C$-triangle with pentagons $A$, $B$, and $C$ such that
 $B$ is a pointer to both of the other pentagons $A$ and $C$.  
 Assume that $T$ is not a cloverleaf.
@@ -712,7 +731,7 @@ Then the two pointer vertices $\v_B$ and $\v_B'$ are adjacent
 vertices of $B$.
 \end{lemma}
 
-\begin{lemma}\label{lemma:sep2}  
+\begin{lemma}\libel{lemma:sep2}  
 Let $T$ be a $3C$-triangle with pentagons $A$, $B$, and $C$.
 Suppose that pentagon
 $A$ is a pointer to $B$ at $\v_A$ and that $B$ is a pointer to $C$
@@ -721,7 +740,7 @@ $\v_B$ is not opposite to the edge of $B$ containing
 $\v_A$.
 \end{lemma}
 
-\begin{lemma}\label{lemma:sep3} 
+\begin{lemma}\libel{lemma:sep3} 
 Let $T$ be a $3C$-triangle with pentagons $A$, $B$, and $C$ 
 such that $B$ is a receptor of both of
   the other pentagons.  Then the two pointer vertices
@@ -756,25 +775,25 @@ pentagons $A$ and $C$.}{
 }
 
 
-\begin{proof} The Lemmas~\ref{lemma:sep1}, \ref{lemma:sep2}, and
-  \ref{lemma:sep3} can be proved in the same way.  In each case, we
+\begin{proof} The Lemmas~\rif{lemma:sep1}, \rif{lemma:sep2}, and
+  \rif{lemma:sep3} can be proved in the same way.  In each case, we
   prove the contrapositive, assuming the negation of the geometric
   conclusion, and proving that the configuration is not $3C$.  We show
   that the configuration is not $3C$ by constructing a separating
   hyperplane between the pentagons $A$ and $C$.  In each case, the
   separating hyperplane is a line through the center of the middle
   pentagon $B$ and passing through a vertex $\v$ of that pentagon.  See
-  Figure~\ref{fig:sep}.  In the case of Lemma~\ref{lemma:sep1}, there
+  Figure~\raf{fig:sep}.  In the case of Lemma~\rif{lemma:sep1}, there
   is a degenerate case of a cloverleaf, where all three pentagons meet
   at the vertex $\v$ on the separating line.
 \end{proof}
 
 \begin{definition}[$\Delta$]
   We say that a $3C$-triangle has type $\Delta$ if we are in the first
-  case of Lemma~\ref{lemma:sep3} (the two pointer vertices $\v_A$ and
+  case of Lemma~\rif{lemma:sep3} (the two pointer vertices $\v_A$ and
   $\v_C$ of $A$ and $C$ lie on the same edge of $B$) provided the line $\lambda$
   through that edge of $B$ separates $B$ from $A$ and $C$. (See
-  Figure~\ref{fig:delta}.)
+  Figure~\raf{fig:delta}.)
 \end{definition}
 
 \tikzfig{delta}{In type $\Delta$, a line separates pentagon 
@@ -836,7 +855,7 @@ classified as a degenerate $L$-junction below.
 % or type pin-$2$.
 %  Assume that $C$ points to $A$ at $\v_{CA}$, that $A$ points to $B$
 %  at $\v_{AB}$, and that $B$ points to $C$ at $\v_{BC}$.  Assume that
-%  $T$ is not (degenerately) type $\Delta$ (Figure~\ref{fig:delta}).
+%  $T$ is not (degenerately) type $\Delta$ (Figure~\raf{fig:delta}).
 %  Then $\v_{CA}$ and $\v_{BC}$ lie on the same edge of $C$.
 \end{lemma}
 
@@ -857,7 +876,7 @@ classified as a degenerate $L$-junction below.
 }
 
 \begin{proof}  We draw a (distorted) picture of a
-  pinwheel that violates the conclusion (Figure~\ref{fig:pinwheel}).
+  pinwheel that violates the conclusion (Figure~\raf{fig:pinwheel}).
  %(There are
  % other configurations (and associated figure) that must be ruled out,
  % when additionally $\v_{AB}$ and $\v_{BC}$ lie on adjacent edge of
@@ -907,7 +926,7 @@ impossible.
 \begin{definition}[$T$ and $L$-junction]
   We say that a $3C$-triangle is a type $T$- or $L$-junction if it is
   not type $\Delta$ and if we are in the second case of
-  Lemma~\ref{lemma:sep3} (the two pointer vertices $\v_A$ and $\v_C$
+  Lemma~\rif{lemma:sep3} (the two pointer vertices $\v_A$ and $\v_C$
   lie on adjacent edges of $B$).  Say $A$ is a pointer into $C$ at
   $\v$.  We say that it has type {\it $L$-junction} if $\v_C$ and $\v$
   lie on the same pentagon edge of $C$, and otherwise we say it has
@@ -915,12 +934,12 @@ impossible.
 \end{definition}
 
 We can be more precise about the structure of a $T$-junction.  In the
-context of the definition, Lemma~\ref{lemma:sep2} implies that $\v$
+context of the definition, Lemma~\rif{lemma:sep2} implies that $\v$
 and $\v_C$ lie on adjacent pentagon edges of $C$.
 
 This completes the classification of $3C$-triangles.  Useful
 coordinate systems for the various types can be found in the appendix
-(Section~\ref{sec:appendix}).
+(Section~\rif{sec:appendix}).
 
 \section{Delaunay triangle areas}
 
@@ -933,7 +952,7 @@ bound on the area of a nonobtuse Delaunay triangle.
 %The next lemma gives a slight improvement on the edge length bound
 %$\kappa\sqrt{8}\approx 2.288$.
 
-\begin{lemma}\label{lemma:21} A nonobtuse subcritical triangle has edge lengths
+\begin{lemma}\libel{lemma:21} A nonobtuse subcritical triangle has edge lengths
   at most $2.1$.
 \end{lemma}
 
@@ -946,7 +965,7 @@ bound on the area of a nonobtuse Delaunay triangle.
 which is not subcritical.
 \end{proof}
 
-\begin{lemma}\label{lemma:right} 
+\begin{lemma}\libel{lemma:right} 
   A nonobtuse subcritical triangle has edge length less than
   $\kappa\sqrt8$.  In particular, a right-angled Delaunay triangle is
   not subcritical.
@@ -960,7 +979,7 @@ This is a corollary of the previous lemma, because $\kappa\sqrt8 >
 %  lengths.  A nonobtuse Delaunay triangle with an edge of length at
 %  least $\kappa\sqrt{8}$ has area at least that of the isosceles right
 %  triangle
-%\begin{equation}\label{eqn:right}
+%\begin{equation}\libel{eqn:right}
 %\area(T) \ge \area(2 \kappa,2 \kappa,\kappa\sqrt{8}) = 2 \kappa ^2 \approx 1.30902 > \aK.
 %\end{equation} % checked 2016/2/18 in calcs.ml
 %This is not subcritical.  
@@ -983,7 +1002,7 @@ with both of the other pentagons.
 The next lemma is used to give area
 estimates when an edge has length at most $\kappa\sqrt{8}$.
 
-\begin{lemma}\label{lemma:primary-contact} 
+\begin{lemma}\libel{lemma:primary-contact} 
   Let $A$ be a pentagon in a nonobtuse $P$-triangle.  Assume that the
   triangle edge opposite $\c_A$ has length at most $\kappa\sqrt{8}$.
   Then the $P$-triangle can be continuously deformed until $A$ is in
@@ -1006,13 +1025,13 @@ estimates when an edge has length at most $\kappa\sqrt{8}$.
 \end{proof}
 
 % page 30.
-\begin{lemma}\label{lemma:delta} A subcritical $3C$-triangle does not have type $\Delta$.
+\begin{lemma}\libel{lemma:delta} A subcritical $3C$-triangle does not have type $\Delta$.
   In fact, such a $P$-triangle $T$ has area greater than $1.5$.
 \end{lemma}
 
 \begin{proof} The proof is computer-assisted.  The $3C$-triangles of
   type $\Delta$ form a three-dimensional configuration space.  The
-  appendix (Section~\ref{sec:appendix}) introduces good coordinate
+  appendix (Section~\rif{sec:appendix}) introduces good coordinate
   systems for each of the various $3C$-triangle types.  We make a
   computer calculation of the area of the Delaunay triangle as a
   function of these coordinates.  We use interval arithmetic to
@@ -1022,7 +1041,7 @@ estimates when an edge has length at most $\kappa\sqrt{8}$.
 
 
 
-\begin{lemma}\label{lemma:mid-172}  
+\begin{lemma}\libel{lemma:mid-172}  
   If a pentagon $A$ has midpointer contact with a pentagon $B$, then
   $\dd{A}{B} > 1.72$.
 \end{lemma}
@@ -1038,7 +1057,7 @@ estimates when an edge has length at most $\kappa\sqrt{8}$.
 \] % checked 2016/2/18 in calcs.ml
 \end{proof}
 
-\begin{lemma}\label{lemma:172}
+\begin{lemma}\libel{lemma:172}
   If every edge of a $P$-triangle $T$ is at most $1.72$, then the
   triangle is not subcritical.
 \end{lemma}
@@ -1048,7 +1067,7 @@ estimates when an edge has length at most $\kappa\sqrt{8}$.
     appendix, the pinwheel with parameters $\alpha=\beta=\pi/15$,
     $x_\gamma = 0.18$ is subcritical equilateral with edge lengths
     approximately $1.72256$.} Such a triangle is nonobtuse.  By
-  Lemma~\ref{lemma:primary-contact}, we may deform $T$, decreasing its
+  Lemma~\rif{lemma:primary-contact}, we may deform $T$, decreasing its
   edge lengths and area, until each pentagon is in primary contact
   with the other two.  By the previous lemma, we may assume that the
   contact is not midpointer contact.  Thus, each pentagon has double
@@ -1056,7 +1075,7 @@ estimates when an edge has length at most $\kappa\sqrt{8}$.
 
   If the $P$-triangle does not have $3C$ contact, then obvious
   geometry forces one pentagon to have double contact and the other
-  two pentagons to have slider contact (Figure~\ref{fig:172-slider}).
+  two pentagons to have slider contact (Figure~\raf{fig:172-slider}).
   The nonoverlapping of the pentagons forces one of slider contacts to
   be such that a sliding motion along the edges of contact decreases
   area and edge lengths of $T$.  Thus, the $P$-contact can be deformed
@@ -1072,12 +1091,12 @@ lengths and the area of the Delaunay triangle}{
 Now assume that the $P$-triangle has $3C$ contact.
 We have classified all $3C$ triangles.  We obtain the proof
 by expressing each family of triangles in terms of explicit
-coordinates from the appendix (Section~\ref{sec:appendix}) and
+coordinates from the appendix (Section~\rif{sec:appendix}) and
 computing bounds on the areas and edge lengths of the triangles using
 interval arithmetic.  The result follows.
 \end{proof}
 
-\begin{lemma}\label{lemma:2C} 
+\begin{lemma}\libel{lemma:2C} 
   Let $T$ be a subcritical nonobtuse $P$-triangle with pentagons $A$,
   $B$, and $C$.  Then fixing $B$ and $C$, we may deform $T$ by moving
   the third pentagon $A$, without increasing the area of $T$, until
@@ -1085,8 +1104,8 @@ interval arithmetic.  The result follows.
 \end{lemma}
 
 \begin{proof}
-  By Lemma~\ref{lemma:right}, the edge lengths of $T$ are at most
-  $\kappa\sqrt8$.  By Lemma~\ref{lemma:primary-contact}, we may assume
+  By Lemma~\rif{lemma:right}, the edge lengths of $T$ are at most
+  $\kappa\sqrt8$.  By Lemma~\rif{lemma:primary-contact}, we may assume
   that the pentagon $A$ has primary contact.  If the primary contact
   of a pentagon $A$ is slider contact, we may slide $A$ along the edge
   of contact in the direction to decrease the area of $T$ until it has
@@ -1095,42 +1114,26 @@ interval arithmetic.  The result follows.
   $B$, in the direction to decrease the area of $T$ until it has
   double contact.  These area-decreasing deformations never transform
   the nonobtuse subcritical triangle into a right triangle
-  (Lemma~\ref{lemma:right}).
+  (Lemma~\rif{lemma:right}).
 \end{proof}
 
 
-\begin{lemma}\label{lemma:a0}  
+\begin{lemma}\libel{lemma:a0}  
 A nonobtuse $P$-triangle $T$ has area at least $a_0$.
 \end{lemma}
 
 \begin{proof} This is a computer-assisted proof.  We may assume for a
   contradition that $T$ has area less than $a_0$.  In particular, it
-  is subcritical.  By Lemma~\ref{lemma:2C}, we may assume that each
+  is subcritical.  By Lemma~\rif{lemma:2C}, we may assume that each
   pentagon has double contact with the other two, and that $T$ is
   $3C$.  We have classified all $3C$ triangles.  We obtain the proof
 by expressing each family of triangles in terms of explicit
-coordinates from the appendix (Section~\ref{sec:appendix}) and
+coordinates from the appendix (Section~\rif{sec:appendix}) and
 computing bounds on the areas and edge lengths of the triangles using
 interval arithmetic.  The result follows.
 \end{proof}
 
-\section{Pseudo-Dimers}
-
-In this section, we determine the structure of pseudo-dimers and specialize
-the function $b$ to this context.
-
-On a nonobtuse triangle, the area is a monotonic function of its edge lengths.
-This makes it easy to give lower bounds on triangle areas.
-Here are some simple    area calculations that will be used repeatedly.
-\begin{align*}
-\area(1.8,1.8,1.8) &> \aK + 0.112\\
-\area(1.8,1.8,1.72) &> \aK + 0.069\\
-\area(1.8,1.72,1.72) &> \aK + 3\epso'\\
-\area(1.8,1.8,2\kappa) &> \aK + \epso'\\
-\area(\kappa\sqrt8,2\kappa,1.72) &> \aK +\epso.
-\end{align*}
-
-\subsection{a batch of computer calculations}\label{sec:calc}
+\section{Computer Calculations}\libel{sec:calc}
 
 The proofs of the theorems in this article rely heavily on computer calculations.
 These computer calculations are stated and proof at the end of the paper.
@@ -1139,26 +1142,26 @@ computer.  (We use results that have been pushed to the end of the paper, but
 there is no circular reasoning involved in using those results here.)  We state
 a few calculations that will not be needed until later to keep all  the calculations
 together.  They will be proved together using a meet-in-the-middle algorithm in
-Section~\ref{XX}.
+Section~\rif{XX}.
 
-\begin{lemma}[computer-assisted]\label{NKQNXUN} \label{calc:pseudo1} 
+\begin{lemma}[computer-assisted]\libel{NKQNXUN} \libel{calc:pseudo1} 
 Let $(T_1,T_0)\in \PD$.  The edge shared between
 $T_0$ and $T_1$ has length less than $1.8$. 
 \end{lemma}
 
-\begin{lemma}[computer-assisted]\label{RWWHLQT}\label{calc:pseudo2} 
+\begin{lemma}[computer-assisted]\libel{RWWHLQT}\libel{calc:pseudo2} 
 Let $(T_1,T_0)\in \PD$.  The longest edge of $T_0$
 has length greater than $1.8$.
 \end{lemma}
 
-\begin{lemma}\label{calc:pseudo3}  
+\begin{lemma}\libel{calc:pseudo3}  
 Let $(T_1,T_0)\in \PD$.  The two edges of $T_0$ other than the longest edge have lengths less
 than $1.8$.
 \end{lemma}
 
 \begin{proof}
-The shared edge has length less than $1.8$ by Lemma~\ref{hyp1}.  
-It has length at least $1.72$ by Lemma~\ref{XX}.
+The shared edge has length less than $1.8$ by Lemma~\rif{hyp1}.  
+It has length at least $1.72$ by Lemma~\rif{XX}.
 If the third edge has length at
 least $1.8$, then by the previous lemmas, its three edges have lengths at least $1.72$, $1.8$, $1.8$.
 Then 
@@ -1168,13 +1171,33 @@ Then
 This area inequality contradicts a defining property of pseudo-dimers.
 \end{proof}
 
-\begin{lemma}[computer-assisted]\label{BXZBPJW}\label{calc:pseudo-area}
+\begin{lemma}[computer-assisted]\libel{BXZBPJW}\libel{calc:pseudo-area}
 Let $(T_1,T_0)\in\PD$.  Then $\area\{T_0,T_1\} \ge 2\aK - \epso'$.
 \end{lemma}
 
-\begin{lemma}[computer-assisted]\label{JQMRXTH}\label{calc:pseudo-area3}
+\begin{lemma}[computer-assisted]\libel{JQMRXTH}\libel{calc:pseudo-area3}
 Let $(T_1,T_0)\in\PD$. Assume $T_0\Ra T$.  Then $\area\{T_0,T_1,T\} > 3\aK + \epso'$.
 \end{lemma}
+
+\begin{corollary}\libel{lemma:egress'} 
+Let $(T_1,T_0)\in\PD$.  Assume that $T_0\Ra T$.  Then
+$\area\{T\} > \aK+\epso'$.
+\end{corollary}
+
+\begin{proof}  
+\[
+\area(T) = \area\{T_0,T_1,T\} - \area\{T_0,T_1\} > (3\aK + \epso') - 2\aK = \aK + \epso'.
+\]
+\end{proof}
+
+\begin{corollary}\libel{lemma:m2-area}
+Suppose that $m_2(T)>0$.  Then $\area(T) > \aK + \epso'$.
+\end{corollary}
+
+\begin{proof} If $m_2(T)>0$, there exists $(T_1,T_0)\in\PD$ such that $T_0\Ra T$.
+The result follows from the previous corollary.
+\end{proof}
+
 
 \begin{definition}[long isosceles]
 We say that a triangle is long isosceles if the two longest edges of the triangle have
@@ -1187,13 +1210,13 @@ contact $(O2C)$ if the pentagon $A$ at the vertex that is not shared with the ot
 has double contact.
 \end{definition}
 
-\begin{lemma}[computer-assisted]\label{KUGAKIK}\label{calc:dimer-isosc}
+\begin{lemma}[computer-assisted]\libel{KUGAKIK}\libel{calc:dimer-isosc}
 Let $(T_1,T_0)\in DP$.  Then $T_1$ is not both $O2C$  and long isosceles.
 \end{lemma}
 
-\begin{definition}[good angle]  Let $T$ be a $P$-triangle.  Let $e$ be an edge of the triangle with pentagons
+\begin{definition}[good angle]\label{def:good}  Let $T$ be a $P$-triangle.  Let $e$ be an edge of the triangle with pentagons
 $A$ and $B$ at its endpoints.
-Let $\alpha = \alpha(T,e)$ be the angle between the two pentagons $A$ and $B$.  (See Figure~\ref{XX}.)  Modulo
+Let $\alpha = \alpha(T,e)$ be the angle between the two pentagons $A$ and $B$.  (See Figure~\rif{XX}.)  Modulo
 $2\pi/5$, we can assume that $\alpha\in  [0,2\pi/5]$.  We say that the angle is {\it good} along $(T,e)$ if $\alpha>\pi/5$.
 (XX What about degenerate caes $\alpha = 0 \equiv 2\pi/5$?)
 \end{definition}
@@ -1203,13 +1226,13 @@ We have the invariant $\alpha(T,e)+\alpha(T',e)=2\pi/5$.
 Hence if the angle is good along $(T,e)$ then it is not good along $(T',e)$.
 
 
-\begin{lemma}[computer-assisted]\label{FHBGHHY}\label{calc:good}
+\begin{lemma}[computer-assisted]\libel{FHBGHHY}\libel{calc:good}
 Let $\{T_0,T_1\}$ be given $P$-triangles (not necessarily a pseudo-dimer) such that $\area(T_1)\le \aK$ and $T_1\Ra T_0$.
 Assume that there is a nonshared edge $e$ of $T_0$ of length greater than $1.8$ and that the angle is not good along $(T_0,e)$.
 Then $\area\{T_0,T_1\} > 2\aK + \epso'$.
 \end{lemma}
 
-\begin{corollary} If $(T_1,T_0)\in \PD$ and $e$ is the longest (that is, egressive) edge of $T_0$.  Then the angle
+\begin{corollary}\label{lemma:good} If $(T_1,T_0)\in \PD$ and $e$ is the longest (that is, egressive) edge of $T_0$.  Then the angle
 is good along $(T_0,e)$.
 \end{corollary}
 
@@ -1218,123 +1241,16 @@ greater than $2\aK + \epso'$, which contradicts one of the defining properties o
 \end{proof}
 
 
-\begin{lemma}[computer-assisted]\label{HUQEJAT}\label{calc:pent3}
+\begin{lemma}[computer-assisted]\libel{HUQEJAT}\libel{calc:pent3}
 Let $T_1^i\Ra T_0$ and $\area(T_1^i)\le\aK$ for $i=0,1$ for distinct $P$-triangles $T^1_0$ and $T^1_1$.
 Then $\area\{T_0,T^0_1,T^1_1\} > 3\aK + \epso'$.
 \end{lemma}
 
-\begin{lemma}[computer-assisted]\label{QPJDYDB}\label{calc:pent4}
+
+\begin{lemma}[computer-assisted]\libel{QPJDYDB}\libel{calc:pent4}
 Let $T_1^i\Ra T_0$ and $\area(T_1^i)\le\aK$ for $i=0,1,2$ for distinct $P$-triangles $T^1_0$, $T^1_1$, and $T^2_1$.
 Then $\area\{T_0,T^0_1,T^1_1,T^2_1\} > 4\aK$.
 \end{lemma}
-
-\subsection{properties of pseudo-dimers}
-
-\begin{lemma}\label{lemma:pd-m2}  If $(T_1,T_0)\in\PD$, then $m_2(T_0)=0$.
-\end{lemma}
-
-\begin{proof} Assume for a contradiction that $m_2(T_0)>0$.  Then there exists $(T'_1,T_0')\in\PD$ and
-$(T'_0,T_0)\in\M$.  The shared edge between $T_0$ and $T'_0$ has length greater than $1.8$.
-This is the egressive edge $e$ of $T_0$.  This is impossible by Lemma~\ref{calc:good}, which states
-that the condition of having a good angle is not symmetrical.
-\end{proof}
-
-\begin{corollary}  For every triangle $T$, either $m_1(T)=0$ or $m_2(T)=0$.
-\end{corollary}
-
-\begin{proof}  Suppose $m_1(T)>0$, then $T=T_0$ for some $(T_1,T_0)\in\PD$.  The
-lemma gives $m_2(T)=0$.
-\end{proof}
-
-\begin{lemma}[pseudo-dimer disjointness]  Assume $(T_1,T_0)\in \PD$ and $(T'_1,T'_0)\in\PD$ and
-$\{T_0,T_1\}\cap\{T'_0,T'_1\} \ne \emptyset$.  Then $T_0 = T'_0$.
-\end{lemma}
-
-\begin{proof}  If we dismiss the other three cases $T_1=T'_1$ and $T_1=T'_0$ and $T_0=T'_1$ of a nonempty
-intersection, then the conclusion $T_0 = T'_0$ will stand.
-
-Assume first that $T_1 = T'_1$.  Then $T_1\Ra T_0$ and $T_1\Ra T'_0$, which gives $T_0=T'_0$.
-
-Next assume that $T_1=T'_0$.  We have $T'_1\Ra T'_0 = T_1 \Ra T_0$.  By the calculations above,
-this puts incompatible constraints on the length of the shared edge between $T_0$ and $T_1$.  It must have
-length less than $1.8$ and greater than $1.8$.
-
-The case $T_0=T'_1$ follows from the previous case by symmetry.
-\end{proof}
-
-\begin{lemma}[pseudo-dimer-obtuse]\label{lemma:pd-obtuse}
-Assume $(T_1,T_0)\in\PD$.  Then each edge of $T_0$ and $T_1$ has length less than $\sqrt8\kappa$.
-In particular, if  $T_2$ is obtuse then  $T_2\nRa T_0$ and $T_2 \nRa T_1$.
-\end{lemma}
-
-\begin{proof}  The shared edge between $T_0$ and $T_1$ has length less than $1.8 < \sqrt8\kappa$.  The shared
-edge is the longest edge of $T_1$, so that each edge of $T_1$ has length less than $1.8$.
-The only possibility is the egressive edge of $T_0$.  But if the egressive edge of $T_0$ has length at least $\sqrt8\kappa$,
-then
-\[
-\area\{T_1,T_0\} > a_0 + \area(\kappa\sqrt8,2\kappa,1.72) > a_0 + (\aK + \epso) = 2\aK.
-\]
-This contradicts the area condition in the definition of pseudo-dimer.  This completes the first claim of the lemma.
-
-If $T_2$ is obtuse, then its longest edge has length at least $\sqrt8\kappa$.  If $T_2\Ra T$, then the shared edge
-has length at least $\sqrt8\kappa$.
-\end{proof}
-
-\begin{corollary}\label{lemma:pd-n2}
-If $(T_1,T_0)\in\PD$, then $n_2(T_0)=0$.
-\end{corollary}
-
-\begin{proof} Suppose for a contradiction that $n_2(T_0)>0$.  Then $(T,T_0)\in \N$ for some $T$.  Since $T_0$ is
-nonobtuse, this implies that there exists some obtuse triangle $T_2$ such that $T_2\Ra T_0$.  This is contrary
-to the previous lemma.
-\end{proof}
-
-\begin{lemma} Let $(T_1,T_0)\in\PD$.  Then $n_1(T_1)=n_2(T_1)=m_1(T_1)=m_2(T_1)=0$.  In particular,
-$b(T_1) = \area(T_1)$.
-\end{lemma}
-
-\begin{proof}  We claim that $m_1(T_1)=m_2(T_1)=0$.  Otherwise $T_1$ shares an egressive edge with some
-peudo-dimer of length greater than $1.8$.  However, the longest edge of $T_1$ is its shared edge with $T_0$, which
-has length less than $1.8$.  This gives the claim.
-
-Next we claim that $n_1(T_1)=0$.  Otherwise, $(T_1,T_0)\in \N$.  Since $T_0$ is nonobtuse, this implies
-that there exists an obtuse triangle $T_2$ such that $T_2\Ra T_0$.  This contradicts Lemma~\ref{lemma:pd-obtuse}.
-
-Finally, we claim that $n_2(T_1)=0$.  Otherwise, $(T,T_1)\in \N$ for some $T$.  Since $T_1$ is nonobtuse,
-this implies that there exists an obtuse triangle $T_2$ such that $T_2\Ra T_1$.  This contradicts
-Lemma~\ref{lemma:pd-obtuse}.
-\end{proof}
-
-\begin{lemma}  Let $(T_1,T_0)\in\PD$.  Then $b(T_0) > \aK$.  That is, $T_0$ is not $b$-subcritical.
-\end{lemma}
-
-\begin{proof}
-We recall from Corollary~\ref{lemma:pd-n2} that $n_2(T_0)=0$.  From Lemma~\ref{lemma:pd-m2} we
-have $m_2(T_0)=0$.  Thus, $b(T_0) = \area(T_0) + \epso n_1(T_0) + \epso' m_1(T_0)$.
-We have
-\[
-\area(T_0) = \area\{T_0,T_1\} - \area(T_1) > (2\aK-\epso') -\aK = \aK - \epso'.
-\]
-
-We first treat the case that $n_1(T_0)>0$.  Then we have $n_1(T_0)\ge 1$.
-Thus, $b(T_0) \ge \area(T_0) + \epso n_1(T_0) > (\aK - \epso') + \epso > \aK$.
-This completes this case.  
-
-For the remainder of the proof, we assume that $n_1(T_0)=0$.  In particular, we have
-$b(T_0) = \area(T_0) + \epso' m_1(T_0)$.
-
-Next, we treat the case in which $T_1$ is the unique triangle $T$ such that $(T,T_0)\in\PD$.
-In this case, $(T_0,T_1)\not\in\M$, and $(T_0,T_1)\in\M$, so that $m_1(T_0)=1$.  Thus
-$b(T_0) > (\aK-\epso') + \epso' = \aK$.
-
-In the remaining case, there exists $T'_1\ne T_1$ such that $(T'_1,T_0)\in\PD$.  The edges of
-$T_0$ shared with $T_1$ and $T'_1$ have length at least $1.72$ and less than $1.8$.  The
-egressive edge of $T_0$ has length at least $1.8$.  Thus,
-\[
-b(T_0) \ge \area (T_0) \ge \area(1.72,1.72,1.8) > \aK.
-\]
-This completes the proof.
-\end{proof}
 
 
 \section{Dimer Pairs}
@@ -1371,7 +1287,7 @@ less than $\sqrt8\kappa$.  In particular $T_1$ and $T_0$ are both acute (and not
 
 \begin{proof}  The shared edge between $T_0$ and $T_1$ is the common longest edge of the
 two triangles.  It is enough to show that this edge has length less than $\sqrt8\kappa$.
-This is an edge of a subcritical triangle $T_1$. The result follows from Lemma~\ref{lemma:right}.
+This is an edge of a subcritical triangle $T_1$. The result follows from Lemma~\rif{lemma:right}.
 \end{proof}
 
 In particular, area non-increasing deformations of a dimer pair, never transform an acute
@@ -1414,12 +1330,12 @@ To show this, we assume that $T$ and its deformations are not long isosceles;  t
 it and its deformations have a unique longest edge that is shared with the other triangle.  Fixing the two pentagons of $T$
 ($A$ and $C$) along the shared edge, we show we can deform the outer pentagon until it has $2C$ contact.
 
-This is easy to carry out.  By Lemma~\ref{XX}, we can move $B$ in an area decreasing way until $B$ has primary
+This is easy to carry out.  By Lemma~\rif{XX}, we can move $B$ in an area decreasing way until $B$ has primary
 contact.  We can continue to move the outer pentagon by translation (meaning no rotation) that preserves contact with either
 $A$ or $C$ and that is non-increasing in triangle area until double contact is achieved.  This is $O2C$.
 We do this for both $T=T_0$ and $T=T_1$.
 
-\subsection{reduction to $O2C$}\label{sec:O2C}
+\subsection{reduction to $O2C$}\libel{sec:O2C}
 
 In this subsection we show that each of $T=T_0$ and $T=T_1$ can be deformed in an area decreasing way
 so that
@@ -1490,8 +1406,8 @@ with interval arithmetic to show that no such triangle is subcritical.  This com
 In this stage, we initially assume that both triangles $T_0$ and $T_1$ are $O2C$.
 We deform so that both triangles are triple contact.
 
-We briefly describe the argument.   Our deformations will preserve the $O2C$ contacts.  By an argument made in the second paragraph of Section~\ref{sec:O2C},
-we may assume without loss of generality that the triangle $T_0$ is not long isosceles.   By Lemma~\ref{calc:dimer-isosc}, we have that $T_1$ is not long
+We briefly describe the argument.   Our deformations will preserve the $O2C$ contacts.  By an argument made in the second paragraph of Section~\rif{sec:O2C},
+we may assume without loss of generality that the triangle $T_0$ is not long isosceles.   By Lemma~\rif{calc:dimer-isosc}, we have that $T_1$ is not long
 isosceles.
 Assuming that neither triangle can be long isosceles,
  we show that both triangles can be brought into triple contact.  Since both triangles are already $O2C$, this amounts
@@ -1550,8 +1466,8 @@ We show that the condition $\area\{T_0,T_1\}\le 2\aK$ implies that
 $(T_0,T_1)$ lies in a small explicit neighborhood of the $K$-dimer.
 
 The shared pentagons $A$ and $C$ are in contact.  By symmetry, we may assume that $A$ points into $C$.
-We have classified all $P$-triangles with triple contact in Section~\ref{XX}.  In this stage, we rely heavily
-on this classification.   The triple contact type $\Delta$ has area at least $1.5 > \aK+\epso$ by Lemma~\ref{lemma:delta}.
+We have classified all $P$-triangles with triple contact in Section~\rif{XX}.  In this stage, we rely heavily
+on this classification.   The triple contact type $\Delta$ has area at least $1.5 > \aK+\epso$ by Lemma~\rif{lemma:delta}.
 This is too large an area to be part of a dimer pair.   There are eight combinatorial ways that the pair $(A,C)$ with $A$ pointing
 to $C$ can be extended to a  triple contact triangle: a pinwheel, a pin-$T$ junction, an $L$-junction (3 ways), and a $T$-junction (3 ways).
 There are three ways of extending the edge along $(A,C)$ to an $L$-junction depending on which of the three triangle edges of the $L$-junction
@@ -1559,7 +1475,7 @@ is placed along $(A,C)$.  A similar remark applies to $T$-junctions.  A pinwheel
 
 We need an argument to show that only a single combinatorial type of pin-$T$ triangle needs to be considered.  
 In this paragraph only, we shift notation and refer
-to labels on pentagons in the pin-$T$ configuration shown in Figure~\ref{XX}.  We claim that if the area the triangle has area less than
+to labels on pentagons in the pin-$T$ configuration shown in Figure~\rif{XX}.  We claim that if the area the triangle has area less than
 $\aK+\epso$, then the edge length $\dd{B}{C}$ in that Figure is the unique longest edge of the triangle.   
 This claim is established by computer calculation\footnote{calculation dimer.ml:one\_pintx.}.  
 This means that the shared edge of the pin-$T$ triangle is determined.
@@ -1575,17 +1491,17 @@ In these cases, it is not necessary to specify a small explicit neighborhood.  I
 the neighborhood is desribed in local coordinates.
 
 We say a word about the coordinate system used to carry out these calculations.
-The triangles $T_0$ and $T_1$ separately have good coordinate systems described in Section~\ref{XX}.  Three variables
+The triangles $T_0$ and $T_1$ separately have good coordinate systems described in Section~\rif{XX}.  Three variables
 each running over a bounded closed interval parameterize the configuration space for each configuration type.
 These coordinates are always numerically stable.  The quantities $\dd{A}{C}$ and $\alpha_{AC}$ can be computed from $T_0$ or $T_1$  alone.
-A natural way to try to parameterize the dimer pairs of a given combinatorial type is to use the three variables $x_1,x_2,x_3$ from Section~\ref{XX} for $T_1$,
+A natural way to try to parameterize the dimer pairs of a given combinatorial type is to use the three variables $x_1,x_2,x_3$ from Section~\rif{XX} for $T_1$,
 then to choose an appropriate quantity $x_4$ on $T_0$ such that $T_0$ is determined by $\dd{A}{C}$, $\alpha_{AC}$ (viewed as functions of $x_1,x_2,x_3$) and
 $x_4$.  Then $x_1,\ldots,x_4$ give coordinates for the dimer pair that can be used to do the computer calculations.
 
 Usually, this strategy works, but in a few situations, there is no obvious way to pick the fourth coordinate $x_4$ in a numerically stable way.
 Fortunately, we can give a characterization of all situations where it is difficult to pick a numerically stable coordinate $x_4$.  These are
 expresed as conditions on the combinatorial type of $T_0$ and as bounds on $\dd{A}{C}$ and $\alpha_{AC}$.  In each situation, we use good
-coordinates provided by Section~\ref{XX} to show that
+coordinates provided by Section~\rif{XX} to show that
 these conditions force $T_0$ to have area greater than $\aK+\epso$, which is incompatible with the conditions defining a dimer pair.  
 These too are computer calculations\footnote{calculation dimer.ml}.
 Thus, we are justified in excluding a few situations, where coordinates become unstable.  (The underlying source of numerical instability is
@@ -1595,9 +1511,9 @@ our use of the law of sines
 \]
 to compute the length of one triangle edge $a$ in terms of another $b$, which encounters instability for $\beta$ near $0$.)
 
-In terms of the local coordinates of Section~\ref{XX}, if $x_1=x_2=x_3=x_4=0$ defines the $K$-dimer, then the explicit
+In terms of the local coordinates of Section~\rif{XX}, if $x_1=x_2=x_3=x_4=0$ defines the $K$-dimer, then the explicit
 small neighborhood we exclude is given by $|x_i|\le 0.01$, for $i=1,2,3,4$.  For example, in the pinwheel type on $T_1$, 
-we have $(x_1,x_2,x_3)=(\alpha,\beta,x_\gamma)$ as given in Section~\ref{XX}, and the fourth variable $x_4$ is determined
+we have $(x_1,x_2,x_3)=(\alpha,\beta,x_\gamma)$ as given in Section~\rif{XX}, and the fourth variable $x_4$ is determined
 by the type of $T_0$.
 
 \subsection{defining a curve}
@@ -1608,9 +1524,9 @@ $A$ and $C$, where $A$ points to $C$.  Assume that $\c_A$ and $\c_C$ lie along t
 of $\c_C$.  Let $B$ and $D$ be the two outer pentagons.  We deform this dimer by fixing $A$,
 and translating $C$ vertically (maintaining the pointer contact of $A$ to $C$).  We translate $B$ and $D$ to maintain
 all edge to edge contacts: $(A,B)$, $(A,D)$, $(C,B)$, $(C,D)$.   The parameter $t$ is the vertical translation distance of the pentagon $C$.
-See Figure~\ref{XX}.
+See Figure~\rif{XX}.
 
-In terms of the coordinates $(x_\alpha,\alpha)$ of Section~\ref{XX} for two pentagons in contact, the relative position of $A$ and $C$
+In terms of the coordinates $(x_\alpha,\alpha)$ of Section~\rif{XX} for two pentagons in contact, the relative position of $A$ and $C$
 is described by the curve $\alpha=\pi/5$ and $x_\alpha = \sigma+t$.
 
 
@@ -1635,7 +1551,7 @@ We consider cases, according to the type of the triple contact.
 As mentioned above, there are $8$ types for each triangle, but most of them do not
 approach a triangle in the $K$-dimer.  We may restrict our attention
 to the four triangle types that approach the $K$-dimer.   These are the pinwheel, $L_1$-junction,
-$L_2$-junction, and $T_3$-junction.  See Figure~\ref{XX}.
+$L_2$-junction, and $T_3$-junction.  See Figure~\rif{XX}.
 The paths are constructed explicitly in the coordinate section XX.
 
 The argument that the paths for $T_0$ and $T_1$ fit together compatibly is elementary.
@@ -1644,13 +1560,13 @@ The relative position of $A$ and $C$ is described by two variables $x_{AC}\in[0,
 $\alpha_{AC}\in[0,2\pi/5]$.
 The variable $\alpha_{AC}$ depends on an orientation provided by the triangle $T=T_0$ or $T=T_1$.
 They have opposite orientation, and 
-\begin{equation}\label{eqn:alpha-sum}
+\begin{equation}\libel{eqn:alpha-sum}
 \alpha_{AC,0}+\alpha_{AC,1} = 2\pi/5,\quad x_{AC,0} + x_{AC,1} = 2\sigma.
 \end{equation}
 where we have added a subscript to show the dependence on $T_i$.  These equations are the
 compatibility conditions for the two $P$-triangles to fit together.
 In every case, the path $P$ fixes $x_{AC}$, and  $\alpha_{AC}(s)$ as a function of $s$ is
-\begin{equation}\label{eqn:alpha-pi5}
+\begin{equation}\libel{eqn:alpha-pi5}
 \alpha_{AC}(s) = 
 \begin{cases}
 \alpha_{AC}(0) + s&\text{if } \alpha_{AC}(0) < \pi/5\\
@@ -1666,7 +1582,7 @@ as desired.
 
 We need to check that the path $P$ terminates at some dimer pair $\Gamma(t)$.  This follows from
 the following properties of the path that are true by construction.  The angle $\alpha_{AC}$ moves
-towards $\pi/5$. (See Equation \ref{eqn:alpha-pi5}). The pentagons $B$ and $D$ maintain double contact
+towards $\pi/5$. (See Equation \rif{eqn:alpha-pi5}). The pentagons $B$ and $D$ maintain double contact
 and rotate towards slider contact.   If $\alpha_{AC}=\pi/5$ and if $B$ (or $D$) has slider contact with $A$ or $C$,
 then it has slider contact with both, and must therefore be a dimer pair on the curve $\Gamma$.
 
@@ -1677,12 +1593,12 @@ and $t'$ restricts to the parameter $t$ on $\Gamma$.  Thus, at the terminal poin
 
 Finally, we need to check that the area function is decreasing. This, we prove by a computer calculation
 of the derivative of the area function along the path at $s=0$.  For this, we use automatic differentiation algorithms,
-as described in Section~\ref{XX}.  This completes the reduction to points on the curve $\Gamma(t)$.
+as described in Section~\rif{XX}.  This completes the reduction to points on the curve $\Gamma(t)$.
 
 
 \subsection{global minimization along the curve}
 
-The final stage of the proof of Theorem \ref{XX} is the minimization of the area of a dimer pair along the
+The final stage of the proof of Theorem \rif{XX} is the minimization of the area of a dimer pair along the
 curve $\Gamma(t)$, for $|t|<0.01$.    We have now reduced to an optimization problem in a single variable 
 that is relatively easy to solve.  The area function is obviously analytic.
 By automatic differentiation, we take the second derivative of the area
@@ -1692,12 +1608,434 @@ By symmetry in the underlying geometry,
 it is clear that the area function has derivative zero along $\Gamma$ at
 $t=0$.  The global minimum is therefore given at $t=0$, which is the $K$-dimer.
 
-\section{Obtuse Clusters}\label{sec:obtuse}
+\section{Pseudo-Dimers}
+
+In this section, we determine the structure of pseudo-dimers and specialize
+the function $b$ to this context.
+
+On a nonobtuse triangle, the area is a monotonic function of its edge lengths.
+This makes it easy to give lower bounds on triangle areas.
+Here are some simple    area calculations that will be used repeatedly.
+\begin{align*}
+\area(1.8,1.8,1.8) &> \aK + 0.112\\
+\area(1.8,1.8,1.72) &> \aK + 0.069\\
+\area(1.8,1.72,1.72) &> \aK + 3\epso'\\
+\area(1.8,1.8,2\kappa) &> \aK + \epso'\\
+\area(\kappa\sqrt8,2\kappa,1.72) &> \aK +\epso.
+\end{align*}
+
+
+\subsection{properties of pseudo-dimers}
+
+\begin{lemma}\libel{lemma:pd-m2}  If $(T_1,T_0)\in\PD$, then $m_2(T_0)=0$.
+\end{lemma}
+
+\begin{proof} Assume for a contradiction that $m_2(T_0)>0$.  Then there exists $(T'_1,T_0')\in\PD$ and
+$(T'_0,T_0)\in\M$.  The shared edge between $T_0$ and $T'_0$ has length greater than $1.8$.
+This is the egressive edge $e$ of $T_0$.  This is impossible by Lemma~\rif{calc:good}, which states
+that the condition of having a good angle is not symmetrical.
+\end{proof}
+
+\begin{corollary}\libel{lemma:m1m2}  For every triangle $T$, either $m_1(T)=0$ or $m_2(T)=0$.
+\end{corollary}
+
+\begin{proof}  Suppose $m_1(T)>0$, then $T=T_0$ for some $(T_1,T_0)\in\PD$.  The
+lemma gives $m_2(T)=0$.
+\end{proof}
+
+\begin{lemma}[pseudo-dimer disjointness]  Assume $(T_1,T_0)\in \PD$ and $(T'_1,T'_0)\in\PD$ and
+$\{T_0,T_1\}\cap\{T'_0,T'_1\} \ne \emptyset$.  Then $T_0 = T'_0$.
+\end{lemma}
+
+\begin{proof}  If we dismiss the other three cases $T_1=T'_1$ and $T_1=T'_0$ and $T_0=T'_1$ of a nonempty
+intersection, then the conclusion $T_0 = T'_0$ will stand.
+
+Assume first that $T_1 = T'_1$.  Then $T_1\Ra T_0$ and $T_1\Ra T'_0$, which gives $T_0=T'_0$.
+
+Next assume that $T_1=T'_0$.  We have $T'_1\Ra T'_0 = T_1 \Ra T_0$.  By the calculations above,
+this puts incompatible constraints on the length of the shared edge between $T_0$ and $T_1$.  It must have
+length less than $1.8$ and greater than $1.8$.
+
+The case $T_0=T'_1$ follows from the previous case by symmetry.
+\end{proof}
+
+\begin{lemma}[pseudo-dimer-obtuse]\libel{lemma:pd-obtuse}
+Assume $(T_1,T_0)\in\PD$.  Then each edge of $T_0$ and $T_1$ has length less than $\sqrt8\kappa$.
+In particular, if  $T_2$ is obtuse then  $T_2\nRa T_0$ and $T_2 \nRa T_1$.
+\end{lemma}
+
+\begin{proof}  The shared edge between $T_0$ and $T_1$ has length less than $1.8 < \sqrt8\kappa$.  The shared
+edge is the longest edge of $T_1$, so that each edge of $T_1$ has length less than $1.8$.
+The only possibility is the egressive edge of $T_0$.  But if the egressive edge of $T_0$ has length at least $\sqrt8\kappa$,
+then
+\[
+\area\{T_1,T_0\} > a_0 + \area(\kappa\sqrt8,2\kappa,1.72) > a_0 + (\aK + \epso) = 2\aK.
+\]
+This contradicts the area condition in the definition of pseudo-dimer.  This completes the first claim of the lemma.
+
+If $T_2$ is obtuse, then its longest edge has length at least $\sqrt8\kappa$.  If $T_2\Ra T$, then the shared edge
+has length at least $\sqrt8\kappa$.
+\end{proof}
+
+\begin{corollary}\libel{lemma:pd-n2}
+If $(T_1,T_0)\in\PD$, then $n_2(T_0)=0$.
+\end{corollary}
+
+\begin{proof} Suppose for a contradiction that $n_2(T_0)>0$.  Then $(T,T_0)\in \N$ for some $T$.  Since $T_0$ is
+nonobtuse, this implies that there exists some obtuse triangle $T_2$ such that $T_2\Ra T_0$.  This is contrary
+to the previous lemma.
+\end{proof}
+
+\begin{lemma} Let $(T_1,T_0)\in\PD$.  Then $n_1(T_1)=n_2(T_1)=m_1(T_1)=m_2(T_1)=0$.  In particular,
+$b(T_1) = \area(T_1)$.
+\end{lemma}
+
+\begin{proof}  We claim that $m_1(T_1)=m_2(T_1)=0$.  Otherwise $T_1$ shares an egressive edge with some
+peudo-dimer of length greater than $1.8$.  However, the longest edge of $T_1$ is its shared edge with $T_0$, which
+has length less than $1.8$.  This gives the claim.
+
+Next we claim that $n_1(T_1)=0$.  Otherwise, $(T_1,T_0)\in \N$.  Since $T_0$ is nonobtuse, this implies
+that there exists an obtuse triangle $T_2$ such that $T_2\Ra T_0$.  This contradicts Lemma~\rif{lemma:pd-obtuse}.
+
+Finally, we claim that $n_2(T_1)=0$.  Otherwise, $(T,T_1)\in \N$ for some $T$.  Since $T_1$ is nonobtuse,
+this implies that there exists an obtuse triangle $T_2$ such that $T_2\Ra T_1$.  This contradicts
+Lemma~\rif{lemma:pd-obtuse}.
+\end{proof}
+
+\begin{lemma}  Let $(T_1,T_0)\in\PD$.  Then $b(T_0) > \aK$.  That is, $T_0$ is not $b$-subcritical.
+\end{lemma}
+
+\begin{proof}
+We recall from Corollary~\rif{lemma:pd-n2} that $n_2(T_0)=0$.  From Lemma~\rif{lemma:pd-m2} we
+have $m_2(T_0)=0$.  Thus, $b(T_0) = \area(T_0) + \epso n_1(T_0) + \epso' m_1(T_0)$.
+We have
+\[
+\area(T_0) = \area\{T_0,T_1\} - \area(T_1) > (2\aK-\epso') -\aK = \aK - \epso'.
+\]
+
+We first treat the case that $n_1(T_0)>0$.  Then we have $n_1(T_0)\ge 1$.
+Thus, $b(T_0) \ge \area(T_0) + \epso n_1(T_0) > (\aK - \epso') + \epso > \aK$.
+This completes this case.  
+
+For the remainder of the proof, we assume that $n_1(T_0)=0$.  In particular, we have
+$b(T_0) = \area(T_0) + \epso' m_1(T_0)$.
+
+Next, we treat the case in which $T_1$ is the unique triangle $T$ such that $(T,T_0)\in\PD$.
+In this case, $(T_0,T_1)\not\in\M$, and $(T_0,T_1)\in\M$, so that $m_1(T_0)=1$.  Thus
+$b(T_0) > (\aK-\epso') + \epso' = \aK$.
+
+In the remaining case, there exists $T'_1\ne T_1$ such that $(T'_1,T_0)\in\PD$.  The edges of
+$T_0$ shared with $T_1$ and $T'_1$ have length at least $1.72$ and less than $1.8$.  The
+egressive edge of $T_0$ has length at least $1.8$.  Thus,
+\[
+b(T_0) \ge \area (T_0) \ge \area(1.72,1.72,1.8) > \aK.
+\]
+This completes the proof.
+\end{proof}
+
+
+\section{Main inequality for dimers}
+
+Recall that
+the previous section shows that there exists a unique dimer pair (up to isometry).
+It is the $K$-dimer.  In particular, if $(T_1,T_0)$ is a dimer, then 
+$\area(T_0)=\area(T_1)=\aK$, and $T_0\Ra T_1$ and $T_1\Ra T_0$.
+This section proves the following theorem.
+
+\begin{theorem}\libel{thm:dimer} Let $(T_0,T_1)$ be a dimer pair.  Then for $T=T_0,T_1$,
+we have $m_1(T)=m_2(T) = n_1(T)=n_2(T) = 0$; and $b(T) = \area(T)$.
+Moreover, $\{T_0,T_1\}$ is a $b$-cluster, and the main inequality holds for
+$\{T_0,T_1\}$.
+\end{theorem}
+
+The proof will occupy the entire section.  Before treating dimers, we treat the
+easy case of singletons.
+
+\begin{lemma}\libel{lemma:single-172}  Assume that all the edges of a triangle $T$ have length less than $1.72$.
+Then the $b$-cluster of $T$ is the singleton $\{T\}$ and $b(T) =\area(T) > \aK$.  Generally,
+if $\{T\}$ is a singleton $b$-cluster, then $b(T) > \aK$ and the main inequality holds.
+\end{lemma}
+
+\begin{proof}  By the definition of the constants $n,m$, we have $n_1(T)=n_2(T) = m_1(T)=m_2(T)=0$.
+Thus, $b(T)=\area(T)$.  We have $\area(T) > \aK$ by Lemma~\rif{XX}.  Since $T$ is not $b$-subcritical,
+there are no arrows $T\rab -$.  
+
+We claim that there cannot exist an arrow $T'\rab T$.
+Otherwise,  the longest edge of $T'$ has length less than $1.72$
+and again $T'$ is not $b$-subcritical.  The claim follows and the $b$-cluster is a singleton.
+
+In general, if $\{T\}$ is any singleton cluster, there is no arrow $T\rab -$.  This implies that $T$ is not
+$b$-subcritical, so that $b(T) > \aK$.  The result follows.
+\end{proof}
+
+Next,
+we show the disjointness of dimers from pseudo-dimers.  
+
+\begin{lemma} Let $(T_1,T_0)\in DP$ and let $(T'_1,T'_0)\in\PD$.  Then for $T\in\{T_0,T_1\}$,
+we have
+$T'_0\nRa T$.
+\end{lemma}
+
+\begin{proof} Assume  $T'_0\Ra T$.  By Lemma~\rif{lemma:egress'},
+we have $\area(T)>\aK$.  But if $T\in\{T_0,T_1\}$, we have $\area(T)=\aK$.
+This gives the result.
+\end{proof}
+
+\begin{lemma}\label{lemma:m1-dimer}  Let $(T_1,T_0)\in DP$ and let $(T'_1,T'_0)\in\PD$.  Then
+$\{T_0,T_1\}\cap \{T'_0,T'_1\} = \emptyset$.  In particular, $m_1(T_0) = m_1(T_1)=0$.
+\end{lemma}
+
+\begin{proof}
+We claim that $T'_0\not\in \{T_0,T_1\}$.  Otherwise, $T'_0\Ra T\in\{T_0,T_1\}$, which is contrary
+to the previous lemma.
+
+We claim that $T'_1\ne T_1$.  Otherwise, if $T_1=T'_1$, then $T'_1=T_1\Ra T_0$ and $T'_1\Ra T'_0$,
+so that $T_0 = T'_0$, which have shown impossible.
+
+Finally, we claim that $T'_1\ne T_0$.  Otherwise if $T_0 = T'_1$, then $T'_1 = T_0\Ra T_1$ and
+$T'_1\Ra T'_0$, so $T_1 = T'_0$, which we have shown to be impossible.
+
+If $m_1(T) >0$, then there exists $T'$ such that $(T',T)\in \PD$.  This is impossible for $T\in\{T_0,T_1\}$ by the
+disjointness result.
+\end{proof}
+
+\begin{lemma}\label{lemma:m2-dimer}  Let $(T_1,T_0)\in DP$ and let $(T'_1,T'_0)\in PD$.  Then $T'_0\nRa T_0$ and
+$T'_0 \nRa T_1$.  In particular, $m_2(T_0)=m_2(T_1)=0$.
+\end{lemma}
+
+\begin{proof}  $T'_0\nRa T$, for $T\in\{T_0,T_1\}$ by an earlier lemma.
+
+If $m_2(T)>0$, then by the definition of the set $\M$,  there exists $(T_1,T_0)\in \PD$, such that $T_0\Ra T$.
+The result follows.
+\end{proof}
+
+\subsection{Interaction of dimers and obtuse triangles}
+
+
+
+
+\begin{lemma}\libel{lemma:t2b-acute}
+  If $T_1$ is obtuse, $T_2$ is nonobtuse, and if $T_1 \Ra T_2$, then $T_2$ is not
+  $b$-subcritical.
+\end{lemma}
+
+
+\begin{proof} 
+  If $T_1$ is obtuse, then its longest edge, which is shared with
+  $T_2$, has length at least $\kappa\sqrt8$.
+
+  Assume that $T_2$ is nonobtuse and $b$-subcritical.  Then $\area(T_2) > a_K$ by
+  Lemma~\rif{lemma:right}.  Thus, we must have $n_2(T_2)>0$ or $m_2(T_2)>0$.
+  We consider two cases, according to which of these conditions occur.
+
+ Assume in the first case that $n_2(T_2)>0$; that is, $(T',T_2)\in \N$.  Recall that this
+ implies $m_2(T_2)=0$ by Lemma~\rif{XX}.
+  We have $T_1\Ra T_2$ and $(T_1,T_2)\not\in \N$, because $T_1$ is obtuse.  
+  It follows that $n_2(T_2)\le 2$.  In fact, $n_2(T_2)$ is equal to the number of
+  nonobtuse $T$ with longest edge of length greater than $1.72$ such that $T\Ra T_2$.
+  If $n_2(T_2)=1$, we have
+  \[
+b(T_2) \ge \area(T_2) - \epso > \area(\kappa\sqrt8,1.72,2\kappa)  - \epso > \aK.
+\]
+If $n_2(T_2)=2$, we have
+  \[
+b(T_2) \ge \area(T_2) - 2\epso > \area(\kappa\sqrt8,1.72,1.72)  - 2\epso > \aK.
+\]
+  This completes the first case.
+
+  Finally, we consider the case that $m_2(T_2)>0$ (and $n_2(T_2)=0$).
+  We have $m_2(T_2)\le 2$, because $T_1\Ra T_2$, and $T_1$ is obtuse, and cannot be
+part of a pseudo-dimer.
+  The following area estimate gives the result.
+  \[
+b(T_2) \ge \area(T_2) - 2\epso'\ > \area(\kappa\sqrt8,1.8,2\kappa)  - 2\epso' > \aK.
+\]
+\end{proof}
+
+\begin{corollary}\label{lemma:n2b} If $n_2(T_2)>0$  with $T_2$ nonobtuse, then $b(T_2) > \aK$.
+\end{corollary}  
+
+\begin{proof}  By the definition of $\N$, There exists an obtuse triangle $T$ such that $T\Ra T_2$.
+The result follows.
+\end{proof}
+
+\begin{lemma}\libel{lemma:m2b}  Let $T$ be $b$-subcritical and nonobtuse.
+Then $n_2(T)=0$.  Moreover, assume that there exists $T'$ that is $b$-subcritical
+such that $T'\rab T$ or $T\rab T'$.  Then  $\area(T)\le \aK$.
+\end{lemma}
+
+\begin{proof}  
+By the contrapositive of the corollary, it follows that $n_2(T)=0$.
+
+Assume for a contradiction that $\area(T) > \aK$.
+We have
+\begin{equation}\libel{eqn:2-ac}
+\area(T) > \aK \ge b(T) \ge \area(T) - m_2(T) \epso'.
+\end{equation}
+Thus, $m_2(T) >0$.  
+By the definition of $\M$, there exists  $(T'_1,T'_0)\in\PD$ with $(T'_0,T)\in\M$ and $T'_0\Ra T$.
+%We have $T'_0\ne T_1$, because Lemma~\rif{XX} gives $b(T'_0) > \aK \ge b(T_1)$.
+By Corollary~\rif{lemma:egress'}, we have $\area(T) > \aK+\epso'$. Combined with
+Inequality ~\rif{eqn:2-ac}, this gives $m_2(T)\ge 2$.
+Repeating the argument, we have $(T''_1,T''_0)\in \PD$ with $(T''_0,T)\in \M$ and $T''_0\Ra T$.
+The triangles $T'$, $T'_0$, and $T''_0$ are distinct, because for example $b(T'_0) > \aK \ge b(T')$.  
+Because of the arrow $T'\rab T$ or $T'\rab T$, the triangles $T$ and $T'$ belong to the same $b$-cluster.
+Hence, the longest edge of $T'$ has length at least $1.72$.
+Then
+\[
+b(T) \ge \area(T) - m_2(T)\epso' > \area(1.8,1.8,1.72) - 3\epso' > \aK.
+\]
+This  contradicts the assumption that $T$ is $b$-subcritical.
+\end{proof}
+
+\begin{lemma} \label{lemma:rab-sequence} There does not exist a sequence
+$T_1\rab T_2 \rab T_3$, with $T_1\ne T_3$, in which $T_1$ and $T_2$  are
+both nonobtuse.
+\end{lemma}
+
+\begin{proof}  Assume for a contradiction that the sequence exists.  
+By the Lemma~\rif{lemma:m2b}, $n_2(T_2)=0$ and $\area(T_2)\le \aK$.
+
+We claim that $m_1(T_2)=0$.  Otherwise, there exists $(T'_1,T_2)\in\PD$, and by Lemma~\rif{XX},
+$T_2$ is not $b$-subcritical, contradicting the assumptions of the lemma.
+
+We claim that $m_2(T_2)=0$.  This follows by Lemma~\rif{lemma:m2-area} and the claim $\area(T_2)\le \aK$.
+
+We have that $n_1(T_2)=0$.  Otherwise, we reach the contradiction,
+\[
+\aK \ge b(T_2) =\area(T_2) + \epso n_1(T_2) > a_0 + \epso = \aK.
+\]
+This shows that $\area(T_2) = b(T_2)$.
+
+By Lemma~\rif{lemma:m2b}, we have $\area(T_1)\le \aK$.
+It follows that $(T_1,T_2)\in\PD$, and by an earlier lemma, 
+we reach a contradiction $\aK \ge \area(T_2) = b(T_2) > \aK$.
+\end{proof}
+  
+We are finally in a position to prove  Theorem~\rif{thm:dimer}.
+
+\begin{proof}[Proof of dimer theorem \rif{thm:dimer}.]
+%Let $(T_0,T_1)$ be a dimer pair.  Then for $T=T_0,T_1$,
+%we have $m_1(T)=m_2(T) = n_1(T)=n_2(T) = 0$; and $b(T) = \area(T)$.
+%Moreover, $\{T_0,T_1\}$ is a $b$-cluster, and the main inequality holds for
+%$\{T_0,T_1\}$.
+Let $(T_0,T_1)$ be a dimer pair.   We have proved that $m_1(T)=m_2(T)=0$ in Lemmas~\ref{lemma:m1-dimer} and \ref{lemma:m2-dimer}.
+
+We claim that $n_2(T_0)=n_2(T_1)=0$.  Otherwise, $T_1$ or $T_0$ has an edge of length at least $\kappa\sqrt8$, and the triangle
+is not subcritical.
+
+We claim that $n_1(T_0)=n_1(T_1)=0$.  Otherwise, say $(T_1,T_0)\in\N$ and we have the contradiction $n_2(T_0)>0$.
+
+This shows that $b(T_i)=\area(T_i)$, for $i=0,1$.
+Since $T_0$ and $T_1$ are both subcritical, they are also $b$-subcritical, and fall into the same $b$-cluster.
+This is the full $b$-cluster, for otherwise, we would have say $T\rab T_0\rab T_1$, which is impossible by
+Lemma~\ref{lemma:rab-sequence}, for $T$ acute.  And if $T$ is obtuse, this would give $T_0$ an edge of length at least $\kappa\sqrt8$.
+
+This gives the proof.
+\end{proof}
+
+
+
+
+
+\section{Cluster Structure}
 
 
 % Fig 1. 1-obtuse.pdf page 13b.
 
-\begin{remark}\label{rem:delaunay}
+
+%\subsection{structure of  clusters}
+
+We continue with our analysis of the clusters in a fixed saturated
+packing of regular pentagons.  
+%By an {\it obtuse cluster}, we mean any
+%$b$-cluster of $P$-triangles that contains at least one obtuse
+%triangle.
+
+\begin{lemma}\libel{lemma:notlong}  
+Let $T_1$ and $T_2$ be $P$-triangles, such that $T_1\Ra T_2$, where $T_1$ is nonobtuse subcritical and
+  $T_2$ is obtuse.  Then the edge of attachment is not the longest
+  edge of $T_2$.
+\end{lemma}
+
+\begin{proof} We have seen that each edge of a nonobtuse subcritical
+  triangle has length less than $\kappa\sqrt8$ and that the longest edge of an
+  obtuse Delaunay triangle has length at least $\kappa\sqrt{8}$.  These are
+  incompatible conditions on a shared edge.
+\end{proof}
+
+\begin{lemma}  
+  Let $(T_1,T_2)\in\N$, where $T_2$ is obtuse.  Then the edge shared between the triangles is
+  not the longest edge of $T_2$.  In particular, $n_2(T_2)\le 2$.
+\end{lemma}
+
+\begin{proof} If $(T_1,T_2)\in \N$, then $T_1$ and $T_2$ satisfy the
+  assumptions of Lemma~\rif{lemma:notlong}.
+\end{proof}
+
+\begin{lemma}\label{lemma:3m2} 
+If $m_2(T) = 3$, then $b(T) > \aK$.
+\end{lemma}
+
+\begin{proof}  By Lemma~\ref{lemma:n2m2}, $n_2(T)=0$.
+There is a longest edge of a pseudo-dimer along each edge of $T$.
+This gives
+\[
+b(T) \ge \area(T) - 3\epso' \ge \area(1.8,1.8,1.8) - 3\epso' > \aK.
+\]
+\end{proof}
+
+\begin{lemma}\label{lemma:Nb}  If $(T_1,T_0)\in \N$, then $b(T_1)>\aK$.
+\end{lemma}
+
+\begin{proof}  Otherwise,
+\[
+\aK \ge b(T_1) = \area(T_1) + \epso (1 - n_2(T_1)) + \epso' (m_1(T_1)-m2(T_1) > \aK - \epso n_2(T_1) - \epso' m_2(T_1).
+\]
+So $n_2(T_1) > 0$ or $m_2(T_1)>0$. This gives two cases.  
+
+Suppose that $n_2(T_1) >0$.  Then $(T,T_1)\in\N$ for some nonobtuse $T$ whose shared edge with $T_1$ has length at least $1.72$.
+Recall that $T_1$ is acute.  Thus, by the definition of $\N$, there exists $T'$ obtuse such that $T'\Ra T_1$.  The shared edge
+has length at least $\kappa\sqrt8$.  Also, $n_2(T_1)\le 2$ (because $(T',T_1)\not\in \N$).  By Lemma~\ref{lemma:n2m2}, we have
+$m_2(T)=0$.  Then
+\[
+b(T_1) \ge \area(T_1) + \epso (1 - 2) \ge \area (2\kappa,1.72,\kappa\sqrt8) > \aK.
+\]
+This completes this case.
+
+Finally, suppose that $m_2(T_1)>0$ and $n_2(T_1)=0$.  There exists a pseudo-dimer $(T'_1,T'_0)$ such that $T'_0\Ra T_1$.
+We have
+\[
+b(T_1) > (\aK + \epso') + \epso -\epso'  3 = \aK.
+\]
+\end{proof}
+
+
+
+\begin{lemma}\libel{lemma:no-ao} 
+  There is no arrow $T_1 \rab T_2$ with $T_1$ nonobtuse and $T_2$
+  obtuse.
+\end{lemma}
+
+\begin{proof}  
+  Assume for a contradiction that such a pair $(T_1,T_2)$ exists.
+By Lemma \ref{lemma:Nb}, $(T_1,T_2)\not\in\N$.
+By the definition of $\N$, the longest edge of $T_1$ has length
+less than $1.72$.  By Lemma~\ref{lemma:singleton}, $T_1$ forms
+a singleton cluster.  This contradicts $T_1\rab T_2$.
+\end{proof}
+
+
+\section{Obtuse clusters}\libel{sec:obtuse}
+
+%Recall from above that we refine the $b$-clusters into $b$-clusters by
+%defining a relation $(\ra{c})$ and corresponding equivalence relation
+%$(\equiv_c)$, where $T_1 \ra{c} T_2$ iff ($T_1 \rab T_2$ and ($T_1$
+%is obtuse or $T_2$ is not $b$-subcritical)).  Recall that a
+%$b$-cluster $\C$ is an equivalence class of Delaunay triangles under
+%the corresponding equivalence relation $(\equiv_c)$.
+
+\begin{remark}\libel{rem:delaunay}
   Recall that the Delaunay property implies that two adjacent Delaunay
   triangles $T_1$ and $T_2$ have the property that the angle
   $\alpha_1$ of $T_1$ and $\alpha_2$ of $T_2$ satisfy $\alpha_1 +
@@ -1711,75 +2049,18 @@ $t=0$.  The global minimum is therefore given at $t=0$, which is the $K$-dimer.
   Delaunay triangulation.
 \end{remark}
 
-\subsection{structure of obtuse clusters}
-
-We continue with our analysis of the clusters in a fixed saturated
-packing of regular pentagons.  
-%By an {\it obtuse cluster}, we mean any
-%$b$-cluster of $P$-triangles that contains at least one obtuse
-%triangle.
-
-\begin{lemma}\label{lemma:notlong}  
-Let $T_1$ and $T_2$ be $P$-triangles, such that $T_1\Ra T_2$, where $T_1$ is nonobtuse subcritical and
-  $T_2$ is obtuse.  Then the edge of attachment is not the longest
-  edge of $T_2$.
-\end{lemma}
-
-\begin{proof} We have seen that each edge of a nonobtuse subcritical
-  triangle has length less than $\kappa\sqrt8$ and that the longest edge of an
-  obtuse Delaunay triangle has length at least $\kappa\sqrt{8}$.  These are
-  incompatible conditions on a shared edge.
-\end{proof}
-
-\begin{lemma}  
-  Let $(T_1,T_2)\in\N$.  Then the edge shared between the triangles is
-  not the longest edge of $T_2$.  In particular, $n_2(T_2)\le 2$.
-\end{lemma}
-
-\begin{proof} If $(T_1,T_2)\in \N$, then $T_1$ and $T_2$ satisfy the
-  assumptions of Lemma~\ref{lemma:notlong}.
-\end{proof}
-
-\begin{lemma}\label{lemma:no-ao} 
-  There is no arrow $T_1 \ra{b} T_2$ with $T_1$ nonobtuse and $T_2$
-  obtuse.
-\end{lemma}
-
-\begin{proof}  
-  Assume for a contradiction that such a pair $(T_1,T_2)$ exists.
-
-  We claim that $(T_1,T_2)\not\in \N$.  Otherwise, by
-  Lemma~\ref{lemma:a0} we have
-\[
-b(T_1) = \area(T_1) + \epso > a_0 + \epso =  \aK.
-\]
-This implies that $T_1$ is not $b$-subcritical, contrary to the
-definition of $b$-attachment $(\ra{b})$.
-
-Since $(T_1,T_2)\not\in \N$, we have $b(T_1) = \area(T_1)$.  So $T_1$
-is subcritical and nonobtuse, $T_2$ is obtuse, and $T_1\Ra
-T_2$.  By the definition of $\N$, this gives $(T_1,T_2)\in\N$, a
-contradiction.
-\end{proof}
 
 
-\begin{lemma}\label{lemma:t2b}
-  If $T_1$ is obtuse, and $T_1 \ra{b} T_2$, then $T_2$ is not
+\begin{lemma}\libel{lemma:t2b}
+  If $T_1$ is obtuse, and $T_1 \Ra T_2$, then $T_2$ is not
   $b$-subcritical.
 \end{lemma}
 
-\begin{proof} 
-  If $T_1$ is obtuse, then its longest edge, which is shared with
-  $T_2$, has length at least $\kappa\sqrt8$.
 
-  Assume first that $T_2$ is nonobtuse.  Then $\area(T_2) > a_K$ by
-  Lemma~\ref{lemma:right}.  Thus, $T_2$ is not $b$-subcritical:
-\[
-b(T_2) = \area(T_2) + \epso n_1(T_2) > \aK.
-\]
+\begin{proof}  If $T_2$ is nonobtuse, then this is Lemma~\rif{lemma:t2b-acute}.
 
-Now assume that $T_2$ is obtuse.  By basic properties of Delaunay
-triangles (Remark~\ref{rem:delaunay}), Delaunay triangles never join
+Assume that $T_2$ is obtuse.  By basic properties of Delaunay
+triangles (Remark~\rif{rem:delaunay}), Delaunay triangles never join
 along an edge that is the longest on both triangles.  Thus, $T_1$
 attaches to $T_2$ along an edge adjacent to the obtuse angle of $T_2$.
 To bound the area of $T_2$, we deform $T_2$ decreasing its area and
@@ -1791,211 +2072,125 @@ b(T_2) = \area(T_2) - \epso n_2(T_2) \ge
 \areta(2\kappa,\kappa\sqrt{8},2) - 2\epso > \aK.
 \] % checked 2016/2/18 in Mathematica. It holds by a margin 0.1856....
 The use of the function $\areta$ is justified by
-Lemma~\ref{lemma:areta} and the numerical estimate
+Lemma~\rif{lemma:areta} and the numerical estimate
 \[
 d_2 = \kappa\sqrt8 <  4 \sin(\arc(2,2,2\kappa)) = 2\eta\sin(\alpha/2).
 \] % checked 2016/2/18 in Mathematica.
 \end{proof}
 
-\subsection{obtuse theorem}
 
-Recall from above that we refine the $b$-clusters into $c$-clusters by
-defining a relation $(\ra{c})$ and corresponding equivalence relation
-$(\equiv_c)$, where $T_1 \ra{c} T_2$ iff ($T_1 \ra{b} T_2$ and ($T_1$
-is obtuse or $T_2$ is not $b$-subcritical)).  Recall that a
-$c$-cluster $\C$ is an equivalence class of Delaunay triangles under
-the corresponding equivalence relation $(\equiv_c)$.
-
-\begin{lemma}\label{lemma:c-weak}
-  Let $\C$ be a $c$-cluster that does not contain an obtuse triangle.
-  Then $\C$ is finite of cardinality at most $4$,
-  and we have the following weak form of the main
-  inequality on $\C$:
-\[
-\frac{\sum_{T\in \C} b(T)}{\card(\C)} > a_0,
-\]
+\begin{lemma}\label{lemma:sequence}  There does not exist a three
+term sequence $- \rab -\rab -$ where  the three triangles  are distinct.
 \end{lemma}
 
 \begin{proof}  
-  We claim that every $c$-cluster $\C$ that does not contain
- an obtuse triangle is finite.
-  In fact, on such a cluster $T_1\ra{c} T_2$ implies that $T_1$ is
-  $b$-subcritical nonobtuse and $T_2$ is nonobtuse but not
-  $b$-subcritical.  The $b$-criticality conditions on $T_1$ and $T_2$
-  are incompatible, so that there are no paths of length greater than
-  $1$ in the directed graph of $(\ra{c})$.  Also, the out-degree is at
-  most $1$, and in-degree at most $3$ at each node of the directed
-  graph.   The bound on cardinality follows.
-
-  If $T$ is any nonobtuse Delaunay triangle, then by the definition of
-  $b(T)$ and by Lemma~\ref{lemma:a0}, we have
-\[
-b(T) = \area(T)+\epso n_1(T) \ge \area(T) > a_0.
-\]
-Thus, the average is also greater than $a_0$.
+Assume for a contradiction, that such a sequence exists.
+By Lemma~\ref{XX}, there does not exist a sequence $- \rab - \rab -$,
+where the first triangle is obtuse.  Thus, we may assume that the first
+triangle is nonobtuse.
+By Lemma~\ref{XX}, there does not exist $T_1\rab T_2$,
+where $T_1$ is nonobtuse and $T_2$ is obtuse.  Thus, we may assume
+that every triangle in the sequence is acute.  This is impossible by
+Lemma~\ref{XX}.
 \end{proof}
 
-The following theorem and its corollary are the main results of this
-section.  We will prove the theorem after presenting the corollary.
+If $\C$ is a $b$-cluster that is not a singleton, then there is
+some arrow $T_1\rab T_0$.  We have the following structure
+lemma for $b$-clusters.
 
-\begin{theorem}\label{lemma:obtuse}  
-  Let $\C$ be any $c$-cluster that contains an obtuse triangle.  Then
-  $\C$ is finite, and the strict main inequality
-  (\ref{eqn:strict-main}) holds for $\C$.
-\end{theorem}
+\begin{lemma}\libel{lemma:c-weak}
+  Let $\C$ be a $b$-cluster, and let $T_1\rab T_0$ be an
+  arrow between triangles in $\C$.
+  Then $\C = \{T_0\}\cup \{T \mid T\rab T_0\}$.
+\end{lemma}
 
-\begin{corollary}\label{lemma:961}  
-  The density of a packing of regular pentagons is at most
-\[
-\frac{\area_P}{2a_0} < 0.9611,
-\] % checked calcs.ml 2016/2/18.
-where $\area_P$ is the area of a regular pentagon of circumradius $1$.
+\begin{proof}  There is no arrow out of $T_0$ because that
+would produce a sequence $T_1\rab T_0\rab -$.  
+
+Assume that $T\rab T_0$.  There is
+no arrow into $T$,  becaue that would also produce a sequence
+of length three: $- \rab T_1 \rab T_0$.  There is a unique arrow out of $T$.
+Thus, we have accounted for all of the arrows in and out of $T_0$ and in and
+out of $T$.
+\end{proof}
+
+\begin{corollary}
+  Every $b$-cluster is finite of cardinality at most $4$.
 \end{corollary}
 
-\begin{proof}[Proof (corollary).] 
-  Combining the Theorem~\ref{lemma:obtuse} with
-  Lemma~\ref{lemma:c-weak}, 
-  each $c$-cluster $\C$ satisfies
-  the main inequality with constant $a=a_0$.  By
-  Lemma~\ref{lemma:main}, this gives the density bound.
+
+The following theorem and its corollary is the main result of this
+section.  
+
+\begin{theorem}\libel{lemma:obtuse}  
+  Let $\C$ be any $b$-cluster that contains an obtuse triangle.  Then
+  $\C$ is finite, and the strict main inequality
+  (\rif{eqn:strict-main}) holds for $\C$.
+\end{theorem}
+
+\begin{lemma} Let $T\rab T_0$ be an arrow between two triangles in
+a $b$-cluster that contains an obtuse triangle.  Then $T$ is obtuse.
+Moreover, $b(T) = \area(T) -\epso n_2(T)$.
+\end{lemma}
+
+\begin{proof} Assume for a contradiction that $T$ is nonobtuse.  By Lemma~\ref{XX}
+and the arrow $T\rab T_0$, the triangle $T_0$ is nonobtuse.  By assumption and the structure
+theorem for $b$-clusters, there exists
+$T'\rab T_0$, where $T'$ is obtuse.
+The singleton lemma implies that the longest edge of $T$, which is shared with $T_0$ has length
+at least $1.72$.  By the definition of $\N$, we have $(T,T_0)\in\N$.   By Lemma~\ref{lemma:Nb}, we
+have $b(T)>\aK$, and $T$ is not $b$-subcritical.  Thus, we obtain a contradiction $T\nRa T_0$.
+
+Moreover, $b(T) = \area(T) -\epso n_2(T)$ by Lemma~\ref{XX}.
 \end{proof}
 
-We remark that $b$-clusters will be used later more directly in our
-strategy to prove the Kuperberg conjecture.  We now turn to the proof
-of the main result in this section.
+Let $T\rab T_0$ be an arrow between two triangles in a $b$-cluster, where $T$ is obtuse.
+Let $\tilde n_2(T)\le 2$ be the number of edges of $T$ other than the longest that
+have length at least $1.72$.  By definition of $\N$ and $n_2$, we have $\tilde n_2(T)\ge n_2(T)$.
+Then $\tb(T) \le b(T)$, where $\tb(T) := \area(T)-\epso\tn_2(T)$.
 
-\begin{proof}[Proof (theorem).] 
+If $T_0$ is obtuse, then again $\tb(T_0)\le b(T_0)$.
+If $T_0$ is nonobtuse, then
+\[
+b(T) \ge \area(T_0) - \epso n_2(T_0) - \epso' m_2(T_0) \ge \area(T_0) - \epso (n_2(T_0)+m_2(T_)) \ge \tb(T).
+\]
+This completes the proof of the following lemma.
+
+\begin{lemma} Let $\C$ be  a $b$-cluster that contains an obtuse triangle, and
+let $T\in \C$.  Then  $\tb(T)\le b(T)$.
+\end{lemma}
+
+
+
+
+
+
+\begin{proof}[proof of Theorem~\ref{lemma:obtuse}.]
   The proof involves several relatively simple cases.  
   We recall that each Delaunay triangle has edge lengths at
   least $2\kappa$ and circumradius at most $2$.
 
-  If the $c$-cluster is a singleton $\{T_1\}$, where $T_1$ is obtuse,
-  then there does not exist an arrow 
-$T_1\ra{c} T_2$.  This implies that the triangle $T_1$ is
-  not $b$-subcritical, and $b(T_1) > \aK$.  This completes this case.
+  If the $b$-cluster is a singleton $\{T_1\}$, where $T_1$ is obtuse,
+  then the singleton lemma gives the result.
   We now assume that $\C$ is not a singleton.
 
-  Let $\C$ be a $c$-cluster with an obtuse triangle.  Then there
-  exists an arrow $T_1 \ra{c} T_0$ in $\C$ with $T_1$ or $T_0$ obtuse.
-  By Lemma~\ref{lemma:no-ao}, $T_1$ is obtuse.  By the definition of
-  $(\ra{c})$, the triangle $T_1$ is $b$-subcritical.  By
-  Lemma~\ref{lemma:t2b}, $T_0$ is not $b$-subcritical, so there is no
-  further arrow $T_0\ra{c} T$.
-
-  Let $\C_0 = \{ T \mid T\ra{c} T_0\}$.  We claim that for all $T\in
-  \C_0$, there does not exist an arrow $T' \ra{c} T$.  Otherwise, by
-  the definition of $(\ra{c})$ applied to the arrows $T'\ra{c} T\ra{c}
-  T_0$, we have that $T$ is $b$-subcritical and $T'$ is obtuse.  Then
-  by Lemma~\ref{lemma:t2b} applied to the arrow $T'\ra{c} T$, the
-  triangle $T$ is not $b$-subcritical, which is a contradiction.
-
-  Hence, all arrows in the $c$-cluster have been determined, and $\C =
-  \C_0 \cup \{T_0\}$.  The cluster is finite, consisting of a single
-  triangle $T_0$, together with all the arrows $T\ra{c} T_0$ into it.
-  Before continuing with the proof of the theorem, we need the
-  following lemma.
-
-\begin{lemma} Let $\C$ be any $c$-cluster that contains an obtuse
-  triangle.  Write $\C = \C_0 \cup \{T_0\}$ as above.  Let
-  $\C_0'\subset \C_0$ be the obtuse triangles in $\C_0$ and let $\C' =
-  \C_0' \cup \{T_0\}$.  Set
-\[
-\S = \{T \mid T \text{ is nonobtuse subcritical such that } \exists
-T'\in \C' \text{ with } T\Ra T'\}.
-\]
-If
-\begin{equation}\label{eqn:S}
-\sum_{T\in \C'} \area(T) > a_K \card(\C') + \epso \card(\S),
-\end{equation}
-then the strict main inequality holds for $\C$.
-\end{lemma}
-
-\begin{proof}
-  We note that $\C_0' \cap \S$ is empty, because triangles in $\C_0'$
-  are obtuse and triangles in $\S$ are not.
-  We break the proof into two cases depending on whether $T_0$ is
-  obtuse.
-
-  Assume first that $T_0$ is obtuse.  If $T\in \C_0\setminus \C_0'$,
-  then $T$ is nonobtuse.  By the construction of $\C_0$, we have
-  $T\ra{c} T_0$, so $T\ra{b} T_0$.  By Lemma~\ref{lemma:no-ao}, $T$
-  does not exist.  Hence $\C_0' = \C_0$ and $\C'=\C$.  That is, every
-  triangle in $\C$ is obtuse.  Note that
-\[
-\sum_{T\in \C} n_2(T) = \card(S).
-\]
-Then by the assumption (\ref{eqn:S}), we have
-\begin{align*}
-\sum_{T\in \C} b(T) &=\sum_{T\in \C} (\area(T) - \epso n_2(T)) \\
-&= \sum_{T\in \C} \area(T) - \epso \card(S) \\
-&> a_K \card(\C).
-\end{align*}
-This is the strict main inequality.
-
-Finally, assume that $T_0$ is nonobtuse.  We have
-\[
-b(T_0) = \area(T_0) + \epso n_1(T_0) \ge \area(T_0).
-\]
-
-We claim that 
-\[
-\card(\S) \ge \card(\C_0 \setminus \C_0') + \card(S\setminus \C_0).
-\]
-In fact, it is enough to show that if $T\in \C_0\setminus \C_0'$, then
-$T\in \S$.  Any such $T$ is nonobtuse and $T\ra{c}T_0$.  Expanding
-the definition of $(\ra{c})$, we get $T\Ra T_0$, and $T$ is
-$b$-subcritical, $(T,T_0)\not\in\N$, so $b(T) = \area(T)$, and $T$ is
-subcritical.   This gives $T\in \S$.
-
-We have
-\[
-\sum_{\C_0'} n_2(T) = \card\{T'\in\S \mid T' \text{ nonobtuse
-  subcritical, and } T'\Ra T\in \C_0' \} \le \card(\S\setminus \C_0 ),
-\]
-
-Using (\ref{eqn:S}) and Lemma~\ref{lemma:a0}, we have
-\begin{align*}
-\sum_{T\in \C} b(T) &= \sum_{\C_0\setminus \C_0'} b(T) + b(T_0) +
-\sum_{\C_0'} b(T) \\
-&\ge \sum_{\C_0\setminus \C_0'} \area(T) + \area(T_0) +
-\sum_{\C_0'} (\area(T) - \epso n_2(T)) \\
-&\ge \card({\C_0\setminus \C_0'}) a_0 + (\area(T_0) +
-\sum_{\C_0'} \area(T)) - \epso \card(\S\setminus \C_0)\\
-&> \card({\C_0\setminus \C_0'}) (\aK  - \epso) + (\aK \card(\C') +
-\epso \card(\S)) - \epso \card(\S\setminus \C_0)\\
-&\ge a_K \card(\C).
-\end{align*}
-This is the strict main inequality for $\C$.
-\end{proof}
-
-\begin{remark} If $T'\in\S$, then $T'$ is nonobtuse subcritical.
-  Also, $T'\Ra T$, for some $T\in \C'$.  By construction, $T'$
-  attaches to $T$ along the longest edge of $T'$.  By
-  Lemmas~\ref{lemma:21} and \ref{lemma:172}, the longest edge has
-  length in $[1.72,2.1]$.  Thus, we can get an upper bound on
-  $\card(\S)$ by counting the number $n'$ of edges of $\C'$ in this
-  range.  Note that the longest edge of each $T\in \C_0'$ is at least
-  $\kappa\sqrt8 > 2.1$, hence is not in this range.  Thus, to prove the
-  strict main inequality, it is enough to show that
-\begin{equation}\label{eqn:n'}
-\sum_{T\in \C'} \area(T) > a_K \card(\C') + n'\epso.
-\end{equation}
-\end{remark}
-
-We now continue with the proof of Theorem~\ref{lemma:obtuse}.  
-Without loss of generality, we may assume that
-$\C'$ is not empty.  Otherwise, the unique obtuse
-triangle in $\C$ is $T_0$.  The proof of the preceeding lemma shows
-that when $T_0$ is obtuse, then $\C_0 \setminus \C_0' = \emptyset$.
-Thus, $\C = \{T_0\}$, which is a case that has already been treated.
 
 We break the proof into six cases depending on whether $T_0$ is
-nonobtuse, and depending on $\card(\C')\in \{1,2,3\}$.
-In each case we prove inequality (\ref{eqn:n'}).
-
+nonobtuse, and depending on $\card(\C)\in \{2,3,4\}$.
+In each case we prove inequality 
+\begin{equation}\libel{eqn:n'}
+\sum_{T\in \C'} \area(T) > a_K \card(\C) + n'\epso.
+\end{equation}
+where $n'$ is the total number of external edges of the cluster of length at least $1.72$.
+(By external edge, we mean edge not shared between two triangles in the cluster.)
+This implies that
+\[
+\sum_{T\in\C} b(T) \ge \sum_{T\in\C} \tb(T) \ge \sum_{T\in\C}\area(T) - \sum_{T\in\C} \tn_2(T) > a_K \card(\C),
+\]
+which is the strong main inequality.
 
 {\it Case 1. The triangle $T_0$ is a nonobtuse triangle, and
-  $\C'=\{T_0,T_1\}$.}  The triangle $T_0$ has a vertex $\v$ that is
+  $\C=\{T_0,T_1\}$.}  The triangle $T_0$ has a vertex $\v$ that is
 not shared with $T_1$.  By the Delaunay property, $\v$ lies outside
 the circumcircle of $T_1$.  The triangles $T_0$ and $T_1$ form a
 quadrilateral $Q$ whose diagonal is the shared edge of $T_0$ and
@@ -2034,7 +2229,7 @@ minimum $d_i$) or as large (that is, $\eta(Q)=2$) as possible.
 When $\eta(Q)=2$, we relax the edge lengths constraints further
 to allow three edges to have length $2\kappa$.
 Explicit numerical calculations in these two extremal configurations
-show that the inequality (\ref{eqn:n'}) is satisfied (for each $n'$).
+show that the inequality (\rif{eqn:n'}) is satisfied (for each $n'$).
 
 In the second subcase (every edge attains its minimal length $d_i$), the
 four edge lengths are fixed.  The area of $Q$ is a concave function of
@@ -2043,13 +2238,13 @@ diagonal is as small as possible (that is, $T_1$ is a right triangle
 -- when this satisfies the other constraints) or as large as possible
 (that is, $Q$ is cocircular).  The cocircular case has already been
 considered.  Explicit numerical calculations of $Q$ when $T_1$ is
-right gives the inequality (\ref{eqn:n'}) in each case.
+right gives the inequality (\rif{eqn:n'}) in each case.
 % checked 2016/2/18 in Mathematica.
 
 
 
 
-{\it Case 2. The triangle $T_0$ is a nonobtuse triangle, and $\C'=\{T_0,T_1,T_1'\}$.}
+{\it Case 2. The triangle $T_0$ is a nonobtuse triangle, and $\C=\{T_0,T_1,T_1'\}$.}
 The long edges of the obtuse triangles $T_1$ and $T_1'$ have length at least
 $\kappa\sqrt{8}$.
 
@@ -2062,7 +2257,7 @@ functions give
      1.73+\epso, & \text{if } d \ge 1.72 \end{cases}.
 \]
 The areas of $T=T_1,T_1'$ are at least
-\begin{equation}\label{eqn:173}
+\begin{equation}\libel{eqn:173}
 \area(T) \ge \areta(d,2\kappa,1.7) >
    \begin{cases}1.08,&\text{if } d \ge 2\kappa\\
      1.08+2\epso, & \text{if } d \ge 1.72 \end{cases}.
@@ -2087,7 +2282,7 @@ right triangle.  Such a triangle has area at least
 2\kappa\sqrt{\eta^2 - \kappa^2} \ge 2.41.
 \]  
 The areas of $T_1$ and $T_1'$ are at least
-\begin{equation}\label{eqn:968}
+\begin{equation}\libel{eqn:968}
 \areta(2\kappa,2\kappa,2) > 0.968.
 \end{equation}
 This completes this case:
@@ -2100,7 +2295,7 @@ This completes this case:
 {\it Case 3. The triangle $T_0$ is a nonobtuse triangle, and $C'=\{T_0,T_1,T_1',T_1''\}$.}
 
 This case is almost identical to case 2.  We use the same bounds
-(Equations (\ref{eqn:173}) and (\ref{eqn:968})) on $\area(T)$ as
+(Equations (\rif{eqn:173}) and (\rif{eqn:968})) on $\area(T)$ as
 before, for $T = T_1, T_1', T_1''$.  We can improve the bound on the
 area of $T_0$:
 \[
@@ -2124,14 +2319,14 @@ In this case, $n'\le 6$.  Proceeding as before, we get
 
 This completes the proof for cases involving a nonobtuse triangle
 $T_0$.  In the remaining cases, we assume that $T_0$ is obtuse.  In
-fact, every triangle in $\C'$ is obtuse.
+fact, every triangle in $\C$ is obtuse.
 
-{\it Case 4. The triangle $T_0$ is an obtuse triangle, and $\C'=\{T_0,T_1\}$.}  
+{\it Case 4. The triangle $T_0$ is an obtuse triangle, and $\C=\{T_0,T_1\}$.}  
 
 In this case, $n'\le 3$.  It will not be necessary to create subcases
 according to whether short edges are at least $2\kappa$ or $1.72$.  We
 will show that we can relax the lower bound on the edge to $2\kappa$
-and still obtain the bound (\ref{eqn:n'}).
+and still obtain the bound (\rif{eqn:n'}).
 
 We minimize area by flattening $T_0$ by stretching its long edge until
 $\eta(T_0)=2$.  We further decrease area, keeping the circumradius
@@ -2164,18 +2359,18 @@ case of a quadrilateral with diagonal $x_{\max}$ considered above.
 
 This completes the argument in this case.
 
-{\it Case 5. The triangle $T_0$ is an obtuse triangle, and $\C'=\{T_0,T_1,T_1'\}$.}  
+{\it Case 5. The triangle $T_0$ is an obtuse triangle, and $\C=\{T_0,T_1,T_1'\}$.}  
 
-By Remark~\ref{rem:delaunay}, there is no arrow $T \Ra T_0$ in $\C'$
+By Remark~\rif{rem:delaunay}, there is no arrow $T \Ra T_0$ in $\C$
 such that the shared edge is the long edge of $T_0$.  In particular,
-there cannot exist (Case 6) with $\C'=\{T_0,T_1,T_1',T_1''\}$ with
+there cannot exist (Case 6) with $\C=\{T_0,T_1,T_1',T_1''\}$ with
 every triangle obtuse.  Thus, Case 5 is the last case to be
 considered.
 
 We have $n'\le 4$.
 The area of $T_0$ is at least
 $\areta(\kappa\sqrt{8},\kappa\sqrt{8},2) > 2.45$.  
-Using our earlier estimates (\ref{eqn:968})
+Using our earlier estimates (\rif{eqn:968})
 for $\area(T)$, for $T=T_1,T_1'$, we
 have
 \[
@@ -2190,242 +2385,102 @@ have
 This completes the proof of the theorem.
 \end{proof}
 
-\section{Conjectures}
 
-In this section, we give refinements of Conjecture~\ref{conj:main}.  A
-proof of Conjecture \ref{conj:dimer} would represent a strengthening
-of the local optimality results in~\cite{Kus}.
+\section{Nonobtuse Clusters}
 
-\begin{definition}
-  We define a {\it dimer} to be a pair $\{T_1,T_2\}$ such that $T_1$
-  and $T_2$ are both nonobtuse subcritical $P$-triangles, and $T_1\Ra
-  T_2$ or $T_2\Ra T_1$.
-\end{definition}
+In this section we prove the main inequality for $b$-clusters in which every
+triangle is nonobtuse.
 
-\begin{conjecture}\label{conj:dimer}[Dimer conjecture]
-  If $\{T_1,T_2\}$ is a dimer, then $T_1$ and $T_2$ are joined along
-  their common (uniquely) longest edge. Furthermore, the
-$P$-triangles, $T_1$ and $T_2$, are
-  congruent to those in the Kuperberg packing.
-\end{conjecture}
+By Corollary \ref{lemma:n2b} and Lemma \ref{lemma:Nb}, 
+if $T$ is $b$-subcritical and nonobtuse, then $n_1(T)=n_2(T)=0$.
 
-The dimer conjecture implies in particular that $\area(T_1)=\area(T_2)
-= \aK$.  Also, $T_1\Ra T_2$ and $T_2\Ra T_1$.  We note that dimer
-conjecture would allow us to simplify a number of the arguments in
-earlier sections.  The following lemmas give a number of other
-consequences of the dimer conjecture.
 
-\begin{lemma}\label{lemma:dimer}
-  The dimer conjecture implies that there does not exist a pair of
-  arrows $T_1 \ra{b} T_2 \ra{b} T_3$, with $T_1$ nonobtuse, unless
-  $T_1= T_3$ and $\{T_1,T_2\}$ is a dimer.
+\begin{lemma}\label{lemma:m2} Let $T\rab T_0$. Assume that $T$ and $T_0$ are nonobtuse.
+Then $m_2(T)=0$.
 \end{lemma}
 
-\begin{proof} Assume for a contradiction that the arrows exist.  By
-  Lemma~\ref{lemma:no-ao}, $T_2$ and $T_3$ are nonobtuse.  By the
-  definition of $b$ and $\N$, we have $b(T_1) = \area(T_1)$ and $b(T_2) =
-  \area(T_2)$.  Hence $T_1$ and $T_2$ are nonobtuse subcritical.  By
-  the dimer conjecture, $T_2\Ra T_1$.  Thus, an arrow $T_2\Ra T_3\ne
-  T_1$ does not exist.
+\begin{proof}  Assume that $m_2(T)>0$.  We have just observed that $n_1(T)=n_2(T)=0$.
+By Lemma \ref{lemma:m1m2}, we have $m_1(T)=0$.
+By Lemma \ref{lemma:3m2}, we have $m_2(T)\le 2$. 
+
+%We have $n_1(T)=0$.  Otherwise, we have a contradiction:
+%\[
+%\aK \ge b(T) \ge \area(T) + \epso n_1(T) - \epso' m_2(T) \ge (\aK+\epso') +\epso - 3\epso' > \aK.
+%\]
+
+We have $m_2(T)=2$.  Otherwise, if $m_2(T)=1$, we have a contradiction:
+\[
+\aK \ge b(T) \ge \area(T) - \epso' > (\aK + \epso') - \epso' = \aK.
+\]
+
+Since $m_2(T)=2$, there exist two pseudo-dimers $(T'_1,T'_0)$ and $(T''_1,T''_0)$ such that
+$T'_0\Ra T$ and $T''_0\Ra T$.  The shared edges $e'$ and $e''$ have length at least $1.8$.
+Moreover, the angles are not good along $(T,e')$ and $(T,e'')$.  (See Definition \ref{def:good} and Lemma \ref{lemma:good}.)
+The following lemma and the estimate 
+\[
+\aK \ge b(T) \ge \area(T) - 2\epso' > (\aK + 2\epso') - 2\epso' = \aK.
+\]
+complete the proof.
 \end{proof}
 
-\begin{lemma}\label{lemma:dimer-obtuse} 
-Assume the dimer conjecture.  There does not exist an
-arrow $T\Ra T_1$, where $T$ is obtuse, and $T_1$ is part of a dimer.
+\begin{lemma} Let $T$ be a nonobtuse $P$-triangle.  Suppose that two of its edges $e'$ and $e''$ have length at least $1.8$
+and that the angles are not good along $(T,e')$ and $(T,e'')$.  Then $\area(T) > \aK + 2\epso'$.
 \end{lemma}
 
-
-\begin{proof}  
-  If $T$ is obtuse, its longest edge has length greater than
-  $\kappa\sqrt8$, but the edges of $T_1$ in a dimer are shorter than
-  this, so we do not have the given arrow $T\Ra T_1$.
+\begin{proof}  If the third edge has length at least $1.63$, then the result follows:
+\[
+\area(T) \ge \area(1.8,1.8,1.63) > \aK + 2\epso''.
+\]
+We may assume without loss of generality that the third edge has length in the range $[2\kappa,1.63]$.
+In terms of the pentagons and angles in Figure XX, we have
+\[
+\dd{A}{C}\ge 1.8,\quad \dd{B}{C}\ge 1.8,\quad \dd{A}{B}\le 1.63,\quad \alpha+\beta+\gamma=3\pi/5.
+\]
+The angle sum condition is only defined modulo $2\pi/5$, but we may fix $\gamma$ to lie in the
+interval $[0,2\pi/5]$.
+The assumption on angles gives $\alpha,\beta\le \pi/5$, so $\gamma\ge \pi/5$.
+We now disregard the pentagon $C$.  We consider the minimization problem of minimizing $\dd{A}{B}$ such that
+$\gamma\ge\pi/5$, assume that $\dd{A}{B}\le 1.63$.  Without loss of generality, we may assume that the
+pentagons $A$ and $B$ are in contact, and that $B$ points to $A$.
+We have the constraint
+\[
+\cos(\pi/5 - \gamma) =\sin(\gamma+3\pi/10) \le 1.63 - \kappa.
+\]
+This constraint expresses the fact the distance from $\c_B$ to the  receptor edge of pentagon $A$  can be at
+most $1.63-\kappa$, by the triangle inequality.  The constraint implies that
+$\gamma \ge \pi/5 + \arccos (1.63-\kappa) \approx 2\pi/5 - 0.02$.
+The angle sum $\alpha+\beta+\gamma=3\pi/5$ is determined up to a multiple of $2\pi/5$.  The value
+for $\gamma$ that we have obtained represents the jump by $2\pi/5$ to $\alpha+\beta+\gamma=\pi$.
+This does not exist. (XX clean up.)
 \end{proof}
 
-\begin{lemma}
-  Assume the dimer conjecture.  There does not exist an arrow $T\Ra
-  T_1$, where $T$ is nonobtuse subcritical, and $T_1$ is part of a
-  dimer, unless the dimer pair is $\{T,T_1\}$.
+\begin{lemma}\label{lemma:m2-acute} Let $T\rab T_0$. Assume that $T$ and $T_0$ are nonobtuse.
+Then $m_1(T)=0$.  Thus, $n_1(T)=n_2(T)=m_1(T)=m_2(T)=0$ and $b(T)=\area(T)\le \aK$.
 \end{lemma}
-
 
 \begin{proof}
-  With $T$ nonobtuse subcritical, the dimer conjecture implies that
-  $\{T,T_1\}$ is a dimer.
+If $m_1(T)>0$, then there exists a pseudo-dimer $(T'_1,T'_0)$ such that $T=T'_0$.
+An earlier lemma on pseudo-dimers (Lemma XX) gives that $b(T'_1)=\area(T'_1)\le \aK$.
+Thus, $T'_1\rab T\rab T_0$.  This contradicts Lemma~\ref{lemma:sequence}.
+
+The final statement is a summary of the preceding series of lemmas.
 \end{proof}
 
-\begin{lemma}\label{lemma:dimer-cluster}
-Assume the dimer conjecture.  A dimer $\{T_1,T_2\}$ is an $a$-cluster and
-a $b$-cluster.
-\end{lemma}
+Now we turn our attention to the target $T_0$ of an arrow $T\rab T_0$, where both
+$T$ and $T_0$ are nonobtuse.  By Lemma \ref{lemma:singleton}, the shared edge
+has length at least $1.72$.
 
-\begin{proof}  
-We have $T_1 \ra{a} T_2$ and $T_1 \ra{b} T_2$.
-
-Assume $T\Ra T_1$, where $T\ne T_2$.  Then by
-Lemma~\ref{lemma:dimer-obtuse}, we see that $T$ is nonobtuse.  By the
-dimer conjecture, $T$ is not subcritical.  Also $n_1(T) = 0$ and
-$b(T)=\area(T)$, so $T$ is not $b$-subcritical.  So
-\[
-T\na{a} T_1,\quad\text{and}\quad T\na{b} T_1.
-\]
-The result follows.
-\end{proof}
+XXD
 
 
-
-\begin{lemma}\label{lemma:b=c}  
-The dimer conjecture implies that if $\C$ is a $b$-cluster
-that contains an obtuse triangle $T$, then $(\ra{c})$ restricted to $\C$ is
-equal to $(\ra{b})$ restricted to $\C$.
-\end{lemma}
-
-\begin{proof} By definition, we have $(\ra{c})\subseteq (\ra{b})$.
-  Suppose that $T_1\ra{b} T_2$ but not $T_1 \ra{c} T_2$, for some
-  $T_1,T_2\in\C$.  By the definition of $(\ra{c})$, the triangle $T_1$
-  is nonobtuse and $T_2$ is $b$-subcritical.
-
-  Let $T_3$ be such that $T_2\Ra T_3$.  Then $T_1\ra{b} T_2\ra{b}
-  T_3$.  By Lemma~\ref{lemma:dimer}, $T_1=T_3$ and $\{T_1,T_2\}$ is a
-  dimer.  By Lemma~\ref{lemma:dimer-cluster}, $\{T_1,T_2\}$ is a full
-  $b$-cluster and contains no obtuse triangles, which is contrary to
-  assumption.
-\end{proof}
-
-\begin{lemma}\label{lemma:b-structure} 
-  Assume the dimer conjecture.  Then every $b$-cluster $\C$ is finite.
-  Specifically, one of the following holds:
-\begin{enumerate}
-\item $\C$ is a singleton $\{T_0\}$, where $T_0$ is not
-  $b$-subcritical; or
-\item $\card(\C)>1$ and there exists $T_0\in \C$ such that
-\[
-\C = \{T \mid T\ra{b} T_0\} \cup \{T_0\}.
-\]
-\end{enumerate}
-\end{lemma}
-
-\begin{proof} If $\C$ contains an obtuse triangle, then the
-  $b$-cluster $\C$ is also a $c$-cluster by Lemma~\ref{lemma:b=c}.
-  These structure results for $c$-clusters were obtained in
-  Section~\ref{sec:obtuse} in the proof of Theorem~\ref{lemma:obtuse}.
-
-  Now assume that every triangle in $\C$ is nonobtuse.  We consider
-  three cases depending on whether $\C$ is a singleton, a dimer, or
-  general.
-
-  Assume first that $\C = \{T_0\}$, a singleton.  Then $T_0\Ra T$ for
-  some triangle $T$.  Because $T$ is not in the $b$-cluster of $C$, we
-  do not have $T_0\ra{b} T$, which implies that $T_0$ is not
-  $b$-subcritical.
-
-  Next, assume that $\C = \{T_0,T_1\}$ a dimer.  Then it is easy to
-  see that the conclusions of the lemma hold.
-
-  Finally assume that $\C$ is not a singleton nor a dimer.  We have
-  $T'\ra{b} T_0$, for some $T',T_0\in \C$.  Set
-\[
-\C_1 = \{T \mid T\ra{b} T_0\} \cup \{T_0\}.
-\]
-By the definition of a $b$-cluster, we have $\C\supseteq \C_1$.  By
-Lemma~\ref{lemma:dimer} there are no other arrows $(\ra{b})$ between
-triangles in $\C_1$, so $\C_1 = \C$.
-\end{proof}
-
-\begin{lemma}\label{lemma:obtuse-main} 
-  The dimer conjecture implies that every $b$-cluster with an obtuse
-  triangle satisfies the strict main inequality.
-\end{lemma}
-
-\begin{proof} By Theorem~\ref{lemma:obtuse}, the strict main
-  inequality holds for a $c$-cluster with an obtuse triangle.  By the
-  lemma~\ref{lemma:b=c}, this $c$-cluster coincides with the
-  $b$-cluster.
-\end{proof}
-
-Our strategy of proof for the Kuperberg conjecture is to prove the
-main inequality for every $b$-cluster.  The next lemma places strong
-restrictions on the structure of a possible counterexample to the
-Kuperberg conjecture.
-
-\begin{lemma}\label{lemma:props}  
-  Assume the dimer conjecture.  Let $\C$ be a $b$-cluster that
-  violates the strict main inequality.  Then
-\begin{enumerate}
-\item All triangles in $\C$ are nonobtuse.
-%\item $T\ra{b} T'$ iff $T \ra{a} T'$ if $T\in C$ or if $T'\in\C$.
-%\item $\C$ is an $a$-cluster.
-\item $b(T) \ge \area(T)$ for all $T\in \C$.  
-\item There is $T_0\in \C$ such that $\C = \{T_0\}\cup \{T \mid
-  T\ra{a} T_0\}$.
-\item The cardinality of $\C$ is $2$, $3$, or $4$.
-\item All edges of $\C$ have length at most $2.1$.
-\end{enumerate}
-\end{lemma}
-
-In particular, the Kuperberg conjecture is reduced to calculations of
-areas involving clusters of at most four acute triangles, each with
-edge lengths at most $2.1$.
-
-\begin{proof}  By Lemma~\ref{lemma:obtuse-main},  every triangle in
-  the counterexample $\C$ is nonobtuse.  Hence (1).
-
-
-Next we prove (2).  If $T\in \C$, then $T$ is nonobtuse, so that $b(T)
-= \area(T) + \epso n_1(T)\ge \area(T)$.  
-
-For part (3), we use Lemma~\ref{lemma:b-structure}.  We can eliminate
-the case when $\C$ is a singleton, because in that case the single
-triangle is not $b$-subcritical, and it satisfies the strict main
-inequality.  The lemma now gives $T_0\in \C$ such that
-\[\C = \{T_0\}\cup \{T \mid
-  T\ra{b} T_0\}.
-\]
-We show that we can replace the arrows $(\ra{b})$ with $(\ra{a})$.
-Suppose $T\Ra T_0$.  We claim that $T\ra{a} T_0$ iff $T\ra{b} T_0$.
-In fact, $T_0$ is nonobtuse so $(T,T_0)\not\in \N$ and
-\[
-b(T) = \area(T) - \epso n_2(T) \le \area(T).
-\]
-If $T\ra{a} T_0$ then $b(T)\le \area(T)\le \aK$, so $T\ra{b} T_0$.
-Conversely, if $T\ra{b} T_0$, then $T\in \C$, so $T$ is nonobtuse and
-$n_2(T) = 0$.  Thus, $\area(T) = b(T)\le \aK$, and $T\ra{a}T_0$.  This
-completes the proof of the claim and the proof of (3).
-
-There are at most three triangles in addition to $T_0$ in $\C$,
-corresponding to the three edges of $T_0$.  This gives (4).
-
-We have now completed the proof of all but the last property of $\C$
-(concerning edge lengths $2.1$).  All the edges of a subcritical
-triangle have lengths at most $2.1$ by Lemma~\ref{lemma:21}.  All the
-triangles, except possibly $T_0$ are subcritical.  The edges of $T_0$
-shared with $T\in \C\setminus\{T_0\}$ have length at least $1.72$ by
-Lemma~\ref{lemma:172}.
-
-Let $c = \card(\C\setminus \{T_0\})$. Assume $T_0$ has an edge length
-at least $2.1$.  Then $c\le 2$, because that edge is not on a
-subcritical triangle.  We show that $\C$ satisfies the strict main
-inequality by showing that $\area(T_0) > \aK + c \epso$ so that
-\[
-\sum_{\C} b(T) \ge \sum_{\C}\area(T) 
-   > (\aK + c\epso) + \sum_{\C\setminus\{T_0\}}\area(T) > (\aK + c\epso) + c a_0
- = \card(\C) \aK.
-\]
-Explicitly,  the following area estimates complete the proof:
-\[
-\area(T_0)\ge \begin{cases}
-\area(1.72,2\kappa,2.1) > \aK+\epso,& \text{if } c = 1,\\
-\area(1.72,1.72,2.1) > \aK+2\epso,& \text{if } c = 2.
-\end{cases}
-\] %checked 2016/2/18 in Mathematica.
-\end{proof}
 
 \section{Appendix on Explicit Coordinates}
-\label{sec:appendix}
+\libel{sec:appendix}
 
 Let $A$ and $B$ be pentagons in contact, with $B$ the pointer at
 vertex $\v_B$ to the receptor pentagon $A$.  Label vertices
 $(\u_A,\w_A,\u_B,\v_B,\w_B)$ of $A$ and $B$ as in
-Figure~\ref{fig:theta}.  Let $x=\norm{\v_B}{\w_A}$ and $\beta =
+Figure~\raf{fig:theta}.  Let $x=\norm{\v_B}{\w_A}$ and $\beta =
 \angle(\v_B,\u_B,\u_A)$.  We have $0\le x\le 2\sigma$ and $0\le
 \beta\le 2\pi/5$.
 
@@ -2478,7 +2533,7 @@ between pairs of pentagons.
 \subsection{$\Delta$-junction}
 
 We describe a coordinate system on $3C$-triangles of $\Delta$-junction
-type.  As indicated in Figure~\ref{fig:cord-delta}, we use coordinates
+type.  As indicated in Figure~\raf{fig:cord-delta}, we use coordinates
 $(x_\alpha,\alpha,\beta)$, where $x_\alpha$ is a length and $\alpha$
 and $\beta$ are each angles between lines through edges of pentagons
 in contact.  We assume that $B$ points into $A$ and into $C$ and that
@@ -2488,7 +2543,7 @@ coordinates satisfy the conditions $0\le\beta\le\alpha\le\pi/5$,
 $\alpha+\beta\le \pi/5$, and $x_\alpha\in[0, 2\sigma -
 \sigma/\kappa]$.  Starting from these coordinates, we define $\gamma$
 by $\alpha+\beta+\gamma=\pi/5$, and angles of the triangle $\Delta$ by
-\begin{align}\label{eqn:abc}
+\begin{align}\libel{eqn:abc}
 \alpha+\alpha' &= 2\pi/5,\\
 \beta+\beta' &= 2\pi/5,\nonumber\\
 \gamma+\gamma' &= 2\pi/5.\nonumber
@@ -2531,7 +2586,7 @@ lengths
 
 We describe a coordinate system on $3C$-triangles of pinwheel type.
 We assume that $C$ points into $B$, that $B$ points into $A$, and that
-$A$ points into $C$.  As indicated in Figure~\ref{fig:cord-pinwheel},
+$A$ points into $C$.  As indicated in Figure~\raf{fig:cord-pinwheel},
 we use coordinates $(\alpha,\beta,x_\gamma)$.  The angles $\alpha$ and
 $\beta$ are angles between pentagon edges on touching pentagons.  The
 value $x_\gamma$ is the distance between the pointer vertex of
@@ -2540,7 +2595,7 @@ satisfy constraints: $0\le\alpha$, $0\le\beta$, $\alpha+\beta\le
 \pi/5$, and $0\le x_\gamma\le 2\sigma$.  Define $\gamma$ by
 $\alpha+\beta+\gamma=\pi/5$.  The angles $\alpha'$, $\beta'$, and
 $\gamma'$ of the inner background triangle $P$ of the pinwheel are
-given by Equation~\ref{eqn:abc}.  The edge lengths $x_\alpha$,
+given by Equation~\rif{eqn:abc}.  The edge lengths $x_\alpha$,
 $x_\beta$, $x_\gamma$ of the inner triangle $P$ are easily computed by
 the law of sines.  The edges of the $3C$-triangle have lengths
 \[
@@ -2569,7 +2624,7 @@ the law of sines.  The edges of the $3C$-triangle have lengths
 \subsection{$L$-junction type}
 
 We describe a coordinate system on $3C$-triangles of $L$-junction
-type.  As indicated in Figure~\ref{fig:cord-L}, we use coordinates
+type.  As indicated in Figure~\raf{fig:cord-L}, we use coordinates
 $(\alpha,\beta,x_\alpha)$.  The angles $\alpha$ and $\beta$ are each
 formed by edges of two pentagons in contact.  Let $x_\alpha$ be the
 distance between the pointer vertex of $C$ to $A$ and the pointer
@@ -2578,7 +2633,7 @@ $\alpha,\beta\in [0,2\pi/5]$, $\pi/5\le\alpha+\beta\le 3\pi/5$, and
 $0\le x_\gamma\le 2\sigma$.  Define $\gamma$ by
 $\alpha+\beta+\gamma=3\pi/5$.  The angles $\alpha'$, $\beta'$, and
 $\gamma'$ of the inner $L$-shaped quadrilateral are given by
-Equation~\ref{eqn:abc}.  The edge lengths of the $L$-shaped
+Equation~\rif{eqn:abc}.  The edge lengths of the $L$-shaped
 quadrilateral are easily computed by triangulating the quadrilateral
 into two triangles and applying the law of sines.  (Triangulate
 $L$ by extending the line through the edge of $A$ containing the
@@ -2613,7 +2668,7 @@ As before, the edges of the $3C$-triangle have lengths
 \subsection{$T$-junction type}
 
 We describe a coordinate system on $3C$-triangles of $T$-junction
-type.  As indicated in Figure~\ref{fig:cord-T}, we use coordinates
+type.  As indicated in Figure~\raf{fig:cord-T}, we use coordinates
 $(\alpha,\beta,x_\gamma)$.  The angles $\alpha$ and $\beta$ are each
 formed by edges of two pentagons in contact.  The length $x_\gamma$ is
 the distance between the pointer vertex of $B$ and the inner vertex of
@@ -2621,7 +2676,7 @@ $A$.  The coordinates satisfy: $\alpha,\beta\in[\pi/5,2\pi/5]$,
 $3\pi/5\le \alpha+\beta\le 4\pi/5$, $0\le x_\gamma\le 2\sigma$.
 Define $\gamma$ by $\alpha+\beta+\gamma=\pi$.  The angles $\alpha'$,
 $\beta'$, and $\gamma'$ of the inner irregular $T$-shaped pentagon $P$
-are given by Equation~\ref{eqn:abc}.  The edge lengths of the
+are given by Equation~\rif{eqn:abc}.  The edge lengths of the
 $T$-shaped pentagon are easily computed by triangulating $P$ into
 three triangles and applying the law of sines.  (Triangulate by
 extending the edge of $P$ shared with $A$ that ends at the pointer
@@ -2657,16 +2712,16 @@ before, the edges of the $3C$-triangle have lengths
 
 \subsection{pin-$T$ junction type} We describe a coordinate system on
 $3C$-triangles of pin-$T$ junction type.  As indicated in
-Figure~\ref{fig:cord-pint}, we use coordinates $\alpha$, $\beta$, and
+Figure~\raf{fig:cord-pint}, we use coordinates $\alpha$, $\beta$, and
 $x_\alpha$.  The angles $\alpha$ and $\beta$ are each formed by edges
 of two pentagons in contact.  The length $x_\alpha$ is the distance
 between the nearly coincident vertices of $B$ and $C$.
 The coordinates satisfy $\pi/5 \le \alpha \le 2\pi/5$, $\pi/5\le
 \beta \le 2\pi/5$, and $3\pi/5 \le \alpha+\beta$.
-Lemma~\ref{lemma:0605} shows that $0\le x_\alpha\le 0.0605$.  Define
+Lemma~\rif{lemma:0605} shows that $0\le x_\alpha\le 0.0605$.  Define
 $\gamma$ by $\alpha+\beta+\gamma = \pi$.  The angles $\alpha'$,
 $\beta'$, and $\gamma'$ of the inner irregular $T$-shaped pentagon are
-given by Equation~\ref{eqn:abc}.  The edge lengths of the $T$-shaped
+given by Equation~\rif{eqn:abc}.  The edge lengths of the $T$-shaped
 pentagon $P$ are easily computed by triangulating $P$ into three
 triangles and applying the law of sines.  (Triangulate by extending
 the two edges of $P$ that meet at the pointer vertex of $C$ into $A$.)
@@ -2704,7 +2759,7 @@ have lengths
 
 
 
-\begin{lemma}\label{lemma:0605}
+\begin{lemma}\libel{lemma:0605}
   Let $T$ be a $3C$ triangle of type pin-$T$.  The coordinates
   $\alpha$, $\beta$, and $x_\alpha$ satisfy the relation
 \[
@@ -2716,7 +2771,7 @@ In particular, $x_\alpha \le 0.0605$.
 \begin{proof} Let $\v_{AB}$ be the pointer vertex of $A$ to $B$, and
   let $\v_{BC}$ be the pointer vertex of $B$ to $C$.  Let $\v$ and
   $\v_{BC}$ be the endpoints of the edge of $B$ containing $\v_{AB}$.
-  We represent $T$ as in Figure~\ref{fig:cord-pint}, with the lower edge of
+  We represent $T$ as in Figure~\raf{fig:cord-pint}, with the lower edge of
   $C$ along the $x$-axis.  Since $\v_{AB}$ lies on the segment between
   $\v$ and $\v_{BC}$, The $y$-coordinate $y(\v_{AB})$ of $\v_{AB}$ is
   nonpositive and lies between the $y$-coordinates $y(\v)$ and
@@ -2794,7 +2849,7 @@ Associated with $T_0$ are parameters $d^0_{AB}$, $\theta^0_{ABC}$, $\theta^0_{BA
 common edge with $T_1$, and the inclination angles of the pentagons $A$ and $B$ with respect to that common edge.
 Similarly, associated with $T_1$ are parameters $d^1_{AB}$, $\theta^1_{ABC}$, $\theta^1_{BAC}$.  The assembly constraint
 along the common edge is
-\begin{equation}\label{eqn:assembly}
+\begin{equation}\libel{eqn:assembly}
 d^0_{AB} = d^1_{AB},\quad \theta^0_{ABC} = -\theta^1_{ABC},\quad \theta^0_{BAC} = -\theta^1_{BAC}.
 \end{equation}
 The negative sign comes from the opposite orientations of the common edge with respect to $T_0$ and $T_1$.
@@ -2812,8 +2867,8 @@ by cubes of size $\epsilon$, calculating area, edge lengths, inclination angles,
  (using interval arithmetic) over each cube.   
 
 The idea of MITM is to place the data for each peripheral cube into a hash table, keyed by the  variables
-$d^1_{AB}$, $\theta^1_{ABC}$, $\theta^1_{BAC}$ that are shared with the central triangle through Equation~\ref{eqn:assembly}.
-We view Equation~\ref{eqn:assembly} as the analogue of the collision condition $(a+b) = -(c+d)$ in
+$d^1_{AB}$, $\theta^1_{ABC}$, $\theta^1_{BAC}$ that are shared with the central triangle through Equation~\rif{eqn:assembly}.
+We view Equation~\rif{eqn:assembly} as the analogue of the collision condition $(a+b) = -(c+d)$ in
 the simple example of MITM given above.  Of course, the variables $d^1_{AB}$ etc. are represented as intervals
 with floating point endpoints and cannot be used directly as keys to a hashtable.  Instead we cover these intervals
 with a secondary finite set of intervals with rational endpoints, which are indexed by integers.  These integer indices
@@ -2844,10 +2899,10 @@ from simpler expressions by extending arithmetic operations $(+)$, $(-)$, $(*)$,
 \]
 where the component-wise addition and multiplication operations are given by interval arithmetic.
 
-Section~\ref{XX} describes the proof of the local minimality of the $K$-dimer.  We review that
+Section~\rif{XX} describes the proof of the local minimality of the $K$-dimer.  We review that
 argument here with an emphasis on automatic differentiation.
 Automatic differentiation allows us to show that the $K$-dimer $D_K$ is the unique minimizer of area
-in an explicit neighborhood of $D_K$.  In Section~\ref{XX}, we give a curve $\Gamma$ 
+in an explicit neighborhood of $D_K$.  In Section~\rif{XX}, we give a curve $\Gamma$ 
 (in the space of dimers) with parameter $t\in\ring{R}$
 that passes through the point $D_K$ at $t=0$.  
 
