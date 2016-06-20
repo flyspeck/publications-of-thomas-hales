@@ -41,7 +41,7 @@
 
 \def\libel#1{{\sc [#1]}\label{#1}}
 \def\rif#1{(\ref{#1}-{\text{\sc #1})}}
-\def\raf#1{\rif{#1}}
+%\def\raf#1{\rif{#1}}
 
 % tikz.
 \def\smalldot#1{\draw[fill=black] (#1) node [inner sep=0.8pt,shape=circle,fill=black] {}}
@@ -92,14 +92,14 @@ Kuperberg and Kuperberg
 densest packing of congruent regular pentagons in the plane is
 achieved by a double-lattice arrangement: verticals column of aligned
 pentagons pointing upward, alternating with vertical columns of
-aligned pentagons pointing downward (Figure~\raf{fig:double-lattice}) \cite{Kup}.  We call this the {\it Kuperberg
+aligned pentagons pointing downward (Figure~\rif{fig:double-lattice}) \cite{Kup}.  We call this the {\it Kuperberg
   conjecture,}  and we call this packing of pentagons the {\it Kuperberg packing}.
 This packing has density
 \[
 \frac{5 - \sqrt{5}}3 \approx 0.921311.
 \] % Checked 2016/2/18. In Vallentin, p.3.  calcs.ml.
-Until now, the best known bound on the density of packings of regular
-pentagons is $0.98103$ \cite{Val}.
+Before our work, the best known bound on the density of packings of regular
+pentagons was $0.98103$, obtained through the representation theory of the group of rigid motions of the plane \cite{Val}.
 Our research is a continuation of W. Kusner's thesis \cite{Kus}, which proves
 the local optimality of the Kuperberg packing.
 % 0.98103 page 27 of Vallentin. Checked 2016/2/18.
@@ -381,7 +381,7 @@ translation invariant and depends only on local information in the pentagon pack
 
 We remark that the modification $b(T)$ of the area function has two correction terms.
 The first term $\epso (n_1(T) - n_2(T))$ takes away from obtuse triangles (and their neighbors) and gives 
- to acute triangles.  
+ to nonobtuse triangles.  
 The intuition behind this correction terms is that the triangle adjacent to an obtuse triangle along its long edge
 has a very large surplus area that can be beneficially redistributed.  It allows us to make a clean separation of
 the proof of the main inequality into two cases: clusters that contain an obtuse triangle and clusters that do not.
@@ -418,7 +418,13 @@ $\N$ is nonobtuse by definition, so $n_1(T)=0$.
   $m_1(T)\le 1$ and $m_2(T)\le 3$.
 \end{remark}
 
-\begin{lemma}\label{lemma:n2m2}  Suppose $n_2(T_2)>0$.  Then $m_2(T_2)=0$.
+\begin{lemma}\libel{lemma:n1m1}  Suppose that $n_1(T)>0$. Then $m_1(T)=0$.
+\end{lemma}
+
+\begin{proof} This follows directly from the disjointness of $\M$ and $\N$.
+\end{proof}
+
+\begin{lemma}\libel{lemma:n2m2}  Suppose $n_2(T_2)>0$.  Then $m_2(T_2)=0$.
 \end{lemma}
 
 \begin{proof} If $T_2$ is obtuse, then $m_2(T_2)=0$ by Lemma~\rif{XX}.
@@ -495,7 +501,8 @@ packing, as desired.
 \end{proof}
 
 This article gives a proof of the following theorem. In view of Lemma \rif{lemma:main},
-it implies the main result, Theorem \rif{thm:main}.
+it implies the main result, Theorem \rif{thm:main}.  The proof of this result appears
+at the end of Section~\rif{lemma:nonobtuse}.
 
 \begin{theorem}\libel{conj:main}
   Let $\C$ be a $b$-cluster of Delaunay triangles in a saturated
@@ -506,12 +513,13 @@ it implies the main result, Theorem \rif{thm:main}.
   packing, attached along their common longest edge.
 \end{theorem}
 
+\begin{remark}\libel{rem:equal}
 Analyzing the proof of Lemma~\rif{lemma:main}, we see that for a
 periodic packing, the maximum density is achieved exactly when each
  cluster in the packing gives exact equality in the main inequality.
 Thus, the theorem implies that the Kuperberg packing is the
 unique periodic packing that achieves maximal density.
-
+\end{remark}
 
 
 
@@ -572,7 +580,7 @@ then the triangle $T'\ne T$, with $d_3' < d_3$,
 cannot satisfy the constraint $2\kappa\le d_3'$ of a  Delaunay triangle.
 
 
-\begin{proof} See Figure \raf{fig:areta}.
+\begin{proof} See Figure \rif{fig:areta}.
 Let $\p$, $\q$, and $\r$ (resp. $\p$, $\q$, and $\r'$) be the vertices of $T$
 (resp. $T'$) on a common  circle, with
 \[
@@ -606,7 +614,7 @@ In this subsection, we describe possible contacts between pentagons.
 When two pentagons touch each other, some vertex of one touches an
 edge of the other.  We call the pentagon with the vertex contact the
 {\it pointer} pentagon, and the pentagon with the edge contact the
-{\it receptor} pentagon (Figure~\raf{fig:receptor}).  We also call the
+{\it receptor} pentagon (Figure~\rif{fig:receptor}).  We also call the
 vertex in contact the {\it pointer vertex} of the pointer pentagon. There are
 degenerate cases, when the contact set between two pentagons contains
 of a vertex of both pentagons.  In these degenerate cases, the
@@ -629,7 +637,7 @@ and the other two pairs are degenerate.}{
 % nonobtuse.
 We consider a single Delaunay triangle and the three nonoverlapping
 pentagons centered at the triangle's vertices
-(Figure~\raf{fig:3C-type}).  We call such a configuration a {\it
+(Figure~\rif{fig:3C-type}).  We call such a configuration a {\it
   $P$-triangle}.  A $P$-triangle is determined up to congruence by six
 parameters: the lengths of the edges of the Delaunay triangle and the
 rotation angles of the regular pentagons.  When we refer to the area
@@ -659,7 +667,7 @@ is the target of two directed edges  ($L$-junction, $T$-junction or
 
 As indicated in parentheses, we have named each of the various contact
 types.  An example of each of the contact types is shown in
-Figure~\raf{fig:3C-type}.  An exact description of these contact types
+Figure~\rif{fig:3C-type}.  An exact description of these contact types
 appears later.  The name $L$-junction is suggested by the $L$-shaped
 region bounded by the three pentagons.  Similarly, the name
 $T$-junction is suggested by the $T$-shaped region bounded by the
@@ -702,7 +710,7 @@ a pinwheel, a pin-$T$ junction, a $\Delta$-junction, an $L$-junction, and a $T$-
 
 A {\it cloverleaf} arrangement is a $3C$ triangle that has a point at
 which vertices from all three pentagons meet
-(Figure~\raf{fig:clover}).  This is degenerate because this shared
+(Figure~\rif{fig:clover}).  This is degenerate because this shared
 vertex can be considered as a pointer or receptor.
 
 \tikzfig{clover}{A cloverleaf (degenerate pinwheel)}
@@ -783,7 +791,7 @@ pentagons $A$ and $C$.}{
   hyperplane between the pentagons $A$ and $C$.  In each case, the
   separating hyperplane is a line through the center of the middle
   pentagon $B$ and passing through a vertex $\v$ of that pentagon.  See
-  Figure~\raf{fig:sep}.  In the case of Lemma~\rif{lemma:sep1}, there
+  Figure~\rif{fig:sep}.  In the case of Lemma~\rif{lemma:sep1}, there
   is a degenerate case of a cloverleaf, where all three pentagons meet
   at the vertex $\v$ on the separating line.
 \end{proof}
@@ -793,7 +801,7 @@ pentagons $A$ and $C$.}{
   case of Lemma~\rif{lemma:sep3} (the two pointer vertices $\v_A$ and
   $\v_C$ of $A$ and $C$ lie on the same edge of $B$) provided the line $\lambda$
   through that edge of $B$ separates $B$ from $A$ and $C$. (See
-  Figure~\raf{fig:delta}.)
+  Figure~\rif{fig:delta}.)
 \end{definition}
 
 \tikzfig{delta}{In type $\Delta$, a line separates pentagon 
@@ -855,7 +863,7 @@ classified as a degenerate $L$-junction below.
 % or type pin-$2$.
 %  Assume that $C$ points to $A$ at $\v_{CA}$, that $A$ points to $B$
 %  at $\v_{AB}$, and that $B$ points to $C$ at $\v_{BC}$.  Assume that
-%  $T$ is not (degenerately) type $\Delta$ (Figure~\raf{fig:delta}).
+%  $T$ is not (degenerately) type $\Delta$ (Figure~\rif{fig:delta}).
 %  Then $\v_{CA}$ and $\v_{BC}$ lie on the same edge of $C$.
 \end{lemma}
 
@@ -876,7 +884,7 @@ classified as a degenerate $L$-junction below.
 }
 
 \begin{proof}  We draw a (distorted) picture of a
-  pinwheel that violates the conclusion (Figure~\raf{fig:pinwheel}).
+  pinwheel that violates the conclusion (Figure~\rif{fig:pinwheel}).
  %(There are
  % other configurations (and associated figure) that must be ruled out,
  % when additionally $\v_{AB}$ and $\v_{BC}$ lie on adjacent edge of
@@ -1075,7 +1083,7 @@ estimates when an edge has length at most $\kappa\sqrt{8}$.
 
   If the $P$-triangle does not have $3C$ contact, then obvious
   geometry forces one pentagon to have double contact and the other
-  two pentagons to have slider contact (Figure~\raf{fig:172-slider}).
+  two pentagons to have slider contact (Figure~\rif{fig:172-slider}).
   The nonoverlapping of the pentagons forces one of slider contacts to
   be such that a sliding motion along the edges of contact decreases
   area and edge lengths of $T$.  Thus, the $P$-contact can be deformed
@@ -1214,7 +1222,7 @@ has double contact.
 Let $(T_1,T_0)\in DP$.  Then $T_1$ is not both $O2C$  and long isosceles.
 \end{lemma}
 
-\begin{definition}[good angle]\label{def:good}  Let $T$ be a $P$-triangle.  Let $e$ be an edge of the triangle with pentagons
+\begin{definition}[good angle]\libel{def:good}  Let $T$ be a $P$-triangle.  Let $e$ be an edge of the triangle with pentagons
 $A$ and $B$ at its endpoints.
 Let $\alpha = \alpha(T,e)$ be the angle between the two pentagons $A$ and $B$.  (See Figure~\rif{XX}.)  Modulo
 $2\pi/5$, we can assume that $\alpha\in  [0,2\pi/5]$.  We say that the angle is {\it good} along $(T,e)$ if $\alpha>\pi/5$.
@@ -1232,7 +1240,7 @@ Assume that there is a nonshared edge $e$ of $T_0$ of length greater than $1.8$ 
 Then $\area\{T_0,T_1\} > 2\aK + \epso'$.
 \end{lemma}
 
-\begin{corollary}\label{lemma:good} If $(T_1,T_0)\in \PD$ and $e$ is the longest (that is, egressive) edge of $T_0$.  Then the angle
+\begin{corollary}\libel{lemma:good} If $(T_1,T_0)\in \PD$ and $e$ is the longest (that is, egressive) edge of $T_0$.  Then the angle
 is good along $(T_0,e)$.
 \end{corollary}
 
@@ -1423,7 +1431,7 @@ we are not in this trivial case.
 The squeezing deformation translates $B$ directly upward away from the $x$-axis, while translating $A$ to the right and $C$ to the left to maintain
 double contact at $B$.  
 
-\begin{lemma}  Let $T$ be an acute $P$-triangle with pentagons $A$, $B$, and $C$, where $B$ has double contact.
+\begin{lemma}  Let $T$ be a nonobtuse $P$-triangle with pentagons $A$, $B$, and $C$, where $B$ has double contact.
 Assume that the  area of $T$ is at most $\aK+\epso$.  Assume that $T$ is not in the trivial situation of free translation mentioned above.
 Then the squeezing deformation decreases area.
 \end{lemma}
@@ -1686,7 +1694,7 @@ nonobtuse, this implies that there exists some obtuse triangle $T_2$ such that $
 to the previous lemma.
 \end{proof}
 
-\begin{lemma} Let $(T_1,T_0)\in\PD$.  Then $n_1(T_1)=n_2(T_1)=m_1(T_1)=m_2(T_1)=0$.  In particular,
+\begin{lemma}\libel{lemma:pd-1} Let $(T_1,T_0)\in\PD$.  Then $n_1(T_1)=n_2(T_1)=m_1(T_1)=m_2(T_1)=0$.  In particular,
 $b(T_1) = \area(T_1)$.
 \end{lemma}
 
@@ -1702,7 +1710,7 @@ this implies that there exists an obtuse triangle $T_2$ such that $T_2\Ra T_1$. 
 Lemma~\rif{lemma:pd-obtuse}.
 \end{proof}
 
-\begin{lemma}  Let $(T_1,T_0)\in\PD$.  Then $b(T_0) > \aK$.  That is, $T_0$ is not $b$-subcritical.
+\begin{lemma}\libel{lemma:pd-b}  Let $(T_1,T_0)\in\PD$.  Then $b(T_0) > \aK$.  That is, $T_0$ is not $b$-subcritical.
 \end{lemma}
 
 \begin{proof}
@@ -1751,7 +1759,7 @@ $\{T_0,T_1\}$.
 The proof will occupy the entire section.  Before treating dimers, we treat the
 easy case of singletons.
 
-\begin{lemma}\libel{lemma:single-172}  Assume that all the edges of a triangle $T$ have length less than $1.72$.
+\begin{lemma}\libel{lemma:singleton}  Assume that all the edges of a triangle $T$ have length less than $1.72$.
 Then the $b$-cluster of $T$ is the singleton $\{T\}$ and $b(T) =\area(T) > \aK$.  Generally,
 if $\{T\}$ is a singleton $b$-cluster, then $b(T) > \aK$ and the main inequality holds.
 \end{lemma}
@@ -1781,7 +1789,7 @@ we have $\area(T)>\aK$.  But if $T\in\{T_0,T_1\}$, we have $\area(T)=\aK$.
 This gives the result.
 \end{proof}
 
-\begin{lemma}\label{lemma:m1-dimer}  Let $(T_1,T_0)\in DP$ and let $(T'_1,T'_0)\in\PD$.  Then
+\begin{lemma}\libel{lemma:m1-dimer}  Let $(T_1,T_0)\in DP$ and let $(T'_1,T'_0)\in\PD$.  Then
 $\{T_0,T_1\}\cap \{T'_0,T'_1\} = \emptyset$.  In particular, $m_1(T_0) = m_1(T_1)=0$.
 \end{lemma}
 
@@ -1799,7 +1807,7 @@ If $m_1(T) >0$, then there exists $T'$ such that $(T',T)\in \PD$.  This is impos
 disjointness result.
 \end{proof}
 
-\begin{lemma}\label{lemma:m2-dimer}  Let $(T_1,T_0)\in DP$ and let $(T'_1,T'_0)\in PD$.  Then $T'_0\nRa T_0$ and
+\begin{lemma}\libel{lemma:m2-dimer}  Let $(T_1,T_0)\in DP$ and let $(T'_1,T'_0)\in PD$.  Then $T'_0\nRa T_0$ and
 $T'_0 \nRa T_1$.  In particular, $m_2(T_0)=m_2(T_1)=0$.
 \end{lemma}
 
@@ -1814,7 +1822,7 @@ The result follows.
 
 
 
-\begin{lemma}\libel{lemma:t2b-acute}
+\begin{lemma}\libel{lemma:t2b-nonobtuse}
   If $T_1$ is obtuse, $T_2$ is nonobtuse, and if $T_1 \Ra T_2$, then $T_2$ is not
   $b$-subcritical.
 \end{lemma}
@@ -1852,7 +1860,7 @@ b(T_2) \ge \area(T_2) - 2\epso'\ > \area(\kappa\sqrt8,1.8,2\kappa)  - 2\epso' > 
 \]
 \end{proof}
 
-\begin{corollary}\label{lemma:n2b} If $n_2(T_2)>0$  with $T_2$ nonobtuse, then $b(T_2) > \aK$.
+\begin{corollary}\libel{lemma:n2b} If $n_2(T_2)>0$  with $T_2$ nonobtuse, then $b(T_2) > \aK$.
 \end{corollary}  
 
 \begin{proof}  By the definition of $\N$, There exists an obtuse triangle $T$ such that $T\Ra T_2$.
@@ -1888,7 +1896,7 @@ b(T) \ge \area(T) - m_2(T)\epso' > \area(1.8,1.8,1.72) - 3\epso' > \aK.
 This  contradicts the assumption that $T$ is $b$-subcritical.
 \end{proof}
 
-\begin{lemma} \label{lemma:rab-sequence} There does not exist a sequence
+\begin{lemma} \libel{lemma:rab-sequence} There does not exist a sequence
 $T_1\rab T_2 \rab T_3$, with $T_1\ne T_3$, in which $T_1$ and $T_2$  are
 both nonobtuse.
 \end{lemma}
@@ -1919,7 +1927,7 @@ We are finally in a position to prove  Theorem~\rif{thm:dimer}.
 %we have $m_1(T)=m_2(T) = n_1(T)=n_2(T) = 0$; and $b(T) = \area(T)$.
 %Moreover, $\{T_0,T_1\}$ is a $b$-cluster, and the main inequality holds for
 %$\{T_0,T_1\}$.
-Let $(T_0,T_1)$ be a dimer pair.   We have proved that $m_1(T)=m_2(T)=0$ in Lemmas~\ref{lemma:m1-dimer} and \ref{lemma:m2-dimer}.
+Let $(T_0,T_1)$ be a dimer pair.   We have proved that $m_1(T)=m_2(T)=0$ in Lemmas~\rif{lemma:m1-dimer} and \rif{lemma:m2-dimer}.
 
 We claim that $n_2(T_0)=n_2(T_1)=0$.  Otherwise, $T_1$ or $T_0$ has an edge of length at least $\kappa\sqrt8$, and the triangle
 is not subcritical.
@@ -1929,7 +1937,7 @@ We claim that $n_1(T_0)=n_1(T_1)=0$.  Otherwise, say $(T_1,T_0)\in\N$ and we hav
 This shows that $b(T_i)=\area(T_i)$, for $i=0,1$.
 Since $T_0$ and $T_1$ are both subcritical, they are also $b$-subcritical, and fall into the same $b$-cluster.
 This is the full $b$-cluster, for otherwise, we would have say $T\rab T_0\rab T_1$, which is impossible by
-Lemma~\ref{lemma:rab-sequence}, for $T$ acute.  And if $T$ is obtuse, this would give $T_0$ an edge of length at least $\kappa\sqrt8$.
+Lemma~\rif{lemma:rab-sequence}, for $T$ nonobtuse.  And if $T$ is obtuse, this would give $T_0$ an edge of length at least $\kappa\sqrt8$.
 
 This gives the proof.
 \end{proof}
@@ -1973,19 +1981,19 @@ Let $T_1$ and $T_2$ be $P$-triangles, such that $T_1\Ra T_2$, where $T_1$ is non
   assumptions of Lemma~\rif{lemma:notlong}.
 \end{proof}
 
-\begin{lemma}\label{lemma:3m2} 
-If $m_2(T) = 3$, then $b(T) > \aK$.
+\begin{lemma}\libel{lemma:3m2} 
+If $m_2(T) = 3$, then $b(T) > \aK + \epso$.
 \end{lemma}
 
-\begin{proof}  By Lemma~\ref{lemma:n2m2}, $n_2(T)=0$.
+\begin{proof}  By Lemma~\rif{lemma:n2m2}, $n_2(T)=0$.
 There is a longest edge of a pseudo-dimer along each edge of $T$.
 This gives
 \[
-b(T) \ge \area(T) - 3\epso' \ge \area(1.8,1.8,1.8) - 3\epso' > \aK.
+b(T) \ge \area(T) - 3\epso' \ge \area(1.8,1.8,1.8) - 3\epso' > \aK + \epso.
 \]
 \end{proof}
 
-\begin{lemma}\label{lemma:Nb}  If $(T_1,T_0)\in \N$, then $b(T_1)>\aK$.
+\begin{lemma}\libel{lemma:Nb}  If $(T_1,T_0)\in \N$, then $b(T_1)>\aK$.
 \end{lemma}
 
 \begin{proof}  Otherwise,
@@ -1995,8 +2003,8 @@ b(T) \ge \area(T) - 3\epso' \ge \area(1.8,1.8,1.8) - 3\epso' > \aK.
 So $n_2(T_1) > 0$ or $m_2(T_1)>0$. This gives two cases.  
 
 Suppose that $n_2(T_1) >0$.  Then $(T,T_1)\in\N$ for some nonobtuse $T$ whose shared edge with $T_1$ has length at least $1.72$.
-Recall that $T_1$ is acute.  Thus, by the definition of $\N$, there exists $T'$ obtuse such that $T'\Ra T_1$.  The shared edge
-has length at least $\kappa\sqrt8$.  Also, $n_2(T_1)\le 2$ (because $(T',T_1)\not\in \N$).  By Lemma~\ref{lemma:n2m2}, we have
+Recall that $T_1$ is nonobtuse.  Thus, by the definition of $\N$, there exists $T'$ obtuse such that $T'\Ra T_1$.  The shared edge
+has length at least $\kappa\sqrt8$.  Also, $n_2(T_1)\le 2$ (because $(T',T_1)\not\in \N$).  By Lemma~\rif{lemma:n2m2}, we have
 $m_2(T)=0$.  Then
 \[
 b(T_1) \ge \area(T_1) + \epso (1 - 2) \ge \area (2\kappa,1.72,\kappa\sqrt8) > \aK.
@@ -2019,9 +2027,9 @@ b(T_1) > (\aK + \epso') + \epso -\epso'  3 = \aK.
 
 \begin{proof}  
   Assume for a contradiction that such a pair $(T_1,T_2)$ exists.
-By Lemma \ref{lemma:Nb}, $(T_1,T_2)\not\in\N$.
+By Lemma \rif{lemma:Nb}, $(T_1,T_2)\not\in\N$.
 By the definition of $\N$, the longest edge of $T_1$ has length
-less than $1.72$.  By Lemma~\ref{lemma:singleton}, $T_1$ forms
+less than $1.72$.  By Lemma~\rif{lemma:singleton}, $T_1$ forms
 a singleton cluster.  This contradicts $T_1\rab T_2$.
 \end{proof}
 
@@ -2057,7 +2065,7 @@ a singleton cluster.  This contradicts $T_1\rab T_2$.
 \end{lemma}
 
 
-\begin{proof}  If $T_2$ is nonobtuse, then this is Lemma~\rif{lemma:t2b-acute}.
+\begin{proof}  If $T_2$ is nonobtuse, then this is Lemma~\rif{lemma:t2b-nonobtuse}.
 
 Assume that $T_2$ is obtuse.  By basic properties of Delaunay
 triangles (Remark~\rif{rem:delaunay}), Delaunay triangles never join
@@ -2079,19 +2087,19 @@ d_2 = \kappa\sqrt8 <  4 \sin(\arc(2,2,2\kappa)) = 2\eta\sin(\alpha/2).
 \end{proof}
 
 
-\begin{lemma}\label{lemma:sequence}  There does not exist a three
+\begin{lemma}\libel{lemma:sequence}  There does not exist a three
 term sequence $- \rab -\rab -$ where  the three triangles  are distinct.
 \end{lemma}
 
 \begin{proof}  
 Assume for a contradiction, that such a sequence exists.
-By Lemma~\ref{XX}, there does not exist a sequence $- \rab - \rab -$,
+By Lemma~\rif{XX}, there does not exist a sequence $- \rab - \rab -$,
 where the first triangle is obtuse.  Thus, we may assume that the first
 triangle is nonobtuse.
-By Lemma~\ref{XX}, there does not exist $T_1\rab T_2$,
+By Lemma~\rif{XX}, there does not exist $T_1\rab T_2$,
 where $T_1$ is nonobtuse and $T_2$ is obtuse.  Thus, we may assume
-that every triangle in the sequence is acute.  This is impossible by
-Lemma~\ref{XX}.
+that every triangle in the sequence is nonobtuse.  This is impossible by
+Lemma~\rif{XX}.
 \end{proof}
 
 If $\C$ is a $b$-cluster that is not a singleton, then there is
@@ -2114,7 +2122,7 @@ Thus, we have accounted for all of the arrows in and out of $T_0$ and in and
 out of $T$.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\libel{lemma:card4}
   Every $b$-cluster is finite of cardinality at most $4$.
 \end{corollary}
 
@@ -2133,15 +2141,15 @@ a $b$-cluster that contains an obtuse triangle.  Then $T$ is obtuse.
 Moreover, $b(T) = \area(T) -\epso n_2(T)$.
 \end{lemma}
 
-\begin{proof} Assume for a contradiction that $T$ is nonobtuse.  By Lemma~\ref{XX}
+\begin{proof} Assume for a contradiction that $T$ is nonobtuse.  By Lemma~\rif{XX}
 and the arrow $T\rab T_0$, the triangle $T_0$ is nonobtuse.  By assumption and the structure
 theorem for $b$-clusters, there exists
 $T'\rab T_0$, where $T'$ is obtuse.
 The singleton lemma implies that the longest edge of $T$, which is shared with $T_0$ has length
-at least $1.72$.  By the definition of $\N$, we have $(T,T_0)\in\N$.   By Lemma~\ref{lemma:Nb}, we
+at least $1.72$.  By the definition of $\N$, we have $(T,T_0)\in\N$.   By Lemma~\rif{lemma:Nb}, we
 have $b(T)>\aK$, and $T$ is not $b$-subcritical.  Thus, we obtain a contradiction $T\nRa T_0$.
 
-Moreover, $b(T) = \area(T) -\epso n_2(T)$ by Lemma~\ref{XX}.
+Moreover, $b(T) = \area(T) -\epso n_2(T)$ by Lemma~\rif{XX}.
 \end{proof}
 
 Let $T\rab T_0$ be an arrow between two triangles in a $b$-cluster, where $T$ is obtuse.
@@ -2165,7 +2173,7 @@ let $T\in \C$.  Then  $\tb(T)\le b(T)$.
 
 
 
-\begin{proof}[proof of Theorem~\ref{lemma:obtuse}.]
+\begin{proof}[proof of Theorem~\rif{lemma:obtuse}.]
   The proof involves several relatively simple cases.  
   We recall that each Delaunay triangle has edge lengths at
   least $2\kappa$ and circumradius at most $2$.
@@ -2386,22 +2394,22 @@ This completes the proof of the theorem.
 \end{proof}
 
 
-\section{Nonobtuse Clusters}
+\section{Nonobtuse Clusters}\libel{sec:nonobtuse}
 
 In this section we prove the main inequality for $b$-clusters in which every
 triangle is nonobtuse.
 
-By Corollary \ref{lemma:n2b} and Lemma \ref{lemma:Nb}, 
+By Corollary \rif{lemma:n2b} and Lemma \rif{lemma:Nb}, 
 if $T$ is $b$-subcritical and nonobtuse, then $n_1(T)=n_2(T)=0$.
 
 
-\begin{lemma}\label{lemma:m2} Let $T\rab T_0$. Assume that $T$ and $T_0$ are nonobtuse.
+\begin{lemma}\libel{lemma:m2} Let $T\rab T_0$. Assume that $T$ and $T_0$ are nonobtuse.
 Then $m_2(T)=0$.
 \end{lemma}
 
 \begin{proof}  Assume that $m_2(T)>0$.  We have just observed that $n_1(T)=n_2(T)=0$.
-By Lemma \ref{lemma:m1m2}, we have $m_1(T)=0$.
-By Lemma \ref{lemma:3m2}, we have $m_2(T)\le 2$. 
+By Lemma \rif{lemma:m1m2}, we have $m_1(T)=0$.
+By Lemma \rif{lemma:3m2}, we have $m_2(T)\le 2$. 
 
 %We have $n_1(T)=0$.  Otherwise, we have a contradiction:
 %\[
@@ -2415,7 +2423,7 @@ We have $m_2(T)=2$.  Otherwise, if $m_2(T)=1$, we have a contradiction:
 
 Since $m_2(T)=2$, there exist two pseudo-dimers $(T'_1,T'_0)$ and $(T''_1,T''_0)$ such that
 $T'_0\Ra T$ and $T''_0\Ra T$.  The shared edges $e'$ and $e''$ have length at least $1.8$.
-Moreover, the angles are not good along $(T,e')$ and $(T,e'')$.  (See Definition \ref{def:good} and Lemma \ref{lemma:good}.)
+Moreover, the angles are not good along $(T,e')$ and $(T,e'')$.  (See Definition \rif{def:good} and Lemma \rif{lemma:good}.)
 The following lemma and the estimate 
 \[
 \aK \ge b(T) \ge \area(T) - 2\epso' > (\aK + 2\epso') - 2\epso' = \aK.
@@ -2454,23 +2462,184 @@ for $\gamma$ that we have obtained represents the jump by $2\pi/5$ to $\alpha+\b
 This does not exist. (XX clean up.)
 \end{proof}
 
-\begin{lemma}\label{lemma:m2-acute} Let $T\rab T_0$. Assume that $T$ and $T_0$ are nonobtuse.
+\begin{lemma}\libel{lemma:T1-all} Let $T\rab T_0$. Assume that $T$ and $T_0$ are nonobtuse.
 Then $m_1(T)=0$.  Thus, $n_1(T)=n_2(T)=m_1(T)=m_2(T)=0$ and $b(T)=\area(T)\le \aK$.
 \end{lemma}
 
 \begin{proof}
 If $m_1(T)>0$, then there exists a pseudo-dimer $(T'_1,T'_0)$ such that $T=T'_0$.
 An earlier lemma on pseudo-dimers (Lemma XX) gives that $b(T'_1)=\area(T'_1)\le \aK$.
-Thus, $T'_1\rab T\rab T_0$.  This contradicts Lemma~\ref{lemma:sequence}.
+Thus, $T'_1\rab T\rab T_0$.  This contradicts Lemma~\rif{lemma:sequence}.
 
 The final statement is a summary of the preceding series of lemmas.
 \end{proof}
 
 Now we turn our attention to the target $T_0$ of an arrow $T\rab T_0$, where both
-$T$ and $T_0$ are nonobtuse.  By Lemma \ref{lemma:singleton}, the shared edge
+$T$ and $T_0$ are nonobtuse.  By Lemma \rif{lemma:singleton}, the shared edge
 has length at least $1.72$.
 
-XXD
+\begin{lemma}\libel{lemma:n2-0} Let $T_0$ be a triangle 
+ in a cluster $\C$ containing only nonobtuse triangles.  Then
+$n_2(T_0)=0$.
+\end{lemma}
+
+\begin{proof}  If $n_2(T_0)>0$, then by the definition of $\N$,
+there exists an obtuse triangle
+$T'$ such that $T'\Ra T_0$ and 
+$\area(T') \le \aK+  n_2(T',\N_+)\epso$.  For an obtuse triangle,
+$T'$, we have $b(T') = \area(T') - n_2(T')\epso$, and $n_2(T',\N_+)=n_2(T')$.
+Thus, $T'\rab T_0$, and the cluster $\C$ contains an obtuse triangle.
+\end{proof}
+
+\begin{lemma}\libel{lemma:m1-0}  Let $T\rab T_0$ where $T$ and $T_0$ are in a cluster $\C$
+that contains only nonobtuse triangles.  Assume further that if
+$\C=\{T_0,T\}$, then $(T,T_0)\not\in\PD$.
+Then $m_1(T_0)=0$.
+\end{lemma}
+
+\begin{proof}  We assume that $m_1(T_0)>0$ for a contradiction.
+By the previous lemma, we have $n_2(T_0)=0$.  By Lemma \rif{lemma:m1m2},
+we have $m_2(T_0)=0$.  By Lemma \rif{lemma:n1m1}, we have $n_1(T_0)=0$.
+Thus, $b(T_0) = \area(T_0) + \epso' m_1(T_0) = \area(T_0)+\epso'$.
+
+By the definition of $\M$, there exists a unique $T_1$ such that $(T_1,T_0)\in \PD$.
+In particular, by earlier results about pseudo-dimers $b(T_1)=\area(T_1)\le\aK$, so $T_1\rab T_0$.
+
+We claim that if $T'\rab T_0$, we have $T'=T_1$.  This follows from the uniqueness of $T_1$.
+In particular, $T=T_1$.
+By the structure theorem for clusters, $\C = \{T_0,T_1\}$ and $(T,T_0)\in\PD$.
+This contradicts the assumption of the lemma.
+\end{proof}
+
+\begin{lemma}\libel{lemma:4}
+Let $\C$ be a cluster consisting of nonobtuse triangles.  Assume
+that the cardinality of $\C$ is four. 
+Then the strict main inequality holds for $\C$.
+\end{lemma}
+
+\begin{proof}  Let $\C = \{T_0\}\cup \{T_1^i \mid i=1,2,3\}$.  
+We have $b(T^i_1) = \area(T^i_1)\le \aK$ by Lemma \rif{lemma:T1-all}.
+By Lemmas \rif{lemma:n2-0} and \rif{lemma:m1-0}, we have $m_1(T_0)=n_2(T_0)=0$.
+
+We claim $m_2(T_0)=0$.  Otherwise,
+if $m_2(T_0) >0$, then  $(T,T^i_1)\in\PD$ for some $T$ and some $i$.
+The arrow $T^i_1\rab T_0$ is inconsistent with Lemma \rif{lemma:pd-b}
+
+We claim $n_1(T_0)=0$.  Otherwise, if $(T_0,T^i_1)\in\N$, then we get $n_2(T^i_1)>0$,
+which is contrary to a recent fact.
+
+Hence all the coefficients $n,m$ are zero on the cluster: $b(T^i_1)=\area(T^i_1)$ and
+$b(T_0) = \area(T_0)$.
+The result now follows from Lemma~\rif{calc:pent4}.
+\end{proof}
+
+\begin{lemma}\libel{lemma:3}
+Let $\C$ be a cluster consisting of nonobtuse triangles.  Assume
+that the cardinality of $\C$ is three. 
+Then the strict main inequality holds for $\C$.
+\end{lemma}
+
+\begin{proof}  
+Let $\C = \{T_0\}\cup \{T_1^i \mid i=1,2\}$.  
+We have $b(T^i_1) = \area(T^i_1)\le \aK$ by Lemma \rif{lemma:T1-all}.
+By Lemmas \rif{lemma:n2-0} and \rif{lemma:m1-0}, we have $m_1(T_0)=n_2(T_0)=0$.
+
+We claim that $m_2(T_0)\le 1$.  Otherwise, by the definition of $\M$, there exists
+$(T,T^i_1)\in\PD$ for some $T$ and some $i$.  The arrow $T^i_1\rab T_0$ is inconsistent
+with Lemma \rif{lemma:pd-b}.
+We have
+\[
+b(T_0) = \area(T_0) + \epso n_1(T_0) - \epso' m_2(T_0) \ge \area(T_0) - \epso'
+\]
+By Lemma~\rif{calc:pent3}, we have
+\[
+\sum_{T\in\C} b(T) \ge (\area(T_0) - \epso') + \sum_{T\ne T_0} \area(T) = -\epso'+ \sum_{T\in\C} \area(T) > 3\aK.
+\]
+This is the strict main inequality for $\C$.
+\end{proof}
+
+\begin{lemma}\libel{lemma:2} Let $\C$ be a cluster consisting of nonobtuse triangles.  Assume
+that the cardinality of $\C$ is two.  If the cluster is not a dimer pair, 
+then the strict main inequality holds for $\C$.
+\end{lemma}
+
+\begin{proof}  Let $\C = \{T_1,T_0\}$, with $T_1\rab T_0$. By Lemma \rif{lemma:pd-1},
+$b(T_1)=\area(T_1)\le \aK$.  
+
+We assume that $\C$ is not a dimer pair $(T_1,T_0)$.
+
+
+We consider the case of a pseudo-dimer.
+If $(T_1,T_0)\in\PD$, then $m_2(T_0)=n_2(T_0)=0$ (by Lemmas \rif{lemma:pd-m2} and \rif{lemma:pd-n2}).
+Thus, by Lemma \rif{calc:pseudo-area}
+\[
+b(T_1)+b(T_0) \ge \area(T_1)+\area(T_0) + \epso' (n_1(T_0) + m_1(T_0)) > 2\aK - \epso'  + \epso' (n_1(T_0)+m_1(T_0)).
+\]
+The main inequality follows if we show that $n_1(T_0)>0$ or $m_1(T_0)>0$.
+Assume for a contradiction that $n_1(T_0)=m_1(T_0)=0$.  Pick $T$ such that $T_0\Ra T$.
+The condition $n_1(T_0)$ implies that $(T_0,T)\not\in\N$.  According to the definition of $\M$, 
+we have $m_1(T_0)>0$ unless
+there exists $T'_1\ne T_1$ such $(T'_1,T_0)\in\PD$.  This is impossible, because the cardinality of $\C$ is only
+two.  This completes the case of a pseudo-dimer.
+
+By Lemmas \rif{lemma:n2-0} and \rif{lemma:m1-0}, we have $m_1(T_0)=n_2(T_0)=0$.
+Thus,
+\begin{equation}\libel{eqn:2}
+b(T_0) = \area(T_0) + \epso n_1(T_0) - \epso' m_2(T_0)\le \aK, \quad b(T_1) = \area(T_1) \le \aK.
+\end{equation}
+
+We may assume that  $\area(T_0)+\area(T_1)> 2\aK$.  Otherwise, $(T_1,T_0)$ is a dimer pair or 
+a pseudo-dimer, and these cases have already been handled.  Combined with the Inequalities \rif{eqn:2},
+this gives 
+\[
+2\aK \ge b(T_0) + b(T_1) > 2\aK + \epso n_1(T_0) - \epso' m_2(T_0).
+\]
+This implies that $n_1(T_0)=0$ and $m_2(T_0) > 0$.
+
+We consider the case $m_2(T_0)= 3$.  In fact, Lemma~\rif{lemma:3m2}, we have
+$b(T_1) + b(T_1) > a_0 + \aK + \epso = 2\aK$, which completes this case.
+
+We consider the case $m_2(T_0)=2$.  In this case, there are two pseudo-dimer that share
+a longest edge with $T_0$.  These edges have length at least $1.8$. The third edge
+is shared with $T_1$ and has length at least $1.72$.
+Then
+\[
+b(T_1)+b(T_0) \ge a_0 + (\area (1.8,1.8,1.72) - 2\epso') > 2\aK.
+\]
+
+Finally, we consider the case $m_2(T_0)=1$.  We are in the context covered
+by Lemma \rif{calc:good}.  That lemma implies
+\[
+b(T_1) + b(T_0) = (\area(T_1) + \area(T_0)) - \epso' > (2\aK  +\epso') - \epso' = 2\aK.
+\]
+This completes the proof.
+\end{proof}
+
+
+We are ready to give a proof of the Kuperberg-Kuperberg conjecture. We repeat the statement
+of the theorem from the introduction of the article.  
+
+\begin{theorem}   No packing of congruent regular pentagons in the Euclidean
+plane has density greater than that of
+the Kuperberg-Kuperberg packing.   The Kuperberg-Kuperberg packing is the
+unique periodic packing of congruent regular pentagons that attains optimal density.
+\end{theorem}
+
+We combine the proof with a proof of Theorem~\rif{main:conj}.
+
+\begin{proof}
+By the main inequality in Lemma \rif{lemma:main} applied to $a=\aK$, together with Remark~\rif{rem:equal}
+it is enough to give a proof of Theorem~\rif{main:conj}.  Specifically, we show that
+every $b$-cluster in every saturated packing is finite of cardinality at most $4$.  
+This is Corollary \rif{lemma:card4}.
+If $\C$ is a dimer pair, then $\C$ is the $K$-dimer in the Kuperberg-Kuperberg packing and the (weak)
+main inequality holds for $\C$.  This is Theorem~\rif{thm:dimer}.  If $\C$ is not a dimer pair, then
+we show that $\C$ satisfies the strict main inequality.  If $\C$ has an obtuse triangle, then this
+is found in Lemma \rif{lemma:obtuse}.  If every triangle in $\C$ is nonobtuse, and if $\C$ has cardinality $4$, $3$,  $2$, or $1$,
+this is found in Lemmas \rif{lemma:4}, \rif{lemma:3}, \rif{lemma:2}, \rif{lemma:singleton}.
+
+This completes the proof of the main theorem.
+\end{proof}
 
 
 
@@ -2480,7 +2649,7 @@ XXD
 Let $A$ and $B$ be pentagons in contact, with $B$ the pointer at
 vertex $\v_B$ to the receptor pentagon $A$.  Label vertices
 $(\u_A,\w_A,\u_B,\v_B,\w_B)$ of $A$ and $B$ as in
-Figure~\raf{fig:theta}.  Let $x=\norm{\v_B}{\w_A}$ and $\beta =
+Figure~\rif{fig:theta}.  Let $x=\norm{\v_B}{\w_A}$ and $\beta =
 \angle(\v_B,\u_B,\u_A)$.  We have $0\le x\le 2\sigma$ and $0\le
 \beta\le 2\pi/5$.
 
@@ -2533,7 +2702,7 @@ between pairs of pentagons.
 \subsection{$\Delta$-junction}
 
 We describe a coordinate system on $3C$-triangles of $\Delta$-junction
-type.  As indicated in Figure~\raf{fig:cord-delta}, we use coordinates
+type.  As indicated in Figure~\rif{fig:cord-delta}, we use coordinates
 $(x_\alpha,\alpha,\beta)$, where $x_\alpha$ is a length and $\alpha$
 and $\beta$ are each angles between lines through edges of pentagons
 in contact.  We assume that $B$ points into $A$ and into $C$ and that
@@ -2586,7 +2755,7 @@ lengths
 
 We describe a coordinate system on $3C$-triangles of pinwheel type.
 We assume that $C$ points into $B$, that $B$ points into $A$, and that
-$A$ points into $C$.  As indicated in Figure~\raf{fig:cord-pinwheel},
+$A$ points into $C$.  As indicated in Figure~\rif{fig:cord-pinwheel},
 we use coordinates $(\alpha,\beta,x_\gamma)$.  The angles $\alpha$ and
 $\beta$ are angles between pentagon edges on touching pentagons.  The
 value $x_\gamma$ is the distance between the pointer vertex of
@@ -2624,7 +2793,7 @@ the law of sines.  The edges of the $3C$-triangle have lengths
 \subsection{$L$-junction type}
 
 We describe a coordinate system on $3C$-triangles of $L$-junction
-type.  As indicated in Figure~\raf{fig:cord-L}, we use coordinates
+type.  As indicated in Figure~\rif{fig:cord-L}, we use coordinates
 $(\alpha,\beta,x_\alpha)$.  The angles $\alpha$ and $\beta$ are each
 formed by edges of two pentagons in contact.  Let $x_\alpha$ be the
 distance between the pointer vertex of $C$ to $A$ and the pointer
@@ -2668,7 +2837,7 @@ As before, the edges of the $3C$-triangle have lengths
 \subsection{$T$-junction type}
 
 We describe a coordinate system on $3C$-triangles of $T$-junction
-type.  As indicated in Figure~\raf{fig:cord-T}, we use coordinates
+type.  As indicated in Figure~\rif{fig:cord-T}, we use coordinates
 $(\alpha,\beta,x_\gamma)$.  The angles $\alpha$ and $\beta$ are each
 formed by edges of two pentagons in contact.  The length $x_\gamma$ is
 the distance between the pointer vertex of $B$ and the inner vertex of
@@ -2712,7 +2881,7 @@ before, the edges of the $3C$-triangle have lengths
 
 \subsection{pin-$T$ junction type} We describe a coordinate system on
 $3C$-triangles of pin-$T$ junction type.  As indicated in
-Figure~\raf{fig:cord-pint}, we use coordinates $\alpha$, $\beta$, and
+Figure~\rif{fig:cord-pint}, we use coordinates $\alpha$, $\beta$, and
 $x_\alpha$.  The angles $\alpha$ and $\beta$ are each formed by edges
 of two pentagons in contact.  The length $x_\alpha$ is the distance
 between the nearly coincident vertices of $B$ and $C$.
@@ -2771,7 +2940,7 @@ In particular, $x_\alpha \le 0.0605$.
 \begin{proof} Let $\v_{AB}$ be the pointer vertex of $A$ to $B$, and
   let $\v_{BC}$ be the pointer vertex of $B$ to $C$.  Let $\v$ and
   $\v_{BC}$ be the endpoints of the edge of $B$ containing $\v_{AB}$.
-  We represent $T$ as in Figure~\raf{fig:cord-pint}, with the lower edge of
+  We represent $T$ as in Figure~\rif{fig:cord-pint}, with the lower edge of
   $C$ along the $x$-axis.  Since $\v_{AB}$ lies on the segment between
   $\v$ and $\v_{BC}$, The $y$-coordinate $y(\v_{AB})$ of $\v_{AB}$ is
   nonpositive and lies between the $y$-coordinates $y(\v)$ and
