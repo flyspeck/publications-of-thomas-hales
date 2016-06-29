@@ -98,13 +98,16 @@ When the regular polygon is an equilateral triangle, square, or hexagon, then co
 the plane.  In these cases, the packing problem is trivial.  The first nontrivial case
 is the packing problem for congruent regular pentagons.  In this article, we solve that problem.
 
-Kuperberg and Kuperberg
- have conjectured that the
+Henley and Kuperberg and Kuperberg have conjectured that the
 densest packing of congruent regular pentagons in the plane is
 achieved by a double-lattice arrangement: verticals column of aligned
 pentagons pointing upward, alternating with vertical columns of
-aligned pentagons pointing downward (Figure~\rif{fig:double-lattice}) \cite{Kup}.  We call this the {\it Kuperberg
-  conjecture,}  and we call this packing of pentagons the {\it Kuperberg packing}.
+aligned pentagons pointing downward (Figure~\rif{fig:double-lattice}) \cite{Kup} \cite{henley}[p.801].  
+This packing of pentagons is called the {\it pentagonal ice-ray} in Dye's book on Chinese lattice designs \cite{dye}.
+Two plates (Y3b and Y3c) in Dye's book depict the pentagonal ice-ray, originating from Chengdu, China around 1900 CE.
+% also Y, symmetry Ice-ray.
+
+ We call this the {\it pentagonal ice-ray  conjecture}.
 This packing has density
 \[
 \frac{5 - \sqrt{5}}3 \approx 0.921311.
@@ -112,11 +115,11 @@ This packing has density
 Before our work, the best known bound on the density of packings of regular
 pentagons was $0.98103$, obtained through the representation theory of the group of rigid motions of the plane \cite{Val}.
 Our research is a continuation of W. Kusner's thesis \cite{Kus}, which proves
-the local optimality of the Kuperberg packing.
+the local optimality of the pentagonal ice-ray.
 % 0.98103 page 27 of Vallentin. Checked 2016/2/18.
 
 
-\tikzfig{double-lattice}{Kuperbergs' double-lattice packing of regular pentagons.  All figures show
+\tikzfig{double-lattice}{The pentagonal ice-ray.  All figures show
 pentagons in red and Delaunay triangles in blue.}
 {
 \pent{0.0}{0.0}{-90}{0.4};  % s = 0.4
@@ -142,12 +145,12 @@ pentagons in red and Delaunay triangles in blue.}
 
 %\section{Introduction}
 
-This paper gives a computer-assisted proof of the Kuperberg conjecture.
+This paper gives a computer-assisted proof of the pentagonal ice-ray conjecture.
 
 
 \begin{theorem}\libel{thm:main}  No packing of congruent regular pentagons in the Euclidean
 plane has density greater than that of
-the Kuperberg-Kuperberg packing.   The Kuperberg-Kuperberg packing is the
+the pentagonal ice-ray.   The pentagonal ice-ray is the
 unique periodic packing of congruent regular pentagons that attains optimal density.
 \end{theorem}
 
@@ -198,12 +201,12 @@ We write
 \aK := \frac{3}{2}{ \sigma \kappa(1+\kappa)} \approx 1.29036
 \] % checked 2016/2/18 in calcs.ml
 for the common area of every Delaunay triangle in the 
-Kuperberg packing.  
+pentagonal ice-ray.
 
 \section{Clusters of Delaunay triangles}
 
 The area of a Delaunay triangle in a saturated pentagon packing can be
-smaller than $\aK$.  Our strategy for proving the Kuperberg conjecture
+smaller than $\aK$.  Our strategy for proving the pentagonal ice-ray conjecture
 is to collect triangles into finite clusters such that the average
 area over each cluster is at least $\aK$.  
 
@@ -229,9 +232,9 @@ Some of these examples serve as counterexamples to naive approaches to this prob
 These different examples can interact with one another in potentially complicated ways.  The proof
 of the main theorem must sort through these interactions.
 
-\begin{example} All Delaunay triangles in the Kuperberg-Kuperberg packing are congruent and have
+\begin{example} All Delaunay triangles in the pentagonal ice-ray are congruent and have
 area $\aK$.
-We call them Kuperberg-Kuperberg triangles. See Figure~\ref{fig:KKtriangle}.
+We call them ice-ray triangles. See Figure~\ref{fig:KKtriangle}.
 \end{example}
 
 \blankfig{KKtriangle}
@@ -261,22 +264,22 @@ $\aK$.  We show various examples.  See Figure~\ref{fig:subcritical}.
 
 \blankfig{edge-172}
 
-\begin{example}  The Kuperberg-Kuperberg triangle is not a local minimum of the area function.
-Numerically, it appears that the Kuperberg-Kuperberg triangle can be continuously deformed, along an area-decreasing
+\begin{example}  The ice-ray triangle is not a local minimum of the area function.
+Numerically, it appears that the ice-ray triangle can be continuously deformed, along an area-decreasing
 path, into the acute Delaunay triangle of minimum area. See Figure~\ref{fig:KK2min}.
 \end{example}
 
 \blankfig{KK2min}
 
-\begin{example}  The Kuperberg-Kuperberg packing can be partitioned into pairs
-of Delaunay triangles (called $K$-dimers) in which the two triangles
-in each dimer share their common longest edge.  It is known that the $K$-dimer is a local
+\begin{example}  The pentagonal ice-ray can be partitioned into pairs
+of Delaunay triangles (called ice-ray dimers) in which the two triangles
+in each dimer share their common longest edge.  It is known that the ice-ray dimer is a local
 minimimum of the area function \cite{Kus}. See Figure~\ref{fig:Kdimer}.
 \end{example}
 
 \blankfig{Kdimer}
 
-\begin{example} The $K$-dimer admits a shear motion that preserves all edges of contact.
+\begin{example} The ice-ray dimer admits a shear motion that preserves all edges of contact.
 It is obvious by symmetry that total area of the dimer (that is, the sum of the areas of the two triangles)
 is preserved to first order by a shear transformation, 
 because a left shear is equivalent under a reflectional symmetry to a right shear.
@@ -297,7 +300,7 @@ See Figure~\ref{fig:pseudo-dimer}.
 
 \subsection{attachment}
 
-As mentioned above, our strategy for proving the Kuperberg conjecture
+As mentioned above, our strategy for proving the pentagonal ice-ray conjecture
 is to collect triangles into finite clusters such that the average
 area over each cluster is at least $\aK$.  The clusters are defined by
 an  equivalence relation.  The equivalence relation, in turn,
@@ -418,7 +421,7 @@ has a very large surplus area that can be beneficially redistributed.  It allows
 the proof of the main inequality into two cases: clusters that contain an obtuse triangle and clusters that do not.
 The second term $\epso' (m_1(T) - m_2(T))$ augments the area of pseudo-dimers, by taking from
 their neighbor.   The intuition behind this correction term is that a pseudo-dimer can have area strictly less than
-the $K$-dimer, and we need to boost its area with a correction term to make it satisfy the main
+the ice-ray dimer, and we need to boost its area with a correction term to make it satisfy the main
 inequality.  A calculation given below shows that the neighbor of the pseudo-dimer has area to spare.
 
 The correction terms allow us to keep the size of each cluster small.  Eventually, we show that each
@@ -485,7 +488,7 @@ then the density never exceeds
 \[
 \frac{\area_P}{2 \aK} = \frac{5 - \sqrt{5}}{3},
 \] % checked 2016/2/18 in calcs.ml
-the density of the Kuperberg packing.
+the density of the pentagonal ice-ray.
 \end{lemma}
 
 For any finite set $\C$ of triangles, we will call the inequality
@@ -527,8 +530,8 @@ hypothesis of the lemma, we see that the density is
 =\frac{m\, \area_P}{\sum_T b(T)} \le\frac{m\, \area_P}{2 m\, a} 
 = \frac{\area_P}{2\, a}.
 \]
-When $a=\aK$, the term on the right is the density of the Kuperberg
-packing, as desired.
+When $a=\aK$, the term on the right is the density of the pentagonal ice-ray,
+ as desired.
 \end{proof}
 
 This article gives a proof of the following theorem. In view of Lemma~\rif{lemma:main},
@@ -540,15 +543,15 @@ at the end of Section~\rif{sec:nonobtuse}.
   packing of regular pentagons.  Then $\C$ is finite and the average
   of $b(T)$ over the cluster is at least $\aK$.  That is, $\C$
   satisfies the main inequality.  Equality holds exactly when $\C$
-  consists of two adjacent Delaunay triangles from the Kuperberg
-  packing, attached along their common longest edge.
+  consists of two adjacent Delaunay triangles from the pentagonal ice-ray, 
+attached along their common longest edge.
 \end{theorem}
 
 \begin{remark}\libel{rem:equal}
 Analyzing the proof of Lemma~\rif{lemma:main}, we see that for a
 periodic packing, the maximum density is achieved exactly when each
  cluster in the packing gives exact equality in the main inequality.
-Thus, the theorem implies that the Kuperberg packing is the
+Thus, the theorem implies that the pentagonal ice-ray  is the
 unique periodic packing that achieves maximal density.
 \end{remark}
 
@@ -1326,13 +1329,13 @@ The purpose of this section is to give a proof of the following theorem.
 \begin{theorem}\libel{thm:dimer-area}
 Let $(T_1,T_0)$ be a dimer pair.  (In particular, we assume that $T_1$ is subcritical,
 that $\area\{T_0,T_1\}\le 2\aK$ and that $T_0$ and $T_1$ share a common longest edge.)
-Then $(T_1,T_0)$ is the $K$-dimer of area exactly $2\aK$.
+Then $(T_1,T_0)$ is the ice-ray dimer of area exactly $2\aK$.
 \end{theorem}
 
 The proof will fill the entire section.
  The strategy
 of the proof is to give a sequence of area decreasing deformations to $(T_1,T_0)$,
-until the $K$-dimer is reached.
+until the ice-ray dimer is reached.
 
 We fix notation that will be used throughout this section $(T_1,T_0)$ is a dimer pair.
 The $P$-triangle $T_1$ has a pentagon centered at each vertex.  We label the pentagons of $T_1$ as
@@ -1353,7 +1356,7 @@ In particular, area non-increasing deformations of a dimer pair, never transform
 triangle into a right or obtuse triangle.  In other words, the nonobtuseness constraint in the
 definition of a dimer pair is never a binding constraint in a deformation.
 
-The deformation of a general dimer pair to the Kuperberg-Kuperberg pair will take place in several
+The deformation of a general dimer pair to the ice-ray pair will take place in several
 stages.  We give a summary of the stages here, before going into details.  Here is the proof sketch:
 
 \begin{enumerate}
@@ -1365,16 +1368,16 @@ or long isosceles.
 \item We show that both triangles are triple contact.
 \item Working with triple contact triangles, 
 we compute that the condition $\area\{T_0,T_1\}\le 2\aK$ implies that
-$(T_0,T_1)$ lies in a small explicit neighborhood of the $K$-dimer.
+$(T_0,T_1)$ lies in a small explicit neighborhood of the ice-ray dimer.
 \item We construct a curve $\Gamma$ in the space of dimer pairs, with parameter $t$
-such that $t=0$ defines the $K$-dimer.
+such that $t=0$ defines the ice-ray dimer.
 \item Working with triple contact triangles in a small explicit neighborhood of the
-$K$-dimer, and for some small explict constant $M$,
+ice-ray dimer, and for some small explict constant $M$,
 each dimer pair can be connected by a path (in the dimer configuration
 space) to a dimer on the curve $\Gamma$ with parameter $|t|<M$.
 A computation shows that the area of the dimer decreases along the path to $\Gamma$.  
 \item The unique global minimum of the area function along $\Gamma$ occurs at $t=0$;
-that is, the $K$-dimer is the unique global minimizer.
+that is, the ice-ray dimer is the unique global minimizer.
 \end{enumerate}
 
 \subsection{reduction to $O2C$ or long isosceles}
@@ -1518,11 +1521,11 @@ We continue the squeezing deformation until $A$ comes into contact with $C$.
 This completes the reduction to $3C$ contact.
 
 
-\subsection{reduction to a small neighborhood of the $K$-dimer}\label{sec:nbd}
+\subsection{reduction to a small neighborhood of the ice-ray dimer}\label{sec:nbd}
 
 From this stage forward, $T_0$ and $T_1$ are both triangles with triple contact.
 We show that the condition $\area\{T_0,T_1\}\le 2\aK$ implies that
-$(T_0,T_1)$ lies in a small explicit neighborhood of the $K$-dimer.
+$(T_0,T_1)$ lies in a small explicit neighborhood of the ice-ray dimer.
 
 The shared pentagons $A$ and $C$ are in contact.  By symmetry, we may assume that $A$ points into $C$.
 We have classified all $P$-triangles with triple contact in Section~\rif{sec:contact}.  In this stage, we rely heavily
@@ -1542,11 +1545,11 @@ This means that the shared edge of the pin-$T$ triangle is determined.
 Since $T_0$ and $T_1$ both have triple contact, the dimer pair $(T_0,T_1)$ lies in a $4$-dimensional configuration space.
 The strategy of the proof is to check by computer\footnote{calculations in dimer.ml} 
 that there does not exist a  dimer pair outside a small explicit neighborhood
-of the $K$-dimer.  In other words, the area constrains $\area(T_1)\le \aK$ and $\area\{T_0,T_1\}\le2\aK$ are
+of the ice-ray dimer.  In other words, the area constrains $\area(T_1)\le \aK$ and $\area\{T_0,T_1\}\le2\aK$ are
 impossible to satisfy when the longest edge on both triangles is the shared edge.  
 We run over $64 = 8\times 8$ cases depending on the combinatorial types of $T_0$ and $T_1$.  In each case,
-$T_1$ runs over a three-dimensional configuration space.  Most of the $64$ cases do not contain the $K$-dimer.
-In these cases, it is not necessary to specify a small explicit neighborhood.  In the cases that do contain the $K$-dimer,
+$T_1$ runs over a three-dimensional configuration space.  Most of the $64$ cases do not contain the ice-ray dimer.
+In these cases, it is not necessary to specify a small explicit neighborhood.  In the cases that do contain the ice-ray dimer,
 the neighborhood is desribed in local coordinates.
 
 We say a word about the coordinate system used to carry out these calculations.
@@ -1570,15 +1573,15 @@ our use of the law of sines
 \]
 to compute the length of one triangle edge $a$ in terms of another $b$, which encounters instability for $\beta$ near $0$.)
 
-In terms of the local coordinates of Section~\rif{sec:coords}, if $x_1=x_2=x_3=x_4=0$ defines the $K$-dimer, then the explicit
+In terms of the local coordinates of Section~\rif{sec:coords}, if $x_1=x_2=x_3=x_4=0$ defines the ice-ray dimer, then the explicit
 small neighborhood we exclude is given by $|x_i|\le 0.01$, for $i=1,2,3,4$.  For example, in the pinwheel type on $T_1$, 
 we have $(x_1,x_2,x_3)=(\alpha,\beta,x_\gamma)$ as given in Section~\rif{sec:pint}, and the fourth variable $x_4$ is determined
 by the type of $T_0$.
 
 \subsection{defining a curve}\label{sec:gamma}
 
-In this stage, we define a curve $\Gamma$ in the configuration space of triple contact dimer pairs such that the $K$-dimer
-is defined by parameter value $t=0$.  We represent the $K$-dimer by a pair of triple contact triangles with shared pentagons
+In this stage, we define a curve $\Gamma$ in the configuration space of triple contact dimer pairs such that the ice-ray dimer
+is defined by parameter value $t=0$.  We represent the ice-ray dimer by a pair of triple contact triangles with shared pentagons
 $A$ and $C$, where $A$ points to $C$.  Assume that $\c_A$ and $\c_C$ lie along the $x$ axis, with $\c_A$ to the left
 of $\c_C$.  Let $B$ and $D$ be the two outer pentagons.  We deform this dimer by fixing $A$,
 and translating $C$ vertically (maintaining the pointer contact of $A$ to $C$).  We translate $B$ and $D$ to maintain
@@ -1598,7 +1601,7 @@ occurs as one of the two triangles in a $\Gamma$-dimer.
 
 In this stage, we show that we can reduce to points on the curve in the following sense.
 Working with triple contact triangles in a small explicit neighborhood of the
-$K$-dimer ($|x_i|<0.01$ for $i=1,2,3,4$ in appropriate coordinates),
+ice-ray dimer ($|x_i|<0.01$ for $i=1,2,3,4$ in appropriate coordinates),
 each dimer pair $(T_0,T_1)$ can be connected by a path (in the dimer configuration
 space) to a $\Gamma$-dimer  with parameter $|t|<0.01$.
 The area function is decreasing along this path.
@@ -1613,8 +1616,8 @@ We show how to construct paths for $T_0$ and $T_1$ separately, and then
 we show that the paths are compatible and give a path for the dimer pair $(T_0,T_1)$.
 We consider cases, according to the type of the triple contact.
 As mentioned above, there are $8$ types for each triangle, but most of them do not
-approach a triangle in the $K$-dimer.  We may restrict our attention
-to the four triangle types that approach the $K$-dimer.   These are the pinwheel, $L_1$-junction,
+approach a triangle in the ice-ray dimer.  We may restrict our attention
+to the four triangle types that approach the ice-ray dimer.   These are the pinwheel, $L_1$-junction,
 $L_2$-junction, and $T_3$-junction.  
 These types and their paths are constructed explicitly in  Section~\ref{sec:coords}.
 
@@ -1652,7 +1655,7 @@ then it has slider contact with both, and must therefore be a $\Gamma$-dimer.
 
 We claim that the parameter $t$ satisfies $|t|<0.01$.  In fact, 
 because $t' := x_{AC}-\sigma$ is a coordinate defining the
-coordinate neighborhood of the $K$-dimer so $|t'|<0.01$.  Also, $t'$ remains fixed along the path $P$,
+coordinate neighborhood of the ice-ray dimer so $|t'|<0.01$.  Also, $t'$ remains fixed along the path $P$,
 and $t'$ restricts to the parameter $t$ on $\Gamma$.  Thus, at the terminal point of the path, $|t|<0.01$.
 
 Finally, we need to check that the area function is decreasing. This, we prove by a computer calculation
@@ -1670,7 +1673,7 @@ function as a function of $t$ and calculate that it is always positive.  Thus, t
 global minimum on $|t|\le 0.01$.  
 By symmetry in the underlying geometry, 
 it is clear that the area function has derivative zero along $\Gamma$ at
-$t=0$.  The global minimum is therefore given at $t=0$, which is the $K$-dimer.
+$t=0$.  The global minimum is therefore given at $t=0$, which is the ice-ray dimer.
 
 \section{Pseudo-Dimers}
 
@@ -1802,7 +1805,7 @@ This completes the proof.
 
 Recall that
 the previous section shows that there exists a unique dimer pair (up to isometry).
-It is the $K$-dimer.  In particular, if $(T_1,T_0)$ is a dimer, then 
+It is the ice-ray dimer.  In particular, if $(T_1,T_0)$ is a dimer, then 
 $\area(T_0)=\area(T_1)=\aK$, and $T_0\Ra T_1$ and $T_1\Ra T_0$.
 This section proves the following theorem.
 
@@ -2675,12 +2678,12 @@ This completes the proof.
 \end{proof}
 
 
-We are ready to give a proof of the Kuperberg-Kuperberg conjecture. We repeat the statement
+We are ready to give a proof of the pentagonal ice-ray conjecture. We repeat the statement
 of the theorem from the introduction of the article.  
 
 \begin{theorem}   No packing of congruent regular pentagons in the Euclidean
 plane has density greater than that of
-the Kuperberg-Kuperberg packing.   The Kuperberg-Kuperberg packing is the
+the pentagonal ice-ray.   The pentagonal ice-ray  is the
 unique periodic packing of congruent regular pentagons that attains optimal density.
 \end{theorem}
 
@@ -2691,7 +2694,7 @@ By the main inequality in Lemma~\rif{lemma:main} applied to $a=\aK$, together wi
 it is enough to give a proof of Theorem~\rif{conj:main}.  Specifically, we show that
 every cluster in every saturated packing is finite of cardinality at most $4$.  
 This is Corollary \rif{lemma:card4}.
-If $\C$ is a dimer pair, then $\C$ is the $K$-dimer in the Kuperberg-Kuperberg packing and the (weak)
+If $\C$ is a dimer pair, then $\C$ is the ice-ray dimer in the pentagonal ice-ray and the (weak)
 main inequality holds for $\C$.  This is Theorem~\rif{thm:dimer}.  If $\C$ is not a dimer pair, then
 we show that $\C$ satisfies the strict main inequality.  If $\C$ has an obtuse triangle, then this
 is found in Lemma~\rif{lemma:obtuse}.  If every triangle in $\C$ is nonobtuse, and if $\C$ has cardinality $4$, $3$,  $2$, or $1$,
@@ -3502,14 +3505,14 @@ differentiation.  For example,
 \op{sqrt}^D(f,f') = (\sqrt{f}, f'/(2\sqrt{f})),\quad \sin^D (f,f') = (\sin(f), \cos(f) f').
 \]
 
-Section~\rif{sec:dimer-pair} describes the proof of the local minimality of the $K$-dimer.  We review that
+Section~\rif{sec:dimer-pair} describes the proof of the local minimality of the ice-ray dimer.  We review that
 argument here with an emphasis on automatic differentiation.
-Automatic differentiation allows us to show that the $K$-dimer  is the unique minimizer of area
-in an explicit neighborhood of the $K$-dimer.  In Section~\rif{sec:dimer-pair}, we give a curve $\Gamma$ 
+Automatic differentiation allows us to show that the ice-ray dimer  is the unique minimizer of area
+in an explicit neighborhood of the ice-ray dimer.  In Section~\rif{sec:dimer-pair}, we give a curve $\Gamma$ 
 (in the space of dimers) with parameter $t\in\ring{R}$
-that passes through the $K$-dimer point at $t=0$.  
+that passes through the ice-ray dimer point at $t=0$.  
 
-For any point $D$ in an explicit neighborhood of the $K$-dimer in the dimer space, that section describes a curve from $D$ to a point
+For any point $D$ in an explicit neighborhood of the ice-ray dimer in the dimer space, that section describes a curve from $D$ to a point
 on the curve $\Gamma$.  
 Using automatic differentiation, we show that area decreases as we move from $D$ towards $\Gamma$.
 Thus, the area minimizer, lies on $\Gamma$.  We can compute an upper bound $|t|\le M$.
@@ -3518,10 +3521,10 @@ By symmetry in the underlying geometry,
 it is clear that the area function has derivative zero along $\Gamma$ at
 $t=0$. By taking a second derivative with automatic differentiation, we find that the second derivative of
 the area function along this curve is positive
-when  $|t|\le M$.   Thus, the $K$-dimer is the unique area minimizer on this curve within this explicit neighborhood.
+when  $|t|\le M$.   Thus, the ice-ray dimer is the unique area minimizer on this curve within this explicit neighborhood.
 
-We remark that many of the functions that are used in the proof of the Kuperberg-Kuperberg conjecture are not
-differentiable.  Our use of automatic differentiation is restricted to a small neighborhood of the $K$-dimer, on
+We remark that many of the functions that are used in the proof of the pentagonal ice-ray conjecture are not
+differentiable.  Our use of automatic differentiation is restricted to a small neighborhood of the ice-ray dimer, on
 which all the relevant functions are analytic.
 
 \subsection{preparation of the inequalities}
