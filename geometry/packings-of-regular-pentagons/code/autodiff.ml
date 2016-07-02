@@ -78,7 +78,7 @@ let fourD = mD 4.0;;
 
 let i16D = mD 16.0;;
 
-let eps_D = iD eps_I;;
+(* deprecated let eps_D = iD eps_I;; *)
 
 let piD = iD  pi_I;;
 
@@ -412,7 +412,7 @@ let fourD2 = mD2 4.0;;
 
 let i16D2 = mD2 16.0;;
 
-let eps_D2 = iD2 eps_I;;
+(* deprecated let eps_D2 = iD2 eps_I;; *)
 
 let piD2 = iD2 pi_I;;
 

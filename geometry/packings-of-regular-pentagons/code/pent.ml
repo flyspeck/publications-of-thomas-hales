@@ -56,7 +56,7 @@ let outer = Lib.allpairs;;
 
 let pair x y = x,y;;
 
-let outerpair = Lib.allpairs pair;;
+(* same as 'outer pair': let outerpair = Lib.allpairs pair;; *)
 
 let outertriple k1 k2 k3 = 
   let k123 = outer pair k1 (outer pair k2 k3) in
@@ -108,7 +108,6 @@ let four = m 4.0;;
 
 let i16 = m 16.0;;
 
-let eps_I = mk (- 1.0e-8) (1.0e-8);;
 
 (* same as Interval.union_I_I *)
 let merge_I x y = {low = min x.low y.low;high = max x.high y.high};; 
@@ -135,10 +134,6 @@ let mem_I r i = (i.low <= r && r <= i.high);;
 (* related to but not identical to Interval.size_I *)
 let width_I x = max_I x - min_I x;;
 
-
-
-width_I eps_I;;
-
 (* deprecated: let eps = (1.0e-10);; *)
 
 let ( >> ) x y = x.low >. y.high;;
@@ -163,8 +158,10 @@ let abs_I = Interval.abs_I;;
 abs_I (mk (~-. 0.1) ( 0.2));;
 
 
-let (/) x y = 
-  if disjoint_I eps_I y then x /$ y else raise Unstable;;
+let (/) = 
+  let eps_I = mk (- 1.0e-8) (1.0e-8) in
+  fun x y ->
+    if disjoint_I eps_I y then x /$ y else raise Unstable;;
 
 let int = Interval.float_i;;
 
@@ -226,6 +223,8 @@ let sqrt_I x =
   try
     Interval.sqrt_I x 
   with Failure _ -> raise Unstable;;
+
+let square_I x = x*x;;
 
 let acos_I x = 
   try
