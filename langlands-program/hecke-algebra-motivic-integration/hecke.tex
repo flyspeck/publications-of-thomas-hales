@@ -1,0 +1,1336 @@
+
+% spherical Hecke algebra and motivic integration
+% Tex file started June 28, 2016
+% 
+% 
+
+%Authors: Jorge Cely, Thomas Hales
+
+\newcommand{\XX}[1]{{\it  [To do: #1]}}
+\newcommand{\ring}[1]{\mathbb{#1}}
+\newcommand{\g}[1]{\langle{#1}\rangle}
+\def\op#1{{\operatorname{#1}}}
+\def\inv{\op{inv}}
+\def\dom{P^+}
+\def\Q{{\ring{Q}}}
+\def\card{\op{card}}
+
+\def\C{\mathcal C}
+\def\N{\mathcal N}
+\def\H{\mathcal H}
+\def\M{\mathcal M}
+\def\T{\mathcal T}
+
+\def\n{{\mathfrak n}}
+
+
+\def\libel#1{{\text{\sc [#1]~}}\label{#1}}
+\def\rif#1{(\ref{#1}-{\text{\sc #1})}}
+
+
+
+\section{Introduction}\libel{XX} % dummy label
+
+In this article, we use motivic integration to describe the spherical
+Hecke algebra, its Satake transform, and inverse Satake transform.
+We use the transfer principle of motivic integration to deduce the fundamental
+lemma for the spherical Hecke algebra in sufficiently large positive characteristic.
+
+Let $F$ be a $p$-adic field.  Specifically, 
+by $p$-adic field we mean a finite extension of on of the fields $\ring{Q}_p$ or $\ring{F}_p((t))$.
+Let $G$ be an unramified reductive group and $H$ an unramified endoscopic group of $G$, both defined over $F$.
+Let $\H(G)$ and $\H(H)$ be the spherical Hecke algebras on $G$ and $H$.
+Associated with  a morphism $\xi:{}^LH\to {}^LG$ of $L$-groups, there is a homomorphism
+$b_\xi:\H(G)\to \H(H)$, obtained by composing three maps: the Satake transformation of $\H(G)$,
+the pullback under $\xi$, and the inverse Satake transformation to $\H(H)$.
+
+The spherical Hecke algebra $\H(G)=\H(G,K)$ of functions that are bi-invariant with respect
+to a given hyperspecial subgroup $K$ has a linear basis given by characteristic functions $f_\lambda$
+of double cosets $K\varpi^\lambda K$.  Here $\varpi$ is a fixed uniformizing element and $\lambda$
+runs over the cocharacters in a positive Weyl chamber $P^+$.
+
+A primary aim of this article is to study the function $B_\xi:P^+\times H(F)\to \ring{C}$, given by
+$(\lambda,h)\mapsto b_\xi(f_\lambda)(h)$.   We show that $B_\xi$ can be lifted to a constructible motivic
+function.   In particular, $B_\xi$ admits a field-independent description.  
+
+As an application, we prove a transfer
+principle for the fundamental lemma for the  spherical Hecke algebra.
+This asserts that for $p$-adic
+fields of sufficiently large residual characteristic, the fundamental lemma for the  spherical Hecke
+algebra holds for one field of given residue field if and only if it holds for all fields of the given residue field.
+In particular, the fundamental lemma for the spherical Hecke algebra in positive characteristic follows from the fundamental lemma 
+for the spherical Hecke algebra in characteristic
+zero, which is known.
+
+This application to the fundamental lemma was the original motivation for our work.  Our results overlap with
+those of Bouthier, who proves the fundamental lemma for the spherical Hecke algebra in positive
+characteristic under the restrictions that the group $G$ is semisimple and simply connected, 
+and the endoscopic group is split \cite[Theorem~0.2]{bouthier}.  We obtain a proof of the fundamental lemma for the
+spherical Hecke algebra in positive characteristic without the restrictions on the group and endoscopic group.
+but unlike Bouthier, we are unable to be explicit in our assumption
+on the characteristic of the field.  Lemaire, Moeglin, and Waldspurger propose that the method of close fields might be used to transfer the
+fundamental lemma for the spherical Hecke algebra from characteristic zero to positive characteristic, but as far as we know, 
+this has not been
+carried out~\cite[\S1.3]{LMW}.
+
+The construction of $B_\xi$ involves the Langlands dual ${}^LG$, which is a complex reductive group.
+Our constructibility result for $B_\xi$ follows from the  Presburger constructibilty of various
+functions on lattices in the dual:  Macdonald's formula, weight multiplicity formulas, the inverse of the weight multiplicity matrix,
+the Plancherel measure,
+and the Kato-Lusztig formula for the inverse Satake transform.  
+When $G$ and $H$ are split, we can take ${}^LG = \hat G$ and ${}^LH=\hat H$ to be connected.  In this case,
+formulas of the desired form were previously known for Macdonald, Plancherel, and Kato-Lusztig.  In this article, we
+generalize these formulas to disconnected complex reductive groups.
+
+
+One novelty of this work is that we show how to extend the theory of motivic integration to the Langlands
+dual group, by encoding representation-theoretic data of the complex dual group as Presburger constructible functions on the character lattice. These
+Presburger functions can then be recombined with constructible functions on the $p$-adic group.  A second innovation is
+to encode the entire Hecke algebra into a single constructible function $B$.  This makes it possible to invoke the the transfer
+principle of motivic integration a single time, rather than once for each function in the Hecke algebra.  (Invoking the transfer principle
+an infinite number of times could potentially leave us with nothing, because we lose finitely many primes with each invocation.)
+Also, for the first time, motivic integration has been used to analyze simple cases of abelian reciprocity in local class field theory.
+
+A framework for studying the spherical Hecke algebra through motivic integration is provided by Cely's thesis \cite{cely}.
+This article builds on that work.  We thank Julia Gordon, who served on Cely's thesis committee and who provided valuable suggestions.
+%It was Bill Casselman who pointed us in the direction of the Kato-Lusztig formula through his preprint \cite{cass-symmetric}.  We thank
+%him for many helpful comments.
+
+
+\section{Motivic Integration}
+
+This section reviews the theory of motivic integration as developed by Cluckers and
+Loeser~\cite{cluckers2008constructible}.  No new theorems are presented here.
+
+\subsection{The Denef-Pas language}
+
+The Denef-Pas language is a three-sorted first-order formal language in the sense of model theory.  
+Its intended structures are triples $(F,k_F,\ring{Z})$, 
+where $F$ is a discrete valued field, 
+$k_F$ is the residue field of $F$, 
+and the value group of $F$ is the ring of integers $\ring{Z}$ . 
+We call the three sorts $VF$ (the valued-field sort), $RF$ (the residue-field sort), and $\ring{Z}$ (the value-group sort).
+
+In general, a first-order formal language is specified by sets of relation symbols and function symbols, including constant symbols.  
+The Denef-Pas language has the following relation and function symbols.  
+The valued-field sort $VF$ has the symbols of the first-order language of rings $(0,1,+,\times)$.  
+The residue field sort also has the symbols of the first-order language of rings.  
+The value-group sort is the Presburger language of of an ordered additive group with symbols $(0,+,\le)$.  
+Each sort is assumed to have an equality symbol.  
+In addition, there are two function symbols $\op{ord}:VF\to\ring{Z}$ (interpreted as the valuation on the valued-field) and $\op{ac}:VF\to RF$ 
+(interpreted as the angular component map).  
+For the structure $(K((t)),K,\ring{Z})$, where $K((t))$ is the field of formal Laurent series, 
+the intended interpretation of $\op{ac}$ 
+is the function $\sum_{i\ge N} a_i t^i\mapsto a_N$ 
+that returns the first nonzero coefficient of the Laurent series (and sending $0\in K((t))$ to $0$).
+
+First-order languages are intended in the usual sense, with formulas built from logical connectives $(\land)$, $(\to)$, $(\lor)$, $\neg$, equality
+$(=)$, variables of the three sorts, function symbols, relation symbols, existential quantifiers of each sort, and universal quantifiers of each sort.
+
+
+Following the terminology of \cite{gordon}, we call  a {\it fixed choice} any set-theoretic data that does not depend in any way on the Denef-Pas
+language, its variables, nor on the structures of $VF$ and $RF$.   Examples of fixed-choices that appear in this paper are Weyl groups, abstract groups,
+representations of split reductive groups over $\ring{Q}$, root systems,
+
+\subsection{motivic integration}
+
+
+Let $\op{Field}_\Q$ be the category of fields of characteristic zero.  
+
+Cluckers and Loeser have used the Denef-Pas language to define various categories.  In particular, there
+is a category  $\op{Def}_\Q$ of definable subassignments, given as follows.
+For each $(m,n,r)\in\ring{N}^3$, let $h[m,n,r]$ be the functor from $\op{Field}_\Q$ to the category of sets that assigns
+to each field $K$, the set $h[m,n,r](K)=K((t))^m\times K^n\times \ring{Z}^r$.  A subassignment of this functor is by
+definition, a subset $S(K) \subseteq h[m,n,r](K)$ for each $K\in\op{Field}_\Q$.  
+A definable subassignment $S$ is  a subassignment for which there exists a formula $\phi$ in the Denef-Pas language such that for each $K\in\op{Field}_\Q$, 
+the set of solutions of $\phi$ in $h[m,n,r](K)$ is $S(K)$.
+The definable subassignments are the objects of the category $\op{Def}_\Q$.  
+A morphism $\phi:X\to Y$ is a definable subassignment 
+\[
+\phi\subseteq X\times Y\subseteq h[m,n,r]\times h[m',n',r'] = h[m+m',n+n',r+r']
+\]
+that is the graph of a function $X(K)\to Y(K)$ for each $K\in \op{Field}_\Q$.
+
+A free parameter refers to a collection of free variables of the same sort in a formula in the Denef-Pas language, ranging over a definable
+subassignment.  A bound parameter is similar, except that the variables are all bound by a contiguous block of existential or
+a contiguous block of universal quantifiers.
+
+For each definable subassignment $X\in \op{Def}_\Q$, Cluckers and Loeser have defined a ring $C(X)$ of 
+{\it constructible motivic functions}.  The construction of this ring is a major undertaking.  Space does not permit us
+to give the details of this construction.     The elements of this ring are called constructible motivic functions.  Although
+they behave in many ways as functions on $X$,  the elements of the ring are not literal functions in the set-theoretic
+sense of a relation.
+
+If $\phi:X\to Y$ is a morphism of definable subassignments, there is a pullback of functions $\phi^*:C(Y)\to C(X)$.  The
+pullback $\phi^*$ is a ring homomorphism and is functorial for composition of morphisms: $(\phi\psi)^* = \psi^* \phi^*$.
+
+If $X\to S$ is a morphism of definable subassignments, there is  a subgroup $I_S C(X)$ of $S$-integrable constructible motivic functions.
+The intuitive interpretation of an $S$-integrable function $f$ is a function such that the integral over each fiber of $X\to S$ 
+is convergent with respect to the canonical motivic measure.  For a morphism $\phi: X\to S$, there is a 
+homomorphism of groups $\phi_!:I_SC(X)\to C(S)$ that is called integration over fibers.  It behaves functorially with
+respect to composition of morphisms: $(\phi\psi)_! = \phi_!\psi_!$.
+In this article, we will always deal with bounded constructible functions.  Such functions are always integrable by \cite{XX}.
+Thus, we will not need to deal with integrability issues.
+
+\subsection{Presburger constructible functions}
+
+The ring of constructible functions is a tensor product $P(X) \otimes Q(X)$.  (This is not quite correct; $C(X)$ is the graded
+algebra associated to a filtration on the tensor product.)  In terms of the three sorts of the Denef-Pas language,
+data related to the value-group sort $\ring{Z}$ is encoded in $P(X)$ and data related to the residue field sort $RF$ is encoded
+in $Q(X)$.  The left-hand side $P(X)$ is a ring of {\it Presburger
+constructible functions.}  Every Presburger constructible function $f$ gives a constructible motivic function $f\otimes 1$.
+
+Much of what we do in this article is related to constructible functions on integer lattices.  For this, we work with Presburger
+constructible functions rather than the entire ring of constructible motivic functions.
+
+\subsection{volume forms}
+
+\XX{describe this.}
+
+\subsection{$p$-adic specialization}
+
+Let $\C$ denote the set of $p$-adic fields.
+Let $\C_N\subseteq \C$ denote the subset of fields whose residue characteristic is at least $p\ge N\in\ring{N}$.
+
+In general, we only care about what occurs in fields in $\C_N$ for $N$ arbitrarily large.
+To make this precise, suppose that we have for some $N$, a function $X$ with domain $\C_N$.
+Then by restriction of domain $\C_i$ to $\C_{j}$, for $N\le i\le j$, we may take the filtered colimit of $X_i=X|_{\C_i}$.
+Two functions $X$, $X'$ have the same filtered colimit if they are equal in $\C_i$ for some sufficiently large $i$.
+
+Let $X$ be a definable subassignment of $h[m,n,r]$, and let $f$ be a constructible motivic function on $X$.   There exists
+an $N$ such that for all $F\in \C_N$, there are specializations
+\[
+X(F)\subseteq F^m\times k_F^n\times \ring{Z}^r,  \quad f_F: X(F) \to\ring{C},
+\]
+We only care about the  filtered colimits of $X$ and $f$.
+
+We warn the reader of a notational overload; we write $X(K)$ or $X(F)$ as $K$ and $F$ range over two quite different
+sets of fields.  We use the different symbols $K$ and $F$  to disambiguate the context.
+When $K\in \op{Field}_\Q$, the valued field is $K((t))$ and the residue field is $K$; but when $F$ is a $p$-adic field, $F$
+is the valued field and its residue field is denoted $k_F$.  We also use $K$ for both a hyperspecial subgroup and for $K\in\op{Field}_\Q$.
+
+The specializations have various expected properties.
+If $\phi:X\to Y$ is a morphism of definable subassignments, then we have functions $\phi_F:X(F)\to Y(F)$.
+When $f$ is $Y$-integrable on $X$,  integration over fibers $\phi_!(f)$ specializes to integration over fibers in
+ $p$-adic fields $F\in \C_N$ (for some $N$).
+
+
+The functions $f_F:X(F)\to\ring{C}$ that come from constructible motivic functions  $f\in C(X)$ have a special form
+\[
+q.
+\]
+\XX{insert formula.}  
+We call (the filtered colimits of) these functions:  $q$-constructible functions.  
+We  call the specialization of a  definable subassignment a definable set.  
+There is an element $\ring{L}$, called the Lefschetz motive, in the ring of constructible motivic functions that specializes to $q_F$
+for every $p$-adic field $F$.
+
+We warn the reader that
+very different constructible motivic functions can yield the same $q$-constructible function.  For example,
+let $[S]\in C(*)$ be the isomorphism class in the residue sort of the set of nonzero squares, considered as a 
+constructible motivic functions on a point.  Similarly, let $[N]$ be the class of the set of nonsquares.  Then, under specialization
+to $p$-adic fields, the
+two functions are equal:
+$[S](F) = [N](F) = (q_F-1)/2$, for $F\in\C_1$. However, $[S]$ and $[N]$ are not at all the same constructible motivic function. Indeed,  their values on 
+algebraically closed residue fields $K$ are not equal: $[N](K)$ is the emptyset and $[S](K) = K^\times$ is not.
+If a constructible motivic function specializes to a $q$-constructible function that is identically zero, then we call
+it a null function.
+
+The theory of motivic integration specializes to $q$-constructible functions. To integrate a $q$-constructible function $f$, we lift it to 
+a contructible motivic function, use Cluckers-Loeser integration there, then take its specialization again.
+Two different lifts differ by a constructible motivic function whose integral specializes to zero. Thus, this
+is well-defined.
+
+\section{Definable reductive groups}
+
+We consider definable reductive groups in the sense of \cite{cluckers2011transfer}, \cite{gordon}.
+In this work we restrict to unramified reductive groups (quasi-split and split over an unramified extension).
+
+In the definable context, the construction of reductive groups are defined over a definable subassignment
+$Z$ called the cocycle space.  In the case of unramified reductive groups we can take this to be a
+a subassignment $Z\subseteq h[m,0,0]$.  The coordinates of $Z$ are the coefficients of an irreducible monic 
+polynomial defining a degree $r$ unramified extension of $F$.  A field extension $E/VF$ of degree $k$ is identified
+with $VF^k = VF[x]/(p)$, where $p$ is a degree $k$ irreducible monic polynomial.
+
+Split reductive groups are defined as definable subassignments in terms of explicit representations of those groups,
+identifying them with closed subgroups of $GL(n,F)$.  Quasi-split reductive groups that split over an unramified degree $k$
+extension (parameterized by a cocycle space $Z$) are defined in terms of explicit representations of those groups
+in $GL(n,E)$, where the unramified degree $k$ extension $E/VF$ is defined by coefficients of the characteristic polynomial in $Z$.
+
+If $G$ is an unramified reductive group, we may construct a hyperspecial subgroup $K$ as a definable subassignment of $G$.
+
+A quasi-split reductive group $G$ carries an invariant differential form $\omega$ of top degree, which is described in the
+context of definable subassignments in \cite{gordon}.
+We may integrate functions $f\in C_q(G)$ with respect to the invariant measure $|\omega|$.
+All integration in this article is assumed to be carried out with respect to invariant measures.  We write, for example,
+$\vartheta_!^\inv(f) = \vartheta_!(f|\omega|)$ for the invariant integral of a constructible integrable function $f\in C_q(G)$ with respect to the
+morphism $\vartheta:G\to\{*\}$ to a point.
+
+\section{Spherical Hecke algebra}
+
+Let $G$ be a definable unramified reductive group over a cocycle space $Z$.  Let $A$ be a maximal split torus in $G$.  Suppose that
+it has dimension $r$.  We identify its lattice of cocharacters $X_*(A)$ with $\ring{Z}^r$ by a choice of free generators of $X_*(A)$.
+This allows us to treat $X_*(A)$ as a definable subassignement of $h[0,0,r] = \ring{Z}^r$.
+
+There is a perfect pairing $\langle \cdot,\cdot\rangle:X^*(A)\times X_*(A) \to \ring{Z}$.
+For each $\lambda\in X_*(A)$, there is a definable subassignement $A_\lambda \subseteq A$ given by the formula
+\[
+\{ a \in A \mid \op{ord}(\phi(a)) = \langle \phi,\lambda \rangle \}.
+\]
+There is a definable subassignment of $X_*(A)\times A$
+given by pairs $(\lambda,a)$ satisfying the same formula.
+
+Let $P^+\subseteq X_*(A)$ be the set of cocharacters in the positive Weyl chamber.
+
+\begin{lemma} $P^+$ is a definable subset (of $\ring{Z}^r$).
+\end{lemma}
+
+\begin{proof} $P^+$ is defined by linear inequalities, which can be expressed in the Presburger language.
+\end{proof}
+
+We prove the existence of a Cartan decomposition for $G$.
+
+\begin{lemma} There is a definable subassignment of $P^+\times G$ given by the formula
+\[
+D_G = \{(\lambda,g)\in P^+\times G \mid g \in K A_\lambda K \}.
+\]
+The fiber $D_G(\lambda)$ over each $\lambda\in P^+$ is definable.  Moreover,
+$D_G(\lambda)\cap D_G(\lambda') = \emptyset$, for $\lambda\ne \lambda'$.
+\end{lemma}
+
+
+We note that Bruhat-Tits gives the Cartan decomposition over general discrete valued fields.
+
+\begin{remark}   $D_G$ captures the entire spherical Hecke algebra as a single
+definable subassignment.  In applications, it will be important to work with a single subassignment
+rather than an infinite basis of the spherical Hecke algebra.
+\end{remark}
+
+We define the spherical Hecke function to be the characteristic function of $D_G$, viewed as a $q$-constructible function.
+
+Let $G$ be an unramified reductive group and let ${}^LG = \hat G\rtimes \langle \sigma\rangle$ be its Langlands dual, where
+$\sigma$ acts on $\hat G$ as the action of the Frobenius on the root datum.
+Let $Y^* = X^*(\hat T)^\sigma$, and let $W^\sigma$
+is the $\sigma$-fixed subgroup of $W$.   
+
+We have  the group algebra $\ring{C}[Y^*]$ of $Y^*$, with basis elements
+$e^\lambda$ corresponding to group elements $\lambda\in Y^*$.
+We have a basis of $W^\sigma$-invariant functions in $\ring{C}[Y^*]$ given by
+\[
+m_\mu = \sum_{\lambda\in W^\sigma(\mu)} e^\lambda, \quad \mu\in P^+,
+\]
+where $W^\sigma(\mu)$ is the orbit of $\mu\in\ring{C}[Y^*]$ under $W^\sigma$.
+
+The Satake transform $f\mapsto \hat f$
+is an isomorphism  $\H(G)\to\ring{C}[Y^*]^{W^\sigma}$.
+We have a change of basis $\hat f_\lambda = \sum_\mu s_{\lambda,\mu} m_\mu$, for some coefficients $s_{\lambda,\mu}$.
+
+Let us lift the Satake transform to the $q$-constructible setting.  The Satake transform involves
+a term $q^{\langle\rho,\mu\rangle}$, where $\rho = \frac{1}{2} \sum_{\alpha > 0} \alpha$.   Constructible motivic functions
+can only contain integral powers of $q$, which is not always the case here.  However, \cite{XX} notes
+that the theory of constructible motivic functions can be extended to allow half-integers.  We extend
+the theory in that way without further comment.\footnote{Even though intermediate steps such as the 
+Satake transform are not integral in $q$, 
+I suspect that the square roots can always be
+eliminated from the definitions in such a way that the statement of the fundamental lemma itself only
+involves integral powers of $q$.  In particular,
+in every case I have computed (and that includes many cases), $\rho_G - \rho_H$ is an integral sum of roots.}
+
+\begin{lemma}\label{lemma:satake} There is a $q$-constructible function $s$ on $P^+\times P^+$ that
+specializes to the function $(\lambda,\mu)\mapsto s_{\lambda,\mu}$,
+\end{lemma}
+
+\begin{proof} 
+The coefficients $s$ are given by a integral of a $q$-constructible function on $P^+\times G$:
+\[
+(\lambda,\mu)\mapsto s_{\lambda,\mu}=\frac{q^{\langle \rho,\mu\rangle}}{\op{vol}(A_0)} \int_{A_\mu} \int_N D_G(\lambda,t n) dn dt.
+\]
+Here $N$ is the unipotent radical of a Borel subgroup $B$ containing maximally split Cartan subgroup
+$T$.  The subgroup $A_0 = T\cap K$ is a maximal compact subgroup of $T$.  Its volume $\op{vol}(A_0)$ specializes
+to a polynomial in $q$ that can be written as a product of cyclotomic polynomials.  Adjusting $\op{vol}(A_0)$ by a 
+null function, we may assume that $\op{vol}(A_0)$ is the specialization of a product of cyclotomic polynomials in $\ring{L}$.
+Cyclotomic polynomials in $\ring{L}$ are invertible constructible motivic functions.  Thus, the denominator is
+permissible.  Integration is motivic integration with respect to invariant volume forms on $N$ and $A_0$.
+The pushforward under a definable morphism (integration over fibers) carries $q$-constructible functions
+to $q$-constructible functions.
+Therefore the coefficients $s$ give a $q$-constructible function.
+
+The $q$-constructible function is given explicitly by Macdonald's formula \cite{casselman1980unramified}.
+\end{proof}
+
+
+\section{Constructibility in complex groups}
+
+In this section, we check that some functions related to the finite dimensional representations of complex reductive groups
+are Presburger constructible functions on the appropriate integer lattices.  In this section, constructible means Presburger
+constructible.
+
+
+
+\subsection{twisted formulas}
+
+Let ${}^LG = \hat G \rtimes \langle\sigma\rangle$ be the Langlands dual of an unramified group $G$.
+It is a semidirect product of a connected complex reductive group $\hat G$ and a finite cyclic group
+generated by an outer automorphism $\sigma$ of $\hat G$.  The automorphism $\sigma$ is assumed
+to preserve a pinning of $\hat G$; that is a Borel subgroup $\hat B$, Cartan $\hat T\le \hat B$, and
+set of simple positive roots.  
+
+We consider irreducible characters of ${}^LG$, restricted
+to the component $\hat G \rtimes \sigma$.  We write $Y^*$ for the set of $\sigma$-fixed
+elements of $X^*(\hat T)$.  Note that we have identifications
+\[
+Y^* = X^*(\hat T)^\sigma = X_*(T)^\sigma = X_*(A).
+\]
+Using the standard additive notation for a multiplicative group, 
+we write $(1-\sigma)\hat T = \{ t\sigma(t)^{-1}\mid t\in\hat T\}$, and let $\hat T_\sigma = \hat T/((1-\sigma)\hat T)$.
+If $\lambda$ is a $\sigma$-fixed highest weight in $X^*(\hat T)$, then it is trivial on $(1-\sigma)\hat T$,
+giving a morphism $Y^*\to X^*(\hat T_\sigma)$.  This is an isomorphism of lattices.  We identify
+these lattices by this isomorphism.
+
+Let $\dom$ be the set of dominant weights in $Y^*$, which we identify with set $P^+$ of cocharacters in the positive chamber $X_*(A)$.
+If $\lambda$ is a dominant weight in  $X^*(\hat T_\sigma)$, we may construct an irreducible representation
+of $\hat G$ with highest weight $\lambda\in X^*(\hat T)$.  There is an extension of the representation to ${}^LG$ in
+which $\sigma$ fixes a vector in the highest weight space.  Let $\tau_\lambda$ be the
+character of the restriction of the representation to $\hat G\rtimes \sigma$.  This restriction depends only
+on the conjugacy class of $g\rtimes\sigma$, that is, the $\sigma$-conjugacy class of $g\in \hat G$.
+Each $\sigma$-conjugacy class depends only on its image in $\hat T_\sigma$.  The weight space of $\mu\in X^*(\hat T)$ is
+fixed by $\sigma$ exactly when $\mu\in Y^*$. We can therefore
+consider $\tau_\lambda\in \ring{C}[Y^*]$.
+
+Let $\hat T$ be a complex torus with character group $X^*(\hat T)$.  
+By fixing a basis, we may identify $X^*$ with
+with $\ring{Z}^r$ for some $r$.  
+
+\begin{remark}\label{rem:matrix}
+For purposes of constructibility, we consider $\ring{Z}^r$ and also $Y^*$ as 
+definable subassignments $h[0,0,r]$. When dealing with $\ring{Z}^r$, integrals over fibers
+in the sense of motivic integration are discrete sums.  For example, if $(\lambda,\mu)\to a_{\lambda,\mu}$
+and $(\mu,\nu)\to b_{\mu,\nu}$ are constructible functions of integer parameters $(\lambda,\mu,\nu)\in L\times M\times N$,
+then we may intepret the matrix product $(\lambda,\nu)\to \sum_{\mu} a_{\lambda,\mu} b_{\mu,\nu}$ as a
+fiber integral as follows.  We pull $a_{\lambda,\mu}$ and $b_{\mu,\nu}$ both back to $L\times M\times N$, multiply
+them as constructible functions on $L\times M\times N$, then integrate (sum) over the fibers of the projection morphism
+$L\times M\times N\to L\times N$.
+\end{remark}
+
+%We write $e^\lambda$ for
+%elements of basis of the group algebra $\ring{C}[X^*]$, with $\lambda\in X^*$.
+
+We fix a root system $R \subseteq X^*(\hat T)$.  We consider this a fixed choice.
+Let $\hat G$ be a complex reductive group with Cartan subgroup $\hat T$ and
+root system $M$.
+Let $R^+$ be the set of positive roots with respect to some order.
+
+
+
+\subsection{weight multiplicities}
+
+We have a partition function given by
+\[
+\prod_{\alpha\in R_1^+}\frac{1}{ (1-e^{-\alpha})} = \sum_\mu p(\mu) e^{-\mu},
+\]
+where the product runs over $\alpha\in R_1^+$. 
+The root system $R_1$ is defined in \cite[\S3.12]{chriss}.
+Let $R_1^+$ be the set of positive roots in  that root system.
+
+\begin{lemma}\label{lemma:partition}
+The partition function $p$ is a Presburger constructible function of $\mu$.
+\end{lemma}
+
+\begin{proof} Let $k$ be the number of positive roots in $R_1^+$.
+Fix an enumeration $\alpha_1,\ldots,\alpha_k$ of the positive roots.
+Expanding the series for $p(\mu)$, we observe that
+the partition function $p$ is the fiber integral (sum) of the characteristic function of $\ring{N}^k$
+for the morphism
+\[
+\ring{N}^k\to X^*(T),\quad (n_1,\ldots,n_d) \mapsto n_1\alpha_1+\cdots+n_k\alpha_k.
+\]
+\end{proof}
+
+\begin{lemma}
+$\dom$ is a definable subset of $Y^*$.
+\end{lemma}
+
+\begin{proof}
+$\dom$ is given by a set of linear inequalities that can be expressed in the Presburger language.
+\end{proof}
+
+
+Let $m_{\lambda,\mu}\in \ring{N}$ be the multiplicity of the weight $\mu\in X^*(T)$
+in the irreducible representation with highest weight $\lambda$.
+
+
+\begin{lemma}  The weight multiplicity function $m_{\lambda,\mu}$  is a Presburger constructible function.
+\end{lemma}
+
+\begin{proof} 
+The twisted Weyl character formula is
+\[
+\tau_\lambda = \sum_{w\in W^\sigma} \frac{(-1)^{\ell(w)} e^{w (\lambda+\rho)-\rho}}{ \prod_{\alpha\in R_1^+} (1 - e^{-\alpha})},
+\]
+where $\rho = \frac{1}{2} \sum_{\alpha\in R_1^+} \alpha$ and $\ell(w)$ is the length of $w$ with respect to the reflection group $W^\sigma$.
+This is the version of the formula found in \cite{chriss}, \cite{haines2016dualities}.
+
+
+
+Since constructible functions form a ring, it is enough to check the constructibility of a summand for
+fixed $w$.  The sign $(-1)^{\ell(w)}$ is a fixed choice.  The contribution of $w$ to the multiplicity $m_{\lambda,\nu}$ is the
+pull back of the constructible function $(-1)^{\ell(w)} p(\mu)$ under the definable morphism
+\[
+\dom\times X^*\to X^*,\quad (\lambda,\nu)\mapsto \mu = w(\lambda+\rho)-(\rho+\nu).
+\]
+The result follows.
+\end{proof}
+
+
+
+\subsection{inverting weight multiplicities}
+
+In this section, we follow  van Leeuwen's algorithm to invert the weight multiplicity
+formula~\cite{vanleeuwen}.  This algorithm yields an explicit formula for the inverse and 
+implies constructibility (Theorem \ref{lemma:van-leeuwen}).
+For type $A_n$, van Leeuwen's formula agrees with the inverse of the Kostka
+matrix described in \cite{duan}.
+
+
+We have two bases of $\ring{C}[Y^*]^{W^\sigma}$, given by $\{m_\lambda\}$ and $\{\tau_\lambda\}$, indexed
+by $\lambda\in \dom$.  
+The change of basis matrix expressing $\chi_\lambda$ in terms of $m_\mu$ is the weight multiplicity
+matrix $m_{\lambda,\mu}$, which is constructible by an earlier lemma. 
+
+We define a dot operator $w\bullet \mu = w(\mu+\rho)-\rho$, for $w\in W^\sigma$ and $\mu\in Y^*$.
+We define the alt-symmetrizer operator by
+\[
+J:\ring{C}[Y^*]\to \ring{C}[Y^*],\quad J(f) = \sum_{w\in W^\sigma} (-1)^{\ell(w)} w(f e^\rho) e^{-\rho}.
+\]
+It has the properties $J(f) = f J(1)$ if $f\in \ring{C}[X^*]^W$ and $J(\tau_\lambda) = J(e^\lambda)$.
+
+
+We have definable set $\Lambda_0\subseteq Y^*$ of characters $\mu$ such that $\mu$ is fixed by some
+reflection in $W^\sigma$.  For each $w\in W^\sigma$, we have a definable set 
+\[
+\Lambda_w = \{\lambda\in X^*\setminus \Lambda_0\mid w\bullet \lambda \in\dom\}
+\]
+These sets partition $Y^*$, so that each $\lambda\in Y^*$ belongs to a unique $\Lambda_x$, for $x\in W^\sigma\cup\{0\}$.
+
+We define a desymmetrizer operator $L$ by
+\[
+L(e^\mu) = \begin{cases}
+0,& \mu\in \Lambda_0;\\
+(-1)^{\ell{w}} e^{w\bullet \mu},& \mu\in\Lambda_w.
+\end{cases}
+\]
+We extend $L$ linearly to $\ring{C}[Y^*]$.
+We have $L(\tau_\lambda) = e^\lambda$, for $\mu\in\dom$.  This means that
+for any $f = \sum_\lambda c_\lambda \tau_\lambda \in \ring{C}[Y^*]$, the coefficient $c_\lambda$
+is the coefficient of $e^\lambda$ in $L(f)$.
+
+For each subgroup $H\le W^\sigma$, we have a definable set
+$M_H \subseteq Y^*$ given by the set of $\mu\in Y^*$ such that
+the stabilizer of $\mu$ in $W$ is $H$.  
+The sets $M_H$ partition $Y^*$. 
+The basis $m_\mu$ is given
+as 
+\[
+m_\mu = \sum_{w\in W/H} e^{w \mu},
+\]
+for $\mu\in M_H$.
+
+We have definable sets 
+\[
+E_{H,w,w'} = \{(\mu,\lambda)\in M_H\times \dom \mid w\mu\in\Lambda_{w'},\quad w'\bullet(w\mu)=\lambda\}.
+\]
+indexed by subgroups $H\le W$, cosets $w\in W/H$, and elements $w'\in W$.
+
+We have a change of basis matrix $n_{\mu,\lambda}$ 
+\[
+m_\mu = \sum_{\mu,\lambda} n_{\mu,\lambda} \tau_\lambda.
+\]
+
+\begin{theorem}\label{lemma:van-leeuwen} $n_{\mu,\lambda}$ is a Presburger constructible function on $\dom\times\dom$.
+\end{theorem}
+
+\begin{proof} This is a consequence of van Leeuwen's algorithm. \XX{clean this up.}
+
+It is enough to show that the restriction of $n$ to each of the definable sets
+$M_H\times \dom$ is constructible.  Van Leeuwen's formula is that $n$ restricted
+to $M_H\times \dom$ is 
+\[
+\sum_{(w,w')\in (W/H)\times W} (-1)^{\ell(w)} \op{char}\, E_{H,w,w'}.
+\]
+Since $E_{H,w,w'}$ is definable, its characteristic function is constructible.
+A finite sum of constructible functions is constructible.
+\end{proof}
+
+\subsection{branching formulas}
+
+We do not need the results in this section, but while we are on the topic of constructibility,
+we point out the constructibility of branching multiplicities follows from the Kostant
+multiplicity formulas.  For example, we have the following corollary of the branching
+multiplicity formula \cite[Theorem ~8.2.1]{goodman}.
+
+\begin{lemma} Let $H\le G$ be complex reductive groups with Lie algebras ${\mathfrak h}\subseteq {\mathfrak g}$.
+Fix maximal tori $T_H\le T_G$ with Lie algebras $t_h\subseteq t_g$.  Assume that there is an element
+$X_0\in t_h$ such that $\langle \alpha,X_0\rangle>0$ for every positive root of ${\mathfrak g}$.
+Let $\dom_G$ and $\dom_H$ be the sets of dominant weights in $G$ and $H$.  Let $m(\lambda,\mu)$
+be the multiplicity of the irreducible $\mathfrak h$-module with highest weight $\mu$ in the irreducible
+$\mathfrak g$-module with highest weight $\lambda$.  Then $m(\lambda,\mu)$ is a Presburger constructible
+function on $\dom_G\times\dom_H$.
+\end{lemma}
+
+\begin{proof}  Kostant's formula expresses each branching multiplicity as a finite sum of partition
+functions.  Each partition function is rational.  
+Thus, the argument used in the proof of Lemma~\ref{lemma:partition} applies.
+\end{proof}
+
+Explicit formulas for branching multiplicities are typical of what Presburger constructible functions look like.
+Typically branching formulas look like products of linear factors depending on cases that can be
+described by linear inequalities on parameters $\lambda$ and $\mu$.
+
+\XX{give an example.}
+
+We will not pursue the topic, but we can similarly investigate the constructibility of the function giving the
+multiplicities of $\tau_\mu$ in $\op{Sym}^k \tau_\lambda$, and related operations on characters.
+
+
+
+
+\section{A twisted Kato-Lusztig formula}
+
+We need the Presburger constructibility of the change of basis matrix (the Kato-Lusztig formula \cite{kato1982spherical} in the twisted case) for 
+$\tau_\lambda$ in terms of the basis of $\ring{C}[Y^*]^{W^\sigma}$ provided by the Satake transform.  This is based on the Plancherel formula
+for spherical functions \cite{macdonaldspherical}.
+
+\begin{conjecture}\label{conj:kato}  Let $G$ be an unramified connected reductive group with $L$-group ${}^LG = \hat G \rtimes \langle \sigma\rangle$.
+Define $t_{\lambda,\mu}$ by
+\begin{equation}\label{eqn:kato}
+\tau_\lambda = \sum t_{\lambda,\mu} \hat f_\lambda.
+\end{equation}
+Then the function $(\lambda,\mu)\mapsto t_{\lambda,\mu}$ is represented by a Presburger constructible function on $\dom\times \dom$.
+\end{conjecture}
+
+The conjecture holds when $G$ is split by Kato's formula that expresses the coefficients $t_{\lambda,\mu}$ as shifted values of the partition function.
+We briefly recall Kato's proof of his formula in the untwisted case: ${}^LG=\hat G$ (that is, $G$ is split).  
+We will see that Presburger constructibility is a consequence
+of some very generic features of Plancherel, Macdonald's formula, and the Weyl character formula.
+
+Let $\hat S_1$ be the maximal compact subgroup of the complex torus $\hat S = \hat T/(1-\sigma \hat T)$.   
+We continue to use the notation we have introduced for the twisted case, even though we restrict for a moment to the untwisted case.
+In the untwisted case, $T=A$ is split, and
+\[
+\hat S  = \hat T = X_*(\hat T)\otimes \ring{C}^\times  = \op{Hom}(X_*(T),\ring{C}^\times).
+\]
+A function $f\in \ring{C}[Y^*]$ can be considered a continuous function on $\hat S$
+by $s\mapsto e^\lambda(s) = s(\lambda)$, for $\lambda\in X_*(T)$.
+Let $ds$ be the invariant measure on $\hat S_1$, normalized to have volume $1$.  
+Then $e^\mu(\bar s) = e^{-\mu}(s)$ and we have an orthonormal basis,
+\begin{equation}\label{eqn:on}
+\int_{\hat S_1} e^\lambda e^{-\mu} ds = \delta_{\lambda,\mu}.
+\end{equation}
+There is a Weyl-group invariant Plancherel measure $dm(s)$ on $\hat S_1$.
+We write 
+\[
+(f,g) = \int_{\hat S_1} f(s) \bar{g} {(s)} dm(s), 
+\]
+for $f,g\in \ring{C}[Y^*]$.
+By Macdonald,
+\begin{equation}\label{eqn:ip}
+(\hat f_\lambda,\hat f_\mu) = \delta_{\lambda,\mu} c_\lambda,
+\end{equation}
+for explicit constructible invertible factors $c_\lambda$.
+
+If $f,g\in \ring{C}[Y^*]$, and if $f$ is Weyl group invariant, then we may push an average over to $f$ to obtain
+\begin{equation}\label{eqn:inv}
+(f,\frac{1}{|W|}\sum_{w\in W} w(g)) = (f,g).
+\end{equation}
+By Equation (\ref{eqn:kato}) and orthogonality (\ref{eqn:ip}), we expand with respect to an
+orthogonal basis:
+\[
+t_{\lambda,\mu}  = (\tau_\lambda,\hat f_\mu)/c_\mu.
+\]
+We obtain a formula for $t_{\lambda,\mu}$ by computing the right-hand side using explicit formulas
+for the Weyl character $\tau_\lambda$, Macdonald's formula for $\hat f_\mu$, and  Plancherel $dm(s)$.
+Macdonald's formula is a sum over $w\in W$, which we may reduce to a single term $w=1$ by (\ref{eqn:inv}).
+These are all rational functions.  We formally expand the rational functions as infinite series in the basis $e^\nu$ and
+use orthogonality (\ref{eqn:on}) to get $t_{\lambda,\mu}$ as the coefficient of $1=e^0$ in the expansion.
+The Presburger constructibility is essentially equivalent to the rationality of the product of the Weyl, Macdonald (at $w=1$), and Plancherel formulas.
+
+
+\XX{work with Casselman here.}
+
+
+\section{The constructibility of $B$}
+
+Let ${}^LG$ be the Langlands dual of an unramified reductive group $G$.  Let ${}^LH$ be the dual of an
+unramified endoscopic group $H$.  We assume that both $H$ and and $G$ are given in the category of definable subassignments
+over a cocycle space $Z$.  We can assume that the cocycle space $Z$ is the same for $H$ and $G$.
+As part of the cocycle space data $Z$, we assume we are given a quasi-Frobenius element $\op{qFrob}$ that defines an
+automorphism of the root datum $(X^*,X_*,R,R^\vee)$.
+
+There exists a homomorphism ${}^LH\to {}^LG$ that factors through a semidirect product with a finite group $\langle\sigma\rangle$:
+\[
+\xi:\hat H \rtimes \langle \sigma\rangle \to \hat G \rtimes \langle \sigma\rangle.
+\]
+We fix such a homomorphism $\xi$.  
+
+Working $p$-adically, Langlands gives describes a homomorphism $b = b_\xi$
+from the spherical Hecke algebra of $G$ to the spherical Hecke algebra of $H$.
+If $f$ belongs to the spherical Hecek algebra of $G$, its Satake transform belongs
+to $\ring{C}[\hat T_\sigma]^{W^\sigma}$, where $W^\sigma$ is the set of fixed points in $W$ under $\sigma$.
+The morphism $\xi$ gives a restriction map
+\[
+\ring{C}[\hat T_\sigma]^{W^\sigma} \to \ring{C}[\hat T_{H,\sigma}]^{W_H^\sigma}
+\]
+to the corresponding ring for $H$.  The inverse Satake transform of the image of $f$ in
+\[
+\ring{C}[\hat T_{H,\sigma}]^{W_H^\sigma}
+\]
+is $b_\xi(f)$.
+
+The following is our main result.
+
+\begin{theorem}
+Let $G$ be an unramified connected reductive group with unramified endoscopic group $H$, both considered as definable
+subassignments over a cocycle space $Z$.  Fix an $L$-embedding $\xi:{}^LH\to {}^LG$ that factors through a finite
+cyclic group $\langle \sigma\rangle$; that is, $\xi:\hat H\rtimes \langle \sigma\rangle \to \hat G \rtimes \langle \sigma\rangle$.
+Assume Kato-Lusztig constructibility (Conjecture \ref{conj:kato}) for the complex group $\hat H$ with automorphism $\sigma$.
+Then
+there is a $q$-constructible function $B$ on $P^+_G\times H$ and a natural number $N$ with the following specializations:
+\[
+B(\lambda,h)_F = b_\xi(f_{F,\lambda})(h),\quad \text{for } h\in H(F),
+\]
+for all $p$-adic fields in $F\in C_N$.  
+\end{theorem}
+
+Recall that for each $F$, we let  $f_{F,\lambda}$ denote the characteristic function
+of the double coset $K\varpi_F^\lambda K$ in the unramified reductive group $G$ over $F$.
+
+The the Kato-Lusztig constructibility assumption is known when $H$ is split ($\sigma=1$).
+In that case, we obtain our theorem without assumption.
+
+The theorem implies that the homomorphism $b_\xi$ has a uniformity as the $p$-adic field
+varies, and as $\lambda$ varies.  It suggests the existence of a sort of ``Macdonald-Kato-Lusztig''
+formula for $b_\xi$.
+Stated slightly differently, there is a single constructible function that unites
+all of the functions $b_\xi (f^G_\lambda)$ on the endoscopic group, as $\lambda$ varies.
+
+\begin{proof}
+We have done most of the work already for this theorem.
+By Lemma~\ref{lemma:satake}, the change of basis $D_G(\lambda,\cdot)$ to the basis $\mu_\lambda$
+is constructible.  By an easy observation, the restriction of $\mu^G_\lambda$ is expressed in terms of the basis $\mu^H_\mu$ through
+constructible coefficients $d_{\lambda,\mu}$:
+\[
+\mu^G_\lambda| = \sum_{\mu} d_{\lambda,\mu} \mu^H_\mu.
+\]
+By Theorem~\ref{lemma:van-leeuwen}, the change of basis from $\mu^H_\lambda$ to $\tau^H_\mu$ is constructible.
+By the Kato-Lusztig constructibility assumption, the change of basis from 
+$\tau^H_\lambda$ to $\hat f^H_\mu$ or $D_H(\lambda,\cdot)$ is constructible.  
+
+Composition of change of basis is given by matrix multiplication of the transformation matrices.
+This matrix multiplication is constructible by Remark \ref{rem:matrix}.  Thus the transformation $b_\xi$
+expresses each $D_G(\lambda,\cdot)$ as a linear combination with constructible coefficients
+of the $D_H(\mu,\cdot)$.   In other words, it is a linear combination of some constructible functions
+$d(\lambda,\mu)$, indexed by $\lambda$ and summed over $\mu\in X_*(A_H)$.  This sum
+is a fiber integral of the constructible function $d$ on $X_*(A_G)\times X_*(A_H)$ for the
+projection to $X_*(A_H)$.  It is therefore a constructible function.
+
+In fact, the support of $d$ lies in a definable set $E$ such that the fibers of $E\to X_*(A_H)$
+are finite, so there are no integrability issues.
+\end{proof}
+
+\begin{remark}  We have stated $q$-constructibility results in terms of the limiting behavior on
+$p$-adic fields $\C_N$ for $N$ large.  However, the formulas we obtain for $B$ should in fact hold for all
+$p$-adic fields.
+\end{remark}
+
+\section{transfer principle for the fundamental lemma for the spherical Hecke algebra}
+
+
+\subsection{transfer principle}
+
+We review the transfer principle from \cite{cluckers2010constructible}.
+
+\subsection{enumerated Galois groups}
+
+We deal with field extensions and Galois groups in the way described in \cite{gordon} and \cite{cluckers2011transfer}.
+We let $\Sigma$ be an abstract group with fixed enumeration $1=\sigma_1,\ldots,\sigma_n$ of its elements.  We
+assume a fixed short exact sequence
+\[
+1\to \Sigma^t\to\Sigma\to\Sigma^{unr}\to 1,
+\]
+with $\Sigma^t$ and $\Sigma^{unr}$ both cyclic.
+The group $\Sigma$ plays the role of a Galois group with inertia subgroup $\Sigma^t$ and unramified quotient $\Sigma^{unr}$.
+We treat this data as an abstract fixed choice, without a priori connection to the Galois group of any particular extension of 
+$p$-adic fields.  
+
+We may fix an abstract root datum and choose an action of $\Sigma$ on the root datum, stabilizing the set of simple roots.
+Through this action on the root datum, $\Sigma$ acts on the Weyl group, and we may construct the semidirect product $W\rtimes \Sigma$.
+
+\subsection{transfer factors}
+
+In this section, we assume familiarity with the Langlands-Shelstad transfer factor \cite{langlands1987definition}.
+
+In \cite{gordon}, we showed that the Lie algebra transfer factor is a constructible motivic function.  This proof extends to a proof
+that the group transfer factor is constructible in a definable neighborhood of the identity.  There are two potential obstructions to
+extending the proof of constructibility from
+the neighborhood to the entire group.  The first potential obstruction is the $a$-data.  In the Lie algebra a special choice is available
+for the $a$-data that does not work beyond a small neighborhood of the identity in the group.   The second potential obstruction is 
+the $\chi$-data.  These are collections of multiplicative characters.  Current versions of motivic integration do not allow the unrestricted
+use of multiplicative character.  In the Lie algebra and in a small neighborhood of the identity, the $\chi$-data becomes trivial.
+
+We use the canonical normalization of transfer factors given in \cite[\S7]{hales1993simple}.  The canonical normalization requires
+on a choice of an admissible pinning.  The admissible pinning involves a choice of simple root vectors $X_\alpha$ relative fixed Borel subgroup and Cartan.
+The choices $X_\alpha$ range over a definable subassignment, and we obtain the canonical normalization by introducing a free
+parameter into the transfer factor ranging over the definable subassignment.
+
+\subsection{$a$-data}
+
+To define the transfer factor for $p$-adic  fields, a choice of $a$-data is made, but the transfer-factor is in fact independent of the choice of $a$-data.
+
+This section introduces a definable subassignment of $a$-data and introduces an explicit free variable $a$ into the transfer factor that ranges over
+the definable subassignment of $a$-data.  The tuple $a$-data will be indexed by a fixed choice of indexing set.  
+
+We begin wih a review of $a$-data for a $p$-adic field, then show how to make the construction as a definable subassignment.
+Let $\Sigma$ be the Galois group of a Galois extension $L/F$.  We assume that $\Sigma$ acts on a finite set $R$ of roots.
+The $a$-data are a collection of constants $a_\alpha\in L^\times$ indexed by $\lambda\in R$ such that
+\begin{equation}\label{eqn:a}
+a_{-\lambda} = -a_\lambda,\quad a_{\sigma\lambda} = \sigma(a_\lambda),\quad \text{ for } \sigma\in \Sigma.
+\end{equation}
+Let $\epsilon:R\to R$, given by $\epsilon(\lambda)=-\lambda\ne\lambda$.  Let $O$ be the orbit of some $\lambda\in R$ under $\langle \Sigma,\epsilon\rangle$.
+The choice of $a$-data can clearly be made orbit by orbit.
+If there is no $\sigma\in \Sigma$ such that $\sigma\lambda=-\lambda$, we have a specific choice of $a$-data (selecting a given $\lambda\in O$) given by
+\[
+a_{\sigma\lambda}=1,\quad a_{-\sigma\lambda}=-1,\quad \sigma\in\Sigma.
+\]
+If $\sigma_0\in\Sigma$ gives $\sigma_0\lambda=-\lambda$,  then we let $F_{+\lambda}$ be the fixed field of $\Gamma_{+\lambda} = \{\sigma\in\Sigma\mid \sigma\lambda=\lambda\}$
+and we let
+$F_{\pm\lambda}$ be the fixed field of $\Gamma_{\pm\lambda} = \{\sigma\in\Sigma\mid \sigma\lambda=\pm\lambda\}$.
+The extension $F_{+\lambda}/F_{\pm\lambda}$ is quadratic.
+We may choose $a$-data by fixing $a_\lambda\in F_{+\lambda}$ such that $\sigma_0(a_\lambda) = -a_\lambda$ then extending uniquely to the entire orbit  by the relation (\ref{eqn:a}).
+Specifically, the choice of $a_\lambda$ can be taken to run over units of $F_{+\lambda}$ such that its square is a nonsquare in $F_{\pm\lambda}$, when the quadratic extension is unramified.
+We take $a_\lambda$ to run over uniformizers in $F_{\lambda}$ such that its square lies in $F_{\pm\lambda}$, when the quadratic extension is ramified.
+We see by these explicit descriptions that $a_\lambda$ is a parameter in a definable subassignment.
+
+
+\subsection{$\chi$-data}
+
+
+
+The treatment of $\chi$-data is not at all obvious from the point of view of constructible motivic functions for two significant reasons.
+First, the $\chi$-data are a collection of multiplicative characters, and multiplicative characters are beyond the scope of current versions of motivic integration.
+In fact, the problem of multiplicative characters is a major research topic in motivic integration.
+Second, they $\chi$-data enter into the transfer factor through the reciprocity law of local class field theory for tori, as developed by Labesse and Langlands.
+Local reciprocity is also beyond the scope of current versions of motivic integration.
+
+Nevertheless, although the calculations are not complete, there are reasons to believe that $\chi$-data can be treated in a constructible motivic way.
+Explicit calculations show that the multiplicative characters $\chi_\lambda$ can be chosen to have order dividing $4$.  Each coset on which $\chi_\lambda$ is
+constant is a definable subassignment.  Also, the reciprocity law is used twice so that we end up with a character $\langle a,\cdot\rangle$ on a $p$-adic torus.
+Ultimately, the complex dual group does not appear.  
+There are other indications of constructibility: Bouthier's formula for transfer factors for split groups in terms of the Steinberg section, 
+and descent formulas for transfer factors for elements in the hyperspecial subgroup in \cite{hales1993simple}.
+
+\subsection{$\Delta_{II}$}
+Two terms in the transfer factor rely on multiplicative characters constructed from $\chi$-data: the terms $\Delta_{II}$ and the term $\Delta_2$.
+
+\begin{lemma}  There is a $q$-constructible function representing $\Delta_{II}$ (after introducing some free parameters ranging over definable subassignments).
+\end{lemma}
+
+\begin{proof}  We begin with an explicit construction of some characters for a $p$-adic field.  Then we analyze the construction to
+see that it can be done constructibly.
+
+Let $F_+/F_\pm$ be a quadratic extension of $p$-adic fields.  Let $\varpi_+$ be a uniformizer in $F_+$.  We define a multiplicative character $\chi_+ = \chi_{F_+/F_{\pm}}:F_+\to \ring{C}^\times$
+as follows.  If $F_+/F_\pm$ is unramified, let $\chi_+$ be the unramified character of order two.
+
+If $-1$ is a square in $F_+$, we define $\chi_+$ by $\chi_+(\varpi_+) = i\in\ring{C}$ and $\chi_+$ restricted to units is the unique character of order two.
+
+If $-1$ is a nonsquare in $F_+$, we define $\chi_+$ by $\chi_+(\varpi_+)=1$ and $\chi_+$ restricted to units is the unique character of order two.
+
+In every case, $\chi_+^4 = 1$.  
+
+Now we analyze  constructibility.  The condition that $-1$ is a square or nonsquare is a definable condition.
+Assume that $F_+$ and $F_\pm$ are both extensions of $VF$, presented as usual by a definable space of the characteristic polynomial of a generator of the fields.  
+Introduce a free parameter $\varpi_+$ that runs over the constructible subassignment of uniformizers in $F_+$.
+We claim that $\chi_+$ is a linear combination of characteristic functions
+\[
+\chi_+ = \sum_{\zeta\in\mu_4(\ring{C})} \zeta\, \op{char}(D_\zeta).
+\]
+where each $D_\zeta$ is constructible over the space of parameters.  
+This is essentially obvious: $F_+/F_\pm$ being unramified is a definable condition on the coefficients of the characteristic polynomial;
+the unique character of order two is given in terms of the characteristic function  on squares and nonsquares, etc.
+
+Now we turn to the transfer factor $\Delta_{II}$.  It has the form
+\[
+\prod_\alpha \chi_\alpha\left(\frac{\alpha(\gamma)-1}{a_\alpha}\right)
+\]
+It is a constructible function if each factor is a constructible functions. Each morphism $\gamma\to(\alpha(\gamma)-1)/a_\alpha$ is
+definable, so we only need to check that each character $\chi_\lambda$ in some choice of $\chi$-data is constructible.  We use the characters
+given above to do so.
+
+There is no harm in partitioning the domain of $\Delta_{II}$   according to definable characteristics of the element $\gamma$.  We consider a definable family of
+ $L/VF$ that split the centralizer of $\gamma$.  We may assume fixed abstract Galois data $1\to\Sigma^t\to\Sigma\to \Sigma^u\to 1$ with
+enumeration $\sigma_i$ of the elements of $\Sigma$ for $L$
+and we may assume a fixed action of that data on the root system coming from the centralizer of $\gamma$ (relative to a split torus).   This gives the
+indexing set $R$ of roots and action of $\Sigma$ as fixed choices used to partition the domain of $\Delta_{II}$.
+
+Let $\epsilon$ be an automorphism of $R$ that acts as $\lambda\mapsto -\lambda$, and let $O(\lambda)$ be the orbit of $\lambda$ under $\langle \Sigma,\epsilon\rangle$.
+If there does not exist $\sigma\in\Sigma$ such that $\sigma\lambda=-\lambda$, then we may take the $\chi$-data for $\mu\in O(\lambda)$ to be the trivial character
+(which is constructible).   
+
+Now assume that there exists $\sigma\in\Sigma$ such that $\sigma\lambda = -\lambda$.  Then $F_{+\lambda}/F_{\pm \lambda}$ is a nontrivial quadratic extension.
+We set $\chi_\lambda = \chi_+$ for this quadratic extension.  
+In more detail,
+we include free parameters $\dot\sigma_i$ realizing each abstract automorphism $\sigma$ as a linear transformation of $L/VF$.
+The extension $F_{+\lambda}/VF$ and the space of uniformizers $\varpi_+$ in the extension are then described by definable conditions inside $L/VF$ (as in \cite{cluckers2011transfer}).
+
+By transport of structure, we obtain constructible $\chi$-data on the entire orbit of $\lambda$, using the defining properties of $\chi$-data:
+$\chi_{\sigma\lambda} = \chi_{\lambda}\cdot \dot\sigma^{-1}$; $F_{+\sigma\lambda}=\dot\sigma F_{+\lambda}$; $\varpi_{+\sigma\lambda}=\dot\sigma\varpi_{+\lambda}$,
+and so forth.   Running over all orbits this way, constructible $\chi$-data are obtained.
+\end{proof}
+% Langlands-Shelstad use Sigma = <Gamma,epsilon>,  Gamma_Langlands-Shelstad = Sigma_this.
+
+
+\subsection{$\Delta_2$}
+
+We have now treated all terms except $\Delta_2$.
+We recall that the term $\Delta_2$ restricts to a multiplicative character on each Cartan subgroup of $G$.  It is constructed from $\chi$-data by
+means of class field theory reciprocity for tori.  The following theorem will complete our analysis of the transfer factors on groups.
+
+\begin{theorem}\label{thm:delta2}  There is a $q$-constructible function representing the transfer factor $\Delta$, 
+possibly after introducing some free parameters.  These parameters  have no effect upon specialization to a $p$-adic field.
+\end{theorem}
+
+
+
+
+
+
+\begin{proof}  We give a sketch of a proof.  
+The idea of the proof is that multiplicative characters can be chosen to be tamely ramified; that is, they have trivial restricition to topologically unipotent elements.
+We have descent formulas for unramified groups that reduce the transfer factor to the case of topologically unipotent elements \cite{langlands2007descent} \cite{hales1993simple}.
+
+We freely use various lemmas on definability from the next section \ref{sec:definability}.
+
+We enumerate the standard Levi components of $G$.  Each is a definable set.  If $\gamma_G$ is conjugate to an element $\gamma_M$ in some proper Levi subgroup, then
+by descent formulas for transfer factors we have $\Delta(\gamma_G,\gamma_H) = \Delta_M(\gamma_M,\gamma_{M,H})$.   The element $\gamma_{M,H}$ is a conjugate
+of $\gamma_H$ in a Levi of $H$ constructed by descent.
+By an induction on the dimension of the group, we may assume that $\Delta_M$ is constructible.  Every regular semisimple element that is not
+elliptic is conjugate to a proper Levi subgroup.  We may now assume that $\gamma_G$ belongs to an elliptic Cartan subgroup $T$.
+
+Since $G$ is unramified, the connected center $Z^0$ is also unramified.
+$Z^0$ can be naturally identified with a torus in the connected center of $H$.
+By Langlands and Shelstad, there is a character $\theta$ on $Z^0$ such that
+\[
+\Delta(z\gamma_G,z\gamma_H) = \theta(z)\Delta(\gamma_G,\gamma_H).
+\]
+The character is unramified \cite{hales1993simple}.
+The character $\theta$ depends on $(\gamma_G,\gamma_H)$ only through the endoscopic data $(G,H)$.
+To check constructibility of $\theta$, it is convenient and allowable to temporarily assume that $\gamma_H$ belongs to the maximally split Cartan subgroup of $H$.
+We can apply Levi descent, unless the image $\gamma_G$ of $\gamma_H$ lies in an elliptic torus.
+
+If $G=H$ is a torus, then there is a tautological embedding $\xi_0:{}^LH \to {}^LG$ for which the character $\theta$ is trivial.  Any other choice
+of embedding $\xi$ that factors through a finite unramified extension $\op{Gal}(E/F)$.  The cocycles attached to $\xi_0$ and $\xi$ 
+differ by a cocycle of $H^1(\op{Gal}(E/F),\hat T)$,
+determined by the value $\phi$ on the Frobenius (or in the constructible context, the quasi-Frobenius)
+\[
+\phi \in \hat T = X^*(T)\otimes \ring{C}^\times = \op{Hom}(X_*(T),\ring{C}^\times)
+\]
+By reciprocity, this corresponds to the unramified character of $T$ given by $\varpi_F^\lambda\mapsto \phi(\lambda)$, for $\lambda\in X_{*,F}(T)$.
+This clearly extends to a constructible function $\theta$ on $T$.
+
+If $G$ has a nontrivial root system and $\gamma_G$ is elliptic, then it is known that the adjoint group of $G$ is $PGL(n)$ and $H$ is the elliptic
+unramified torus given by twisting by the longest element of the Weyl group of $PGL(n)$.  In this case Kazhdan gave a formula for the transfer factor 
+(later repeated later in Hales and Waldspurger), and by inspection, it is constructible \cite{kazhdan1983lifting}.  It is essentially the
+quadratic character attached to the unramified quadratic extension of $F$,
+evaluated on a resultant polynomial constructed from $\gamma_H$.   This completes the proof that $\theta$ is constructible.
+
+Now we drop the temporary assumption on $\gamma_H$; it is no longer assumed to lie in a maximally split Cartan subgroup.
+
+
+By adjusting $(\gamma_G,\gamma_H)$ by a central element, we may reduce the proof of constructibility to the special case  where $\gamma_G$ and
+$\gamma_H$ lie in the maximal bounded subgroup of their Cartan subgroups $T$ and $T_H$.
+We take a definable topological Jordan decompositon $\gamma_G = \gamma_s \gamma_u$, described in Section \ref{sec:definability}.
+Replacing $\gamma_G$ and $\gamma_s$ by stable conjugates $\gamma'_G=\gamma_G^h$ and $\gamma_s^h$ (same $h$), we may assume that
+$\gamma_s\in G_u$; that is, its centralizer is unramified.  We may do the same on the endoscopic side.  We have 
+\[
+\Delta_G(\gamma_G,\gamma_H) = c \Delta_G(\gamma'_G,\gamma'_H)
+\]
+where $c$ is the ratio of terms coming from $\Delta_{III}$.  The $\Delta_{III}$ terms are constructible, so the proof of constructibility reduces to
+the case where we may now drop primes and assume that $\gamma_s$ has an unramified centralizer.
+We construct descent data $(G_s,H_s)$ for the centralizer of $\gamma_s$ in $G$ and the corresponding centralizer in $H$.
+By \cite{hales1993simple}, the normalized transfer factors satisfy
+\[
+\Delta(\gamma_G,\gamma_H) = \Delta_s(\gamma_G,\gamma_H),
+\]
+where the right-hand side is computed with respect to the endoscopic data $(G_s,H_s)$.
+(In that reference, it is assumed that $\gamma_G\in G(O_F)$ and $\gamma_H\in H(O_F)$, but that assumption is only needed 
+to prove the fact that the centralizer of $\gamma_s$ is unramified.  Since we have a separate argument of that fact, the descent formula
+holds in our context as well.)
+By an induction on the dimension of the group, the right-hand side is constructible, and the proof is complete except in the case
+when $\gamma_s$ is central.
+
+We now assume that $\gamma_s$ is central and strongly compact.  Then $\gamma_s\in K$ because $K$ is a maximal compact.
+It is known that $\theta$ is trivial on $K$ \cite[Lemma 3.2]{hales1995fundamental}. Thus again adjusting by an element in the center,
+we may assume that $\gamma_s=1$.  That is, we are reduced to proving the constructibility of transfer factors on the set of topologically
+unipotent elements.  We pick our $\chi$-data to be tamely ramified.  This implies that the characters $\Delta_2$ are trivial
+on topologically unipotent elements.  This reduces constructibility to the analysis of factors $\Delta_I$, $\Delta_{II}$, $\Delta_1$, and $\Delta_{IV}$.
+This has already been done.  This completes the proof.
+\end{proof}
+
+\subsection{definability results}\label{sec:definability}
+
+In this section we assume that $G$ is an unramified connected reductive group.  It is treated  as definable subassignment
+over a definable cocycle space $Z$.
+
+\begin{lemma}  Let $G$ be an unramified reductive group.  There exists a definable subassignment of $G\times G$ of all pairs
+$(\gamma,x)$ such that $\gamma$ is semisimple (possibly singular) and $x$ lies in the connected component of the centralizer of $\gamma$.
+\end{lemma}
+
+\begin{lemma} Let $G$ be an unramified reductive group.  There exists a definable subassignement of $G\times G$ of all pairs
+$(\gamma,\gamma')$ such that $\gamma$ is semisimple (possibly singular) and $\gamma'$ is stably conjugate to $\gamma$.
+\end{lemma}
+
+\begin{lemma} Let $G$ be an unramified reductive group, given as a definable subassignment over a cocycle space $Z$.
+There is a definable subassignment $G^u$ of $G$ consisting of strongly regular semisimple elements $\gamma$ such that
+the connected component of the centralizer of $\gamma$ is unramified. 
+\end{lemma}
+
+\begin{lemma} Let $G$ be an unramified reductive group with unramifed endoscopic group $H$, given as a definable subassignments over a common cocycle space $Z$.
+There is a definable subassignment $GH$ of all pairs $(\gamma,\gamma_H)$ such that $\gamma_H$ is strongly $G$-regular and $\gamma\in G^u$ is an image of $\gamma_H$.
+Consider the Denef-Pas statement $\psi$ that asserts that for all strongly $G$-regular elements $\gamma_H$, there exists an image $\gamma\in G^u$ that is an image of $\gamma_H$.
+There exists $N$ such that $\psi_F$ is true for all $F\in\C_N$.
+\end{lemma}
+
+\begin{lemma} The set of topologically unipotent elements in a reductive group is a definable subassignement.
+\end{lemma}
+
+\begin{lemma} Let $T$ be a torus defined over a cocycle space $Z$. Assume that $T$ is given by twisting a split torus by some cocycle the Galois group
+of a splitting field $L/VF$.  Let $S\subset T$ be a maximal unramified subtorus of $T$.  Consider the Denef-Pas statement asserting that (for every $z$ and) for
+every $t\in T$, there exists $s\in S$ and a topologically unipotent element $u\in T$ such that $t =s u$.  Then there exists $N$ such that the statement is
+true in $F$ for all $F\in \C_N$.
+\end{lemma}
+
+\begin{lemma}[topological Jordan decomposition] 
+Let $G$ be an unramified reductive group.  There is a definable subassignment of triples $\{(\gamma,\gamma_s,\gamma_u)\in G^3 \mid \cdots\}$,
+consisting of triples such that $\gamma$ is regular semisimple and strongly compact, 
+$\gamma = \gamma_s \gamma_u = \gamma_u\gamma_s$, $\gamma_u$ is topologically unipotent, and
+\[
+\alpha(\gamma_s)=1,\quad\text{ or } \op{ord}(\alpha(\gamma_s)-1)=0,
+\]
+for all absolute roots $\alpha$ of the Cartan subgroup $C_G(\gamma)$.
+\end{lemma}
+
+We do not need the following. It was used in an earlier version of this research, and we record it for possible future uses.
+
+\begin{lemma} The approximate exponential is a definable subassignment.  An approximate exponential exists in large residue characteristic.
+\end{lemma}
+
+\XX{expand the sketch to a full proof}
+
+\subsection{fundamental lemma}
+
+We conclude this article with a proof of the fundamental lemma for the spherical Hecke algebra for unramified groups in large positive characteristic
+in the following form.
+
+\begin{theorem}  Assume Kato-Lusztig constructibility (Conjecture \ref{conj:kato}).
+For each absolute root system $R$,
+there is a constant $N=N_R\in\ring{N}$ such that
+the Langlands-Shelstad fundamental lemma holds for all unramified connected reductive groups $G$ with absolute root system $R$ 
+and all of its unramified endoscopic groups $H$ over $F$ 
+for all fields $p$-adic fields $F\in \C_N$.
+\end{theorem}
+
+By abstract unramified Galois group we mean a fixed finite cyclic group $\Sigma=\Sigma^u$ with choice of generator $\op{qFrob}$
+that we call the quasi-Frobenius element.  It is not tied to any particular $p$-adic field.   The abstract dual group is the Langlands
+dual constructed with respect to $\Sigma$ and $\op{qFrob}$ rather than the Galois (or Weil) group of a field.
+
+It is an unfortunate limitation of the method that we are not able to be explicit about the restriction $N$ on the residue characteristic of the field.
+
+\begin{proof}
+The fundamental lemma takes the form
+\begin{equation}\label{eqn:fl}
+\sum_{\gamma_G}\Delta_0(\gamma_H,\gamma_G,\cdots)\op{O}(\gamma_G,f_\lambda) - \op{SO}(\gamma_H,b_\xi(f_\lambda)) = 0.
+\end{equation}
+Stable orbits of regular semisimple elements are definable as fibers of the Chevalley morphism $G\to T/W$.  The invariant motivic measure
+on stable orbits is the volume form attached to a Leray residue of an invariant differential form on the group with respect to the canonical
+form on $T/W$.  We have shown that the transfer factor and the homomorphism $b_\xi$ can be lifted to a $q$-constructible motivic functions.
+The ellipsis $(\cdots)$ indicates extra parameters such as a parameter running over $a$-data, a parameter running over admissible pinnings
+for the canonical normalization, and uniformizing parameters used in our explicit treatment of the $\chi$-data.  The $p$-adic transfer factor is independent of these choices,
+but in dealing with constructible motivic functions, it is best to make the dependence on the parameters explicit (or at least honor them with an ellipsis).
+
+We may consider the left-hand side of Equation \ref{eqn:fl} as a $q$-constructible function of $(\lambda,\gamma_H,\cdots)\in P^+\times H\times\cdots$, all over a definable
+cocycle space $Z$ used to parameterize an unramified splitting field of $G$ and $H$.  
+
+The fundamental lemma holds for the unit element in positive characteristic by the work of Ng\^o \cite{ngo2010lemme}.
+This can be lifted to characteristic zero \cite{cluckers2011transfer}, \cite{waldspurger2006endoscopie}.  
+It extends to the full Hecke algebra in characteristic zero \cite{hales1995fundamental}.
+Hence the identity (\ref{eqn:fl}) holds in characteristic zero.
+By the transfer principle, 
+there exists $N$ such that the fundamental lemma also holds for all fields $F\in\C_N$.
+
+It is important for the left-hand side of the equation to be viewed as a 
+single identity with $P^+$ forming a factor of the definable subassignment, rather than viewed as an infinite collection of identities indexed by $\lambda\in P^+$.
+This allows us to invoke the transfer principle a single time, rather than once for each $\lambda\in P^+$.
+\end{proof}
+
+\newpage 
+\section{easy Kato-Lusztig}
+
+\subsection{twisted Weyl character formula}
+
+We review the proof of the Weyl-character formula, as presented in \cite{kostant1961lie}, \cite{jantzen1977darstellungen}, and \cite{wendt2001weyl}.
+At the same time, we consider various $q$-deformations of the standard formulas.
+
+Let $\hat G$ be a complex group, with outer automorphism $\sigma$ that preserves a pinning, including
+$\hat T$ and $\hat B = \hat T \hat N$.
+
+Let $\lambda$ be a dominant weight in $X^*(\hat T)^\sigma$.  Let $V_\lambda$ be the irreducible module
+of $\hat G$ with highest weight $\lambda$.  The $\sigma$-invariance of $\lambda$ implies that $V_\lambda$
+extends uniquely to a representation of $\hat G \rtimes \g{\sigma}$ such that $\sigma v = v$ for $v$ in the
+highest weight space of $V_\lambda$.  We let $\tau_\lambda$ be the character on $V_\lambda$, restricted to $\hat T\rtimes\g{\sigma}$.
+
+Let $\n$ be the Lie algebra of $\hat N$, considered as a module of ${}^L\hat T=\hat T\rtimes\g{\sigma}$ by the adjoint representation,
+and let $\n'$ be its contragredient module.  We write $\chi_j$ for the character of the exterior power $\Lambda^j \n'$.
+  We write $\tilde\chi_q = \sum_j (-q)^j\chi_j$
+for the $q$-graded virtual character on the sum of $\Lambda^j \n'$, with grading $(-q)^j$ on the $j$th summand.  
+
+The character $\tilde\chi_q$ evaluated at $\sigma t$ depends only on the image $s\in\hat S$ of $t\in \hat T$.
+We have 
+\[
+P(E^{-1},q)^{-1}(s) = \det(1 - q\sigma t;\n') = \sum_j (-q)^j \chi_j = \tilde\chi_q,
+\]
+because the determinant can be evaluated by picking a basis of eigenvectors of $\sigma t$ on $\n'$ and expanding in a sum.
+We have $E^{-1}$ rather than $E$ because $\n'$ is the contragredient.
+
+There is an explicit product formula for the character $\tilde\chi_q$ as given by the following lemma:
+
+\begin{lemma} \label{eqn:weyl-product}
+Let $B_1,\ldots,B_k$ be the orbits of $\Phi^+$ under $\g{\sigma}$, with cardinalities $b_i = \card(B_i)$.
+Let $\beta_i\in B_i$ be a representative of each orbit.
+Then
+\[
+\det(1-\sigma  q E;\n) = \prod_{i=1}^k (1- \epsilon_i q^{b_i} e^{N\beta_i}),
+\]
+where 
+$N\beta = \sum_{\beta'\in \g{\sigma}\beta} \beta'$ is the norm and
+\[
+\epsilon_i=\begin{cases} 1 & \text{type I, II},\\
+     -1 & \text{type III}.
+\end{cases}
+\]
+\end{lemma}
+
+\begin{proof} This can be found in the special case $q=1$, 
+for example, in \cite{jantzen1977darstellungen}, \cite{wendt2001weyl}.  Here is a sketch.
+The determinant is block diagonal, with a block for each orbit of $\g{\sigma}$ on $\Phi^+$.
+
+Let $\beta\in \Phi^+$ be any positive root.  Let $B$ be its orbit under $\g{\sigma}$.
+Then $B$ is the set of simple roots in a root system.   Since $\g{\sigma}$ acts transitively on the simple roots,
+each connected component of the Dynkin diagram must have type $A_1$ or $A_2$.  
+
+When the connected components have type $A_2$, the simple roots of the Dynkin diagram of $B$ are said to have type II.
+We have $\sigma^m \beta = \beta'$, for some $m$, where $\beta$ and $\beta'$ are the two simple roots in the $A_2$-component of $\beta$.
+Also $\gamma = \beta + \beta'$ is a positive root of highest weight in $A_2$.  We say that $\gamma$ has type III.
+Let $C$ be the orbit of $\gamma$ under $\g{\sigma}$.  
+
+On the block $B$, we can pick a basis $X_i$ of the
+root spaces $\n_{\sigma^i\alpha}$ such that $\sigma$ acts as $\sigma X_i = X_{i+1}$, with indices mod $\card{B}$.
+The $\det$ on this block is $1- \prod_B {q e^{\beta}} = 1- q^{\card B} e^{N \beta}$.
+
+On block $C$, we have that $\sigma^m$ acts on $X_\gamma = [X_\beta,X_{\beta'}]$ 
+as $\sigma^m X_\gamma = [X_{\beta'},X_\beta] = -X_\gamma$, and we have acquired a sign.  
+It follows that the determinant on block $C$
+is $1+\prod_C {q e^\gamma} = 1+q^{\card C} e^{N\gamma}$.
+
+When the connected
+components have type $A_1$, and not type III as above, the root $\beta$ is said to be of type I.  
+The $\det$ on this block is computed as in  type II to be $1- \prod_B q e^{\beta} = 1- q^{\card{B}} e^{N \beta}$.
+\end{proof}
+
+\begin{corollary} The character $\tilde \chi_q$, for $q=1$ is given by
+\[
+P(E^{-1},1)^{-1} = \prod_{\alpha\in\Sigma_1} (1-e^{-\alpha}).
+\]
+\end{corollary}
+
+\begin{proof}  The product formula of the lemma for $q=1$ reduces to
+\[
+\prod_{i=1}^k (1 - \epsilon_i e^{N\beta_i}),
+\]
+as $\beta_i$ runs over a representative in $\Phi^+$ of each $\g{\sigma}$-orbit.
+When the root $\beta$ has type I, then $N\beta = N'\beta \in \Sigma^+_1$.
+When the root $\beta$ has type II, then $N\beta = N'\beta/2$.
+Also $\gamma = \beta+\sigma^m\beta$ has type III with norm $N\gamma = N\beta = N'\beta/2$.
+Thus, with type II and III there are two orbits with the same norm, but opposite signs $\epsilon_i$.  
+The combined contribution from the
+two orbits is
+\[
+(1- e^{N'\beta/2})(1+e^{N'\beta/2}) = (1-e^\alpha),
+\]
+where $\alpha = N'\beta$.
+\end{proof}
+We see that the modification $N'$ of the norm $N$  accommodates the
+two orbits with the same norm.  The set $\Sigma_1$ of modified norms $N'\beta$ is the
+correct root system to use for the twisted Weyl-character formula, because of its relation to $P(E^{-1},1)$.
+
+
+The spaces $C^j=\Lambda^j \n'\otimes V_\lambda$ are the terms of a cochain complex of ${}^LT$-modules.
+We consider the $\ring{Z}/2\ring{Z}$-graded virtual character $\tilde \tau_\lambda  = \tau_\lambda \tilde \chi_{1}$ on  
+this cochain complex.
+By an Euler-Poincar\'e argument, 
+$\tilde\tau_\lambda$ equals the character on the cohomology of the complex.  The cohomology has 
+been computed explicitly \cite{kostant1961lie}.
+These computations show that for each $w\in W^\sigma$, the term $e^{w(\lambda+\rho)-\rho}$ 
+occurs once in cohomology with sign $(-1)^{\ell w}$.
+Thus, in terms of our alt-symmetrizer $J$, we have
+\[
+\tilde \tau_\lambda = J(e^\lambda).
+\]
+Solving $\tilde \tau_\lambda = \tau_\lambda \tilde \chi_1$ for $\tau_\lambda$, we obtain the Weyl character formula
+\[
+\tau_\lambda = J(e^\lambda) P(E^{-1},1).
+\]
+It is natural to extend $\tau_\lambda$ to a $q$-character by defining $\tau_{\lambda,q}$ by
+$\tilde \tau_\lambda = \tau_{\lambda,q} \tilde \chi_q$, so that
+\[
+\tau_{\lambda,q} = J(e^\lambda) P(E^{-1},q).
+\]
+We leave it as a problem for the reader to find natural interpretations of $\tau_{\lambda,q}$, along the lines of Kazhdan-Lusztig
+polynomials.  Kato and Lusztig give an answer when $\sigma=1$.
+
+
+\subsection{partition function}
+
+Here I describe what I hope the partition function should be $\ldots$
+
+Let $G$ be an unramified group and $K$ a hyperspecial maximal compact subgroup.  Let $A$ be a maximal split torus,
+with centralizer $M$.
+
+Let $(X_*,X^*,\Phi,\Phi^\vee)$ be the absolute root datum attached to $G$ over a separable closure.
+
+We have identifications
+\[
+M/M(0)=A/A(0)=X_*(A)=X_*(M)^\sigma  =X^*(\hat T)^\sigma = Y^* = X^*(\hat S),
+\]
+where $\hat S = \hat T/(1-\sigma \hat T)$.
+
+Each unramified character $\chi:M\to \ring{C}^\times$, by the identifications given above, is a homomorphism
+\[
+\chi\in\op{Hom}(M/M(O),\ring{C}^\times) = \op{Hom}(X^*(\hat S),\ring{C}^\times) = X_*(\hat S)\otimes \ring{C}^\times = \hat S.
+\]
+We write $\chi = \chi_s$, for $s\in\hat S$.
+
+
+Each absolute root $\beta$ defines by restriction to $A$ a root $\alpha$ of $A$.  We use the modified
+restriction map $\op{res}'$ of Haines, so that the root lands in the reduced root system $\Sigma_0$ used by Macdonald.
+(This corresponds to picking the long roots out of the nonreduced system.)
+Casselman constructs an element $a_\alpha \in M$, which gives an element $\beta'\in X^*(\hat S)$,
+by the identifications given above.  
+
+On the other hand, again starting with $\beta\in\Phi$, there is a dual root $\beta^\vee\in \Phi^\vee$, which may be considered
+a root of the dual group $\hat G$.   The modified norm map $N'$ is defined in Chriss, Haines, and Kottwitz-Shelstad (foundations twisted endoscopy).
+It is the usual norm $N\beta$, except when $\beta^\vee$ has type II and then it is multiplied by an extra factor of $2$ (picking out the long root in 
+the nonreduced system).   Then $N'\beta^\vee$ is $\sigma$-fixed: $N'\beta^\vee\in X*(\hat T)^\sigma = X^*(\hat S)$.
+
+The following conjecture should not be hard to confirm or refute.  It is a matter of tracing all the maps through carefully.
+(Intuitively, Casselman's  construction of $a_\alpha$ seems to involve switching over to the corresponding
+short root in the nonreduced system??  So going to the Langlands dual, we should be picking out the long roots from the nonreduced root system, which is what the 
+modified norm map does.)  
+
+\begin{conjecture} For every $\beta\in\Phi$, we have $\beta' = N'\beta^\vee\in X^*(\hat S)$.
+\end{conjecture}
+
+The set of modified norms of simple roots $N'\beta^\vee$ are the roots of a root system called $\Sigma_1$ in Chriss (that is not to be confused
+with Macdonald's $\Sigma_1$).   It is the root system $\Sigma_1$ that is used for the twisted Weyl character formula on $\hat G$.
+
+We now assume this conjecture, and
+rewrite Macdonald's formula in terms of the root system  $\Sigma_1$ in the dual group instead of the root system of $G$.
+We identify elements of $\ring{C}[Y^*]$ with functions on $\hat S$.  We also wish to express the constants $q_\alpha$ and $q_{\alpha/2}$
+in the formula by data in the dual group.
+
+Assume the outer automorphism $\sigma$ acts on $\hat G$ fixing a pinning including $\hat T$, $\hat B = \hat T \hat N$.  We now take $\hat G$ to be the
+primary object and drop the $\vee$ from notation, so that $\Phi$ denotes the  root system of the complex group $\hat G$.
+Let $\n$ be the Lie algebra of $\hat N$ and
+let $\n = \oplus_{\beta\in \Phi^+} \n_\beta$ be the root space decomposition.  We define a symbolic operator $E$ on $\n$ that is diagonal with
+respect to the root space decomposition:
+%\[
+%E v = e^{k \beta} v, \text{ for } v \in \n_\beta,\quad \text{where } 
+%k = k_\beta = \begin{cases} 1,&\beta \text{ type 1}\\
+%\frac{1}{2},&\beta \text{ type II,III}.
+%\end{cases}
+%\]
+\[
+E v = e^{\beta} v, \text{ for } v \in \n_\beta.
+\]
+For $w\in W$, we define $w(E)$ formally, by $w(E) v = e^{ w \beta} v$, for $v\in \n_\beta$.
+The automorphism $\sigma$ also acts on $\n$.  We define the $q$-partition function as
+\[
+P(E,q) = 1/\det(1 - q \sigma E;\n).
+\]
+
+
+This determinant encodes all the constants $q_\alpha$, $q_{\alpha/2}$ that occur in the Macdonald formula.
+It also encodes the norms of the absolute roots that give the root system $\Sigma_1$.
+In particular, $P(E^{-1},1)$ is the denominator of the twisted Weyl integration formula for the root system $\Sigma_1$.
+
+It can help to consider a couple of examples.  If $\sigma=1$, then $q \sigma E$ is diagonal, every root has type I, and the partition function
+is a product over root spaces $P(E,q) = \prod_{\beta\in\Phi} (1- q e^\beta)^{-1}$.  This is the classical $q$-partition function.
+
+Now take $\sigma$ to be the outer automorphism of $GL(3,\ring{C})$ preserving a pinning.  The roots $\alpha_1 = t_1-t_2$ and $\alpha_2 = t_2-t_3$ have type II,
+and $\alpha_3=t_1-t_3$ has type $III$.  The automorphism $\sigma$ acts as $\sigma X_1 = X_2$, $\sigma X_2 = X_1$, and $\sigma X_3 = - X_3$, for $X_i\in \n_{\alpha_i}$.
+Thus, 
+\[
+\det(1 - q^{-1} \sigma E) = 
+\begin{pmatrix} 1 & -q^{-1} e^{\alpha_1/2}\\ -q^{-1} e^{\alpha_2/2} & 1\end{pmatrix} (1 + q^{-1} e^{\alpha_3/2}) = (1 - q^{-2} e^{\alpha/2}) (1 + q^{-1} e^{\alpha/2}),
+\]
+where $\alpha\in \Sigma_1^+$ is the unique positive root in the root system $\Sigma_1$.
+This is  the numerator of $\gamma_\chi$ in the Macdonald formula for $U_3$, expressed in terms of dual group data.
+
+Macdonald's formula takes the form
+\[
+\hat f_\mu = (*) \sum_{w\in W^\sigma} e^{w\mu} \frac{P(w(E)^{-1},1)}{P(w(E)^{-1},q^{-1})}
+\]
+where I have omitted the leading factors $(*)$ that appear.
+
+
+
+Let $\hat S_1$ be the maximal compact subgroup of $\hat S_1$.  Let $ds$ be the Haar measure on $\hat S_1$ normalized
+so that $\hat S_1$ has volume $1$.
+We ``define'' the Plancherel measure to be
+\[
+(*)\frac{P(E,q^{-1}) P(E^{-1},q^{-1})}{P(E,1) P(E^{-1},1)} ds.
+\]
+where again I omit standard normalizing factors (*).  (We should check that this is $W^\sigma$-invariant.)
+
+
+Equipped with Plancherel and Macdonald, we obtain the easy Kato-Lusztig formula for the inverse Satake transform, exactly as in Kato's article.   Recall that we write
+\[
+\tau_\lambda = \sum t_{\lambda,\mu} \hat f_\mu,
+\]
+for inverse Satake.  The functions $\hat f_\mu$ form an orthogonal basis with respect to the Plancherel measure.
+So $t_{\lambda,\mu} = (*) \langle\tau_\lambda,\hat f_\mu\rangle$ up to a normalizing factor $(*)$.
+Also, Plancherel and $\tau_\lambda$ are both $W^\sigma$-invariant, which means that we can replace $\hat f_\mu$, which is
+expressed by an average over $W$ by the $w=1$ contribution to $\hat f_\mu$.
+In the inner product $\langle f,g\rangle$ we conjugate the second term $g$.
+The conjugate of $e^\mu$ is $e^{-\mu}$ and of $E$ is $E^{-1}$.
+Thus, the coefficient $t_{\lambda,\mu}$, up to trivial factors $(*)$ is given by
+\begin{align*}
+&~\left\langle \tau_\lambda, e^{\mu} \frac{P(E^{-1},1)}{P(E^{-1},q^{-1})}\right\rangle \hfill\\
+&=\int_{\hat S_1} \tau_\lambda \left(e^{-\mu} \frac{P(E,1)}{P(E,q^{-1})}\right) dm(s)\hfill \\
+&=
+(*)\int_{\hat S_1} \left(J(e^\lambda) P(E^{-1},1)\right)  
+\left(e^{-\mu} \frac{P(E,1)}{P(E,q^{-1})}\right)
+\left(\frac{P(E,q^{-1}) P(E^{-1},q^{-1})}{P(E,1) P(E^{-1},1)}\right) ds\\
+&=
+(*)\int_{\hat S_1} J(e^\lambda) P(E^{-1},q^{-1}) e^{-\mu} ds\\
+&=(*)(\tau_{\lambda,q^{-1}},e^\mu).
+\end{align*}
+Here $\tau_{\lambda,q}$ is the $q$-twisted character introduced above.
+  Also, in the last line of the equality, $(\cdot,\cdot)$ is the inner product with respect to the Haar (not Plancherel) measure on $\hat S_1$.
+With respect to this measure, $(e^\lambda,e^\mu) = \delta_{\lambda,\mu}$.  
+We conclude that $t_{\lambda,\mu}$ up to inconsequential factors is given by the coefficient of $e^\mu$ in $\tau_{\lambda,{q^{-1}}}$.
+Thus, $t_{\lambda,\mu}$ are simply $q$-multiplicities.  In particular, they are constructible Presburger functions.
+
+
+
+
+
+\newpage

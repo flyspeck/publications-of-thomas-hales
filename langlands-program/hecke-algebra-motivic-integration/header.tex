@@ -1,0 +1,171 @@
+%%
+% Author  Jorge Cely, Thomas C. Hales,
+% Casselman?
+% LaTeX Format
+% The spherical Hecke algebra and motivic integration
+
+%!TEX TS-program = latex    
+%% This line is for TexShop. 
+
+% started June 2016
+
+
+\documentclass{amsart}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{alltt}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amscd}
+
+% required by CUP
+\usepackage[numbers]{natbib}
+\usepackage{rotating}
+\usepackage{floatpag}
+ \rotfloatpagestyle{empty}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{multind}\ProvidesPackage{multind}
+\usepackage{times}
+
+
+% my additions
+\usepackage{verbatim}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{crop}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{txfonts}
+%\usepackage[hyphens]{url}
+%\usepackage{url}
+\usepackage{setspace}
+\usepackage{ellipsis} % 
+% http://www.ctan.org/tex-archive/macros/latex/contrib/ellipsis/ellipsis.pdf 
+% wrapping graphics
+% http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
+\usepackage{wrapfig}
+\usepackage{listings}
+
+
+%tikz graphics
+%\usepackage{xcolor} % to remove color.
+\usepackage{tikz} % Needs pgf version >= 2.10.
+\usetikzlibrary{chains,shapes,arrows,trees,matrix,positioning,backgrounds,fit,calc,fadings}
+
+% fonts
+\usepackage[mathscr]{euscript} % powerset.
+\usepackage{pifont} %ding
+\usepackage[displaymath]{lineno}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% line numbers
+\def\lll{\resetlinenumber[1]}
+\def\linenumberfont{\normalfont\small\sffamily}
+
+\def\tocpart#1{
+  \addcontentsline{toc}{part}{\Large{#1}}}
+% (or even \LARGE)
+  
+\crop
+
+
+\def\linput#1{\lll\input{#1}}
+
+
+\raggedbottom  % for now.
+%\raggedright  % don't worry for now.
+
+%% \renewcommand{\baselinestretch}{2}  %% turns on double spacking
+
+%%% end notes -kill this.
+%%\maketextnotes
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% new theorems
+
+\theoremstyle{plain}
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{theorem*}[equation]{Theorem$^*$}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{lemma*}[equation]{Lemma$^*$}
+\newtheorem{background}[equation]{Background}
+\newtheorem{corollary}[equation]{Corollary}
+\newtheorem{example}[equation]{Example}
+\newtheorem{conjecture}[equation]{Conjecture}
+%---
+\theoremstyle{definition}
+\newtheorem{definition}[equation]{Definition}
+%---
+\theoremstyle{remark}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{notation}[equation]{Notation}
+\newtheorem{exer}[equation]{Exercise}
+
+\renewcommand\footnotemark{}
+%\renewcommand\footnoterule{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\title
+    {The Spherical Hecke algebra, partition functions, and motivic integration}
+\author{William Casselman, Jorge E. Cely, and Thomas Hales}
+\date{July 10, 2016}
+\thanks{XX Add thanks.}
+
+\begin{abstract}  
+{\bf This draft is not for general distribution.}   
+This article gives a proof of the fundamental lemma for the spherical Hecke algebra
+for unramified $p$-adic reductive groups in large positive characteristic.  The proof is based on the transfer principle
+for constructible motivic integration.    
+As part of our analysis, we generalize a formula of Kato and Lusztig 
+to a disconnected complex reductive group, viewed as the Langlands dual of an unramifed $p$-adic reductive group.  
+We also give new explicit formulas for Macdonald's formula,
+the Plancherel measure, and the inverse Satake transform for the spherical Hecke algebra.  These formulas
+are expressed in terms of a $q$-partition function that generalizes Kostant's $q$-partition function for connected groups.
+% XX
+\end{abstract}
+
+ \lhead{}
+\rhead{Hecke algebras and motivic integration}
+
+\parskip=\baselineskip
+
+ \maketitle
+
+%%%
+
+
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FRONT
+
+      \input{hecke}
+      
+      \bibliography{hecke} 
+%\bibliographystyle{plain}
+      
+      \bibliographystyle{plainnat}
+%\bibliography{announce_refs}
+
+
+
+%% shell:>makeindex index/Index
+%% shell:>makeindex index/Notation
+%% edit index/Notation.ind to put an \indexspace before Greek entries.
+
+%\printindex{index/Index}{General index}
+%\printindex{index/Notation}{Notation index}
+
+%\input{frontmatter}
+
+\end{document}
