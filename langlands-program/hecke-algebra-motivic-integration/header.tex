@@ -93,22 +93,18 @@
 % new theorems
 
 \theoremstyle{plain}
-\newtheorem{theorem}[equation]{Theorem}
-\newtheorem{theorem*}[equation]{Theorem$^*$}
-\newtheorem{lemma}[equation]{Lemma}
-\newtheorem{lemma*}[equation]{Lemma$^*$}
-\newtheorem{background}[equation]{Background}
-\newtheorem{corollary}[equation]{Corollary}
-\newtheorem{example}[equation]{Example}
-\newtheorem{conjecture}[equation]{Conjecture}
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{lemma}{Lemma}[subsection]
+\newtheorem{corollary}{Corollary}[subsection]
+\newtheorem{example}{Example}[subsection]
 %---
 \theoremstyle{definition}
-\newtheorem{definition}[equation]{Definition}
+\newtheorem{definition}{Definition}[subsection]
 %---
 \theoremstyle{remark}
-\newtheorem{remark}[equation]{Remark}
-\newtheorem{notation}[equation]{Notation}
-\newtheorem{exer}[equation]{Exercise}
+\newtheorem{remark}{Remark}[subsection]
+\numberwithin{equation}{subsection}
+
 
 \renewcommand\footnotemark{}
 %\renewcommand\footnoterule{}
@@ -119,24 +115,24 @@
 \title
     {The Spherical Hecke algebra, partition functions, and motivic integration}
 \author{William Casselman, Jorge E. Cely, and Thomas Hales}
-\date{July 10, 2016}
-\thanks{XX Add thanks.}
+\date{July 12, 2016}
+%\thanks{XX Add thanks.}
 
 \begin{abstract}  
 {\bf This draft is not for general distribution.}   
 This article gives a proof of the fundamental lemma for the spherical Hecke algebra
 for unramified $p$-adic reductive groups in large positive characteristic.  The proof is based on the transfer principle
 for constructible motivic integration.    
-As part of our analysis, we generalize a formula of Kato and Lusztig 
-to a disconnected complex reductive group, viewed as the Langlands dual of an unramifed $p$-adic reductive group.  
-We also give new explicit formulas for Macdonald's formula,
+As part of this work, we generalize a formula of Kato and Lusztig 
+to a non-connected complex reductive group, viewed as the Langlands dual of an unramifed $p$-adic reductive group.  
+We give new explicit formulas for Macdonald's formula,
 the Plancherel measure, and the inverse Satake transform for the spherical Hecke algebra.  These formulas
 are expressed in terms of a $q$-partition function that generalizes Kostant's $q$-partition function for connected groups.
 % XX
 \end{abstract}
 
- \lhead{}
-\rhead{Hecke algebras and motivic integration}
+ \lhead{Casselman, Cely, Hales}
+\rhead{Hecke algebras, partition functions, and motivic integration}
 
 \parskip=\baselineskip
 
@@ -152,20 +148,7 @@ are expressed in terms of a $q$-partition function that generalizes Kostant's $q
       \input{hecke}
       
       \bibliography{hecke} 
-%\bibliographystyle{plain}
       
       \bibliographystyle{plainnat}
-%\bibliography{announce_refs}
-
-
-
-%% shell:>makeindex index/Index
-%% shell:>makeindex index/Notation
-%% edit index/Notation.ind to put an \indexspace before Greek entries.
-
-%\printindex{index/Index}{General index}
-%\printindex{index/Notation}{Notation index}
-
-%\input{frontmatter}
 
 \end{document}
