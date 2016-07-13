@@ -164,9 +164,9 @@ If $X\to S$ is a morphism of definable subassignments, there is  a subgroup $I_S
 The intuitive interpretation of an $S$-integrable function $f$ is a function such that the integral over each fiber of $X\to S$ 
 is convergent with respect to the canonical motivic measure.  For a morphism $\phi: X\to Y$ over $S$, there is a 
 pushforward $\phi_!:I_SC(X)\to I_SC(Y)$ that is called {\it integration over fibers}.  Pushforwards compose: $(\phi\psi)_! = \phi_!\psi_!$.
-In this article, we will always deal with bounded constructible functions.  Such functions are always integrable by 
+In this article, we always deal with bounded constructible functions.  Such functions are always integrable by 
 \cite[Prop~12.2.2]{cluckers2008constructible}.
-Thus, we will not need to deal with integrability issues.
+Thus, we do not need to deal with integrability issues.
 
 \subsection{Presburger constructible functions}
 
@@ -361,7 +361,7 @@ We note that Bruhat-Tits gives the Cartan decomposition over general discrete va
 
 \begin{remark}   $D_G$ captures the entire spherical Hecke algebra as a single
 definable subassignment.  In applications to the fundamental lemma, 
-it will be important to work with this single subassignment
+it is important to work with this single subassignment
 rather than an infinite basis of the spherical Hecke algebra.
 \end{remark}
 
@@ -454,14 +454,13 @@ Let $\Phi$ be the root system of the complex group $\hat G$ with respect to $\ha
 $\Phi^+$ be the set of positive roots with respect to $(\hat T,\hat B)$.
  We classify the roots $\beta\in\Phi^+$ into three types as follows.  We let $B$ be the orbit of $\beta$ under
 $\g{\theta}$.  Note that $\theta$ preserves the height of a root.
-
 A Dynkin diagram can be formed with node set $B$, by joining nodes that are not orthogonal.  
 Transitivity of the action of $\theta$ on nodes forces each component of the Dynkin diagram to have type $A_1$
 or $A_2$.  If every component of the Dynkin diagram for $B$  has type $A_2$, then we say that the roots in $B$
-have type II.  In that case, there exists $m$ such that  $\theta^m$ acts nontrivially
-on each factor $A_2$.   For each $\beta\in B$, we have a positive root $\gamma = \beta+\theta^m\beta$ that
-is the highest root in an $A_2$ factor.  We say that $\gamma$ has type III.
-The remaining roots of $\Phi^+$ have type I.  For roots of
+have {\it type II}.  In that case, there exists $m$ such that  $\theta^m$ acts nontrivially
+on each factor $A_2$.   For each $\beta\in B$ of type II, we have a positive root $\gamma = \beta+\theta^m\beta$ that
+is the highest root in an $A_2$ factor.  We say that $\gamma$ has {\it type III}.
+The remaining roots of $\Phi^+$ have {\it type I}.  For roots of
 types I and III, each component of the Dynkin diagram has type $A_1$.
 
 We define a norm map on $\Phi^+$.  Let $\beta\in\Phi^+$, and let $B$ be its orbit under $\g{\theta}$.
@@ -476,8 +475,9 @@ N\beta & \text{type I}\\
 The torus $\hat T$ is $\theta$-stable.  We form the quotient 
 $\hat S = \hat T/(1-\theta) \hat T$, where we define
 \[
-(1-\theta)\hat T = \{ t\theta(t^{-1}) \mid t\in \hat T\}.
+(1-\theta)\hat T = \{ t\theta(t^{-1}) \mid t\in \hat T\},
 \]
+using additive notation for a multiplicative group.
 If $\lambda\in X^*(\hat T)^\theta$ is $\theta$-fixed, then
 it is trivial on $(1-\theta)\hat T$ and descends to a character $\lambda\in X^*(\hat S)$.
 We obtain an isomorphism $X^*(\hat T)^\theta = X^*(\hat S)$.
@@ -492,7 +492,7 @@ may treat $\Sigma_1$ as a subset of  $X^*(\hat S)$.
 Let $W^\theta$ be the $\theta$-fixed subgroup of the Weyl group of $\hat T$ in $\hat G$.  
   Then $W^\theta$ acts on $X^*(\hat T)^\theta = X^*(\hat S)$.  In fact, $W^\theta$ may be
 identified with the Weyl group of the root system $\Sigma_1$. (Compare Corollary \ref{cor:weyl-p}.)
-We write $\ell(w)$ for the length of $w\in W^\theta$, viewing $W^\theta$ as the Weyl group of $\Sigma_1$.
+We write $\ell(w)$ for the length of $w\in W^\theta$, computed relative to a set of simple reflections of the root system $\Sigma_1$.
 
 Let $G$ be an unramified group and $K$ a hyperspecial maximal compact subgroup.  Let $A$ be a maximal split torus,
 with centralizer $M$.  Let ${}^LG = \hat G \rtimes \g{\theta}$ be its $L$-group.
@@ -580,7 +580,7 @@ is a product over positive roots
 $P(E,q) = \prod_{\beta\in\Phi^+} (1- q e^\beta)^{-1}$.  This is the classical $q$-partition function.
 
 
-\begin{corollary} Specializing to $q=1$, we have
+\begin{corollary}\label{cor:prod1} Specializing to $q=1$, we have
 \[
 P(E^{-1},1) = \prod_{\alpha\in\Sigma^+_1} (1-e^{-\alpha})^{-1}.
 \]
@@ -603,8 +603,12 @@ two orbits is
 where $\alpha = N'\beta = 2N\beta$.
 \end{proof}
 
-We see that the modification $N'$ of the norm $N$  accommodates the
-two orbits with the same norm.  
+We see from the proof 
+that the modification $N'$ of the norm $N$  accommodates the
+two orbits with the same norm.  That is,
+\[
+N'\beta = \sum_{\beta'\in \Phi, ~N\beta' = N\beta} \beta'.
+\]
 %The set $\Sigma_1$ of modified norms $N'\beta$ is the
 %correct root system to use for the twisted Weyl-character formula, because of its relation to $P(E^{-1},1)$.
 
@@ -690,7 +694,7 @@ Thus, in terms of the operator $J$, we have
 \tilde \tau_\lambda = J(e^\lambda) = \sum_{w\in W^\theta} (-1)^{\ell(w)} e^{w\bullet\lambda}.
 \]
 
-We have   $\tilde \tau_\lambda = \tau_\lambda \tilde \chi_{1}$ by the definition of $C^j$ as
+We have  a product decomposition $\tilde \tau_\lambda = \tau_\lambda \tilde \chi_{1}$ by the description of $C^j$ as
 a tensor product.
 Multiplying both sides by $P(E^{-1},1)$, and using
 Equation \ref{eqn:tilde}, we obtain the twisted Weyl character formula
@@ -704,7 +708,7 @@ $\tilde \tau_\lambda = \tau_{\lambda,q} \tilde \chi_q$, so that
 \[
 \tau_{\lambda,q} = J(e^\lambda) P(E^{-1},q).
 \]
-We leave it as a problem for the reader to find natural interpretations of $\tau_{\lambda,q}$, along the lines of Kazhdan-Lusztig
+We leave it as a problem for the reader to find interpretations of $\tau_{\lambda,q}$, along the lines of Kazhdan-Lusztig
 polynomials.  Kato and Lusztig give an answer when $\theta=1$.
 
 
@@ -725,7 +729,7 @@ of $\ring{C}[Y^*]^{W^\theta}$.  Then
 where we have omitted the leading factors $(*)$ that appear.
 \end{theorem}
 
-This formula reworks Macdonald's classical formula in various ways.
+This formula reworks Macdonald's classical formula in various ways \cite{macdonaldspherical}.
 We use the partition function to
 encode the constants $q_\alpha$, $q_{\alpha/2}$ that occur in the Macdonald formula.  It eliminates
 the relative reduced root system $\Sigma_0$ on the $p$-adic group used by Macdonald.  Our formula is most closely
@@ -751,56 +755,129 @@ in the Macdonald formula for unramified $p$-adic $U_3$, expressed in terms of du
 %We also wish to express the constants $q_\alpha$ and $q_{\alpha/2}$
 %in the formula by data in the dual group.
 
+We need a few lemmas before giving the proof of Macdonald's
+formula.
+
 Each $\beta\in \Phi$ in the root system of $\hat G$, gives a
  coroot $\beta^\vee$ in the absolute root system of $G$.  We say that $\beta^\vee$ has type X according to
 the type $X=I,II,III$ of $\beta$.
 Let $\op{res}$ be the restriction map from $X^*(M)$ to $X^*(A)$.
-We define a modified restriction by $\op{res}'$ by
+Following Haines, we define a modified restriction by $\op{res}'$ by
 \[
 \op{res}' (\beta^\vee) = \begin{cases}
 \op{res}(\beta^\vee) & \text{type I,III},\\
-\op{res}(\beta^\vee) & \text{type II??}.
+2\op{res}(\beta^\vee) & \text{type II}.
 \end{cases}
 \]
-Then $\alpha:=\op{res}'(\beta^\vee)\in \Sigma_0$, the reduced root system used by Macdonald.
-(This corresponds to picking the long roots out of the nonreduced system.)
-For each $\alpha\in\Sigma_0$,
-Casselman constructs an element $a_\alpha \in M$, which gives an element $\beta'\in M/M(O) = X^*(\hat S)$,
-by the identifications given above (Equation \ref{eqn:identify}).  
+Then $\alpha_0=\op{res}'(\beta^\vee)$ is a root in $\Sigma_0$, the reduced root system used by Macdonald.  See \cite[Th.B]{haines2016dualities}.
+(This construction picks the long root among a homothetic pair
+of roots in the nonreduced system.)
+The map $\op{res}':\Phi\to \Sigma_0$ is onto.
 
-On the other hand, again starting with $\beta\in\Phi$, we have its norm $N'\beta^\vee\in \Sigma_1 \subset X^*(\hat S)$. 
+We define a relation between $\Sigma_0$ and $\Sigma_1$ as follows.
+We say $\alpha_0\sim\alpha_1$, with $\alpha_0\in\Sigma_0$ and
+$\alpha_1\in \Sigma_1$ if there exists $\beta\in \Phi$ such
+that $\op{res}'\beta^\vee = \alpha_0$ and $N'\beta = \alpha_1$.
 
-%The following conjecture should not be hard to confirm or refute.  It is a matter of tracing all the maps through carefully.
-%(Intuitively, Casselman's  construction of $a_\alpha$ seems to involve switching over to the corresponding
-%short root in the nonreduced system??  So going to the Langlands dual, we should be picking out the long roots from the nonreduced root system, which is what the 
-%modified norm map does.)  
+\begin{lemma}  The relation $\alpha_0\sim\alpha_1$ is a bijection
+between $\Sigma_0$ and $\Sigma_1$ that sends positive roots to positive roots.
+The bijection is equivariant with respect to the action of $W^\theta$ on the two root
+systems.
+\end{lemma}
 
-\begin{lemma} For every $\beta\in\Phi$, we have $\beta' = N'\beta\in X^*(\hat S)$.
+\begin{proof} 
+The map $\beta\mapsto N'\beta$ induces a map from $\g{\theta}$-orbits of roots in $\Phi^+$
+onto $\Sigma^+_1$.  The preimage of $\alpha_1\in\Sigma_1$
+is a single orbit for roots $\beta$ of type I.  The preimage
+is a pair of orbits for roots $\beta$ of type II or III.  The pairing of orbits of types II and III is
+described in the proof of Corollary \ref{cor:prod1}.
+There is a corresponding map on orbits induced from $\beta\mapsto \op{res}'\beta^\vee$.
+The preimage of $\alpha_0\in\Sigma^+_0$ is a single orbit for roots $\beta$ of type I, and the preimage is a pair of
+orbits for roots of type II or III, paired in the same way.  It follows that $(\sim)$ is a bijection.
+\end{proof}
+
+We follow the description of Macdonald's formula 
+found in \cite{casselman1980unramified} and \cite{casselman2005companion}.
+Casselman constructs an element $a_{\alpha}\in M/M(0)$, for each $\alpha\in\Sigma_0$.
+
+\begin{lemma} Let $s\in \hat S$, and let $\chi_s\in\op{Hom}(M,\ring{C}^\times)$ be the associated
+unramified character.  Assume that $\alpha_0\sim\alpha_1$ with $\alpha_0\in\Sigma_0$ and $\alpha_1\in\Sigma_1$.
+Then
+\[
+\chi_s(a_{\alpha_0}) = \begin{cases}
+e^{\alpha_1} (s) & \text{type I}\\
+e^{\alpha_1/2}(s) & \text{type II,III}.
+\end{cases}
+\]
+\end{lemma}
+
+\begin{proof} \XX{fill in.}
+\end{proof}
+
+
+
+
+For each $\alpha_1\in\Sigma_1$, there exists $\beta\in\Phi$ of
+type I or III such that $N'\beta = \alpha$.  The cardinality $b(\alpha')$
+of the $\g{\theta}$-orbit $B$ of $\beta$ is well-defined.  If $\beta\in\Phi$ has type II,
+then the cardinality of the $\g{\theta}$-orbit of $\beta$ is $2b(N'\beta)$.
+
+For each $\alpha=\alpha_0\in\Sigma_0$, we define
+ a function $c_{\alpha}:\hat S\to\ring{C}$ as  follows.
+Let $A_{\alpha}$ be the subgroup of $A$ defined by the condition $\alpha(a)=1$, for $a\in A_\alpha$.
+The simply connected cover $\tilde M_\alpha$ of the derived group of the centralizer of $A_\alpha$ is a $p$-adic
+group of rank $1$.  There are two possibilities for $\tilde M_\alpha$.  In the first case, $\tilde M_\alpha = SL_2(F_1)$ for
+some finite unramified extension $F_1/F$.  In the second case, $\tilde M_\alpha = SU_3(E/F_1)$, where $F_1/F$ is 
+a finite unramified extension and $E/F_1$ is a quadratic unramified extension.  In both cases, 
+let $q_1 = q_F^{[F_1:F]}$ be the cardinality
+of the residue field of $F_1$.
+
+For $\alpha=\alpha_0\in\Sigma_0$, set
+\[
+c_{\alpha}(s) = \begin{cases}
+\frac{1 - q^{-1}_1 \chi_s (a_{\alpha})} {1 -\chi_s(a_{\alpha})} & \text{if } \tilde M_\alpha = SL_2(F_1),\\[1em]
+\frac{(1 - q^{-2}_1 \chi_s (a_{\alpha}))(1+ q^{-1}_1 \chi_s(a_\alpha))} {1 -\chi^2_s(a_{\alpha})} & \text{if } \tilde M_\alpha = SU_3(E/F_1).
+\end{cases}
+\]
+
+\begin{lemma}
+Assume that $\alpha_0\sim\alpha_1\in\Sigma^+_1$.  
+We are in the first case $SL_2(F_1)$ if and only if $\alpha_1=N'\beta$, for some $\beta\in\Phi$ of type I.
+Moreover, $q_1 = q^{b(\alpha_1)}$ and
+\[
+c_{\alpha_0}  = 
+\begin{cases}
+\frac{1 - q^{-1}_1 e^{\alpha_1}} {1 -e^{\alpha_1}} & \text{if } \tilde M_{\alpha_0} = SL_2(F_1),\\[1em]
+\frac{(1 - q^{-2}_1 e^{\alpha_1/2})(1+ q^{-1}_1 e^{\alpha_1/2})} {1 - e^{\alpha_1}} & \text{if } \tilde M_{\alpha_0} = SU_3(E/F_1).
+\end{cases}
+\]
 \end{lemma}
 
 \begin{proof}  \XX{add details of the proof.}  
-Let $A_{\alpha}$ be the subgroup of $A$ defined by the condition $\alpha(a)=1$, for $a\in A_\alpha$.
-The element $a_\alpha$ is constructed in the simply connected cover $\tilde M_\alpha$ of the derived
-group of the centralizer of $A_\alpha$.   We break the proof into cases, according to the type of $\beta$.  In type I,
-the simply connected group is $SL_2$ and in types II,III the simply connected group is $SU_3(E/F_1)$, for some unramified
-quadratic extension $E/F_1$, with $F/F_1$ unramified.
 \end{proof}
 
-Let $\beta\in \Phi^+$.  
-Let $b=b_\beta$ be the cardinality of the $\g{a}$-orbit of $\beta$.
-Let $\alpha = \op{res}'\beta^\vee\in\Sigma_0$ be given as above.
-Recall that Macdonald has defined constants $q_\alpha$ and $q_{\alpha/2}$ using Bruhat-Tits theory for $\alpha\in \Sigma_0$.
+We define a function $\gamma:\hat S\to \ring{C}$ by
+\[
+\gamma(s) = \prod_{\alpha_0\in \Sigma^+_0} c_{\alpha_0}(s).
+\]
 
-\begin{lemma}  
-If $\beta$ has type I, then $q^b = q_\alpha$.  If $\beta$ has type II, then $q^b = q_{\alpha/2}^{1/2}$.  If $\beta$ has
-type III, then $q^b = q_{\alpha} q_{\alpha/2}^{1/2}$.  
+\begin{lemma}
+\[
+\gamma = P(E,1)/P(E,q^{-1}).
+\]
 \end{lemma}
 
-\begin{proof}
-XX Break into two cases: $SL_2$ and $SU_3$.
+\begin{proof} Using the bijection $\alpha_0\sim\alpha_1$ between $\Sigma^+_0$ and
+$\Sigma^+_1$, we expand $\gamma$ as a product over $\alpha_1\in \Sigma^+_1$.
+We then use the product formula for the partition function (Lemma \ref{eqn:weyl-product}) to
+match factors with the partition function.
 \end{proof}
 
-XX From the previous two lemmas, the Macdonald formula easily follows.
+
+From the previous lemmas, the Macdonald formula easily follows.
+
+\begin{proof}[Proof of Macdonald's formula]
+\end{proof}
 
 \subsection{Plancherel measure}
 
@@ -826,7 +903,7 @@ That is,
 
 The denominators are never zero on $\hat S_1$ in the partition functions defining 
 $dm(s)$.  This will be checked below.
-The proof of the Plancherel measure will use the following averaging lemma.
+The proof of the Plancherel measure uses the following averaging lemma.
 
 \begin{lemma}\label{lemma:average} 
 Let $f$ be continuous on $\hat S_1$ and $W^\theta$-invariant.
@@ -837,7 +914,7 @@ Then
 \end{lemma}
 
 \begin{proof}
-The proof will use the following observation on averages.
+We begin with an observation about averages.
 The  measure $dm(s)$ is $W^\theta$-invariant by Corollary \ref{cor:weyl-p}.  As a consequence,
 we may push an average over to $f$ to obtain
 \begin{equation}\label{eqn:inv}
@@ -877,7 +954,7 @@ for all $f_1,f_2\in \H_{\ring{C}}(G,K)$,
 The integral on the left is easy to compute when $f_1 = f_\lambda$ and $f_2 = f_\mu$
 because the functions $f_\mu$ and $f_\lambda$ for $\mu\ne\lambda$ have disjoint support.
 When $\mu=\lambda$, the integral on the left is the volume of $K\varpi^\lambda K$.
-The proof of the theorem will be obtained by computing the inner products $\g{\hat f_\lambda,\hat f_\mu}$
+The proof of the theorem proceeds by computing the inner products $\g{\hat f_\lambda,\hat f_\mu}$
 and showing that they give the same values as the integral on the left.
 
 
@@ -887,22 +964,22 @@ It is what he calls {\it the standard case}.
 Choose any total order $(<)$ on $P^+\subset Y^*$ such that 
 $\lambda < \lambda + \alpha$, whenever $\alpha = N\beta$ is the norm of a positive root $\beta\in\Phi^+$.
 
-By Lemma XX,
+By Lemma \ref{eqn:weyl-product},
 the ratio $P(E,q^{-1})/P(E,1)$  factors into a product of terms of the form $(1- t)/(1- q^{-b} t)$, 
 where each $t = \epsilon e^{N\beta} = \epsilon e^\alpha$ for
 some root $\beta$ with norm $\alpha$, 
 for some sign $\epsilon\in \{\pm 1\}$, and for some orbit cardinality $b\ge 1$.
-For any $p$-adic field $F$, we have $q = q_F$ and $q^{-b} < 1$.  Thus we have an absolutely convergent 
+For any $p$-adic field $F$, we have $q = q_F > 1$ and $q^{-b} < 1$.  Thus we have an absolutely convergent 
 expansion
-\[
+\begin{equation}\label{eqn:t}
 \frac{1- t}{1- q^{-b} t} = 1 + (q^{-b}-1) t (1+ q^{-b} t + q^{-2b} t^2 + \cdots),
-\]
+\end{equation}
 noting that $|t| = |\alpha(s)|=1$ at each $s\in \hat S_1$.  In particular, the denominator of $P(E,q^{-1})/P(E,1)$ does not
 vanish.  Similarly, the
 denominator of $P(E^{-1},q^{-1})/P(E^{-1},1)$ does not vanish because $|q^{-b} t^{-1}|\ne1$, giving the nonvanishing of the
 denominator in the measure $dm(s)$.
 
-By multiplying the series expansions associated with each $\g{\theta}$-orbit of positive roots,
+By multiplying the series expansions (Equation \ref{eqn:t}) associated with each $\g{\theta}$-orbit of positive roots,
 it follows that for each $\mu\in P^+$ we have an absolutely convergent expansion of the form
 \[
 e^\mu \frac{P(E,q^{-1})}{P(E,1)} = e^\mu +\sum_{\mu< \mu'} a_{\mu'} e^{\mu'},
@@ -931,8 +1008,10 @@ c_{\lambda',\lambda} a_{\mu'} (m_{\lambda'},e^{\mu'}) = c_{\lambda,\lambda} \del
 
 \subsection{a Kato-Lusztig formula}
 
-Equipped with Plancherel and Macdonald, we obtain the easy Kato-Lusztig formula for the inverse Satake transform, 
-exactly as in Kato's article.   Recall the $q$-twisted character  $\tau_{\lambda,q}$ from above.
+\cite{kato1982spherical} \cite{lusztig1983singularities} in the twisted case) for 
+Equipped with Plancherel and Macdonald, we obtain the easy Kato-Lusztig formula for the inverse Satake transform.
+This generalizes formulas that were known when $\theta=1$, \cite{kato1982spherical} \cite{lusztig1983singularities}.
+Recall the $q$-twisted character  $\tau_{\lambda,q}$ from above.
 
 \begin{theorem}
 The inverse Satake transform is given explicitly as
@@ -968,6 +1047,77 @@ Thus, the coefficient $t_{\lambda,\mu}$, up to trivial factors $(*)$ is given by
 &=(*)(\tau_{\lambda,q^{-1}},e^\mu).
 \end{align*}
 \end{proof}
+
+
+
+\subsection{inverting weight multiplicities}
+
+In this section, we follow  van Leeuwen's algorithm to invert the weight multiplicity
+formula~\cite{vanleeuwen}.  This algorithm yields an explicit formula for the inverse and 
+implies constructibility (Theorem \ref{lemma:van-leeuwen}).
+For type $A_n$, van Leeuwen's formula agrees with the inverse of the Kostka
+matrix described in \cite{duan}.
+
+We have two bases of $\ring{C}[Y^*]^{W^\theta}$, given by $\{m_\lambda\}$ and $\{\tau_\lambda\}$, indexed
+by $\lambda\in \dom$.  
+The change of basis matrix expressing $\chi_\lambda$ in terms of $m_\mu$ is the weight multiplicity
+matrix $m_{\lambda,\mu}$, which is constructible by an earlier lemma. 
+
+We have definable set $Y^*_0\subseteq Y^*$ of characters $\mu$ such that $\mu$ is fixed by some
+reflection in $W^\theta$.  For each $w\in W^\theta$, we have a definable set 
+\[
+Y^*_w = \{\lambda\in Y^*\setminus Y^*_0\mid w\bullet \lambda \in\dom\}
+\]
+These sets partition $Y^*$, so that each $\lambda\in Y^*$ belongs to a unique $Y^*_x$, for $x\in W^\theta\cup\{0\}$.
+
+The operator $J$ has the properties $J(f) = f J(1)$ if $f\in \ring{C}[Y^*]^{W^\theta}$ and $J(\tau_\lambda) = J(e^\lambda)$.
+
+We define a desymmetrizer operator $L$ by
+\[
+L(e^\mu) = \begin{cases}
+0,& \mu\in Y^*_0;\\
+(-1)^{\ell{w}} e^{w\bullet \mu},& \mu\in Y^*_w.
+\end{cases}
+\]
+We extend $L$ linearly to $\ring{C}[Y^*]$.
+We have $L(\tau_\lambda) = e^\lambda$, for $\mu\in\dom$.  This means that
+for any $f = \sum_\lambda c_\lambda \tau_\lambda \in \ring{C}[Y^*]$, the coefficient $c_\lambda$
+is the coefficient of $e^\lambda$ in $L(f)$.
+
+For each subgroup $H\le W^\theta$, we have a definable set
+$M_H \subseteq Y^*$ given by the set of $\mu\in Y^*$ such that
+the stabilizer of $\mu$ in $W$ is $H$.  
+The sets $M_H$ partition $Y^*$. 
+The basis $m_\mu$ is given
+as 
+\[
+m_\mu = \sum_{w\in W/H} e^{w \mu},
+\]
+for $\mu\in M_H$.
+
+We have definable sets 
+\[
+E_{H,w,w'} = \{(\mu,\lambda)\in M_H\times \dom \mid w\mu\in Y^*_{w'},\quad w'\bullet(w\mu)=\lambda\}.
+\]
+indexed by subgroups $H\le W$, cosets $w\in W/H$, and elements $w'\in W$.
+
+We have a change of basis matrix $n_{\mu,\lambda}$ 
+\begin{equation}\label{eqn:n}
+m_\mu = \sum_{\mu,\lambda} n_{\mu,\lambda} \tau_\lambda.
+\end{equation}
+
+We have the following explicit form of van Leeuwen's formula.
+
+\begin{lemma}
+Van Leeuwen's formula is that $n$ restricted
+to $M_H\times \dom$ is 
+\[
+\sum_{(w,w')\in (W/H)\times W} (-1)^{\ell(w)} \op{char}\, E_{H,w,w'}.
+\]
+\end{lemma}
+
+If we combine Van Leeuwen's formula with Macdonald's formula we obtain a formula
+for the geometric Satake transform, expressing each $\hat f_\lambda$ in terms of the basis $\tau_\mu$.
 
 
 
@@ -1054,76 +1204,16 @@ by Lemma \ref{XX}.
 
 
 
-\subsection{inverting weight multiplicities}
-
-In this section, we follow  van Leeuwen's algorithm to invert the weight multiplicity
-formula~\cite{vanleeuwen}.  This algorithm yields an explicit formula for the inverse and 
-implies constructibility (Theorem \ref{lemma:van-leeuwen}).
-For type $A_n$, van Leeuwen's formula agrees with the inverse of the Kostka
-matrix described in \cite{duan}.
-
-We have two bases of $\ring{C}[Y^*]^{W^\theta}$, given by $\{m_\lambda\}$ and $\{\tau_\lambda\}$, indexed
-by $\lambda\in \dom$.  
-The change of basis matrix expressing $\chi_\lambda$ in terms of $m_\mu$ is the weight multiplicity
-matrix $m_{\lambda,\mu}$, which is constructible by an earlier lemma. 
-
-We have definable set $\Lambda_0\subseteq Y^*$ of characters $\mu$ such that $\mu$ is fixed by some
-reflection in $W^\theta$.  For each $w\in W^\theta$, we have a definable set 
-\[
-\Lambda_w = \{\lambda\in X^*\setminus \Lambda_0\mid w\bullet \lambda \in\dom\}
-\]
-These sets partition $Y^*$, so that each $\lambda\in Y^*$ belongs to a unique $\Lambda_x$, for $x\in W^\theta\cup\{0\}$.
-
-The operator $J$ has the properties $J(f) = f J(1)$ if $f\in \ring{C}[X^*]^{W^\theta}$ and $J(\tau_\lambda) = J(e^\lambda)$.
-
-We define a desymmetrizer operator $L$ by
-\[
-L(e^\mu) = \begin{cases}
-0,& \mu\in \Lambda_0;\\
-(-1)^{\ell{w}} e^{w\bullet \mu},& \mu\in\Lambda_w.
-\end{cases}
-\]
-We extend $L$ linearly to $\ring{C}[Y^*]$.
-We have $L(\tau_\lambda) = e^\lambda$, for $\mu\in\dom$.  This means that
-for any $f = \sum_\lambda c_\lambda \tau_\lambda \in \ring{C}[Y^*]$, the coefficient $c_\lambda$
-is the coefficient of $e^\lambda$ in $L(f)$.
-
-For each subgroup $H\le W^\theta$, we have a definable set
-$M_H \subseteq Y^*$ given by the set of $\mu\in Y^*$ such that
-the stabilizer of $\mu$ in $W$ is $H$.  
-The sets $M_H$ partition $Y^*$. 
-The basis $m_\mu$ is given
-as 
-\[
-m_\mu = \sum_{w\in W/H} e^{w \mu},
-\]
-for $\mu\in M_H$.
-
-We have definable sets 
-\[
-E_{H,w,w'} = \{(\mu,\lambda)\in M_H\times \dom \mid w\mu\in\Lambda_{w'},\quad w'\bullet(w\mu)=\lambda\}.
-\]
-indexed by subgroups $H\le W$, cosets $w\in W/H$, and elements $w'\in W$.
-
-We have a change of basis matrix $n_{\mu,\lambda}$ 
-\[
-m_\mu = \sum_{\mu,\lambda} n_{\mu,\lambda} \tau_\lambda.
-\]
-
 \begin{theorem}\label{lemma:van-leeuwen} $n_{\mu,\lambda}$ is a Presburger constructible function on $\dom\times\dom$.
 \end{theorem}
 
 \begin{proof} This is a consequence of van Leeuwen's algorithm. \XX{clean this up.}
-
 It is enough to show that the restriction of $n$ to each of the definable sets
-$M_H\times \dom$ is constructible.  Van Leeuwen's formula is that $n$ restricted
-to $M_H\times \dom$ is 
-\[
-\sum_{(w,w')\in (W/H)\times W} (-1)^{\ell(w)} \op{char}\, E_{H,w,w'}.
-\]
+$M_H\times \dom$ is constructible.  
 Since $E_{H,w,w'}$ is definable, its characteristic function is constructible.
 A finite sum of constructible functions is constructible.
 \end{proof}
+
 
 \begin{corollary} Consider the geometric Satake transform
 \[
@@ -1162,10 +1252,7 @@ Thus, the argument used in the proof of Lemma~\ref{lemma:partition} applies.
 Explicit formulas for branching multiplicities are typical of what Presburger constructible functions look like.
 Typically branching formulas look like products of linear factors depending on cases that can be
 described by linear inequalities on parameters $\lambda$ and $\mu$.
-
-\XX{give an example.}
-
-We will not pursue the topic, but we can similarly investigate the constructibility of the function giving the
+We do not pursue the topic, but we can similarly investigate the constructibility of the function giving the
 multiplicities of $\tau_\mu$ in $\op{Sym}^k \tau_\lambda$, and related operations on characters.
 
 \subsection{The constructibility of $B$}\label{sec:B}
@@ -1293,7 +1380,7 @@ parameter into the transfer factor ranging over the definable subassignment.
 To define the transfer factor for $p$-adic  fields, a choice of $a$-data is made, but the transfer-factor is in fact independent of the choice of $a$-data.
 
 This section introduces a definable subassignment of $a$-data and introduces an explicit free variable $a$ into the transfer factor that ranges over
-the definable subassignment of $a$-data.  The tuple $a$-data will be indexed by a fixed choice of indexing set.  
+the definable subassignment of $a$-data.  The tuple $a$-data is indexed by a fixed choice of indexing set.  
 
 We begin wih a review of $a$-data for a $p$-adic field, then show how to make the construction as a definable subassignment.
 Let $\Gamma$ be the Galois group of a Galois extension $L/F$.  We assume that $\Gamma$ acts on a finite set $R$ of roots.
@@ -1398,7 +1485,7 @@ and so forth.   Running over all orbits this way, constructible $\chi$-data are 
 
 We have now treated all terms except $\Delta_2$.
 We recall that the term $\Delta_2$ restricts to a multiplicative character on each Cartan subgroup of $G$.  It is constructed from $\chi$-data by
-means of class field theory reciprocity for tori.  The following theorem will complete our analysis of the transfer factors on groups.
+means of class field theory reciprocity for tori.  The following theorem completes our analysis of the transfer factors on groups.
 
 \begin{theorem}\label{thm:delta2}  There is a $q$-constructible function representing the transfer factor $\Delta$, 
 possibly after introducing some free parameters.  These parameters  have no effect upon specialization to a $p$-adic field.
