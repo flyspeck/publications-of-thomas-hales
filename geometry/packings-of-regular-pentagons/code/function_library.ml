@@ -331,7 +331,7 @@ let pent_contact_deprecated lx theta theta' =
   let sort (th,th') = 
   let thetas2 = selectsome (map (theta_banana lx) theta's @
 		   map (theta_banana_neg lx) theta's) in
-  exists (fun (a,b) -> meet_I a b) (outerpair thetas thetas2);;
+  exists (fun (a,b) -> meet_I a b) (outer pair thetas thetas2);;
 *)
 
 (* ordering makes theta' positive and smaller in absolute value than theta *)
@@ -370,7 +370,6 @@ let pent_contact2 lx itheta itheta' =
   let cases0 = map up0 cases in
   exists (fun (th',th) -> meet_I lx (ell_ofth th th')) cases0;;
 
-  
 (* test  
 
 let ffx a b = 
@@ -395,40 +394,82 @@ time (ffx 0.3) 0.4;;
 
 *)
 
-  let fillout2C dACrange (dAB,thABC,thBAC) (dBC,thCBA,thBCA) =
-    try
-      let arcBrange = iarc dAB dBC dACrange in
-      let prearc = pi25 - (thBAC+thBCA) in
-      let k = getint ((arcBrange - prearc)/pi25) in
-      if (k=None) then None
+(* ************************************************** *)
+(* fillout P-triangles  *)
+(* ************************************************** *)
+  
+
+let fillout2C dACrange (dAB,thABC,thBAC) (dBC,thCBA,thBCA) =
+  try
+    let arcBrange = iarc dAB dBC dACrange in
+    let prearc = pi25 - (thBAC+thBCA) in
+    let k = getint ((arcBrange - prearc)/pi25) in
+    if (k=None) then None
+    else
+      let arcB = prearc + the k*pi25 in
+      let dAC = iloc dAB dBC arcB in
+      if (dAC << two*kappa) then None
       else
-	let arcB = prearc + the k*pi25 in
-	let dAC = iloc dAB dBC arcB in
-	  if (dAC << two*kappa) then None
-	  else
-	    let dAC = merge_I (max2_I (two*kappa) (min_I dAC)) (max_I dAC) in
-	    let arcC = iarc dAC dBC dAB in
-	    let arcA = iarc dAC dAB dBC in
-	    let a = areamin_acute dAC dAB dBC in
-	    let thACB = pi25 - (arcA + thABC) in
-	    let thCAB = pi25 - (arcC + thCBA) in
-	    if arcA >> pi2 or arcB >> pi2 or arcC >> pi2 or not(Pet.pet dAC thACB thCAB)
-	    then None
-	    else
-	      Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB))
-    with e -> raise e;;
+	let dAC = merge_I (max2_I (two*kappa) (min_I dAC)) (max_I dAC) in
+	let arcC = iarc dAC dBC dAB in
+	let arcA = iarc dAC dAB dBC in
+	let a = areamin_acute dAC dAB dBC in
+	let thACB = pi25 - (arcA + thABC) in
+	let thCAB = pi25 - (arcC + thCBA) in
+	if arcA >> pi2 or arcB >> pi2 or arcC >> pi2 or not(Pet.pet dAC thACB thCAB)
+	then None
+	else
+	  Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB))
+  with e -> raise e;;
 
 
 let mk2C dACrange (xs,(sgnalpha,sgnbeta)) = 
   let [xalpha; alpha;  xbeta; beta] = xs in
-  try
-      let (dAB,thABC,thBAC) = ellthetax_sgn xalpha alpha sgnalpha in
-      let (dBC,thCBA,thBCA) = ellthetax_sgn xbeta beta sgnbeta in
-      fillout2C dACrange (dAB,thABC,thBAC) (dBC,thCBA,thBCA)
-    with e -> raise e;;
+  let dAB_triple  = ellthetax_sgn xalpha alpha sgnalpha in
+  let dBC_triple  = ellthetax_sgn xbeta beta sgnbeta in
+  fillout2C dACrange dAB_triple dBC_triple;;
 
 let mk2Ce dACrange xs = mk2C dACrange (xs,(true,true));;
 
+(* fillout 5D.  Acute triangle.
+   One pent contact between A and C. A points to C. 
+   Full input coordinates (dAB,thABC,thBAC) given along edge AB. *)
+
+let fillout5D ((dAB,thABC,thBAC),dBC,dAC) = 
+  if not(Pet.pet dAB thABC thBAC) then None 
+  else
+    let arcC = iarc dAC dBC dAB in
+    let arcA = iarc dAC dAB dBC in
+    let arcB = iarc dAB dBC dAC in
+    let a = areamin_acute dAC dAB dBC in
+    let thACB = - (arcA + thABC) in
+    let thBCA = - (arcB + thBAC) in
+    let thACB0 = Pet.periodize_pent thACB in
+    let thACB_CAB_pos = map (fun t -> t,theta_banana dAC t) thACB0 in
+    let thACB_CAB_neg = map (fun t -> t,theta_banana_neg dAC t) thACB0 in
+    let thACB_CAB= mapfilter (fun (t,s) -> (t, the s)) (thACB_CAB_pos @ thACB_CAB_neg) in
+    let thACB_CAB_CBA = map (fun (t1,t) -> (t1,t,-(arcC + t))) thACB_CAB in
+    let thACB_CAB_CBA = filter (fun (_,_,th') -> Pet.pet dBC thBCA th') thACB_CAB_CBA in 
+    if (thACB_CAB_CBA = []) then None 
+    else
+	(Some (a,(map (fun (thACB,thCAB,thCBA) -> 
+	  (dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	  (dAC,thACB,thCAB,arcB) ) thACB_CAB_CBA)));;
+
+let fillout6D ((dAB,thABC,thBAC),(dBC,thCBA),dAC) = 
+  if not(Pet.pet dAB thABC thBAC) then None 
+  else
+    let arcC = iarc dAC dBC dAB in
+    let arcA = iarc dAC dAB dBC in
+    let arcB = iarc dAB dBC dAC in
+    let a = areamin_acute dAC dAB dBC in
+    let thACB = - (arcA + thABC) in
+    let thBCA = - (arcB + thBAC) in
+    let thCAB = - (arcC + thCBA) in
+    if Pet.pet dAC thACB thCAB && Pet.pet dBC thBCA thCBA then
+      Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+      (dAC,thACB,thCAB,arcB))
+    else None;;
 
 
 (* end;; *)

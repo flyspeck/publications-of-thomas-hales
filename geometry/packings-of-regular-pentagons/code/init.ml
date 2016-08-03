@@ -114,6 +114,7 @@ reneeds "pent.ml";;
 reneeds "pet.ml";;
 reneeds "function_library.ml";;
 reneeds "dimer.ml";;
+(* deprecate dimer2.ml *)
 reneeds "autodiff.ml";;
 reneeds "meet-in-middle.ml";;
 (* reneeds "scratch.ml";; *)

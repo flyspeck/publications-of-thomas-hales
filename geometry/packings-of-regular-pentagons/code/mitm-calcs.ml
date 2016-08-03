@@ -45,6 +45,9 @@ let fillfn5 _ [dAB;thABC;thBAC;dBC;dAC] =
 let fillfn6 _ [dAB;thABC;thBAC;dBC;thCBA;dAC] =
   fillout6D ((dAB,thABC,thBAC),(dBC,thCBA),dAC);;
 
+
+(* let areafn5D (a,_) = a;; *)
+
 let areafn5 (a,_) = a;;
 
 let areafn2Ce (a,_,_,_) = a;;
@@ -63,7 +66,7 @@ let forall_alpha f t =
 let forall_alpha_pair f (t,t') = 
     let s = Pet.periodize_pent t in
     let s'= Pet.periodize_pent t' in
-    forall f (outerpair s s');;
+    forall f (outer pair s s');;
 
 
 (* in case pent2_postcluster the cluster is not a pseudo-dimer
@@ -90,6 +93,14 @@ let d_egress =
   merge_I (18//10) (204//100);;
 
 let d_third_pseudo = merge_I (two*kappa) (18//10);;
+
+let edge5D_ABs (_,fs) = map (fun ((l,t,t',_),_,_)-> (l,t,t')) fs;;
+
+let edge5D_BCs (_,fs) = map (fun (_,(l,t,t',_),_)-> (l,t,t')) fs;;
+
+let edge5D_ACs (_,fs) = map (fun (_,_,(l,t,t',_))-> (l,t,t')) fs;;
+
+let _ = fun t -> edge5D_ACs (the (fillout5D t));;
 
 let ckeyfnBC w fs = key_inverts w (edge5D_BCs fs);;
 
@@ -157,6 +168,30 @@ let mk_peri = 0;;
 (* ************************************************************ *)
 (* start calcs *)
 (* ************************************************************ *)
+
+let test1_centralpent_1237() = (* repeated calc from pent.ml *)
+  let cluster_areacut = (m 1.2 (* debug *)) in
+  let pdata = None in
+  let cencut = cluster_areacut.high in
+  let outdomfn _ = false in
+  let keyfns = [] in
+  let k2 = merge_I (two*kappa) in
+  let dAB_dBC_dAC = (k2(21//10),k2(21//10),k2(two)) in
+  let cfn = (unit_extra,fillfn5,outdomfn,areafn5,keyfns) in
+  let ccs = [(coord5(dAB_dBC_dAC),cencut);] in 
+  time_mitm cluster_areacut pdata cfn ccs;;
+
+let test1_centralpent_172() = (* repeated calc from pent.ml *)
+  let cluster_areacut = aK in
+  let pdata = None in
+  let cencut = cluster_areacut.high in
+  let outdomfn _ = false in 
+  let keyfns = [] in
+  let k2 = merge_I (two*kappa) (172//100) in
+  let dAB_dBC_dAC = (k2,k2,k2) in
+  let cfn = (unit_extra,fillfn5,outdomfn,areafn5,keyfns) in
+  let ccs = [(coord5(dAB_dBC_dAC),cencut);] in 
+  time_mitm cluster_areacut pdata cfn ccs;;
     
 (* June 7, 2016: completed running : *)
 (*
@@ -1169,6 +1204,9 @@ let precluster6_case6 =
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("precluster6 case6: AC shared Tin, egress BC") in
   time_mitm cluster_areacut pdata cfn ccs;;
+
+
+
 
 
 
