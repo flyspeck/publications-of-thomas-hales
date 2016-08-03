@@ -43,10 +43,13 @@
 \newcommand{\op}[1]{\hbox{#1}}
 \newcommand{\f}[1]{\frac{1}{#1}}
 %\newcommand{\text}[1]{\hbox{#1}}
+\newcommand{\Eo}{E^\circ}
+\newcommand{\Eoo}{E^{\circ\circ}}
+\newcommand{\hplus}{\hat\oplus}
 
-\title{Hyperbolic Addition on Edwards Curves}
+\title{The Group Law for Edwards Curves}
 \author{Thomas C. Hales}
-\date{May 12, 2016}
+\date{August 2, 2016}
 
 
 
@@ -60,7 +63,7 @@
 This article is an attempt to explain and prove the group law on elliptic curves in the simplest possible way, following
 in the footsteps of Edwards, Bernstein, Lange, and Friedl. 
 As motivation, we begin with the familiar group law on the circle. We give an unusual geometric construction of the addition on the circle in terms of intersections of the circle and hyperbola and call it hyperbolic addition. An identical geometric 
-construction, when applied to a curve other than the circle, can also lead to a group law on the curve. In particular, we obtain a group law for a large class of Edwards
+construction, when applied to a curve other than the circle, can also lead to a group law on the curve. In particular, we obtain a group law for Edwards
 elliptic curves in this manner. In doing so, we exhibit elliptic curve addition and the group law on the circle as two particular cases of the same construction.
 The construction works over an arbitrary field.
 Following Friedl, the associative law is expressed as a
@@ -86,7 +89,7 @@ In my undergraduate cryptography course this
 past semester,
 it was unpleasant for 
 me to tell my students that the associative law for elliptic curve addition is too advanced for an undergraduate course.
-It is clearly desirable to have a proof for an undergraduate course that is short and elementary.
+It is clearly desirable to have a proof for an undergraduate course that is elementary.
 
 This article is an attempt to explain the group law on elliptic curves in the simplest possible way.
 As motivation, we begin with the familiar group law on the circle.  We give
@@ -103,7 +106,7 @@ elliptic curves that has become popular in cryptography in recent years.
 Following an approach introduced
 by Friedl, the associative law is expressed as a
 polynomial identity over the integers that is constructed by computer algebra. 
-Edwards curves avoid the case-by-case analysis
+Affine Edwards curves avoid the case-by-case analysis
 that plagues previous proofs of associativity based on computer algebra.
 
 After the polynomial identity is found, 
@@ -209,52 +212,51 @@ as $z_1\oplus z_2 = \iota(z_3)$.}{
 }
 }
 
-We work a numerical example that is illustrated in Figure~\ref{fig:fig1}.  
-Let $z_1 = (12/13,5/13)$, and $z_2 = (7/25,24/25)$ be points on the unit circle coming
-from the Pythagorean triples $12^2 + 5^2 = 13^2$ and $7^2 + 24^2 = 25^2$.  The hyperbola
-\[
-y = \frac{57 (1+x)} {-15 + 325 x}
-\]
-passes through $z_1$, $z_2$ and $(-1,0)$.  It has vertical asymptote $x = 3/65$ and horizontal asymptote
-$y = 57/325$.  The hyperbola also meets the unit circle at $z_3=(-36/325,-323/325)$.  We 
-conclude that the the {\it hyperbolic sum} $z_1\oplus z_2$ of $z_1$ and $z_2$ is $\iota(z_3)=(-36/325,323/325)$.  We can
-easily directly check our result by multiplying $z_1$ and $z_2$ as complex numbers:
-\[
-(\frac{12}{13} + i \frac{5}{13}) (\frac{7}{25} + i \frac{24}{25}) = (-\frac{36}{325} + i \frac{323}{325}).
-\]
+%We work a numerical example that is illustrated in Figure~\ref{fig:fig1}.  
+%Let $z_1 = (12/13,5/13)$, and $z_2 = (7/25,24/25)$ be points on the unit circle coming
+%from the Pythagorean triples $12^2 + 5^2 = 13^2$ and $7^2 + 24^2 = 25^2$.  The hyperbola
+%\[
+%y = \frac{57 (1+x)} {-15 + 325 x}
+%\]
+%passes through $z_1$, $z_2$ and $(-1,0)$.  It has vertical asymptote $x = 3/65$ and horizontal asymptote
+%$y = 57/325$.  The hyperbola also meets the unit circle at $z_3=(-36/325,-323/325)$.  We 
+%conclude that the the {\it hyperbolic sum} $z_1\oplus z_2$ of $z_1$ and $z_2$ is $\iota(z_3)=(-36/325,323/325)$.  We can
+%easily directly check our result by multiplying $z_1$ and $z_2$ as complex numbers:
+%\[
+%(\frac{12}{13} + i \frac{5}{13}) (\frac{7}{25} + i \frac{24}{25}) = (-\frac{36}{325} + i \frac{323}{325}).
+%\]
 
 
 \section{Deforming the Circle}
 
-What happens when we replace the circle with a different curve?
+%What happens when we replace the circle with a different curve?
 We can use exactly the same hyperbola construction to define a binary operation $\oplus$ on other curves.
 We call this {\it hyperbolic addition} on a curve.   
-We can ask whether hyperbolic addition ever gives a group structure on other curves.
-(Hint: the answer is yes!)
-
-We replace the unit circle with a more general algebraic curve $C$.  
-We discuss some general features that we wish the curve to have.  
-We will restrict ourselves to a curve $C$ that
-passes through $(1,0)$, which we will take to be the candidate point for the identity element of the group.  
-The hyperbolic addition construction also requires $(-1,0)$ to be a point on the curve.
-
-We confine our discussion to a curve that is the zero set of a polynomial in variables $x$ and $y$
-of total degree  $4$.  We assume that the monomials $x^4$ and $y^4$ do not appear in the polynomial.
-For the advanced reader, we explain this as follows.  B\'ezout's theorem states that
-a curve of degree $4$ meets of hyperbola (or any conic) in $4\times 2 = 8$ points (counted with multiplicities,
-over an algebraically closed field, including points at infinity).  For hyperbolic addition, we only care about
-four intersection points  $(-1,0)$, $z_1$, $z_2$, and $z_3$ on our curve and the hyperbola.  
-The eight points produced by B\'ezout are four points too many.  The easiest
-way to make  four excessive points go away is to push them off to infinity.  
-The hyperbola contains two points at infinity (that is, on the line at infinity in the projective plane): 
-one along its horizontal asymptote and another along its
-vertical asymptote.  We will
-assume that the curve $C$ meets each of these two points at infinity with multiplicity two, for a total
-of four intersection points at infinity.  This condition forces the monomials $x^4$ and $y^4$ not to occur in the polynomial.
-This insures that $C$ meets the hyperbola at only four finite  points (that is, affine points), counted with multiplicity.
-
-Finally, we will impose the symmetries $y\leftrightarrow -y$ and $x\leftrightarrow -x$ on the curve; that is, the polynomial defining the curve should contain only
-even powers of $x$ and $y$.  The preceding conditions force the polynomial to have the form
+%We can ask whether hyperbolic addition ever gives a group structure on other curves.
+%(Hint: the answer is yes!)
+We replace the unit circle with a more general algebraic curve $C$, defined by the equation  
+%We discuss some general features that we wish the curve to have.  
+%We will restrict ourselves to a curve $C$ that
+%passes through $(1,0)$, which we will take to be the candidate point for the identity element of the group.  
+%The hyperbolic addition construction also requires $(-1,0)$ to be a point on the curve.
+%
+%We confine our discussion to a curve that is the zero set of a polynomial in variables $x$ and $y$
+%of total degree  $4$.  We assume that the monomials $x^4$ and $y^4$ do not appear in the polynomial.
+%For the advanced reader, we explain this as follows.  B\'ezout's theorem states that
+%a curve of degree $4$ meets of hyperbola (or any conic) in $4\times 2 = 8$ points (counted with multiplicities,
+%over an algebraically closed field, including points at infinity).  For hyperbolic addition, we only care about
+%four intersection points  $(-1,0)$, $z_1$, $z_2$, and $z_3$ on our curve and the hyperbola.  
+%The eight points produced by B\'ezout are four points too many.  The easiest
+%way to make  four excessive points go away is to push them off to infinity.  
+%The hyperbola contains two points at infinity (that is, on the line at infinity in the projective plane): 
+%one along its horizontal asymptote and another along its
+%vertical asymptote.  We will
+%assume that the curve $C$ meets each of these two points at infinity with multiplicity two, for a total
+%of four intersection points at infinity.  This condition forces the monomials $x^4$ and $y^4$ not to occur in the polynomial.
+%This insures that $C$ meets the hyperbola at only four finite  points (that is, affine points), counted with multiplicity.
+%
+%Finally, we will impose the symmetries $y\leftrightarrow -y$ and $x\leftrightarrow -x$ on the curve; that is, the polynomial defining the curve should contain only
+%even powers of $x$ and $y$.  The preceding conditions force the polynomial to have the form
 \begin{equation}\label{eqn:ed}
 x^2 + c y^2 - 1 - d x^2 y^2
 \end{equation} (up to a nonzero constant factor) for some parameters $c$ and $d$.
@@ -312,7 +314,7 @@ of Lemma~\ref{lemma:hyp} into a definition and define the hyperbolic sum
  z_1\oplus z_2 := \iota(z_3).
 \]
 algebraically by that formula 
-in all cases.  We prove below a completeness result (Lemma~\ref{lemma:complete}) showing that this formula works
+in all cases.  We prove below an affine closure result (Lemma~\ref{lemma:affine}) showing that this formula works
 without fail (that is, the denominators are always nonzero) for suitable parameters $c$ and $d$.
 
 The unit circle belongs to the family of Edwards curves for parameter values $c=1$ and $d=0$.  In this case, the 
@@ -407,7 +409,7 @@ we have $(a_1,b_1)\oplus (a_1,-b_1) = (1,0)$, provided $\bar e_1=0$.
 This is elementary from the definitions of $\oplus$ and $\phi$.
 \end{proof}
 
-\begin{lemma}[closure under addition]
+\begin{lemma}[closure under addition]\label{lemma:closure}
 Let $\phi:R_2[\f{\delta}]\to A$ be a ring homomorphism with $x_1,y_1,x_2,y_2 \mapsto^\phi a_1,b_1,a_2,b_2$.
 If $\bar e_1 = \bar e_2 = 0$ then ${\bar e}(a_3,b_3) = 0$, where $(a_3,b_3) = (a_1,b_1)\oplus (a_2,b_2)$.
 \end{lemma}
@@ -469,19 +471,24 @@ Concretely, the polynomials $r_i^j$ are obtained as the output of the one-line M
 Thus, the result follows from the kernel property and (\ref{eqn:assoc}); $\bar e_1 = \bar e_2 = \bar e_3 = 0$ implies $\phi( g_1) = \phi( g_2) = 0$, giving the result.
 \end{proof}
 
-\subsection{completeness and group law}
+\subsection{group law for affine curves}
 
-The following result is traditionally called completeness, even though it has nothing to do with the notion of
-complete varieties in algebraic geometry.  The meaning of the 
-word \emph{complete} in this article  is that of the lemma: the affine plane contains all $k$-points, 
-and denominators are nonzero at every $k$-point.  Because of this result, the addition law is free of the
-case-by-case analysis that plagues other approaches.
 
-\begin{lemma}[completeness] \label{lemma:complete} Let $k$ be a field, and let $\phi:R_2\to k$ be a homomorphism
+%The meaning of the 
+%word \emph{affine closure} in this article  is that of the lemma: the affine plane contains all $k$-points, 
+%and denominators are nonzero at every $k$-point.  Because of this result, the addition law is free of the
+%case-by-case analysis that plagues other approaches.
+
+\begin{lemma}[affine closure] \label{lemma:affine} Let $k$ be a field, and let $\phi:R_2\to k$ be a homomorphism
 such that $\bar d\not\in  k^{\times 2}$, the image of $d$, is not a nonzero square and such that 
 $\bar c =\tau^2\in k$, the image of $c$, is a square.  
 If $\bar e_1 = \bar e_2= 0$, then $\phi(\delta)\ne 0$.
 \end{lemma}
+
+The lemma is sometimes called completeness, in conflict with the definition of
+complete varieties in algebraic geometry.  To avoid possible confusion, we avoid this terminology.
+%, because it leads to calling a
+%complete curve incomplete \cite{bernstein2011complete}.
 
 \begin{proof}   We prove the lemma in the following contrapositive form:
 assuming that $\phi(\delta) = 0$ together with the other assumptions, we show that $\bar d$ is a nonzero square.
@@ -499,7 +506,7 @@ The kernel property gives $\phi(g) = (1 - \tau^2 \bar d b_1^2 b_2^2)(1 - \bar d 
 We solve this equation for $\bar d$, which expresses it as the square of $1/(\tau b_1 b_2)$ or $1/(b_1 a_2)$.
 \end{proof}
 
-We are ready to state and prove the main result of this article.  The group law is expressed generally enough
+We are ready to state and prove one of the main results of this article.  The group law is expressed generally enough
 to include the group law on the ellipse as a special case $\bar d = 0$.  Textbooks are emphatic%
 \footnote{``A word of warning: \ldots Elliptic curves are not ellipses, and indeed, despite their somewhat unfortunate name, elliptic curves and ellipses have only the most tenuous connection with one another''~\cite{hoffstein2008introduction}.}
 that elliptic curves are not ellipses, but here through hyperbolic addition, we give a unified treatment of both 
@@ -515,13 +522,270 @@ Let $\bar e(x,y) \in k[x,y]$ be the specialization of $e(x,y)$, obtained by $(c,
 
 \begin{proof} This follows directly from the earlier results.  For example, to check associativity of 
 $(a_1,b_1)\oplus (a_2,b_2) \oplus (a_3,b_3)$, where $(a_i,b_i)\in C$, we define a homomorphism
-$\phi:R_3\to k$ sending $(x_i,y_i)\mapsto (a_i,b_i)$ and $(c,d)\mapsto (\bar c,\bar d)$.   By a repeated use of the completeness lemma,
+$\phi:R_3\to k$ sending $(x_i,y_i)\mapsto (a_i,b_i)$ and $(c,d)\mapsto (\bar c,\bar d)$.   By a repeated use of the affine closure lemma,
 $\phi(\Delta^+\Delta^-)$ is nonzero and invertible in the field $k$.
 The universal property of localization extends $\phi$ to a homomorphism $\phi:R_3[\f{\Delta^+\Delta^-}]\to k$.  
 By the associativity lemma applied to $\phi$, we obtain the
 associativity for these three (arbitrary) elements of $C$.  The other properties follow similarly from the lemmas on closure,
-inverse, and completeness. 
+inverse, and affine closure. 
 \end{proof}
+
+\section{Group law for projective Edwards curves}
+
+This section show how to remove the restriction $\bar d\not\in k^{\times 2}$ that appears in the group law in
+the previous section.  By removing this restriction,
+we obtain the group law for all elliptic curves in characteristics different from $2$.  Unfortunately,
+in this section, some case-by-case arguments are needed.
+
+Let $k$ be a field of characteristic different from $2$.
+In this section, we assume that $c\ne 0$ and that $c$ and $-d$ are both squares.  Let $t^2 = -d/c$.  
+By a change of variable $y\mapsto y/\sqrt{c}$, the Edwards curve take the form
+\begin{equation}\label{eqn:t}
+x^2 + y^2 = 1 + t^2 x^2 y^2.
+\end{equation}
+
+We assume $t^2\ne 1$.   Note if $t^2=1$, then Equation (\ref{eqn:t}) becomes
+\[
+(1-x^2)(1-y^2)=0,
+\]
+and the curve degenerates to a product of lines.
+
+Let $\Eo$ be the set of solutions of Equation (\ref{eqn:t}) with coordinates $x,y$ in the field $k$.
+Let $\Eoo\subset E^0$ be the set of points such that $x\ne0$ and $y\ne 0$.
+
+Let $G$ be the abelian group of order $8$ generated by the following two permutations $\rho,\tau$ of the set $\Eoo$:
+\[
+\rho(x,y) = (-y,x),\quad \tau(x,y) = (1/(tx),1/(ty)).
+\]
+It is immediate that these two permutations carry $\Eoo$ to $\Eoo$.
+
+Define $E = G\sqcup \Eoo$.  We will show that $E$ can be made into a group: the projective elliptic curve.  The binary
+operation will combine $\oplus$ with the action of $G$ on $\Eoo$.
+
+
+
+Let $G^0 = \langle{\rho}\rangle$.  Let $P_g = g(1,0)\in \Eo$. 
+Then $\{P_g\mid g\in G^0\} = \Eo \setminus \Eoo$ and $P_g\oplus Q = g Q$, for $g\in G^0$ and $Q\in \Eoo$.
+
+
+We define an action $G\times E\to E$ by
+\[
+(g,P)\mapsto \begin{cases}g P,& P\in \Eoo;\\
+g g_1,& P = g_1\in G.
+\end{cases}
+\]
+It is easy to check that this is indeed an action of $G$ on $E$, using the fact that $G$ acts on $\Eoo$ and on $G$ by left multiplication.
+
+\begin{lemma}  $G$ acts without fixed point on $E$.  That is, $g P = P$ implies that $g=e_G\in G$.
+\end{lemma}
+
+\begin{proof} If $P=g_1\in G$, then $g g_1 = g_1$ clearly implies that $g=e_G$.
+If $g = \rho^k\ne e_G$, then $g P = P$ implies that $x=y=0$, which is not a point on the curve.
+If $g = \tau \rho^k$, then the fixed point condition $g P = P$ leads to $t^2=1$, which is contrary to our standing assumption.
+\end{proof}
+
+
+We extend the binary operation $\oplus$ as follows.  The idea is to set $P\oplus' Q = \tau((\tau P)\oplus Q)$.
+Working directly with coordinates, we define $(\oplus')$ by a pair of rational functions
+\[
+(x_1,y_1)\oplus' (x_2,y_2) := \left(\frac{x_1y_1 - x_2 y_2}{x_2 y_1-x_1 y_2},\frac{x_1 y_1 + x_2 y_2}{x_1 x_2 + y_1 y_2}\right).
+\]
+Let
+\[
+\delta'_+(x_1,y_1,x_2,y_2) = x_2 y_1 - x_1 y_2,\quad \delta'_-(x_1,y_1,x_2,y_2)= x_1 x_2 + y_1 y_2,
+\quad \delta' = \delta'_+ \delta'_-
+\] 
+be the denominators.
+
+\begin{lemma}  Let $\phi:R_2[\f{\delta'}]\to R$.  Let $(a_i,b_i)$ be the image of $(x_i,y_i)$.
+Let $(a_3,b_3)=(a_1,b_1)\oplus' (a_2,b_2)$.  If $\bar e_1 = \bar e_2 = 0$, then $e(a_3,b_3)=0$.
+\end{lemma}
+
+\begin{proof} Follow the proof of Lemma \ref{lemma:closure}.
+\end{proof}
+
+\begin{lemma} \label{lemma:extend}
+Let $\phi:R_2[\f{\delta'\delta}]\to A$ be a homomorphism sending $x_i,y_i\mapsto a_i,b_i$.
+Assume $\bar e_1 = \bar e_ 2 = 0$. Then
+\[
+(a_1,b_1)\oplus (a_2,b_2)=(a_1,b_1)\oplus' (a_2,b_2).
+\]
+%Let $\phi:R_2[\f{\delta^-\delta_-'}]\to A$ be a homomorphism sending $x_i,y_i\mapsto a_i,b_i$.
+%Assume $\bar e_1 = \bar e_ 2 = 0$. Then the second coordinates are equal.
+\end{lemma}
+
+\begin{proof} Write
+\[
+((x_1,y_1)\oplus (x_2,y_2)) -
+((x_1,y_1)\oplus' (x_2,y_2) ) = (\frac{g_1}{\delta^+\delta'_+},\frac{g_2}{\delta^-\delta'_-}),
+\]
+for some polynomial $g_1,g_2$.   It is enough to show that $\phi(g_1)=\phi(g_2)=0$. 
+Polynomial division gives
+\begin{equation}\label{eqn:assoc}
+g_i = r_i^1 e_1 + r_i^2 e_2,
+\end{equation}
+for some polynomials $r_i^j\in R_3$.  
+Concretely, the polynomials $r_i^j$ are obtained as the output of the one-line Mathematica command
+\begin{equation}\label{eqn:mathca}
+\op{PolynomialReduce}[\{g_1,g_2\},\{e_1,e_2\},\{x_1,y_1,x_2,y_2\}].
+\end{equation}
+Thus, the result follows from the kernel property and (\ref{eqn:assoc}); $\bar e_1 = \bar e_2 = 0$ implies $\phi( g_1) = \phi( g_2) = 0$, giving the result.
+\end{proof}
+
+Using this compatibility, we define $\oplus''$ on the domain
+\begin{align*}
+\{(a_1,b_1,a_2,b_2)\in \Eo\times \Eo &\mid 
+\delta(a_1,b_1,a_2,b_2)\ne 0 \vee
+\delta'(a_1,b_1,a_2,b_2)\ne 0 \},
+%(\delta^+(a_1,b_1,a_2,b_2)\ne 0\vee \delta'_+(a_1,b_1,a_2,b_2)\ne 0),\\ 
+%&(\delta^-(a_1,b_1,a_2,b_2)\ne 0\vee \delta'_-(a_1,b_1,a_2,b_2)\ne 0)
+\end{align*}
+that restricts to $\oplus$ and $\oplus'$ where defined.
+We say that $P=(a_1,b_1), Q=(a_2,b_2)\in \Eo$ are {\emph {composable}}, if $(a_1,b_1,a_2,b_2)$ lies in this domain.
+
+
+We define a group structure on $E$ as follows.  $e_G\in G\subset E$ serves as the group identity element.
+Note that $P_{e_G} = (1,0)$, the identity defined earlier for Edwards curve addition.
+The inverse $P\mapsto P^{-1}$ is $g\mapsto g^{-1}$ on $G$ and $P\mapsto -P$ on $\Eoo$.
+We start to write the inverse on $\Eo$ as $P\mapsto P^{-1}$.
+We define addition $\hplus$ by
+\begin{equation}
+P\hplus Q = \begin{cases}
+g_1 g_2,& P = g_1, Q = g_2 \in G;\\
+g_1 Q,& P = g_1\in G,  Q\in E;\\
+g_2 P,& P \in E, Q = g_2\in G;\\
+P\oplus'' Q,& P,Q\in \Eo \text{ (if composable)};\\
+g,& Q = g P^{-1}, P,Q\in \Eo, g\in G.
+\end{cases}
+\end{equation}
+The next lemma will show that if $P,Q\in \Eo$ are not composable then $Q=g P^{-1}$ for some $g\in G$.  Hence the definition
+covers all $P,Q\in E$.  By easy identities of rational functions in overlapping cases,  $\hplus$ is well-defined.
+(No new polynomial identities are needed beyond those previously established.)
+
+We remark that our definition of addition on the complete curve
+is essentially equivalent to the definition in \cite{bernstein2011complete}.   A cosmetic difference is that
+we label points at infinity by $g\in G$, rather than using projective coordinates.
+The action of $G$ on $E$ extends to an action on $\ring{P}^1_k\times \ring{P}^1_k$.  
+Let $P_g = g (1,0)\in \ring{P}^1_k\times \ring{P}^1_k$.
+Then $\Eoo\sqcup \{P_g\mid g\in G\}$ is the completion of $\Eoo$ in $\ring{P}^1_k\times \ring{P}^1_k$.
+This gives the translation from our representation to that of \cite{bernstein2011complete}.
+
+
+It is easily checked that for all $P,Q\in E$,  and all $g\in G$ we have
+\begin{equation}\label{eqn:cid}
+P\hplus Q = Q\hplus P,\quad 
+e_G \hplus P = P,\quad P^{-1} \hplus P = e_G,\quad (g P)^{-1} = g^{-1} P^{-1}
+\end{equation}
+Also, if $g\in G^0$ and $P\in \Eo$, then
+\[
+ g P = P_{g}\oplus P = P_g \oplus' P.
+\]
+
+\begin{lemma}\label{lemma:noco} 
+If $P=(a_1,b_1),Q=(a_2,b_2)\in \Eo$ are not composable, then there exists $g\in G$ such that $Q= gP^{-1}$.
+\end{lemma}
+
+\begin{proof} 
+Set $\tau Q = Q_0 = (a_0,b_0)$. Then
+\[
+Q = \tau Q_0 = (1/(t a_0),1/(t b_0)).
+%,\quad 0 = \delta = 1 - \left(\frac{a_1 b_1}{a_0 b_0}\right)^2,\quad a_1 b_1 = \pm a_0 b_0.
+\]
+Short calculations show that the condition for non-composability is
+\begin{equation}\label{eqn:gp-}
+(a_0,b_0) \in \{\pm (b_1,a_1),\pm (a_1,-b_1)\} = G^0 P^{-1}.
+\end{equation}
+There are four cases to consider depending on whether the $x$ or $y$ coordinate denominator vanishes for $\oplus$ or $\oplus''$.
+For example, if both $x$-denominators vanish, then 
+\[
+0=\delta^+(a_1,b_1,a_2 ,b_2) = \frac{a_0 b_0 - a_1 b_1}{a_0 b_0},\quad 
+0 = \delta'_+(a_1,b_1,a_2,b_2) = \frac{a_0 a_1 - b_0 b_1}{ ta_0 b_0}.
+\]
+These two equations have solutions $(a_0,b_0) = \pm (b_1,a_1)$.
+If both $y$-denominators vanish, then
+\[
+0=\delta^-(a_1,b_1,a_2 ,b_2) = \delta'_-(a_1,b_1,a_2,b_2),
+\]
+and this has solution $(a_0,b_0) = \pm (b_1,a_a)$.
+In the two cross cases,
+\[
+0=\delta^+(a_1,b_1,a_2 ,b_2) = \delta'_-(a_1,b_1,a_2,b_2),\quad\text{ and }
+0=\delta^-(a_1,b_1,a_2 ,b_2) = \delta'_+(a_1,b_1,a_2,b_2),
+\]
+we solve for $(a_1,b_1)$ and find that $(a_1,b_1)=(\zeta s,i\zeta s)$,
+where $\zeta^4=1$, $s^2=t^{-1}$, and $i^2=-1$.
+The solutions for $(a_0,b_0)$ again have the form of  (\ref{eqn:gp-}).
+
+In summary,
+we have $\tau Q = Q_0 = (a_0,b_0) = g P^{-1}$, for some $g\in G^0$.  Then $Q = \tau g P^{-1}$.
+\end{proof}
+
+
+\begin{lemma}\label{lemma:pseudo} For all $g\in G$ and all $P,Q\in E$, we have
+\[
+g (P\hplus Q) = (g P)\hplus Q.
+\]
+\end{lemma}
+
+\begin{proof}  If $P$ or $Q$ lies in $G$, then the identity follows directly from the rules of the group action of $G$ on $E$.
+Assume $P,Q\in \Eoo$.  It is enough to check the identity for the generators $g=\rho,\tau$ of the group.
+If $P$ and $Q$ are composable, the required identities reduce to easy identities of rational functions.  
+No new polynomial identities are needed beyond those already established in Lemma \ref{lemma:extend}.
+
+If $P$ and $Q$ are not composable, then write $Q = g_1 P^{-1}$, $R = gP$, and $g_2 = g g_1$.  Then the desired identity
+reduces to
+\[
+g_2 = R \oplus'' g_2 R^{-1},
+\]
+which is one of the defining relations for $\hplus$.
+\end{proof}
+
+\begin{lemma}\label{lemma:assoc2}  Whenever the all sums are composable, we have
+\[
+((a_1,b_1)\oplus'' (a_2,b_2)) \oplus'' (a_3,b_3) = (a_1,b_1)\oplus'' ((a_2,b_2) \oplus'' (a_3,b_3)).
+\]
+\end{lemma}
+
+\begin{proof} 
+Initially, it appears that we have two cases $\oplus''=\oplus,\oplus'$ for each of the four additions, giving $2^4$ cases,
+but we can reduce the number of cases by repeated use of the
+identity 
+\[
+\tau((\tau P)\oplus Q = P\oplus' Q.
+\]
+For example $P\oplus (Q\oplus' R) = P' \oplus (Q\oplus R')$, where $P' = \tau P$ and $R' = \tau R$. In a similar way,
+we remove all additions $(\oplus')$ from the left-hand side.  We thus  reduce the lemma to $2^2$ cases,
+according to the choice of operation $\oplus,\oplus'$ on the right-hand side.
+The case $(\oplus,\oplus')$ can be derived from $(\oplus',\oplus')$ by swapping the left and right sides of the equation.
+The case $(\oplus,\oplus)$ has already been treated in Lemma \ref{lemma:assoc}.  The remaining two cases are
+proved as new identities,
+following the proof of Lemma \ref{lemma:assoc}.
+\end{proof}
+
+\begin{lemma} $E$ is an abelian group under addition $\hplus$.
+\end{lemma}
+
+\begin{proof}  In view of earlier observations (\ref{eqn:cid}), it is enough to prove associativity.
+ Consider 
+\[
+(P\hplus Q) \hplus R,\quad  \text{ and } P \hplus (Q \hplus R).
+\]  
+If any of $P$, $Q$, or $R$ is in $G$, then
+then associativity reduces to Lemma \ref{lemma:pseudo}.  We may now assume $P,Q,R\in \Eoo$.
+If all the sums are composable, then we use the associativity of $\oplus''$ in Lemma \ref{lemma:assoc2}.    
+
+If say $P$ and $Q$ are not composable, write $Q= gP^{-1}$ by Lemma \ref{lemma:noco}. 
+The desired identity  reduces to the equality of
+\[
+R,\quad P\hplus (P^{-1} \hplus R).
+\]
+Again we branch into easy cases, according to whether sums are composable.  We use known
+associativity when composable (Lemma \ref{lemma:assoc2}), and reduce to easy degenerate cases (say $R = g P$) when not
+(Lemma \ref{lemma:noco}).
+\end{proof}
+
+
+
 
 \section{Hyperbola Lemma}
 
@@ -586,9 +850,18 @@ As the reader has no doubt observed, all the major proofs in this article follow
 different polynomials into a general identity proving machine.  With powerful computers at our disposal,
 there is no need to fuss over routine calculations.
 
-\section{Elliptic Curves}
+\section{Elliptic Curves}\label{sec:elliptic}
 
 Assume in this section that the characteristic of the field is not $2$.
+
+After  passing to a quadratic extension if necessary, 
+every elliptic curve is isomorphic
+to an Edwards curve.  This observation can be used to prove that general elliptic curves $E$ 
+(say chord and tangent addition in Weierstrass form) satisfy a group
+law.  In detail, write the explicit isomorphism $E\to E'$ to an Edwards curve taking the binary operation $\oplus_E$ on $E$ to the 
+group operation on the Edwards curve.  
+Then associativity for $\oplus_E$ follows from associativity on the Edwards curve under that
+isomorphism.  
 
 Starting with the equation $x^2 (1-d y^2) = (1 - c y^2)$ of
 of the Edwards curve, we can multiply both sides by $(1- d y^2)$ to bring it into the form
@@ -599,16 +872,16 @@ where  $w = x (1 - d y^2)$.
 This a Jacobi quartic.  It is an elliptic curve whenever the polynomial in $y$ on the right-hand side
 has degree four and is separable.  
 
-Over an algebraically closed field, every elliptic curve is isomorphic to an Edwards curve.
-Over arbitrary fields, some elliptic curves cannot
-be represented as Edwards curves, but Edwards curves include a large fraction of 
-isomorphism classes of elliptic curves over finite fields and are sufficient for many
-cryptographic purposes~\cite{bernstein2008twisted}.  
+%Over an algebraically closed field, every elliptic curve is isomorphic to an Edwards curve.
+%Over arbitrary fields, some elliptic curves cannot
+%be represented as Edwards curves, but Edwards curves include a large fraction of 
+%isomorphism classes of elliptic curves over finite fields and are sufficient for many
+%cryptographic purposes~\cite{bernstein2008twisted}.  
 
-Interpreted in this light, we have proved the group law for for a significant
-portion of all elliptic curves.%
-\footnote{We fail to be general especially because of the restriction $\bar d\not\in k^{\times 2}$ in Theorem~\ref{thm:group} and in the completeness lemma.  
-Without that restriction, we could pass to an algebraic closure and use that every elliptic curve is isomorphic to an Edwards curve.}  
+%Interpreted in this light, we have proved the group law for for a significant
+%portion of all elliptic curves.%
+%\footnote{We fail to be general especially because of the restriction $\bar d\not\in k^{\times 2}$ in Theorem~\ref{thm:group} and in the affine closure lemma.  
+%Without that restriction, we could pass to an algebraic closure and use that every elliptic curve is isomorphic to an Edwards curve.}  
 Other writers sweat much more than we have to prove the group
 law for elliptic curves.  In particular, as far as we know,
 our eleven-line computational proof of the associativity of elliptic-curve addition is the
@@ -713,16 +986,16 @@ They use the group law on the circle to motivate the group law on Edwards ellipt
 Hyperbolic addition is introduced for Edwards elliptic curves in \cite{arene2011faster}.
 
 % http://www.dagstuhl.de/en/program/calendar/semhp/?semnr=05021
-I met Harold Edwards at a conference in Dagstuhl Germany in January 2005.  
-The conference on ``verification and constructive algebra'' combined verification (a big interest
-of mine) with constructive algebra (a big interest of his).  All the meals were at the
-on-site restaurant, and seats at the tables were assigned by a randomized algorithm.  By
-chance, Edwards and I were assigned the same table the first day, and then again by
-coincidence on the second day.  By the third or fourth consecutive ``random'' assignment
-to the same table, we doubted the integrity of the seating algorithm and took seat selection
-into our own hands.  Thanks to faulty random-number generation for seating and Edward's store of knowledge, 
-I learned much about Abel's work and about nineteenth century
-constructive mathematics. His article on Edwards curves had not yet been written.
+%I met Harold Edwards at a conference in Dagstuhl Germany in January 2005.  
+%The conference on ``verification and constructive algebra'' combined verification (a big interest
+%of mine) with constructive algebra (a big interest of his).  All the meals were at the
+%on-site restaurant, and seats at the tables were assigned by a randomized algorithm.  By
+%chance, Edwards and I were assigned the same table the first day, and then again by
+%coincidence on the second day.  By the third or fourth consecutive ``random'' assignment
+%to the same table, we doubted the integrity of the seating algorithm and took seat selection
+%into our own hands.  Thanks to faulty random-number generation for seating and Edward's store of knowledge, 
+%I learned much about Abel's work and about nineteenth century
+%constructive mathematics. His article on Edwards curves had not yet been written.
 
 \bibliography{refs} 
 \bibliographystyle{alpha}
