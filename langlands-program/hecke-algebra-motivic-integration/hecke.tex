@@ -8,7 +8,7 @@
 
 \newcommand{\XX}[1]{{\it  [To do: #1]}}
 \newcommand{\ring}[1]{\mathbb{#1}}
-\newcommand{\g}[1]{\langle{#1}\rangle}
+\newcommand{\ang}[1]{\langle{#1}\rangle}
 \def\op#1{{\operatorname{#1}}}
 \def\inv{\op{inv}}
 \def\dom{P^+}
@@ -23,8 +23,13 @@
 \def\T{\mathcal T}
 
 \def\n{{\mathfrak n}}
+\def\g{{\mathfrak g}}
+\def\t{{\mathfrak t}}
+\def\h{{\mathfrak h}}
+
 \def\Frob{\op{Frob}}
 \def\dotw{\dot w}
+\def\ttau{\tilde\tau}
 
 \def\libel#1{{\text{\sc [#1]~}}\label{#1}}
 \def\rif#1{(\ref{#1}-{\text{\sc #1})}}
@@ -32,480 +37,10 @@
 
 %\section{Introduction}
 
-\newpage
-\section{Endoscopic branching formulas}\label{sec:branch}
 
-Let $G$ be an unramified $p$-adic reductive group, and let $H$ be an unramified endoscopic
-group of $G$.  We assume that we are given an embedding
-\[
-\xi:{}^LH\to {}^LG,
-\]
-that factors through a finite unramified extension of $F$:
-\[
-\xi:\hat H\rtimes \g{\theta_H}\to \hat G\rtimes \g{\theta_G},
-\]
-such that $\xi(\theta_H) = \dotw  \rtimes \theta_G,$
-for some representative $\dotw $ of an element in the Weyl group $W_G$.
-The irreducible representations $\tau_\lambda$ of ${}^LG$ restricted to $\hat G\rtimes\theta_G$ are classified
-by a highest weight $\lambda\in P^+_G\subseteq Y^*_G$, and similarly for irreducible representations $\sigma_\mu$
-on $\hat H\rtimes \theta_H$, with $\mu\in P^+_H\subseteq Y^*_H$.  Recall $Y^*_H = X^*(\hat T_H)^{\theta_H}$.
-This section gives a  branching formula for $\tau_\lambda$ restricted to $\xi(\hat H\rtimes\theta_H)$,
-as a sum of $\sigma_\mu$:
-\[
-\tau_\lambda| = \sum_\mu m(\lambda,\mu) \sigma_\mu
-\]
-for some coefficients $m(\lambda,\mu)$.  
-%(For our purposes, we want $m(\lambda,\mu)$ to be
-%a constructible function.)
 
-If $\sigma_\mu$ is an irreducible character and $\epsilon:\g{\theta_H}\to \ring{C}^\times$ is a multiplicative character,
-then $\sigma_\mu\otimes \epsilon$ is again an irreducible character.  Restricted to $\hat H\rtimes\theta_H$, we have
- linear dependence $(\sigma_\mu\otimes\epsilon) = \epsilon(\theta_H) \sigma_\mu $.
-This means that the multiplicities $m(\lambda,\mu)$ should take values in $\ring{Z}[\zeta]$, where $\zeta$ is a primitive
-root of unity of the same order as $\theta_H$.  In particular, 
-we lose the usual connection between multiplicities and degrees of the representations. For example,
-for a given $\lambda$,
-it is quite possible for all the multiplicites $m(\lambda,\mu)$ to be zero.
 
-Let $\hat S_G = \hat T/(1-\theta_G)\hat T$ and $\hat S_H = \hat T/(1-\theta_H)\hat T$.
-We will use a cover $\tilde S_H\mapsto \hat S_H$, to be constructed below.
-We will construct a homomorphism $\phi:\tilde S_H\to \hat S_G$ and an element of finite order $t_0\in \hat S_G$ such that
-$\xi(t\theta_H)$ is $\hat G$-conjugate to $\phi(s) t_0\theta_G\in \hat G\rtimes\theta_G$ , 
-whenever $s\in \tilde S_H$ and $t\in \hat T$ have the same image in $\hat S_H$.
 
-
-
-Let $\n_G$ be the Lie algebra of $\hat N\subset \hat B$.
-We define a formal operator
-$E_{G,H}$ on $\n_G$, where $E_{G,H}$ acts on the root space $\n_\alpha\subset \n_G$ by
-$X\mapsto \alpha(t_0) e^{\phi^*\alpha} X$.
-We define an {\it endoscopic partition function} $P_{G,H}$ by
-\begin{equation}
-D_{G,H}(E_{G,H},q) = \det(1 - q E_{G,H} \theta_G;\n_G),\quad P_{G,H} = 1/D_{G,H}.
-\end{equation}
-In a case-by-case analysis, we will choose the data so that $\phi^*\alpha$ is non-negative for every positive
-root $\alpha\in\Sigma_1$ (where $\Sigma_1$ is the previously defined root system for $\hat S_G$).   
-We will see that $D_{G,H}(E_{G,H},1)$ is nonzero.
-% and is divisible by  $D_H(E_H,1)$.
-We make a series expansion
-\begin{equation}
- D_H(E^{-1}_H,1)D_{G,H}(E^{-1}_{G,H},1)^{-1} = \sum p_\mu e^\mu.
-\end{equation}
-Define constants 
-\begin{equation}\label{eqn:branch}
-m(\lambda,\mu) = \sum_{w\in W^\theta, ~\phi^*({w\bullet\lambda})\in  Y^*_H} (-1)^{\ell w} ({w\bullet\lambda})(t_0)
-p_{\mu-\phi^*(w\bullet\lambda)} \in \ring{Z}[\zeta].
-\end{equation}
-
-
-
-We state the main result of the section.
-
-\begin{theorem}
-Let $G$ be a reductive group and let $H$ be an endoscopic group of $G$, both unramified.
-Let $\xi:{}^LH\to {}^LG$ be an embedding of $L$-groups that factors over a finite
-unramifed extension $E/F$.  Then we can construct a finite cover $\tilde S_H\to \hat S_H$ of tori,
-a homomorphism $\phi:\tilde S_H\to \hat S_G$, and element $t_0\in \hat S_G$ of finite order, with
-associated determinant $D_{G,H}$ such that
-\begin{enumerate}
-\item (conjugacy) $\xi(t\theta_H)$ is $\hat G$-conjugate to $\phi(s) t_0\theta_G$,
-whenever $s\in \tilde S_H$ and $t\in \hat T$ have the same image in $\hat S_H$;
-% where $s\mapsto t \mod (1-\theta_H)\hat T_H$;
-\item  (non-negativity) $\phi^*\alpha$ is non-negative for every positive
-root $\alpha$ of $\hat G$ (that is, if $\phi^*\alpha$ is nonzero, then it is positive);
-\item  (regularity) $D_{G,H}(E_{G,H},1)$ is nonzero;
-% and is divisible by  $D_H(E_H,1)$;
-\item (branching) Equation \ref{eqn:branch} gives the twisted branching rule for $\hat G\rtimes \theta_G$ restricted to $\xi(\hat H\rtimes \theta_H)$:
-\[
-\tau_\lambda| = \sum_\mu m(\lambda,\mu) \sigma_\mu.
-\]
-\end{enumerate}
-\end{theorem}
-
-We note that $\hat S_H/W_H^{\theta_H}$ classifies $\theta_H$ semisimple conjugacy classes in ${}^LH$,
- and $\hat S_G/W_G^{\theta_G}$ classifies $\theta_G$
-semisimple conjugacy classes in ${}^LG$.  The morphism $\xi$ induces a map of conjugacy classes.
-The morphism $\phi$ should be viewed as a lifting of this map of conjugacy classes.
-
-\begin{corollary} The branching multiplicity function $m(\lambda,\mu)$ is Presburger constructible.
-\end{corollary}
-
-\begin{proof} It is enough to show that each term in Equation \ref{eqn:branch} is Presburger constructible.
-This reduces to the constructibility of the terms  $p_{\mu'}$, which follows from the
-rationality of the partition function.
-\end{proof}
-
-Before starting the proof of the theorem, we discuss how the branching rules depend on the choice $\xi$ of embeddings
-of $L$-groups.
-Fix an unramified extension $E/F$, and assume that an admissible embedding
-\[
-\xi:\hat H \rtimes \op{Gal}(E/F)\to \hat G \rtimes \op{Gal}(E/F),
-\]
-exists.  
-We assume that $\hat H = C_{\hat G}(s)^0$ for some $s\in \hat T$, and that $\xi(h) = h$, for $h \in \hat H$,
-with this identification.  We may assume $\hat T = \hat T_G = \hat T_H$ using this identification of $\hat H$ with a subgroup of $\hat G$.
-Let $\op{Frob}_{E}$ be the Frobenius element in $\op{Gal}(E/F)$.
-We have $\xi(\op{Frob}_{E}) = \dotw \Frob_E$ for some $\dotw \in N_{\hat G}(\hat T)$.  The automorphism $\dotw $ of $\hat H$ is entirely determined
-by the root datum of $H$ (including the automorphism $\theta_H$ of $H$).  Thus, the coset $\hat T \dotw $ does not
-depend on the choice of embedding $\xi$.  The image $\xi(\hat H\rtimes \op{Gal}(E/F))$ does not depend on $\xi$.
-The branching multiplicities are then also independent of $\xi$.
-
-We let $L/F$ be a second unramified extension with $L/E/F$.  Let  $[L:E]=\ell$.  We study the  dependence
-of branching multiplicities on $L$.  Fix an admissible embedding
-\[
-\xi_L:\hat H \rtimes \op{Gal}(L/F)\to \hat G \rtimes \op{Gal}(L/F),
-\]
-where $\xi_L(\Frob_L) = \dotw  \Frob_L$, with the same choice $\dotw $ as with $\xi = \xi_E$.
-Then $\Frob_L^\ell$ acts trivially on the datum of $\hat H$, and $(\dotw  \Frob_L)^\ell$ acts trivially on the datum of $\hat G$.
-Let $\tau_\lambda$ be an irreducible representation of $\hat G$ that is $\theta_G$-fixed.  The extension of 
-$\tau_\lambda$ to $\hat G\rtimes \op{Gal}(L/F)$ factors through $\hat G\rtimes \op{Gal}(E/F)$.
-Similarly, $\sigma_\mu$ extends to $\hat H\rtimes \op{Gal}(L/F)$ and factors through $\hat H\rtimes\op{Gal}(E/F)$.
-We conclude that the branching multiplicities are the same for $L/F$ and
-\[
-\xi_E(\hat H \rtimes \Frob_E) = \xi_L(\hat H\rtimes \Frob_L)/(\dotw \Frob_L)^\ell \subset (\hat G\rtimes \Frob_L)/( \Frob_L)^\ell = \hat G\rtimes \Frob_E.
-\]
-The multiplicity formula is independent of the choice of $L/F$.
-
-\begin{proof}
-The proof occupies the rest of Section \ref{sec:branch}.
-We  extend Kostant's formula for branching multiplicities $m(\lambda,\mu)$ to this setting, following
- Goodman and Wallach \cite[\S8.2.2]{goodman}.   
-Recall that this formula for $m(\lambda,\mu)$ is based on the (twisted) Weyl character formula.
-The nonvanishing of the determinant
-$D_{G,H}(E_{G,H},1)$ implies regularity:  the image of $\xi({}^LH)$ does not lie in a singular hyperplane
-of $\hat S_G$.
-
-
-We show that the first three properties of the lemma imply the branching rule, which we compute
-using the twisted Weyl character formula on $\hat H$ and $\hat G$:
-\begin{align*}
-\tau_\lambda| D_H(E_H^{-1},1)&= \sum_{\mu'} m(\lambda,{\mu'}) J_H(e^{\mu'}).\\
-\tau_\lambda| D_H(E_H^{-1},1) &= \tau_\lambda| D_{G,H}(E^{-1}_{G,H},1)(\sum p_\mu e^\mu)\\
-  &= (\sum_{\mu'} p_{\mu'}) J_G(e^\lambda)|\\
-  &= \sum_{\mu'} \sum_{w\in W^\theta} (-1)^{\ell w} p_{\mu'} e^{\mu'+w\bullet \lambda|}\\
-  &= \sum_{\mu'} \sum_{w\in W^\theta} (-1)^{\ell w} p_{\mu'} ({w\bullet\lambda})(t_0) e^{\mu'+\phi^*(w\bullet \lambda)}\\
-  &= \sum_\mu \sum_{w\in W^\theta,~\phi^*({w\bullet\lambda})\in Y^*_H} (-1)^{\ell w} ({w\bullet\lambda})(t_0) p_{\mu - \phi^*({w\bullet \lambda})} e^\mu.
-\end{align*}
-Equating coefficients, we get Equation \ref{eqn:branch}.
-This completes the proof that the first three properties imply the branching rule.
-Thus, the endoscopic branching formula comes down to constructing 
-the homomorphism $\phi:\tilde S_H\to \hat S_G$,
-the element $t_0\in \hat S_G$, 
-and proving the first three properties of the lemma: conjugacy, non-negativity, and regularity.
-
-\subsection{reduction to simply-connected}
-
-
-We give a  reduction to the case that $\hat G$ is semisimple and simply-connected.
-For this, we allow twisted endoscopic groups with non-trivial multiplicative character (and trivial automorphism) in the sense of Kottwitz and
-Shelstad \cite{kottwitz1999foundations}.
-Let $\hat G_{sc}$ be the simply connected cover of the derived group of $\hat G$.  
-Assume that we have constructed $t_{0,sc}$ and $\phi_{sc}:\hat S_{H,sc}\to \hat S_{G,sc}$ for $\hat G_{sc}$.
-We may assume the endoscopic data is defined by the centralizer of some $s = \bar s_{sc} z$,
-where $z$ is central and $\bar s_{sc}$ is the image of $s_{sc}\in \hat G_{sc}$.  We make the embeddings $\xi_{sc}$ and $\xi$ compatible by
-picking  $\dotw _{sc}\in \hat G_{sc}$ for the choice $\dotw =\bar \dotw _{sc}$.
-Let $\hat Z = Z(\hat G)^0$.  Let $\hat G' = \hat Z\times \hat G_{sc}$.  Using $s$ and $\dotw$, we construct an endoscopic group $H'$ of $G'$
-with dual $\hat H'$, and embedding $\xi':{}^LH' \to {}^LG'$ over $\xi:{}^LH\to {}^LG$.  
-We have surjective projections ${}^LH'\to {}^LH$ and
-${}^LG'\to {}^LG$.  We identify the root systems of $\hat H$ and $\hat H'$ and identify the root systems of $\hat G$ and $\hat G'$.
-%We identify $X^*(\hat T_H)$ with a definable subset of $X^*(\hat T'_H)$ and identify $X^*(\hat T_G)$ with a definable subset of $X^*(\hat T'_G)$.
-%To get the branching formula for $\tau_\lambda$, we pull it back to a representation of ${}^LG'$, restrict to $\xi'({}^LH')$, then restrict the parameters
-%of $\sigma_\mu$ to
-% $\mu\in X^*(\hat T_H)$.  
-We can take $t_0\in \hat T$ to be the image of $(1,t_{0,sc})\in \hat Z\times \hat T_{sc}$.
-We take $\tilde S_H = \hat S_Z\times \tilde S'_{sc,H}$ with its obvious projection to $\hat S_H$, where $\hat S_Z = \hat Z/(1-\theta_G)\hat Z$.
-Under the identification of root systems, the regularity and non-negativity claims follow from the corresponding claims for $\hat G_{sc}$.
-%Thus, we may assume that $\hat G$ has the form $\hat Z\times G_{sc}$.
-%We have $X^*(\hat T) = X^*(\hat Z)\times X^*(\hat T_{sc})$, with a similar factorization for $\hat H' = \hat Z \times \hat H''$.
-This  reduces the proof to $\hat G  = \hat G_{sc}$.
-
-We may partition connected componens of the Dynkin diagram of $\hat G$ into orbits under $\theta_G$.
-We give a reduction to the case that $\theta_G$ is transitive on orbits.
-In fact, if $r$ is the number of orbits, then we have factorizations $\hat S_H = \hat S_{H,1} \times\cdots \hat S_{H,r}$, 
-$\hat S_G = \hat S_{G,1}\times\cdots \hat S_{G,r}$, and we may define the data $\phi,t_0$ for $\hat G$ as a $r$-tuples
-$\phi = (\phi_1,\ldots,\phi_r)$, $t_0 = (t_{0,1},\ldots,t_{0,r})$.
-
-We give a further reduction to the Dynkin diagram of $\hat G$ is connected.
-In fact, let $\hat G'$ and $\hat H'$ be the endoscopic data for a single factor.  By the transitivity of $\theta_G$ on connected
-components of the Dynkin diagram, we have $\hat S_{H'} = \hat S_H$, and $\hat S_{G'} = \hat S_{G}$.  Thus, assuming we have
-data $\phi'$ and $t_0'$ for $(\hat H',\hat G')$, we may use the same data $(\phi,t_0)=(\phi',t'_0)$ for $(\hat H,\hat G)$.
-We have an identification of root systems $\Sigma_1$ for $\hat S_G$ and $\Sigma'_1$ for $\hat S_{G'}$, so that non-negativity and regularity
-for $G'$ implies non-negativity and regularity for $G$.
-
-We now assume that $\hat G$ is simply connected and that its Dynkin diagram is connected.
-In what follows, we will make case-by-case arguments for each simply connected group and for each
-family of endoscopic groups.
-
-\subsection{outer type}
-
-We say that the endoscopic group $H$ has outer type, if $\xi(\theta_H) = \dotw  \theta_G$, where $g\dotw \theta_Gg^{-1}=\theta_G$ for some 
-$g\in N_{\hat G}(\hat T)$.
-In this subsection of the proof, we consider the case where $H$ has outer type.
-%Choose $g\hat G$ such that $g \dotw  \theta_G g^{-1} = \theta_G$.  Adjusting $g$ by an element in $\hat G^{\theta_G}$, we may assume that
-%$g$ preserves $\hat T$; that is, $g\in N_{\hat G}(\hat T)$.
-
-Note that in this case
-\[
-\hat S_H = \hat T/(1-\theta_H) \hat T = \hat T/(1-\dotw \theta_G)\hat T = \hat T/(1-\theta_G)\hat T = \hat S_G.
-\]
-The isomorphism $\hat T/(1-\dotw \theta_G)\hat T\to \hat T/(1-\theta_G)\hat T$ is given by $t \mapsto g t g^{-1}$.
-
-We choose data $t_0=1$, $\tilde S_H = \hat S_H = \hat S_G$, and $\phi:\hat S_H\to \hat S_G$ the identity map.
-The determinant in this case is $D_{G,H}(E_{G,H},q) = D_G(E,q)$.  The claimed properties of the data follow immediately.
-
-The outer type includes all cases where $\hat G_{sc}$ is adjoint: $G_2$, $F_4$, and $E_8$.
-
-
-We  repeatedly use a key property of the the element $\dotw $ that is stated in \cite[\S4.7]{hales1993simple}.
-Form an extended Dynkin diagram by adding a single node corresponding to minus the highest positive root in the root system.
-Let $t_G$ be the Lie algebra of the complex torus $\hat T$, and let $X_*$ be the kernel of the exponential map from $t_G$ to $\hat T$.
-Let $C$ be a fundamental chamber for the action of $X_*\rtimes W_G$ on $t_G$.   Then we may choose the endoscopic data such
-that the image of $\dotw $ in $W_G$ is the image of an element in $X_*\rtimes W_G$ that
-preserves the chamber $C$.  This implies that we may choose $\dotw $ so that it acts as an automorphism of the extended Dynkin diagram
-of $\hat G$.
-
-
-We claim that every endoscopic group of $\hat G_{sc} = {}^2 A_{n-1}$ also has outer type.
-The extended Dynkin diagram is a loop with $n$ nodes.  The automorphism $\theta_G$ acts as a reflection that fixes
-the extended node of the diagram.  The automorphism $\dotw $ acts as a rotation of the diagram.  Then $\dotw \theta_G$ is also
-a reflection of the diagram.  There are two cases, depending on whether $\dotw \theta_G$  fixes a node.  If it fixes a node,
-then we may assume without loss of generality that the fixed node is the extended node.  Then $\dotw \theta_G = \theta_G$.
-If $\dotw \theta_G$ does not fix a node, then $n$ is even and the automorphism acts as a reflection of a regular $n=2k$-gon
-through the center of two opposite edges.  Up to conjugacy, this automorphism is represented as $\dotw \theta_G$, where
-$\dotw $ acts as a cyclic permutation $\dotw (t) = \op{diag}(t_2,t_3,\ldots,t_n,t_1)$, and $\theta(t) = \op{diag}(t_n^{-1},\ldots,t_1^{-1})$,
-where $t=\op{diag}(t_1,\ldots,t_n)$.  We find that $\dotw \theta_G$ is $\hat G$ conjugate to $\theta_G$,
-by an element $g$ such that $g(t) = (t_1,\ldots,t_k,\ t_n,t_{n-1},\ldots,t_{k+1})$.
-
-
-
-\subsection{Type $A_{n-1}$}
-
-%There is another observation that we use repeatedly.  The properties that we need to establish depend only on the roots of
-%$t_0$ and $\phi(\tilde S_H)$.  For this, we may work in $G_{adj}$ rather than $G_{sc}$.
-
-
-For a split group of type $A_{n-1}$, we can take $\dotw$ to be a representative in the normalizer of a power of the Coxeter element in the Weyl group.
-
-Let $\hat G = \op{SL}(n,\ring{C})$, and let $\theta_G$ act trivially on $\hat G$.
-Assume that $n=m \ell$. 
-Let $\hat H = S(\op{GL}(m,\ring{C})\times \cdots\times \op{GL}(m,\ring{C}))\subset \hat G$ ($\ell$ factors).
-Let $\theta_H$ be an automorphism of $\hat H$ of order $\ell$ that permutes the factors:
-$\theta_H(g_1,\ldots,g_\ell) = (g_\ell,g_1,g_2,\ldots)$.
-We pick $\xi:\hat H\to \hat G$ to be the obvious block diagonal embedding.  We extend
-to $\xi:{}^LH\to {}^LG$ by  $\xi(\theta_H) = \dotw \times \theta_G$, for a suitable permutation
-matrix $\dotw \in \op{SL}(n,\ring{C})$. 
-
-We have $\hat T\to \hat S_H$, given by $(t_1,\ldots,t_m)\mapsto t_1 t_2\ldots t_m\in \hat S_H$, identifying
-$\hat S_H$ with the diagonal torus in $\op{SL}(m)$.
-%$s=\op{diag}(s_1,\ldots,s_m)$ is diagonal in
-%$\op{GL}(m,\ring{C})$.  
-We let $\tilde  S_H$ be the cover given by $\tilde S_H = \hat S_H$,  with homomorphism $\tilde S_H\to \hat S_H$, given by $s\mapsto s^\ell$.
-Let $\zeta$ be a primitive $2\ell^\op{th}$ root of unity in $\ring{C}^\times$.
-We set $t_0 = \op{diag}(z,z,z,\ldots) \ (m \text{ times})\in \hat T\subset \ring{C}^{\times,m\ell}$, where $z=(z_1,\ldots,z_\ell)\in \ring{C}^{\times,\ell}$ is
-\begin{align*}
-z &= \op{diag}(\zeta^{2k-1},\zeta^{2k-3},\ldots,\zeta^{1-2k}), &(\ell=2k);\\
-      &= \op{diag}(\zeta^{2k},\zeta^{2k-2},\ldots,\zeta^{-2k}), &(\ell=2k+1).
-\end{align*}
-Set
-$\phi:\tilde S_H \to \hat T$, with $\tau=(\tau_1,\ldots,\tau_m)\to \op{diag}(t_1,\ldots,t_m)$, 
-where $t_i = \tau_i I_{\ell}$.
-%Let 
-%\[
-%\lambda = (\lambda_1,\lambda_2,\ldots,\lambda_n)\in Y^* = X^*(\hat T) = \ring{Z}^n.
-%\]
-%We compute that
-%\[
-%\lambda(t_0) = \zeta^{0\lambda_1+1\lambda_2+2\lambda_3+\cdots}.
-%\]
-
-Let $\Sigma_{1,H}$ be the root system for a single factor $\op{SL}(m,\ring{C})$.  (It can be identified with the  root
-system $\Sigma_1$ for ${}^LH$.)
-Using this description, we compute that
-the determinant $D_{G,H}$ is
-\[
-D_{G,H} ={d_{\ell}^m} \prod_{\alpha\in\Sigma^+_{1,H}} (1-e^{-\alpha})^{\ell}.
-\]
-Here $d_\ell = \ell^{\ell/2} \omega_\ell$, for a certain $12^\op{th}$ root of unity $\omega_\ell$ depending on $\ell$:
-\[
-d_\ell = \prod_{1\le i<j\le \ell} (1-z_i z_j^{-1}).
-%\omega_2 = 1,\quad \omega_3 = \zeta_6,\quad \omega_4 = i,\quad \omega_5 = -1,\quad \omega_6 = \zeta_6^5,
-%\ldots
-\]
-
-For each of the remaining cases $B_n$, $C_n$, $D_n$, $E_6$, $E_7$ we calculate the data in
-the same manner.  We work in an explicit representation of the group (the standard representation for classical groups).
-For each automorphism of the extended Dynkin diagram (excluding those of outer type),
-we construct an element $\dotw \in N_{\hat G}(\hat T)$ in the normalizer
-such that $\dotw \theta_G$ acts as that automorphism.  
-(We note that these calculations are particularly sensitive to the exact representative $\dot w\in G_{sc}$ in the normalizer; it does not
-suffice to work at the level of Weyl groups.)
-We diagonalize $\xi(t)\dotw $ by computing its characteristic polynomial and eigenvalues.
-This gives $\phi(s) t_0\in \hat S_G$.  Replacing $\phi(s) t_0$ with a Weyl-group conjugate if necessary, we arrange for it
-to satisfy the non-negativity property.  We observe that regularity property holds  in each case.
-
-We give data $\tilde S_H,\phi,t_0$ as well as the associated determinant $D_{G,H}$  in each case.
-
-\subsection{Type $C_n$}
-
-The outer automorphism $\theta_G$ of $C_n$ is trivial.  We have $\hat S_G = \hat T$ and the root system is $\Sigma_1 =\Psi$.
-We work in the standard representation of $\op{Sp}(2n)$ of dimension $2n$, defined with respect to a skew form 
-along the anti-diagonal $J = \op{anti}(-1,-1,\ldots,\ 1,1\ldots,1)$.  
-The extended Dynkin diagram has a nontrivial automorphism of order $2$ that exchanges the two ends of the diagram.
-It is represented as a block matrix of block size $n$:
-\[
-\dotw = \begin{pmatrix} 0 &I \\ -I & 0\end{pmatrix}.
-\]
-Write $n = 2k$ or $n = 2k+1$, depending on the parity of $n$.
-The morphism $\hat T\to \hat S_H=\ring{C}^{\times,k}$ is 
-\[
-t = \op{diag}(t_1,\ldots,t_n,t_n^{-1},\ldots,t_1^{-1})\mapsto (s_1,\ldots,s_k)=(t_1/t_n,t_2/t_{n-1},\ldots).
-\]
-Let $\tilde S_H=\ring{C}^{\times,k} \to \hat S_H$, where $(\tau_1,\ldots,\tau_k)\mapsto (\tau_1^2,\ldots,\tau_k^2) = (s_1,\ldots,s_k)$.
-Diagonalizing $\xi(t)\dotw$, we obtain
-\begin{align*}
-\phi(s)t_0 &= \op{diag}(i \tau_1,-i\tau_1,i\tau_2,-i\tau_2,\ldots,i\tau_k,-i\tau_k,\ i\tau_k^{-1},\ldots, -i\tau_1^{-1})\in \hat S_G,& (n = 2k);\\
-    &= \op{diag}(i \tau_1,-i\tau_1,i\tau_2,-i\tau_2,\ldots,i\tau_k,-i\tau_k,i,-i,\ i\tau_k^{-1},\ldots, -i\tau_1^{-1}),& (n = 2k+1).\\
-\end{align*}
-We compute the determinant/Weyl denominator/partition function:
-\begin{equation}
-D_{G,H} = 2^k\prod_{\alpha\in \Sigma^+_{1,H}} (1-e^\alpha)^2.
-\end{equation}
-When $n=2k$, the root system $\Sigma_{1,H}$ is that of the endoscopic group $H=\op{Sp}(2k,E)$, with $E/F$ quadratic unramified.
-When $n=2k+1$, the root system $\Sigma_{1,H}$ is the non-reduced root system $BC_k$ of rank $k$ with underlying torus $\hat S_H$
-and positive roots $s_i s_j^{\pm 1}$, $s_i^2$, $s_i$.
-
-\subsection{Type $B_n$}
-
-The outer automorphism $\theta_G$ of $B_n$ is trivial.  We have $\hat S_G = \hat T$ and the root system is $\Sigma_1 =\Psi$.
-We work in the standard representation of $\op{SO}(2n+1)$ of dimension $2n+1$, defined with respect to a symmetric form 
-along the anti-diagonal $J = \op{anti}(1,1,\ldots,1)$.  (Note that we work in the adjoint group for convenience rather than the
-simply connected cover. \XX{justify this.})
-The extended Dynkin diagram has type $B_n$ at one end and has a fork of type $D_n$ at the other.
-There is  an automorphism of order $2$ that exchanges the two prongs of the fork.
-%Write $n = 2k$ or $n = 2k+1$, depending on the parity of $n$.
-The morphism $\hat T\to \hat S_H=\ring{C}^{\times,n-1}$ is 
-\[
-t = \op{diag}(t_1,\ldots,t_n,1,t_n^{-1},\ldots,t_1^{-1})\mapsto (s_2,\ldots,s_n)=(t_2,\ldots,t_n).
-\]
-Let $\tilde S_H= \hat S_H$.
-Diagonalizing $\xi(t)\dotw$, we obtain
-\begin{equation}
-\phi(s)t_0 = \op{diag}(-s_2,\ldots,-s_n,-1,1,-1,-s_n^{-1},\ldots,-s_1^{-1}).
-\end{equation}
-We compute the determinant
-\begin{equation}
-D_{G,H} = 2\prod_{\alpha\in \Sigma^+_{1,H}} (1-e^\alpha).
-\end{equation}
-Here $\Sigma_{1,H}$ is the non-reduced root system $BC_{n-1}$ of rank $n-1$, with underlying torus $\hat S_H$
-and positive roots $s_i s_j^{\pm 1}$, $s_i^2$, $s_i$, with $1<i<j\le n$.
-
-
-\subsection{Type $D_n$}
-
-When $n=4$, the triality automorphism of $D_4$ has outer type, which has been considered already.  
-Thus, we can confine our attention to classical automorphisms of the
-extended Dynkin diagram, of order $2$ or $4$.  The extended Dynkin diagram of $D_n$ is forked at both ends.
-  There are various possibilities for $\theta_H$,
-according to the symmetries of the extended Dynkin diagram.  We compute all cases (other than outer type).
-
-
-
-We work in the standard representation $\op{SO}(2n)$
-of dimension $2n$, defined with respect to a symmetric form 
-along the anti-diagonal $J = \op{anti}(1,1,\ldots,1)$.  (Note that we work in the adjoint group for convenience rather than the
-simply connected cover.)
-
-An outer automorphism $\theta_G$ exchanges the two prongs of one of the forks.
-When $\theta_G=1$, then $\hat S_G = \hat T$ and the root system $\Sigma_1$ is that
-of $\op{SO}(2n)$.  When the outer automorphism $\theta_G$ is nontrivial, then
-$\hat T\to \hat S_G =\ring{C}^{\times,n-1}$ is $\op{diag}(t_1,\ldots,t_n,t_n^{-1},\ldots,t_1^{-1})\mapsto (t_1,\ldots,t_{n-1})$.
-In this case, the root system $\Sigma_1$ with underlying torus $\hat S_G$ has type $C_{n-1}$ with positive roots $t_i t_j^{\pm 1}$, for $1\le i\le j<n$.
-
-Suppose the automorphism is of order $2$, preserving both ends, and acting non-trivially on the prongs at both ends.
-In this case $\theta_G=1$ and $\hat S_G = \hat T$.
-Then $\hat T\to \hat S_H = \ring{C}^{\times,n-2}$, where $(t_1,\ldots,t_n,\ldots)\mapsto (t_2,\ldots,t_{n-1})=s$.
-We can take the cover $\tilde S_H\to \hat S_H$ to be the identity map, and
-\[
-\phi(s)t_0 = \op{diag}(t_2,\ldots,t_{n-1},-1,1,\ 1,-1,t_{n-1}^{-1},\ldots,t_2^{-1}).
-\]
-We compute the determinant
-\begin{equation}
-D_{G,H} = 2^2 \prod_{\alpha\in \Sigma^+_{1,H}} (1-e^\alpha) \prod_{\alpha\in \Sigma^+_{1,H,\text{long}}} (1-e^\alpha).
-\end{equation}
-Here $\Sigma_{1,H}$ is the root system of type $C_{n-2}$ with underlying torus $\hat S_H$ and positive roots $t_i t_j^{\pm 1}$, $t_i^2$.
-Also, $\Sigma_{1,H,\text{long}}$ is the subset of long roots in $\Sigma_{1,H}$.
-
-Next, suppose the automorphism is of order $2$, swapping the two ends.
-In this case $\theta_G$ is trivial exactly when $n$ is even.    
-Write $n=2k$ or $n=2k+1$, depending on the parity.
-We have $\hat T\to \hat S_H = \ring{C}^{\times,k}$, where $(t_1,\ldots,t_n,\ldots)\mapsto (t_1/t_n,t_2/t_{n-1},\ldots) = (s_1,s_2,\ldots,s_k)$.
-We can take $\tilde S_H =\ring{C}^{\times,k}\to \hat S_H$, $\tau = (\tau_2,\ldots,\tau_k)\mapsto (\tau_2^2,\ldots,\tau_k^2)$.
-\begin{align*}
-\phi(\tau)t_0 &= (\tau_1,-\tau_1,\ldots,\tau_k,-\tau_k) \in \hat T = \hat S_G, &(n=2k);\\
-&= (\tau_1,-\tau_1,\ldots,\tau_k,-\tau_k)\in \hat S_G = \ring{C}^{\times,n-1}, &(n=2k+1).
-\end{align*}
-We compute the determinant
-\begin{equation}
-D_{G,H} = 2^k \prod_{\alpha\in\Sigma^+_{1,H}} (1-e^\alpha)^2.
-\end{equation}
-Here $\Sigma_{1,H}$ is a root system of type $C_k$ with underlying torus $\hat S_H$ and positive roots $s_i s_j^{\pm 1}$, for $1\le i\le j\le k$.
-
-Finally, assume that the automorphism has order $4$.
-The automorphism $\theta_G$ is trivial when $n$ is odd.
-Write $n=2k+1$ or $n=2k$.
-We have $\hat T\to \hat S_H = \ring{C}^{\times,k-1}$ given by
-$(t_1,\ldots,t_n)\mapsto (t_2/t_{n-1},t_3/t_{n_2},\ldots)$.
-We take $\tilde S_H =\ring{C}^{\times,k-1}\to \hat S_H$, $\tau = (\tau_2,\ldots,\tau_k)\mapsto (\tau_2^2,\ldots,\tau_k^2)$.
-Diagonalizing $\xi(t\theta_H)$, we find
-\begin{align*}
-\phi(\tau)t_0 &= (\tau_2,-\tau_2,\ldots,\tau_k,-\tau_k,i)\in \hat S_G=\ring{C}^{n-1},&(n=2k);\\
-&= (\tau_2,-\tau_2,\ldots,\tau_k,-\tau_k,i,-1,1)\in \hat T = \ring{C}^n,&(n=2k+1).
-\end{align*}
-We compute the determinant
-\begin{align*}
-D_{G,H} &= 2^k \prod_{\alpha\in \Sigma^+_{1,H}} (1-e^\alpha)^2 \prod_{\alpha\in \Sigma^+_{1,H,long}} (1+e^{\alpha/2})^2,&(n=2k).\\
-          &= 2^{k+9} \prod_{\alpha\in\Sigma^+_{1,H}} (1-e^\alpha)^2,&(n=2k+1).
-\end{align*}
-In both cases, the root system $\Sigma_{1,H}$ has type $C_{k-1}$ on torus $\hat S_H$.
-
-
-\subsection{Type $E_6$, $E_7$}
-
-We finally consider the cases $E_6$ and $E_7$.  If $\theta_G$ is nontrivial, then the data has outer type,
-and has already been treated.  We take $\theta_G$ to be trivial.   The extended Dynkin diagram of $E_6$
-has an automorphism of order $3$ and the extended Dynkin diagram of $E_7$ has an automorphism of order $2$.
-We compute in the Lie algebra using a Kottwtiz basis in the sense of \cite{cass-structure}. Some of these calculations were 
-computer assisted, using Mathematica.  No specialized Lie package were required; the calculations were short and rather simple
-to implement directly.
-
-Let $\dotw$ have image $w\in W_G$.  Let $w=r_1\ldots r_k$ be  a reduced word for $w$, where each $r_i$ is a simple reflection.
-
-
-\XX{finish these cases.}
-
-The determinant/partition function for endoscopic groups $H$ of $E_7$ is
-\[
-D_{G,H} = 2^{\text{?}} \prod_{\alpha\in \Sigma^+_{1,H}} (1-e^\alpha)^{m(\alpha)},\quad 
-m(\alpha)= \begin{cases}1,&\alpha \text{ short};\\2,&\alpha \text{ long}.\end{cases}
-\]
-where $\Sigma_{1,H}$ is the root system of type $F_4$.
-We take 
-\[
-\hat T = \ring{C}^{\times,7} = \{ (t_1,\ldots,t_8)\mid t_1 t_2\ldots t_8= 1\}.
-\]
-\[
-\hat T\mapsto \hat S_H = \{(s_{1238},s_{43},s_{78},s_{52},s_{61})\mid s_{1238}^2 s_{43} s_{78} s_{52} s_{61}=1\},\quad
-(t_1,\ldots,t_8)\mapsto (t_1t_1t_3t_8,t_4/t_3,t_7/t_8,t_5/t_2,t_6/t_1).
-\]
-%We identify the root system of $E_7$ with the set of 
-
-
-
-\end{proof}
-
-
-
-\newpage
 
 In this article, we use motivic integration to describe the spherical
 Hecke algebra, its Satake transform, and inverse Satake transform.
@@ -521,7 +56,7 @@ the pullback under $\xi$, and the inverse Satake transformation to $\H(H)$.
 
 Let 
 \[
-\dom = \{\lambda\in X_*(A) \mid \g{\lambda,\alpha^\vee}\ge 0,\quad \alpha\in \Delta_1\}
+\dom = \{\lambda\in X_*(A) \mid \ang{\lambda,\alpha^\vee}\ge 0,\quad \alpha\in \Delta_1\}
 \]
 be the set of dominant weights in $X^*(\hat S)=X_*(A)$.
 The spherical Hecke algebra $\H(G)=\H(G//K)$ of functions that are bi-invariant with respect
@@ -592,16 +127,16 @@ Let $(B,T,X)$ be a pinning of $G$ over $F$, preserved by $\theta$.
 
 %Let $K$ be a hyperspecial maximal compact subgroup of $G$ and let $O_F$ be the ring of integers of $F$.  
 Let $A$ be a maximal split torus in $T$.
-For any $S\subseteq \Phi$,
-let $M_S$
+For any $R\subseteq \Phi$,
+let $M_R$
 be the centralizer of 
 \[
-A_S = \{a\in A\mid \alpha(a)=1,\quad \alpha\in S\}.
+A_R = \{a\in A\mid \alpha(a)=1,\quad \alpha\in R\}.
 \]
 We have
 $X_*(A) = X_*(T)^\theta$ and $X^*(A) = X^*(T)/(1-\theta)X^*(T)$.
 The pairing of $X^*(A)$ and $X_*(A)$ is induced naturally from that of $X^*(T)$ and $X_*(T)$.
-Let $N:X_*(T)\to X_*(A)$ be the norm map: $N\alpha = \sum_{\alpha'\in [\alpha]} \alpha'$.
+
 
 The image of $\Phi$ in $X^*(A)$ is the restricted root sytem $\Sigma$.  
 It is well known that $\Sigma$ is indeed a root system, and this is easy to
@@ -667,7 +202,7 @@ a simple root in diagram $A_2$, and type III means a highest root in diagram $A_
 
 
 
-
+Let $N:X_*(T)\to X_*(A)$ be the norm map: $N\alpha = \sum_{\alpha'\in [\alpha]} \alpha'$.
 
 
 \begin{lemma}\label{lemma:norm}
@@ -714,7 +249,7 @@ Haines \cite{haines2016dualities}, and
 
 
 
-Let ${}^LG = \hat G \rtimes \g{\theta}$ be the $L$-group of the unramified group $G$.
+Let ${}^LG = \hat G \rtimes \ang{\theta}$ be the $L$-group of the unramified group $G$.
 It has root system dual to that of $G$.
 It is a semidirect product of a connected complex reductive group $\hat G$ and a finite cyclic group
 generated by an outer automorphism $\theta$ of $\hat G$.  The automorphism $\theta$ 
@@ -755,7 +290,7 @@ Each unramified character $\chi:T\to \ring{C}^\times$, by these identifications,
 We write $\chi = \chi_s$, for $s\in\hat S$.
 
 Let $e^\lambda$ be the basis element of  the group algebra $\ring{C}[Y^*]$ of $Y^*$, 
- corresponding to group elements $\lambda\in Y^*$.
+ indexed by  elements $\lambda\in Y^*$.
 
 A basis of $W^\theta$-fixed functions in $\ring{C}[Y^*]$ is 
 \[
@@ -778,7 +313,7 @@ $\Sigma_1=(\Sigma_{red})^\vee$, and root datum
 The complex group $\hat G_\theta$ is the $L$-group of $G^1$, the identity component of the
 $\theta$-fixed subgroup of the split form $G^*$ \cite[\S1.3]{kottwitz1999foundations}.
 As we will see, $\hat G_\theta$ fits naturally
-into the twisted Weyl character formula for the $L$-group ${}^LG$, hence also into the Satake transform
+into the twisted Weyl character formula for  ${}^LG$, hence also into the Satake transform
 and its inverse.  
 
 \begin{example}  Let $G=\op{SU}(n,E/F)$ be an unramified unitary group in an odd number of variables $n=2k+1$.
@@ -801,24 +336,109 @@ In this case, $G^1 = \op{GL}(n)^{\theta,0} = \op{SO}(2k+1)$, which indeed has $L
 
 
 
-\newpage
 
 
 \subsection{the partition function}
 
-
-
-Let $\n$ be the Lie algebra of $\hat N$ and
-let $\n = \oplus_{\beta\in \Psi^+} \n_\beta$ be the root space decomposition.  We define a symbolic operator $E$ on $\n$ that is diagonal with
-respect to the root space decomposition:
+Let $\theta_1\in N_{\hat G}(\hat T) \rtimes \ang{\theta}$ be an element of finite order.
+Set $\hat T_1 = \hat T/(1-\theta_1)\hat T$ and $X^*(\hat T_1) = X^*(\hat T)^{\theta_1}$.
+Let $N_1:X^*(\hat T)\to X^*(\hat T)^{\theta_1}$ be the norm map with respect to $\theta_1$:
 \[
-E v = e^{\beta} v, \text{ for } v \in \n_\beta.
+N_1 \mu = \sum_{\mu'\in \ang{\theta_1}\mu} \mu'.
 \]
-For $w\in W^\theta$, we define $w(E)$ formally, by $w(E) v = e^{ w \beta} v$, for $v\in \n_\beta$.
-The automorphism $\theta$ also acts on $\n$.  We define the $q$-partition function as
-\begin{equation}
-P(E,q) = 1/\det(1- q \theta E;\n).
-\end{equation}
+
+Let $V$ be a finite dimensional representation of ${}^LG$.  We let $V=\oplus V_\mu$ be the weight space decomposition of $V$.
+We have $\theta_1(V_\mu) = V_{\theta_1\mu}$.   Let $M\subset X^*(\hat T)$ be a $\theta_1$-stable set of weights of $V$, and
+set
+\[
+V_M = \oplus_{\mu\in M} V_\mu.
+\]
+
+We define a symbolic operator $E$ on $V_M$ that is diagonal with
+respect to the weight space decomposition:
+\[
+E v = e^{\mu} v, \text{ for } v \in V_\mu.
+\]
+We define a $q$-determinant $D(\hat G,V_M,\theta_1,E,q)$ and a $q$-partition function $P(\hat G,V_M,\theta_1,E,q)$ as
+\begin{align}\label{eqn:det}
+D(\hat G,V_M,\theta_1,E,q) &= \det(1- q \theta_1 E;V_M);\\ 
+P(\hat G,V_M,\theta_1,E,q) &= D(\hat G,V_M,\theta_1,E,q)^{-1}.
+\end{align}
+
+
+We may view the determinant and partition functions as functions on $\hat T$, by evaluating each $e^\mu (t) = \mu(t)$, for $t\in \hat T$,
+so that 
+\[
+\det(1- q\theta_1 E;V_M)(t) = \det(1-q\theta_1 t;V_M).
+\]
+Taking $\theta_1^{-1}(u) u^{-1}\in (1-\theta_1)\hat T$, we have
+\begin{align*}
+\det (1-q \theta_1 t \theta_1^{-1}(u) u^{-1};V_M) &= \det(1- u (q \theta_1 t ) u^{-1};V_M) = \det(1-q\theta_1 t;V_M).
+\end{align*}
+Thus, the determinant and partition functions descend to functions on $\hat T_1$.
+The next lemma gives the general shape of a factorization of the determinant.
+
+\begin{lemma}\label{lemma:fact}  Let $M = \{\theta^i\mu\}$ be the orbit of a single weight of $V$.  Then
+$D(\hat G,V_M,\theta_1,E,q)$ is a finite product of factors of the form
+\[
+1 - \zeta q^b e^{N_1\mu},
+\]
+where $b$ is the cardinality of the orbit $M$ and $\zeta^k=1$, where $k b$ is the order of $\theta_1$.
+\end{lemma}
+
+\begin{proof}  Fix $\mu_0\in M$ and let $\mu_i = \theta_1^i \mu_0$.  The abelian group $\ang{\theta_1^b}$ acts on $V_{\mu_0}$.
+Write $V_{\mu_0} = \oplus W$, where each $W$ is a $1$-dimensional representation of $\ang{\theta_1^b}$.
+Then $V_M = \oplus \ang{\theta_1} W$, where $\ang{\theta_1} W = \oplus_{i=0}^{b-1} \theta_1^i W$.  We have $\theta_1^b v_0 = \zeta v_0$,
+for $v_0\in W$ and some $\zeta = \zeta_W$.   Let $v_i = \theta_1^i v_0$.  
+The operator $1 - q \theta_1 E$ on the summand $\ang{\theta_1} W$ with respect to this basis is
+\[
+\begin{pmatrix}
+1 & -q e^{\mu_0} & 0 & \ldots\\
+0 & 1 & -q e^{\mu_1} & \ldots\\
+   & \ldots & & \\
+-\zeta  q e^{\mu_{b-1}} & 0 & \ldots & 1
+\end{pmatrix}.
+\]
+The result follows by taking its determinant.
+\end{proof}
+
+\subsubsection{relation with $L$-functions}
+
+Langlands has defined an $L$-function for spherical representations of $G$.
+It is written $L(\pi,V,q^{-s})$, where
+ $\pi$ is an irreducible admissible representation of $G$ with a $K$-fixed vector, and
+ $V$ is a representation of the $L$-group ${}^LG$, which we assume factors through some finite unramified Galois extension $\op{Gal}(E/F)$.
+
+Let $t_\pi\in \hat S$ be the Frobenius-Hecke parameter of  $\pi$.
+We let $\theta_1 = \theta = \Frob$, the automorphism of $\hat G$ coming from the action of Frobenius on the root datum.
+We let $M$ be the set of all weights, so that $V = V_M$.
+As observed above, the partition function $P(\hat G,V,\theta,E,q)$ is a function on $\hat T_1 = \hat S$.
+
+\begin{lemma} In this context,
+\[
+P(\hat G,V,\theta,E,q_F^{-s})(t_\pi) = L(\pi,V,q_F^{-s}).
+\]
+\end{lemma}
+
+\begin{proof} Both sides are defined as the reciprocal of a determinant.  On both sides it is the determinant of the same
+element acting on the same vector space.
+\end{proof}
+
+\subsubsection{the partition function for the adjoint representation}
+
+A case of particular importance for us is the following.
+Let $\g$ be the adjoint representation of  $\hat G$.   It is an irreducible highest weight representation whose highest weight is $\theta$-fixed.
+Hence $\g$ extends to an irreducible representation of $\hat G\rtimes\ang{\theta}$.
+Let $\n$ be the Lie algebra of $\hat N$.  Then $\n = \g_M$, where $M$ is the set of positive roots.  The set $M$ is $\theta$-stable.
+We have a partition function
+\[
+P(\hat G,\n,\theta,E,q).
+\]
+Much of this article handles this particular case.  When $\hat G$, $\n$, and $\theta$ are fixed, we abbreviate
+$P(E,q) = P(\hat G,\n,\theta,E,q)$.
+%let $\n = \oplus_{\beta\in \Psi^+} \n_\beta$ be the root space decomposition.  
+%The automorphism $\theta$ also acts on $\n$.  
+
 
 %Recall that the $\theta$-orbits of $\Phi$ are in bijection with $\Sigma$; and dually, the $\theta$-orbits
 %of $\Psi$ are in bijection with $\Sigma^\vee$.  
@@ -838,13 +458,13 @@ d_\alpha(q) =
 %     \phantom{-}1, & \text{otherwise}.
 %\end{cases}
 %\]
-We have the following factorization.
+We have the following factorization refining Lemma \ref{lemma:fact}.
 
 \begin{lemma} \label{lemma:prod}
 %Let $[\beta_1],\ldots,[\beta_k]$ be the $\theta$-orbits in $\Psi^+$, with cardinalities $b_i = \card([\beta_i])$.
-Then
+%Then
 \[
-\det(1-\theta  q E;\n) = \prod_{\alpha\in\Sigma^+_1} d_\alpha(q).
+\det(1-\theta  E q ;\n) = \prod_{\alpha\in\Sigma^+_1} d_\alpha(q).
 \]
 \end{lemma}
 
@@ -897,6 +517,7 @@ P(E,1) = \prod_{\alpha\in\Sigma^+_1} (1-e^{\alpha})^{-1}.
 \begin{proof}  Set $q=1$ in the lemma and observe that $d_\alpha(1)=1-e^\alpha$.
 \end{proof}
 
+For $w\in W^\theta$, we define $w(E)$ formally, by $w(E) v = e^{ w \beta} v$, for $v\in \n_\beta$.
 
 \begin{corollary}\label{cor:weyl-p}  
 %$W^\theta$ permutes the roots of $\Sigma_1\subset Y^*$ and
@@ -917,7 +538,6 @@ The result follows by observing  that $w\in W^\theta$ permutes $\Sigma_1$, prese
 \end{proof}
 
 
-\newpage
 
 \subsection{twisted Weyl character formula}
 
@@ -927,7 +547,7 @@ At the same time, we consider various $q$-deformations of the standard formulas.
 
 Let $\lambda$ be a dominant weight in $X^*(\hat T)^\theta = X^*(\hat S)$.  Let $V_\lambda$ be the irreducible module
 of $\hat G$ with highest weight $\lambda$.  The $\theta$-invariance of $\lambda$ implies that $V_\lambda$
-extends uniquely to a representation of $\hat G \rtimes \g{\theta}$ such that $\theta v = v$ for $v$ in the
+extends uniquely to a representation of $\hat G \rtimes \ang{\theta}$ such that $\theta v = v$ for $v$ in the
 highest weight space of $V_\lambda$.  We let $\tau_\lambda$ be the character on $V_\lambda$, restricted to $\hat G\rtimes\theta$.  Any such element is $\hat G$-conjugate to $\hat T\rtimes\theta$.
 %This restriction depends only the $\hat G$-conjugacy class of elements $t\rtimes \theta\in \hat T\rtimes\theta$.
 The $\theta$-conjugacy class of $t\theta\in \hat T\rtimes\theta$ 
@@ -964,7 +584,7 @@ $\hat G_\theta$ with highest weight $\lambda$.
 
 
 \begin{proof} We follow Kostant \cite{kostant1961lie}.
-Let $\n$ be the Lie algebra of $\hat N$, considered as a module of ${}^L\hat T=\hat T\rtimes\g{\theta}$ by the adjoint representation,
+Let $\n$ be the Lie algebra of $\hat N$, considered as a module of ${}^L\hat T=\hat T\rtimes\ang{\theta}$ by the adjoint representation,
 and let $\n'$ be its contragredient.  We write $\chi_j$ for the character of the exterior power $\Lambda^j \n'$.
   We write $\tilde\chi_q = \sum_j (-q)^j\chi_j$
 for the $q$-graded virtual character on the sum of $\Lambda^j \n'$, with grading $(-q)^j$ on the $j$th summand.  
@@ -1031,7 +651,7 @@ to the algebra $\ring{C}[Y^*]^{W^\theta}$.   We write $\hat f_\mu\in \ring{C}[Y^
 for the image of $f_\mu$
 under the Satake isomorphism.
 
-We continue in the context of a complex group $\hat G \rtimes \g{\theta}$ and keep earlier notation.
+We continue in the context of a complex group $\hat G \rtimes \ang{\theta}$ and keep earlier notation.
 As usual, we identify elements of $\ring{C}[Y^*]$ with functions on $\hat S$.  
 As before $\Phi=\Psi^\vee$ and $\Psi = \Phi^\vee$ are dual root systems.
 Let $\rho^\vee = \rho(\Phi^+)\in X_*(\hat T)$.
@@ -1046,15 +666,15 @@ of the set $\Delta_1$ of simple  roots in $\Sigma^+_1$,
  let $W_S\le W^\theta$ be the group generated by the reflections in $S$.
 Let $\ell' w$ be the length of $w\in W$ (as a function of the Weyl group $W$, and not the Weyl group $W^\theta$).
 Let $Q_S(q^{-1}) = \sum_{w\in W_S} q^{-\ell'w}$.  We abbreviate $Q(q^{-1}) = Q_{\Delta_1}(q^{-1})$.
-For each $\mu\in P^+\subset Y^*$, let $S(\mu)$ be the subset of $\Delta_1$ such that $\g{\mu,\alpha^\vee}=0$ iff $\alpha^\vee\in S(\mu)$.
+For each $\mu\in P^+\subset Y^*$, let $S(\mu)$ be the subset of $\Delta_1$ such that $\ang{\mu,\alpha^\vee}=0$ iff $\alpha^\vee\in S(\mu)$.
 
 \begin{theorem}[Macdonald's formula]\label{thm:macdonald}
-Let $G$ be an unramified $p$-adic reductive group with $L$-group ${}^LG = \hat G \rtimes \g{\theta}$.
+Let $G$ be an unramified $p$-adic reductive group with $L$-group ${}^LG = \hat G \rtimes \ang{\theta}$.
 For each $\mu\in P^+$, 
 let $\hat f_\mu$ be the Satake transform of the characteristic function of $K\varpi^\mu K$, viewed as an element
 of $\ring{C}[Y^*]^{W^\theta}$.  Then
 \[
-\hat f_\mu = \frac{q^{\g{\mu,\rho^\vee}}}{ Q_{S(\mu)}(q^{-1})} \sum_{w\in W^\theta} e^{w\mu} \frac{P(w(E)^{-1},1)}{P(w(E)^{-1},q^{-1})}.
+\hat f_\mu = \frac{q^{\ang{\mu,\rho^\vee}}}{ Q_{S(\mu)}(q^{-1})} \sum_{w\in W^\theta} e^{w\mu} \frac{P(w(E)^{-1},1)}{P(w(E)^{-1},q^{-1})}.
 \]
 \end{theorem}
 
@@ -1077,7 +697,7 @@ There is a related formula for the spherical function $\Gamma:P^+\times\hat S\to
 For every $\mu\in P^+$, 
 \begin{equation} 
 \Gamma_\mu = 
-\frac{q^{-\g{\mu,\rho^\vee}}}{ Q(q^{-1})} \sum_{w\in W^\theta} e^{w\mu} \frac{P(w(E)^{-1},1)}{P(w(E)^{-1},q^{-1})}.
+\frac{q^{-\ang{\mu,\rho^\vee}}}{ Q(q^{-1})} \sum_{w\in W^\theta} e^{w\mu} \frac{P(w(E)^{-1},1)}{P(w(E)^{-1},q^{-1})}.
 \end{equation}
 
 
@@ -1166,7 +786,7 @@ is an Iwahori subgroup, and the length is computed with respect to the absolute 
 \subsection{Plancherel measure}
 We continue in the same context, letting
  $G$ be an unramified reductive group and  $K$ a hyperspecial maximal compact subgroup.
-Let ${}^LG = \hat G\rtimes \g{\theta}$, and we continue with notation from previous sections.
+Let ${}^LG = \hat G\rtimes \ang{\theta}$, and we continue with notation from previous sections.
 
 Let $\hat S_1$ be the maximal compact subgroup of $\hat S$.  Let $ds$ be the Haar measure on $\hat S_1$ normalized
 so that $\hat S_1$ has volume $1$.
@@ -1185,10 +805,10 @@ It will be checked below that
 the partition functions defining 
 $dm(s)$
 have nonzero  denominators on $\hat S_1$.
-Let $\g{\cdot,\cdot}$ be the pairing provided by this measure on continuous functions on $\hat S_1$.
+Let $\ang{\cdot,\cdot}$ be the pairing provided by this measure on continuous functions on $\hat S_1$.
 That is, 
 \begin{equation}
-\g{f_1,f_2} = \int_{\hat S_1} f_1(s) \bar f_2(s) dm(s).
+\ang{f_1,f_2} = \int_{\hat S_1} f_1(s) \bar f_2(s) dm(s).
 \end{equation}
 
 
@@ -1199,9 +819,9 @@ The proof of the Plancherel measure uses the following averaging lemma.
 Let $f$ be continuous on $\hat S_1$ and $W^\theta$-invariant.
 Then
 \[
-\g{f,\hat f_\mu} = c_\mu  (f, e^\mu\frac{ P(E,q^{-1})}{P(E,1)}),
+\ang{f,\hat f_\mu} = c_\mu  (f, e^\mu\frac{ P(E,q^{-1})}{P(E,1)}),
 \quad\text{where }\quad
-c_\mu = q^{\g{\mu,\rho^\vee}}\frac{ Q(q^{-1})}{Q_{S(\mu)}(q^{-1})}.
+c_\mu = q^{\ang{\mu,\rho^\vee}}\frac{ Q(q^{-1})}{Q_{S(\mu)}(q^{-1})}.
 \]
 \end{lemma}
 
@@ -1210,26 +830,26 @@ c_\mu = q^{\g{\mu,\rho^\vee}}\frac{ Q(q^{-1})}{Q_{S(\mu)}(q^{-1})}.
 The  measure $dm(s)$ is $W^\theta$-invariant by Corollary \ref{cor:weyl-p}.  As a consequence,
 we may push a sum over $W^\theta$ over to $f$ to obtain
 \begin{equation}\label{eqn:inv}
-\g{f,\sum_{w\in W^\theta} w(f_1)} = \card(W^\theta)\g{f,f_1},
+\ang{f,\sum_{w\in W^\theta} w(f_1)} = \card(W^\theta)\ang{f,f_1},
 \end{equation}
 for any continuous function $f_1$ on $\hat S_1$.
 In particular, assume that $f_1=\hat f_\mu$, which Macdonald's
 formula presents a sum over $W^\theta$.
-This means that in $\g{f,\hat f_\mu}$, we may replace 
+This means that in $\ang{f,\hat f_\mu}$, we may replace 
 $\hat f_\mu$  with
 the $w=1$ term  in Macdonald's formula.
-%$q^{\g{\mu,\rho^\vee}} e^{\mu} P(E^{-1},1)/{Q_{S(\mu)}(q^{-1}) P(E^{-1},q^{-1})}$
+%$q^{\ang{\mu,\rho^\vee}} e^{\mu} P(E^{-1},1)/{Q_{S(\mu)}(q^{-1}) P(E^{-1},q^{-1})}$
 
 The constant $c_\mu$ is the product of the constants appearing in Macdonald's formula, the Plancherel measure,
 and Equation \ref{eqn:inv}:
 \[
-c_\mu = \left(\frac{q^{\g{\mu,\rho^\vee}}}{Q_S(q^{-1})}\right)\left(\frac{Q(q^{-1})}{\op{card}(W^\theta)}\right) \op{card}(W^\theta).
+c_\mu = \left(\frac{q^{\ang{\mu,\rho^\vee}}}{Q_S(q^{-1})}\right)\left(\frac{Q(q^{-1})}{\op{card}(W^\theta)}\right) \op{card}(W^\theta).
 \]
 
 The conjugate of $e^\mu$ is $e^{-\mu}$ and of $E$ is $E^{-1}$ on $\hat S_1$, because $\bar s = s^{-1}$, for $s\in \hat S_1$.
 We have
 \begin{align*}
-\g{f,\hat f_\mu} &=
+\ang{f,\hat f_\mu} &=
 c_\mu\int_{\hat S_1} f \left(e^{-\mu} \frac{P(E,1)}{P(E,q^{-1})}\right) \left(\frac{P(E,q^{-1}) P(E^{-1},q^{-1})}{P(E,1)(E^{-1},1)}\right) ds\\
 &=
 c_\mu\int_{\hat S_1} f \left(e^{-\mu} \frac{P(E^{-1},q^{-1})}{P(E^{-1},1)}\right) ds\\
@@ -1255,9 +875,9 @@ When $\mu\ne\lambda$,
 the integral on the left is trivial to compute for the functions $f_1 = f_\lambda$ and $f_2 = f_\mu$
 because the functions $f_\mu$ and $f_\lambda$ have disjoint support, giving $0$.
 When $\mu=\lambda$, the integral on the left is the volume of $K\varpi^\mu K$.
-This volume is $c_\mu q^{\g{\mu,\rho^\vee}}$ by \cite{casselman2005companion}, where $c_\mu$ is
+This volume is $c_\mu q^{\ang{\mu,\rho^\vee}}$ by \cite{casselman2005companion}, where $c_\mu$ is
 the constant in Lemma \ref{lemma:average}.
-The proof of the theorem proceeds by computing the inner products $\g{\hat f_\lambda,\hat f_\mu}$
+The proof of the theorem proceeds by computing the inner products $\ang{\hat f_\lambda,\hat f_\mu}$
 and showing that they give the same values as the integral on the left.
 \end{remark}
 
@@ -1289,13 +909,13 @@ e^\mu \frac{P(E,q^{-1})}{P(E,1)} = e^\mu +\sum_{\mu< \mu'} a_{\mu'} e^{\mu'},
 \] 
 for some coefficients $a_{\mu'}$ that turn out not to matter.
 
-We compute $\g{\hat f_\lambda,\hat f_\mu}$.
+We compute $\ang{\hat f_\lambda,\hat f_\mu}$.
 We may assume without loss of generality that $\lambda \le \mu$.
-%we have $\g{\hat f_\lambda,\hat f_\mu} = c_\mu (\hat f_\lambda,e^\mu P(E,q^{-1})/P(E,1))$.
+%we have $\ang{\hat f_\lambda,\hat f_\mu} = c_\mu (\hat f_\lambda,e^\mu P(E,q^{-1})/P(E,1))$.
 
 We have a finite expansion (see Equation \ref{eqn:s} below)
 \[
-\hat f_\lambda = q^{\g{\lambda,\rho^\vee}} m_\lambda + \sum_{\lambda' <\lambda } s_{\lambda\,\lambda} m_{\lambda'}.
+\hat f_\lambda = q^{\ang{\lambda,\rho^\vee}} m_\lambda + \sum_{\lambda' <\lambda } s_{\lambda\,\lambda} m_{\lambda'}.
 \]
 Also, for $\lambda',\mu'\in P^+$, we have
 \[
@@ -1305,10 +925,10 @@ The function $\hat f_\lambda$ is $W^\theta$-invariant, which justifies the use o
 the averaging lemma (Lemma \ref{lemma:average}) to simplify the inner product.
 Invoking the averaging lemma, expanding everything, and integrating term by term, we have
 \begin{align*}
-\g{\hat f_\lambda,\hat f_\mu} &= c_\mu (\hat f_\lambda, e^\mu \frac{ P(E,q^{-1})}{P(E,1)})\\
-&= c_\mu (q^{\g{\lambda,\rho^\vee}} m_\lambda,e^\mu) + \sum_{\lambda' < \lambda\le\mu < \mu'}
+\ang{\hat f_\lambda,\hat f_\mu} &= c_\mu (\hat f_\lambda, e^\mu \frac{ P(E,q^{-1})}{P(E,1)})\\
+&= c_\mu (q^{\ang{\lambda,\rho^\vee}} m_\lambda,e^\mu) + \sum_{\lambda' < \lambda\le\mu < \mu'}
 c_\mu s_{\lambda',\lambda} a_{\mu'} (m_{\lambda'},e^{\mu'})\\ 
-&= c_\mu q^{\g{\mu,\rho^\vee}} \delta_{\lambda,\mu}.
+&= c_\mu q^{\ang{\mu,\rho^\vee}} \delta_{\lambda,\mu}.
 \end{align*}
 
 Comparing this inner product with the  inner products in the remark, we see that the proof is 
@@ -1372,7 +992,7 @@ L(e^\mu) = \sum_{w\in W^\theta} (-1)^{\ell w} e^{w\bullet \mu} e_w(\mu).
 
 Recall that $S(\mu)$ is defined as the set of simple roots
 such that 
-$\g{\alpha^\vee,\mu}=0$ iff $\alpha\in S(\mu)$.
+$\ang{\alpha^\vee,\mu}=0$ iff $\alpha\in S(\mu)$.
 %For each subset $S$ of the set of simple roots,
 %we have a set
 %$P^+_S \subseteq P^+$ given by the set of $\mu\in P^+$ such that
@@ -1455,14 +1075,14 @@ Define $p_\mu(q^{-1})$ by
 
 \begin{theorem}  Let $\lambda\in P^+$ and let $S=S(\lambda)$.
 \[
-\hat f_\lambda = \frac{q^{\g{\lambda,\rho^\vee}}}{Q_S(q^{-1})} 
+\hat f_\lambda = \frac{q^{\ang{\lambda,\rho^\vee}}}{Q_S(q^{-1})} 
 \sum_{\mu\in C}\left(\sum_{w\in W^\theta} (-1)^{\ell w} p_{\mu}(q^{-1}) e_w(\lambda+\mu)\right)  \tau_{w\bullet(\lambda+\mu)}.
 \]
 \end{theorem}
 
 
 \begin{proof}
-Abbreviate $r_\lambda = q^{\g{\lambda,\rho^\vee}}/Q_S(q^{-1})$.
+Abbreviate $r_\lambda = q^{\ang{\lambda,\rho^\vee}}/Q_S(q^{-1})$.
 By the Weyl denominator product formula (Corollary \ref{cor:prod1}),
 \begin{equation}
 P(w(E),1) = (-1)^{\ell w} e^{w\rho - \rho} P(E,1),
@@ -1513,7 +1133,7 @@ for some constants $t_{\lambda,\mu}$.
 \begin{theorem}[Kato-Lusztig formula]
 The coefficients $t_{\lambda,\mu}$ of the inverse geometric Satake transform are 
 \[
-t_{\lambda,\mu} =  (\tau_{\lambda,q^{-1}},e^\mu) q^{-\g{\mu,\rho^\vee}}.
+t_{\lambda,\mu} =  (\tau_{\lambda,q^{-1}},e^\mu) q^{-\ang{\mu,\rho^\vee}}.
 \]
 \end{theorem}
 
@@ -1522,7 +1142,7 @@ The character $\tau_\lambda$ is $W^\theta$-invariant.
 We use the averaging property (Lemma \ref{lemma:average}) and the Weyl character
 formula to compute an inner product.
 \begin{align*}
-\g{\tau_\lambda,\hat f_\mu}
+\ang{\tau_\lambda,\hat f_\mu}
 &=c_\mu(\tau_\lambda,e^\mu \frac{P(E,q^{-1})}{P(E,1)})\\
 %&=(*)\left\langle\tau_\lambda, e^{\mu} \frac{P(E^{-1},1)}{P(E^{-1},q^{-1})}\right\rangle \hfill\\
 %&=(*)\int_{\hat S_1} \tau_\lambda \left(e^{-\mu} \frac{P(E,1)}{P(E,q^{-1})}\right) dm(s)\hfill \\
@@ -1534,16 +1154,709 @@ formula to compute an inner product.
 &=
 c_\mu\int_{\hat S_1} J(e^\lambda) P(E^{-1},q^{-1}) e^{-\mu} ds\\
 &= c_\mu(\tau_{\lambda,q^{-1}},e^\mu).\\
-\g{\tau_\lambda,\hat f_\mu}
-&=\sum_{\mu'} t_{\lambda,\mu'} \g{\hat f_{\mu'},\hat f_\mu} \\
-&= t_{\lambda,\mu} c_\mu q^{\g{\mu,\rho^\vee}}.
+\ang{\tau_\lambda,\hat f_\mu}
+&=\sum_{\mu'} t_{\lambda,\mu'} \ang{\hat f_{\mu'},\hat f_\mu} \\
+&= t_{\lambda,\mu} c_\mu q^{\ang{\mu,\rho^\vee}}.
 \end{align*}
+\end{proof}
+
+\newpage
+\section{Endoscopic branching formulas}\label{sec:branch}
+
+\subsection{some calculations of partition functions}
+
+Let $G$ be an unramified reductive group, and let ${}^LG = \hat G \rtimes \ang{\theta}$ be its $L$-group,
+with the automorphism $\theta$ given by the action of the Frobenius element on the root datum.
+For the calculations in this section, we assume that $\hat G$ is semisimple, simply connected, and that
+its Dynkin diagram is connected.  These calculations will be used in Section \ref{XX} to give explicit
+branching rules for embeddings of endoscopic groups in $L$-groups.
+
+We have a simple set of roots $\Delta$, determined by $(\hat T,\hat B)$.  Let $\alpha$ be the highest
+positive root and let $\Delta' = \Delta \cup \{-\alpha\}$ be the extended set of simple roots.   We 
+consider the extended Dynkin diagram, which has node set $\Delta'$.  The automorphism $\theta$ preserves
+$\Delta$ and fixes $-\alpha$, hence acts on the extended Dynkin diagram.
+
+Let $w\in W$ be an element that preserves the extended Dynkin diagram.  We consider a lift $\dotw\in N_{\hat G}(\hat T)$ of $w$
+such that $\theta_1 = \dotw \theta$ has finite order.  
+The partition function $D(\hat G,\g_M,\dotw\theta,E,q)$ is sensitive to the representative $\dotw$ of $w$.  But the branching
+formula that we obtain in the end will depend only on $w$.  In each case, we pick a particularly convenient representative $\dotw$ 
+of $w$ to work with.
+The details of the choice of $\dotw$ will be discussed further below.
+
+As usual, 
+let $\hat S = \hat T/(1-\theta)\hat T$ and $\hat T_1 = \hat T/(1-\theta_1)\hat T$.
+We recall the norm $N_1:X^*(\hat T)\to X^*(\hat T_1)$.
+
+We choose a vector $v\in X_*(\hat T)$ such that for every root $\beta\in \Psi$, we have
+$\ang{v,\beta}>0$ iff $\beta\in\Psi^+$.   We may use $v$ to define positivity in root systems associated with $X^*(\hat T_1)$.
+
+Let $\g$ be the adjoint representation of $\hat G$.  It extends to a representation of ${}^LG$.
+We have a sum $\g = \g_-\oplus \g_0 \oplus \g_+$, where each $\g_i = \g_{M_i}$ and $\Psi = M_- \sqcup M_0 \sqcup M_+$, according to the
+sign $\{-1,0,+1\}$ of $\ang{n,N_1\mu}$.
+We have an associated determinant $D_i(E,q)=D(\hat G,\g_i,\theta_1,E,q)$ and partition function $P(\hat G,\g_i,\theta_1,E,q)$, for $i=-,0,+$.
+
+
+
+
+
+Our aim is to compute $D_+(E,1)$, for each possible $(\hat G,\g_+,w\theta)$ and for some $\dotw\mapsto w$.  
+We consider various cases.
+
+\subsubsection{outer type}
+
+We say that the data $(\hat G,w\theta)$  has outer type, if $w_1 w \theta w_1^{-1}=\theta$ for some 
+$w_1\in W$.
+Let $\dotw'$ and $\dotw_1$ be lifts of $w$ and $w_1$ to $N_{\hat G}(\hat T)$.
+Then
+\[
+\dotw_1 \dotw' \dotw_1^{-1} = t_1\theta,
+\]
+for some $t_1\in \hat T$.  Let $\dotw = \dotw_1^{-1} t_1^{-1} \dotw_1\dotw'$.
+Then
+\begin{equation}\label{eqn:outer}
+\dotw_1\dotw \theta\dotw_1^{-1} = \theta.
+\end{equation}
+%$g\in N_{\hat G}(\hat T)$.
+%Choose $g\hat G$ such that $g \dotw  \theta g^{-1} = \theta$.  Adjusting $g$ by an element in $\hat G^{\theta}$, we may assume that
+%$g$ preserves $\hat T$; that is, $g\in N_{\hat G}(\hat T)$.
+
+
+\begin{lemma} If $(\hat G,\g_+,w\theta)$ has outer type with representative $\dotw\mapsto w$ satisfying Equation~\ref{eqn:outer}, then
+\[
+D(\hat G,\g_+,\dotw\theta,E,q) = D(\hat G,\n,\theta,w_1(E),q),
+\]
+the  determinant considered in Section \ref{XX}.
+\end{lemma}
+
+\begin{proof}
+Note that in this case
+\[
+\hat T_1 = \hat T/(1-\theta_1) \hat T = \hat T/(1-\dotw \theta)\hat T = \hat T/(1-\theta)\hat T = \hat S.
+\]
+The isomorphism $\hat T/(1-\dotw \theta)\hat T\to \hat T/(1-\theta)\hat T$ is given by $t \mapsto g t g^{-1}$.
+
+
+It follows that 
+\[
+\det(1- \dotw \theta E q) = \det(1 - \dotw_1 \dotw\theta E q \dotw_1^{-1}) = \det(1 - \theta\, w_1(E) q).
+\]
+%$(\hat G,\g_+,\theta_1)$ and $(\hat G,\g_+,\theta)$ have the same partition function.
+Also, $\theta$ and $N_1$ preserve the set of positive roots, so that $\ang{v,N_1\mu}>0$ iff $\ang{v,\mu}>0$ iff $\mu\in \Psi^+$.
+Hence $\g_+ = \g_{\Psi^+} = \n$.  The result follows.
+\end{proof}
+
+
+%We choose data $\epsilon=1$, $\tilde T_1 = \hat T_1 = \hat S$, and $\phi:\hat T_1\to \hat S$ the identity map.
+%The determinant in this case is $D_{G,H}(E_{G,H},q) = D_G(E,q)$.  The claimed properties of the data follow immediately.
+
+The outer type with representative $\dotw = 1$  includes all cases where $\hat G_{sc}$ is adjoint: $G_2$, $F_4$, and $E_8$.
+
+We consider groups of type ${}^2A_{n-1}$.  That is, we consider $\hat G = \op{SL}(n,\ring{C})$ and an outer automorphism $\theta$ that
+preserves a pinning.
+We claim that every $w\theta$  has outer type.
+The extended Dynkin diagram is a loop with $n$ nodes.  The automorphism $\theta$ acts as a reflection that fixes
+the extended node of the diagram.  The automorphism $\dotw$ acts as a rotation of the diagram.  Then $\dotw \theta$ is also
+a reflection of the diagram.  There are two cases, depending on whether $\dotw\theta$  fixes a node.  If it fixes a node,
+then we may assume without loss of generality that the fixed node is the extended node.  Then $\dotw\theta = \theta$.
+If $w\theta$ does not fix a node, then $n$ is even and the automorphism acts as a reflection of a regular $n=2k$-gon
+through the center of two opposite edges.  Up to conjugacy, this automorphism is represented as $\theta_1 = \dotw\theta$, where
+$\dotw $ acts as a cyclic permutation $\dotw (t) = \op{diag}(t_2,t_3,\ldots,t_n,t_1)$, and $\theta(t) = \op{diag}(t_n^{-1},\ldots,t_1^{-1})$,
+where $t=\op{diag}(t_1,\ldots,t_n)$.  We find that $\dotw \theta$ is $W$-conjugate to $\theta$,
+by an element $w_1$ such that $w_1(t) = \op{diag}(t_1,\ldots,t_k,\ t_n,t_{n-1},\ldots,t_{k+1})$.
+
+
+
+
+\subsubsection{inner type and simply laced}  We will say that the data $(\hat G,\g_+,\theta_1)$ has inner type if $\theta=1$,
+if $\theta_1 = \dotw$ has finite order, and $\dotw\mapsto w$, which acts on the extended Dynkin diagram.
+This subsection considers data of inner type and simply laced.
+
+\begin{lemma}\label{lemma:inner} 
+Suppose that $\theta=1$ and the $\hat G$ is simply laced (in addition to our running assumptions that $\hat G$ is simply connected
+of simple type).  Let $N_1\Psi$ be the root system of $\hat T_1$ consisting of $\{N_1\beta\mid \beta\in \Psi\}$. Let $\ell$ be the order of $w$.
+Let $m:\Psi\to \ring{N}$ be given by $m(\alpha)=\ell$ if $\alpha$ is a long root in $N_1\Psi$ (or if  $N_1\Psi$ is simply laced).
+Let $m(\alpha) = 1$, otherwise.
+There exists a lift $\dotw\in N_{\hat G}(\hat T)$ such that
+\[
+D(\hat G,\g_+,\dotw,E,q) = D_+(E,q) = \prod_{\alpha\in N_1\Psi^+} (1- q^{m(\alpha)} e^\alpha)^{m(\alpha)}.
+\]
+\end{lemma}
+
+\begin{proof} We make a case-by-case calculation. 
+If $w=1$, then we set $\dotw=1$.   The determinant in the lemma is the determinant
+$\det(1- q E;\n)$, the root system is $N_1\Psi =\Psi$, and $\g_+ = \n$.
+This case is immediate.  (Note that these cases are both inner and outer type.)
+
+There is no non-trivial automorphism $w$ of the extended Dynkin diagram 
+when  $\hat G_{sc} = \hat G_{adj}$.  Thus, we assume that $\hat G$ has nontrivial center.
+The Dynkin diagram of $\hat G$ has type $A_{n-1}$, $D_n$, $E_6$, or $E_7$.
+
+We start with the hardest cases
+ $E_6$ and $E_7$.  
+The extended Dynkin diagram of $E_6$
+has an automorphism of order $3$ and the extended Dynkin diagram of $E_7$ has an automorphism of order $2$.
+The root system $N_1\Psi$ has type $G_2$ or $F_4$, respectively, when the original root system $\Psi$  has type $E_6$ or $E_7$.
+
+We choose $\dotw$ with image $w\in W$ as follows.  Let $w=r_1\ldots r_k$ be  a reduced word for $w$, where each $r_i$ is a simple reflection.
+According to Tits, each $r_i$ has a lift $\dot r_i$ to an element in the normalizer, depending only on the pinning $(\hat B,\hat T,X)$.
+The product $\dotw = \dot r_1\ldots \dot r_k$ is independent of the reduced word for $w$.
+
+Let $\{ e_\gamma \mid \gamma\in \Psi\}\cup \{h_\alpha\mid \alpha\in\Delta\}$ 
+be the Kottwitz basis of the Lie algebra of $\hat G$.
+(A Kottwitz basis is a particularly nice
+Chevalley basis of the Lie algebra, introduced in \cite{cassstructure}.)  For a simply-laced root system, there is a single choice
+involved in constructing the basis: a choice of simple root, which we take to be the node of valence three in the Dynkin diagram (types $E_6$ and $E_7$).
+We make some 
+computer assisted calculations, using Mathematica.  No specialized Lie package is required; the calculations are short and rather simple
+to implement directly.
+An algorithmic formula for $\op{Ad}(\dotw) e_\gamma$ appears in \cite{cassstructure}.   In our situation, a short computer computation gives the remarkably simple answer:
+\[
+\op{Ad}(\dotw) e_\gamma = e_{w\gamma}\text{ for all } \gamma\in \Psi;\qquad (E_6 \text{ and } E_7).
+\]
+This implies that the roots of unity $\zeta$ in Lemma \ref{lemma:fact} are all $1$, and that the determinant is a product of factors
+$(1-q^b e^{N_1\alpha})$.  Then, the lemma follows by counting the number of times each norm $N_1\beta$ appears.  This completes the proof for $E_6$ and $E_7$.
+
+Before continuing with the proof, we pause to describe the general strategy to compute partition functions in the remaining cases.
+The strategy applies to this proof and to other proofs that follow.
+The cases we have considered already (outer, $E_6$, $E_7$) give the partition function in all exceptional cases.
+This means that the remaining cases are $A_{n-1}$, $B_n$, $C_n$, $D_n$.
+When $n=4$, the triality automorphism of $D_4$ has outer type, which has been considered already.  
+Thus, we can assume that the automorphism of the extended diagram of $D_n$ has order $2$ or $4$.
+By cases considered, we may assume the automorphism $\theta$ is trivial except in the case $D_n$.
+
+ We calculate the data in
+the same manner.  We work in the standard  representation of the each classical group.
+For each automorphism of the extended Dynkin diagram (excluding those of outer type),
+we construct a lift $\dotw \in N_{\hat G}(\hat T)$ in the normalizer, and compute the partition function with respect to
+ $\theta_1=\dotw \theta$.
+%(We note that these calculations are particularly sensitive to the exact representative $\dot w\in G_{sc}$ in the normalizer; it does not
+%suffice to work at the level of Weyl groups.)
+For $\tau\in \hat T_1$, 
+we diagonalize $\tau\dotw\theta$ to $s\theta$, with $s\in\hat S$ by computing its characteristic polynomial and eigenvalues.
+From this diagonal form, we can read off the determinant $D_+(E,q)$.
+We write $s = \epsilon \phi(\ttau)$, where $\epsilon \in \hat S$ is independent of $\tau$ and $\phi(\ttau)$ gives the $\tau$-dependence.
+Here $\ttau\in\tilde T_1\to \hat T_1$, and $\phi:\tilde T_1\to \hat S$,
+where $\tilde T_1\to \hat T_1$ is an isogeny of tori that we introduce to make the eigenvalues rational.
+
+
+%\subsection{Type $A_{n-1}$}
+
+%There is another observation that we use repeatedly.  The properties that we need to establish depend only on the roots of
+%$\epsilon$ and $\phi(\tilde T_1)$.  For this, we may work in $G_{adj}$ rather than $G_{sc}$.
+
+We return to the proof of the lemma and do the computation for a split group of type $A_{n-1}$.
+The elements $w$ that act on the extended Dynkin diagram are powers of the Coxeter element.
+% we can take $\dotw$ to be a representative in the normalizer of a power of the Coxeter element in the Weyl group.
+
+Let $\hat G = \op{SL}(n,\ring{C})$, and let $\theta=1$.
+Assume that $n=m \ell$. 
+%Let $\hat H = S(\op{GL}(m,\ring{C})\times \cdots\times \op{GL}(m,\ring{C}))\subset \hat G$ ($\ell$ factors).
+%Let $\theta_H$ be an automorphism of $\hat H$ of order $\ell$ that permutes the factors:
+We may assume that $w$ acts on 
+\[
+\hat T = \{(t_1,\ldots,t_{n})\mid t_1t_2\cdots t_{n}=1\},\quad \text{ by } w(t_1,\ldots,t_{n}) = (t_{m+1},t_{m+2},\ldots).
+\]
+The element $w$ has order $\ell$ and acts on the extended Dynkin diagram.
+We lift $w$ to an element $\dotw = \zeta \dotw'$, where $\dotw'$ is an orthongal matrix  with entries in $\{0,1\}$ that realizes the
+permutation, and the root of unity $\zeta$ is chosen so that $\dotw \in \op{SL}(n,\ring{C})$.
+%Let $e_\gamma\in \n_\gamma\subset \op{gl}(n,\ring{C})$ be the root vectors with entries in $\{0,1\}$. Then again $\dotw e_\gamma = e_{w\gamma}$.
+We have
+\[
+\hat T \to \hat T_1 = \{(\tau_1,\ldots,\tau_m)\mid \tau_1\ldots\tau_m=1\},\quad \op{diag}(t_1,\ldots,t_n)\mapsto (t_1t_{m+1}\cdots,t_2 t_{m+2}\cdots).
+\]
+A  calculation of the characteristic polynomial of $t\dotw$, for $t\in \hat T_1$ shows that $t\dotw$ can be described as follows.
+Let $\zeta$ be a primitive $2\ell^\op{th}$ root of unity in $\ring{C}^\times$.
+We set 
+\begin{equation}
+s=\epsilon\phi(\ttau)=\op{diag}(z\ttau_1,z\ttau_2,\ldots,z\ttau_m)\in \hat T\subset \ring{C}^{\times,m\ell},
+\end{equation}
+where $z=(z_1,\ldots,z_\ell)\in \ring{C}^{\times,\ell}$ is
+\begin{align*}
+z &= \op{diag}(\zeta^{2k-1},\zeta^{2k-3},\ldots,\zeta^{1-2k}), &(\ell=2k);\\
+      &= \op{diag}(\zeta^{2k},\zeta^{2k-2},\ldots,\zeta^{-2k}), &(\ell=2k+1)
+\end{align*}
+and
+\[
+\ttau=(\ttau_1,\ldots,\ttau_m),
+\]
+with $(\ttau_1^\ell,\ttau_2^\ell,\ldots,\ttau_m^\ell) = \tau\in \hat T_1$.
+%Set
+%$\phi:\tilde T_1 \to \hat T$, with $
+%where $t_i = \tau_i I_{\ell}$.
+%Let 
+%\[
+%\lambda = (\lambda_1,\lambda_2,\ldots,\lambda_n)\in Y^* = X^*(\hat T) = \ring{Z}^n.
+%\]
+%We compute that
+%\[
+%\lambda(\epsilon) = \zeta^{0\lambda_1+1\lambda_2+2\lambda_3+\cdots}.
+%\]
+Since $s$ is in diagonal form, $\op{Ad}(s) e_\gamma = \gamma(s) e_\gamma$.
+Let $N_1\Psi$ be the root system of $\op{SL}(m,\ring{C})$. 
+% (It can be identified with the  root
+%system $\Sigma_1$ for ${}^LH$.)
+%Using this description, we compute that
+The determinant $D_+$ is as stated in the lemma.
+%\[
+%D_{G,H} ={d_{\ell}^m} \prod_{\alpha\in\Sigma^+_{1,H}} (1-e^{-\alpha})^{\ell}.
+%\]
+%Here $d_\ell = \ell^{\ell/2} \omega_\ell$, for a certain $12^\op{th}$ root of unity $\omega_\ell$ depending on $\ell$:
+%\[
+%d_\ell = \prod_{1\le i<j\le \ell} (1-z_i z_j^{-1}).
+%\omega_2 = 1,\quad \omega_3 = \zeta_6,\quad \omega_4 = i,\quad \omega_5 = -1,\quad \omega_6 = \zeta_6^5,
+%\ldots
+%\]
+This completes the calculation for $A_{n-1}$.
+
+To finish the lemma, we need to compute the determinant for a groups of type $D_n$.   There are several cases that
+occur for $D_n$.  They are best considered together.  The proof is completed in section \ref{sec:dn}.
+\end{proof}
+
+%\subsubsection{neither inner nor outer}
+
+%This gives $\phi(s) \epsilon\in \hat S$.  Replacing $\phi(s) \epsilon$ with a Weyl-group conjugate if necessary, we arrange for it
+%to satisfy the non-negativity property.  We observe that regularity property holds  in each case.
+
+%We give data $\tilde T_1,\phi,\epsilon$ as well as the associated determinant $D_+$  in each case.
+
+\subsubsection{Type $C_n$}
+
+The outer automorphism $\theta$ of $C_n$ is trivial.  We have $\hat S = \hat T$ and the root system is $N_1\Psi =\Psi$.
+We work in the standard representation of $\op{Sp}(2n)$ of dimension $2n$, defined with respect to a skew form 
+along the anti-diagonal $J = \op{anti}(-1,-1,\ldots,\ 1,1\ldots,1)$.  
+The extended Dynkin diagram has a nontrivial automorphism of order $2$ that exchanges the two ends of the diagram.
+It is represented as a block matrix of block size $n$:
+\[
+\dotw = \begin{pmatrix} 0 &I \\ -I & 0\end{pmatrix}.
+\]
+Write $n = 2k$ or $n = 2k+1$, depending on the parity of $n$.
+The morphism $\hat T\to \hat T_1=\ring{C}^{\times,k}$ is 
+\[
+t = \op{diag}(t_1,\ldots,t_n,t_n^{-1},\ldots,t_1^{-1})\mapsto \tau=(\tau_1,\ldots,\tau_k)=(t_1/t_n,t_2/t_{n-1},\ldots).
+\]
+Let $\tilde T_1=\ring{C}^{\times,k} \to \hat T_1$, where $(\ttau_1,\ldots,\ttau_k)\mapsto \tau=(\ttau_1^2,\ldots,\ttau_k^2)$.
+Diagonalizing $t\dotw$, we obtain
+\begin{align*}
+\epsilon\phi(\ttau) &= \op{diag}(i \ttau_1,-i\ttau_1,i\ttau_2,-i\ttau_2,\ldots,i\ttau_k,-i\ttau_k,\ i\ttau_k^{-1},\ldots, -i\ttau_1^{-1})\in \hat S,& (n = 2k);\\
+    &= \op{diag}(i \ttau_1,-i\ttau_1,i\ttau_2,-i\ttau_2,\ldots,i\ttau_k,-i\ttau_k,i,-i,\ i\ttau_k^{-1},\ldots, -i\ttau_1^{-1}),& (n = 2k+1).\\
+\end{align*}
+We compute the determinant/Weyl denominator/partition function:
+\begin{equation}
+D_+ = \prod_{\alpha\in \Sigma^+} (1-e^\alpha)^2.
+\end{equation}
+When $n=2k$, the root system $\Sigma$ is that of the endoscopic group $H=\op{Sp}(2k,E)$, with $E/F$ quadratic unramified.
+When $n=2k+1$, the root system $\Sigma$ is the non-reduced root system $BC_k$ of rank $k$ with underlying torus $\hat T_1$
+and positive roots $\tau_i \tau_j^{\pm 1}$, $\tau_i^2$, $\tau_i$.
+
+\subsubsection{Type $B_n$}
+
+The outer automorphism $\theta$ of $B_n$ is trivial.  We have $\hat S = \hat T$ and the root system is $N_1\Psi =\Psi$.
+We work in the standard representation of $\op{SO}(2n+1)$ of dimension $2n+1$, defined with respect to a symmetric form 
+along the anti-diagonal $J = \op{anti}(1,1,\ldots,1)$. 
+% (Note that we work in the adjoint group for convenience rather than the
+%simply connected cover. \XX{justify this.})
+The extended Dynkin diagram has type $B_n$ at one end and has a fork of type $D_n$ at the other.
+There is  an automorphism of order $2$ that exchanges the two prongs of the fork.
+%Write $n = 2k$ or $n = 2k+1$, depending on the parity of $n$.
+The morphism $\hat T\to \hat T_1=\ring{C}^{\times,n-1}$ is 
+\[
+t = \op{diag}(t_1,\ldots,t_n,1,t_n^{-1},\ldots,t_1^{-1})\mapsto \tau = (t_2,\ldots,t_n).
+\]
+In this case, the isogeny is trivial: $\tilde T_1= \hat T_1$, $\ttau=\tau$.
+Diagonalizing $t\dotw$, we obtain
+\begin{equation}
+\epsilon\phi(\tau) = \op{diag}(-t_2,\ldots,-t_n,-1,1,-1,-t_n^{-1},\ldots,-t_1^{-1}).
+\end{equation}
+We compute the determinant
+\begin{equation}
+D_+ = \prod_{\alpha\in \Sigma^+} (1-e^\alpha).
+\end{equation}
+Here $\Sigma$ is the non-reduced root system $BC_{n-1}$ of rank $n-1$, with underlying torus $\hat T_1$
+and positive roots $s_i s_j^{\pm 1}$, $s_i^2$, $s_i$, with $1<i<j\le n$.
+
+
+\subsubsection{Type $D_n$}\label{sec:dn}
+
+Thus, we can confine our attention to classical automorphisms of the
+extended Dynkin diagram, of order $2$ or $4$.  The extended Dynkin diagram of $D_n$ is forked at both ends.
+There are various possibilities for $\theta_H$,
+according to the symmetries of the extended Dynkin diagram.  We compute all cases (other than outer type).
+
+We work in the standard representation $\op{SO}(2n)$
+of dimension $2n$, defined with respect to a symmetric form 
+along the anti-diagonal $J = \op{anti}(1,1,\ldots,1)$. 
+% (Note that we work in the adjoint group for convenience rather than the
+%simply connected cover.)
+
+An outer automorphism $\theta$ exchanges the two prongs of one of the forks.
+When $\theta=1$, then $\hat S = \hat T$ and the root system is $N_1\Psi = \Psi$.
+When the outer automorphism $\theta$ is nontrivial, then
+$\hat T\to \hat S =\ring{C}^{\times,n-1}$ is $\op{diag}(t_1,\ldots,t_n,t_n^{-1},\ldots,t_1^{-1})\mapsto (t_1,\ldots,t_{n-1})$.
+In this case, the root system $\Sigma_1$ with underlying torus $\hat S$ has type $C_{n-1}$ with positive roots $t_i t_j^{\pm 1}$, for $1\le i\le j<n$.
+
+Suppose the automorphism is of order $2$, preserving both ends, and acting non-trivially on the prongs at both ends.
+In this case $\theta=1$ and $\hat S = \hat T$.
+Then $\hat T\to \hat T_1 = \ring{C}^{\times,n-2}$, where $(t_1,\ldots,t_n,\ldots)\mapsto \tau = (t_2,\ldots,t_{n-1})$.
+We can take the isogeny $\tilde T_1\to \hat T_1$ to be the identity map, and
+\[
+\epsilon\phi(\tau) = \op{diag}(t_2,\ldots,t_{n-1},-1,1,\ 1,-1,t_{n-1}^{-1},\ldots,t_2^{-1}).
+\]
+This case has inner type.
+We compute the determinant and find that it has the form described in Lemma \ref{lemma:inner}.
+%\begin{equation}
+%D_{G,H} = \prod_{\alpha\in \Sigma^+} (1-e^\alpha) \prod_{\alpha\in \Sigma^+_{\text{long}}} (1-e^\alpha).
+%\end{equation}
+%Here $\Sigma$ is the root system of type $C_{n-2}$ with underlying torus $\hat T_1$ and positive roots $t_i t_j^{\pm 1}$, $t_i^2$.
+%Also, $\Sigma_{\text{long}}$ is the subset of long roots in $\Sigma$.
+
+Next, suppose the automorphism is of order $2$, swapping the two ends.
+In this case $\theta$ is trivial exactly when $n$ is even.    
+Write $n=2k$ or $n=2k+1$, depending on the parity.
+We have $\hat T\to \hat T_1 = \ring{C}^{\times,k}$, where $(t_1,\ldots,t_n,\ldots)\mapsto \tau=(t_1/t_n,t_2/t_{n-1},\ldots)$.
+We can take $\tilde T_1 =\ring{C}^{\times,k}\to \hat T_1$, $\ttau = (\ttau_2,\ldots,\ttau_k)\mapsto \tau=(\ttau_2^2,\ldots,\ttau_k^2)$.
+\begin{align*}
+\epsilon \phi(\ttau)&= (\ttau_1,-\ttau_1,\ldots,\ttau_k,-\ttau_k) \in \hat T = \hat S, &(n=2k);\\
+&= (\ttau_1,-\ttau_1,\ldots,\ttau_k,-\ttau_k)\in \hat S = \ring{C}^{\times,n-1}, &(n=2k+1).
+\end{align*}
+We compute the determinant
+\begin{equation}
+D_+ = \prod_{\alpha\in\Sigma^+} (1-e^\alpha)^2.
+\end{equation}
+Here $\Sigma$ is a root system of type $C_k$ with underlying torus $\hat T_1$ and positive roots $s_i s_j^{\pm 1}$, for $1\le i\le j\le k$.
+
+Finally, assume that the automorphism has order $4$.
+The automorphism $\theta$ is trivial when $n$ is odd.
+Write $n=2k+1$ or $n=2k$.
+We have $\hat T\to \hat T_1 = \ring{C}^{\times,k-1}$ given by
+$(t_1,\ldots,t_n)\mapsto \tau = (t_2/t_{n-1},t_3/t_{n_2},\ldots)$.
+We take the isogeny $\tilde T_1 =\ring{C}^{\times,k-1}\to \hat T_1$, to be given by $\ttau = (\ttau_2,\ldots,\ttau_k)\mapsto \tau = (\ttau_2^2,\ldots,\ttau_k^2)$.
+Diagonalizing $t\dotw\theta$, we find
+\begin{align}
+\epsilon\phi(\ttau) &= (\ttau_2,-\ttau_2,\ldots,\ttau_k,-\ttau_k,i)\in \hat S=\ring{C}^{n-1},&(n=2k);\\
+&= (\ttau_2,-\ttau_2,\ldots,\ttau_k,-\ttau_k,i,-1,1)\in \hat T = \ring{C}^n,&(n=2k+1).
+\end{align}
+We compute the determinant
+\begin{align*}
+D_+ = \begin{cases}\prod_{\alpha\in \Sigma^+} (1-e^\alpha)^2 \prod_{\alpha\in \Sigma^+_{long}} (1+e^{\alpha/2})^2,&(n=2k);\\
+          \prod_{\alpha\in\Sigma^+} (1-e^\alpha)^2,&(n=2k+1).
+          \end{cases}
+\end{align*}
+In both cases, the root system $\Sigma$ has type $C_{k-1}$ on torus $\hat T_1$.
+
+
+
+
+\subsection{endoscopy}
+
+Let $G$ be an unramified $p$-adic reductive group, and let $H$ be an unramified endoscopic
+group of $G$.  We assume that we are given an embedding
+\[
+\xi:{}^LH\to {}^LG,
+\]
+that factors through a finite unramified extension of $F$:
+\[
+\xi:\hat H\rtimes \ang{\theta_H}\to \hat G\rtimes \ang{\theta},
+\]
+such that $\xi(\theta_H) = \dotw  \rtimes \theta,$
+for some representative $\dotw $ of an element $w$ in the Weyl group $W_G$.
+We  repeatedly use a key property of the the element $w$: it acts as an automorphism of the extended Dynkin diagram
+ \cite[\S4.7]{hales1993simple}.
+%Form an extended Dynkin diagram by adding a single node corresponding to minus the highest positive root in the root system.
+%Let $\t$ be the Lie algebra of the complex torus $\hat T$, and let $X_*$ be the kernel of the exponential map from $\t$ to $\hat T$.
+%Let $C$ be a fundamental chamber for the action of $X_*\rtimes W_G$ on $\t$.   Then we may choose the endoscopic data such
+%that the image of $\dotw $ in $W_G$ is the image of an element in $X_*\rtimes W_G$ that
+%preserves the chamber $C$.  
+%This implies that we may choose $\dotw $ so that it acts as an automorphism of the extended Dynkin diagram
+%of $\hat G$.
+
+
+We state a theorem that extends some of the previous results to an arbitrary reductive group.
+
+\begin{theorem}
+Let $G$ be a reductive group and let $H$ be an endoscopic group of $G$, both unramified.
+Let $\xi:{}^LH\to {}^LG$ be an embedding of $L$-groups that factors over a finite
+unramifed extension $E/F$.  Then we can construct an isogeny $\tilde T_1\to \hat T_1$ of tori,
+a homomorphism $\phi:\tilde T_1\to \hat S$, and element $\epsilon\in \hat S$ of finite order
+%, with
+%associated determinant $D_+$ 
+such that
+\begin{enumerate}
+\item (conjugacy) $t\dotw\theta$ is $\hat G$-conjugate to $\epsilon\phi(\ttau) \theta$,
+whenever $\ttau\in \tilde T_1$ and $t\in \hat T$ have the same image in $\hat T_1$;
+% where $s\mapsto t \mod (1-\theta_H)\hat T_H$;
+\item  (non-negativity) $\phi^*\alpha$ is non-negative for every positive
+root $\alpha$ of $\hat G$ (that is, if $\phi^*\alpha$ is nonzero, then it is positive);
+\item  (regularity) If $\ttau$ is generic in $\tilde T_1$, then for every $\alpha\in\Sigma_1$, we have $\alpha(\epsilon\phi(\ttau))\ne 0$.
+%D_+(E_{G,H},1)$ is nonzero;
+% and is divisible by  $D_H(E_H,1)$;
+%\item (branching) Equation \ref{eqn:branch} gives the twisted branching rule for $\hat G\rtimes \theta$ restricted to $\xi(\hat H\rtimes \theta_H)$:
+%\[
+%\tau_\lambda| = \sum_\mu m(\lambda,\mu) \sigma_\mu.
+%\]
+\end{enumerate}
+\end{theorem}
+
+We note that $\hat T_1/W_H^{\theta_H}$ classifies $\theta_H$ semisimple conjugacy classes in ${}^LH$,
+ and $\hat S/W_G^{\theta}$ classifies $\theta$
+semisimple conjugacy classes in ${}^LG$.  The morphism $\xi$ induces a map of conjugacy classes.
+The morphism $\phi$ should be viewed as a lifting of this map of conjugacy classes.
+
+
+
+\begin{proof}
+%\subsection{reduction to simply-connected}
+We give a  reduction to the case that $\hat G$ is semisimple and simply-connected.
+For this, we allow twisted endoscopic groups with non-trivial multiplicative character (and trivial automorphism) in the sense of Kottwitz and
+Shelstad \cite{kottwitz1999foundations}.
+Let $\hat G_{sc}$ be the simply connected cover of the derived group of $\hat G$.  
+Assume that we have constructed $t_{0,sc}$ and $\phi_{sc}:\hat S_{H,sc}\to \hat S_{G,sc}$ for $\hat G_{sc}$.
+We may assume the endoscopic data is defined by the centralizer of some $s = \bar s_{sc} z$,
+where $z$ is central and $\bar s_{sc}$ is the image of $s_{sc}\in \hat G_{sc}$.  We make the embeddings $\xi_{sc}$ and $\xi$ compatible by
+picking  $\dotw _{sc}\in \hat G_{sc}$ for the choice $\dotw =\bar \dotw _{sc}$.
+Let $\hat Z = Z(\hat G)^0$.  Let $\hat G' = \hat Z\times \hat G_{sc}$.  Using $s$ and $\dotw$, we construct an endoscopic group $H'$ of $G'$
+with dual $\hat H'$, and embedding $\xi':{}^LH' \to {}^LG'$ over $\xi:{}^LH\to {}^LG$.  
+We have surjective projections ${}^LH'\to {}^LH$ and
+${}^LG'\to {}^LG$.  We identify the root systems of $\hat H$ and $\hat H'$ and identify the root systems of $\hat G$ and $\hat G'$.
+%We identify $X^*(\hat T_H)$ with a definable subset of $X^*(\hat T'_H)$ and identify $X^*(\hat T_G)$ with a definable subset of $X^*(\hat T'_G)$.
+%To get the branching formula for $\tau_\lambda$, we pull it back to a representation of ${}^LG'$, restrict to $\xi'({}^LH')$, then restrict the parameters
+%of $\sigma_\mu$ to
+% $\mu\in X^*(\hat T_H)$.  
+We can take $\epsilon\in \hat T$ to be the image of $(1,t_{0,sc})\in \hat Z\times \hat T_{sc}$.
+We take $\tilde T_1 = \hat S_Z\times \tilde S'_{sc,H}$ with its obvious projection to $\hat T_1$, where $\hat S_Z = \hat Z/(1-\theta)\hat Z$.
+Under the identification of root systems, the regularity and non-negativity claims follow from the corresponding claims for $\hat G_{sc}$.
+%Thus, we may assume that $\hat G$ has the form $\hat Z\times G_{sc}$.
+%We have $X^*(\hat T) = X^*(\hat Z)\times X^*(\hat T_{sc})$, with a similar factorization for $\hat H' = \hat Z \times \hat H''$.
+This  reduces the proof to $\hat G  = \hat G_{sc}$.
+
+We may partition connected components of the Dynkin diagram of $\hat G$ into orbits under $\theta$.
+We give a reduction to the case that $\theta$ is transitive on orbits.
+In fact, if $r$ is the number of orbits, then we have factorizations $\hat T_1 = \hat S_{H,1} \times\cdots \hat S_{H,r}$, 
+$\hat S = \hat S_{G,1}\times\cdots \hat S_{G,r}$, and we may define the data $\phi,\epsilon$ for $\hat G$ as a $r$-tuples
+$\phi = (\phi_1,\ldots,\phi_r)$, $\epsilon = (t_{0,1},\ldots,t_{0,r})$.
+
+We give a further reduction to  $\hat G$ simple.
+In fact, let $\hat G'$ and $\hat H'$ be the endoscopic data for a single factor.  By the transitivity of $\theta$ on connected
+components of the Dynkin diagram, we have $\hat S_{H'} = \hat T_1$, and $\hat S_{G'} = \hat S_{G}$.  Thus, assuming we have
+data $\phi'$ and $\epsilon'$ for $(\hat H',\hat G')$, we may use the same data $(\phi,\epsilon)=(\phi',t'_0)$ for $(\hat H,\hat G)$.
+We have an identification of root systems $\Sigma_1$ for $\hat S$ and $\Sigma'_1$ for $\hat S_{G'}$, so that non-negativity and regularity
+for $G'$ implies non-negativity and regularity for $G$.
+
+Next, we give a reduction that removes the assumption that $\hat G$ is simply connected.   Suppose that we have a surjective map 
+$\hat G_{sc}\to \hat G$ with kernel $Z' \subseteq Z(G_{sc})$.   Assume that we have data $\epsilon,\phi$ for $\hat G$.
+We show how to construct data $\epsilon_{sc},\phi_{sc}$ for $\hat G_{sc}$.   We add subscript ${sc}$ for all data attached to $\hat G_{sc}$.
+The morphism $\tilde T_1 \to \hat S\times \hat T_1$ gives $X_*(\hat T_1)\to X_*(\hat S)\times X_*(\hat T_1)$.  Define $\hat T_{1,sc}$ by
+defining its character lattice to be the preimage in $X_*(\hat T_1)$ of 
+\[
+X_*(\hat S_{sc})\times X_*(\hat T_{1, sc}) \subseteq X_*(\hat S)\times X_*(\hat T_1).
+\]  Then we have a morphism
+$\phi_{sc}:\tilde T_{1,sc}\to\hat S_{sc}$ and an isogeny $\tilde T_{1,sc} \to \hat T_{1,sc}$.  Fix any lift $\dotw_{sc}$ of $\dotw$ to the simply
+connected cover.
+
+Let $\epsilon_{sc}\in \hat S_{sc}$ be any lift of $\epsilon\in \hat S$.  Let $\ttau\in \tilde T_{1,sc}$ with image $\tau\in \hat T_{1,sc}$.
+Then by construction $\epsilon_{sc}\phi_{sc}(\ttau)$ and $\tau\dotw_{sc}\theta$ give elements in $\hat S_{sc}$ with the same
+image in $\hat S/W^\theta$.    Fix some $\ttau_0\in \tilde T_{1,sc}$, and let $\tau_0\in \hat T_{1,sc}$ be its image.  
+After replacing $\epsilon_{sc}$ with $\epsilon_{sc} z$, for some $z\in Z'$,
+we may assume that $\epsilon_{sc}\phi_{sc}(\ttau_0)$ and $\tau_0\dotw_{sc}\theta$ have the same image in $\hat S_{sc}/W^\theta$.   The torus
+$\tilde T_{1,sc}$ is connected, the fibers of $\hat S_{sc}\to \hat S$ are discrete, so by a unique homotopy lifting property, 
+$\epsilon_{sc}\phi_{sc}(\ttau)$ and $\tau\dotw_{sc}\theta$ have the same image in $\hat S_{sc}/W^\theta$ for all $\ttau\in\tilde T_{1,sc}$, because they agree at $\tau_0$.
+This finishes the argument to remove the assumption that $\hat G$ is simply connected.
+\XX{check we have a fibration.}
+
+We now assume that $\hat G$ is a simple algebraic group.
+We can make case-by-case arguments for each simple group and for each
+family of endoscopic groups.  We have constructed $\epsilon$ and $\phi$ for each complex classical group.
+We can see regularity by inspection from the explicit formulas for $\epsilon\phi(\ttau)$.
+
+For the groups $E_6$ and $E_7$ we need a few additional arguments.
+To check regularity, we compute the dimension of the centralizer of $t\dotw \theta$.  For this, we count the number $a$ of
+roots $\alpha\in\Psi$ such that $N_1\alpha=0$.  We also count the multiplicity $b$ of the eigenvalue $1$ of $w$ on the Lie
+algebra of $\hat T$.  For both $E_6$ and $E_7$, a routine explicit calculation gives $a+b = n$, the rank of the group.
+This gives regularity.
+
+\XX{add calculation of $\epsilon,\phi$ for $E_n$.}
+
+
 \end{proof}
 
 
 
+\subsection{branching formulas}\label{sec:branch}
+
+The irreducible representations $\tau_\lambda$ of ${}^LG$ restricted to $\hat G\rtimes\theta$ are classified
+by a highest weight $\lambda\in P^+_G\subseteq Y^*_G$, and similarly for irreducible representations $\sigma_\mu$
+on $\hat H\rtimes \theta_H$, with $\mu\in P^+_H\subseteq Y^*_H$.  Recall $Y^*_H = X^*(\hat T_H)^{\theta_H}$.
+This section gives a  branching formula for $\tau_\lambda$ restricted to $\xi(\hat H\rtimes\theta_H)$,
+as a sum of $\sigma_\mu$:
+\[
+\tau_\lambda| = \sum_\mu m(\lambda,\mu) \sigma_\mu
+\]
+for some coefficients $m(\lambda,\mu)$.  
+%(For our purposes, we want $m(\lambda,\mu)$ to be
+%a constructible function.)
+
+If $\sigma_\mu$ is an irreducible character and $\epsilon:\ang{\theta_H}\to \ring{C}^\times$ is a multiplicative character,
+then $\sigma_\mu\otimes \epsilon$ is again an irreducible character.  Restricted to $\hat H\rtimes\theta_H$, we have
+ linear dependence $(\sigma_\mu\otimes\epsilon) = \epsilon(\theta_H) \sigma_\mu $.
+This means that the multiplicities $m(\lambda,\mu)$ should take values in $\ring{Z}[\zeta]$, where $\zeta$ is a primitive
+root of unity of the same order as $\theta_H$.  In particular, 
+we lose the usual connection between multiplicities and degrees of the representations. For example,
+for a given $\lambda$,
+it is quite possible for all the multiplicites $m(\lambda,\mu)$ to be zero.
 
 
+
+
+%We will use an isogeny $\tilde T_1\mapsto \hat T_1$, to be constructed below.
+%We will construct a homomorphism $\phi:\tilde T_1\to \hat S$ and an element of finite order $\epsilon\in \hat S$ such that
+%$\xi(t\theta_H)$ is $\hat G$-conjugate to $\phi(s) \epsilon\theta\in \hat G\rtimes\theta$ , 
+%whenever $s\in \tilde T_1$ and $t\in \hat T$ have the same image in $\hat T_1$.
+
+
+
+%Let $\n_G$ be the Lie algebra of $\hat N\subset \hat B$.
+%We define a formal operator
+%$E_{G,H}$ on $\n_G$, where $E_{G,H}$ acts on the root space $\n_\alpha\subset \n_G$ by
+%$X\mapsto \alpha(\epsilon) e^{\phi^*\alpha} X$.
+%We define an {\it endoscopic partition function} $P_{G,H}$ by
+%\begin{equation}
+%D_{G,H}(E_{G,H},q) = \det(1 - q E_{G,H} \theta;\n_G),\quad P_{G,H} = 1/D_{G,H}.
+%\end{equation}
+%In a case-by-case analysis, we will choose the data so that $\phi^*\alpha$ is non-negative for every positive
+%root $\alpha\in\Sigma_1$ (where $\Sigma_1$ is the previously defined root system for $\hat S$).   
+%We will see that $D_{G,H}(E_{G,H},1)$ is nonzero.
+%% and is divisible by  $D_H(E_H,1)$.
+
+We construct data $\epsilon,\phi$ associated with $\xi:{}^LH\to{}^LG$ as above.
+We write
+\[
+M_{++} = \{\alpha\in\Psi^+\mid \phi^*\alpha = 0,\ N\alpha(\epsilon)\ne 0.\},\quad M_+ = \{\alpha\in\Psi^+\mid \ang{v,\phi^*\alpha} > 0\}.
+\]
+%By regularity, for all $\alpha\in M_{++}$, we have $N\alpha(\epsilon)\ne 0$.
+By regularity, we have a  disjoint decomposition $\Psi^+ = M_+ \sqcup M_{++}$.  This decomposition gives a product formula for the determinant
+\begin{equation}\label{eqn:prod}
+D(\hat G,\g_{\Psi^+},\theta,E,1) = D(\hat G,\g_{+},\theta,E,1) D(\hat G,\g_{++},\theta,E,1).
+\end{equation}
+The determinant is a function on $\hat S$, which we pull back to a function $\phi^*_\epsilon D$
+on $\tilde T_1$ by
+$\ttau\mapsto \epsilon \phi(\ttau)$.  The first factor in the product (\ref{eqn:prod}) pulls back to the
+partition function $D(\hat G,\g_+,\dotw\theta,E,1)$ that is considered above.  The second factor in the product (\ref{eqn:prod}) evaluates to
+a nonzero constant $d$ on $\tilde T_1$.  (It does not
+depend on $\tilde T_1$ because $\phi^*\alpha = 0$ for $\alpha\in M_{++}$. It is nonzero by $N\alpha(\epsilon)\ne 0$.)
+
+Let $D(\hat H,\h_{\Psi^+_H},\theta_H,E_H,1)$ be the determinant attached to the set of positive roots in the adjoint representation $\h$ of  $\hat H$.
+It is a function on $\hat T_1$, which we pull back to $\tilde T_1$.  We consider the following partition function on $\tilde T_1$, which we expand
+in a series:
+\begin{equation}
+\frac{D(\hat H,\h_{\Psi^+_H},\theta_H,E^{-1}_H,1)}{D(\hat G,\g_{+},\dotw\theta,E^{-1},1) d} = \sum_\mu p_\mu e^\mu.
+\end{equation}
+The coefficients $p_\mu$ are indexed by $\mu\in X^*(\tilde T_1)$.  In fact, from our explicit description of the partition
+function, in every case the support lies in $X^*(\hat T_1)\subseteq X^*(\tilde T_1)$.
+Note that
+${D(\hat H,\h_{\Psi^+_H},\theta_H,E^{-1}_H,1)}$ is the twisted Weyl denominator $D_H$ for $\hat H$ and automorphism $\theta_H$.
+Also,
+${D(\hat G,\g_{+},\dotw\theta,E^{-1},1) d}$ is the pullback $\phi^*_\epsilon D_G$ to $\tilde T_1$ of the twisted Weyl denominator  for $\hat G$ and
+automorphism $\theta$.
+
+
+%We make a series expansion
+%\begin{equation}
+% D_H(E^{-1}_H,1)D_{G,H}(E^{-1}_{G,H},1)^{-1} = \sum p_\mu e^\mu.
+%\end{equation}
+Define constants 
+\begin{equation}\label{eqn:branch}
+m(\lambda,\mu) = \sum_{w\in W^\theta, ~\phi^*({w\bullet\lambda})\in  X^*(\hat T_1)} (-1)^{\ell w} ({w\bullet\lambda})(\epsilon)
+p_{\mu-\phi^*(w\bullet\lambda)} \in \ring{Z}[\zeta].
+\end{equation}
+
+The following theorem is the main result of this section.
+
+\begin{theorem}\label{thm:branch}
+Let $G$ be a reductive group and let $H$ be an endoscopic group of $G$, both unramified.
+Let $\xi:{}^LH\to {}^LG$ be an embedding of $L$-groups that factors over a finite
+unramifed extension $E/F$.  Let $\phi:\tilde T_1\to \hat S$ and $\epsilon\in\hat S$ be given
+as in Theorem XX.
+%, Then we can construct an isogeny $\tilde T_1\to \hat T_1$ of tori,
+%a homomorphism $\phi:\tilde T_1\to \hat S$, and element $\epsilon\in \hat S$ of finite order, with
+%associated determinant $D_{G,H}$ such that
+%\begin{enumerate}
+%\item (conjugacy) $\xi(t\theta_H)$ is $\hat G$-conjugate to $\phi(s) \epsilon\theta$,
+%whenever $s\in \tilde T_1$ and $t\in \hat T$ have the same image in $\hat T_1$;
+% where $s\mapsto t \mod (1-\theta_H)\hat T_H$;
+%\item  (non-negativity) $\phi^*\alpha$ is non-negative for every positive
+%root $\alpha$ of $\hat G$ (that is, if $\phi^*\alpha$ is nonzero, then it is positive);
+%\item  (regularity) $D_{G,H}(E_{G,H},1)$ is nonzero;
+% and is divisible by  $D_H(E_H,1)$;
+%\item 
+Then Equation \ref{eqn:branch} gives the twisted branching rule for $\hat G\rtimes \theta$ restricted to $\tilde T_1\dotw\theta$:
+\[
+\tau_\lambda| = \sum_\mu m(\lambda,\mu) \sigma_\mu.
+\]
+%\end{enumerate}
+\end{theorem}
+
+In general, we write $X|$ for the restriction of $X$.
+Before starting the proof of the theorem, we discuss how the branching rules depend on the choice $\xi$ of embeddings
+of $L$-groups.
+Fix an unramified extension $E/F$, and assume that an admissible embedding
+\[
+\xi:\hat H \rtimes \op{Gal}(E/F)\to \hat G \rtimes \op{Gal}(E/F),
+\]
+exists.  
+We assume that $\hat H = C_{\hat G}(s)^0$ for some $s\in \hat T$, and that $\xi(h) = h$, for $h \in \hat H$,
+with this identification.  We may assume $\hat T = \hat T_G = \hat T_H$ using this identification of $\hat H$ with a subgroup of $\hat G$.
+Let $\op{Frob}_{E}$ be the Frobenius element in $\op{Gal}(E/F)$.
+We have $\xi(\op{Frob}_{E}) = \dotw \Frob_E$ for some $\dotw \in N_{\hat G}(\hat T)$.  The automorphism $\dotw $ of $\hat H$ is entirely determined
+by the root datum of $H$ (including the automorphism $\theta_H$ of $H$).  Thus, the coset $\hat T \dotw $ does not
+depend on the choice of embedding $\xi$.  The image $\xi(\hat H\rtimes \op{Gal}(E/F))$ does not depend on $\xi$.
+The branching multiplicities are then also independent of $\xi$.
+
+We let $L/F$ be a second unramified extension with $L/E/F$.  Let  $[L:E]=\ell$.  We study the  dependence
+of branching multiplicities on $L$.  Fix an admissible embedding
+\[
+\xi_L:\hat H \rtimes \op{Gal}(L/F)\to \hat G \rtimes \op{Gal}(L/F),
+\]
+where $\xi_L(\Frob_L) = \dotw  \Frob_L$, with the same choice $\dotw $ as with $\xi = \xi_E$.
+Then $\Frob_L^\ell$ acts trivially on the datum of $\hat H$, and $(\dotw  \Frob_L)^\ell$ acts trivially on the datum of $\hat G$.
+Let $\tau_\lambda$ be an irreducible representation of $\hat G$ that is $\theta$-fixed.  The extension of 
+$\tau_\lambda$ to $\hat G\rtimes \op{Gal}(L/F)$ factors through $\hat G\rtimes \op{Gal}(E/F)$.
+Similarly, $\sigma_\mu$ extends to $\hat H\rtimes \op{Gal}(L/F)$ and factors through $\hat H\rtimes\op{Gal}(E/F)$.
+We conclude that the branching multiplicities are the same for $L/F$ and
+\[
+\xi_E(\hat H \rtimes \Frob_E) = \xi_L(\hat H\rtimes \Frob_L)/(\dotw \Frob_L)^\ell \subset (\hat G\rtimes \Frob_L)/( \Frob_L)^\ell = \hat G\rtimes \Frob_E.
+\]
+The multiplicity formula is independent of the choice of $L/F$.
+
+
+\begin{proof}
+%The proof occupies the rest of Section \ref{sec:branch}.
+We  extend Kostant's formula for branching multiplicities $m(\lambda,\mu)$ to this setting, following
+ Goodman and Wallach \cite[\S8.2.2]{goodman}.   
+Recall that this formula for $m(\lambda,\mu)$ is based on the (twisted) Weyl character formula.
+The nonvanishing of the determinant
+$D_{G,H}(E_{G,H},1)$ implies regularity:  the image of $\xi({}^LH)$ does not lie in a singular hyperplane
+of $\hat S$.
+
+
+We show that the  properties of $\phi,\epsilon$ imply the branching rule, which we compute
+using the twisted Weyl character formula on $\hat H$ and $\hat G$:
+\begin{align*}
+\tau_\lambda| D_H&= \sum_{\mu'} m(\lambda,{\mu'}) J_H(e^{\mu'}).\\
+\tau_\lambda| D_H &= (\tau_\lambda|) (\phi^*_\epsilon D_{G}) (\sum p_\mu e^\mu)\\
+  &= (\sum_{\mu'} p_{\mu'}) J_G(e^\lambda)|\\
+  &= \sum_{\mu'} \sum_{w\in W^\theta} (-1)^{\ell w} (p_{\mu'} e^{\mu'}) (\phi^*_\epsilon (e^{w\bullet \lambda}))\\
+  &= \sum_{\mu'} \sum_{w\in W^\theta} (-1)^{\ell w} p_{\mu'} ({w\bullet\lambda})(\epsilon) e^{\mu'+\phi^*(w\bullet \lambda)}\\
+  &= \sum_\mu \sum_{w\in W^\theta~\text{s.t. }\phi^*({w\bullet\lambda})\in X^*(\tilde T_1)} (-1)^{\ell w} ({w\bullet\lambda})(\epsilon) p_{\mu - \phi^*({w\bullet \lambda})} e^\mu.
+\end{align*}
+Equating coefficients, we get Equation \ref{eqn:branch}.
+This completes the proof.
+% that the first three properties imply the branching rule.
+%Thus, the endoscopic branching formula comes down to constructing 
+%the homomorphism $\phi:\tilde T_1\to \hat S$,
+%the element $\epsilon\in \hat S$, 
+%and proving the first three properties of the lemma: conjugacy, non-negativity, and regularity.
+\end{proof}
+
+\newpage
 
 \section{Motivic Integration}
 
@@ -1792,7 +2105,7 @@ characters of $A$.
 There is a perfect pairing $\langle\cdot,\cdot\rangle:X^*(A)\times X_*(A) \to \ring{Z}$.
 For each $\lambda\in X_*(A)$, there is a definable subassignement $A_\lambda \subseteq A$ given by the formula
 \[
-\{ a \in A \mid \op{ord}(\mu(a)) = \g{\mu,\lambda},\text{ for all } \mu\in X^*(A) \}.
+\{ a \in A \mid \op{ord}(\mu(a)) = \ang{\mu,\lambda},\text{ for all } \mu\in X^*(A) \}.
 \]
 There is a definable subassignment of $X_*(A)\times A$
 given by pairs $(\lambda,a)$  such that $a\in A_\lambda$.  
@@ -1826,13 +2139,13 @@ rather than an infinite basis of the spherical Hecke algebra.
 We define the {\it spherical Hecke function} to be the characteristic function of $D_G$, viewed as a $q$-constructible function
 on $P^+\times G$.
 
-Let $G$ be an unramified reductive group and let ${}^LG = \hat G\rtimes \g{\theta}$ be its Langlands dual, where
+Let $G$ be an unramified reductive group and let ${}^LG = \hat G\rtimes \ang{\theta}$ be its Langlands dual, where
 $\theta$ acts on $\hat G$ as the action of the Frobenius on the root datum, as explained in Section \ref{sec:B}.
-The groups $W$ and $\g{\theta}$ both act on $X^*(\hat T)$.  
+The groups $W$ and $\ang{\theta}$ both act on $X^*(\hat T)$.  
 Let $\hat T$ be a Cartan subgroup of $\hat G$, with Weyl group $W$.
 
 
-%The group $\g{\theta}$ acts on $W$ by
+%The group $\ang{\theta}$ acts on $W$ by
 %$w\mapsto \theta w \theta^{-1}$.  
 %Let $W^\theta$
 %be the $\theta$-fixed subgroup of $W$.   
@@ -2008,15 +2321,29 @@ described by linear inequalities on parameters $\lambda$ and $\mu$.
 We do not pursue the topic, but we can similarly investigate the constructibility of the function giving the
 multiplicities of $\tau_\mu$ in $\op{Sym}^k \tau_\lambda$, and related operations on characters.
 
+\bigskip 
+
+Let $(\lambda,\mu)\mapsto m(\lambda,\mu)$ be the function constructed in Section \ref{sec:branch}  that is attached
+to an embedding $\xi:{}^LH\to {}^LG$ of endoscopic groups.
+
+\begin{lemma}\label{lemma:branch} The branching multiplicity function $m(\lambda,\mu)$ is Presburger constructible.
+\end{lemma}
+
+\begin{proof} It is enough to show that each term in Equation \ref{eqn:branch} is Presburger constructible.
+This reduces to the constructibility of the terms  $p_{\mu'}$, which follows from the
+rationality of the partition function.
+\end{proof}
+
+
 \subsection{The constructibility of $B$}\label{sec:B}
 
 Let ${}^LG$ be the Langlands dual of an unramified reductive group $G$.  Let ${}^LH$ be the dual of an
 unramified endoscopic group $H$.  We assume that both $H$ and and $G$ are given in the category of definable subassignments
 over a cocycle space $Z$.  We can assume that the cocycle space $Z$ is the same for $H$ and $G$.
 
-There exists a homomorphism ${}^LH\to {}^LG$ that factors through a semidirect product with a finite group $\g{\theta}$:
+There exists a homomorphism ${}^LH\to {}^LG$ that factors through a semidirect product with a finite group $\ang{\theta}$:
 \[
-\xi:\hat H \rtimes \g{\theta} \to \hat G \rtimes \g{\theta}.
+\xi:\hat H \rtimes \ang{\theta} \to \hat G \rtimes \ang{\theta}.
 \]
 We fix such a homomorphism $\xi$.  
 
@@ -2025,7 +2352,7 @@ The morphism $\xi$ gives a restriction map
 J_\xi:\ring{C}[Y^*]^{W^\theta} \to \ring{C}[Y^*_H]^{W_H^{\theta_H}}
 \end{equation}
 that is constructed as follows.  The set of semisimple $\theta_H$ conjugacy classes in 
-$\hat H$ is classified by $\hat S_H/W_H^{\theta_H}$, where we have added subscripts $H$ to
+$\hat H$ is classified by $\hat T_1/W_H^{\theta_H}$, where we have added subscripts $H$ to
 indicate quantities for ${}^LH$ corresponding to $\hat S/W^\theta$ in ${}^LG$.
 The morphism $\xi$ induces a map from the set of  $\theta_H$-conjugacy classes in $\hat H$
 to $\theta$-conjugacy classes in $\hat G$.  This is a morphism of varieties. The corresponding
@@ -2049,7 +2376,7 @@ is $b_\xi(f)$.
 \begin{theorem}\label{thm:B}
 Let $G$ be an unramified connected reductive group with unramified endoscopic group $H$, both considered as definable
 subassignments over a cocycle space $Z$.  Fix an $L$-embedding $\xi:{}^LH\to {}^LG$ that factors through a finite
-cyclic group $\g{\theta}$; that is, $\xi:\hat H\rtimes \g{\theta} \to \hat G \rtimes \g{\theta}$.
+cyclic group $\ang{\theta}$; that is, $\xi:\hat H\rtimes \ang{\theta} \to \hat G \rtimes \ang{\theta}$.
 Then
 there is a $q$-constructible function $B$ on $P^+_G\times H$ and a natural number $N$ with the following specializations:
 \[
