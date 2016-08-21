@@ -35,13 +35,13 @@ type2 = Flatten[(1/2) Table[{sign[i1],
       sign[Mod[i1 + i2 + i3 + i4 + i5 + i6 + i7, 2]]}, {i1, 0, 
       1}, {i2, 0, 1}, {i3, 0, 1}, {i4, 0, 1}, {i5, 0, 1}, {i6, 0, 
       1}, {i7, 0, 1}], 6];
-Length[type1] + Length[type2];
 e8roots = Union[type1, type2];
 e7roots = Select[e8roots, (#.wp == 0) &];
 e6roots = Select[e7roots, (#.v8 == 0) &];
 e7pos = Select[e7roots, pos];
 e6pos = Select[e6roots, pos];
 
+(************************************)
 (* preliminaries for Kottwitz basis *)
 check[alpha_] := 2 alpha/(alpha.alpha);
 refl[alpha_, w_] := w - (w.check[alpha]) alpha;
@@ -81,14 +81,14 @@ A = Table[a[i, j], {i, 1, 8}, {j, 1, 8}];
 A7sub = Solve[{A.v0 == v6, A.v1 == v5, A.v2 == v4, A.v3 == v3, 
      A.v4 == v2, A.v5 == v1, A.v6 == v0, A.v7 == v7, 
      A.wp == -wp}, (A // Flatten)][[1]];
-B7 = weyl7transform = A /. A7sub;
+weyl7matrix = weyl7transform = A /. A7sub;
 A6sub =
   Solve[{A.v1 == v5, A.v2 == v4, A.v3 == v3, A.v4 == v7, A.v5 == vm, 
      A.v7 == v2, A.vm == v1, A.wp == wp, 
      A.v8 == v8}, (A // Flatten)][[1]];
-B6 = A /. A6sub;
-Eigenvalues[B7]
-Eigenvalues[B6]
+weyl6matrix = A /. A6sub;
+weyl7eigenvalues = Eigenvalues[weyl7matrix];
+weyl6eigenvalues = Eigenvalues[weyl6matrix];
 
 (* find reduced word for weyl7 *)
 
@@ -106,7 +106,7 @@ Length[word7];
 
  
  (* find reduced word for weyl6 *)
-weyl6[v_] := B6.v // Simplify;
+weyl6[v_] := weyl6matrix.v // Simplify;
 word6 = {v1, v2, v3, v4, v5, v7, v3, v4, v2, v3, v7, v1, v2, v3, v4, 
    v5};
 test = Length[word6]
@@ -125,90 +125,86 @@ kottwitz6 = Map[ee[1, #] &, e6roots];
 answer6 = actlistrec[word6, kottwitz6];
 test = Map[#[[1]] &, answer6] // Union
 
+(************************************)
 (* E7 orbit structure *)
 
 e7fix = Select[e7roots, (weyl7[#] == #) &];
 e7unfix = Complement[e7roots, e7fix];
 e7orbit = Map[Sort[{#, weyl7[#]}] &, e7unfix] // Union;
-null77 = Select[e7orbit, Union[Apply[Plus, #]] == {0} &];
+e7null = Select[e7orbit, Union[Apply[Plus, #]] == {0} &];
 e7orbitsum = Map[Apply[Plus, #] &, e7orbit];
 
-ss = {t1, t2, t3, t4, t5, t6, t7, t8};
-{t4, t5, t6, t7, t8} = 
-  {t3 s43, t2 s52 , t1 s61, t8 s78, 
-   s1238/(t1 t2 t3)};
-ev7[v_] := Module[{vv, ts},
-   (*ts = {tau-> 1/Sqrt[s7]}; *)
-   
-   vv = If[2 Abs[v[[1]]] == 1, v + wp, v]; (Apply[Times, 
-     Table [ss[[i]]^(vv[[i]]), {i, 1, 8}]](* /.ts*) )];
-s7roots = Map[ev7, Join[  e7fix, e7orbitsum ]] // Sort // Tally;
-null7 = Select[e7orbitsum, (ev7[#] == 1) &];
-
-test = Map[(# + v7) &, 
-     Select[Map[(# - v7) &, e7fix ], ((#.# != 2) && (#.# != 0)) &]][[
-    4]] - v7;
-
-
-lengtheq[i_][x_] := (x[[2]] == i);
-Select[Tally[s7roots], lengtheq[2]];
-
-(* back to e7, find phi and epsilon. *)
-Clear[t1, t2, t3, t4, t5, t6, t7, t8, ss7, ev7, edd7];
-
-dd = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 
-    1}} (* /2 *);
-ss7 = {t1, t2, t3, t4, t5, t6, t7, t8};
-(* phi *)
-t1 = dd.{1, 0, 0, 0}; 
-t2 = dd.{0, 1, 0, 0}; 
-t3 = dd.{0, 0, 1, 0}; 
-t4 = dd.{0, 0, 0, 1}; 
-t5 = -t4;
-t6 = -t3;
-t7 = -t2;
-t8 = -t1;
-edds7[s_, v_] :=
+add8[s_, v_] :=
   Module[{vv},
    vv = If[2 Abs[v[[1]]] == 1, v + wp, v]; (Apply[Plus, 
      Table [s[[i]] (vv[[i]]), {i, 1, 8}]] )];
-edd7[v_] := edds7[ss7, v];
-exp7[s_, v_] := Module[{vv},
+
+times8[s_, v_] := Module[{vv},
    vv = If[2 Abs[v[[1]]] == 1, v + wp, v]; (Apply[Times, 
      Table [s[[i]]^(vv[[i]]), {i, 1, 8}]] )];
 
-evv7 = Map[edd7, e7roots] // Tally // Sort;
+(* preliminary identification of F4 root system from E7 *)
+E7toF4multiplicative = Module[{t1, t2, t3, t4, t5, t6, t7, t8},
+            {t4, t5, t6, t7, t8} = 
+            {t3 s43, t2 s52 , t1 s61, t8 s78, 
+             s1238/(t1 t2 t3)};
+            {t1,t2,t3,t4,t5,t6,t7,t8}];
+F4ize1[v_] := times8[E7toF4multiplicative,v];
+f4image1 = Map[F4ize1, Join[  e7fix, e7orbitsum ]] // Sort // Tally;
+null7 = Select[e7orbitsum, (F4ize1[#] == 1) &];
+test = Map[(# + v7) &, 
+     Select[Map[(# - v7) &, e7fix ], 
+            ((#.# != 2) && (#.# != 0)) &]][[4]] - v7;
+lengtheq[i_][x_] := (x[[2]] == i);
+test = Select[Tally[f4image1], lengtheq[2]];
+
+
+(* find phi and epsilon for E7. *)
+
+(* phi *)
+E7toF4 = Module[{t1,t2,t3,t4,t5,t6,t7,t8},
+             t1 = {1, 0, 0, 0}; 
+             t2 = {0, 1, 0, 0}; 
+             t3 = {0, 0, 1, 0}; 
+             t4 = {0, 0, 0, 1}; 
+             t5 = -t4;
+             t6 = -t3;
+             t7 = -t2;
+             t8 = -t1;
+             {t1,t2,t3,t4,t5,t6,t7,t8}];
+
+F4ize[v_] := add8[E7toF4, v];
+f4image = Map[F4ize, e7roots] // Tally // Sort;
 
 (* relation between E7 and F4 *)
-f4long = Select[Map[First, evv7], (#.# == 4) &];
-f4short = Select[Map[First, evv7],
-   (#.# == 2) &];
+f4long = Select[Map[First, f4image], (#.# == 4) &];
+f4short = Select[Map[First, f4image],   (#.# == 2) &];
 f4null = {0, 0, 0, 0};
-e7f4long = Select[e7roots, MemberQ[f4long, edd7[#]] &];
-e7f4short = Select[e7roots, MemberQ[f4short, edd7[#]] &];
-e7f4null = Select[e7roots,
-  edd7[#] == f4null &]
+e7f4long = Select[e7roots, MemberQ[f4long, F4ize[#]] &];
+e7f4short = Select[e7roots, MemberQ[f4short, F4ize[#]] &];
+e7f4null = Select[e7roots,  F4ize[#] == f4null &]
 Map[(# + {1, 1, 1, 1, 1, 1, 1, 1}/2) &, e7f4long];
 
-(* find phi for E7 *)
-f4vec = {121, 110, 50, 17};
-posF4[x_] := (x.f4vec > 0);
-f4pos = Select[Map[First, evv7], posF4];
-e7f4 = Select[e7roots, MemberQ[f4pos, edd7[#]] &];
-Map[edd7, e7f4] // Tally;
-e7vec = {80, 71, 60, 50, 40, 30, 20, 10};
-e7indice = Map[{#.e7vec, #} &, e7f4];
+(* positive root compatibility of F4 and E7 *)
+f4posvec = {121, 110, 50, 17};
+posF4[x_] := (x.f4posvec > 0);
+f4pos = Select[Map[First, f4image], posF4];
+e7f4 = Select[e7roots, MemberQ[f4pos, F4ize[#]] &];
+Map[F4ize, e7f4] // Tally;
+e7posvec = {80, 71, 60, 50, 40, 30, 20, 10};
+e7indice = Map[{#.e7posvec, #} &, e7f4];
 Select[e7indice, (#[[1]] <= 0) &];
+(* also half the e7f4null vectors are positive *)
+Map[{#.e7posvec,#}&,e7f4null];
 
 (* find epsilon *)
-Clear[s1, s2, s3, s4, ff, signe7, gg, rr];
-Clear[signe7];
 signe7[{s1_, s2_, s3_}] := Module[{s4 = (s1*s2*s3)^(-1)},
    {s1, s2, s3, s4, s4, s3, s2, s1}];
-ff[s_] := {s, 
-   Map[{edd7[#], exp7[signe7[s], #]} &, e7f4long] // Tally   };
-ee = Sqrt[Sqrt[-1]];
-ff[{-ee, ee, ee}][[2]] // Sort;
+epsilon7[s_] := {s, 
+   Map[{F4ize[#], times8[signe7[s], #]} &, e7f4long] // Tally   };
+(* apply to e7f4short and e7f4null as well *)
+primitive8 = Sqrt[Sqrt[-1]];
+epsilon7[{-primitive8, primitive8, primitive8}][[2]] // Sort;
 (* ok, we have epsilon and phi *)
 
 
@@ -218,72 +214,60 @@ ff[{-ee, ee, ee}][[2]] // Sort;
 
 e6fix = Select[e6roots, (weyl6[#] == #) &];
 e6unfix = Complement[e6roots, e6fix];
-null66 = Select[e6orbit, Union[Apply[Plus, #]] == {0} &];
 e6orbit = 
   Map[Sort[{#, weyl6[#], weyl6[weyl6[#]]}] &, e6unfix] // Union;
 e6orbitsum = Map[Apply[Plus, #] &, e6orbit];
+null66 = Select[e6orbit, Union[Apply[Plus, #]] == {0} &];
 Tally[e6orbitsum];
 
 
 (* now e6 phi,epsilon *)
 
-Clear[t1, t2, t3, t4, t5, t6, t7, t8, ss7, ev7, edd7];
-dd6 = {} ;
-ss6 = {t1, t2, t3, t4, t5, t6, t7, t8};
 (* phi *)
-  t1 =  {1, -1, 0};
-t2 = t1; 
-t3 = t1 ; 
-t4 = -t1 ; 
-t5 = -t1;
-t6 = -t1;
-t7 = {1, 1, -2};
-t8 = -t7;
-edds6[s_, v_] :=
-  Module[{vv},
-   vv = If[2 Abs[v[[1]]] == 1, v + wp, v]; (Apply[Plus, 
-     Table [s[[i]] (vv[[i]]), {i, 1, 8}]] )];
-edd6[v_] := edds6[ss6, v];
-exp6[s_, v_] := Module[{vv},
-   vv = If[2 Abs[v[[1]]] == 1, v + wp, v]; (Apply[Times, 
-     Table [s[[i]]^(vv[[i]]), {i, 1, 8}]] )];
+E6toG2 = Module[{t1,t2,t3,t4,t5,t6,t7,t8},
+                t1 =  {1, -1, 0};
+                t7 = {1, 1, -2};
+                t2 = t1; 
+                t3 = t1 ; 
+                t4 = -t1 ; 
+                t5 = -t1;
+                t6 = -t1;
+                t8 = -t7;
+                E6toG2 = {t1, t2, t3, t4, t5, t6, t7, t8}];
 
-evv6 = Map[edd6, e6roots] // Tally // Sort
+G2ize[v_] := add8[E6toG2, v];
+g2image = Map[G2ize, e6roots] // Tally // Sort
   
 (* relation of E6 and G2 *)
-g2long = Select[Map[First, evv6], (#.# == 24) &];
-g2short = Select[Map[First, evv6],
+g2long = Select[Map[First, g2image], (#.# == 24) &];
+g2short = Select[Map[First, g2image],
    (#.# == 8) &];
 g2null = {0, 0, 0};
-e6g2long = Select[e6roots, MemberQ[g2long, edd6[#]] &];
-e6g2short = Select[e6roots, MemberQ[g2short, edd6[#]] &];
-e6g2null = Select[e6roots,
-   edd6[#] == g2null &];
-Map[(# + {1, 1, 1, 1, 1, 1, 1, 1}/2) &, e6g2long];
-e6g2null // Length
+e6g2long = Select[e6roots, MemberQ[g2long, G2ize[#]] &];
+e6g2short = Select[e6roots, MemberQ[g2short, G2ize[#]] &];
+e6g2null = Select[e6roots,   G2ize[#] == g2null &];
 
-(* find phi for E6 *)
-g2vec = {121, 110, 50};
-posG2[x_] := (x.g2vec > 0);
-g2pos = Select[Map[First, evv6], posG2];
-e6g2 = Select[e6roots, MemberQ[g2pos, edd6[#]] &];
-Map[edd6, e6g2] // Tally;
-e6vec = {62, 61, 60, 58, 31, 30, 29, -40} + 45;
-e6indice = Map[{#.e6vec, #} &, e6g2];
+(* Map[(# + {1, 1, 1, 1, 1, 1, 1, 1}/2) &, e6g2long]; *)
+
+(* positive root compatibility of G2 and E6 *)
+g2posvec = {121, 110, 50};
+posG2[x_] := (x.g2posvec > 0);
+g2pos = Select[Map[First, g2image], posG2];
+e6g2 = Select[e6roots, MemberQ[g2pos, G2ize[#]] &];
+Map[G2ize, e6g2] // Tally;
+e6posvec = {62, 61, 60, 58, 31, 30, 29, -40} + 45;
+e6indice = Map[{#.e6posvec, #} &, e6g2];
 e66z = Select[e6indice, (#[[1]] <= 0) &];
-e66z // Length
-e66z
 
 (* find epsilon for E6 *)
-Clear[s1, s2, s3, s4, ff, signe6, gg, rr, ee];
-Clear[signe6];
 signe6[{s1_, s2_, s4_, s5_, s7_}] := 
   Module[{s8 = s7, s3 = s7/(s1*s2), s6 = s7/(s4*s5)},
    {s1, s2, s3, s4, s5, s6, s7, s8}];
-ff[s_] := {s, 
-   Map[{edd6[#], exp6[signe6[s], #]} &, e6g2short] // Tally   };
-ee = Exp[2 Pi I/3];
-ff[{ee, ee^2, ee, 1, 1}][[2]] // Sort
+epsilon6[s_] := {s, 
+   Map[{G2ize[#], times8[signe6[s], #]} &, e6g2short] // Tally   };
+(* apply to e6g2long and e6g2null as well *)
+primitive3 = Exp[2 Pi I/3];
+epsilon6[{primitive3, primitive3^2, primitive3, 1, 1}][[2]] // Sort;
 
 
 
