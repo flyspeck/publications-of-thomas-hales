@@ -221,7 +221,7 @@ let dimer_tj3edgeD alpha' beta xbeta =
     let xalpha = (a2+^ a3)-^ a1 in
     (ellD xalpha alpha,ellD xbeta beta,ellD (cc-^ c2) gamma);;
 
-(* linear motion from given values to Kuperberg critical values *)
+(* linear motion from given values to pentagonal ice-ray critical values *)
 
 (* junk:
 let expandD (alphaB,beta,xbeta,alphaD) = 

@@ -1,7 +1,7 @@
 (*  dimer *)
 
 (* This file contains all the dimer calculations,
-   excluding local optimality near the Kuperberg arrangement
+   excluding local optimality near the pentagonal ice-ray arrangement
    and excluding pseudo-dimers *)
 
 (* The documentation for this file is contained in 
@@ -222,7 +222,7 @@ let recurse_dimer pseudo eps f d =
       let (sB,sD) = dtype_labels d in
       failwith ("one_dimer("^sB^","^sD^") "^s);;
 
-(* This does cases that don't approach the Kuperberg dimer. *)
+(* This does cases that don't approach the pentagonal ice-ray dimer. *)
 (* all run on 3/10/2016: *)
 let recurse0 s = recurse_dimer false zero 
   dimer_constraint0 (dimer_domain s);;
@@ -249,7 +249,7 @@ let morecases = outer pair needsmore needsmore;;
 let recurse2 pseudo s = recurse_dimer pseudo zero 
   dimer_constraint2 (dimer_domain s);;
 
-(* This reduces dimers to 0.01 nbd of Kuperberg dimer.
+(* This reduces dimers to 0.01 nbd of pentagonal ice-ray dimer.
    The "true" cases also explicitly exclude pseudo-dimers. *)
 
 let run_group3() = 
@@ -395,32 +395,5 @@ let squeeze_calc() =
   recursetoeps (squeezable dACrange outofdomfn) domain2Ce;;
   
 
-(*
-let onedACfail (sgnalpha,sgnbeta) xs  = 
-  try
-  let v = mk_isosceles sgnalpha sgnbeta xs in
-  if (v = None) then true
-  else 
-    let (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
-       (dAC >> 173 // 100)
-  with Unstable -> false;;
-  
-recursesgn onedACfail domain2C;;
-
-[(0.0680620423078,0.0680620510665);(0.217492662825,0.217492672188);(0.0671386581745,0.0671386669332);(0.193473317509,0.193473326872)];;
-
-let onedACmaxfail (sgnalpha,sgnbeta) xs  = 
-  try
-  let v = mk_isosceles sgnalpha sgnbeta xs in
-  if (v = None) then true
-  else 
-    let (a,dAB,dAC,dBC,arcA,arcB,arcC,
-	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
-       (dAC <<  178 // 100) (* 179, 178 fails *)
-  with Unstable -> false;;
-[(0.,8.75868279178e-09);(0.313545663681,0.313545673044);(0.,8.75868279178e-09);(0.00122708164088,0.00122709100355)];;
-
-*)
 
     end;;
