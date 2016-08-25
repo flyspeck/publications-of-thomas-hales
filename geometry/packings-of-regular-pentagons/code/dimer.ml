@@ -284,7 +284,9 @@ let run_group3() =
 (* Calculate 3C+3C bound on dimer/pseudo-dimer *)
 
 (* 0.007 good, 0.006 fails, 
-   so pseudo-dimer area sum is off by at most 0.007 *)
+   so pseudo-dimer area sum is off by at most 0.007 
+   The paper uses epsilon_0' = 0.008.
+*)
 let recurseN s = recurse_dimer false (m 0.007)
   dimer_constraint0 (dimer_domain s);;
 
@@ -392,7 +394,6 @@ let squeeze_calc() =
   let outofdomfn (a,_,_,_) = (a >> aK+epso_I) in
   recursetoeps (squeezable dACrange outofdomfn) domain2Ce;;
   
-(* end;; *)
 
 (*
 let onedACfail (sgnalpha,sgnbeta) xs  = 
@@ -421,3 +422,5 @@ let onedACmaxfail (sgnalpha,sgnbeta) xs  =
 [(0.,8.75868279178e-09);(0.313545663681,0.313545673044);(0.,8.75868279178e-09);(0.00122708164088,0.00122709100355)];;
 
 *)
+
+    end;;
