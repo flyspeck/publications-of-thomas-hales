@@ -31,7 +31,7 @@ let one_iso2C xs =
     | Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
 	    (dAC,thACB,thCAB,arcB)) ->
       (let th = Pet.periodize_pent thABC in
-       (a >> aK) or disjoint_I dAB dAC or 
+       (a >> aK ) or disjoint_I dAB dAC or 
 	 forall (fun t -> t >> zero) th)
   with Unstable -> false;;
 
@@ -67,7 +67,8 @@ let one_scaleneto3C xs =
 let pint_domain_constraint (a,alpha,beta,xa,xb,xc,dBC,dAC,dAB) =
   (dAC << 172 // 100) &&
     (xb >>= 9 // 10) && (* 1.0 fails *)
-    (beta >>= 12 // 10) ;;   (* 1.25 fails *)
+    (beta >>= 12 // 10) &&  (* 1.25 fails *)
+    (dBC >> dAB && dBC >> dAC);;   (* added 6/2016 *)
 
 let one_pintx xs = 
   let ([alpha;beta;xa],_) = xs in
@@ -162,7 +163,7 @@ let dimer_constraint_eps eps alphaB betaB xbetaB alphaD =
     nearlyt zero alphaB &&
     nearlyt zero alphaD;;
 
-let dimer_constraint1 = dimer_constraint_eps (m 0.1);;
+(* deprecated let dimer_constraint1 = dimer_constraint_eps (m 0.1);; *)
 
 let dimer_constraint2 = dimer_constraint_eps (m 0.01);;
 
@@ -241,8 +242,10 @@ let needsmore = [1;2;3;7];;
 
 let morecases = outer pair needsmore needsmore;;
 
-let recurse1 pseudo s = recurse_dimer pseudo zero 
+(* deprecated let recurse1 pseudo s = recurse_dimer pseudo zero 
   dimer_constraint1 (dimer_domain s);;
+*)
+
 let recurse2 pseudo s = recurse_dimer pseudo zero 
   dimer_constraint2 (dimer_domain s);;
 
@@ -335,7 +338,61 @@ let recursesgn f dom =
 let run_group5() = 
   recursesgn one127 domain2C;;
 
-end;;
+
+(* ************************************************** *)
+(* general form of experiment with squeezing lemma *)
+(* ************************************************** *)
+
+let safetan_I x = if (x.high < 1.57) && (x.low > -. 1.57) then
+    tan_I x else raise Unstable;;
+(* failwith "tan out of range";; *)
+
+let one_sigma arcA thBAC thABC alpha = 
+  let f0 alpha = safetan_I (-arcA + thBAC + pi310 + (pi25 - alpha)) in
+  let f1 alpha = safetan_I (-arcA - thABC + pi310 + alpha) in
+  (mergefn f0 f1 merge_I pi25) alpha;;
+
+one_sigma (m 1.0) (m 0.3) (m 0.2) (m 0.4);;
+
+let _ =
+  let arcA = m 1.0 in
+  let thBAC = m 0.3 in
+  let thABC t = t - thBAC in
+  let e = m (1.0e-6) in
+  let t0 = pi25 - e in
+  let t1 = pi25 + e in
+  (one_sigma arcA thBAC (thABC t0) t0,
+   one_sigma arcA thBAC (thABC t1) t1);;
+
+let squeezable dACrange outofdomfn xs =
+  let [xalpha;alpha;xbeta;beta] = xs in
+  try 
+  match mk2Ce dACrange xs with
+  | None -> true
+  | Some (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	  (dAC,thACB,thCAB,arcB)) ->
+    (if outofdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
+	  (dAC,thACB,thCAB,arcB)) then true
+     else 
+	let dAB_sinA =dAB * sin_I (arcA) in
+	let sigmaA = one_sigma arcA thBAC thABC alpha in
+	let sigmaC = one_sigma arcC thBCA thCBA beta in
+	sigmaA << dAB_sinA/dAC or
+	  sigmaC << dAB_sinA/dAC or
+	  (one/sigmaA + one/sigmaC)*dAB_sinA >> dAC)
+  with Unstable -> false;;
+
+let domain2Ce =   [map zero2 [two*sigma;pi45;two*sigma;pi45]];;
+
+let squeeze_calc() =
+  let top = 232//100 in
+  let _ =  kappa*  (sqrt_I(square_I top - square_I(two*kappa))) >> 
+    (aK+epso_I) or failwith "232" in
+  let dACrange = merge_I (two*kappa) (232//100) in
+  let outofdomfn (a,_,_,_) = (a >> aK+epso_I) in
+  recursetoeps (squeezable dACrange outofdomfn) domain2Ce;;
+  
+(* end;; *)
 
 (*
 let onedACfail (sgnalpha,sgnbeta) xs  = 

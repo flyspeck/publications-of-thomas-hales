@@ -1,3 +1,10 @@
+(*
+Note: June 2016.
+This is all old stuff.
+I think that it can be deleted as soon as the BMIEZDS "squeez" lemma
+is redone.
+*)
+
 (* continuation of pent.hl
    Dimer calculations *)
 
