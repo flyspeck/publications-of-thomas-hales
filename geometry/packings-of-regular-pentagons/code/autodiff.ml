@@ -261,6 +261,18 @@ let twist_claim_lj2 =
   let eps_domain =[[zero2 (m 0.01);sigma+ee]] in
   recursepairtoeps one_twist_claim_lj2 (dummybool eps_domain);;
 
+(* coordinates should be such that
+   the pentagonal ice-ray always has
+   alphaB=0, betaB=pi15, xbetaB=sigma, alphaD=0.
+
+   In particular, betaB is the angle along shared edge AC.
+
+   The letter D is used to indicate 1-jet variables (f,f').
+   The pentagons are also labeled A,B,C,D, which causes some
+   ambiguity in notation.  For example, in alphaD, the D stands
+   for pentagon D, rather than a 1-jet variable.
+*)
+
 let one_dimerD xs = 
   let ([alphaB;betaB;xbetaB;alphaD],
        ((sB,edgeB,curveB,disjointB),(sD,edgeD,curveD,disjointD))) = xs in
@@ -301,7 +313,7 @@ let dimerD_bottypes = [
 
 let dimerD_domain (i,j) = 
   let eps = zero2 (m 0.01) in
-  ([eps;pi25-eps;two*sigma+eps-eps;eps]),
+  ([eps;pi25-eps;sigma+eps-eps;eps]),
   (List.nth dimerD_toptypes i,List.nth dimerD_bottypes j);;
 
 let dtypeD_labels xs = 

@@ -391,7 +391,7 @@ let squeeze_calc() =
   let dACrange = merge_I (two*kappa) (232//100) in
   let outofdomfn (a,_,_,_) = (a >> aK+epso_I) in
   recursetoeps (squeezable dACrange outofdomfn) domain2Ce;;
-  
+
 (* end;; *)
 
 (*

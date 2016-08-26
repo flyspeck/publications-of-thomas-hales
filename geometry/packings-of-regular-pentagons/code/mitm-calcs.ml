@@ -274,7 +274,7 @@ i=7, w=0.00391, length(ccs)=183
 CPU time (user): 73430.968
 val calc_pent3_6D_postcluster : bool = true
 *)
-let calc_pent3_6D_postcluster = 
+let calc_pent3_6D_postcluster() = 
   let cluster_areacut = int 3*aK + epso''_I in
   (* deform both sides separately so that both peripherals are isosceles *)
   let pdata = reset_peri init2Cps_isosceles_AC in 
