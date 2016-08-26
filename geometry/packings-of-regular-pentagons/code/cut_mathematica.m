@@ -1,3 +1,8 @@
+(* START of delAdata.m.
+   This file contains pentagon configurations that were
+   used in the exploration of pentagon packings.
+*)
+
 delA[1.78089, 1.6209, 1.78089, -0.472466, -0.472466, -0.62586];
 delA[1.75890138913909766, 1.66701866927780307, 
   1.75890138913909766, -0.496089386802458399, -0.496089386802458399, \
@@ -101,3 +106,43 @@ delA[1.78089743594243188, 1.78089743812100076,
 delA[1.77301322126238436, 1.77301322397891425, 1.64080281092168945, \
 -0.481056393628809587, 0.775580658239077181, -0.481056375677282655]
 
+(*  END of delAdata.m *)
+
+
+(* START of nmiminizedata.m 
+This file contains some numerical optimizations that
+were used in the exploration of pengaton packings.
+*)
+
+NMinimize[{pinwheelarea[alpha, beta, xgamma], 0 <= xgamma, 
+  xgamma <= 2 ee, 0 <= alpha, alpha <= beta, 
+  beta <= Pi/5 - (alpha + beta)}, {alpha, beta, xgamma}]
+
+NMinimize[{ljarea[alpha, beta, xgamma], 0 <= xgamma, xgamma <= 2 ee, 
+  0 <= alpha, alpha <= 2 Pi/5, 0 <= beta, beta <= 2 Pi/5, 
+  Pi/5 <= alpha + beta, alpha + beta <= 3 Pi/5}, {alpha, beta, xgamma}]
+
+NMinimize[{tjarea[alpha, beta, xgamma], 0 <= xgamma, xgamma <= 2 ee, 
+  0 <= alpha, 0 <= beta, alpha <= 2 Pi/5, beta <= 2 Pi/5, 
+  alpha + beta <= Pi, 3 Pi/5 <= alpha + beta}, {alpha, beta, xgamma}]
+
+NMinimize[{pinwheelarea[alpha, beta, xgamma], 0 <= xgamma, 
+  xgamma <= 2 ee, 0 <= alpha, alpha <= beta, 
+  beta <= Pi/5 - (alpha + beta)}, {alpha, beta, xgamma}]
+
+NMinimize[{ljarea[alpha, beta, xgamma], 0 <= xgamma, xgamma <= 2 ee, 
+   0 <= alpha, alpha <= 2 Pi/5, 0 <= beta, beta <= 2 Pi/5, 
+   Pi/5 <= alpha + beta, alpha + beta <= 3 Pi/5}, {alpha, beta, 
+   xgamma}];
+
+NMinimize[{tjarea[alpha, beta, xgamma], 0 <= xgamma, xgamma <= 2 ee, 
+  0 <= alpha, 0 <= beta, alpha <= 2 Pi/5, beta <= 2 Pi/5, 
+  alpha + beta <= Pi, 3 Pi/5 <= alpha + beta}, {alpha, beta, xgamma}]
+
+NMinimize[{pintarea[alpha, beta, xalpha], 0 <= xalpha, 
+  xalpha <= 0.0605,(* Pi/5 *) Pi/5 <= alpha, alpha <= 2 Pi/5, 
+  Pi/5 <= beta , beta <= 2 Pi/5,
+  2 sigma (Sin[Pi/5 + alpha] - Sin[Pi/5 + beta]) >= 
+   xalpha Sin[2 Pi/5], 3 Pi/5 <= alpha + beta}, {alpha, beta, xalpha}]
+
+(* END of nminimizedata.m *)

@@ -597,3 +597,32 @@ let debug =
      p thCBA,"thCAB:",p thCAB,"thACB:",p thACB,"thsumAC",p (thCAB+thACB));;
 
 
+(* moved from dimer.ml, August 2016 *)
+
+(*
+let onedACfail (sgnalpha,sgnbeta) xs  = 
+  try
+  let v = mk_isosceles sgnalpha sgnbeta xs in
+  if (v = None) then true
+  else 
+    let (a,dAB,dAC,dBC,arcA,arcB,arcC,
+	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
+       (dAC >> 173 // 100)
+  with Unstable -> false;;
+  
+recursesgn onedACfail domain2C;;
+
+[(0.0680620423078,0.0680620510665);(0.217492662825,0.217492672188);(0.0671386581745,0.0671386669332);(0.193473317509,0.193473326872)];;
+
+let onedACmaxfail (sgnalpha,sgnbeta) xs  = 
+  try
+  let v = mk_isosceles sgnalpha sgnbeta xs in
+  if (v = None) then true
+  else 
+    let (a,dAB,dAC,dBC,arcA,arcB,arcC,
+	 thABC,thBAC,thCBA,thBCA,thACB,thCAB) = the v in
+       (dAC <<  178 // 100) (* 179, 178 fails *)
+  with Unstable -> false;;
+[(0.,8.75868279178e-09);(0.313545663681,0.313545673044);(0.,8.75868279178e-09);(0.00122708164088,0.00122709100355)];;
+
+*)

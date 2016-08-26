@@ -939,7 +939,6 @@ CPU time (user): 14058.144
 val precluster4_case0_experimental : bool = true
 *)
 let precluster4_case0_experimental() = 
-  let epso'_I = epso''_I in (* experimental *)
   let cluster_areacut = two*aK - epso''_I in
   let pdata = reset_peri init2Cps_isosceles_AB_AC in
   let fillfn () = mk2Ce d_shared_pseudo in
@@ -982,7 +981,6 @@ CPU time (user): 22446.852
 val precluster4_case1_experimental : bool = true
 *)
 let precluster4_case1_experimental() = 
-  let epso'_I = epso''_I in (* experimental *)
   let cluster_areacut = two*aK - epso''_I in
   let pdata = reset_peri init2Cps_isosceles_BC_AC in
   let fillfn () = mk2Ce d_shared_pseudo in

@@ -213,9 +213,7 @@ let amin =  1237 // 1000;;
 
 let epso_I = aK - amin;;
 
-let epso'_I = 7 // 1000;;
-
-let epso''_I = 8 // 1000;;
+let epso''_I = 8 // 1000;; (* \epsilon_0' in paper *)
 
 (* basic geometry *)
 
