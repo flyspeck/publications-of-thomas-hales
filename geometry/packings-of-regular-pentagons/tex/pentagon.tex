@@ -65,12 +65,14 @@
 
 % parameters (x,y) center coords, theta vertex angle, rho radius in cm.
 \def\pent#1#2#3#4{%
-\draw[red] (#1,#2) + (#3:#4cm) -- + (#3+72:#4cm) -- +(#3+144:#4cm) -- +(#3+216:#4cm) -- + (#3+288:#4cm) -- cycle
+\draw[red] (#1,#2) + (#3:#4cm) -- + (#3+72:#4cm) -- 
++(#3+144:#4cm) -- +(#3+216:#4cm) -- + (#3+288:#4cm) -- cycle
 }
 
 % parameters (x,y) center coords, theta vertex angle.
 \def\pen#1#2#3{%
-\draw[red] (#1,#2) + (#3:1cm) -- + (#3+72:1cm) -- +(#3+144:1cm) -- +(#3+216:1cm) -- + (#3+288:1cm) -- cycle
+\draw[red] (#1,#2) + (#3:1cm) -- + (#3+72:1cm) -- 
+  +(#3+144:1cm) -- +(#3+216:1cm) -- + (#3+288:1cm) -- cycle
 }
 
 \def\threepent#1#2#3#4#5#6#7#8#9{%
@@ -586,8 +588,8 @@ then the density of a packing of regular pentagons never exceeds
 \frac{\area_P} {2 a},
 \]
 where $\area_P = 5\kappa\sigma$ is the area of a regular pentagon of
-circumradius $1$.  In particular, if the inequality holds for $a=\acrit$,
-then the density never exceeds
+circumradius $1$.  In particular, if the inequality holds for
+$a=\acrit$, then the density never exceeds
 \[
 \frac{\area_P}{2 \acrit} = \frac{5 - \sqrt{5}}{3},
 \] % checked 2016/2/18 in calcs.ml
@@ -684,10 +686,6 @@ of a triangle (when it exists) with edge lengths $d_1$, $d_2$, and
 $d_3$, where $d_3$ is the edge length of the edge opposite the
 calculated angle.  We write $\area(T)= \area(d_1,d_2,d_3)$ for the
 area of triangle $T$ with edge lengths $d_1,d_2,d_3$.
-
-
-
-
 
 
 \subsection{triple contact}
@@ -995,9 +993,6 @@ The law of sines applied to the triangle $(\p,\v_{CA},\v_{AB})$ then gives
 \[
 2\sigma =\norm{\v_{CA}}{\p}\le\norm{\v_{CA}}{\v_{AB}}\le 2\sigma.
 \]
-%\[
-%2e\le \norm{\p}{\v_{CA}} \le \norm{\v_{CA}}{\v_{AB}} = 2e.
-%\]
 Thus, we have equality everywhere.  In particular,
 $\angle(\p,\v_{BC},\v_{AB})=\pi$.  This has type $\Delta$.
 \end{proof}
@@ -1045,10 +1040,6 @@ this section makes a computer calculation of a lower bound on the
 longest edge length of a subcritical triangle.  We also obtain a lower
 bound on the area of a nonobtuse Delaunay triangle.
 
-
-%The next lemma gives a slight improvement on the edge length bound
-%$\kappa\sqrt{8}\approx 2.288$.
-
 \begin{lemma}\libel{lemma:21} 
   A nonobtuse subcritical triangle has edge lengths at most $2.1$.
 \end{lemma}
@@ -1071,15 +1062,6 @@ which is not subcritical.
 \begin{proof}  
 This is a corollary of the previous lemma, because $\kappa\sqrt8 >
 2.1$.
-%
-%  The area of a nonobtuse triangle is monotonic increasing in its edge
-%  lengths.  A nonobtuse Delaunay triangle with an edge of length at
-%  least $\kappa\sqrt{8}$ has area at least that of the isosceles right
-%  triangle
-%\begin{equation}\libel{eqn:right}
-%\area(T) \ge \area(2 \kappa,2 \kappa,\kappa\sqrt{8}) = 2 \kappa ^2 \approx 1.30902 > \acrit.
-%\end{equation} % checked 2016/2/18 in calcs.ml
-%This is not subcritical.  
 \end{proof}
 
 \begin{remark}
@@ -1230,16 +1212,16 @@ follows.
 
 \begin{proof}
   By Lemma~\rif{lemma:right}, the edge lengths of $T$ are at most
-  $\kappa\sqrt8$.  By Lemma~\rif{lemma:primary}, we may assume
-  that the pentagon $A$ has primary contact.  If the primary contact
-  of a pentagon $A$ is slider contact, we may slide $A$ along the edge segment
-  of contact in the direction to decrease the area of $T$ until it has
-  double contact.  If the contact of $A$ is midpointer contact, then
-  we may rotate $A$ about the point of contact with a second pentagon
-  $B$, in the direction to decrease the area of $T$ until it has
-  double contact.  These area-decreasing deformations never transform
-  the nonobtuse subcritical triangle into a right triangle
-  (Lemma~\rif{lemma:right}).
+  $\kappa\sqrt8$.  By Lemma~\rif{lemma:primary}, we may assume that
+  the pentagon $A$ has primary contact.  If the primary contact of a
+  pentagon $A$ is slider contact, we may slide $A$ along the edge
+  segment of contact in the direction to decrease the area of $T$
+  until it has double contact.  If the contact of $A$ is midpointer
+  contact, then we may rotate $A$ about the point of contact with a
+  second pentagon $B$, in the direction to decrease the area of $T$
+  until it has double contact.  These area-decreasing deformations
+  never transform the nonobtuse subcritical triangle into a right
+  triangle (Lemma~\rif{lemma:right}).
 \end{proof}
 
 
@@ -1633,7 +1615,8 @@ maintain double contact at $B$.
   /\Delta x_C$.  Passing to the limit as $\Delta y \mapsto 0$, we find
   that squeezing decreases the area exactly when
 \[
-d_{AC} < \left(\frac{1}{\sigma_A}+\frac{1}{\sigma_C}\right)d_{AB}\sin(\arc_A).
+d_{AC} < \left(\frac{1}{\sigma_A}
++\frac{1}{\sigma_C}\right)d_{AB}\sin(\arc_A).
 \]
 It is enough to prove this inequality.  We do this with a computer
 calculation\footnote{calculation squeeze\_calc} using interval
@@ -1669,7 +1652,8 @@ deformation until $A$ comes into contact with $C$.  This completes the
 reduction to $3C$ contact.
 
 
-\subsection{reduction to a small neighborhood of the ice-ray dimer}\label{sec:nbd}
+\subsection{reduction to a small neighborhood of the ice-ray
+  dimer}\label{sec:nbd}
 
 From this stage forward, $T_0$ and $T_1$ are both triangles with
 triple contact.  We show that the condition $\area\{T_0,T_1\}\le
@@ -2194,8 +2178,7 @@ b(T_0) \ge \area(T_0) - 2\epsN
 \begin{proof}  
   By the contrapositive of the corollary, it follows that $n_-(T)=0$.
 
-Assume for a contradiction that $\area(T) > \acrit$.
-We have
+  Assume for a contradiction that $\area(T) > \acrit$.  We have
 \begin{equation}\libel{eqn:2-ac}
 \area(T) > \acrit \ge b(T) \ge \area(T) - m_-(T) \epsM.
 \end{equation}
@@ -2287,14 +2270,16 @@ packing of regular pentagons.
 \end{lemma}
 
 \begin{proof} We have seen that each edge of a nonobtuse subcritical
-  triangle has length less than $\kappa\sqrt8$ and that the longest edge of an
-  obtuse Delaunay triangle has length at least $\kappa\sqrt{8}$.  These are
-  incompatible conditions on a shared edge.
+  triangle has length less than $\kappa\sqrt8$ and that the longest
+  edge of an obtuse Delaunay triangle has length at least
+  $\kappa\sqrt{8}$.  These are incompatible conditions on a shared
+  edge.
 \end{proof}
 
 \begin{corollary}  
-  Let $(T_+,T_-)\in\N$, where $T_-$ is obtuse.  Then the edge shared between the triangles is
-  not the longest edge of $T_-$.  In particular, $n_-(T_-)\le 2$.
+  Let $(T_+,T_-)\in\N$, where $T_-$ is obtuse.  Then the edge shared
+  between the triangles is not the longest edge of $T_-$.  In
+  particular, $n_-(T_-)\le 2$.
 \end{corollary}
 
 \begin{proof} If $(T_+,T_-)\in \N$, then $T_+$ and $T_-$ satisfy the
@@ -2313,7 +2298,8 @@ b(T) \ge \area(T) - 3\epsM \ge \area(1.8,1.8,1.8) - 3\epsM > \acrit + \epsN.
 \]
 \end{proof}
 
-\begin{lemma}\libel{lemma:Nb}  If $(T_+,T_-)\in \N$, then $b(T_+)>\acrit$.
+\begin{lemma}\libel{lemma:Nb}  
+  If $(T_+,T_-)\in \N$, then $b(T_+)>\acrit$.
 \end{lemma}
 
 \begin{proof}  Otherwise,
@@ -2332,12 +2318,13 @@ edge has length at least $\kappa\sqrt8$.  Also, $n_-(T_+)\le 2$
 (because $(T',T_+)\not\in \N$).  By Lemma~\rif{lemma:n2m2}, we have
 $m_-(T_+)=0$.  Then
 \[
-b(T_+) \ge \area(T_+) + \epsN (1 - 2) \ge \area (2\kappa,1.72,\kappa\sqrt8) - \epsN > \acrit.
+b(T_+) \ge \area(T_+) + \epsN (1 - 2) 
+\ge \area (2\kappa,1.72,\kappa\sqrt8) - \epsN > \acrit.
 \]
 This completes this case.
 
-Finally, suppose that $m_-(T_+)>0$ and $n_-(T_+)=0$.  There exists a pseudo-dimer $(T'_1,T'_0)$ such that $T'_0\Ra T_+$.
-We have
+Finally, suppose that $m_-(T_+)>0$ and $n_-(T_+)=0$.  There exists a
+pseudo-dimer $(T'_1,T'_0)$ such that $T'_0\Ra T_+$.  We have
 \[
 b(T_+) \ge \area(T_1)+\epsN - \epsM m_-(T_+) 
 > (\acrit + \epsM) + \epsN -\epsM  3 \ge \acrit.
@@ -2476,24 +2463,26 @@ b(T_0) = \area(T_0) - \epsN n_-(T_0) \ge
 The use of the function $\areta$ is justified by
 Lemma~\rif{lemma:areta} and the numerical estimate
 \[
-d_2 = \kappa\sqrt8 <  4 \sin(\arc(2,2,2\kappa)) = 2\eta\sin(\alpha/2).
+d_2 = \kappa\sqrt8 
+<  4 \sin(\arc(2,2,2\kappa)) = 2\eta\sin(\alpha/2).
 \] % checked 2016/2/18 in Mathematica.
 \end{proof}
 
 
 \begin{lemma}\libel{lemma:sequence}  There does not exist a three
-term sequence $- \rab -\rab -$ where  the three triangles  are distinct.
+  term sequence $- \rab -\rab -$ where the three triangles are
+  distinct.
 \end{lemma}
 
 \begin{proof}  
-Assume for a contradiction, that such a sequence exists.
-By Lemma~\rif{lemma:t2b}, there does not exist a sequence $- \rab - \rab -$,
-where the first triangle is obtuse.  Thus, we may assume that the first
-triangle is nonobtuse.
-By Lemma~\rif{lemma:no-ao}, there does not exist $T_1\rab T_0$,
-where $T_1$ is nonobtuse and $T_0$ is obtuse.  Thus, we may assume
-that every triangle in the sequence is nonobtuse.  This is impossible by
-Lemma~\rif{lemma:rab-sequence}.
+  Assume for a contradiction, that such a sequence exists.  By
+  Lemma~\rif{lemma:t2b}, there does not exist a sequence $- \rab -
+  \rab -$, where the first triangle is obtuse.  Thus, we may assume
+  that the first triangle is nonobtuse.  By Lemma~\rif{lemma:no-ao},
+  there does not exist $T_1\rab T_0$, where $T_1$ is nonobtuse and
+  $T_0$ is obtuse.  Thus, we may assume that every triangle in the
+  sequence is nonobtuse.  This is impossible by
+  Lemma~\rif{lemma:rab-sequence}.
 \end{proof}
 
 If $\C$ is a cluster that is not a singleton, then there is
@@ -2761,7 +2750,8 @@ This case is almost identical to case 2.  We use the same bounds
 before, for $T = T_1, T_1', T_1''$.  We can improve the bound on the
 area of $T_0$:
 \[
-\area(T_0) \ge \area(\kappa\sqrt{8},\kappa\sqrt{8},\kappa\sqrt{8}) > 2.2668.
+\area(T_0) 
+\ge \area(\kappa\sqrt{8},\kappa\sqrt{8},\kappa\sqrt{8}) > 2.2668.
 \]
 Moreover, in the subcase where $\eta(T_0)\ge 1.7$, we have
 (even after dropping the nonobtuseness constraint):
@@ -2905,8 +2895,8 @@ complete the proof.
 \[
 \area(T) \ge \area(1.8,1.8,1.63) > \acrit + 2\epsM.
 \]
-We remark that $1.63$ is close to $2\kappa\approx 1.618$.  This leaves hardly
-any flexibility in the shape of $T$.
+We remark that $1.63$ is close to $2\kappa\approx 1.618$.  This leaves
+hardly any flexibility in the shape of $T$.
 
 We may assume without loss of generality that the third edge has
 length in the range $[2\kappa,1.63]$.  Let the pentagons at the
@@ -2920,7 +2910,7 @@ $\v_B$ lies above or below the midpoint of the edge $e$.  (The pointer
 cannot be at the midpoint of $e$ by Lemma \ref{lemma:mid-172}, and
 $1.72 > 1.63 \ge d_{AB}$.)  Let $\gamma\in[0,2\pi/5]$ be the angle
 formed by edges of $A$ and $B$ at the pointer $\v_B$ as in Figure
-\ref{fig:bac}.
+\ref{fig:not-large}.
 
 We have the constraint
 \[
@@ -2981,8 +2971,8 @@ $1.72$.
 
 \begin{proof}
   If $m_+(T)>0$, then there exists a pseudo-dimer $(T'_1,T'_0)$ such
-  that $T=T'_0$.  Then Lemma \ref{lemma:pd-b} implies the contradiction that
-  there is no arrow $T\rab T_0$.
+  that $T=T'_0$.  Then Lemma \ref{lemma:pd-b} implies the
+  contradiction that there is no arrow $T\rab T_0$.
   %An earlier lemma on pseudo-dimers
   %(Lemma~\rif{lemma:pd-1}) gives that $b(T'_1)=\area(T'_1)\le \acrit$.
   %Thus, $T'_1\rab T\rab T_0$.  This contradicts
@@ -3289,7 +3279,8 @@ $\beta\ge 2\pi/5$:
 
 \blankfig{extended}
 
-\subsection{two pentagons in contact, alternative coordinates}\label{sec:banana}
+\subsection{two pentagons in contact, alternative
+  coordinates}\label{sec:banana}
 
 In this subsection, we describe how to describe a configuration of two
 pentagons $(A,B)$ in contact using the coordinates $\dx{AB}$ and
@@ -3313,7 +3304,9 @@ obtained when $h$ is non-negative.  By reversing orientation of the
 figure (that is, by replacing $C$ with $C'$ in the opposite
 half-plane), the variables transform according to the rule
 \[
-h \mapsto -h,\quad \theta_{BAC} \mapsto -\theta_{BAC},\quad \theta_{ABC}\mapsto -\theta_{ABC} (\mod 2\pi/5).
+h \mapsto -h,\quad \theta_{BAC} 
+\mapsto -\theta_{BAC},
+\quad \theta_{ABC}\mapsto -\theta_{ABC} (\mod 2\pi/5).
 \]
 Thus, by picking an appropriate orientation, the general case reduces
 to the case $h\ge0$.
@@ -3321,7 +3314,8 @@ to the case $h\ge0$.
 We begin with a simple derivation of $\theta_{ABC}$ in terms of
 $\dx{AB}$ and $\theta_{BAC}$.  We write
 \[
-\op{loc}(a,b,\psi) = c\ge 0,\quad \text{where } c^2 = a^2 + b^2 - 2ab \cos\psi
+\op{loc}(a,b,\psi) = c\ge 0,\quad 
+\text{where } c^2 = a^2 + b^2 - 2ab \cos\psi
 \]
 for the length of a triangle edge $c$ computed by the law of cosines.
 We write
@@ -3544,8 +3538,6 @@ lengths
 \draw (0.99,1.70) ++ (235.38:1) node[anchor = south west] {$x_\alpha$} -- ++ (126+90 - 5.16:0.5);
 }
 
-
-
 \subsection{triple contact at a pinwheel type}
 
 We describe a coordinate system on $3C$-triangles of pinwheel type.
@@ -3563,7 +3555,8 @@ given by Equation~\rif{eqn:abc}.  The edge lengths $x_\alpha$,
 $x_\beta$, $x_\gamma$ of the inner triangle $P$ are easily computed by
 the law of sines.  The edges of the $3C$-triangle have lengths
 \[
-\bl(x_\alpha,\alpha),\quad \bl(x_\beta,\beta),\quad \bl(x_\gamma,\gamma).
+\bl(x_\alpha,\alpha),\quad 
+\bl(x_\beta,\beta),\quad \bl(x_\gamma,\gamma).
 \]
 
 \tikzfig{cord-pinwheel}{Coordinates for pinwheel type}{
@@ -3848,7 +3841,8 @@ s\mapsto (\alpha(s),\beta(s)) = (\alpha_0 - s,\beta_0+s).
 \]
 
 
-\subsection{triple contact at a pin-$T$ junction type}\libel{sec:pint} We describe a coordinate system on
+\subsection{triple contact at a pin-$T$ junction type}\libel{sec:pint}
+We describe a coordinate system on
 
 $3C$-triangles of pin-$T$ junction type.  As indicated in
 Figure~\rif{fig:cord-pint}, we use coordinates $\alpha$, $\beta$, and
@@ -3952,14 +3946,11 @@ This completes our discussion of coordinates used for computations.
 
 \subsection{interval arithmetic}
 
-To control
-  rounding errors on the computer, we use an interval arithmetic
-  package for OCaml by Alliot and Gotteland, which runs on the Linux
-  operating system and Intel processors \cite{All}.  Intervals are represented as 
-  pairs $(a,b)$ of floating point numbers, giving the lower $a$ and upper $b$ endpoints
-of the interval. 
-
-
+To control rounding errors on the computer, we use an interval
+arithmetic package for OCaml by Alliot and Gotteland, which runs on
+the Linux operating system and Intel processors \cite{All}.  Intervals
+are represented as pairs $(a,b)$ of floating point numbers, giving the
+lower $a$ and upper $b$ endpoints of the interval.
 
 \subsection{meet-in-the-middle}\libel{sec:mitm}
 
@@ -4011,7 +4002,8 @@ pentagons $A$ and $B$ with respect to that common edge.  Similarly,
 associated with $T_1$ are parameters $d^1_{AB}$, $\theta^1_{ABC}$,
 $\theta^1_{BAC}$.  The assembly constraint along the common edge is
 \begin{equation}\libel{eqn:assembly}
-d^0_{AB} = d^1_{AB},\quad \theta^0_{ABC} = -\theta^1_{ABC},\quad \theta^0_{BAC} = -\theta^1_{BAC}.
+d^0_{AB} = d^1_{AB},\quad 
+\theta^0_{ABC} = -\theta^1_{ABC},\quad \theta^0_{BAC} = -\theta^1_{BAC}.
 \end{equation}
 The negative sign comes from the opposite orientations of the common
 edge with respect to $T_0$ and $T_1$.
@@ -4083,7 +4075,8 @@ computed by interval arithmetic.  Standard functions $F$ such as the
 square root and trigonometric functions are given an extension $F^D$
 to automatic differentiation.  For example,
 \[
-\op{sqrt}^D(f,f') = (\sqrt{f}, f'/(2\sqrt{f})),\quad \sin^D (f,f') = (\sin(f), \cos(f) f').
+\op{sqrt}^D(f,f') = (\sqrt{f}, f'/(2\sqrt{f})),\quad 
+\sin^D (f,f') = (\sin(f), \cos(f) f').
 \]
 
 Section~\rif{sec:dimer-pair} describes the proof of the local
@@ -4152,7 +4145,8 @@ that follow.
   length at least $1.8$, so a right angle gives the proof of
   Lemma~\ref{calc:pseudo-area3} in this case:
 \[
-\area\{T_0,T_1,S\} > 2\ao + \area(S) \ge 2\ao + 1.8\kappa > 3\acrit + \epsM.
+\area\{T_0,T_1,S\} > 2\ao + \area(S) 
+\ge 2\ao + 1.8\kappa > 3\acrit + \epsM.
 \]
 \end{proof}
 
@@ -4182,7 +4176,8 @@ subcases:
 \[
 \area\{T_0,T_1\} > \ao + \area(T_0) \ge \ao + \area(1.8,1.8,1.7) > 2\acrit.
 \]
-\item $B$ has slider contact with $A$ and $\dx{AB}=1.8$ or $\dx{BC}=1.8$.
+\item $B$ has slider contact with $A$ and $\dx{AB}=1.8$ or
+  $\dx{BC}=1.8$.
 \end{enumerate}
 
 \subsubsection{Calculation~of Lemma~\ref{calc:pseudo2}} 
@@ -4219,7 +4214,8 @@ As noted above, we can assume that both peripheral triangles, $T_1$
 and $S$ are $O2C$.  Negating the conclusion, we assume that
 $\area\{T_0,T_1,S\}\le 3\acrit+\epsM$.  This implies that
 \[
-\area(S) = \area\{T_0,T_1,S\} - \area\{T_0,T_1\} \le (3\acrit+\epsM) - (2\acrit - \epsM) = \acrit + 2\epsM.
+\area(S) = \area\{T_0,T_1,S\} - \area\{T_0,T_1\} 
+\le (3\acrit+\epsM) - (2\acrit - \epsM) = \acrit + 2\epsM.
 \]
 We let $A,B,C$ be the pentagons in the central triangle $T_0$, where
 $A$ is shared with $T_0,T_1,S$ and $B$ is shared between $T_0$ and
