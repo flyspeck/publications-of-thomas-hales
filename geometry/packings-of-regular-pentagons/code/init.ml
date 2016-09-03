@@ -28,7 +28,8 @@ let use_file s =
 let hol_expand_directory s =
   if s = "$$" then "$"
   else if String.length s <= 2 then s
-  else if String.sub s 0 2 = "$$" then (String.sub s 1 (String.length s - 1))
+  else if String.sub s 0 2 = "$$" 
+  then (String.sub s 1 (Pervasives.pred (String.length s)))
   else s;;
 
 let load_path = ref ["."; "$";
@@ -119,3 +120,4 @@ reneeds "autodiff.ml";;
 reneeds "meet-in-middle.ml";;
 (* reneeds "scratch.ml";; *)
 (* reneeds "hypotheses.ml";; *)
+(* mitm-calcs.ml *)

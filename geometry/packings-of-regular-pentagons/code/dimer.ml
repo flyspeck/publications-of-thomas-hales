@@ -195,14 +195,14 @@ let one_dimer_eps pseudo eps dimer_constraint xs =
 let one_dimer = one_dimer_eps false zero;;
 
 let dimer_types = [
-  ("pint",dimer_pintedge,disjoint_from_dimer_pint)  ;
-  ("pinw",dimer_pinwheeledge,disjoint_from_dimer_pinwheel);
-  ("lj1",dimer_lj1edge,disjoint_from_dimer_lj1);
-  ("lj2",dimer_lj2edge,disjoint_from_dimer_lj2);
-  ("lj3",dimer_lj3edge,disjoint_from_dimer_lj3);
-  ("tj1",dimer_tj1edge,disjoint_from_dimer_tj1);
-  ("tj2",dimer_tj2edge,disjoint_from_dimer_tj2);
-  ("tj3",dimer_tj3edge,disjoint_from_dimer_tj3);];;
+  ("pint",shared_pintedge,disjoint_from_shared_pint)  ;
+  ("pinw",shared_pinwheeledge,disjoint_from_shared_pinwheel);
+  ("lj1",shared_lj1edge,disjoint_from_shared_lj1);
+  ("lj2",shared_lj2edge,disjoint_from_shared_lj2);
+  ("lj3",shared_lj3edge,disjoint_from_shared_lj3);
+  ("tj1",shared_tj1edge,disjoint_from_shared_tj1);
+  ("tj2",shared_tj2edge,disjoint_from_shared_tj2);
+  ("tj3",shared_tj3edge,disjoint_from_shared_tj3);];;
 
 let dtype = List.nth dimer_types;;
 

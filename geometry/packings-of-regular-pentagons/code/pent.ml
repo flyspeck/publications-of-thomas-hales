@@ -39,18 +39,6 @@ let issome x = match x with
 let isnone x = not(issome x);;
 
 (* Cartesian products *)
-(*
-let rec outer f xs =
-  function
-  | [] -> []
-  | y::ys -> map (fun t -> f t y) xs @ outer f xs ys;;
-
-
-let rec allpair acc f l1 l2 = 
-    match l1 with 
-      [] ->  acc
-    | (h1::t1) ->  allpair ((List.map (f h1) l2) @ acc) f t1 l2;;
-*)
 
 let outer = Lib.allpairs;; 
 
@@ -68,10 +56,6 @@ outer pair [0;1;2] [3;4];;
 (* We rarely need integer arithmetic.
    Calculations are done systematically in interval arithmetic. *)
 
-(*
-let succ = Pervasives.succ;;
-let pred = Pervasives.pred;;
-*)
 
 let ( +~ ) = Pervasives.( + );;
 let ( *~) = Pervasives.( * );;
@@ -134,7 +118,6 @@ let mem_I r i = (i.low <= r && r <= i.high);;
 (* related to but not identical to Interval.size_I *)
 let width_I x = max_I x - min_I x;;
 
-(* deprecated: let eps = (1.0e-10);; *)
 
 let ( >> ) x y = x.low >. y.high;;
 let ( >>= ) x y = x.low >= y.high;;
@@ -148,11 +131,6 @@ let disjoint_I x y = (x >> y) or (y >> x);;
 
 let meet_I x y = not (disjoint_I x y);;
 
-(*
-let abs_I x = if (x.low >= 0.0) then x
-  else if (x.high <= 0.0) then (- x)
-  else mk 0.0 (max x.high (~-. (x.low)));;
-*)
 let abs_I = Interval.abs_I;;
 
 abs_I (mk (~-. 0.1) ( 0.2));;
@@ -192,28 +170,22 @@ let pi110 = ratpi 1 10;;
 let pi310 = ratpi 3 10;;
 let pi710 = ratpi 7 10;;
 
-(* deprecated: let mpi i j = (ratpi i j);; *)
-
-
-
-
 let kappa = cos_I (pi /$. 5.0);;
 let sigma = sin_I (pi /$. 5.0);;
 
-(* deprecated *)
-(* let ee = sigma;;
-let iee = sigma;; *)
-
 
 (* critical area: *)
+(* called acrit in paper *)
+
 let aK = (1.0 +.$ kappa)*$ (3.0 *.$ (kappa *$ sigma)) /$. 2.0;;
+let acrit = aK;;
 
 (* let a0 =  1237 // 1000;; *)
 let amin =  1237 // 1000;;
 
-let epso_I = aK - amin;;
+let epso_I = aK - amin;;  (* \epsilon_N in paper *)
 
-let epso''_I = 8 // 1000;; (* \epsilon_0' in paper *)
+let epso''_I = 8 // 1000;; (* \epsilon_M in paper *)
 
 (* basic geometry *)
 
@@ -245,7 +217,8 @@ acos_I (m 0.22);;
 
 asin_I (m 0.22);;
 
-(* angle as a function of edge lengths. *)
+(* angle as a function of edge lengths, with
+   optimizations for obtuse and acute triangles *)
 
 let iarc =
   let mn = min_I in
@@ -274,7 +247,7 @@ let lawsines a alpha beta gamma =
 let ilawbeta alpha a b = 
   asin_I (b * sin_I alpha / a);;
 
-(* law of cosines, with special cases for monotonicity *)
+(* law of cosines, with special optimizations for monotonicity arguments *)
 
 let iloc =
   let mx = max_I in
@@ -317,9 +290,6 @@ let ellx  =
     ell_aux (sigma - x) (alpha + pi310);;
 
 (* N.B.  theta has a jump discontinuity near pm pi/5, which is an inconvenience
-   for the interval calculation. We try to deal with this gracefully
-   by allowing theta to exceed pi/5.
-    
    
    NB. May 2, 2015: pet now puts angles in range. 
    So we now always allow theta to exceed pi/5.
@@ -332,25 +302,9 @@ let ellx  =
    NB. June 2016.  theta domain is naturally [0,pi25].
    theta' domain is naturally [-pi15,pi15].
    We now have functions that are continuous and return values
-   in those domains.
+   in those ranges.
 *)
 
-(* rewritten 2/28/2016 
-let thetax =
-  let pi710 = ratpi 7 10 in
-  let pi1710 = ratpi 17 10 in
-  fun xalpha alpha ->
-    let h = xalpha - sigma in
-    let r = sqrt_I (h*h + kappa*kappa) in
-    let phi = acos_I (h / r) in
-    let psi = pi710 - alpha in
-    let psi' = psi + phi in
-    let elx = iloc r one psi' in
-    let ely = iloc r (two * sigma) (pi1710 - psi') in
-    let theta' = (iarc one elx ely) - pi25 in
-    let theta = alpha - theta' in
-    (elx,theta,theta');;
-*)
 
 let thetax =
   fun xalpha alpha ->
@@ -662,15 +616,15 @@ let tjedge alpha beta xgamma =
 tjedge (m 0.9) (m 1.0) (m 0.5);;
 
 (* uniform coordinate systems for 3C dimers, 3/2016 *)
-let dimer_pintedge alpha beta xbeta = 
+let shared_pintedge alpha beta xbeta = 
   let dAC,dBC,dAB = pintedge beta alpha xbeta in
   dBC,dAC,dAB;;
 
-let dimer_pinwheeledge alpha beta xbeta = 
+let shared_pinwheeledge alpha beta xbeta = 
   let dAB,dBC,dAC = pinwheeledge ((pi15) - (alpha+beta)) alpha xbeta in
   dBC,dAC,dAB;;
 
-let dimer_lj1edge_extended =
+let shared_lj1edge_extended =
   fun alpha' beta xbeta ->
     let alpha = pi25 - alpha' in
     let gamma = pi35 - (alpha + beta) in
@@ -683,19 +637,19 @@ let dimer_lj1edge_extended =
     let xc = c1 + c2 in
     (ellx xa alpha,ellx xbeta beta,ellx xc gamma,xa,xc);;
 
-let dimer_lj1edge alpha' beta xbeta = 
-  let l1,l2,l3,_,_ = dimer_lj1edge_extended alpha' beta xbeta in
+let shared_lj1edge alpha' beta xbeta = 
+  let l1,l2,l3,_,_ = shared_lj1edge_extended alpha' beta xbeta in
   l1,l2,l3;;
 
-let dimer_lj2edge alpha beta xbeta =
+let shared_lj2edge alpha beta xbeta =
   let (dAC,dBC,dAB) = ljedge beta alpha xbeta in
   dBC,dAC,dAB;;
 
-let dimer_lj2edge_extended alpha beta xbeta = 
+let shared_lj2edge_extended alpha beta xbeta = 
   let t,(dAC,dBC,dAB) = ljedge_extended beta alpha xbeta in
   dBC,dAC,dAB,t;;
 
-let dimer_lj3edge_extended =
+let shared_lj3edge_extended =
   fun alpha beta xbeta ->
     let gamma = pi35 - (alpha + beta) in
     let alpha' = pi25 - alpha in
@@ -707,11 +661,11 @@ let dimer_lj3edge_extended =
     let (xgamma,aa) = lawsines s2 alpha' delta' gamma' in
     (ellx (aa-a1) alpha,ellx xbeta beta,ellx xgamma gamma,aa-a1);;
 
-let dimer_lj3edge alpha beta xbeta = 
-  let (d1,d2,d3,_) = dimer_lj3edge_extended alpha beta xbeta in
+let shared_lj3edge alpha beta xbeta = 
+  let (d1,d2,d3,_) = shared_lj3edge_extended alpha beta xbeta in
   (d1,d2,d3);;
 
-let dimer_tj1edge = 
+let shared_tj1edge = 
     fun alpha beta xbeta ->
     let gamma = pi - (alpha + beta) in
     let alpha' = pi25 - alpha in
@@ -725,15 +679,15 @@ let dimer_tj1edge =
     let (c2,a3) = lawsines s2 delta' eps' pi25 in
     (ellx ((a1+a3)-a2) alpha,ellx xbeta beta,ellx (cc-c2) gamma);;
 
-let dimer_tj2edge alpha beta xbeta = 
+let shared_tj2edge alpha beta xbeta = 
   let (dAB,dBC,dAC) = tjedge (pi - (alpha+beta)) alpha xbeta in
   dBC,dAC,dAB;;
 
-let dimer_tj2edge_extended alpha beta xbeta = 
+let shared_tj2edge_extended alpha beta xbeta = 
   let (dAB,dBC,dAC,t) = tjedge_extended (pi - (alpha+beta)) alpha xbeta in
   dBC,dAC,dAB,t;;
 
-let dimer_tj3edge alpha' beta xbeta = 
+let shared_tj3edge alpha' beta xbeta = 
     let alpha = pi25 - alpha' in
     let gamma = pi - (alpha + beta) in
     let beta' = pi25 - beta in
@@ -747,51 +701,51 @@ let dimer_tj3edge alpha' beta xbeta =
     let xalpha = (a2+a3)-a1 in
     (ellx xalpha alpha,ellx xbeta beta,ellx (cc-c2) gamma);;
 
-let disjoint_from_dimer_pint alpha beta xbeta = 
+let disjoint_from_shared_pint alpha beta xbeta = 
   let ab = alpha+beta in
   if pi35 >> ab or xbeta >> m 0.0605 then true
   else
     let (_,_,_,xgamma,_) = pintedge_extended beta alpha xbeta in
     xgamma >> two*sigma;;
 
-let disjoint_from_dimer_pinwheel alpha beta xbeta =
+let disjoint_from_shared_pinwheel alpha beta xbeta =
    alpha+beta  >> pi15 or xbeta >> m 0.8;; (* 0.8 from one_pinwheelx *)
 
 let disjoint_from_15_35 alpha beta = 
   let ab = alpha+beta in
   pi15 >> ab or ab >> pi35;;
   
-let disjoint_from_dimer_lj1 alpha' beta xbeta =
+let disjoint_from_shared_lj1 alpha' beta xbeta =
   let alpha = pi25 - alpha' in
   if disjoint_from_15_35 alpha beta then true
   else 
-    let (_,_,_,xa,xc) = dimer_lj1edge_extended alpha' beta xbeta in
+    let (_,_,_,xa,xc) = shared_lj1edge_extended alpha' beta xbeta in
     (xa << zero) or (xc >> two*sigma);;
 
-let disjoint_from_dimer_lj2 alpha beta xbeta = 
+let disjoint_from_shared_lj2 alpha beta xbeta = 
   disjoint_from_15_35 alpha beta;;
 
-let disjoint_from_dimer_lj3 alpha beta xbeta  = 
+let disjoint_from_shared_lj3 alpha beta xbeta  = 
   if disjoint_from_15_35 alpha beta or alpha >> m 0.9 then true
   else 
-    let (_,_,_,xalpha) = dimer_lj3edge_extended alpha beta xbeta in
+    let (_,_,_,xalpha) = shared_lj3edge_extended alpha beta xbeta in
     xalpha << zero;;
 
 let disjoint_from_35_45 alpha beta =
   let ab = alpha+beta in
   pi35 >> ab or ab >> pi45;;
 
-let disjoint_from_dimer_tj3 alpha' beta xbeta = 
+let disjoint_from_shared_tj3 alpha' beta xbeta = 
   let alpha = pi25 - alpha' in
   disjoint_from_35_45 alpha beta;;
 
-let disjoint_from_dimer_tj2 alpha beta xbeta = 
+let disjoint_from_shared_tj2 alpha beta xbeta = 
   if disjoint_from_35_45 alpha beta then true
   else 
-    let (_,_,_,x) = dimer_tj2edge_extended alpha beta xbeta in
+    let (_,_,_,x) = shared_tj2edge_extended alpha beta xbeta in
     (x >> two * sigma);;
 
-let disjoint_from_dimer_tj1 alpha beta xbeta = 
+let disjoint_from_shared_tj1 alpha beta xbeta = 
   disjoint_from_35_45 alpha beta or (beta << one);;
   
 (************************************************************************* *)
