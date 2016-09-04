@@ -763,7 +763,7 @@ let outdomfn_shared_lj1 alpha' beta xbeta =
   if outdomfn_15_35 alpha beta then true
   else 
     let (_,_,_,xa,xc) = shared_lj1edge_extended alpha' beta xbeta in
-    outdomfn_sigma xa or outdomfn xc;;
+    outdomfn_sigma xa or outdomfn_sigma xc;;
 
 let outdomfn_shared_lj2 alpha beta xbeta = 
   outdomfn_15_35 alpha beta;;

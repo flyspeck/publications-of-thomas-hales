@@ -92,6 +92,7 @@ let pint_outdomfn (a,alpha,beta,xa,xb,xc,dBC,dAC,dAB) =
     (dBC >> dAB && dBC >> dAC);;   
 
 let one_pintx xs = 
+  try
   let ([alpha;beta;xa],_) = xs in
   if outdomfn_pint alpha beta then true
       else 
@@ -99,12 +100,14 @@ let one_pintx xs =
       let a = areamin_acute dBC dAC dAB in
       let inadmissible xc a = xc >> two*sigma or (a >> aK+epsN_I) in
       inadmissible xc a or 
-	pint_outdomfn (a,alpha,beta,xa,xb,xc,dBC,dAC,dAB);;
+	pint_outdomfn (a,alpha,beta,xa,xb,xc,dBC,dAC,dAB)
+  with Unstable -> false;;
 
 (* one_pinwheelx gets used in pent.ml to restrict the domain
    of a shared pinwheel 3C.  See pent.ml  *)
 
 let one_pinwheelx xs =
+  try
   let ([alpha;beta;xc],_) = xs in
   if alpha+beta >> pi15 then true
       else 
@@ -113,7 +116,8 @@ let one_pinwheelx xs =
       let inadmissible = (a >> aK+epsN_I) in
       let one_pinwheelx_constant = 8 // 10 in (* 0.7 fails *)
       let outdom = (xc << one_pinwheelx_constant) in 
-      inadmissible or outdom;;
+      inadmissible or outdom
+  with Unstable -> false;;
 
 (* needed for the numerical stability of L3 type L-junctions
    in coordinates.
@@ -121,30 +125,30 @@ let one_pinwheelx xs =
  *)
 
 let one_ljx xs =
-  let ([alpha;beta;xa],_) = xs in
-  if outdomfn_lj alpha beta then true
-  else 
-    try
+  try
+    let ([alpha;beta;xa],_) = xs in
+    if outdomfn_lj alpha beta then true
+    else 
       let (d1,d2,d3)= ljedge alpha beta xa in
       let a = areamin_acute d1 d2 d3 in
       let inadmissible = (a >> aK+epsN_I) in
       let one_ljx_constant = 9//10 in (* 0.8 fails *)
       let outdom = (beta << one_ljx_constant) in 
       inadmissible or outdom
-    with Unstable -> false;;
+  with Unstable -> false;;
 
 let one_tjx xs =
-  let ([alpha;beta;xc],_) = xs in
-  if outdomfn_tj alpha beta then true
-  else 
-    try
+  try
+    let ([alpha;beta;xc],_) = xs in
+    if outdomfn_tj alpha beta then true
+    else 
       let (d1,d2,d3)= tjedge alpha beta xc in
       let a = areamin_acute d1 d2 d3 in
       let inadmissible = (a >> aK+epsN_I) in
       let one_tjx_constant = one in
       let outdom = (beta >>  one_tjx_constant) in 
       inadmissible or outdom
-    with Unstable -> false;;
+  with Unstable -> false;;
 
 let domain_iso2C =   (* sgnalpha=false means A points to B *)
   let zpi25 = zero2 (ratpi 2 5) in
@@ -173,11 +177,12 @@ let dummybool = (map (fun t->(t,(true,true))));;
 let run_group1() = 
   [recursepairtoeps one_iso2C domain_iso2C;
    recursepairtoeps one_iso2C' domain_iso2C';
-   recursepairtoeps one_scaleneto3C_deprecated domain_scaleneto3C_deprecated;
+(*   recursepairtoeps one_scaleneto3C_deprecated domain_scaleneto3C_deprecated; *)
    recursepairtoeps one_pintx (dummybool pintdomain);
    recursepairtoeps one_pinwheelx (dummybool pinwheeldomain);
    recursepairtoeps one_ljx (dummybool ljdomain);
-   recursepairtoeps one_tjx (dummybool tjdomain)];;
+   recursepairtoeps one_tjx (dummybool tjdomain)
+];;
 
 (* ************************************************************ *)
 (* dimer stuff *)
@@ -388,6 +393,7 @@ let squeeze_calc() =
   recursetoeps (squeezable dACrange outofdomfn) domain2Ce;;
 
 
+
 (* ************************************************************ *)
 (* unsorted stuff *)
 (* ************************************************************ *)
@@ -427,7 +433,8 @@ let recursesgn f dom =
     [(true,true);(true,false);(false,true);(false,false)];;
 
 let run_group5() = 
-  recursesgn one127 domain2C;;
+  (squeeze_calc(),
+  recursesgn one127 domain2C);;
 
 
 
