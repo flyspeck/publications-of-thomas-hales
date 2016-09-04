@@ -92,32 +92,29 @@ open Interval;;
 
 
 
-let tests = ref [];;
+let calcs = ref [];;
 
-let mktest (s,f) = tests := (s,f) :: !tests;;
+let mkcalc (s,f) = calcs := (s,f) :: !calcs;;
 
-let gettest () = List.map fst !tests;;
+let getcalc () = List.map fst !calcs;;
 
-let runtest s = 
-  let f = List.assoc s !tests in (s,f ());;
+let runcalc s = 
+  let f = List.assoc s !calcs in (s,f ());;
 
-let runalltest() = 
-  map runtest (gettest());;
+let runallcalc() = 
+  map runcalc (getcalc());;
 
 reneeds "pent.ml";;
 
-runalltest();;
+runallcalc();;
 
 open Pent;;
 
 
 reneeds "pent.ml";;
 reneeds "pet.ml";;
-reneeds "function_library.ml";;
+reneeds "banana.ml";;
 reneeds "dimer.ml";;
-(* deprecate dimer2.ml *)
 reneeds "autodiff.ml";;
 reneeds "meet-in-middle.ml";;
-(* reneeds "scratch.ml";; *)
-(* reneeds "hypotheses.ml";; *)
-(* mitm-calcs.ml *)
+reneeds "mitm-calcs.ml";;

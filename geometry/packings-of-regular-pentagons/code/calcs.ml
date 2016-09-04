@@ -16,8 +16,8 @@ val areaP : float = 2.37764129073788411
 - : float = 0.921310674166736732
 # let a0 = 1.237;;
 val a0 : float = 1.237
-# let epso = aK -. a0;;
-val epso : float = 0.0533580504417252577
+# let epsN = aK -. a0;;
+val epsN : float = 0.0533580504417252577
 # 2.0 *. kappa *. kappa;;
 - : float = 1.30901699437494745
 areaP /. (2.0 *. a0);;

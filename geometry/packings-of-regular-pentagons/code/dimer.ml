@@ -5,7 +5,7 @@
    and excluding pseudo-dimers *)
 
 (* The documentation for this file is contained in 
-   notebook "Dimer March 2016"
+   handwritten notes "Dimer March 2016"
 *)
 
 reneeds "pent.ml";;
@@ -17,14 +17,26 @@ module Dimer = struct
 open Pent;;
 open Pet;;
 
+(* ************************************************** *)
+(* iso_2C and iso_2C are footnotes in article *)
+(* ************************************************** *)
 
 
 (* true if isosceles subcritical, with condition on thABC *)
 
 (* true if param xs fall outside domain of subcrit AB=AC isosc tri *)
 
+(* 
+From the article about iso2C and iso2C'
+We have a long isosceles triangle,
+double contact,
+one of contacts is between A and B,
+contact between A and B is slider or midpointer.
+We claim such is not subcritical.
+*)
+
 let one_iso2C xs = 
-  let dACrange = mk 1.72 1.79 in
+  let dACrange = merge_I (172//100) (179//100) (* mk 1.72 1.79 *) in
   try
     match  mk2C dACrange xs with
     | None -> true
@@ -38,7 +50,7 @@ let one_iso2C xs =
 (* true if params xs out of domain of subcrit BC AB isosc tri *)
 
 let one_iso2C' xs = 
-  let dACrange = merge_I (two*kappa) (m 1.79) in
+  let dACrange = merge_I (two*kappa) (179//100) (* m 1.79 *) in
   try
     match  mk2C dACrange xs with
     | None -> true
@@ -47,15 +59,21 @@ let one_iso2C' xs =
        (a >> aK) or disjoint_I dBC dAB or dAC >> dAB
   with Unstable -> false;;
 
-(* the xalpha + xbeta condition removes the trivial case of
-   a cloverleaf *)
+(* 
+   one_scaleneto3C_deprecated was used in an early approach
+   to to squeezing lemma.
 
-let one_scaleneto3C xs = 
+   the xalpha + xbeta condition removes the trivial case of
+   a cloverleaf 
+*)
+
+let one_scaleneto3C_deprecated xs = 
   try
     let pi310 = ratpi 3 10 in
     let dACrange = mk 1.72 2.0 in
     let ([xalpha; alpha;  xbeta; beta],_) = xs in
-    if (alpha + beta >> pi310) or (xalpha + xbeta << m 0.1) then true
+    let is_cloverleaf = xalpha + xbeta << m 0.1 in
+    if (alpha + beta >> pi310) or is_cloverleaf then true
     else
       match  mk2C dACrange xs with
       |None -> true
@@ -64,21 +82,27 @@ let one_scaleneto3C xs =
 	(a >> aK) or (dAC >> m 1.79) 
   with Unstable -> false;;
 
-let pint_domain_constraint (a,alpha,beta,xa,xb,xc,dBC,dAC,dAB) =
+(* one_pintx is a footnote in the article.
+   What gets used is that longest edge is BC *)
+
+let pint_outdomfn (a,alpha,beta,xa,xb,xc,dBC,dAC,dAB) =
   (dAC << 172 // 100) &&
     (xb >>= 9 // 10) && (* 1.0 fails *)
     (beta >>= 12 // 10) &&  (* 1.25 fails *)
-    (dBC >> dAB && dBC >> dAC);;   (* added 6/2016 *)
+    (dBC >> dAB && dBC >> dAC);;   
 
 let one_pintx xs = 
   let ([alpha;beta;xa],_) = xs in
-  if disjoint_from_pint alpha beta then true
+  if outdomfn_pint alpha beta then true
       else 
       let (dBC,dAC,dAB,xc,xb)= pintedge_extended alpha beta xa in
       let a = areamin_acute dBC dAC dAB in
-      let inadmissible xc a = xc >> two*sigma or (a >> aK+epso_I) in
+      let inadmissible xc a = xc >> two*sigma or (a >> aK+epsN_I) in
       inadmissible xc a or 
-	pint_domain_constraint (a,alpha,beta,xa,xb,xc,dBC,dAC,dAB);;
+	pint_outdomfn (a,alpha,beta,xa,xb,xc,dBC,dAC,dAB);;
+
+(* one_pinwheelx gets used in pent.ml to restrict the domain
+   of a shared pinwheel 3C.  See pent.ml  *)
 
 let one_pinwheelx xs =
   let ([alpha;beta;xc],_) = xs in
@@ -86,35 +110,40 @@ let one_pinwheelx xs =
       else 
       let (d1,d2,d3)= pinwheeledge alpha beta xc in
       let a = areamin_acute d1 d2 d3 in
-      let inadmissible = (a >> aK+epso_I) in
-      let domain_constraint = (xc << m 0.8) in (* 0.7 fails 0.8 works *)
-      inadmissible or domain_constraint;;
+      let inadmissible = (a >> aK+epsN_I) in
+      let one_pinwheelx_constant = 8 // 10 in (* 0.7 fails *)
+      let outdom = (xc << one_pinwheelx_constant) in 
+      inadmissible or outdom;;
 
 (* needed for the numerical stability of L3 type L-junctions
-   in 3C dimer coordinates *)
+   in coordinates.
+   one_ljx and one_tjx are both footnotes in the article.
+ *)
 
 let one_ljx xs =
   let ([alpha;beta;xa],_) = xs in
-  if disjoint_from_lj alpha beta then true
+  if outdomfn_lj alpha beta then true
   else 
     try
       let (d1,d2,d3)= ljedge alpha beta xa in
       let a = areamin_acute d1 d2 d3 in
-      let inadmissible = (a >> aK+epso_I) in
-      let domain_constraint = (beta << m 0.9) in (* 0.8 fails *)
-      inadmissible or domain_constraint
+      let inadmissible = (a >> aK+epsN_I) in
+      let one_ljx_constant = 9//10 in (* 0.8 fails *)
+      let outdom = (beta << one_ljx_constant) in 
+      inadmissible or outdom
     with Unstable -> false;;
 
 let one_tjx xs =
   let ([alpha;beta;xc],_) = xs in
-  if disjoint_from_tj alpha beta then true
+  if outdomfn_tj alpha beta then true
   else 
     try
       let (d1,d2,d3)= tjedge alpha beta xc in
       let a = areamin_acute d1 d2 d3 in
-      let inadmissible = (a >> aK+epso_I) in
-      let domain_constraint = (beta >>  m 1.0) in (* 1.0 works *)
-      inadmissible or domain_constraint
+      let inadmissible = (a >> aK+epsN_I) in
+      let one_tjx_constant = one in
+      let outdom = (beta >>  one_tjx_constant) in 
+      inadmissible or outdom
     with Unstable -> false;;
 
 let domain_iso2C =   (* sgnalpha=false means A points to B *)
@@ -136,7 +165,7 @@ let domain_iso2C' =   (* sgnbeta=true means B points to C *)
   let f r = map (fun t -> (r,t)) b in
   f r_slider @ f r_midpointer;;
 
-let domain_scaleneto3C = 
+let domain_scaleneto3C_deprecated = 
   [(map zero2 [two*sigma;pi25;two*sigma;pi25],(true,true))];;
 
 let dummybool = (map (fun t->(t,(true,true))));;
@@ -144,7 +173,7 @@ let dummybool = (map (fun t->(t,(true,true))));;
 let run_group1() = 
   [recursepairtoeps one_iso2C domain_iso2C;
    recursepairtoeps one_iso2C' domain_iso2C';
-   recursepairtoeps one_scaleneto3C domain_scaleneto3C;
+   recursepairtoeps one_scaleneto3C_deprecated domain_scaleneto3C_deprecated;
    recursepairtoeps one_pintx (dummybool pintdomain);
    recursepairtoeps one_pinwheelx (dummybool pinwheeldomain);
    recursepairtoeps one_ljx (dummybool ljdomain);
@@ -154,20 +183,22 @@ let run_group1() =
 (* dimer stuff *)
 (* ************************************************************ *)
 
-let dimer_constraint0 alphaB betaB xbetaB alphaD = false;;
+let dimer_outdomfn_null alphaB betaB xbetaB alphaD = false;;
 
-let dimer_constraint_eps eps alphaB betaB xbetaB alphaD = 
+let dimer_outdomfn_eps eps alphaB betaB xbetaB alphaD = 
   let nearlyt t x = (x << t + eps) && x >> t - eps in
   nearlyt pi15 betaB && 
     nearlyt sigma xbetaB &&
     nearlyt zero alphaB &&
     nearlyt zero alphaD;;
 
-(* deprecated let dimer_constraint1 = dimer_constraint_eps (m 0.1);; *)
+(* deprecated let dimer_outdomfn1 = dimer_outdomfn_eps (m 0.1);; *)
 
-let dimer_constraint2 = dimer_constraint_eps (m 0.01);;
+let ice_ray_nbd = 1 // 100;;
 
-let one_dimer_eps pseudo eps dimer_constraint xs = 
+let dimer_outdomfn_01 = dimer_outdomfn_eps ice_ray_nbd;;
+
+let one_dimer_eps pseudo eps dimer_outdomfn xs = 
   let ([alphaB;betaB;xbetaB;alphaD],
        ((sB,edgeB,disjointB),(sD,edgeD,disjointD))) = xs in
   try
@@ -189,20 +220,20 @@ let one_dimer_eps pseudo eps dimer_constraint xs =
 	  && dAD >>  18 // 10 (* m 1.8 *) in 
 	aABC + aADC >> two * aK - eps or 
 	  (pseudo && pseudodimer) or
-	  dimer_constraint alphaB betaB xbetaB alphaD
+	  dimer_outdomfn alphaB betaB xbetaB alphaD
   with | Unstable -> false;;
 
 let one_dimer = one_dimer_eps false zero;;
 
 let dimer_types = [
-  ("pint",shared_pintedge,disjoint_from_shared_pint)  ;
-  ("pinw",shared_pinwheeledge,disjoint_from_shared_pinwheel);
-  ("lj1",shared_lj1edge,disjoint_from_shared_lj1);
-  ("lj2",shared_lj2edge,disjoint_from_shared_lj2);
-  ("lj3",shared_lj3edge,disjoint_from_shared_lj3);
-  ("tj1",shared_tj1edge,disjoint_from_shared_tj1);
-  ("tj2",shared_tj2edge,disjoint_from_shared_tj2);
-  ("tj3",shared_tj3edge,disjoint_from_shared_tj3);];;
+  ("pint",shared_pintedge,outdomfn_shared_pint)  ;
+  ("pinw",shared_pinwheeledge,outdomfn_shared_pinwheel);
+  ("lj1",shared_lj1edge,outdomfn_shared_lj1);
+  ("lj2",shared_lj2edge,outdomfn_shared_lj2);
+  ("lj3",shared_lj3edge,outdomfn_shared_lj3);
+  ("tj1",shared_tj1edge,outdomfn_shared_tj1);
+  ("tj2",shared_tj2edge,outdomfn_shared_tj2);
+  ("tj3",shared_tj3edge,outdomfn_shared_tj3);];;
 
 let dtype = List.nth dimer_types;;
 
@@ -225,7 +256,7 @@ let recurse_dimer pseudo eps f d =
 (* This does cases that don't approach the pentagonal ice-ray dimer. *)
 (* all run on 3/10/2016: *)
 let recurse0 s = recurse_dimer false zero 
-  dimer_constraint0 (dimer_domain s);;
+  dimer_outdomfn_null (dimer_domain s);;
 
 let run_group2 () = 
   [
@@ -243,39 +274,39 @@ let needsmore = [1;2;3;7];;
 let morecases = outer pair needsmore needsmore;;
 
 (* deprecated let recurse1 pseudo s = recurse_dimer pseudo zero 
-  dimer_constraint1 (dimer_domain s);;
+  dimer_outdomfn1 (dimer_domain s);;
 *)
 
-let recurse2 pseudo s = recurse_dimer pseudo zero 
-  dimer_constraint2 (dimer_domain s);;
+let recurse_01 pseudo s = recurse_dimer pseudo zero 
+  dimer_outdomfn_01 (dimer_domain s);;
 
 (* This reduces dimers to 0.01 nbd of pentagonal ice-ray dimer.
    The "true" cases also explicitly exclude pseudo-dimers. *)
 
 let run_group3() = 
   [
-    recurse2 false (1,1);
-    recurse2 false (2,1);
-    recurse2 false (3,1);
-    recurse2 false (7,1);
+    recurse_01 false (1,1);
+    recurse_01 false (2,1);
+    recurse_01 false (3,1);
+    recurse_01 false (7,1);
 
-    recurse2 false (1,2);
-    recurse2 false (2,2);
-    recurse2 false (3,2);
-    recurse2 false (7,2);
+    recurse_01 false (1,2);
+    recurse_01 false (2,2);
+    recurse_01 false (3,2);
+    recurse_01 false (7,2);
     
-    recurse2 false (2,3);
-    recurse2 false (7,3);
+    recurse_01 false (2,3);
+    recurse_01 false (7,3);
 
-    recurse2 false (2,7);
-    recurse2 false (7,7);
+    recurse_01 false (2,7);
+    recurse_01 false (7,7);
 
 (* last 4 cases exclude pseudo-dimers.
    These tests fail with input pseudo=false. *)
-    recurse2 true (1,3);
-    recurse2 true (3,3);
-    recurse2 true (1,7);
-    recurse2 true (3,7)];;
+    recurse_01 true (1,3);
+    recurse_01 true (3,3);
+    recurse_01 true (1,7);
+    recurse_01 true (3,7)];;
 
 (* ************************************************************ *)
 (* pseudo-dimer stuff *)
@@ -285,10 +316,10 @@ let run_group3() =
 
 (* 0.007 good, 0.006 fails, 
    so pseudo-dimer area sum is off by at most 0.007 
-   The paper uses epsilon_0' = 0.008.
+   The paper uses epsM = 0.008.
 *)
-let recurseN s = recurse_dimer false (m 0.007)
-  dimer_constraint0 (dimer_domain s);;
+let recurseN s = recurse_dimer false (7//1000) (* m 0.007 *)
+  dimer_outdomfn_null (dimer_domain s);;
 
 let run_group4() = 
   [
@@ -298,52 +329,13 @@ let run_group4() =
     recurseN (3,7);
   ];;
 
-(* 0.007 good *)
+(* ************************************************** *)
+(* general form of squeeze_calc for squeezing lemma *)
+(* ************************************************** *)
 
-(* ************************************************************ *)
-(* unsorted stuff *)
-(* ************************************************************ *)
-
-
-(* Junk: check that the second part of 
-   pseudo-dimer can be subcritical away from Kup.
-(*	aABC + aADC >> two * aK - eps or *)
-	  aADC >> aK or
-
-let recurseM s = recurse_dimer zero dimer_constraint1 (dimer_domain s);;
-recurseM (1,3);;
-recurseM (3,3);;
-recurseM (1,7);;
-recurseM (3,7);;
-
+(* squeeze_calc is documented in article.
+   
 *)
-
-(* this verifies a lower bound 1.27 on subcritical isosceles triangles *)
-
-let one127 (sgnalpha,sgnbeta) xs  = 
-  try
-  let dACrange = mk 1.72 1.79 in
-  let v = mk2C dACrange (xs,( sgnalpha, sgnbeta)) in
-  if (v = None) then true
-  else 
-    let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = the v in 
-       (a >> 127 // 100) or disjoint_I dAB dAC or
-	 dAC >> dAB
-  with Unstable -> false;;
-
-let domain2C =   [map zero2 [two*sigma;ratpi 2 5;two*sigma;ratpi 2 5]];;
-
-let recursesgn f dom = 
-  map (fun t -> recursetoeps (f t) dom)
-    [(true,true);(true,false);(false,true);(false,false)];;
-
-let run_group5() = 
-  recursesgn one127 domain2C;;
-
-
-(* ************************************************** *)
-(* general form of experiment with squeezing lemma *)
-(* ************************************************** *)
 
 let safetan_I x = if (x.high < 1.57) && (x.low > -. 1.57) then
     tan_I x else raise Unstable;;
@@ -354,9 +346,9 @@ let one_sigma arcA thBAC thABC alpha =
   let f1 alpha = safetan_I (-arcA - thABC + pi310 + alpha) in
   (mergefn f0 f1 merge_I pi25) alpha;;
 
-one_sigma (m 1.0) (m 0.3) (m 0.2) (m 0.4);;
+let _ = one_sigma (m 1.0) (m 0.3) (m 0.2) (m 0.4);;
 
-let _ =
+let test =
   let arcA = m 1.0 in
   let thBAC = m 0.3 in
   let thABC t = t - thBAC in
@@ -386,13 +378,58 @@ let squeezable dACrange outofdomfn xs =
 
 let domain2Ce =   [map zero2 [two*sigma;pi45;two*sigma;pi45]];;
 
+
 let squeeze_calc() =
   let top = 232//100 in
   let _ =  kappa*  (sqrt_I(square_I top - square_I(two*kappa))) >> 
-    (aK+epso_I) or failwith "232" in
+    (aK+epsN_I) or failwith "232" in
   let dACrange = merge_I (two*kappa) (232//100) in
-  let outofdomfn (a,_,_,_) = (a >> aK+epso_I) in
+  let outofdomfn (a,_,_,_) = (a >> aK+epsN_I) in
   recursetoeps (squeezable dACrange outofdomfn) domain2Ce;;
+
+
+(* ************************************************************ *)
+(* unsorted stuff *)
+(* ************************************************************ *)
+
+
+(* Junk: check that the second part of 
+   pseudo-dimer can be subcritical away from ice-ray.
+(*	aABC + aADC >> two * aK - eps or *)
+	  aADC >> aK or
+
+let recurseM s = recurse_dimer zero dimer_outdomfn1 (dimer_domain s);;
+recurseM (1,3);;
+recurseM (3,3);;
+recurseM (1,7);;
+recurseM (3,7);;
+
+*)
+
+(* this verifies a lower bound 1.27 on subcritical isosceles triangles.
+   I believe this is no longer needed.  *)
+
+let one127 (sgnalpha,sgnbeta) xs  = 
+  try
+    let dACrange = merge_I (172//100) (179//100) (* mk 1.72 1.79 *) in
+    let v = mk2C dACrange (xs,( sgnalpha, sgnbeta)) in
+    if (v = None) then true
+    else 
+      let (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = the v in 
+      (a >> 127 // 100) or disjoint_I dAB dAC or
+	dAC >> dAB
+  with Unstable -> false;;
+
+let domain2C =   [map zero2 [two*sigma;ratpi 2 5;two*sigma;ratpi 2 5]];;
+
+let recursesgn f dom = 
+  map (fun t -> recursetoeps (f t) dom)
+    [(true,true);(true,false);(false,true);(false,false)];;
+
+let run_group5() = 
+  recursesgn one127 domain2C;;
+
+
 
 
     end;;

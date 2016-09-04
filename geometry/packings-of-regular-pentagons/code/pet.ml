@@ -52,6 +52,13 @@ let periodize_pent ix =
 let periodize_pent0 ix =
   periodize_min ix pi25 zero;;
 
+let ilawbeta alpha a b = 
+  asin_I (b * sin_I alpha / a);;
+
+let _ = ilawbeta (m 0.4) (m 1.1) (m 1.2);;
+
+
+
 (* now run the pent existence tests for same sign and mixed sign cases *)
       
 let case_pet_pos l (itheta',iabstheta) =

@@ -626,3 +626,82 @@ let onedACmaxfail (sgnalpha,sgnbeta) xs  =
 [(0.,8.75868279178e-09);(0.313545663681,0.313545673044);(0.,8.75868279178e-09);(0.00122708164088,0.00122709100355)];;
 
 *)
+
+(********************************************************************************* *)
+
+(* cut from pent.ml 9/2016 *)
+(*
+let mk_isosceles sgnalpha sgnbeta xs =
+  let [xalpha; alpha;  xbeta; beta] = xs in
+  let range = mk 172.0 179.0 / m 100.0 in
+  let range' = merge_I (two * kappa) range in
+    try
+      let (dAB,thABC,thBAC) = ellthetax_sgn xalpha alpha sgnalpha in
+      let (dBC,thCBA,thBCA) = ellthetax_sgn xbeta beta sgnbeta in
+      if disjoint_I range dAB or disjoint_I range' dBC then None
+      else
+	let dAB = inter_I range dAB in
+	let dBC = inter_I range' dBC in
+	let dAC = dAB in
+	let arcB = iarc dAB dBC dAC in
+	let arcC = arcB in
+	let arcA = iarc dAC dAB dBC in
+	let a = areamin_acute dAC dAB dBC in
+	let thACB = pi25 - (arcA + thABC) in
+	let thCAB = pi25 - (arcC + thCBA) in
+	if (a >> aK) or 
+	  not(hasint ((arcB+thBAC+thBCA)/pi25)) or
+	  not(pet dAC thACB thCAB)
+	then None
+	else
+	  Some (a,dAB,dAC,dBC,arcA,arcB,arcC,thABC,thBAC,thCBA,thBCA,thACB,thCAB)
+    with e -> raise e;;
+*)
+
+
+(********************************************************************************* *)
+
+(* cut from pent.ml september 2016.
+   This non-anomaly lemma is no longer used. *)
+
+(* non anonaly test JJZ area > 1.345 *)
+
+let oneJJZ = 
+  let m1345 =  1345 // 1000 in
+  fun abx ->
+    try
+      let (alpha,beta,xalpha) = abx in
+      disjoint_from_lj alpha beta or
+	let ((xbeta,_),(l1,l2,l3)) = ljedge_extended alpha beta xalpha in
+	(area_exceeds l1 l2 l3 m1345) or (xbeta >> sigma) or (sigma >> xbeta) 
+    with | Unstable -> false;;
+
+mktest ("oneJJZ",fun() ->
+	  recursetofinish oneJJZ 
+	    [[zero2 pi25;zero2 pi25;two*sigma]]);;
+
+
+(* cut from pent.ml september 2016  *)
+
+(*
+let tjedge =
+    fun alpha beta xgamma ->
+  let gamma = pi - (alpha + beta) in
+  let alpha' = pi25 - alpha in
+  let beta' = pi25 - beta in
+  let gamma' = pi25 - gamma in
+  let delta1 = pi - (gamma' + pi25) in
+  let delta2 = pi - delta1 in
+  let delta3 = pi - (alpha' + delta2) in
+  let delta4 = pi - (beta' + pi25) in
+  let (x1,x2) = lawsines xgamma delta1 pi25 gamma' in
+  let x3 = two * sigma - x1 in
+  let (x4, x5) = lawsines x3 delta3 delta2 alpha' in
+  let x6 = two * sigma - (x5 - x2) in
+  let (x7,x8) = lawsines x6 pi25 beta' delta4 in
+  let x9 = x4 - x7 in
+  let t = x1,x2,x3,x4,x5,x6,x7,x8,x9 in
+  (* x6 -> x8 3/10/2016 *)
+    ((ellxmono x9 alpha),(ellxmono x8 beta),(ellxmono xgamma gamma));;
+*)
+

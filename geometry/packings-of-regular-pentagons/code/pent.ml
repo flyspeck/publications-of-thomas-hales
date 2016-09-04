@@ -1,15 +1,16 @@
 (* 
 This code is in the public domain.
-Thomas Hales April 12, 2015-- June 2016.
+Thomas Hales April 12, 2015-- September 2016.
 *)
 
 (*
-load through init.ml.
+Use init.ml to load.
 *)
 
 
 module Pent = struct
 
+(*  let debug = 0;; *)
 
 let try_do f = 
   let rec try_dof = function
@@ -147,6 +148,22 @@ let rat i j =   (int i) / (int j);;
 
 let ( // ) = rat;;
 
+let hasint x = 
+  let t = x - m (floor x.low) in
+  mem_I 0.0 t or mem_I 1.0 t;;
+
+(* gets the integer in x, raises unstable if solution not unique *)
+
+let getint x = 
+  let k = m (floor x.low) in
+  let k' = if disjoint_I k x then k+one else k in
+  let _ = disjoint_I (k'+one) x or raise Unstable in
+  if meet_I k' x then Some k' else None;;
+
+
+let _ = getint (mk 1.1 1.3);;
+
+let _ = hasint (mk  (-0.9) (-0.8));;
 
 (************************************************************************* *)
 (* trig functions *)
@@ -183,9 +200,9 @@ let acrit = aK;;
 (* let a0 =  1237 // 1000;; *)
 let amin =  1237 // 1000;;
 
-let epso_I = aK - amin;;  (* \epsilon_N in paper *)
+let epsN_I = aK - amin;;  (* \epsilon_N in paper *)
 
-let epso''_I = 8 // 1000;; (* \epsilon_M in paper *)
+let epsM_I = 8 // 1000;; (* \epsilon_M in paper *)
 
 (* basic geometry *)
 
@@ -240,12 +257,12 @@ let iarc =
 
 iarc (m 0.1) (m 0.2) (m 0.1085659);;
 
+(* gives the other two edges of a triangle given one edge and 3 angles *)
+
 let lawsines a alpha beta gamma = 
   let aa = a / sin_I alpha in
     (aa * sin_I beta, aa * sin_I gamma);;
 
-let ilawbeta alpha a b = 
-  asin_I (b * sin_I alpha / a);;
 
 (* law of cosines, with special optimizations for monotonicity arguments *)
 
@@ -267,15 +284,14 @@ let iloc =
 	  then ilocc2 (mx a) (mx b) (mn costh) (mn a) (mn b) (mx costh)
 	  else ilocc a b costh;;
 
-iloc (mk_interval(1.0,1.1)) (mk_interval(1.1,1.2)) (mk_interval(1.2,1.3));;
-
-ilawbeta (m 0.4) (m 1.1) (m 1.2);;
+let _ = iloc (mk_interval(1.0,1.1)) 
+  (mk_interval(1.1,1.2)) (mk_interval(1.2,1.3));;
 
 
 
 (************************************************************************* *)
 
-(* ell, ellx, thetax, fillout. *)
+(* ell, ellx, thetax  *)
 (************************************************************************* *)
 
 let ell_aux h psi =
@@ -283,13 +299,14 @@ let ell_aux h psi =
   let theta = acos_I (h / r) in
     iloc one r (psi+theta);;
 
-ell_aux (mk 1.1 1.2) (mk 1.3 1.4);;
+let _ = ell_aux (mk 1.1 1.2) (mk 1.3 1.4);;
 
 let ellx  = 
   fun x alpha ->
     ell_aux (sigma - x) (alpha + pi310);;
 
-(* N.B.  theta has a jump discontinuity near pm pi/5, which is an inconvenience
+(* N.B.  
+   theta has a jump discontinuity near pm pi/5, which is an inconvenience
    
    NB. May 2, 2015: pet now puts angles in range. 
    So we now always allow theta to exceed pi/5.
@@ -406,101 +423,40 @@ let ellthetax_sgn xalpha alpha sgn =  (* swap if false *)
 ellthetax_sgn (mk 0.2 0.25) (mk 0.3 0.35) false;;    
 ellxmono (mk 0.2 0.25) (mk 0.3 0.35);;
 
+
 (************************************************************************* *)
-(* 2C coordinates *)
+(* 
+   3C coordinate section, pinwheel, pin-T, LJ, TJ, Delta.
+   The "shared" versions of functions have certain coordinates
+   determined by an edge shared with another triangle.
+
+   The extended versions of functions return some internal variables,
+   primarily for debugging purposes, but also in some cases
+   for the out of domain constraints.
+ *)
 (************************************************************************* *)
 
-(* start of mk_isosceles *)
-  let hasint x = 
-    let t = x - m (floor x.low) in
-    mem_I 0.0 t or mem_I 1.0 t;;
-
-(* gets the integer in x, raises unstable if solution not unique *)
-
-  let getint x = 
-    let k = m (floor x.low) in
-    let k' = if disjoint_I k x then k+one else k in
-    let _ = disjoint_I (k'+one) x or raise Unstable in
-    if meet_I k' x then Some k' else None;;
-
-
-getint (mk 1.1 1.3);;
-
-hasint (mk  (-0.9) (-0.8));;
-
-(*
-let mk_isosceles sgnalpha sgnbeta xs =
-  let [xalpha; alpha;  xbeta; beta] = xs in
-  let range = mk 172.0 179.0 / m 100.0 in
-  let range' = merge_I (two * kappa) range in
-    try
-      let (dAB,thABC,thBAC) = ellthetax_sgn xalpha alpha sgnalpha in
-      let (dBC,thCBA,thBCA) = ellthetax_sgn xbeta beta sgnbeta in
-      if disjoint_I range dAB or disjoint_I range' dBC then None
-      else
-	let dAB = inter_I range dAB in
-	let dBC = inter_I range' dBC in
-	let dAC = dAB in
-	let arcB = iarc dAB dBC dAC in
-	let arcC = arcB in
-	let arcA = iarc dAC dAB dBC in
-	let a = areamin_acute dAC dAB dBC in
-	let thACB = pi25 - (arcA + thABC) in
-	let thCAB = pi25 - (arcC + thCBA) in
-	if (a >> aK) or 
-	  not(hasint ((arcB+thBAC+thBCA)/pi25)) or
-	  not(pet dAC thACB thCAB)
-	then None
-	else
-	  Some (a,dAB,dAC,dBC,arcA,arcB,arcC,thABC,thBAC,thCBA,thBCA,thACB,thCAB)
-    with e -> raise e;;
-*)
-
-(* Constructs all the key variables on a "2C" P-triangle.
-   B is the pentagon that touches both others.
-   alpha variables between A and B
-   beta variables between B and C.
-   when signs are true, then B is the pointer.
-   dACrange give a priori bounds on the length of dAC. 
-
-   Can be used on the extended range with alpha beta up to 4pi/5.
-   In that case, take both signs to be true.
-   Get pointers both ways,
-   when alpha up to 2pi/5, then B is the pointer,
-   for alpha larger than 2pi/5 A becomes the pointer.
-   Similar for beta.
-
-   Extended range is equivalent to taking alpha beta up to 2pi/5 and both signs.
-   We should deprecate the signed version.
-
-*)
-
-(* fillout2C takes coordinates on two edges (at pentagon B) and generates
-   full coordinate system  
-   th... angles are only defined up to a multiple of 2pi/5.
-
-   The output is ordered as follows.
-   a= area comes first.
-   The next output echoes the input (dAB,thABC,thBAC)
-   The next output echoes the input (dBC,thCBA,thBCA)
-   The last output is data along the remaining edge.  Its first angle thACB is at the
-   vertex of the first input angle thABC.
-*)
 
 
 (************************************************************************* *)
-(* pinwheel *)
+(* pinwheel. Notation as in article.  *)
 (************************************************************************* *)
+
 let pinwheeledge =
   fun alpha beta xgamma ->
     let gamma = pi15 - (alpha + beta) in
+    (* N.B. unusual ordering comes from Figure in article *)
     let (xalpha,xbeta) = 
       lawsines xgamma (pi25 - alpha) (pi25 - beta) (pi25 - gamma) in
     ((ellxmono xalpha alpha), 
      (ellxmono xbeta beta), 
      (ellxmono xgamma gamma));;
 
-pinwheeledge (m 0.1) (m 0.2)  (m 0.3);;
+let _ = pinwheeledge (m 0.1) (m 0.2)  (m 0.3);;
+
+(************************************************************************* *)
+(* pin-T. Notation as in supplementary docs. *)
+(************************************************************************* *)
 
 let pintedge_extended = 
   fun alpha beta xalpha ->
@@ -515,37 +471,48 @@ let pintedge_extended =
     let (w1,w2) = lawsines xalpha eps' pi25 alpha' in
     let (w3,w4) = lawsines (two * sigma + w2) delta beta' eps in
     let (w5,w6) = lawsines (two * sigma) delta' pi25 gamma' in
+    let xbeta = w4-w6 in
+    let xgamma = w1+w3+w5 in
     ((ellxmono xalpha alpha),
-     (ellxmono (w4 - w6) beta),
-     (ellxmono (w1 + w3 + w5) gamma),w1+w3+w5,w4-w6);;
+     (ellxmono xbeta beta),
+     (ellxmono xgamma gamma),xgamma,xbeta);;
 
 let pintedge alpha beta xalpha = 
   let (d1,d2,d3,_,_) = pintedge_extended alpha beta xalpha in
   (d1,d2,d3);;
 
-
-(* Delta junction *)
+(************************************************************************* *)
+(* Delta junction. Notation as in article. *)
+(************************************************************************* *)
 
 let deltajedge =
-  fun alpha beta xalpha ->
+  fun alpha beta xalpha' ->
     let gamma = pi15 - (alpha + beta) in
     let alpha' = pi25 - alpha in
     let beta' = pi25 - beta in
     let gamma' = pi25 - gamma in
     let (yalpha,ygamma) = lawsines (two * sigma) (beta') (alpha') (gamma') in
-    let xbeta = two * sigma - (ygamma + xalpha) in
-    let xgamma = two * sigma - yalpha in
-    ((ellxmono xalpha alpha'), (ellxmono xbeta beta'), (ellxmono xgamma gamma'));;
+    let xbeta' = two * sigma - (ygamma + xalpha') in
+    let xgamma' = two * sigma - yalpha in
+    ((ellxmono xalpha' alpha'), 
+     (ellxmono xbeta' beta'), 
+     (ellxmono xgamma' gamma'));;
 
 
-deltajedge (m 0.05) (m 0.06)  (m 0.1);;
-area_I (m 1.94) (m 1.88) (m 1.93);;
-deltajedge (m 0.0) (m 0.0) (m 0.0);;
-pinwheeledge (m 0.0) (pi15) (two * sigma);; (* same as deltajedge, up rto symmetry *)
-ellxmono (m 0.0) (m 0.0);;
-ellxmono (m 0.0) (pi25);;
+let _ = 
+  deltajedge (m 0.05) (m 0.06)  (m 0.1),
+  area_I (m 1.94) (m 1.88) (m 1.93),
+  deltajedge (m 0.0) (m 0.0) (m 0.0),
+  (* same as deltajedge, up to symmetry *)
+  pinwheeledge (m 0.0) (pi15) (two * sigma),
+  ellxmono (m 0.0) (m 0.0),
+  ellxmono (m 0.0) (pi25);;
 
-(* L-junction Delaunay triangle edge lengths. Rewritten 3/10/2016. *)
+(************************************************************************* *)
+(* L-junction *)
+(************************************************************************* *)
+
+(*  Rewritten 3/10/2016. *)
 
 let ljedge_extended =
   fun alpha beta xalpha ->
@@ -559,37 +526,21 @@ let ljedge_extended =
   let (b2,xgamma) = lawsines s2 pi25 gamma' delta' in
   let xbeta = b1 - b2 in
     ((xbeta,xgamma),
-    ((ellxmono xalpha alpha),(ellxmono xbeta beta),(ellxmono xgamma gamma)));;
+    ((ellxmono xalpha alpha),
+     (ellxmono xbeta beta),
+     (ellxmono xgamma gamma)));;
 
 let ljedge alpha beta xalpha =
   let (_,ll) = ljedge_extended alpha beta xalpha in
   ll;;
 
-ljedge (m 0.1) (m 0.2) (m 0.753251);;
+let _ = ljedge (m 0.1) (m 0.2) (m 0.753251);;
+
+(************************************************************************* *)
+(* T-junction *)
+(************************************************************************* *)
 
 (* T-junction edge lengths *)
-
-(*
-let tjedge =
-    fun alpha beta xgamma ->
-  let gamma = pi - (alpha + beta) in
-  let alpha' = pi25 - alpha in
-  let beta' = pi25 - beta in
-  let gamma' = pi25 - gamma in
-  let delta1 = pi - (gamma' + pi25) in
-  let delta2 = pi - delta1 in
-  let delta3 = pi - (alpha' + delta2) in
-  let delta4 = pi - (beta' + pi25) in
-  let (x1,x2) = lawsines xgamma delta1 pi25 gamma' in
-  let x3 = two * sigma - x1 in
-  let (x4, x5) = lawsines x3 delta3 delta2 alpha' in
-  let x6 = two * sigma - (x5 - x2) in
-  let (x7,x8) = lawsines x6 pi25 beta' delta4 in
-  let x9 = x4 - x7 in
-  let t = x1,x2,x3,x4,x5,x6,x7,x8,x9 in
-  (* x6 -> x8 3/10/2016 *)
-    ((ellxmono x9 alpha),(ellxmono x8 beta),(ellxmono xgamma gamma));;
-*)
 
 let tjedge_extended =
   fun alpha beta xgamma ->
@@ -602,27 +553,51 @@ let tjedge_extended =
     let (t1,s1) = lawsines xgamma delta' gamma' pi25 in
     let s2 = two*sigma - s1 in
     let (a2,t2) = lawsines s2 eps' delta' alpha' in
-    let t3 = two*sigma - (t2-t1) in
+    let t3 = two*sigma + t1 - t2 in 
     let (a3,xbeta) = lawsines t3 pi25 beta' eps' in 
     let xalpha = a2-a3 in
     let t = (xbeta,t1,s1,s2,a2,t2,t3,a3,xalpha) in
-    let t = xbeta in
-    ((ellxmono xalpha alpha),(ellxmono xbeta beta),(ellxmono xgamma gamma),xbeta);;
+    ((ellxmono xalpha alpha),
+     (ellxmono xbeta beta),
+     (ellxmono xgamma gamma),
+     (xalpha,xbeta));;
 
 let tjedge alpha beta xgamma =
   let (l1,l2,l3,_) = tjedge_extended alpha beta xgamma in
   (l1,l2,l3);;
 
-tjedge (m 0.9) (m 1.0) (m 0.5);;
+let _ = tjedge (m 0.9) (m 1.0) (m 0.5);;
+
+(************************************************************************* *)
+(* shared versions of 3C. 
+   the variables are always alpha (or alpha') beta xbeta
+   the shared variables are beta xbeta 
+
+   A->C shared pentagons, B=outer pentagon,
+   return always dBC,dAC,dAB in that order
+
+   In this section, alpha beta xbeta should be doubly
+   primed variables alpha'' beta'' xbeta'' in the article,
+   but the primes are dropped for simplicity.
+   
+*)
+(************************************************************************* *)
 
 (* uniform coordinate systems for 3C dimers, 3/2016 *)
+
+let shared_pinwheeledge alpha beta xbeta = 
+  let gamma = pi15 - (alpha+beta) in
+  let dAB,dBC,dAC = pinwheeledge gamma alpha xbeta in
+  dBC,dAC,dAB;;
+
+let _ = shared_pinwheeledge (m 0.0) pi15 sigma,
+  one+kappa;;
+
 let shared_pintedge alpha beta xbeta = 
   let dAC,dBC,dAB = pintedge beta alpha xbeta in
   dBC,dAC,dAB;;
 
-let shared_pinwheeledge alpha beta xbeta = 
-  let dAB,dBC,dAC = pinwheeledge ((pi15) - (alpha+beta)) alpha xbeta in
-  dBC,dAC,dAB;;
+let _ = shared_pintedge pi25 pi310 (m 0.001);;
 
 let shared_lj1edge_extended =
   fun alpha' beta xbeta ->
@@ -638,12 +613,16 @@ let shared_lj1edge_extended =
     (ellx xa alpha,ellx xbeta beta,ellx xc gamma,xa,xc);;
 
 let shared_lj1edge alpha' beta xbeta = 
-  let l1,l2,l3,_,_ = shared_lj1edge_extended alpha' beta xbeta in
-  l1,l2,l3;;
+  let dBC,dAC,dAB,_,_ = shared_lj1edge_extended alpha' beta xbeta in
+  dBC,dAC,dAB;;
+
+let _ = shared_lj1edge zero pi15 sigma;;
 
 let shared_lj2edge alpha beta xbeta =
   let (dAC,dBC,dAB) = ljedge beta alpha xbeta in
   dBC,dAC,dAB;;
+
+let _ = shared_lj2edge zero pi15 sigma;;
 
 let shared_lj2edge_extended alpha beta xbeta = 
   let t,(dAC,dBC,dAB) = ljedge_extended beta alpha xbeta in
@@ -659,11 +638,38 @@ let shared_lj3edge_extended =
     let (s1,a1) = lawsines xbeta delta' pi25 beta' in
     let s2 = two*sigma - s1 in
     let (xgamma,aa) = lawsines s2 alpha' delta' gamma' in
-    (ellx (aa-a1) alpha,ellx xbeta beta,ellx xgamma gamma,aa-a1);;
+    let xalpha = aa - a1 in
+    (ellx xalpha alpha,
+     ellx xbeta beta,
+     ellx xgamma gamma,
+     (s2,xalpha,xgamma));;
 
 let shared_lj3edge alpha beta xbeta = 
-  let (d1,d2,d3,_) = shared_lj3edge_extended alpha beta xbeta in
-  (d1,d2,d3);;
+  let (dBC,dAC,dAB,_) = shared_lj3edge_extended alpha beta xbeta in
+  (dBC,dAC,dAB);;
+
+(* test: compute LJ edges three ways *)
+
+let _ = 
+  let alpha3 = pi15 + m 0.1 in
+  let beta3 =  m 0.15 in
+  let beta3' = pi25 - beta3 in
+  let xbeta3 = m 0.2 in
+  let gamma3 = pi35 - (alpha3+beta3) in
+  let alpha0 = gamma3 in
+  let beta0 = alpha3 in
+  let gamma0 = beta3 in
+  let (dAC3,dAB3,dBC3,(s2,xalpha3,xgamma3)) = 
+    shared_lj3edge_extended alpha3 beta3 xbeta3 in
+  let xalpha0 = xgamma3 in
+  let xbeta0 = xalpha3 in
+  let xgamma0 = xbeta3 in
+  let (dAB1,dAC1,dBC1) = shared_lj1edge beta3' alpha3 xalpha3 in
+  let (dAC2,dBC2,dAB2) = shared_lj2edge beta0 alpha0 xalpha0 in
+  ((dAC1,dAC2,dAC3),(dAB1,dAB2,dAB3),(dBC1,dBC2,dBC3),
+   s2,(xalpha3,xbeta3,xgamma3));;
+
+(* now shared tj *)
 
 let shared_tj1edge = 
     fun alpha beta xbeta ->
@@ -680,14 +686,16 @@ let shared_tj1edge =
     (ellx ((a1+a3)-a2) alpha,ellx xbeta beta,ellx (cc-c2) gamma);;
 
 let shared_tj2edge alpha beta xbeta = 
-  let (dAB,dBC,dAC) = tjedge (pi - (alpha+beta)) alpha xbeta in
+  let gamma = pi - (alpha + beta) in
+  let (dAB,dBC,dAC) = tjedge gamma alpha xbeta in
   dBC,dAC,dAB;;
 
 let shared_tj2edge_extended alpha beta xbeta = 
-  let (dAB,dBC,dAC,t) = tjedge_extended (pi - (alpha+beta)) alpha xbeta in
+  let gamma = pi - (alpha + beta) in
+  let (dAB,dBC,dAC,t) = tjedge_extended gamma alpha xbeta in
   dBC,dAC,dAB,t;;
 
-let shared_tj3edge alpha' beta xbeta = 
+let shared_tj3edge_extended alpha' beta xbeta = 
     let alpha = pi25 - alpha' in
     let gamma = pi - (alpha + beta) in
     let beta' = pi25 - beta in
@@ -699,57 +707,99 @@ let shared_tj3edge alpha' beta xbeta =
     let s2 = two*sigma - s1 in
     let (a3,cc) = lawsines s2 eps' gamma' delta' in
     let xalpha = (a2+a3)-a1 in
-    (ellx xalpha alpha,ellx xbeta beta,ellx (cc-c2) gamma);;
+    let xgamma = cc - c2 in
+    (ellx xalpha alpha,ellx xbeta beta,ellx xgamma gamma,xalpha,xgamma);;
 
-let disjoint_from_shared_pint alpha beta xbeta = 
+let shared_tj3edge alpha' beta xbeta = 
+  let (dBC,dAC,dAB,_,_) = shared_tj3edge_extended alpha' beta xbeta in
+  (dBC,dAC,dAB);;
+
+(* test: compute tj edge lengths three ways and compare *)
+
+let _ = 
+  let alpha3' =  m 0.05 in
+  let alpha3 = pi25 - alpha3' in
+  let beta3 = pi15 + m 0.15 in
+  let xbeta3 = sigma + m 0.1 in
+  let (dAC3,dBC3,dAB3,xbeta0,xgamma0) = 
+    shared_tj3edge_extended alpha3' beta3 xbeta3 in
+  let xalpha0 = xbeta3 in
+  let alpha0 = beta3 in
+  let beta0 = alpha3 in
+  let gamma0 = pi - (alpha0+beta0) in
+  let (dBC1,dAC1,dAB1) = shared_tj1edge alpha0 beta0 xbeta0 in
+  let (dAC2,dAB2,dBC2,(xgamma2,xalpha2)) = 
+    shared_tj2edge_extended beta0 gamma0 xgamma0 in
+  ((dAC1,dAC2,dAC3),(dBC1,dBC2,dBC3),(dAB1,dAB2,dAB3),
+   (xbeta0,xbeta3,xgamma0),(xalpha2,xgamma2,xgamma0));;
+
+
+(************************************************************************* *)
+(* out of domain functions for shared 3C. *)
+(************************************************************************* *)
+
+let pint_constant = 605 // 10000;; (* 0.0605 *)
+
+let outdomfn_shared_pint alpha beta xbeta = 
   let ab = alpha+beta in
-  if pi35 >> ab or xbeta >> m 0.0605 then true
+  if pi35 >> ab or xbeta >> pint_constant then true
   else
     let (_,_,_,xgamma,_) = pintedge_extended beta alpha xbeta in
     xgamma >> two*sigma;;
 
-let disjoint_from_shared_pinwheel alpha beta xbeta =
-   alpha+beta  >> pi15 or xbeta >> m 0.8;; (* 0.8 from one_pinwheelx *)
+let outdomfn_shared_pinwheel alpha beta xbeta =
+  let one_pinwheelx_constant = 8 // 10 in
+   alpha+beta  >> pi15 or xbeta >> one_pinwheelx_constant;; 
 
-let disjoint_from_15_35 alpha beta = 
+let outdomfn_15_35 alpha beta = 
   let ab = alpha+beta in
   pi15 >> ab or ab >> pi35;;
+
+let outdomfn_sigma xsig = 
+  xsig << zero or xsig >> two*sigma;;
   
-let disjoint_from_shared_lj1 alpha' beta xbeta =
+let outdomfn_shared_lj1 alpha' beta xbeta =
   let alpha = pi25 - alpha' in
-  if disjoint_from_15_35 alpha beta then true
+  if outdomfn_15_35 alpha beta then true
   else 
     let (_,_,_,xa,xc) = shared_lj1edge_extended alpha' beta xbeta in
-    (xa << zero) or (xc >> two*sigma);;
+    outdomfn_sigma xa or outdomfn xc;;
 
-let disjoint_from_shared_lj2 alpha beta xbeta = 
-  disjoint_from_15_35 alpha beta;;
+let outdomfn_shared_lj2 alpha beta xbeta = 
+  outdomfn_15_35 alpha beta;;
 
-let disjoint_from_shared_lj3 alpha beta xbeta  = 
-  if disjoint_from_15_35 alpha beta or alpha >> m 0.9 then true
+let outdomfn_shared_lj3 alpha beta xbeta  = 
+  let one_ljx_constant = 9//10 in
+  if outdomfn_15_35 alpha beta or alpha >> one_ljx_constant  then true
   else 
-    let (_,_,_,xalpha) = shared_lj3edge_extended alpha beta xbeta in
-    xalpha << zero;;
+    let (_,_,_,(_,xa,xc)) = shared_lj3edge_extended alpha beta xbeta in
+    outdomfn_sigma xa or outdomfn_sigma xc;;
 
-let disjoint_from_35_45 alpha beta =
+let outdomfn_35_45 alpha beta =
   let ab = alpha+beta in
   pi35 >> ab or ab >> pi45;;
 
-let disjoint_from_shared_tj3 alpha' beta xbeta = 
-  let alpha = pi25 - alpha' in
-  disjoint_from_35_45 alpha beta;;
+let outdomfn_shared_tj1 alpha beta xbeta = 
+  let one_tjx_constant = one in
+  outdomfn_35_45 alpha beta or (beta << one_tjx_constant);;
 
-let disjoint_from_shared_tj2 alpha beta xbeta = 
-  if disjoint_from_35_45 alpha beta then true
+let outdomfn_shared_tj2 alpha beta xbeta = 
+  if outdomfn_35_45 alpha beta then true
   else 
-    let (_,_,_,x) = shared_tj2edge_extended alpha beta xbeta in
-    (x >> two * sigma);;
+    let (_,_,_,(x1,x2)) = shared_tj2edge_extended alpha beta xbeta in
+    outdomfn_sigma x1 or outdomfn_sigma x2;;
 
-let disjoint_from_shared_tj1 alpha beta xbeta = 
-  disjoint_from_35_45 alpha beta or (beta << one);;
+let outdomfn_shared_tj3 alpha' beta xbeta = 
+  let alpha = pi25 - alpha' in
+  outdomfn_35_45 alpha beta;;
   
 (************************************************************************* *)
-(* split domain along largest dimension *)
+(* 
+   Recursion for the verification of nonlinear inequalities
+   on a rectangular domain.
+
+   split domain along largest dimension 
+*)
 (************************************************************************* *)
 
 let rec maxwidth c (i,w) = function 
@@ -759,8 +809,9 @@ let rec maxwidth c (i,w) = function
       let c' = Pervasives.(+) c 1 in
       if t >= w then maxwidth c' (c,t) xs else maxwidth c' (i,w) xs;;
    
-let testi = [mk_interval (1.0,2.0);mk_interval(2.0,3.5);mk_interval(2.3,3.2)];;
-maxwidth 0 (0,0.0) testi;;
+let testi = 
+  [mk_interval (1.0,2.0);mk_interval(2.0,3.5);mk_interval(2.3,3.2)];;
+let _ = maxwidth 0 (0,0.0) testi;;
 
 let string_of_interval x = 
   "("^string_of_float x.low ^","^string_of_float x.high^")";;
@@ -779,7 +830,7 @@ let splitlist eps xs =
   let v2 = mk_interval(t,v.high) in
     (us @ (v1 :: vs)),(us @ (v2 :: vs));;
 	  
-splitlist 0.2 testi;;
+let _ = splitlist 0.2 testi;;
 
 let prepost pre post f x = 
   let ys = pre x in
@@ -836,8 +887,12 @@ let recursetofinish onef =
 (* Set up computational instances *)
 (************************************************************************* *)
 
-(* test that all subcritical pinwheels have an edge > 1.7215.
-   test returns true if out of domain or ineq holds.
+(************************************************************************* *)
+(* 1.72 calculation.  *)
+(************************************************************************* *)
+
+(* calc that all subcritical pinwheels have an edge > 1.7215.
+   calc returns true if out of domain or ineq holds.
 
   *)
 
@@ -849,103 +904,93 @@ let longgt172 =
   let i172 =  17215 // 10000 in
   fun l1 l2 l3 -> longest_exceeds l1 l2 l3 i172;;
 
-let one172 disjoint_from_domain edges abx = 
+let one172 outdomfn_domain edges abx = 
   try
     let (alpha,beta,xgamma) = abx in
-    disjoint_from_domain alpha beta or
+    outdomfn_domain alpha beta or
       let (l1,l2,l3) = edges alpha beta xgamma in
       (longgt172 l1 l2 l3) or area_exceeds l1 l2 l3 aK
   with | Unstable -> false;;
 
-let disjoint_from_pinwheel alpha beta =
+let outdomfn_pinwheel alpha beta =
   (beta >> alpha) or
     pi15 >> alpha + two * beta or
     alpha+beta  >> pi15 ;;
 
-let disjoint_from_lj alpha beta =
+let outdomfn_lj alpha beta =
   let ab = alpha+beta in
   pi15 >> ab or ab >> pi35;;
 
-let disjoint_from_tj alpha beta = 
+let outdomfn_tj alpha beta = 
   let ab = alpha+beta in
   pi35 >> ab or ab >> pi45;;
 
-let disjoint_from_pint alpha beta = 
+let outdomfn_pint alpha beta = 
   let ab = alpha+beta in
   pi35 >> ab;;
 
-let tester suffix oner (name, disjoint_from, edges, domain) = 
-  mktest ((name^suffix),fun() ->
-    let once = oner disjoint_from edges in
+let calculate suffix oner (name, outdomfn, edges, domain) = 
+  mkcalc ((name^suffix),fun() ->
+    let once = oner outdomfn edges in
     time (recursetofinish once) domain);;
 
 let zero2 = merge_I zero;;
 let pinwheeldomain = [[zero2 pi15;zero2 pi15;zero2 (two*sigma)]];;
 let ljdomain =  [[zero2 pi25;zero2 pi25;zero2 (two*sigma)]];;
 let tjdomain = [[merge_I pi15 pi25;merge_I pi15 pi25;zero2 (two*sigma)]];;
-let pintdomain = [[merge_I pi15 pi25;merge_I pi15 pi25;zero2 (m 0.0605)]];;
+let pintdomain = [[merge_I pi15 pi25;merge_I pi15 pi25;
+		   zero2 pint_constant]];;
 
 let types3C = 
-  [("pinwheel",disjoint_from_pinwheel,pinwheeledge,pinwheeldomain);
-   ("lj",disjoint_from_lj,ljedge,ljdomain);
-   ("tj",disjoint_from_tj,tjedge,tjdomain);
-   ("pint",disjoint_from_pint,pintedge,pintdomain)];;
+  [("pinwheel",outdomfn_pinwheel,pinwheeledge,pinwheeldomain);
+   ("lj",outdomfn_lj,ljedge,ljdomain);
+   ("tj",outdomfn_tj,tjedge,tjdomain);
+   ("pint",outdomfn_pint,pintedge,pintdomain)];;
 
-(* returns true, so that all subcritical pinwheels have an edge > 1.72 *)
+map (calculate "17215" one172) types3C;;
 
-map (tester "17215" one172) types3C;;
-
+(************************************************************************* *)
+(* 1.237 area calculation *)
+(************************************************************************* *)
 
 
 (* next: absolute area minimization *)
 
-let one1237 disjoint_from_domain edges abx = 
+let one1237 outdomfn_domain edges abx = 
   try
     let (alpha,beta,xgamma) = abx in
-    disjoint_from_domain alpha beta or
+    outdomfn_domain alpha beta or
     let (l1,l2,l3) = edges alpha beta xgamma in
       areamin_acute l1 l2 l3 >> amin
     with | Unstable -> false;;
 
 
-map (tester "1237" one1237) types3C;;
+map (calculate "1237" one1237) types3C;;
+
+(************************************************************************* *)
+(* Delta 1.5 calculation *)
+(************************************************************************* *)
 
 
-let disjoint_from_delta alpha beta = 
+let outdomfn_delta alpha beta = 
   (beta >> alpha) or alpha+beta >> pi15;;
 
 let onedeltajamin abx = 
   try
     let (alpha,beta,xalpha) = abx in
-    disjoint_from_delta alpha beta or
+    outdomfn_delta alpha beta or
       let (l1,l2,l3) = deltajedge alpha beta xalpha in
       areamin_acute l1 l2 l3 >>  15 // 10
   with | Unstable -> false;;
 
-mktest ("onedeltajmin",fun() ->
+mkcalc ("onedeltajmin",fun() ->
   let ff = sigma / (two * kappa) in
 	  (recursetofinish onedeltajamin) 
 	    [[zero2 pi15;zero2 pi15;zero2 (two * (sigma-ff))]]);;
 
-(* non anonaly test JJZ area > 1.345 *)
-
-let oneJJZ = 
-  let m1345 =  1345 // 1000 in
-  fun abx ->
-    try
-      let (alpha,beta,xalpha) = abx in
-      disjoint_from_lj alpha beta or
-	let ((xbeta,_),(l1,l2,l3)) = ljedge_extended alpha beta xalpha in
-	(area_exceeds l1 l2 l3 m1345) or (xbeta >> sigma) or (sigma >> xbeta) 
-    with | Unstable -> false;;
-
-mktest ("oneJJZ",fun() ->
-	  recursetofinish oneJJZ 
-	    [[zero2 pi25;zero2 pi25;two*sigma]]);;
-
 
 (************************************************************************* *)
-(* timing tests *)
+(* calculation benchmarks *)
 (************************************************************************* *)
 
 (* pinwheel 1.237 benchmarks *)    
@@ -961,7 +1006,7 @@ mktest ("oneJJZ",fun() ->
 (* 3406713 cases old area_I function. Now 167221 cases. *)
 (* 166915 cases with intervals installed *)
 
-(* runalltest();; *)
+(* runallcalc();; *)
 
 1;;
 

@@ -15,6 +15,12 @@ let test_near eps r x =
 let test_neare2 (r1,r2) (x1,x2) = 
   (test_near (1.0e-14) r1 x1 && test_near (1.0e-14) r2 x2);;
 
+let test_nearfst f0 g = test_near (1.0e-14) f0.high (fst g);;
+
+let test_nearff f0 g = 
+  let (g0,_,_) = g in
+  test_near (1.0e-14) f0.high (g0);;
+
 let test_addD = 
   let x = (m 3.0,m 4.0) in
   let y = (m 4.1,m 5.1) in
@@ -99,20 +105,20 @@ let sigmaD = sinD pi15D;;
 
 let aKD = iD aK;;
 
-let epso_D = aKD -^ ratD 1237 1000;;
+let ice_ray_nbd = 1 // 100;;
 
-let test_epso_D = 
-  test_neare2 (0.0,0.0) (epso_D -^ iD epso_I);;
+let epsN_D = aKD -^ ratD 1237 1000;;
+
+let test_epsN_D = 
+  test_neare2 (0.0,0.0) (epsN_D -^ iD epsN_I);;
 
 let ups_D x1 x2 x3 = 
   twoD *^ 
   (x1 *^ x2 +^ x2 *^ x3 +^ x3 *^ x1) -^ x1*^ x1 -^ x2*^ x2 -^ x3 *^ x3;;
 
-let test_nearfst f0 g = test_near (1.0e-14) f0 (fst g);;
-
 let test_ups_D = 
   let (x1,x2,x3) = (m 1.1,m 1.2,m 1.3) in
-  test_nearfst (ups_I x1 x2 x3).high (ups_D (iD x1) (iD x2) (iD x3));;
+  test_nearfst (ups_I x1 x2 x3) (ups_D (iD x1) (iD x2) (iD x3));;
 
 let area_D y1 y2 y3 = 
   let x1 = y1 *^ y1 in
@@ -122,25 +128,35 @@ let area_D y1 y2 y3 =
 
 let test_area_D = 
   let (x1,x2,x3) = (m 1.1,m 1.2,m 1.3) in
-  test_nearfst (area_I x1 x2 x3).high (area_D (iD x1) (iD x2) (iD x3));;
+  test_nearfst (area_I x1 x2 x3) (area_D (iD x1) (iD x2) (iD x3));;
 
 let arcD a b cop =
   acosD (((a *^ a) +^ (b *^ b) -^ (cop *^ cop)) /^ (twoD *^ a *^ b));;
 
-let test_arcD =
-  let (x1,x2,x3) = (m 1.1,m 1.2,m 1.3) in
-  test_nearfst (iarc x1 x2 x3).high (arcD (iD x1) (iD x2) (iD x3));;
+let test_arcD = 
+  let (a,b,c) = (m 1.1,m 1.2,m 1.3) in
+  test_nearfst (iarc a b c) (arcD (iD a) (iD b) (iD c));;
 
 let lawsinesD a alpha beta gamma = 
   let aa = a /^ sinD alpha in
-  (aa *^ sinD beta, aa *^ cosD gamma);;
+  (aa *^ sinD beta, aa *^ sinD gamma);;
 
-let lawbetaD alpha a b = 
-  asinD (b *^ sinD alpha /^ a);;
+let test_lawsinesD =
+  let (a,alpha,beta,gamma) = (m 1.05,m 1.1,m 1.2,m 1.3) in
+  let (aD,alphaD,betaD,gammaD) = (iD a,iD alpha,iD beta,iD gamma) in
+  test_nearfst (fst(lawsines a alpha beta gamma)) 
+    (fst(lawsinesD aD alphaD betaD gammaD)) &&
+  test_nearfst (snd(lawsines a alpha beta gamma)) 
+    (snd(lawsinesD aD alphaD betaD gammaD));;
 
 let locD a b theta = 
   let costh = cosD theta in
   sqrtD (a *^ a +^ b *^ b -^ twoD *^ a *^ b *^ costh);;
+
+let test_locD = 
+  let (a,b,theta) = (m 1.1,m 1.2,m 1.3) in
+  let (aD,bD,thetaD) = (iD a,iD b,iD theta) in
+  test_nearfst (iloc a b theta) (locD aD bD thetaD);;
 
 let ell_auxD h psi = 
   let r = sqrtD (h *^ h +^ kappaD *^ kappaD) in
@@ -152,11 +168,29 @@ let ellD =
   fun x alpha ->
     ell_auxD (sigmaD -^ x) (alpha +^ pi310D);;
 
+let test_ellD =
+  let (x,alpha) = (m 0.5,m 0.6) in
+  let (xD,alphaD) = (iD x,iD alpha) in
+  test_nearfst (ellx x alpha) (ellD xD alphaD);;
+
 let pinwheeledgeD alpha beta xgamma = 
   let gamma = pi15D -^ (alpha +^ beta) in
   let (xalpha,xbeta) = 
     lawsinesD xgamma (pi25D -^ alpha) (pi25D -^ beta) (pi25D -^ gamma) in
   (ellD xalpha alpha,ellD xbeta beta,ellD xgamma gamma);;
+
+let test_nearedge a b = 
+  let (a1,a2,a3) = a in
+  let (b1,b2,b3) = b in
+  test_nearfst a1 b1 &&
+    test_nearfst a2 b2 &&
+    test_nearfst a3 b3;;
+
+let test_pinwheeledgeD =
+  let (alpha,beta,xgamma) = (m 0.1,m 0.2, m 0.3) in
+  let (alphaD,betaD,xgammaD)= (iD alpha,iD beta,iD xgamma) in
+   test_nearedge (pinwheeledge alpha beta xgamma)
+    (pinwheeledgeD alphaD betaD xgammaD);;
 
 let ljedge_extendedD alpha beta xalpha = 
   let gamma = pi35D -^ (alpha +^ beta) in
@@ -175,9 +209,22 @@ let ljedgeD alpha beta xalpha =
   let (_,ll) = ljedge_extendedD alpha beta xalpha in
   ll;;
 
+let test_ljedgeD = 
+  let (alpha,beta,xalpha) = (m 0.4,m 0.25, m 0.3) in
+  let (alphaD,betaD,xalphaD)= (iD alpha,iD beta,iD xalpha) in
+  test_nearedge    (ljedge alpha beta xalpha)
+    (ljedgeD alphaD betaD xalphaD);;
+
 let shared_pinwheeledgeD alpha beta xbeta = 
-  let dAB,dBC,dAC = pinwheeledgeD (pi15D -^ (alpha+^beta)) alpha xbeta in
+  let gamma = (pi15D -^ (alpha+^beta)) in
+  let dAB,dBC,dAC = pinwheeledgeD gamma alpha xbeta in
   dBC,dAC,dAB;;
+
+let test_shared_pinwheeledgeD = 
+  let (alpha,beta,xbeta) = (m 0.1,m 0.2,m 0.3) in
+  let (alphaD,betaD,xbetaD) = (iD alpha,iD beta,iD xbeta) in
+  test_nearedge (shared_pinwheeledge alpha beta xbeta)
+    (shared_pinwheeledgeD alphaD betaD xbetaD);;
 
 let shared_lj1edge_extendedD =
   let pi25 = ratpiD 2 5 in
@@ -198,6 +245,12 @@ let shared_lj1edgeD alpha' beta xbeta =
   let l1,l2,l3,_,_ = shared_lj1edge_extendedD alpha' beta xbeta in
   l1,l2,l3;;
 
+let test_shared_lj1edgeD = 
+  let (alpha',beta,xbeta) = (m 0.1,m 0.2,m 0.3) in
+  let (alphaD',betaD,xbetaD) = (iD alpha',iD beta,iD xbeta) in
+  test_nearedge (shared_lj1edge alpha' beta xbeta)
+    (shared_lj1edgeD alphaD' betaD xbetaD);;
+
 let shared_lj2edgeD alpha beta xbeta =
   let (dAC,dBC,dAB) = ljedgeD beta alpha xbeta in
   dBC,dAC,dAB;;
@@ -205,6 +258,12 @@ let shared_lj2edgeD alpha beta xbeta =
 let shared_lj2edge_extendedD alpha beta xbeta = 
   let t,(dAC,dBC,dAB) = ljedge_extendedD beta alpha xbeta in
   dBC,dAC,dAB,t;;
+
+let test_shared_lj2edgeD = 
+  let (alpha,beta,xbeta) = (m 0.45,m 0.2,m 0.3) in
+  let (alphaD,betaD,xbetaD) = (iD alpha,iD beta,iD xbeta) in
+  test_nearedge (shared_lj2edge alpha beta xbeta)
+    (shared_lj2edgeD alphaD betaD xbetaD);;
 
 let shared_tj3edgeD alpha' beta xbeta = 
     let alpha = pi25D -^ alpha' in
@@ -220,12 +279,19 @@ let shared_tj3edgeD alpha' beta xbeta =
     let xalpha = (a2+^ a3)-^ a1 in
     (ellD xalpha alpha,ellD xbeta beta,ellD (cc-^ c2) gamma);;
 
+let test_shared_tj3edgeD = 
+  let (alpha',beta,xbeta) = (m 0.1,m 0.2,m 0.3) in
+  let (alphaD',betaD,xbetaD) = (iD alpha',iD beta,iD xbeta) in
+  test_nearedge (shared_tj3edge alpha' beta xbeta)
+    (shared_tj3edgeD alphaD' betaD xbetaD);;
+
+
 (* linear motion from given values to pentagonal ice-ray critical values *)
 
 
 let one_twist_claim_lj1 xs =
   let ([alpha';beta;xbeta],_) = xs in
-  if disjoint_from_shared_lj1 alpha' beta xbeta then true
+  if outdomfn_shared_lj1 alpha' beta xbeta then true
   else 
     try
         let (_,_,_,xa,_) = shared_lj1edge_extended alpha' beta xbeta in
@@ -235,7 +301,8 @@ let one_twist_claim_lj1 xs =
 let dummybool = Dimer.dummybool;;
 
 let twist_claim_lj1 =
-  let ee = mk (-0.01) (0.01) in
+  let ee = merge_I (- ice_ray_nbd) (ice_ray_nbd) in
+  (* mk (-0.01) (0.01) *)
   let eps_domain =[[zero2 (m 0.01);pi15 + ee;sigma+ee]] in
   recursepairtoeps one_twist_claim_lj1 (dummybool eps_domain);;
 
@@ -251,8 +318,9 @@ let one_twist_claim_lj2 xs =
     with Unstable -> false;;
 
 let twist_claim_lj2 =
-  let ee = mk (-0.01) (0.01) in
-  let eps_domain =[[zero2 (m 0.01);sigma+ee]] in
+  let ee = merge_I (- ice_ray_nbd) (ice_ray_nbd) in
+(*  let ee = mk (-0.01) (0.01) in *)
+  let eps_domain =[[zero2 ice_ray_nbd;sigma+ee]] in
   recursepairtoeps one_twist_claim_lj2 (dummybool eps_domain);;
 
 (* coordinates should be such that
@@ -275,46 +343,54 @@ let twist_claim_lj2 =
 
 let one_dimerD xs = 
   let ([alphaB;betaB;xbetaB;alphaD],
-       ((sB,edgeB,curveB,disjointB),(sD,edgeD,curveD,disjointD))) = xs in
+       ((sB,edgeB,curveB,_),(sD,edgeD,curveD,_))) = xs in
   try
     (* subcritical triangle ABC: *)
-    if disjointB alphaB betaB xbetaB then true 
-    else
-      let alphaB_t = curveB alphaB in
-      let betaB_t = (betaB,one) in
-      let (dBC,dAC,dAB) = edgeB alphaB_t betaB_t (iD xbetaB) in
-      let aABC = area_D dBC dAC dAB in
+    let alphaB_s = curveB alphaB in
+    let betaB_s = (betaB,one) in
+    let (dBC,dAC,dAB) = edgeB alphaB_s betaB_s (iD xbetaB) in
+    let aABC = area_D dBC dAC dAB in
       (* second triangle ADC of dimer: *)
-      let betaD = pi25 - betaB in
-      let xbetaD = two * sigma - xbetaB in
-      if disjointD alphaD betaD xbetaD then true
-      else 
-	let alphaD_t = curveD alphaD in
-	let betaD_t = (betaD,-one) in
-	let (dCD,dAC',dAD) = edgeD alphaD_t betaD_t (iD xbetaD) in
-	let aADC = area_D dCD dAC' dAD in
-	let (_,area_derivative) = aABC +^ aADC in
-	area_derivative << zero  
+    let betaD = pi25 - betaB in
+    let xbetaD = two * sigma - xbetaB in
+    let alphaD_s = curveD alphaD in
+    let betaD_s = (betaD,-one) in
+    let (dCD,dAC',dAD) = edgeD alphaD_s betaD_s (iD xbetaD) in
+    let aADC = area_D dCD dAC' dAD in
+    let (_,area_derivative) = aABC +^ aADC in
+    area_derivative << zero  
   with | Unstable -> false;;
 
 let i_m1 alpha = (alpha,-one);;
 
+(* true if i_m1, false if iD *)
+
 let dimerD_toptypes = [
-  ("pinw_apos",shared_pinwheeledgeD,i_m1,disjoint_from_shared_pinwheel)  ;
-  ("pinw_a0",shared_pinwheeledgeD,iD,disjoint_from_shared_pinwheel);
-  ("lj1top",shared_lj1edgeD,i_m1,disjoint_from_shared_lj1);
-  ("lj2top",shared_lj2edgeD,i_m1,disjoint_from_shared_lj1);];;
+  ("pinw_apos",shared_pinwheeledgeD,i_m1,true);
+  ("pinw_a0",shared_pinwheeledgeD,iD,false);
+  ("lj1top_apos",shared_lj1edgeD,i_m1,true);
+  ("lj1top_a0",shared_lj1edgeD,iD,false);
+  ("lj2top",shared_lj2edgeD,i_m1,true);];;
 
 let dimerD_bottypes = [
-  ("lj1bot",shared_lj1edgeD,i_m1,disjoint_from_shared_lj1);
-  ("lj2bot_apos",shared_lj1edgeD,i_m1,disjoint_from_shared_lj1);
-  ("lj2bot_a0",shared_lj2edgeD,iD,disjoint_from_shared_lj2);
-  ("tj3bot",shared_tj3edgeD,i_m1,disjoint_from_shared_tj3);];;
+  ("lj1bot",shared_lj1edgeD,i_m1,true);
+  ("lj2bot_apos",shared_lj2edgeD,i_m1,true);
+  ("lj2bot_a0",shared_lj2edgeD,iD,false);
+  ("tj3bot_apos",shared_tj3edgeD,i_m1,true);
+  ("tj3bot_a0",shared_tj3edgeD,iD,false);
+];;
 
 let dimerD_domain (i,j) = 
-  let eps = zero2 (m 0.01) in
-  ([eps;pi25-eps;sigma+eps-eps;eps]),
-  (List.nth dimerD_toptypes i,List.nth dimerD_bottypes j);;
+  let top = List.nth dimerD_toptypes i in
+  let (_,_,_,topw) = top in
+  let bottom  =  List.nth dimerD_bottypes j in
+  let (_,_,_,bottomw) = bottom in
+  let eps = zero2 (ice_ray_nbd) in
+  let epstop = if topw then eps else zero in
+  let epsbottom = if bottomw then eps else zero in
+  let alphaBdomain = merge_I (pi15 - eps) pi15 in
+  ([epstop;alphaBdomain;sigma+eps-eps;epsbottom]),
+  (top,bottom);;
 
 let dtypeD_labels xs = 
   let (_,((sB,_,_,_),(sD,_,_,_))) = xs in
@@ -329,16 +405,21 @@ let recurse_dimerD d =
       failwith ("one_dimerD("^sB^","^sD^") "^s);;
 
 let recurseD i j = recurse_dimerD (dimerD_domain (i,j));;
-map (recurseD 0) (0--3);;
-map (recurseD 1) (0--3);;
-map (recurseD 2) (0--3);;
-map (recurseD 3) (0--3);;
+map (recurseD 0) (0--4);;
+map (recurseD 1) (0--4);;
+map (recurseD 2) (0--4);;
+map (recurseD 3) (0--4);;
+map (recurseD 4) (0--4);;
 
 
 (* end of first derivatives *)
 
 
+(* ********************************************************************** *)
 (* start second derivatives *)
+(* ********************************************************************** *)
+
+
 let test_neare3 (r1,r2,r3) (x1,x2,x3) = 
   let e = 1.0e-12 in
   (test_near e r1 x1 && test_near e r2 x2) && test_near e r3 x3;;
@@ -448,11 +529,16 @@ let sigmaD2 = sinD2 pi15D2;;
 
 let aKD2 = iD2 aK;;
 
-let epso_D2 = aKD2 -^^ ratD2 1237 1000;;
+let epsN_D2 = aKD2 -^^ ratD2 1237 1000;;
 
 let ups_D2 x1 x2 x3 = 
   twoD2 *^^ 
   (x1 *^^ x2 +^^ x2 *^^ x3 +^^ x3 *^^ x1) -^^ x1*^^ x1 -^^ x2*^^ x2 -^^ x3 *^^ x3;;
+
+let test_ups_D2 = 
+  let (x1,x2,x3) = (m 1.0,m 1.1,m 1.2) in
+  let (x1D,x2D,x3D) = (iD2 x1,iD2 x2,iD2 x3) in
+  test_nearff (ups_I x1 x2 x3) (ups_D2 x1D x2D x3D);;
 
 let area_D2 y1 y2 y3 = 
   let x1 = y1 *^^ y1 in
@@ -460,19 +546,39 @@ let area_D2 y1 y2 y3 =
   let x3 = y3 *^^ y3 in
     sqrtD2 (ups_D2 x1 x2 x3 ) /^^ fourD2;;
 
+let test_area_D2 = 
+  let (x1,x2,x3) = (m 1.0,m 1.1,m 1.2) in
+  let (x1D,x2D,x3D) = (iD2 x1,iD2 x2,iD2 x3) in
+  test_nearff (area_I x1 x2 x3) (area_D2 x1D x2D x3D);;
+
 let arcD2 a b cop =
-  acosD2 (((a *^^ a) +^^ (b *^^ b) -^^ (cop *^^ cop)) /^^ (twoD2 *^^ a *^^ b));;
+  acosD2 (((a *^^ a) +^^ (b *^^ b) -^^ (cop *^^ cop)) 
+	  /^^ (twoD2 *^^ a *^^ b));;
+
+let test_arcD2 = 
+  let (x1,x2,x3) = (m 1.0,m 1.1,m 1.2) in
+  let (x1D,x2D,x3D) = (iD2 x1,iD2 x2,iD2 x3) in
+  test_nearff (iarc x1 x2 x3) (arcD2 x1D x2D x3D);;
 
 let lawsinesD2 a alpha beta gamma = 
   let aa = a /^^ sinD2 alpha in
-  (aa *^^ sinD2 beta, aa *^^ cosD2 gamma);;
+  (aa *^^ sinD2 beta, aa *^^ sinD2 gamma);;
 
-let lawbetaD2 alpha a b = 
-  asinD2 (b *^^ sinD2 alpha /^^ a);;
+let test_lawsinesD2 = 
+  let (x1,x2,x3,x4) = (m 1.0,m 1.1,m 1.2,m 1.3) in
+  let (x1D,x2D,x3D,x4D) = (iD2 x1,iD2 x2,iD2 x3,iD2 x4) in
+  let (s1,s2),(s1D,s2D)= ((lawsines x1 x2 x3 x4), 
+			  (lawsinesD2 x1D x2D x3D x4D)) in
+  test_nearff s1 s1D && test_nearff s2 s2D;;
 
 let locD2 a b theta = 
   let costh = cosD2 theta in
   sqrtD2 (a *^^ a +^^ b *^^ b -^^ twoD2 *^^ a *^^ b *^^ costh);;
+
+let test_locD2 = 
+  let (x1,x2,x3) = (m 1.0,m 1.1,m 1.2) in
+  let (x1D,x2D,x3D) = (iD2 x1,iD2 x2,iD2 x3) in
+  test_nearff (iloc x1 x2 x3) (locD2 x1D x2D x3D);;
 
 let ell_auxD2 h psi = 
   let r = sqrtD2 (h *^^ h +^^ kappaD2 *^^ kappaD2) in
@@ -484,23 +590,41 @@ let ellD2 =
   fun x alpha ->
     ell_auxD2 (sigmaD2 -^^ x) (alpha +^^ pi310D2);;
 
+let test_ellD2 = 
+  let (x1,x2) = (m 0.3,m 0.4) in 
+  let (x1D,x2D) = (iD2 x1,iD2 x2) in
+  test_nearff (ellx x1 x2) (ellD2 x1D x2D);;
+
 let pinwheeledgeD2 alpha beta xgamma = 
   let gamma = pi15D2 -^^ (alpha +^^ beta) in
   let (xalpha,xbeta) = 
-    lawsinesD2 xgamma (pi25D2 -^^ alpha) (pi25D2 -^^ beta) (pi25D2 -^^ gamma) in
+    lawsinesD2 xgamma (pi25D2 -^^ alpha) 
+      (pi25D2 -^^ beta) (pi25D2 -^^ gamma) in
   (ellD2 xalpha alpha,ellD2 xbeta beta,ellD2 xgamma gamma);;
+
+let test_nearedgeD2 a b = 
+  let (a1,a2,a3) = a in
+  let (b1,b2,b3) = b in
+  test_nearff a1 b1 &&
+    test_nearff a2 b2 &&
+    test_nearff a3 b3;;
+
+let test_pinwheeledgeD2 = 
+  let (x1,x2,x3) = (m 0.3,m 0.4,m 0.5) in
+  let (x1D,x2D,x3D) = (iD2 x1,iD2 x2,iD2 x3) in
+  test_nearedgeD2 (pinwheeledge x1 x2 x3) (pinwheeledgeD2 x1D x2D x3D);;
+
 
 let shared_pinwheeledgeD2 alpha beta xbeta = 
   let dAB,dBC,dAC = pinwheeledgeD2 (pi15D2 -^^ (alpha+^^beta)) alpha xbeta in
   dBC,dAC,dAB;;
 
-(*
-let alpha = zeroD2 in
-let beta = pi15D2 in
-let xbeta = sigmaD2 +^^ (zero,one,zero) in
-let (l1,l2,l3) = shared_pinwheeledgeD2 alpha beta xbeta in
-area_D2 l1 l2 l3;;
-*)
+let test_shared_pinwheeledgeD2 = 
+  let (x1,x2,x3) = (m 0.3,m 0.4,m 0.5) in
+  let (x1D,x2D,x3D) = (iD2 x1,iD2 x2,iD2 x3) in
+  test_nearedgeD2 (shared_pinwheeledge x1 x2 x3) 
+    (shared_pinwheeledgeD2 x1D x2D x3D);;
+
 
 (* check the convexity of the dimer along the 1param family *)
 
@@ -521,6 +645,8 @@ let one_dimer2 xs =
     let (_,_,deriv2) =     aABC +^^ aADC in
     deriv2 >> zero
   with | Unstable -> false;;
+
+(* we only need 0.01.  We go much further than needed here *)
 
 recursetoeps (fun t -> one_dimer2 (hd t)) [[mk (-0.1) (0.1)]];;
 

@@ -1,6 +1,6 @@
 (* May 16, 2016 *)
 
-(* module Function_library = struct *)
+module Banana = struct
 
 (* output provably in range [0,2pi/5] on valid inputs
    even without inter_I *)
@@ -472,5 +472,38 @@ let fillout6D ((dAB,thABC,thBAC),(dBC,thCBA),dAC) =
     else None;;
 
 
-(* end;; *)
+
+(* Constructs all the key variables on a "2C" P-triangle.
+   B is the pentagon that touches both others.
+   alpha variables between A and B
+   beta variables between B and C.
+   when signs are true, then B is the pointer.
+   dACrange give a priori bounds on the length of dAC. 
+
+   Can be used on the extended range with alpha beta up to 4pi/5.
+   In that case, take both signs to be true.
+   Get pointers both ways,
+   when alpha up to 2pi/5, then B is the pointer,
+   for alpha larger than 2pi/5 A becomes the pointer.
+   Similar for beta.
+
+   Extended range is equivalent to taking alpha beta up to 2pi/5 and both signs.
+   We should deprecate the signed version.
+
+*)
+
+(* fillout2C takes coordinates on two edges (at pentagon B) and generates
+   full coordinate system  
+   th... angles are only defined up to a multiple of 2pi/5.
+
+   The output is ordered as follows.
+   a= area comes first.
+   The next output echoes the input (dAB,thABC,thBAC)
+   The next output echoes the input (dBC,thCBA,thBCA)
+   The last output is data along the remaining edge.  Its first angle thACB is at the
+   vertex of the first input angle thABC.
+*)
+
+end;; 
+
 

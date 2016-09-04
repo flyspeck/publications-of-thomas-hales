@@ -14,6 +14,8 @@
    I find that this does not completely free up memory, and
    I often restart ocaml between major calculations to force a 
    memory cleanup.
+
+   The total runtime is approximately 60 hours.
  *)
 
 open Meet;;
@@ -88,7 +90,7 @@ let d_subcrit_contact =
 let d_shared_pseudo = merge_I (172//100) (18//10);;
 
 let d_egress = 
-  let _ = area_I (172//100) (two*kappa) (204//100) >> aK + epso_I or
+  let _ = area_I (172//100) (two*kappa) (204//100) >> aK + epsN_I or
       failwith "204" in
   merge_I (18//10) (204//100);;
 
@@ -210,6 +212,7 @@ i=5, w=0.01562, length(ccs)=20528
 val calc_pent4 : bool = true
 *)
 (* Needs about 1GB of memory. A few hours to run on my laptop. *)
+(* [QPJDYDB] -deprecated version *)
 let calc_pent4_postcluster() = 
   let cluster_areacut = four*aK in
   let pdata = reset_peri init2Cps in 
@@ -217,7 +220,7 @@ let calc_pent4_postcluster() =
   let keyfns = [ckeyfnAB;ckeyfnBC;ckeyfnAC] in
   let cfn = (unit_extra,fillfn5,outdomfn,areafn5,keyfns) in
   let dAB_dBC_dAC = (d_subcrit_shared,d_subcrit_shared,d_subcrit_contact) in
-  let cencut = (aK + int 3*epso_I).high in
+  let cencut = (aK + int 3*epsN_I).high in
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report "pent4_postcluster" in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -239,6 +242,7 @@ i=5, w=0.01562, length(ccs)=29554
 CPU time (user): 14870.108
 val calc_pent4_6D_postcluster : bool = true
 *)
+(* [QPJDYDB] *)
 let calc_pent4_6D_postcluster() = 
   let cluster_areacut = four*aK in
   let pdata = reset_peri init2Cps in 
@@ -248,7 +252,7 @@ let calc_pent4_6D_postcluster() =
   let keyfns = [ckeyfn6AB;ckeyfn6BC;ckeyfn6AC] in
   let cfn = (unit_extra,fillfn6,outdomfn,areafn2Ce,keyfns) in
   let dAB_dBC_dAC = (d_subcrit_shared,d_subcrit_shared,d_subcrit_shared) in
-  let cencut = (aK + int 3*epso_I).high in
+  let cencut = (aK + int 3*epsN_I).high in
   let ccs = [(coord6 dAB_dBC_dAC,cencut);] in 
   let _ = report "pent4_6D_postcluster_experimental" in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -274,8 +278,9 @@ i=7, w=0.00391, length(ccs)=183
 CPU time (user): 73430.968
 val calc_pent3_6D_postcluster : bool = true
 *)
+(* [HUQEJAT] *)
 let calc_pent3_6D_postcluster() = 
-  let cluster_areacut = int 3*aK + epso''_I in
+  let cluster_areacut = int 3*aK + epsM_I in
   (* deform both sides separately so that both peripherals are isosceles *)
   let pdata = reset_peri init2Cps_isosceles_AC in 
   (* symmetry: in domain AB longer than BC. AC not shared. *)
@@ -286,7 +291,7 @@ let calc_pent3_6D_postcluster() =
   let d_subcrit_isosc = merge_I (172//100) (179//100) in (* XX use this *)
   let d_short = merge_I (two*kappa) (202//100) in (* see "202" *)
   let dAB_dBC_dAC = (d_subcrit_shared,d_subcrit_shared,d_short) in
-  let cencut = (aK + two*epso_I + epso''_I).high in
+  let cencut = (aK + two*epsN_I + epsM_I).high in
   let ccs = [(coord6 dAB_dBC_dAC,cencut);] in 
   let _ = report "pent3_6D_postcluster" in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -316,19 +321,19 @@ i=7, w=0.00391, length(ccs)=3202
 CPU time (user): 17214.976
 val calc_pent3AB_postcluster : bool = true
 *)
-
+(* [HUQEJAT] *)
 let calc_pent3AB_postcluster() =
-  let cluster_areacut = int 3*aK + epso''_I in
+  let cluster_areacut = int 3*aK + epsM_I in
   let pdata = reset_peri init2Cps in
   let outdomfn _ = false in 
   let keyfns = [ckeyfnBC; ckeyfnAC] in
   let cfn = (unit_extra,fillfn5,outdomfn,areafn5,keyfns) in
   let _ = area_I (172//100) (172//100) (202//100) >> 
-    (aK + two * epso_I + epso''_I) or failwith "202" in
+    (aK + two * epsN_I + epsM_I) or failwith "202" in
   let d_short = merge_I (two*kappa) (202//100) in
   (* AB is not shared with a subcritical. It can be short. *)
   let dAB_dBC_dAC = (d_short,d_subcrit_shared,d_subcrit_contact) in
-  let cencut = (aK + two*epso_I + epso''_I).high in
+  let cencut = (aK + two*epsN_I + epsM_I).high in
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent3AB") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -355,15 +360,16 @@ i=7, w=0.00391, length(ccs)=242
 CPU time (user): 7679.304
 val calc_pent3BC_postcluster : bool = true
 *)
+(* [HUQEJAT] *)
 let calc_pent3BC_postcluster() = 
-  let cluster_areacut = int 3*aK + epso''_I in
+  let cluster_areacut = int 3*aK + epsM_I in
   let pdata = reset_peri init2Cps in
   let outdomfn _ = false in 
   let keyfns = [ckeyfnAB;ckeyfnAC] in
   let cfn = (unit_extra,fillfn5,outdomfn,areafn5,keyfns) in
   let d_short = merge_I (two*kappa) (202//100) in
   let dAB_dBC_dAC=(d_subcrit_shared,d_short,d_subcrit_contact) in
-  let cencut = (aK + int 2*epso_I +epso''_I).high in
+  let cencut = (aK + int 2*epsN_I +epsM_I).high in
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent3BC") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -390,8 +396,9 @@ i=7, w=0.00391, length(ccs)=247
 CPU time (user): 4953.868
 val calc_pent3AC_postcluster : bool = true
   *)
+(* [HUQEJAT] *)
 let calc_pent3AC_postcluster() = 
-  let cluster_areacut = int 3*aK +epso''_I in
+  let cluster_areacut = int 3*aK +epsM_I in
   let pdata = reset_peri init2Cps in
   let outdomfn _ = false in 
   let keyfns = [ckeyfnAB; ckeyfnBC] in
@@ -399,7 +406,7 @@ let calc_pent3AC_postcluster() =
   let d_short = merge_I (two*kappa) (202//100) in
   (* AC not shared with a subcritical. It can be short. *)
   let dAB_dBC_dAC=(d_subcrit_shared,d_subcrit_shared,d_short) in
-  let cencut = (aK + int 2*epso_I + epso''_I).high in
+  let cencut = (aK + int 2*epsN_I + epsM_I).high in
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent3AC") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -426,8 +433,9 @@ i=7, w=0.00391, length(ccs)=1
 CPU time (user): 2830.476
 val calc_pent2_postcluster_case0 : bool = true
  *)
+(* FHBGHHY *)
 let calc_pent2_postcluster_case0() = 
-  let cluster_areacut = two*aK + epso''_I in
+  let cluster_areacut = two*aK + epsM_I in
   let pdata = reset_peri init2Cps in
   (* init central *)
   let range = merge_I (172//100) (193//100) in
@@ -439,7 +447,7 @@ let calc_pent2_postcluster_case0() =
   let keyfns = [ckeyfn2Ce] in
   let cfn = (unit_extra,fillfn,outdomfn,areafn2Ce,keyfns) in
   (* init central ccs *)
-  let cencut = (aK + epso_I + epso''_I).high in 
+  let cencut = (aK + epsN_I + epsM_I).high in 
   let assertAC = area_I (193//100) (18//10) (two*kappa) >>. cencut or 
     failwith "please reset 1.93 bound and rerun" in
   let assertBC = area_I (18//10) (172//100) (179//100) >>. cencut or
@@ -469,8 +477,9 @@ i=6, w=0.00781, length(ccs)=37
 CPU time (user): 393.188
 val calc_pent2_postcluster_case1 : bool = true
 *)
+(* FHBGHHY *)
 let calc_pent2_postcluster_case1() = 
-  let cluster_areacut = two*aK + epso''_I in
+  let cluster_areacut = two*aK + epsM_I in
   let pdata = reset_peri init2Cps in
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
 		(dAC,thACB,thCAB,arcB)) = 
@@ -480,7 +489,7 @@ let calc_pent2_postcluster_case1() =
   let cfn = (unit_extra,fillfn5,forall_dom outdomfn,areafn5,keyfns) in
   let d_18 = (18//10) in
   let dAB_dBC_dAC=(d_subcrit_shared,d_third_pseudo,d_18) in
-  let cencut = (aK + epso_I + epso''_I).high in 
+  let cencut = (aK + epsN_I + epsM_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent2_postcluster_case1:AB shared, AC egressive. ") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -507,9 +516,9 @@ i=7, w=0.00391, length(ccs)=33
 CPU time (user): 516.204
 val calc_pent2_postcluster_case2 : bool = true
 *)
-
+(* FHBGHHY *)
 let calc_pent2_postcluster_case2() = 
-  let cluster_areacut = two*aK + epso''_I in
+  let cluster_areacut = two*aK + epsM_I in
   let pdata = reset_peri init2Cps in
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
 	       (dAC,thACB,thCAB,arcB)) = 
@@ -520,7 +529,7 @@ let calc_pent2_postcluster_case2() =
   let d_18 = (18//10) in
   let d_contact = merge_I (two*kappa) two in
   let dAB_dBC_dAC=(d_subcrit_shared,d_18,d_contact) in (* case *)
-  let cencut = (aK + epso_I + epso''_I).high in 
+  let cencut = (aK + epsN_I + epsM_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent2_postcluster_case2:AB shared, BC egressive. ") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -545,8 +554,9 @@ i=6, w=0.00781, length(ccs)=21
 CPU time (user): 266.188
 val calc_pent2_postcluster_case3 : bool = true
 *)
+(* FHBGHHY *)
 let calc_pent2_postcluster_case3() = 
-  let cluster_areacut = two*aK + epso''_I in
+  let cluster_areacut = two*aK + epsM_I in
   let pdata = reset_peri init2Cps in
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
 	       (dAC,thACB,thCAB,arcB)) = 
@@ -555,7 +565,7 @@ let calc_pent2_postcluster_case3() =
   let cfn = (unit_extra,fillfn5,forall_dom outdomfn,areafn5,keyfns) in
   let d_18 = (18//10) in
   let dAB_dBC_dAC = (d_third_pseudo,d_subcrit_shared,d_18) in (*case*)
-  let cencut = (aK + epso_I + epso''_I).high in 
+  let cencut = (aK + epsN_I + epsM_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent2_postcluster_case3:BC shared, AC egressive. ") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -582,8 +592,9 @@ i=7, w=0.00391, length(ccs)=73
 CPU time (user): 584.42
 val calc_pent2_postcluster_case4 : bool = true
 *)
+(* FHBGHHY *)
 let calc_pent2_postcluster_case4() = 
-  let cluster_areacut = two*aK + epso''_I in
+  let cluster_areacut = two*aK + epsM_I in
   let pdata = reset_peri init2Cps in
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),
 	       (dAC,thACB,thCAB,arcB)) = 
@@ -593,7 +604,7 @@ let calc_pent2_postcluster_case4() =
   let d_18 = (18//10) in
   let d_contact = merge_I (two*kappa) two in
   let dAB_dBC_dAC = (d_18,d_subcrit_shared,d_contact) in (* case *)
-  let cencut = (aK + epso_I + epso''_I).high in 
+  let cencut = (aK + epsN_I + epsM_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("pent2_postcluster_case4:BC shared, AB egressive. ") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -620,6 +631,7 @@ CPU time (user): 4609.216
 val precluster1_case0 : bool = true
 *)
 (* done June 10 *)
+(* NKQNXUN *)
 let precluster1_case0() = 
   let cluster_areacut = two*aK in
   let pdata = reset_peri init2Cps in
@@ -631,11 +643,11 @@ let precluster1_case0() =
   let keyfns = [ckeyfn2Ce] in
   let cfn = (unit_extra,fillfn,outdomfn,areafn2Ce,keyfns) in
   (* init central ccs *)
-  let cencut = (aK + epso_I).high in 
+  let cencut = (aK + epsN_I).high in 
   let ccs = [(coord2Ce,cencut);] in 
-  let _ = area_I (18//10) (192//100) (two*kappa) >> aK+epso_I or 
+  let _ = area_I (18//10) (192//100) (two*kappa) >> aK+epsN_I or 
     failwith "range_check" in
-  let _ = area_I (18//10) (18//10) (17//10) >> aK+epso_I or
+  let _ = area_I (18//10) (18//10) (17//10) >> aK+epsN_I or
     failwith "range_check" in
   let _ = report "precluster1_case0" in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -657,6 +669,7 @@ i=5, w=0.01562, length(ccs)=19
 CPU time (user): 168.652
 val precluster1_case1 : bool = true
 *)
+(* NKQNXUN *)
 let precluster1_case1() = 
   let cluster_areacut = two*aK in
   let pdata = reset_peri init2Cps in
@@ -675,7 +688,7 @@ let precluster1_case1() =
   let d_shared = merge_I (18//10) (192//100) in
   let d_short = merge_I (two*kappa) (17//10) in
   let dAB_dBC_dAC = (d_shared,d_short,d_18) in
-  let cencut = (aK + epso_I).high in 
+  let cencut = (aK + epsN_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("precluster1 case1 midpointer") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -700,6 +713,7 @@ i=6, w=0.00781, length(ccs)=926
 CPU time (user): 809.716
 val precluster1_case2 : bool = true
   *)
+(* NKQNXUN *)
 let precluster1_case2() = 
   let cluster_areacut = two*aK in
   let pdata = reset_peri init2Cps in
@@ -718,7 +732,7 @@ let precluster1_case2() =
   let d_shared = merge_I (18//10) (192//100) in
   let d_full = merge_I (two*kappa) (192//100) in
   let dAB_dBC_dAC = (d_shared,d_full,d_full) in
-  let cencut = (aK + epso_I).high in 
+  let cencut = (aK + epsN_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("precluster1 case2 slider") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -745,6 +759,7 @@ i=8, w=0.00195, length(ccs)=2940
  length(ps)=179253 maxkey=45 keysum=3293751 phash=4553
 CPU time (user): 7714.216
 val precluster2_case0 : bool = true *)
+(* RWWHLQT pseudo2 *)
 let precluster2_case0() = 
   let cluster_areacut = two*aK in
   let pdata = reset_peri init2Cps in
@@ -758,7 +773,7 @@ let precluster2_case0() =
   let keyfns = [ckeyfn2Ce] in
   let cfn = (unit_extra,fillfn,outdomfn,areafn2Ce,keyfns) in
   (* init central ccs *)
-  let cencut = (aK + epso_I).high in 
+  let cencut = (aK + epsN_I).high in 
   let ccs = [(coord2Ce,cencut);] in 
   let _ = report "precluster2_case0" in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -784,6 +799,7 @@ i=7, w=0.00391, length(ccs)=90
 CPU time (user): 817.244
 val precluster2_case1 : bool = true
 *)
+(* RWWHLQT pseudo2 *)
 let precluster2_case1() = 
   let cluster_areacut = two*aK in
   let pdata = reset_peri init2Cps in
@@ -801,7 +817,7 @@ let precluster2_case1() =
   let cfn = (unit_extra,fillfn5,forall_dom outdomfn,areafn5,keyfns) in
   (* init central ccs *)
   let dAB_dBC_dAC = (d_shared_pseudo,d_third_pseudo,d_third_pseudo) in
-  let cencut = (aK + epso_I).high in 
+  let cencut = (aK + epsN_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("precluster2 case1 midpointer") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -823,6 +839,7 @@ i=5, w=0.01562, length(ccs)=629
 CPU time (user): 440.08
 val precluster2_case2 : bool = true
  *)
+(* RWWHLQT pseudo2 *)
 let precluster2_case2() = 
   let cluster_areacut = two*aK in
   let pdata = reset_peri init2Cps in
@@ -839,7 +856,7 @@ let precluster2_case2() =
   let cfn = (unit_extra,fillfn5,forall_dom outdomfn,areafn5,keyfns) in
   (* init central ccs *)
   let dAB_dBC_dAC = (d_shared_pseudo,d_third_pseudo,d_third_pseudo) in
-  let cencut = (aK + epso_I).high in 
+  let cencut = (aK + epsN_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("precluster2 case2 slider") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -865,6 +882,7 @@ i=7, w=0.00391, length(ccs)=18442
 CPU time (user): 4955.264
 val dimer_isosceles_precluster : bool = true
 *)
+(* KUGAKIK dimer-isosc *)
 let dimer_isosceles_precluster() = 
   let cluster_areacut = two*aK in
   let pdata = reset_peri init2Cps_isosceles_AB_AC in (* note isosceles contraint on Tin *)
@@ -875,7 +893,7 @@ let dimer_isosceles_precluster() =
     (dAB >> dAC or dBC >> dAC or disjoint_I dAC d_subcrit_shared) in
   let cfn = (unit_extra,fillfn,outdomfn,areafn2Ce,[ckeyfn2Ce]) in
   (* init central ccs *)
-  let cencut = (aK + epso_I).high in 
+  let cencut = (aK + epsN_I).high in 
   let ccs = [(coord2Ce,cencut);] in 
   let _ = report ("dimer with Tin isosceles") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -938,15 +956,16 @@ i=11, w=0.00024, length(ccs)=442
 CPU time (user): 14058.144
 val precluster4_case0_experimental : bool = true
 *)
+(* BXZBPJW pseudo-area *)
 let precluster4_case0_experimental() = 
-  let cluster_areacut = two*aK - epso''_I in
+  let cluster_areacut = two*aK - epsM_I in
   let pdata = reset_peri init2Cps_isosceles_AB_AC in
   let fillfn () = mk2Ce d_shared_pseudo in
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = 
     (dAB << 18//10 or dBC >> 18//10 or disjoint_I dAC d_shared_pseudo) in
   let keyfns = [ckeyfn2Ce] in
   let cfn = (unit_extra,fillfn,outdomfn,areafn2Ce,keyfns) in
-  let cencut = (aK + epso_I - epso''_I).high in 
+  let cencut = (aK + epsN_I - epsM_I).high in 
   let ccs = [(coord2Ce,cencut);] in 
   let _ = report "precluster4_case0 isosceles Tin AB=AC --experimental" in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -980,15 +999,16 @@ i=11, w=0.00024, length(ccs)=442
 CPU time (user): 22446.852
 val precluster4_case1_experimental : bool = true
 *)
+(* BXZBPJW pseudo-area *)
 let precluster4_case1_experimental() = 
-  let cluster_areacut = two*aK - epso''_I in
+  let cluster_areacut = two*aK - epsM_I in
   let pdata = reset_peri init2Cps_isosceles_BC_AC in
   let fillfn () = mk2Ce d_shared_pseudo in
   let outdomfn (a,(dAB,thABC,thBAC,arcC),(dBC,thCBA,thBCA,arcA),(dAC,thACB,thCAB,arcB)) = 
     (dAB << 18//10 or dBC >> 18//10 or disjoint_I dAC d_shared_pseudo) in
   let keyfns = [ckeyfn2Ce] in
   let cfn = (unit_extra,fillfn,outdomfn,areafn2Ce,keyfns) in
-  let cencut = (aK + epso_I - epso''_I).high in 
+  let cencut = (aK + epsN_I - epsM_I).high in 
   let ccs = [(coord2Ce,cencut);] in 
   let _ = report "precluster4_case1 isosceles Tin BC=AC experimental" in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -998,7 +1018,7 @@ let init2Cps_precluster6 = (* T_S for precluster6 *)
   let (extra,fillfn,outdomfn,areafn,keyfn) = fn in
   let outdomfn' (a,ddAB,ddBC,(dAC,thACB,thCAB,arcB)) = 
     ((dAC << 18//10) && outdomfn (a,ddAB,ddBC,(dAC,thACB,thCAB,arcB))) or
-      (a >> aK + epso''_I) in
+      (a >> aK + epsM_I) in
   let fn = (extra,fillfn,outdomfn',areafn,keyfn) in
   (fn,ps);;
 
@@ -1021,9 +1041,9 @@ i=6, w=0.00781, length(ccs)=640
 CPU time (user): 2461.944
 val precluster6_case1 : bool = true
 *)
-
+(* JQMRXTH pseudo-area3 *)
 let precluster6_case1() = 
-  let cluster_areacut = (int 3)*aK + epso''_I in
+  let cluster_areacut = (int 3)*aK + epsM_I in
   let pdata = reset_peri init2Cps_precluster6 in
   let outdomfn _ = false in
   let keyfnT = ckeyfnAB in (* case *)
@@ -1031,7 +1051,7 @@ let precluster6_case1() =
   let cfn = 
     (unit_extra,fillfn5,forall_dom outdomfn,areafn5,[keyfnT;keyfnS]) in
   let dAB_dBC_dAC = (d_shared_pseudo,d_egress,d_third_pseudo) in
-  let cencut = (aK + epso_I).high in 
+  let cencut = (aK + epsN_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("precluster6 case1 AB shared Tin, egress BC") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -1055,8 +1075,9 @@ i=6, w=0.00781, length(ccs)=8039
 CPU time (user): 5665.572
 val precluster6_case2 : bool = true
 *)
+(* JQMRXTH pseudo-area3 *)
 let precluster6_case2() = 
-  let cluster_areacut = (int 3)*aK + epso''_I in
+  let cluster_areacut = (int 3)*aK + epsM_I in
   let pdata = reset_peri init2Cps_precluster6 in
   let outdomfn _ = false in
   let keyfnT = ckeyfnAB in (* case *)
@@ -1064,7 +1085,7 @@ let precluster6_case2() =
   let cfn = 
     (unit_extra,fillfn5,forall_dom outdomfn,areafn5,[keyfnT;keyfnS]) in
   let dAB_dBC_dAC = (d_shared_pseudo,d_third_pseudo,d_egress) in
-  let cencut = (aK + epso_I).high in 
+  let cencut = (aK + epsN_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("precluster6 case2 AB shared Tin, egress AC") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -1088,8 +1109,9 @@ i=6, w=0.00781, length(ccs)=1117
 CPU time (user): 3206.716
 val precluster6_case3 : bool = true
  *)
+(* JQMRXTH pseudo-area3 *)
 let precluster6_case3() = 
-  let cluster_areacut = (int 3)*aK + epso''_I in
+  let cluster_areacut = (int 3)*aK + epsM_I in
   let pdata = reset_peri init2Cps_precluster6 in
   let outdomfn _ = false in
   let keyfnT = ckeyfnBC in (* case *)
@@ -1097,7 +1119,7 @@ let precluster6_case3() =
   let cfn = 
     (unit_extra,fillfn5,forall_dom outdomfn,areafn5,[keyfnT;keyfnS]) in
   let dAB_dBC_dAC = (d_egress,d_shared_pseudo,d_third_pseudo) in 
-  let cencut = (aK + epso_I).high in 
+  let cencut = (aK + epsN_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("precluster6 case3 BC shared Tin, egress AB") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -1121,8 +1143,9 @@ i=6, w=0.00781, length(ccs)=682
 CPU time (user): 3061.752
 val precluster6_case4 : bool = true
 *)
+(* JQMRXTH pseudo-area3 *)
 let precluster6_case4() = 
-  let cluster_areacut = (int 3)*aK + epso''_I in
+  let cluster_areacut = (int 3)*aK + epsM_I in
   let pdata = reset_peri init2Cps_precluster6 in
   let outdomfn _ = false in
   let keyfnT = ckeyfnBC in (* case *)
@@ -1130,7 +1153,7 @@ let precluster6_case4() =
   let cfn = 
     (unit_extra,fillfn5,forall_dom outdomfn,areafn5,[keyfnT;keyfnS]) in
   let dAB_dBC_dAC = (d_third_pseudo,d_shared_pseudo,d_egress) in 
-  let cencut = (aK + epso_I).high in 
+  let cencut = (aK + epsN_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("precluster6 case4: BC shared Tin, egress AC") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -1154,8 +1177,9 @@ i=6, w=0.00781, length(ccs)=3582
 CPU time (user): 5322.54
 val precluster6_case5 : bool = true
  *)
+(* JQMRXTH pseudo-area3 *)
 let precluster6_case5() = 
-  let cluster_areacut = (int 3)*aK + epso''_I in
+  let cluster_areacut = (int 3)*aK + epsM_I in
   let pdata = reset_peri init2Cps_precluster6 in
   let outdomfn _ = false in
   let keyfnT = ckeyfnAC in (* case *)
@@ -1163,7 +1187,7 @@ let precluster6_case5() =
   let cfn = 
     (unit_extra,fillfn5,forall_dom outdomfn,areafn5,[keyfnT;keyfnS]) in
   let dAB_dBC_dAC = (d_egress,d_third_pseudo,d_shared_pseudo) in 
-  let cencut = (aK + epso_I).high in 
+  let cencut = (aK + epsN_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("precluster6 case5: AC shared Tin, egress AB") in
   time_mitm cluster_areacut pdata cfn ccs;;
@@ -1189,8 +1213,9 @@ i=7, w=0.00391, length(ccs)=751
 CPU time (user): 3654.536
 val precluster6_case6 : bool = true
 *)
-let precluster6_case6 = 
-  let cluster_areacut = (int 3)*aK + epso''_I in
+(* JQMRXTH pseudo-area3 *)
+let precluster6_case6() = 
+  let cluster_areacut = (int 3)*aK + epsM_I in
   let pdata = reset_peri init2Cps_precluster6 in
   let outdomfn _ = false in
   let keyfnT = ckeyfnAC in (* case *)
@@ -1198,14 +1223,17 @@ let precluster6_case6 =
   let cfn = 
     (unit_extra,fillfn5,forall_dom outdomfn,areafn5,[keyfnT;keyfnS]) in
   let dAB_dBC_dAC = (d_third_pseudo,d_egress,d_shared_pseudo) in 
-  let cencut = (aK + epso_I).high in 
+  let cencut = (aK + epsN_I).high in 
   let ccs = [(coord5 dAB_dBC_dAC,cencut);] in 
   let _ = report("precluster6 case6: AC shared Tin, egress BC") in
   time_mitm cluster_areacut pdata cfn ccs;;
 
-
-
-
-
+let mitm_time_seconds = 
+[14870;73430;17214;7679;4953;
+ 2830;393;516;266;584;
+ 4609;168;809;7714;817;
+ 440;4955;14058;22446;2461;
+ 5665;3206;3061;5322;3624];;
+(* about 202090 seconds or about 56 hours *)
 
 (* end of file *)
