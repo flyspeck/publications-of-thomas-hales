@@ -448,7 +448,7 @@ let compensator_canfit_notableBff_isopin thetaACBcomp thetaCABcomp =
   let thCABs = periodize_pent (thCAB) in
   let thsum = periodize_pent (thACB + thCAB) in
 
-(* XXD not finished *)
+(* .... not finished *)
   let neg x = (x.lo <= 0.0) in (* NB x.hi becomes x.lo here *)
   let sumt x = (x.hi >= 0.18) in 
 		(
