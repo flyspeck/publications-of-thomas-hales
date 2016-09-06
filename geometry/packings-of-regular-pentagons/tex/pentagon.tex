@@ -12,8 +12,8 @@
 
 % XX to do:
 %% more graphics throughout.
-%% egressive? cut?
-%% other XX issues.
+
+
 
 % global spellcheck (done Aug 27 2016).
 % Notation: kappa = c = rho = cos pi /5.
@@ -100,13 +100,13 @@
 
 \centerline{\it We dedicate this article to W. Kuperberg.}
 
-\section{Introduction}\label{XX} % dummy label
+\section{Introduction}\label{sec:intro} 
 
 A fundamental problem in discrete geometry is to determine the highest
 density of a packing in Euclidean space by congruent copies of a
 convex body $C$.  For example, when $C$ is a ball of given radius,
 this problem reduces to the sphere-packing problem in Euclidean space.
-After a sphere, the simplest shape to consider is a regular polygon
+Besides a sphere, the simplest shape to consider is a regular polygon
 $C$ in the plane.  If the regular polygon is an equilateral
 triangle, square, or hexagon, then copies of $C$ tile the plane.  In
 these cases, the packing problem is trivial.  The first nontrivial
@@ -248,7 +248,7 @@ single nonobtuse triangle.  Let $\epsM = 0.008$.
 
 \subsection{examples}
 
-In this article, it is necessary to understand a series of examples.
+While reading this article, it is useful to carry along a series of examples.
 Otherwise, later definitions such as the modified area function $b(T)$
 and the construction of clusters will appear to be unmotivated.  Some
 of these examples serve as counterexamples to naive approaches to this
@@ -664,8 +664,9 @@ pentagonal ice-ray, as desired.
 \end{proof}
 
 This article gives a proof of the following theorem. In view of
-Lemma~\rif{lemma:main}, it implies the main result, Theorem~\rif{thm:main}.  The proof of this result appears at the end of
-Section~\rif{sec:nonobtuse}.
+Lemma~\rif{lemma:main}, it implies the main result,
+Theorem~\rif{thm:main}.  The proof of this result appears at the end
+of Section~\rif{sec:nonobtuse}.
 
 \begin{theorem}\libel{thm2:main}
   Let $\C$ be a cluster of Delaunay triangles in a saturated packing
@@ -766,10 +767,11 @@ the pointer pentagon to the receptor pentagon.  We may classify $3C$
 triangles according to the types of triangles with directed edges.
 There are two possibilities for the directed graph.
 \begin{enumerate}
-\item Some vertex of the triangle is a source of two directed edges and another vertex
-is the target of two directed edges  ($LJ$-junction, $TJ$-junction or
-  $\Delta$-junction).
-\item Every vertex of the triangle is both a source and a target (pinwheel, pin-$T$).
+\item Some vertex of the triangle is a source of two directed edges
+  and another vertex is the target of two directed edges
+  ($LJ$-junction, $TJ$-junction or $\Delta$-junction).
+\item Every vertex of the triangle is both a source and a target
+  (pinwheel, pin-$T$).
 \end{enumerate}
 
 As indicated in parentheses, we have named each of the various contact
@@ -971,8 +973,8 @@ classified as a degenerate $LJ$-junction below.
 %\end{definition}
 
 % page 23-nonobtuse.
-\begin{lemma} There does not exist a  $3C$-triangle $T$ of type pin-$1$ with
-  pentagons $A$, $B$, and $C$.  
+\begin{lemma} There does not exist a $3C$-triangle $T$ of type pin-$1$
+  with pentagons $A$, $B$, and $C$.
 %Then $T$ is degenerate of type
 %  $\Delta$.
 % or type pin-$2$.
@@ -1311,7 +1313,8 @@ $T_0$ and $T_1$ has length less than $1.8$.
   $T_0$ has length at least $1.8$, then by the previous lemmas, its
   three edges have lengths at least $1.72$, $1.8$, $1.8$.  Then
 \[
-\area\{T_1,T_0\} > \ao + \area(1.72,1.8,1.8) > \ao + (\acrit + \epsN) = 2\acrit.
+\area\{T_1,T_0\} > \ao + \area(1.72,1.8,1.8) 
+> \ao + (\acrit + \epsN) = 2\acrit.
 \]
 % checked in calc.ml 2016/9
 This area inequality contradicts a defining property of pseudo-dimers.
@@ -1373,8 +1376,14 @@ $\area(T_-) > \acrit+\epsM$.
   be the angle between the two pentagons $A$ and $B$.  (See
   Figure~\rif{fig:large}.)  Modulo $2\pi/5$, we can assume that
   $\alpha\in [0,2\pi/5]$.  We say that the angle is {\it large} along
-  $(T,e)$ if $\pi/5<\alpha < 2\pi/5$.  (XX Do we need to redo calcs in
-  endpoint case $\alpha = 0 \equiv 2\pi/5$?)
+  $(T,e)$ if $\pi/5<\alpha < 2\pi/5$.  
+% N.B.
+% The way the code deals with alpha=2pi/5 is somewhat subtle.
+% The test in the code is just alpha >> pi15, and periodize_pent
+% is called on the angle, which normalizes to [0,2pi/5].
+% If the angle equals 2pi/5, then periodize pent splits the interval into two,
+% one interval containing 0 and the other containing 2pi/5.
+% In this case the test alpha >> pi15 fails.
 \end{definition}
 
 \blankfig{large}
@@ -1436,12 +1445,12 @@ The proof will fill the entire section.  The strategy of the proof is
 to give a sequence of area decreasing deformations to $(T_1,T_0)$,
 until the ice-ray dimer is reached.
 
-We fix notation that will be used throughout this section. Let $(T_1,T_0)$ be
- a dimer pair.  The $P$-triangle $T_1$ has a pentagon centered at
-each vertex.  We label the pentagons of $T_1$ as $A$, $B$, $C$, with
-$A$ and $C$ shared with $T_0$.  We call $B$ the outer pentagon of
-$T_1$.  Similarly, we label the pentagons of $T_0$ as $A$, $C$, $D$,
-with outer pentagon $D$ of $T_0$.
+We fix notation that will be used throughout this section. Let
+$(T_1,T_0)$ be a dimer pair.  The $P$-triangle $T_1$ has a pentagon
+centered at each vertex.  We label the pentagons of $T_1$ as $A$, $B$,
+$C$, with $A$ and $C$ shared with $T_0$.  We call $B$ the outer
+pentagon of $T_1$.  Similarly, we label the pentagons of $T_0$ as $A$,
+$C$, $D$, with outer pentagon $D$ of $T_0$.
 
 
 \begin{lemma}  
@@ -1467,11 +1476,11 @@ place in several stages.  We give a summary of the stages here, before
 going into details.  Here is the proof sketch:
 
 \begin{enumerate}
-\item We deform the dimer pair so that each of $T_0$ and $T_1$ is $O2C$
-or long isosceles.
+\item We deform the dimer pair so that each of $T_0$ and $T_1$ is
+  $O2C$ or long isosceles.
 \item We deform so that each of $T_0$ and $T_1$ is $O2C$.
-%\item We deform so that both triangles are triple contact, or so that both
-%are $O2C$ and $T_1$ is long isosceles.
+  % \item We deform so that both triangles are triple contact, or so
+  %   that both are $O2C$ and $T_1$ is long isosceles.
 \item We show that both triangles are triple contact.
 \item Working with triple contact triangles, we compute that the
   condition $\area\{T_0,T_1\}\le 2\acrit$ implies that $(T_1,T_0)$
@@ -1526,7 +1535,7 @@ between $T_0$ and $T_1$.  Thus, it is not long isosceles.
 We now consider the case $T=T_1$.  In view of the reductions of the
 previous subsection, we may assume that $T_1$ has primary contact and
 that $T_1$ is long isosceles.  We may further assume that translation
-of the outer pentagon maintains contact (with  $A$ or $C$)
+of the outer pentagon $B$ while maintaining contact (with  $A$ or $C$)
 in an area decreasing direction would violate the constraint that the
 longest edge of $T_1$ is the shared edge.  (In other words, the
 translation that decreases area would increase the edge length of the
@@ -1589,18 +1598,22 @@ edges of the isosceles triangle.
   Suppose to the contrary that the rotation is increasing in
   $\dx{BC}$.  Choose coordinates so that the $x$-axis passes through
   $\c_A$ and $\c_C$, with origin at $\c_A$, with $\c_C$ in the right
-  half-plane, and with $\c_B$ in the positive half-plane.  We claim
-  that the distance from $\c_A$ to the the $x$-axis is at least
-  $2\kappa$ so that the area of the triangle is at least $2\kappa^2 >
-  \acrit$, contrary to the assumption that the triangle $T$ is
-  subcritical.  To prove the claim, we disregard the pentagon $C$.  We
-  rotate $B$ about $\v_{AB}$ until $A$ and $B$ have slider contact,
-  then we rigidly rotate $A$ and $B$ about $\c_B$, keeping their
-  relative positions fixed, until the slider edge of $A$ is
-  horizontal.  This rotation decreases the distance of $\c_B$ to the
-  $x$-axis.  Now the result is clear: the point $\v_{AB}$ has distance
-  at least $\kappa$ to the $x$-axis, and the center $\c_B$ is directly
-  distance $\kappa$ above the point.
+  half-plane, and with $\c_B$ in the first quadrant.  We claim that
+  the distance from $\c_A$ to the the $x$-axis is at least $2\kappa$
+  so that the area of the triangle is at least $2\kappa^2 > \acrit$,
+  contrary to the assumption that the triangle $T$ is subcritical.  To
+  prove the claim, we disregard the pentagon $C$.  We translate $B$
+  directly downward, rotating $A$ as needed about $\c_A$ so that it
+  maintains pointer contact with $B$.  Eventually, slider contact is
+  established between $A$ and $B$, and the configuration falls into
+  the setting of the previous lemma.
+  %rotate $B$ about $\v_{AB}$ until $A$ and $B$ have slider contact,
+  %then we rigidly rotate $A$ and $B$ about $\c_B$, keeping their
+  %relative positions fixed, until the slider edge of $A$ is
+  %horizontal.  This rotation decreases the distance of $\c_B$ to the
+  %$x$-axis.  Now the result is clear: the point $\v_{AB}$ has distance
+  %at least $\kappa$ to the $x$-axis, and the center $\c_B$ is directly
+  %distance $\kappa$ above the point.
 \end{proof}
 
 As a corollary of these two lemmas, if $d_{AB}$ is not a longest edge, then
@@ -1637,8 +1650,8 @@ Let $T$ be a triangle with double contact at $B$.  We assume that
 $\c_A$ and $\c_C$ lie on the $x$-axis with $\c_A$ to the left of
 $\c_C$, and with $\c_B$ in the upper half-plane.  If $\c_A$ is free to
 translate to the right or if $\c_C$ is free to translate to the left
-without overlapping pentagons, then we do so.  We assume that we are not
-in this trivial case.
+without overlapping pentagons, then we do so.  We assume that we are
+not in this trivial case.
 
 The squeezing deformation is defined as a motion that translates $B$
 directly upward away from the $x$-axis, while translating $A$ to the
@@ -1733,9 +1746,9 @@ shift notation and refer to labels on pentagons in the pin-$T$
 configuration shown in Figure~\rif{fig:cord-pint}.  We claim that if
 the area the triangle has area less than $\acrit+\epsN$, then the edge
 length $\dx{BC}$ in that figure is the unique longest edge of the
-triangle.  This claim is established by computer
-calculation.  (See Section~\rif{sec:one-pintx}.)  This means
-that the shared edge of the pin-$T$ triangle is determined.
+triangle.  This claim is established by computer calculation.  (See
+Section~\rif{sec:one-pintx}.)  This means that the shared edge of the
+pin-$T$ triangle is determined.
 %calculation dimer.ml:one\_pintx.
 
 Since $T_0$ and $T_1$ both have triple contact, the dimer pair
@@ -1916,8 +1929,8 @@ second derivative of the area function as a function of $t$ and
 calculate that it is always positive.  Thus, the area function has a
 unique global minimum on $|t|\le 0.01$.  By symmetry in the underlying
 geometry, it is clear that the area function has derivative zero along
-$\Gamma$ at $t=0$.  The global minimum is therefore given at $t=0$,
-which is the ice-ray dimer.
+$\Gamma$ at $t=0$.  (See Figure~\rif{fig:Kdimer-critical}.) The global
+minimum is therefore given at $t=0$, which is the ice-ray dimer.
 
 \section{Pseudo-Dimers}
 
@@ -2057,8 +2070,8 @@ If $(T_1,T_0)\in\PD$, then $n_-(T_0)=0$.
 > (2\acrit-\epsM) -\acrit = \acrit - \epsM.
 \]
 
-We first treat the case that $n_+(T_0)>0$ or $m_+(T_0)>0$.  Then we have $n_+(T_0)+m_+(T_0)\ge
-1$.  Thus, 
+We first treat the case that $n_+(T_0)>0$ or $m_+(T_0)>0$.  Then we
+have $n_+(T_0)+m_+(T_0)\ge 1$.  Thus,
 \[
 b(T_0) \ge \area(T_0) + \epsM (n_+(T_0)+m_+(T_0)) > (\acrit - \epsM)
 + \epsN > \acrit.
@@ -2503,8 +2516,8 @@ from $\p$ to the first point $\s$ beyond $\q$ such that
 $\norm{\s}{\q}=2\kappa$.  If $\theta\ge\pi$, a point $\r'\ne \r$
 satisfying the constraints does not exist.  Assume $\theta < \pi$.  As
 the figure indicates, $\norm{\p}{\r'}$ is minimized (as a function of
-$d_2$) when $\r'=\s$, and $d_3' = 2\kappa$, the lower constraint.  Then $d_2 =
-\norm{\p}{\r'}\ge \norm{\p}{\s}= 2\eta\sin(\theta/2)$.
+$d_2$) when $\r'=\s$, and $d_3' = 2\kappa$, the lower constraint.
+Then $d_2 = \norm{\p}{\r'}\ge \norm{\p}{\s}= 2\eta\sin(\theta/2)$.
 \end{proof}
 
 \tikzfig{areta}{
@@ -2592,9 +2605,9 @@ theorem for clusters.
 \begin{proof}  
   We use Lemma~\rif{lemma:sequence}.  Assume that $T\rab T_0$.  There
   is no arrow $T'\rab T$, with $T'\ne T_0$, because that would also
-  produce a sequence $T' \rab T \rab T_0$ of  three 
-  distinct triangles.  There is a unique arrow out of $T$.  Thus, we
-  have accounted for all of the arrows in and out of $T$.
+  produce a sequence $T' \rab T \rab T_0$ of three distinct triangles.
+  There is a unique arrow out of $T$.  Thus, we have accounted for all
+  of the arrows in and out of $T$.
 
   There is no arrow $T_0\rab T''$, with $T''\ne T_1$, because that
   would produce a sequence $T_1\rab T_0\rab T''$ of  three 
@@ -2865,8 +2878,8 @@ In the remaining cases, every triangle in $\C$ is obtuse.
 
 In this case, $\tn\le 3$.  It will not be necessary to create subcases
 according to whether short edges are at least $2\kappa$ or $1.72$.  We
-will show that we can relax the lower bound on the short edges to $2\kappa$
-and still obtain the bound (\rif{eqn:n}).
+will show that we can relax the lower bound on the short edges to
+$2\kappa$ and still obtain the bound (\rif{eqn:n}).
 
 We minimize area by flattening $T_0$ by stretching its long edge until
 $\eta(T_0)=2$.  We further decrease area, keeping the circumradius
@@ -3186,12 +3199,12 @@ b(T_1)+b(T_0)
 The main inequality follows if we show that $n_+(T_0)>0$ or
 $m_+(T_0)>0$.  Assume for a contradiction that $n_+(T_0)=m_+(T_0)=0$.
 Pick $T$ such that $T_0\Ra T$.  The condition $n_+(T_0)=0$ implies
-that $(T_0,T)\not\in\N$.  
-The longest edge of $T_0$ is at least $1.72$ by Lemma~\rif{lemma:172}.
-According to the definition of $\M$, we have
-$m_+(T_0)>0$ unless uniqueness fails: there exists $T'_1\ne T_1$ such
-$(T'_1,T_0)\in\PD$.  This is impossible by Lemma~\rif{lemma:pd-1}, because the cardinality of
-$\C$ is only two.  This completes the case of a pseudo-dimer.
+that $(T_0,T)\not\in\N$.  The longest edge of $T_0$ is at least $1.72$
+by Lemma~\rif{lemma:172}.  According to the definition of $\M$, we
+have $m_+(T_0)>0$ unless uniqueness fails: there exists $T'_1\ne T_1$
+such $(T'_1,T_0)\in\PD$.  This is impossible by
+Lemma~\rif{lemma:pd-1}, because the cardinality of $\C$ is only two.
+This completes the case of a pseudo-dimer.
 
 By Lemmas~\rif{lemma:n2-0} and~\rif{lemma:m1-0}, we have
 $m_+(T_0)=n_-(T_0)=0$.  Thus,
@@ -3419,31 +3432,32 @@ this leads to $2^k$ times the number of cases.
   coordinates}\libel{sec:banana}
 
 Inversely, $d_{AB} = \norm{\c_A}{\c_B}$, $\theta$, and $\theta'$
-determine $(x_\alpha,\alpha)$.  In fact, any two of $d_{AB}$, $\theta$, $\theta'$
-determine $(x_\alpha,\alpha)$ up to finite ambiguity.
+determine $(x_\alpha,\alpha)$.  In fact, any two of $d_{AB}$,
+$\theta$, $\theta'$ determine $(x_\alpha,\alpha)$ up to finite
+ambiguity.
 
 
-To give an example of some of the calculations used in the computer code,
-in this subsection, we describe how to describe a configuration of two
-pentagons $(A,B)$ in contact using the coordinates $\dx{AB}$ and
-$\theta'$ when pentagon $B$ is the pointer and $A$ is the
+To give an example of some of the calculations used in the computer
+code, in this subsection, we describe how to describe a configuration
+of two pentagons $(A,B)$ in contact using the coordinates $\dx{AB}$
+and $\theta'$ when pentagon $B$ is the pointer and $A$ is the
 receptor.  (In particular, we are not working with extended
 coordinates in this subsection.)  Our computations depend on having
 fast, numerically-stable algorithms for computing configurations in
 terms of these variables on intervals.  It is a matter of simple
-trigonometry to express $\theta$ in terms of $\dx{AB}$ and
-$\theta'$.  However, it is somewhat more work to give good
-interval bounds on $\theta$ as a function of intervals
-$\dx{AB}$ and $\theta'$.
+trigonometry to express $\theta$ in terms of $\dx{AB}$ and $\theta'$.
+However, it is somewhat more work to give good interval bounds on
+$\theta$ as a function of intervals $\dx{AB}$ and $\theta'$.
 
 \blankfig{banana2}
 
 In general, there can be two configurations of pentagons for given
-$\dx{AB}$ and $\theta'$. See Figure~\rif{fig:banana2}.  They can
-be distinguished in terms of coordinates $(x_\alpha,\alpha)$ by the sign
+$\dx{AB}$ and $\theta'$. See Figure~\rif{fig:banana2}.  They can be
+distinguished in terms of coordinates $(x_\alpha,\alpha)$ by the sign
 of $h := x_\alpha-\sigma$.  We will describe the configuration that is
 obtained when $h$ is non-negative.  By reversing orientation of the
-figure (with the symmetry \rif{eqn:sym}), the variables transform according to the rule
+figure (with the symmetry \rif{eqn:sym}), the variables transform
+according to the rule
 \[
 h \mapsto -h,\quad 
 \theta' \mapsto -\theta',
@@ -3884,10 +3898,10 @@ Now we specialize to $LJ$-junctions with a shared edge $C\to A$.
 Then $(\bar A,\bar B,\bar C)=(C,B,A)$.
 
 The shared variables are $(\bar \beta,\bar x_\beta)=(\beta,x_\beta)$.
-The nonshared variable is $\bar\alpha=\gamma' = 2\pi/5-\gamma\ge0$.  These
-coordinates are numerically stable.  We compute other angles and edges
-by triangulating the $L$ by extending the receptor edge of $A$ and
-using the law of sines.
+The nonshared variable is $\bar\alpha=\gamma' = 2\pi/5-\gamma\ge0$.
+These coordinates are numerically stable.  We compute other angles and
+edges by triangulating the $L$ by extending the receptor edge of $A$
+and using the law of sines.
 
 
 \subsubsection{$LJ_2$-junction type}
