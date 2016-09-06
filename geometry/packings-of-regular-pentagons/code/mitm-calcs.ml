@@ -78,6 +78,19 @@ let forall_alpha_pair f (t,t') =
    Thus, the pent2 cluster is enirely outof domain if it is fully in
    the pseudo-dimer domain *)
 
+(* 
+   The way the exact equality th+th' = pi25 is handled is a bit
+   subtle.
+   In the article, large is defined as alpha > pi15 and alpha < pi25.
+   If the interval th+th' contains pi25, then when periodize_pent0
+   is called, the transform of the interval th+th' contains 0.
+   In this case, the test forall_alpha_constraint_pseudo_dimer fails.
+   Thus we don't need the explicit condition alpha << pi25.
+   (But it would not hurt to add it.)
+*)
+
+let _ = exists (mem_I 0.0) (Pet.periodize_pent0 (pi25));;
+
 let forall_alpha_constraint_pseudo_dimer (th,th') = 
   forall_alpha0 (fun alpha -> alpha >>pi15) (th+th');;
 
@@ -148,7 +161,7 @@ let init2Cps_isosceles_BC_AC = (* 2C settings with isosceles BC=AC *)
   let fn = (extra,fillfn,outdomfn',areafn,keyfn) in
   (fn,ps);;
 
-(* XX could add more constraints
+(* N.B. We could add more constraints
    or dAB >> dAC or dBC >> dAC 
    or disjoint_I dAC ( merge_I (two*kappa) (179//100)) *)
 
