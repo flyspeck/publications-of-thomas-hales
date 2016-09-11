@@ -5,18 +5,13 @@
 % 
 
 %Title: Packings of Regular Pentagons in the Plane,
-%Part I, preliminaries.
 % draft Nov, 2015.
 % version 2, June 2016
 %Authors: Thomas Hales, Woden Kusner.
 
-% XX to do:
-%% more graphics throughout.
-
-
-
 % global spellcheck (done Aug 27 2016).
 % Notation: kappa = c = rho = cos pi /5.
+% global check of calculations in calcs.ml completed 2016/9/11.
 
 \def\area{\op{area}}
 \def\areta{\op{area}_\eta}
@@ -27,9 +22,6 @@
 \def\Ra{\Rightarrow}
 \def\nRa{\nRightarrow}
 \def\rab{\Ra_{b}}
-%\def\rat{\Rightarrow}
-%\def\ra#1{\Rightarrow_{#1}}
-%\def\na#1{{\nRightarrow}_{#1}}
 
 \def\C{\mathcal C}
 \def\S{\mathcal S}
@@ -40,9 +32,7 @@
 \def\cong{\equiv}
 \def\r{{\mathbf r}}
 \def\s{{\mathbf s}}
-\def\bl{\bar\ell}
-%\def\epso{\epsilon_0}
-%\def\expo{\epsilon'_0}
+\def\bl{\ell}
 \def\epsM{\epsilon_{\M}}
 \def\epsN{\epsilon_{\N}}
 \def\c{{\mathbf c}}
@@ -54,9 +44,11 @@
 \def\tb{\underline{b}}
 \def\tn{\bar n}
 
-\def\libel#1{{\text{\sc [#1]~}}\label{#1}}
-\def\rif#1{(\ref{#1}-{\text{\sc #1})}}
-%\def\raf#1{\rif{#1}}
+%for debugging:
+%\def\libel#1{{\text{\sc [#1]~}}\label{#1}}
+%\def\rif#1{(\ref{#1}-{\text{\sc #1})}}
+\def\libel#1{\label{#1}}
+\def\rif#1{\ref{#1}}
 
 % tikz.
 \def\smalldot#1{\draw[fill=black] (#1) node [inner sep=0.8pt,shape=circle,fill=black] {}}
@@ -186,12 +178,15 @@ conjecture.  The proof appears at the end of Section~\rif{sec:nonobtuse}.
   pentagons that attains optimal density.
 \end{theorem}
 
-In this article, we consider packings of congruent regular pentagons in
-the Euclidean plane.   Density is scale-invariant.  Without loss of generality,
-we may assume that all pentagons are regular pentagons of fixed
-circumradius $1$.  The inradius of each pentagon is $\kappa:= \cos
-(\pi/5) = (1+\sqrt{5})/4 \approx 0.809$. We set $\sigma := \sin(\pi/5)
-\approx 0.5878$.  The length of each pentagon edge is $2\sigma$.
+In this article, we consider packings of congruent regular pentagons
+in the Euclidean plane.  Density is scale-invariant.  Without loss of
+generality, we may assume that all pentagons are regular pentagons of
+fixed circumradius $1$.  The inradius of each pentagon is $\kappa:=
+\cos (\pi/5) = (1+\sqrt{5})/4 \approx 0.809$. We set $\sigma :=
+\sin(\pi/5) \approx 0.5878$.  The length of each pentagon edge is
+$2\sigma$.  (All of the numerical calculations in this article have
+been checked in a file {\tt calcs.ml}, which is available for download
+from the project code repository \cite{Git}.)
 % checked 2016/2/18 in calcs.ml.
 
 All pentagon packings will be assumed to be saturated; that is, no
@@ -369,18 +364,6 @@ about this later.)
 \end{scope}
 }
 
-
-
-
-
-
-%\begin{example} 
-%  The area of an acute Delaunay triangle can have area less than
-%  $\acrit$.  The longest edge of an acute subcritical Delaunay triangle
-%  cannot be less than $1.72$.   (See Lemma~\rif{lemma:172}.)  See
-%  Figure~\rif{fig:subcritical}.
-%\end{example}
-
 \tikzfig{subcritical}{Subcritical triangles.
 Experimentally, the first triangle has the smallest area among all
 acute Delaunay triangles.  The second triangle is a cloverleaf that
@@ -392,25 +375,22 @@ It is equalateral with edge length about $1.72256$.}
 \threepent{0.00}{0.00}{85.23}{0.93}{1.33}{265.23}{1.86}{0.00}{229.23};
 \draw (0.5,-1.5) node {$\area\approx 1.23719$};
 \end{scope}
-\begin{scope}[scale=0.5,xshift=6cm]
+\begin{scope}[scale=0.5,xshift=5cm]
 \threepent{0.00}{0.00}{90.00}{0.95}{1.31}{270.00}{1.90}{0.00}{234.00};
 \draw (0.5,-1.5) node {$\area\approx 1.24$};
 \end{scope}
-\begin{scope}[scale=0.5,xshift=12cm]
+\begin{scope}[scale=0.5,xshift=10cm]
 \threepent{0.00}{0.00}{96.03}{0.86}{1.49}{264.03}{1.72}{0.00}{216.03};
 \draw (0.5,-1.5) node {$\area\approx 1.285$};
 \end{scope}
+\begin{scope}[scale=0.5,xshift=15cm] %example4
+\threepent{0.00}{0.00}{109.36}{0.83}{1.59}{235.36}{1.62}{0.00}{145.36};
+\draw (0.5,-1.5) node {$\area\approx 1.286$};
+\end{scope}
 }
 % format_pinwheelAB zero zero (m 0.16246);;
+% example4: format_ljedgeAC (ratpi 3 10) zero (m 0.68);;
 
-
-
-
-%\begin{example}    
-%  Numerically, it appears that the ice-ray triangle can be
-%  continuously deformed, along an area-decreasing path, into the acute
-%  Delaunay triangle of minimum area. See Figure~\rif{fig:KK2min}.
-%\end{example}
 
 \tikzfig{KK2min}{Ice-ray triangle deformation.
 The ice-ray triangle is not a local minimum of the area function.
@@ -434,9 +414,6 @@ numerically minimum area (right). }
 %format_pinwheelAB zero zero sigma;;
 %format_pinwheelAB zero zero (m 0.35);;
 %format_pinwheelAB zero zero (zero);;
-
-
-
 
 \tikzfig{Gamma}{Ice-ray dimer deformation.  The ice-ray
   dimer (center) admits a shear motion that preserves all edges of
@@ -472,7 +449,7 @@ numerically minimum area (right). }
   adjacent to $T_0$ along the longest edge of $T_1$, but such that (2)
   the longest edge of $T_0$ is not the edge shared with $T_1$.  We
   call such pairs {\it pseudo-dimers}.    The illustrated
-  pseudo-dimer has area about $2\acrit - 10^{-5}$, and the triangle $T_1$
+  pseudo-dimer has area about $2\acrit - 10^{-5}$, and the triangle $T_0$
   has longest edge length about $1.84$.  The correction
   term $\epsM = 0.008$ is based on this and closely related examples
   of pseudo-dimers.  Pseudo-dimers add
@@ -483,19 +460,10 @@ numerically minimum area (right). }
 \threepent{0.00}{0.00}{-50.58}{1.10}{-1.49}{-181.07}{1.73}{0.00}{-217.07};
 \draw (1.3,-0.1) node {$T_1\Rightarrow T_0$};
 \draw (0.8,-1) node {$\Searrow$};
-%\draw (6,0.8) node {$\area(T_1)< \acrit$};
-%\area(T_0)+\area(T_1)< 2\acrit\end{align*}};
 \end{scope}
 }
 %format_shared_pinwheelAC (m 0.157) (m 0.2359) (m 0.2376);;
 %format_shared_lj2edgeAC zero (pi25-(m 0.2359)) (two*sigma  - (m 0.2376));;
-
-
-%\begin{example}  
-%  The area of an obtuse Delaunay triangle can have area significantly
-%  less than $\acrit$.  That is, obtuse subcritical triangles exist.
-%  See Figure~\rif{fig:obtuse}.
-%\end{example}
 
 \tikzfig{obtuse}{Obtuse Delaunay triangles can have small area.  A
   triangle with circumradius about $2$ and area about $0.98$
@@ -601,8 +569,8 @@ $T_-$ by the condition $T_0\Ra T_-$.  The shared edge of $T_0$ and
 $T_-$, leading out of the pseudo-dimer is called the {\it egressive} edge of
 the pseudo-dimer or of the triangle $T_0$.
 
-For any set $\S$ of ordered pairs, and any Delaunay triangles $T_+$ and $T_-$,
-let 
+For any set $\S$ of ordered pairs, and any Delaunay triangles $T_+$
+and $T_-$, let
 \[
 n_+(T_+,\S) = \card \{T_-\mid (T_+,T_-)\in \S\}
 \quad\text{ and }\quad
@@ -779,7 +747,7 @@ We give some simple consequences of our definitions.
 
 
 
-\subsection{the main Inequality}
+\subsection{the main inequality}
 
 \begin{lemma}\libel{lemma:main}  
 If  every cluster $\C$ in every saturated packing of regular
@@ -870,7 +838,7 @@ unique periodic packing that achieves maximal density.
 
 
 
-\section{Pentagons in contact}\libel{sec:contact}
+\section{Pentagons in Contact}\libel{sec:contact}
 
 
 \subsection{notation}
@@ -1162,12 +1130,6 @@ classified as a degenerate $LJ$-junction below.
   $\v_{BC}$ (along the short run of the perimeter of $B$ from
   $\v_{AB}$ to $\v_{BC}$).  We allow the degeneracy $\v=\v_{AB}$.
   See Figure~\rif{fig:pin1}.
-%in degenerate cases.
-%Suppose that $A$ is in contact with $B$ and $C$ at points
-%  $\v_B$, $\v_C$ of $A$ that lie on adjacent edges of $A$.  Then we
-%  call the common endpoint $\v$ of those adjacent edges an {\it inner
-%    vertex} of $A$.  (The definition of inner vertex includes the
-%  degenerate case when a vertex of $A$ is $\v_B$ or $\v_C$.)
 \end{definition}
 
 \begin{definition} Let $T$ be a $3C$-triangle.  FIx the pointer
@@ -1178,24 +1140,9 @@ classified as a degenerate $LJ$-junction below.
   synonym for pin-$0$ and {\it pin-T} as a synonym for pin-$2$.
 \end{definition}
 
-%\begin{definition}
-%  A {\it pinwheel} is a $3C$-triangle in which all three pentagons are
-%  both pointers and receptors.  The following lemma identifies the
-%  geometric structure of such a $P$-triangle.  The two contact ponts
-%  on each pentagon are a vertex and another point on the same pentagon
-%  edge.
-%\end{definition}
-
 % page 23-nonobtuse.
 \begin{lemma} There does not exist a $3C$-triangle $T$ of type pin-$1$
   with pentagons $A$, $B$, and $C$.
-%Then $T$ is degenerate of type
-%  $\Delta$.
-% or type pin-$2$.
-%  Assume that $C$ points to $A$ at $\v_{CA}$, that $A$ points to $B$
-%  at $\v_{AB}$, and that $B$ points to $C$ at $\v_{BC}$.  Assume that
-%  $T$ is not (degenerately) type $\Delta$ (Figure~\rif{fig:delta}).
-%  Then $\v_{CA}$ and $\v_{BC}$ lie on the same edge of $C$.
 \end{lemma}
 
 \tikzfig{pin1}{A distorted pin-$1$ configuration.}{
@@ -1504,10 +1451,6 @@ the end of the article in Section~\rif{appendix:cc}.  In this section,
 we make use of the following lemmas, which are proved by computer.
 (Although further discussion appears at the end of the article, there
 is no circular reasoning involved in using those calculations here.)
-%We state a few calculations
-%that will not be needed until later to keep all the calculations
-%together.  They will be proved together using a meet-in-the-middle
-%algorithm in Section~\rif{sec:mitm}.
 
 \begin{lemma}[computer-assisted]\libel{NKQNXUN} \libel{calc:pseudo1} 
 Let $(T_1,T_0)\in \PD$.  The edge shared between
@@ -1612,17 +1555,11 @@ with a large angle $\alpha$ along $(T,e)$.}
 \draw (0,0) node[anchor=north] {$A$};
 \draw (0,0) node[anchor=south] {$e\ $};
 \draw (1.1,1.49) node[anchor=south] {$B$};
-%\coordinate (Aa) at (50.58:1);
-%\coordinate (Ab) at (50.58+72:1);
-%\coordinate (B) at (1.1,1.49);
-%\coordinate (Ba) at ($(B)+ (181.07:1)$);
 \draw[black] (50.58:1) -- ++ ($2*(50.58+72:1) - 2*(50.58:1)$);
 \draw[black] (50.58:1) -- ++ ($2*(1.1,1.49)+2*(181.07:1) - 2*(50.58:1)$);
 \draw (-0.8,1.4) node {$\alpha$};
 \end{scope}
 }
-
-
 
 Let $T$ be a $P$-triangle and let $T'$ be the adjacent $P$-triangle
 along edge $e$.  We have the invariant
@@ -1715,14 +1652,13 @@ going into details.  Here is the proof sketch:
 \item We deform the dimer pair so that each of $T_0$ and $T_1$ is
   $O2C$ or long isosceles.
 \item We deform so that each of $T_0$ and $T_1$ is $O2C$.
-  % \item We deform so that both triangles are triple contact, or so
-  %   that both are $O2C$ and $T_1$ is long isosceles.
 \item We show that both triangles are triple contact.
 \item Working with triple contact triangles, we compute that the
   condition $\area\{T_0,T_1\}\le 2\acrit$ implies that $(T_1,T_0)$
   lies in a small explicit neighborhood of the ice-ray dimer.
-\item We construct a curve $\Gamma$ in the space of dimer pairs, with
-  parameter $t$ such that $t=0$ defines the ice-ray dimer.
+\item We construct a curve $\Gamma$ in the configuration space of
+  dimer pairs, with parameter $t$ such that $t=0$ defines the ice-ray
+  dimer.
 \item Working with triple contact triangles in a small explicit
   neighborhood of the ice-ray dimer, and for some small explicit
   constant $M$, each dimer pair can be connected by a path (in the
@@ -1786,7 +1722,7 @@ the rest of the proof, we disregard $T_0$.
 The proof is computer assisted.  We deform $T_1$ in an area decreasing
 way into a configuration that can be easily computed.  Without loss of
 generality, we assume that the outer pentagon $B$ is in contact with
-pentagon $A$.  Since we are now disregarding $T_0$, we may deform the
+pentagon $A$.  Because we are now disregarding $T_0$, we may deform the
 triangle $T_1$ by moving $C$, preserving the long isosceles constraint
 and decreasing area, until $C$ has primary contact.  In particular,
 $C$ is in contact with $A$ or $B$.
@@ -1799,9 +1735,9 @@ between $A$ and $B$ (whether slider or midpointer) is one of the long
 edges of the isosceles triangle.
 
 \begin{lemma}[slider-non-anomaly]  
-  Let $T$ be a subcritical nonobtuse $P$-triangle with pentagons $A$, $B$, and
-  $C$.  Assume that $B$ has slider contact with $A$.  Then the
-  translation of $B$ along the slider contact in the direction to
+  Let $T$ be a subcritical nonobtuse $P$-triangle with pentagons $A$,
+  $B$, and $C$.  Assume that $B$ has slider contact with $A$.  Then
+  the translation of $B$ along the slider contact in the direction to
   decrease the area also decreases the length $\dx{BC}$.
 \end{lemma}
 
@@ -1809,23 +1745,23 @@ edges of the isosceles triangle.
   Assume to the contrary that the translation is increasing in
   $\dx{BC}$.  Choose coordinates so that the $x$-axis passes through
   $\c_A$ and $\c_C$, with the origin at $\c_A$, with $\c_C$ in the
-  right half-plane, and with $\c_B$ in the positive half-plane (Figure~\rif{fig:slider}).  Our
-  contrary assumption means the the line $\lambda$ through the edge of
-  contact between $A$ and $B$ has positive slope.  Slider contact
-  implies that the center $\c_B$ lies on the line $\lambda'$ parallel
-  to $\lambda$ at distance $2\kappa$ from the origin.  Every point on
-  $\lambda'$ either has $y$-coordinate at least $2\kappa$ or negative
-  $x$-coordinate.  If the $y$-coordinate is at least $2\kappa$ the
-  triangle is not subcritical.  (The area is at least
-  $2\kappa^2>\acrit$.) If the $x$-coordinate of $\c_B$ is negative, then
-  the triangle $T$ is obtuse.
-  %distance $\dx{CB} \ge\kappa\sqrt8$ and again this implies that
-  %the triangle is not subcritical.
+  right half-plane, and with $\c_B$ in the positive half-plane
+  (Figure~\rif{fig:slider}).  Our contrary assumption means the the
+  line $\lambda$ through the edge of contact between $A$ and $B$ has
+  positive slope.  Slider contact implies that the center $\c_B$ lies
+  on the line $\lambda'$ parallel to $\lambda$ at distance $2\kappa$
+  from the origin.  Every point on $\lambda'$ either has
+  $y$-coordinate at least $2\kappa$ or negative $x$-coordinate.  If
+  the $y$-coordinate is at least $2\kappa$ the triangle is not
+  subcritical.  (The area is at least $2\kappa^2>\acrit$.) If the
+  $x$-coordinate of $\c_B$ is negative, then the triangle $T$ is
+  obtuse.
 \end{proof}
 
-\tikzfig{slider}{The center $\c_B$ of the nonobtuse triangle lands
-in the first quadrant and gives a triangle $(\c_A,\c_B,\c_C)$ of height and base
-both at least $2\kappa$.}{
+\tikzfig{slider}{The center $\c_B$ of the nonobtuse triangle lands in
+  the first quadrant and gives a triangle $(\c_A,\c_B,\c_C)$ of height
+  and base both at least $2\kappa$.}
+{
 [scale=1.0]
 \draw (0,0) -- (2,0);
 \draw (0,0) -- (0,2);
@@ -1847,10 +1783,10 @@ both at least $2\kappa$.}{
 
 
 \begin{lemma}[midpointer-non-anomaly]  
-  Let $T$ be a subcritical nonobtuse $P$-triangle with pentagons $A$, $B$, and
-  $C$.  Assume that $A$ has midpointer contact with $B$, with $A$
-  pointing to $B$ at $\v_{AB}$.  Then the rotation of $B$ about the
-  point of contact in the direction to decrease the area also
+  Let $T$ be a subcritical nonobtuse $P$-triangle with pentagons $A$,
+  $B$, and $C$.  Assume that $A$ has midpointer contact with $B$, with
+  $A$ pointing to $B$ at $\v_{AB}$.  Then the rotation of $B$ about
+  the point of contact in the direction to decrease the area also
   decreases the distance $\dx{BC}$.
 \end{lemma}
 
@@ -1867,22 +1803,14 @@ both at least $2\kappa$.}{
   maintains pointer contact with $B$.  Eventually, slider contact is
   established between $A$ and $B$, and the configuration falls into
   the setting of the previous lemma.
-  %rotate $B$ about $\v_{AB}$ until $A$ and $B$ have slider contact,
-  %then we rigidly rotate $A$ and $B$ about $\c_B$, keeping their
-  %relative positions fixed, until the slider edge of $A$ is
-  %horizontal.  This rotation decreases the distance of $\c_B$ to the
-  %$x$-axis.  Now the result is clear: the point $\v_{AB}$ has distance
-  %at least $\kappa$ to the $x$-axis, and the center $\c_B$ is directly
-  %distance $\kappa$ above the point.
 \end{proof}
 
-As a corollary of these two lemmas, if $d_{AB}$ is not a longest edge, then
-there exists a deformation decreasing area and $d_{BC}$.  This allows us to
- reduce the long isosceles triangle to a triangle with double
-contact and such that a long edge runs from   $\c_A$ to $\c_B$.
-The contact type between $A$ and $B$ is
-either slider contact or midpointer contact.  The configuration space
-of such triangles is three dimensional.  We choose coordinates and
+As a corollary of these two lemmas, if $d_{AB}$ is not a longest edge,
+then there exists a deformation decreasing area and $d_{BC}$.  This
+allows us to reduce the long isosceles triangle to a triangle with
+double contact and such that a long edge runs from $\c_A$ to $\c_B$.
+The contact type between $A$ and $B$ is either slider contact or
+midpointer contact.  We choose coordinates and
 compute\footnote{calculations iso\_2C and iso\_2C'} with interval
 arithmetic to show that no such triangle is subcritical.  This
 completes this reduction.
@@ -1898,7 +1826,7 @@ Section~\rif{sec:O2C}, we may assume without loss of generality that
 the triangle $T_0$ is not long isosceles.  By
 Lemma~\rif{calc:dimer-isosc}, we have that $T_1$ is not long
 isosceles.  Assuming that neither triangle is long isosceles, we show
-that both triangles can be brought into triple contact.  Since both
+that both triangles can be brought into triple contact.  Because both
 triangles are already $O2C$, this amounts to decreasing the edge
 between $\c_A$ and $\c_C$ until the pentagons $A$ and $C$ come into
 contact.  This deformation consists of a translation of all four
@@ -2011,8 +1939,8 @@ Section~\rif{sec:one-pintx}.)  This means that the shared edge of the
 pin-$T$ triangle is determined.
 %calculation dimer.ml:one\_pintx.
 
-Since $T_0$ and $T_1$ both have triple contact, the dimer pair
-$(T_1,T_0)$ lies in a $4$-dimensional configuration space.  The
+Because $T_0$ and $T_1$ both have triple contact, the dimer pair
+$(T_1,T_0)$ lies in a four-dimensional configuration space.  The
 strategy of the proof is to check by computer that there does not
 exist a dimer pair outside a small explicit neighborhood of the
 ice-ray dimer.  In other words, the area constrains $\area(T_1)\le
@@ -2081,25 +2009,16 @@ triple contact triangles with shared pentagons $A$ and $C$, where $A$
 points to $C$.  The   curve is described by the  shear motion that
 slides along all four edges of contact, illustrated in Figures
 \ref{fig:Gamma} and \ref{fig:Gamma'}.
-% Assume that $\c_A$ and $\c_C$ lie along the $x$ axis, with $\c_A$ to
-% the left of $\c_C$.  Let $B$ and $D$ be the two outer pentagons.  We
-% deform this dimer by fixing $A$, and translating $C$ vertically
-% (maintaining the pointer contact of $A$ to $C$).  We translate $B$
-% and $D$ to maintain all edge to edge contacts: $(A,B)$, $(A,D)$,
-% $(C,B)$, $(C,D)$.
 The parameter $t$ is the signed distance between the pointer vertex
 $A\to C$ and the midpoint of the receptor edge on $C \leftarrow A$.
-% vertical translation distance of the pentagon $C$.
 See Figure~\rif{fig:Gamma'}.
-
-
-
 
 \tikzfig{Gamma'}{Thre configurations along the curve $\Gamma$.}
 {
 \begin{scope}[scale=0.5,xshift=-6cm]
 \threepentnoD{0.00}{0.00}{79.87}{0.93}{1.36}{259.87}{1.83}{0.00}{223.87};
-\threepentnoD{0.00}{0.00}{-64.13}{1.03}{-1.50}{-244.13}{1.83}{0.00}{-208.13};
+\threepentnoD{0.00}{0.00}{-64.13}{1.03}{-1.50}{-244.13}
+{1.83}{0.00}{-208.13};
 \draw (0,0) node {$A$};
 \draw (1.83,0) node {$C$};
 \draw (0.5,-3.5) node {$t= 0.25$};
@@ -2146,72 +2065,22 @@ the two triangles in a $\Gamma$-dimer.
 
 At this stage, we show that we can reduce to points on the curve in
 the following sense.  Working with triple contact triangles in a small
-explicit neighborhood of the ice-ray dimer ($|x_i|<0.01$ for
-$i=1,2,3,4$ in appropriate coordinates), each dimer pair $(T_1,T_0)$
-can be connected by a path (in the dimer configuration space) to a
-$\Gamma$-dimer with parameter $|t|<0.01$.  The area function is
-decreasing along this path.  We have two tasks in the subsection.
-First, we construct the path $P$, and then we show that the area
-function decreases along the path.  We will use $s$ as a local
-parameter on the path ($s\mapsto P(s)$), which we need to keep
-separate from the parameter $t$ for $\Gamma$.  We construct a path
-such that $s=0$ determines the initial dimer pair $(T_1,T_0)$ and such
-that the path $P$ is defined for $s\in [0,s_0]$, for some $s_0>0$.
+explicit neighborhood $U$ of the ice-ray dimer ($|x_i|<M$, where
+$M=0.01$, for $i=1,2,3,4$ in appropriate coordinates), each dimer pair
+$(T_1,T_0)$ can be connected by a path (in the dimer configuration
+space) to a $\Gamma$-dimer with parameter $|t|<0.01$.  The area
+function is decreasing along this path.  We have two tasks.  First, we
+construct the path $P$, and then we show that the area function
+decreases along the path.  We will use $s$ as a local parameter on the
+path ($s\mapsto P(s)$), which we need to keep separate from the
+parameter $t$ for $\Gamma$.  We construct a path such that $s=0$
+determines the initial dimer pair $(T_1,T_0)$ and such that the path
+$P$ is defined for $s\in [0,s_0]$, for some $s_0>0$.
 
-We show how to construct paths for $T_0$ and $T_1$ separately, and
-then we show that the paths are compatible and give a path for the
-dimer pair $(T_1,T_0)$.  We consider cases, according to the type of
-the triple contact.  As mentioned above, there are $8$ types for each
-triangle, but most of them do not approach a triangle in the ice-ray
-dimer.  We may restrict our attention to the four triangle types that
-approach the ice-ray dimer.  These are the pinwheel, $LJ_1$-junction,
-$LJ_2$-junction, and $TJ_3$-junction.  These types and their paths are
-constructed explicitly in Section~\rif{sec:coords}.
-
-The argument that the paths for $T_0$ and $T_1$ fit together
-compatibly is elementary.  We assume that $A$ has contact with $C$ and
-that $A$ points into $C$.  The relative position of $A$ and $C$ is
-described by two variables $x_{AC}\in[0,2\sigma]$ and
-$\alpha_{AC}\in[0,2\pi/5]$.  The variable $\alpha_{AC}$ depends on an
-orientation provided by the triangle $T=T_0$ or $T=T_1$.  They have
-opposite orientation, and
-\begin{equation}\libel{eqn:alpha-sum}
-\alpha_{AC,0}+\alpha_{AC,1} = 2\pi/5,\quad x_{AC,0} + x_{AC,1} = 2\sigma.
-\end{equation}
-where we have added a subscript to show the dependence on $T_i$.
-These equations are the compatibility conditions for the two
-$P$-triangles to fit together.  In every case, the path $P$ fixes
-$x_{AC}$, and $\alpha_{AC}(s)$ as a function of $s$ is
-\begin{equation}\libel{eqn:alpha-pi5}
-\alpha_{AC}(s) = 
-\begin{cases}
-\alpha_{AC}(0) + s&\text{if } \alpha_{AC}(0) < \pi/5\\
-\alpha_{AC}(0) - s&\text{if } \alpha_{AC}(0) > \pi/5\\
-\end{cases}
-\end{equation}
-(If $\alpha_{AC}(0) = \pi/5$, then $\alpha_{AC}$ remains fixed along
-the path $P$.)  This gives compatibility. If for example,
-$\alpha_{AC,0}(0) < \pi/5$, then
-\[
-\alpha_{AC,0}(s) + \alpha_{AC,1}(s) 
-= (\alpha_{AC,0}(0) + s) + (\alpha_{AC,1} - s) = 2\pi/5,
-\]
-as desired.
-
-We need to check that the path $P$ terminates at some dimer pair
-$\Gamma(t)$.  This follows from the following properties of the path
-that are true by construction.  The angle $\alpha_{AC}$ moves towards
-$\pi/5$. (See Equation~\rif{eqn:alpha-pi5}). The pentagons $B$ and $D$
-maintain double contact and rotate towards slider contact.  If
-$\alpha_{AC}=\pi/5$ and if $B$ (or $D$) has slider contact with $A$ or
-$C$, then it has slider contact with both pentagons, and must
-therefore be a $\Gamma$-dimer.
-
-We claim that the parameter $t$ satisfies $|t|<0.01$.  In fact,
-because $t' := x_{AC}-\sigma$ is a coordinate defining the coordinate
-neighborhood of the ice-ray dimer so $|t'|<0.01$.  Also, $t'$ remains
-fixed along the path $P$, and $t'$ restricts to the parameter $t$ on
-$\Gamma$.  Thus, at the terminal point of the path, $|t|<0.01$.
+Section~\rif{sec:shared} accomplishes these tasks.  The path $P$ is
+constructed and it terminates on $\Gamma$.  If the initial point of
+the path lies in the neighborhood $U$, then the path stays in $U$
+and terminates at a point on $\Gamma$ with parameter $|t|<M$.
 
 Finally, we need to check that the area function is decreasing. This,
 we prove by a computer calculation of the derivative of the area
@@ -2328,7 +2197,7 @@ If $(T_1,T_0)\in\PD$, then $n_-(T_0)=0$.
 
 \begin{proof} 
   Suppose for a contradiction that $n_-(T_0)>0$.  Then $(T_+,T_0)\in
-  \N$ for some $T_+$.  Since $T_0$ is nonobtuse,
+  \N$ for some $T_+$.  Because $T_0$ is nonobtuse,
   Lemma~\rif{lemma:obtuse-b-arrow} implies that there exists some
   obtuse triangle $T$ such that $T\Ra T_0$.  This is contrary to the
   previous lemma.
@@ -2347,13 +2216,13 @@ If $(T_1,T_0)\in\PD$, then $n_-(T_0)=0$.
   which has length less than $1.8$.  This gives the claim.
 
   Next we claim that $n_+(T_1)=0$.  Otherwise, $(T_1,T_0)\in \N$.
-  Since $T_0$ is nonobtuse, Lemma~\rif{lemma:obtuse-b-arrow} 
+  Because $T_0$ is nonobtuse, Lemma~\rif{lemma:obtuse-b-arrow} 
   implies that there exists an obtuse
   triangle $T$ such that $T\Ra T_0$.  This contradicts
   Lemma~\rif{lemma:pd-obtuse}.
 
   Finally, we claim that $n_-(T_1)=0$.  Otherwise, $(T_+,T_1)\in \N$ for
-  some $T_+$.  Since $T_1$ is nonobtuse, this implies that there exists
+  some $T_+$.  Because $T_1$ is nonobtuse, this implies that there exists
   an obtuse triangle $T$ such that $T\Ra T_1$.  This contradicts
   Lemma~\rif{lemma:pd-obtuse}.
 \end{proof}
@@ -2383,11 +2252,6 @@ This completes this case.
 
 For the remainder of the proof, we assume that $n_+(T_0)=m_+(T_0)=0$.  In
 particular, we have $b(T_0) = \area(T_0)$.
-
-%Next, we treat the case in which $T_1$ is the unique triangle $T$ such
-%that $(T,T_0)\in\PD$.  In this case, $(T_0,T_1)\not\in\M$, and
-%$(T_0,T_1)\in\M$, so that $m_+(T_0)=1$.  Thus $b(T_0) > (\acrit-\epsM)
-%+ \epsM = \acrit$.
 
 Let $T_0\Ra T_-$.  We have $(T_0,T_-)\in\M$ by the definition of $\M$,
 unless the uniqueness property of $\M$ condition 4 fails.  That is,
@@ -2434,7 +2298,7 @@ treat the easy case of singletons.
   constant $1.72$ is built into the definition of the constants
   $n_\pm,m_\pm$. This gives $n_+(T)=n_-(T) = m_+(T)=m_-(T)=0$.  Thus,
   $b(T)=\area(T)$.  We have $\area(T) > \acrit$ by
-  Lemma~\rif{lemma:172}.  Since $T$ is not $b$-subcritical, there are
+  Lemma~\rif{lemma:172}.  Because $T$ is not $b$-subcritical, there are
   no arrows $T\rab -$.
 
   We claim that there cannot exist an arrow $T_+\rab T$.  Otherwise,
@@ -2489,10 +2353,6 @@ Next, we show the disjointness of dimers from pseudo-dimers.
   We claim that $T'_1\ne T_1$.  Otherwise, if $T_1=T'_1$, then
   $T'_1=T_1\Ra T_0$ and $T'_1\Ra T'_0$, so that $T_0 = T'_0$, which
   have shown impossible.  This proves the disjointness result.
-
-  % Finally, we claim that $T'_1\ne T_0$.  Otherwise if $T_0 = T'_1$,
-  % then $T'_1 = T_0\Ra T_1$ and $T'_1\Ra T'_0$, so $T_1 = T'_0$,
-  % which we have shown to be impossible.
 
   If $m_+(T) >0$, then there exists $T_1''$ such that $(T_1'',T)\in
   \PD$.  This is impossible for $T\in\{T_0,T_1\}$ by the disjointness
@@ -2632,15 +2492,12 @@ We are finally in a position to prove Theorem~\rif{thm:dimer}.
   We claim that $n_+(T_0)=n_+(T_1)=0$.  Otherwise, say
   $(T_1,T_0)\in\N$, and we have the contradiction $n_-(T_0)>0$.
 
-  This shows that $b(T_i)=\area(T_i)$, for $i=0,1$.  Since $T_0$ and
+  This shows that $b(T_i)=\area(T_i)$, for $i=0,1$.  Because $T_0$ and
   $T_1$ are both subcritical, they are also $b$-subcritical, and fall
   into the same cluster.  This is the full cluster, for otherwise, we
   would have say $T\rab T_0\rab T_1$, which is impossible by
   Lemma~\rif{lemma:rab-sequence}, for $T'$ nonobtuse.  And if $T'$ is
   obtuse, this contradicts Lemma~\rif{lemma:t2b-nonobtuse}).
-  %would give $T_0$ an edge of length at least
-  %$\kappa\sqrt8$.
-
   This gives the proof.
 \end{proof}
 
@@ -2653,9 +2510,6 @@ We are finally in a position to prove Theorem~\rif{thm:dimer}.
 
 We continue with our analysis of the clusters in a fixed saturated
 packing of regular pentagons.  
-%By an {\it obtuse cluster}, we mean any
-%cluster of $P$-triangles that contains at least one obtuse
-%triangle.
 
 \begin{lemma}\libel{lemma:notlong}  
   Let $T'$ and $T$ be $P$-triangles, such that $T'\Ra T$, where
@@ -2761,10 +2615,9 @@ the triangle are at least $2\kappa$.
 
 \begin{remark}\libel{rem:delaunay}
   Recall that the Delaunay property implies that two adjacent Delaunay
-  triangles $T_1$ and $T_2$ have the property that the angle
-  $\alpha_1$ of $T_1$ and $\alpha_2$ of $T_2$ satisfy $\alpha_1 +
+  triangles $T_1$ and $T_2$ have the property that $\alpha_1 +
   \alpha_2\le \pi$, where $\alpha_i$ is the angle of $T_i$ that is not
-  on the shared edge of $T_1$ and $T_2$.  In particular, {\it two
+  at the shared edge of $T_1$ and $T_2$.  In particular, {\it two
     obtuse Delaunay triangles cannot be joined along an edge that is
     the longest on both triangles.}  The extreme case
   $\alpha_1+\alpha_2=\pi$ corresponds to the degenerate situation
@@ -2827,7 +2680,7 @@ Then $d_2 = \norm{\p}{\r'}\ge \norm{\p}{\s}= 2\eta\sin(\theta/2)$.
 There can be two positions $\r,\r'$ 
 on the circumcircle for
 the third vertex of the triangle.  
-We have $d_1 = \norm{\p}{\q}$.}{
+Here, $d_1 = \norm{\p}{\q}$.}{
 [scale=1.3]
 \draw (0,0) circle (1cm);
 \draw (1,0) node[anchor=west] {$\p$} --  (70:1cm) node[anchor=south] {$\q$};
@@ -2861,15 +2714,17 @@ We have $d_1 = \norm{\p}{\q}$.}{
 \[
 b(T_0) \ge \area(T_0) - \epsN n_-(T_0) \ge 
 \areta(2\kappa,\kappa\sqrt{8},2) - 2\epsN > \acrit.
-\] % checked 2016/2/18 in Mathematica. It holds by a margin 0.1856....
+\] 
+% checked 2016/2/18 in Mathematica. It holds by a margin 0.1856....
 % 2016/9 checked in calcs.ml.
 The use of the function $\areta$ is justified by
 Lemma~\rif{lemma:areta} and the numerical estimate
 \[
 d_2 = \kappa\sqrt8 
 <  4 \sin(\arc(2,2,2\kappa)) = 2\eta\sin(\theta/2).
-\] % checked 2016/2/18 in Mathematica.
-% part of areta function in calcs.ml
+\] 
+% checked 2016/2/18, 2016/9 in Mathematica.
+% part of areta function in calcs.ml, lemma_t2b.
 \end{proof}
 
 In future uses of the function $\areta$, we always check that the
@@ -2960,7 +2815,7 @@ We prepare for the proof of the theorem with some lemmas.
   Lemma~\rif{lemma:obtuse-b}.
 \end{proof}
 
-Let $\C$ be a cluster.  By external edge of the cluster, we mean an
+Let $\C$ be a cluster.  By {\it external edge} of the cluster, we mean an
 edge of a triangle in the cluster that is not shared with another
 triangle in the cluster.  Let $\tn(\C)$ be the total number of
 external edges of length at least $1.72$ of the cluster $\C$.  We have
@@ -3053,7 +2908,7 @@ maintaining the following constraints:
 \item The edge length of the $i$th edge of $Q$ is at least
   $d_i\in\{2\kappa,1.72\}$,
 where  the number of $d_i$ that equal $1.72$ is $\tn(\C)$; and
-\item $T_1$ is not acute.
+\item $T_1$ is not acute; $T_0$ is not obtuse.
 \end{enumerate}
 We drop all other constraints as we deform. (In particular, we do not
 enforce the nonoverlapping of pentagons in the $P$-triangles.)  We
@@ -3065,14 +2920,14 @@ continue to deform $Q$ until one of the following two subcases hold:
 \end{enumerate}
 
 In the first subcase (cocircularity), we drop the third constraint
-(non-acuteness) and continue area decreasing deformations for $Q$
+(acute/obtuse) and continue area decreasing deformations for $Q$
 under the constraint of a fixed circumcircle.  We note that the area
 of a cocircular quadrilateral $Q$ depends only on the lengths of the
 edges and not on their cyclic order on $Q$.  We may thus rearrange the
 edge order as we deform.  For a given circumcircle, the area is
 minimized when three of the edges attain their lower bound $d_i$.  By
 suitable reordering of the edges, we may assume that $Q$ is an
-isosceles trapezoid and that the fourth edge is parallel to and
+isosceles trapezoid and that the fourth (free) edge is parallel to and
 at least as long as its opposite edge on $Q$.  For such $Q$, the area as a
 function of the circumradius is concave, so that the minimum occurs
 when the circumradius is as small (that is, all edges attain the
@@ -3083,16 +2938,16 @@ in these two extremal configurations show that the inequality
 (\rif{eqn:n}) is satisfied for each $\tn\in \{1,2,3,4\}$.
 
 In the second subcase (every edge attains its minimal length $d_i$),
-the four edge lengths are fixed.  The area of $Q$ is a concave
-function of the length of the diagonal.  We thus minimize the area of
-$Q$ when the diagonal is as small as possible (that is, $T_1$ is a
-right triangle -- when this satisfies the constraint that $\v$ is
-outside the circumcircle of $T_1$) or as large as possible (that is,
-$Q$ is cocircular).  The cocircular case has already been considered.
-Explicit numerical calculations of $Q$ when $T_1$ is right gives the
-inequality (\rif{eqn:n}) in each case.
+the four edge lengths are fixed.  We drop the constraint that $T_0$ is
+not obtuse. The area of $Q$ is a concave function of the length of the
+diagonal.  We thus minimize the area of $Q$ when the diagonal is as
+small as possible (that is, $T_1$ is a right triangle -- when this
+satisfies the constraint that $\v$ is outside the circumcircle of
+$T_1$) or as large as possible (that is, $Q$ is cocircular).  The
+cocircular case has already been considered.  Explicit numerical
+calculations of $Q$ when $T_1$ is right gives the inequality
+(\rif{eqn:n}) in each case.
 % checked 2016/2/18 in Mathematica.
-
 
 {\it Case 2. The triangle $T_0$ is a nonobtuse triangle, and
   $\C=\{T_0,T_1,T_1'\}$.}  
@@ -3109,13 +2964,13 @@ functions give
 \]
 The areas of $T=T_1,T_1'$ are at least
 \begin{equation}\libel{eqn:173}
-\area(T) \ge \areta(d,2\kappa,1.7) >
+\area(T) \ge \areta(2\kappa,d,1.7) >
    \begin{cases}1.08,&\text{if } d = 2\kappa\\
      1.08+2\epsN, & \text{if } d = 1.72 \end{cases}.
 \end{equation}
 These bounds give inequality (\rif{eqn:n}):
 \[
-\area(T_0) +\area(T_1) + \area(T_1')  > 1.73 + 2(1.08) + \epsN \tn > 
+\area(T_0) +\area\{T_1,T_1'\}  > 1.73 + 2(1.08) + \epsN \tn > 
 3 \acrit +  \epsN \tn.
 \]
 % checked 2016/2/18 in Mathematica.
@@ -3125,16 +2980,16 @@ The areas of $T_1$ and $T_1'$ are at least
 \begin{equation}\libel{eqn:968}
 \areta(2\kappa,2\kappa,2) > 0.968.
 \end{equation}
-By the
-Delaunay condition, since $T_1\Ra T_0$, $T_1$ is obtuse, and $T_0$ is
-nonobtuse, this forces $\eta(T_0)\ge 1.7$.  We minimize the area of
-$T_0$ subject to the constraints that its circumradius is at least
-$1.7$, that it is nonobtuse, and its edge lengths are at least
+By the Delaunay condition, because $T_1\Ra T_0$, $T_1$ is obtuse, and
+$T_0$ is nonobtuse, this forces $\eta(T_0)\ge 1.7$.  We minimize the
+area of $T_0$ subject to the constraints that its circumradius is at
+least $1.7$, that it is nonobtuse, and its edge lengths are at least
 $\kappa\sqrt{8}$, $\kappa\sqrt{8}$, and $2\kappa$.  If two edges are
-$2\kappa$, $\kappa\sqrt{8}$, then $T_0$ is obtuse by the circumradius
-constraint.  The binding constraints for the minimizaton become
-$\eta(T_0)=1.7$, $2\kappa$ edge length, and a right triangle.  Such a
-triangle has area at least
+$2\kappa$, $\kappa\sqrt{8}$ (or even if two edges are $\kappa\sqrt8$,
+$\kappa\sqrt8$), then $T_0$ is obtuse by the circumradius constraint.
+The binding constraints for the minimizaton become $\eta(T_0)=1.7$,
+$2\kappa$ edge length, and a right triangle.  Such a triangle has area
+at least
 \[
 2\kappa\sqrt{\eta^2 - \kappa^2} \ge 2.41.
 \]  
@@ -3144,7 +2999,8 @@ This completes this case:
 \area(T_1) + \area(T_1') + \area(T_0) 
 >
 2(0.968) + 2.41 > 3\acrit + 5 \epsN \ge 3\acrit + \epsN \tn.
-\] %checked 2016/2/18 in Mathematica.
+\] 
+%checked 2016/2/18 in Mathematica.
 
 {\it Case 3. The triangle $T_0$ is a nonobtuse triangle, and
   $C'=\{T_0,T_1,T_1',T_1''\}$.}
@@ -3170,16 +3026,18 @@ In this case, $\tn\le 6$.  Proceeding as before, we get
 2.6 + 3(0.968)
 \end{cases}
 > 4\acrit +  \epsN \tn.
-\] %checked 2016/2/18 in Mathematica.
+\] 
+%checked 2016/2/18 in Mathematica.
 
 
 This completes the proof for cases involving a nonobtuse triangle
 $T_0$.  In the remaining cases, we assume that $T_0$ is obtuse.  
 In the remaining cases, every triangle in $\C$ is obtuse.
 
-{\it Case 4. The triangle $T_0$ is an obtuse triangle, and $\C=\{T_0,T_1\}$.}  
+{\it Case 4. The triangle $T_0$ is an obtuse triangle, and
+  $\C=\{T_0,T_1\}$.}
 
-In this case, $\tn\le 3$.  It will not be necessary to create subcases
+In this case, $\tn\le 4$.  It will not be necessary to create subcases
 according to whether short edges are at least $2\kappa$ or $1.72$.  We
 will show that we can relax the lower bound on the short edges to
 $2\kappa$ and still obtain the bound (\rif{eqn:n}).
@@ -3204,22 +3062,23 @@ condition $\eta(2\kappa,2\kappa,x_{\max}) = 2$.  We check numerically
 that
 \[
 \area(T_1) + \area(T_0) \ge \area(2\kappa,2\kappa,x) +
-\areta(x,2\kappa,2) > 2\acrit + 3 \epsN \ge 2\acrit + \epsN \tn.
-\] % checked 2016/2/18 in Mathematica.
+\areta(2\kappa,x,2) > 2\acrit + 4 \epsN \ge 2\acrit + \epsN \tn.
+\] 
+% checked 2016/2/18 in Mathematica.
+% 2016/9 in calcs.ml.
 
 Next, assume the circumradius of $\eta(T_1)$ reaches $2$, then we
 have a cocircular quadrilateral that can be treated as in Case 1.  In
 particular, the minimizing cocircular quadrilateral has three edges of
-length $2\kappa$ and circumradius $2$.  This is precisely the limiting
-case of a quadrilateral with diagonal $x_{\max}$ considered above.
+length $2\kappa$ and circumradius $2$, which has area
 \[
 \area\{T_0,T_1\}
-\ge \area(2\kappa,2\kappa,x_{\max})+\areta(2\kappa,x_{\max},2)
->  2\acrit+3\epsN \ge 2\acrit+\epsN\tn.
+>  2\acrit+4\epsN \ge 2\acrit+\epsN\tn.
 \]
 This completes the argument in this case.
 
-{\it Case 5. The triangle $T_0$ is an obtuse triangle, and $\C=\{T_0,T_1,T_1'\}$.}  
+{\it Case 5. The triangle $T_0$ is an obtuse triangle, and
+  $\C=\{T_0,T_1,T_1'\}$.}
 
 By Remark~\rif{rem:delaunay}, there is no arrow $T \rab T_0$ in $\C$
 such that the shared edge is the long edge of $T_0$.  In particular,
@@ -3227,7 +3086,7 @@ there cannot exist (Case 6) with $\C=\{T_0,T_1,T_1',T_1''\}$ with
 every triangle obtuse.  Thus, Case 5 is the last case to be
 considered.
 
-We have $\tn\le 4$.
+We have $\tn\le 5$.
 The area of $T_0$ is at least
 $\areta(\kappa\sqrt{8},\kappa\sqrt{8},2) > 2.45$.  
 Using our earlier estimates (\rif{eqn:968})
@@ -3235,13 +3094,9 @@ for $\area(T)$, for $T=T_1,T_1'$, we
 have
 \[
 \area\{T_1,T_1',T_0\} > 2 (0.968) + 2.45 > 3\acrit + \epsN\tn.
-\] % checked 2016/2/18 in Mathematica.
-%If some shorter edge of $T_1$ or $T_1'$ is at least $1.72$, then we
-%again use the estimates from earlier cases to
-%obtain % specify earlier cases 
-%\[
-%\area(T_1) + \area(T_1') + \area(T_0) >  3\acrit  + \epsN\tn.
-%\]
+\] 
+% checked 2016/2/18 in Mathematica.
+% checked 2016/9 in calcs.ml.
 (As mentioned earlier, each use of the function $\areta$ is justified
 by a calculation based on Lemma~\rif{lemma:areta}.)
 This completes the proof of the theorem.
@@ -3265,12 +3120,6 @@ $n_+(T)=n_-(T)=0$.
   that $n_+(T)=n_-(T)=0$.  By Lemma~\rif{lemma:m1m2}, we have
   $m_+(T)=0$.  By Lemma~\rif{lemma:3m2}, we have $m_-(T)\le 2$.
 
-%We have $n_+(T)=0$.  Otherwise, we have a contradiction:
-%\[
-%\acrit \ge b(T) \ge \area(T) + \epsN n_+(T) - \epsM m_-(T) \ge
-% (\acrit+\epsM) +\epsN - 3\epsM > \acrit.
-%\]
-
   We have $m_-(T)=2$.  Otherwise, if $m_-(T)=1$, we have a
   contradiction (by Corollary~\rif{lemma:m2-area}):
 \[
@@ -3278,7 +3127,7 @@ $n_+(T)=n_-(T)=0$.
 > (\acrit + \epsM) - \epsM = \acrit.
 \]
 
-Since $m_-(T)=2$, there exist two pseudo-dimers $(T'_1,T'_0)$ and
+Because $m_-(T)=2$, there exist two pseudo-dimers $(T'_1,T'_0)$ and
 $(T''_1,T''_0)$ such that $T'_0\Ra T$ and $T''_0\Ra T$.  The shared
 edges $e'$ and $e''$ have length at least $1.8$.  Moreover, the angles
 are large along $(T_0',e')$ and $(T_0'',e'')$, but not large along
@@ -3329,8 +3178,8 @@ We have the constraint
 \cos(\pi/5 - \gamma) =\sin(\gamma+3\pi/10) \le 1.63 - \kappa.
 \]
 This constraint expresses the fact the distance from $\c_B$ to the
-edge $e$ of pentagon $A$ can be at most $1.63-\kappa$, by the triangle
-inequality.  The constraint implies that
+edge $e$ of pentagon $A$ can be at most $1.63-\kappa$.  The constraint
+implies that
 \[
 \gamma \ge \pi/5 +
 \arccos (1.63-\kappa) > 2\pi/5 - 0.021\quad \text{ or }\quad
@@ -3340,7 +3189,7 @@ inequality.  The constraint implies that
 according to whether $\v_B$ is below or above the midpoint of $e$.
 
 Now we return to the original $P$-triangle with pentagons $A$, $B$,
-$C$ in their original position.  Since $\gamma$ was obtained after a
+$C$ in their original position.  Because $\gamma$ was obtained after a
 parallel translation of $B$, it equals the incidence angle of lines
 through edges of the original $A$ and $B$.  Changing the choice of
 edges on $A$ and $B$, we find an incidence angle  $\gamma' \in
@@ -3425,10 +3274,6 @@ $1.72$.
   If $m_+(T)>0$, then there exists a pseudo-dimer $(T'_1,T'_0)$ such
   that $T=T'_0$.  Then Lemma~\rif{lemma:pd-b} implies the
   contradiction that there is no arrow $T\rab T_0$.
-  %An earlier lemma on pseudo-dimers
-  %(Lemma~\rif{lemma:pd-1}) gives that $b(T'_1)=\area(T'_1)\le \acrit$.
-  %Thus, $T'_1\rab T\rab T_0$.  This contradicts
-  %Lemma~\rif{lemma:sequence}.
 
   The final statement is a summary of the preceding series of lemmas.
    If $n_+(T)>0$, then $(T,T_0)\in\N$ and $n_-(T_0)>0$, which is contrary
@@ -3437,31 +3282,6 @@ $1.72$.
 \end{proof}
 
 
-\begin{lemma}\libel{lemma:m1-0}  
-  Let $T\rab T_0$ where $T$ and $T_0$ are in a cluster $\C$ that
-  contains only nonobtuse triangles.  Assume further that if
-  $\C=\{T,T_0\}$, then $(T,T_0)\not\in\PD$.  Then $m_+(T_0)=0$.
-\end{lemma}
-
-\begin{proof}  
-  We assume that $m_+(T_0)>0$ for a contradiction.  By
-  Lemma~\rif{lemma:n2-0}, we have $n_-(T_0)=0$.  By
-  Lemma~\rif{lemma:m1m2}, we have $m_-(T_0)=0$.  By
-  Lemma~\rif{lemma:n1m1}, we have $n_+(T_0)=0$.  Thus, $b(T_0) =
-  \area(T_0) + \epsM m_+(T_0) = \area(T_0)+\epsM$.
-
-  By the definition of $\M$, there exists a unique $T_1$ such that
-  $(T_1,T_0)\in \PD$.  In particular, by earlier results
-  (Lemma~\rif{lemma:pd-1}) about pseudo-dimers
-  $b(T_1)=\area(T_1)\le\acrit$, so $T_1\rab T_0$.
-
-  We claim that if $T'\rab T_0$, then we have $T'=T_1$.  In fact, if
-  $T'\rab T_0$, then by Lemma~\rif{lemma:T1-all}, $T'$ is subcritical.
-  This follows from the uniqueness of $T_1$ and the disjointness from
-  dimers (Theorem~\rif{thm:dimer}).  In particular, $T=T_1$.  By the
-  structure theorem for clusters, $\C = \{T_0,T_1\}$ and
-  $(T,T_0)\in\PD$.  This contradicts the assumption of the lemma.
-\end{proof}
 
 \begin{lemma}\libel{lemma:4}
   Let $\C$ be a cluster consisting of nonobtuse triangles.  Assume
@@ -3472,8 +3292,8 @@ $1.72$.
 \begin{proof}  
   Let $\C = \{T_0\}\cup \{T_1^i \mid i=1,2,3\}$.  We have $b(T_1^i) =
   \area(T_1^i)\le \acrit$ by Lemma~\rif{lemma:T1-all}.  By
-  Lemmas~\rif{lemma:n2-0} and~\rif{lemma:m1-0}, we have
-  $m_+(T_0)=n_-(T_0)=0$.
+  Lemma~\rif{lemma:n2-0}, we have
+  $n_-(T_0)=0$.
 
   We claim $m_-(T_0)=0$.  Otherwise, if $m_-(T_0) >0$, then
   $(T,T_1^i)\in\PD$ for some $T$ and some $i$.  The arrow $T_1^i\rab
@@ -3482,8 +3302,8 @@ $1.72$.
   We claim $n_+(T_0)=0$.  Otherwise, if $(T_0,T_1^i)\in\N$, then we
   get $n_-(T_1^i)>0$, which is contrary to Lemma~\rif{lemma:T1-all}.
 
-  Hence all the coefficients $n_\pm,m_\pm$ are zero on the cluster:
-  $b(T_1^i)=\area(T_1^i)$ and $b(T_0) = \area(T_0)$.  The result now
+  Hence all the negative coefficients $n_-,m_-$ are zero on the cluster:
+  $b(T_1^i)=\area(T_1^i)$ and $b(T_0) \ge \area(T_0)$.  The result now
   follows from Lemma~\rif{calc:pent4}.
 \end{proof}
 
@@ -3496,18 +3316,16 @@ $1.72$.
 \begin{proof}  
   Let $\C = \{T_0\}\cup \{T_1^i \mid i=1,2\}$.  We have $b(T_1^i) =
   \area(T_1^i)\le \acrit$ by Lemma~\rif{lemma:T1-all}.  By
-  Lemmas~\rif{lemma:n2-0} and~\rif{lemma:m1-0}, we have
-  $m_+(T_0)=n_-(T_0)=0$.
+  Lemma~\rif{lemma:n2-0}, we have
+  $n_-(T_0)=0$.
 
   We claim that $m_-(T_0)\le 1$.  Otherwise, by the definition of
   $\M$, there exists $(T,T_1^i)\in\PD$ for some $T$ and some $i$.  The
   arrow $T_1^i\rab T_0$ is inconsistent with Lemma~\rif{lemma:pd-b}.
-  The claim ensues.
 
-We have
+This gives
 \[
-b(T_0) = \area(T_0) + \epsN n_+(T_0) - \epsM m_-(T_0) 
-\ge \area(T_0) - \epsM
+b(T_0) \ge \area(T_0) - \epsM
 \]
 By Lemma~\rif{calc:pent3}, we have
 \[
@@ -3542,17 +3360,16 @@ The main inequality follows if we show that $n_+(T_0)>0$ or
 $m_+(T_0)>0$.  Assume for a contradiction that $n_+(T_0)=m_+(T_0)=0$.
 Pick $T$ such that $T_0\Ra T$.  The condition $n_+(T_0)=0$ implies
 that $(T_0,T)\not\in\N$.  The longest edge of $T_0$ is at least $1.72$
-by Lemma~\rif{lemma:172}.  According to the definition of $\M$, we
+by Lemma~\rif{calc:pseudo2}.  According to the definition of $\M$, we
 have $m_+(T_0)>0$ unless uniqueness fails: there exists $T'_1\ne T_1$
 such $(T'_1,T_0)\in\PD$.  This is impossible by
 Lemma~\rif{lemma:pd-1}, because the cardinality of $\C$ is only two.
 This completes the case of a pseudo-dimer.
 
-By Lemmas~\rif{lemma:n2-0} and~\rif{lemma:m1-0}, we have
-$m_+(T_0)=n_-(T_0)=0$.  Thus,
+By Lemma~\rif{lemma:n2-0}, we have $n_-(T_0)=0$.  Thus,
 by Lemma~\rif{lemma:T1-all},
 \begin{equation}\libel{eqn:2}
-b(T_0) = \area(T_0) + \epsN n_+(T_0) - \epsM m_-(T_0)
+b(T_0) \ge \area(T_0)  - \epsM m_-(T_0)
 \quad b(T_1) = \area(T_1) \le \acrit.
 \end{equation}
 
@@ -3567,10 +3384,10 @@ Combined with the Inequalities~\rif{eqn:2},
 this gives
 \begin{align*}
 2\acrit &\ge b(T_1) + b(T_0) \\
-&= \area(T_1) + \area(T_0) +\epsN n_+(T_0) - \epsM m_-(T_0)\\
-&> 2\acrit + \epsN n_+(T_0) - \epsM m_-(T_0).
+&\ge \area(T_1) + \area(T_0)  - \epsM m_-(T_0)\\
+&> 2\acrit  - \epsM m_-(T_0).
 \end{align*}
-This implies that $n_+(T_0)=0$ and $m_-(T_0) > 0$.
+This implies that  $m_-(T_0) > 0$.
 
 We consider the case $m_-(T_0)= 3$.  By Lemma~\rif{lemma:3m2}, we have
 $b(T_1) + b(T_0) > \ao + (\acrit + \epsN) = 2\acrit$, which completes
@@ -3584,6 +3401,7 @@ length at least $1.72$.  Then
 b(T_1)+b(T_0) 
 \ge \ao + (\area (1.8,1.8,1.72) - 2\epsM) > 2\acrit.
 \]
+% checked 2016/9 in calcs.ml.
 
 Finally, we consider the case $m_-(T_0)=1$.  There exists a
 pseudo-dimer whose long edge $e$ is shared with $T_0$.  That edge has
@@ -3591,8 +3409,7 @@ length at least $1.8$, and the angle is not large along $(T_0,e)$. We
 are in the context covered by Lemma~\rif{calc:large}.  That lemma
 implies
 \[
-b(T_1) + b(T_0) 
-= \area\{T_1,T_0\} - \epsM 
+b(T_1) + b(T_0) \ge \area\{T_1,T_0\} - \epsM 
 > (2\acrit  +\epsM) - \epsM = 2\acrit.
 \]
 This completes the proof.
@@ -3637,7 +3454,7 @@ We combine the proof with a proof of Theorem~\rif{thm2:main}.
 \libel{sec:appendix}
 
 
-\subsection{two pentagons in contact}
+\subsection{two pentagons in contact}\libel{sec:two}
 
 Let $A$ and $B$ be pentagons in contact, with $B$ the pointer at
 vertex $\v_B$ to the receptor pentagon $A$.  Label vertices
@@ -3675,7 +3492,7 @@ Let $\bl = \bl(x_\alpha,\alpha) = \norm{\c_A}{\c_B}$, viewed as a
 function of $x_\alpha$ and $\alpha$.  We omit the explicit formula for
 $\bl$, but it is obtained by simple trigonometry.  Under the symmetry
 $\u_A\leftrightarrow \w_A$, $\u_B\leftrightarrow\w_B$, we have the
-symmetries 
+transformation
 \begin{equation}\libel{eqn:sym}
 x\leftrightarrow 2\sigma-x,
 \quad \alpha\leftrightarrow 2\pi/5-\alpha
@@ -3699,7 +3516,7 @@ and we have an angle $\theta' = \angle(\c_B,\c_A,\v_B)$ that specifies
 the location of $\v_B$ relative to the segment $(\c_B,\c_A)$.  The
 oriented angle $\angle(\c_B,\c_A,\v)\in[0,2\pi/5]$ to another vertex
 $\v=\u_B,\w_B,\ldots$ of $B$ is $\theta' + 2\pi k/5$ for some integer
-$k$.  We thus consider $\theta'$ as a variable defined module
+$k$.  We thus consider $\theta'$ as an angle defined module
 $2\pi\ring{Z}/5$.  By subtracting a multiple of $2\pi/5$, we choose
 the angle to lie in the range $[-\pi/5,\pi/5]$.  With these
 conventions, in the figure, $\theta'$ is positive.
@@ -3733,7 +3550,7 @@ describe an extended coordinate system $(x_\alpha,\alpha)$, with a
 domain $\alpha\in[0,4\pi/5]$ and $x_\alpha\in[0,2\sigma]$ of twice the
 size that unifies both pointer directions.  See
 Figure~\rif{fig:extended}.  When $\alpha\le2\pi/5$, the coordinates are
-precisely as before.  Note that the configurations with $\alpha=2\pi/5$
+precisely as before.  Note that configurations with $\alpha=2\pi/5$
 are ambiguous, with $B$ pointing into $A$ with coordinates
 $(x_\alpha,\alpha)$, or with $A$ pointing into $B$ with coordinates
 $(x'_\alpha,\alpha')=(2\sigma - x_\alpha,0)$.  When $\alpha > 2\pi/5$, we
@@ -3809,10 +3626,6 @@ this leads to $2^k$ times the number of cases.
 \draw ($(1.745,0)+(180-30.83:1)$)  
 node[anchor=west] {$~\w$};
 \end{scope}
-%\begin{scope}[scale=0.5,xshift=12cm]
-%\pen{0}{0}{19.229};
-%\pen{1.7469}{0}{180+13.499};
-%\end{scope}
 }
 %(* fig:extended *)
 %deg23 (ethetax (m 0.8) (pi25 - m 0.25));;
@@ -3875,9 +3688,9 @@ boundary.
 The values $(\dx{AB},\theta,\theta')$ can be defined for a pair of
 nonoverlapping pentagons, even when $A$ and $B$ do not touch.  The
 computer code implements a test to determine whether a given triple
-$(\ell,\theta,\theta')$ is equal to a triple
+$(d,\theta,\theta')$ is equal to a triple
 $(\dx{AB},\theta,\theta')$ associated with some pair $A,B$ of
-pentagons in contact.  More generally, when $(\ell,\theta,\theta')$
+pentagons in contact.  More generally, when $(d,\theta,\theta')$
 are interval-valued variables, the computer code implements a test to
 determine if there exist pentagons $A$ and $B$ that do not overlap and
 whose values lie in the given intervals.  The interested reader can
@@ -3944,15 +3757,13 @@ Similar equations hold for the angles at $\c_B$ and $\c_C$.
 % (* fig:p-triangle *)
 % format_pinwheelAC (m 0.1) (m 0.1) (m 0.3);;
 
-
-
 Each $P$-triangle determines a six-tuple $(\dx{AB},\dx{BC},\ldots)$.
-We can algorithmically test whether a six-tuple of real numbers
-(or of intervals)  comes from $P$-triangles by using the triangle
-inequality and the test of Section~\rif{sec:pet}.
+We can algorithmically test whether a six-tuple of real numbers (or of
+intervals) comes from $P$-triangles by using the triangle inequality
+and the test of Section~\rif{sec:pet}.
 
 The configuration space of $P$-triangles in which a single pair
-$(A,B)$ of pentagons comes into contact is five dimensional.  Let $A$,
+$(A,B)$ of pentagons comes into contact is five-dimensional.  Let $A$,
 $B$, $C$ be the pentagons centered at the vertices $\c_A$, $\c_B$,
 $\c_C$ of the triangle.  Assume that $A$ is in contact with $C$, with
 pointer $A\to C$.  For example, we can use the five coordinates
@@ -3968,42 +3779,36 @@ computed from these quatitites. Again, we can algorithmically
 test whether a given five-tuple $(\dx{AB},\dx{BC},\ldots)$ 
 comes from a $P$-triangle.
 
-%We must run the pentagon existence test along the edges $AB$ and $BC$
-%to ensure that no pair of pentagons overlaps.
-
 The configuration space of $P$-triangles in which two separate pairs
-$(A,B)$ and $(B,C)$ of pentagons comes into contact is four
-dimensional.  Let $A$, $B$, $C$ be the pentagons centered at the
+$(A,B)$ and $(B,C)$ of pentagons comes into contact is
+four-dimensional.  Let $A$, $B$, $C$ be the pentagons centered at the
 vertices $\c_A$, $\c_B$, $\c_C$ of the triangle.  We can use the
 extended coordinates $(x_\alpha,\alpha)$ of Section~\rif{sec:xalpha}
 to give the relative position of $A$ and $B$ and similar coordinates
 $(x_\gamma,\gamma)$ to give the relative position of $B$ and $C$.
 These four coordinates uniquely determine the $P$-triangle up to
 finite ambiguity.  The ambiguity is resolved by specifying which edge
-of $B$ is in contact with $A$ and which is in contact with $C$.  These
-four coordinates determine other quantities such as lengths $\dx{AB}$
-and $\dx{BC}$ and angles $\theta_{BAC}$, $\theta_{ABC}$,
+of $B$ is in contact with $A$ and which edge is in contact with $C$.
+These four coordinates determine other quantities such as lengths
+$\dx{AB}$ and $\dx{BC}$ and angles $\theta_{BAC}$, $\theta_{ABC}$,
 $\theta_{BCA}$, $\theta_{CBA}$.  Once again, we can algorithmically
 test whether a given four-tuple $(x_\alpha,\alpha,x_\gamma,\gamma)$
 comes from a $P$-triangle.
 
-
 \subsection{triple contact}
 
 If we have coordinates on a $3C$-triangle that determine the variables
-$(x_\alpha,\alpha)$ for each of the pairs $\{A,B\}$, $\{B,C\}$, and $\{A,C\}$
-of pentagons, then we may use the function $\bl$ to calculate the edge
-lengths and area of the $3C$-triangle.
+$(x_\alpha,\alpha)$ for each of the pairs $\{A,B\}$, $\{B,C\}$, and
+$\{A,C\}$ of pentagons, then we may use the function $\bl$ of
+Section~\rif{sec:two} to calculate the edge lengths and area of the
+$3C$-triangle.
 
-%The space of all $P$-triangles is six-dimensional, described by the
-%three edge lengths of the Delaunay triangle and the three rotation
-%angles of the pentagons at its vertices.  
 The configuration space of $3C$-triangles is three dimensional,
 obtained by imposing three contact constraints between pairs of
 pentagons on the six-dimensional configuration space of all
 $P$-triangles.
 
-\subsubsection{$3C$ triangles with a shared edge}\label{sec:shared}
+\subsection{$3C$ triangles with a shared edge}\label{sec:shared}
 
 Some calculations deal with a dimer pair of $3C$ triangles sharing a
 triangle edge and two pentagons $\bar{A}$ and $\bar{C}$, say with
@@ -4015,7 +3820,7 @@ triple contact is four dimensional.  In this situation, it is best to
 develop coordinate systems that make efficient use of the shared
 information.  Associated with the pentagons $(\bar{A},\bar{C})$ in
 contact are two variables $(\bar x_\beta,\bar\beta)$ (that we rename
-from $(x_\alpha,\alpha)$ in Section \ref{sec:xalpha}).  It is often
+from $(x_\alpha,\alpha)$ in Section \ref{sec:xalpha}).  It is generally
 advantageous to make $(\bar x_\beta,\bar\beta)$ two of the four
 coordinates on the dimer pair.  We supplement this with one further
 angle $\bar\alpha$ to determine the position of $\bar B$ and a further
@@ -4024,31 +3829,31 @@ angle to determine $\bar D$.
 We focus on the $P$-triangle $(\bar A,\bar B,\bar C)$, with
 coordinates $(\bar\alpha,\bar\beta,\bar x_\beta)$.  Similar
 considerations apply to the other $P$-triangle $(\bar A,\bar D,\bar
-C)$.
+C)$.  We assume hat $\bar A$ points into $\bar C$.
 
-For each triple contact type with pentagons $A,B,C$, we give further
-details about its coordinate systems.  There will be a {\it shared
-  edge} coordinate system for each contact type and each pair $\bar
-A,\bar C\in \{A,B,C\}$, such that $\bar A$ points into $\bar C$.
+For each triple contact, the following sections give further details
+about its coordinate systems.  There will be a {\it shared edge}
+coordinate system for each contact type and each pair of pentagons
+$(\bar A,\bar C)$ such that $\bar A$ points into $\bar C$.
 
 We call a $\Gamma$-triangle to be a $P$-triangle that appears as one
 of the two triangles (with given shared edge) in the curve $\Gamma$ of
 Section~\rif{sec:gamma}.  We set up coordinates in a uniform manner so
 that regardless of the contact type of the $3C$ triangle, the curve
-$\Gamma$ is parameterized by variable $t$, given as
+$\Gamma$ is parameterized by variable $t$ and is given as
 \[
 t = \bar x_\beta  -\sigma, \quad
 \bar\alpha = 0,\quad
 \bar\beta = \pi/5.
 \]
-  (This is the curve
-restricted to the $P$-triangle $(\bar A,\bar B,\bar C)$, with a
-similar description on the other triangle in the dimer.)
+(This is the curve restricted to the $P$-triangle $(\bar A,\bar B,\bar
+C)$, with a similar description on the other triangle $(\bar A,\bar
+D,\bar C)$ in the dimer.)
 
-When the the configuration space contains $\Gamma$-triangles and
-the ice-ray triangle, we also
-describe a path $P$ with parameter $s$ from an arbitrary triangle in
-the configuration space to a $\Gamma$-triangle.  Again, we set up
+When the the configuration space of a give $3C$-type contains
+$\Gamma$-triangles and the ice-ray triangle, we also describe a path
+$P$ with parameter $s$ from an arbitrary triangle in that
+configuration space to a $\Gamma$-triangle.  Again, we set up
 coordinates uniformly so that the formulas are independent of the
 contact type of the $P$-triangle.  Coordinates will be defined in such
 a way that for all points of the domain, the relation $\bar\alpha\ge
@@ -4064,7 +3869,7 @@ x_\beta(s))$ (with parameter $s\ge 0$), where
 \bar\beta(s) &= \begin{cases}
 \bar\beta_0 - s, & \bar\beta_0 > \pi/5;\\
 \bar\beta_0 + s, & \bar\beta_0 < \pi/5;\\
-\pi/5, &\beta_0=\pi/5;
+\pi/5, &\bar\beta_0=\pi/5;
 \end{cases}\\
 \bar x_\beta(s) &= \bar x_{\beta,0}.
 \end{align*}
@@ -4097,8 +3902,8 @@ $(\bar\alpha_1,\bar\beta_1,\bar x_{\beta,1})$, where by Equation
 \]
 The equations for the path on the two triangles then satisfy
 \[
-\bar\beta(s,\beta_0)+\bar\beta(s,\beta_1)=\pi/5,\quad
-\bar x_{\beta}(s,x_{\beta,0}) + \bar x_{\beta}(s,x_{\beta,1}) = 2\sigma.
+\bar\beta(s,\bar\beta_0)+\bar\beta(s,\bar\beta_1)=\pi/5,\quad
+\bar x_{\beta}(s,\bar x_{\beta,0}) + \bar x_{\beta}(s,\bar x_{\beta,1}) = 2\sigma.
 \]
 This means that the paths for the two triangles are coherent along the
 shared pentagons $(\bar A,\bar C)$ and determine a path of the full
@@ -4157,9 +3962,11 @@ in this case.
 %\draw[blue] (0,0) -- (1.98,0);
 \draw (-5.16:1) -- ++ (126 - 5.16 :2.5) node[anchor=south] {$\alpha$};
 \draw (-5.16:1) -- ++ (- 180 + 126 - 5.16 :1.5) node[anchor=west] {$\beta$};
-\draw ++ (1.98,0) ++ (183.43 - 72:1) -- ++ (54 + 3.43:1) node[anchor=south] {$\gamma$};
+\draw ++ (1.98,0) ++ (183.43 - 72:1) 
+-- ++ (54 + 3.43:1) node[anchor=south] {$\gamma$};
 \draw (72-5.16:1) -- ++ (126 + 90 - 5.16:0.5);
-\draw (0.99,1.70) ++ (235.38:1) node[anchor = south west] {$x_\alpha$} -- ++ (126+90 - 5.16:0.5);
+\draw (0.99,1.70) ++ (235.38:1) node[anchor = south west] {$x_\alpha$} 
+-- ++ (126+90 - 5.16:0.5);
 }
 
 \subsection{triple contact at a pinwheel type}
@@ -4449,8 +4256,6 @@ $3C$-triangle have lengths
 \end{scope}
 }
 
-% XX add arrows for pointers.
-
 \begin{lemma}\libel{lemma:0605}
   Let $T$ be a $3C$ triangle of type pin-$T$.  The coordinates
   $\alpha$, $\beta$, and $x_\alpha$ satisfy the relation
@@ -4490,8 +4295,7 @@ A computer calculation\footnote{one\_pintx} shows that the longest
 edge in a pint-$T$-junction is always $B\to C$.  We specialize to
 $TJ$-junctions with a shared edge $B\to C$.  We use the standard
 coordinates, with $(\bar x_\beta,\bar\beta)=(x_\alpha,\alpha)$ shared.
-The condition defining an ice-ray triangle is never met for type
-pin-$T$.
+An ice-ray triangle does not have type pin-$T$.
 
 
 This completes our discussion of coordinates used for computations.
@@ -4501,7 +4305,7 @@ This completes our discussion of coordinates used for computations.
 The code for the computer-assisted proofs is written in Objective
 Caml.  There are about five thousand lines of code, available for
 download from github \cite{Git}.  The computer calculations for this
-article take about 60 hours in total to run on a Intel quad 2.6 GHz
+article take about 60 hours in total to run on an Intel quad 2.6 GHz
 processor with 3.7GB memory, running the Ubuntu operating system.  The
 hashtables occupy between  1 and 2 GB of memory.
 
@@ -4537,9 +4341,6 @@ $(+)$, $(-)$, $(*)$, $(/)$ to $1$-jets.  For example,
 where the component-wise arithmetic operations on the right are
 computed by interval arithmetic.  Automatic differentiation extends
 standard functions $F$ to functions $F^D$ on $1$-jets.
-%Standard functions $F$ such as the
-%square root and trigonometric functions are given an extension $F^D$
-%to automatic differentiation.  
 For example,
 \[
 \op{sqrt}^D(f,f') = (\sqrt{f}, f'/(2\sqrt{f})),\quad 
@@ -4552,15 +4353,15 @@ that argument here with an emphasis on automatic differentiation.
 Automatic differentiation allows us to show that the ice-ray dimer is
 the unique minimizer of area in an explicit neighborhood of the
 ice-ray dimer.  In Section~\rif{sec:dimer-pair}, we give a curve
-$\Gamma$ (in the space of dimers) with parameter $t\in\ring{R}$ that
-passes through the ice-ray dimer point at $t=0$.
+$\Gamma$ (in the configuration space of dimers) with parameter
+$t\in\ring{R}$ that passes through the ice-ray dimer point at $t=0$.
 
-For any point $x$ in an explicit neighborhood of the ice-ray dimer in
-the dimer space, that section describes a path from $x$ to a point on
-the curve $\Gamma$.  Using automatic differentiation algorithms, we
-show by computer that area decreases as we move from $x$ towards
-$\Gamma$.  Thus, the area minimizer, lies on $\Gamma$ for some
-parameter $|t|\le M$.
+For any point $x_0$ in an explicit neighborhood of the ice-ray dimer
+in the dimer configuration space, that section describes a path from
+$x_0$ to a point on the curve $\Gamma$.  Using automatic
+differentiation algorithms, we show by computer that area decreases as
+we move along $P$ from $x_0$ towards $\Gamma$.  Thus, the area
+minimizer, lies on $\Gamma$ for some parameter $|t|\le M$.
 
 By symmetry in the underlying geometry, it is clear that the area
 function has derivative zero along $\Gamma$ at $t=0$. By taking a
@@ -4583,10 +4384,9 @@ algorithms through greater space complexity is called {\it
 problem~\cite{hales2003some}. (Both methods break the problem into
 subproblems of smaller complexity that are later recombined.  MITM
 stores the data for recombination in a hashtable.  Linear assembly
-encodes the data for recombination as linear programs.)  We did not
+encodes the data for recombination as linear programs.  We did not
 try to solve the pentagonal ice-ray conjecture with linear programming
-techniques.  It seems possible that linear programming would work.
-%% Algorithms Kepler.
+techniques. Such an approach might also work.)
 
 Some introductory examples of meet-in-the-middle
 algorithms can be found at the blog post \cite{mitm}.
@@ -4635,14 +4435,11 @@ d^0_{AB} = d^1_{AB},\quad
 The negative sign comes from the opposite orientations of the common
 edge with respect to $T_0$ and $T_1$.
 
-Each $P$-triangle is a point in a six dimensional configuration space
-(described by three triangle edge lengths and three inclination angles
-of the pentagons at its vertices).  A cluster consisting of one
-central $P$-triangle and $k$ flanking triangles is a point in a
-configuration space of dimension $6 + 3k$.  If we cover the
-configuration space with cubes of edge-length $\epsilon$, then there
-are order $(1/\epsilon)^{6+3k}$ cubes.  This is generally beyond our
-computational reach when $k>0$.
+A cluster consisting of one central $P$-triangle and $k$ flanking
+triangles is a point in a configuration space of dimension $6 + 3k$.
+If we cover the configuration space with cubes of edge-length
+$\epsilon$, then there are order $(1/\epsilon)^{6+3k}$ cubes.  This is
+generally beyond our computational reach when $k>0$.
 
 We can use MITM techniques to reduce to order $(1/\epsilon)^6$ cubes,
 and this puts all our computations (barely) within the reach of a
@@ -4651,20 +4448,16 @@ cover the configuration space of peripheral triangles by cubes of size
 $\epsilon$, calculating area, edge lengths, inclination angles, and
 other relevant quantities (using interval arithmetic) over each cube.
 
-The idea of MITM is to place the data for each peripheral cube into a
-hash table, keyed by the variables $d^1_{AB}$, $\theta^1_{ABC}$,
+The idea of MITM is to place the peripheral triangle data into a hash
+table, keyed by the variables $d^1_{AB}$, $\theta^1_{ABC}$,
 $\theta^1_{BAC}$ that are shared with the central triangle through
 Equation~\rif{eqn:assembly}.  We view Equation~\rif{eqn:assembly} as
 the analogue of the collision condition $(a+b) = -(c+d)$ in the simple
 example of MITM given above.  Of course, the variables $d^1_{AB}$
 etc. are represented as intervals with floating point endpoints and
-cannot be used directly as keys to a hashtable.  Instead we cover
-these intervals with a secondary finite set of intervals with rational
-endpoints, which are indexed by integers.  These discrete integer
-indices become the keys to the hash table.  
-%For each key, the hash
-%table records the smallest area of a peripheral triangle with that
-%key.
+cannot be used directly as keys to a hashtable.  Instead we discretize
+the keys in such a way that a collision of real numbers implies a
+collision of the keys.
 
 Once the hash is created, we divide the configuration space of central
 triangles into cubes and compute the relevant quantities (edge
@@ -4726,6 +4519,7 @@ that follow.
 \area\{T_0,T_1,T_-\} > 2\ao + \area(T_-) 
 \ge 2\ao + 1.8\kappa > 3\acrit + \epsM.
 \]
+% checked 2016/9 lemma_pseudo_area3_prep in calcs.ml.
 \end{proof}
 
 
@@ -4761,9 +4555,9 @@ to three subcases:
   eliminate the case $\dx{BC}=1.8$ because this would give using
   Lemma~\rif{lemma:mid-172},
 \[
-\area\{T_0,T_1\} > \ao + \area(T_0) \ge \ao + \area(1.8,1.8,1.7) > 2\acrit.
+\area\{T_0,T_1\} > \ao + \area(T_0) \ge \ao + \area(1.8,1.8,1.72) > 2\acrit.
 \]
-% checked calcs.ml 2016/9
+% checked calcs.ml lemma_pseudo_area1_prep 2016/9
 \item $B$ has slider contact with $A$ and $\max(\dx{AB},\dx{BC})=1.8$.
 \end{enumerate}
 
@@ -4799,13 +4593,15 @@ and shared length have equal lengths, we have $\area\{T_0,T_1\} >
 2\acrit$ by Lemmas~\rif{calc:pseudo1} and~\rif{calc:pseudo2}.  Thus,
 we always reduce to $O2C$ on $T_0$.  We may continue with a squeeze
 transformation (Section~\rif{sec:squeeze}) until $T_1$ is long
-isosceles.  We consider two cases, depending on which of the two
-exterior edges of $T_1$ has the same length as the shared edge.
+isosceles or $3C$.  We consider two long isosceles subcases, depending
+on which of the two nonshared edges of $T_1$ has the same length as the
+shared edge.
 
 The squeeze transformation may result in $T_0$ and $T_1$ becoming
 triple contact.  The calculations for dimer pairs in triple contact
 were carried out with assumptions that were sufficiently relaxed to
 include this case of pseudo-dimer triple contact.
+% see dimer.ml run_group4.
 
 \subsubsection{calculation~of Lemma~\rif{calc:pseudo-area3}}
 
@@ -4822,18 +4618,16 @@ $\area\{T_0,T_1,T_-\}\le 3\acrit+\epsM$.  This implies that
 \]
 We let $A,B,C$ be the pentagons in the central triangle $T_0$, where
 $A$ is shared with $T_0,T_1,T_-$ and $B$ is shared between $T_0$ and
-$T_-$.  While $B$ is not in contact with $A$ or $C$, we may translate
-$B$ in a squeeze transformation, moving it along the segment joining
-$\c_A$ and $\c_B$.  This decreases the areas of $T_0$ and $T_-$.  We
-continue until $B$ contacts $A$ or $C$.
+$T_-$.  While $B$ is not in contact with another pentagon, we may
+translate $B$ in a squeeze transformation, moving it along the segment
+joining $\c_A$ and $\c_B$.  This decreases the areas of $T_0$ and
+$T_-$.  We continue until $B$ contacts $A$ or $C$.
 
-The central $T_0$ lies in a five-dimensional configuration
-space. ($P$-triangles form a six-dimensional space, and the contact
-drops the dimension by one.)  Renaming triangles of the central
-triangle, we assume that $A$ and $C$ are in contact, with $A$ pointing
-to $C$.  We consider six cases: each permutation on three letters
-determines a choice for the edge of $T_0$ shared with $T_1$, and a
-choice of the edge of $T_0$ shared with $T_-$.
+Renaming pentagons of the central triangle, we assume that $\bar A$
+and $\bar C$ are in contact, with $\bar A$ pointing to $\bar C$.  We
+consider six cases: each permutation on three letters determines a
+choice for the edge of $T_0$ shared with $T_1$, and a choice of the
+edge of $T_0$ shared with $T_-$.
 
 \subsubsection{calculation~of Lemma~\rif{calc:dimer-isosc}}
 
@@ -4855,28 +4649,28 @@ angle is not large along $(T_0,e)$.  Then $\area\{T_0,T_1\} > 2\acrit
 + \epsM$ (reference code [FHBGHHY]).
 
 Negating the conclusion, we may assume that $\area\{T_0,T_1\}\le
-2\acrit + \epsM$.  We assume that $T_0$ has an exterior edge of length
+2\acrit + \epsM$.  We assume that $T_0$ has a nonshared edge of length
 at least $1.8$ and that the angle is not large along that edge.  We
 form five cases:
 \begin{enumerate}  
 \item $T_0$ and $T_1$ are both $O2C$.
 \item In the last four cases, we assume that in triangle $T_0$, some
   pentagon $A$ contacts some other pentagon $C$ with $A$ pointing to
-  $C$.  The shared edge is not $(A,C)$. The long edge of $T_0$ is
-  exactly $1.8$.  The angle is not large along that edge.  We have
-  $T_1\Ra T_0$.  The four cases come by a binary choice of the shared
-  edge $AB$ or $BC$ and a binary choice of the longest edge as one of
-  the remaining two edges.
+  $C$.  The shared edge is not $(A,C)$. The longest nonshared edge of
+  $T_0$ is exactly $1.8$.  The angle is not large along that edge.
+  The four cases come by a binary choice of the shared edge $AB$ or
+  $BC$ and a binary choice of the longest edge as one of the remaining
+  two edges.
 \end{enumerate}
 
 We claim that we can always deform to one of these five cases.  To see
 this, assume to the contrary that none of these cases hold.  If the
-$1.8$ constraint binds, we translate the outer pentagon $B'$ of $T_0$
-while maintaining the $1.8$ constraint until it comes into contact
-with one of the shared pentagons $A'$ or $C'$. This falls into one of
-the last four cases.  If the $1.8$ constraint does not bind, then we
-may translate $B'$ until $T_0$ is $O2C$.  Here
-$\{A',B',C'\}=\{A,B,C\}$ is a relabeling of the pentagons.
+$1.8$ constraint binds, we translate the outer pentagon $\bar B$ of
+$T_0$ while maintaining the $1.8$ constraint until it comes into
+contact with one of the shared pentagons $\bar A$ or $\bar C$. This
+falls into one of the last four cases.  If the $1.8$ constraint does
+not bind, then we may translate $\bar B$ until $T_0$ is $O2C$.  Here
+$\{\bar A,\bar B,\bar C\}=\{A,B,C\}$ is a relabeling of the pentagons.
 
 \subsubsection{calculation~of Lemma~\rif{calc:pent3}} %HUQ.
 
@@ -4888,11 +4682,10 @@ $T_1^0$ and $T_1^1$.  Then $\area\{T_0,T_1^0,T_1^1\} > 3\acrit +
 We assume that $\area\{T_0,T_1^0,T_1^1\}\le 3\acrit + \epsM$.  We
 consider four cases:
 \begin{enumerate}  
-\item There exists a pair of pentagons of $T_0$ in contact.  We assume
-  that $A$ points to $C$.  This becomes three cases according to
-  the edge of $T_0$ that is not shared.
-\item There exists no pentagons in contact in $T_0$.  The
-  configuration space for $T_0$ is fully six-dimensional.  Let $B$ be
+\item There exists a pair $(A,C)$ of pentagons of $T_0$ in contact.
+  We assume that $A$ points to $C$.  This becomes three cases
+  according to the edge of $T_0$ that is not shared.
+\item $T_0$ has no pentagons in contact. Let $B$ be
   the pentagon of $T_0$ that is shared with $T_1^0$ and $T_1^1$.  We
   squeeze $A$ along $(\c_A,\c_B)$ and squeeze $C$ along $(\c_B,\c_C)$.
   This allows us to assume that both $T_1^0$ and $T_1^1$ are long
@@ -4906,8 +4699,8 @@ and $\area(T_1^i)\le\acrit$ for $i=0,1,2$ for distinct $P$-triangles
 $T_1^0$, $T_1^1$, and $T_1^2$.  Then $\area\{T_0,T_1^0,T_1^1,T_1^2\} >
 4\acrit$ (reference code [QPJDYDB]).
 
-In this calculation, the configuration space for $T_0$ is fully
-six-dimensional.  Each $T_1^i$ is $O2C$.  We carry out the calculation
-as a single case, using MITM as usual as described above.  There is an
-$S_3$-symmetry to the situation that we can exploit to reduce the
-search space.
+Each $T_1^i$ is $O2C$.  We carry out the calculation as a single case,
+using MITM as usual as described above.  There is an $S_3$-symmetry to
+the situation that we can exploit to reduce the search space.
+
+%% END OF FILE
