@@ -140,6 +140,9 @@ research is a continuation of W. Kusner's thesis \cite{Kus}, which
 proves the local optimality of the pentagonal ice-ray.
 % 0.98103 page 27 of Vallentin. Checked 2016/2/18.
 
+As far as we know, our methods are adequate for the solution of other
+related problems in geometric optimization.  The limiting factor seems
+to be the availability of sufficient computer resources.
 
 \tikzfig{double-lattice}{The pentagonal ice-ray.  All figures show
 pentagons in red and Delaunay triangles in blue.}
@@ -508,16 +511,16 @@ modification steals area from nearby triangles that have area to spare
 and gives to triangles in need.  It will be sufficient to prove that
 the average of $b(T)$ over each cluster is at least $\acrit$.
 
-In more detail, below, we define a  relation $(\rab)$, viewing
-a relation in the usual way as a set of ordered pairs.  For 
+In more detail, below, we define a particular relation $(\rab)$,
+viewing a relation in the usual way as a set of ordered pairs.  For
 this relation $(\rab)$, we write ${(\equiv_{b})}$ for the equivalence
 relation obtained as the reflexive, symmetric, transitive closure of
-$(\rab)$.  We call a corresponding equivalence classes $\C$ a
-{\it cluster}.  In other words, a relation $(\rab)$ defines a directed
+$(\rab)$.  We call a corresponding equivalence classes $\C$ a {\it
+  cluster}.  In other words, the relation $(\rab)$ defines a directed
 graph whose nodes are the Delaunay triangles of a pentagon packing,
-with directed edges given as arrows $T_1\rab T_0$.  A cluster
-is the set of nodes in a connected component of the underlying
-undirected graph.
+with directed edges given as arrows $T_1\rab T_0$.  A cluster is the
+set of nodes in a connected component of the underlying undirected
+graph.
 
 We say that Delaunay triangle $T_1$ {\it attaches to Delaunay
   triangle} $T_0$ when the following condition holds: $T_0$ is the
@@ -527,11 +530,12 @@ for all a choice among them, and use this choice to determine the
 triangle that $T_1$ attaches to.  Thus, $T_1$ always attaches to
 exactly one triangle $T_0$.  We can assume that the tie-breaking
 choices are made according to a translation invariant rule.)  We write
-$T_1 \Ra T_0$ for the attachment relation.  Although it is not always
-possible to adhere to the convention, note our general convention to
-use descending subscripts $i > j$ for attachment $T_i\Ra T_j$ of
-triangles.  We also follow a general convention of letting $T_0$ denote
-a triangle that is the target of other triangles in the same cluster.
+$T_1 \Ra T_0$ for the attachment relation {\it $T_1$ attaches to
+  $T_0$}.  Although it is not always possible to adhere to the
+convention, note our general convention to use descending subscripts
+$i > j$ for attachment $T_i\Ra T_j$ of triangles.  We also follow a
+general convention of letting $T_0$ denote a triangle that is the
+target of other triangles in the same cluster.
 
 If $\T$ is a finite set of Delaunay triangles, we set
 $\area(\T):=\sum_{T\in\T} \area(T)$.  The following are key
@@ -636,9 +640,9 @@ We define the modified area function
 b(T) := \op{area}(T) + \epsN (n_+(T) - n_-(T)) + \epsM (m_+(T) - m_-(T)).
 \end{equation}
 We say that $T$ is {\it $b$-subcritical} if $b(T) \le \acrit$.  We write
-$T_1\rab T_2$, if $T_1\Ra T_2$ and $T_1$ is $b$-subcritical.  The
+$T_1\rab T_2$, if $T_1\Ra T_2$ and $T_1$ is $b$-subcritical.  An
 equivalence classes of triangles under the corresponding equivalence
-relation $(\equiv_b)$ are called {\it clusters}.
+relation $(\equiv_b)$ is called a {\it cluster}.
 
 We note that $(\rab)$ is given by a translation-invariant rule.  The
 function $b(T)$ is also translation invariant and depends only on
@@ -648,11 +652,12 @@ The intuitive basis of using $b(T)\le \acrit$ as the condition for
 cluster formation with $(\rab)$ is the following.  Eventually, we wish
 to show that the average of the modified areas $b(T)$ over each
 cluster is greater than $\acrit$.  (See Lemma~\rif{lemma:main}.)  If
-$b(T)\le \acrit$, then this means that its modified area $b(T)$ is less
-than our desired goal  for the average over the cluster, so that
-$T$ needs to be part of a larger cluster.  This suggests we might choose
-a rule for cluster formation that enlarges the cluster whenever
-$b(T)\le \acrit$. That is what $(\rab)$ does.
+$b(T)\le \acrit$, then this means that its modified area $b(T)$ is
+less than our desired goal for the average over the cluster, so that
+$T$ needs to be part of a larger cluster.  This suggests we should
+define $(\rab)$ in such a way that a further triangle is added
+whenever $b(T)\le \acrit$. That is what our definition of $(\rab)$
+does.
 
 We remark that the modification $b(T)$ of the area function has two
 correction terms.  The first term $\epsN (n_+(T) - n_-(T))$ takes away
@@ -4308,6 +4313,7 @@ download from github \cite{Git}.  The computer calculations for this
 article take about 60 hours in total to run on an Intel quad 2.6 GHz
 processor with 3.7GB memory, running the Ubuntu operating system.  The
 hashtables occupy between  1 and 2 GB of memory.
+
 
 
 \subsection{interval arithmetic}
