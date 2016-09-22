@@ -29,18 +29,13 @@
 
 \def\Frob{\op{Frob}}
 \def\dotw{\dot w}
-\def\uu{\tilde\upsilon}
+\def\uu{\upsilon} % \was \tilde\upsilon.
 
 \def\libel#1{{\text{\sc [#1]~}}\label{#1}}
 \def\rif#1{(\ref{#1}-{\text{\sc #1})}}
 
 
 %\section{Introduction}
-
-
-\XX{rewrite the  introduction}
-
-
 
 
 Let $F$ be a $p$-adic field; that is, a finite extension of
@@ -53,17 +48,18 @@ by composing three maps: the Satake transformation of $\H(G)$, the
 pullback under $\xi$, and the inverse Satake transformation to
 $\H(H)$.
 
-Let
+Let $A$ be a maximal split torus of $G$.  Let 
 \[
 \dom = \{\lambda\in X_*(A) \mid \ang{\lambda,\alpha^\vee}\ge 0,
 \quad \alpha\in \Delta_1\}
 \]
-be the set of dominant weights in $X^*(\hat S)=X_*(A)$.  The spherical
+be the set of dominant weights in $X^*(\hat S) = X_*(A)$.  (The notation
+will be full explained below.)   The spherical
 Hecke algebra $\H(G)=\H(G//K)$ of functions that are bi-invariant with
 respect to a given hyperspecial subgroup $K$ has a linear basis given
 by characteristic functions $f_\lambda$ of double cosets
 $K\varpi^\lambda K$.  Here $\varpi$ is a fixed uniformizing element
-and $\lambda$ runs over the cocharacters in a positive Weyl chamber
+and $\lambda$ runs over the cocharacters in
 $P^+$.
 
 In this article, we use motivic integration to describe the spherical
@@ -76,7 +72,7 @@ field-independent description.
 
 As an application, we show that the fundamental lemma for the
 spherical Hecke algebra falls within the scope of the transfer
-principle for constructible motivic functions.  This implies that the
+principle for constructible motivic functions (Section~\ref{sec:transfer}).  This implies that the
 fundamental lemma holds for the spherical Hecke algebra in fields of
 large positive characteristic (Theorem \ref{thm:fl}).
 
@@ -86,7 +82,7 @@ fundamental lemma for the spherical Hecke algebra in positive
 characteristic under the restrictions that the group $G$ is semisimple
 and simply connected, and the endoscopic group is split
 \cite[Theorem~0.2]{bouthier}.  Our proof of the fundamental lemma for
-the spherical Hecke algebra holds without his restrictions on the
+the spherical Hecke algebra holds without restriction on the
 group and endoscopic group.  Unlike Bouthier, we are unable to be
 explicit in our assumption on the characteristic of the field.  This
 is an unfortunate limitation of the methods we use.  In other work,
@@ -96,7 +92,7 @@ spherical Hecke algebra from characteristic zero to positive
 characteristic, but as far as we know, this has not been carried
 out~\cite[\S1.3]{LMW}.
 
-The construction of $B_\xi$ involves the Langlands dual ${}^LG$, which
+The construction of $B_\xi$ passes through the Langlands dual ${}^LG$, which
 is a non-connected complex reductive group.  Our constructibility
 result for $B_\xi$ follows from the Presburger constructibilty of
 various functions on lattices in the dual: Macdonald's formula, weight
@@ -144,7 +140,7 @@ root datum $(X^*,\Phi,X_*,\Phi^\vee)$ of the split form $G^*$ of $G$.
 The automorphism $\theta$ has finite order and preserves a set of
 simple roots associated to some set $\Phi^+$ of positive roots.  If
 $\op{Frob}$ is the Frobenius automorphism of $E/F$, the group $G/F$ is
-defined by twisting by $\theta$ action of $\op{Frob}$ on $G(E)$.  Let
+defined by twisting the action of Frobenius on $G(E)$ by $\theta$.  Let
 $(B,T,X)$ be a pinning of $G$ over $F$, preserved by $\theta$.
 
 Let $A$ be a maximal split torus in $T$.  For any $R\subseteq \Phi$,
@@ -183,9 +179,9 @@ diagram.  By the transitivity of $\theta$, all components of the
 diagram have the same type, either $A_1$ or $A_2$.  This is the
 diagram of $\beta$.  This construction can be applied to $(G^*,\Phi)$
 or to $(\hat G,\Phi^\vee)$, where $\hat G$ is the complex dual.  A
-coroot $\alpha^\vee$ has the same diagram as $\alpha$.  We let
+coroot $\alpha^\vee$ has the same diagram as the root $\alpha$.  We let
 $b(\beta)$ be the number of connected components of the Dynkin
-diagram.  (According to the types of Kottwitz and Shelstad, type I
+diagram of $M_S$.  (According to the types of Kottwitz and Shelstad, type I
 means diagram $A_1$, type II means a simple root in diagram $A_2$, and
 type III means a highest root in diagram $A_2$
 \cite{kottwitz1999foundations}.)
@@ -199,7 +195,7 @@ $N\alpha = \sum_{\alpha'\in  [\alpha]} \alpha'$.
 \begin{equation}\label{eqn:norm}
 [\alpha]^\vee = k\, N\alpha^\vee
 \end{equation}
-when the diagram has type $A_k$, for $k=1,2$.
+when the diagram of $\alpha$ has type $A_k$, for $k=1,2$.
 \end{lemma}
 
 \begin{proof}
@@ -235,7 +231,7 @@ Let $\Psi=\Phi^\vee$ and $\Psi^\vee=\Phi$ be the root and coroot
 systems of the complex group $\hat G$ with respect to $\hat T$, and
 let $\Psi^+$ be the set of positive roots with respect to $(\hat
 T,\hat B)$.  If $R$ is any root system with positive roots $R^+$, we
-let $\rho(R)$ be the half-sum of positive roots in $R^+$.  We have
+let $\rho(R^+) = (1/2)\sum_{R^+} \alpha$ be the half-sum of positive roots in $R^+$.  We have
 $\rho(\Sigma^+_1) = \rho(\Psi^+)$.
 
 The torus $\hat T$ is $\theta$-stable.  We form the quotient $\hat S =
@@ -243,7 +239,7 @@ The torus $\hat T$ is $\theta$-stable.  We form the quotient $\hat S =
 \[
 (1-\theta)\hat T = \{ t\theta(t^{-1}) \mid t\in \hat T\},
 \]
-using additive notation for a multiplicative group.  If $\lambda\in
+using Steinberg's additive notation for a multiplicative group.  If $\lambda\in
 X^*(\hat T)^\theta$ is $\theta$-fixed, then it is trivial on
 $(1-\theta)\hat T$ and descends to a character $\lambda\in X^*(\hat
 S)$.  This gives $X^*(\hat T)^\theta = X^*(\hat S)$.
@@ -263,8 +259,13 @@ X_*(\hat S)\otimes \ring{C}^\times = \hat S.
 We write $\chi = \chi_s$, for $s\in\hat S$.
 
 Let $e^\lambda$ be the basis element of the group algebra
-$\ring{C}[Y^*]$ of $Y^*$, indexed by elements $\lambda\in Y^*$.
+$\ring{C}[Y^*]$ of $Y^*$, indexed by $\lambda\in Y^*$.
 
+Recall that
+\[
+\dom = \{\lambda\in X_*(A) \mid \ang{\lambda,\alpha^\vee}\ge 0,
+\quad \alpha\in \Delta_1\}
+\]
 A basis of $W^\theta$-fixed functions in $\ring{C}[Y^*]$ is
 \[
 m_\mu = \sum_{\lambda\in W^\theta(\mu)} e^\lambda, 
@@ -282,8 +283,8 @@ S$, root system $\Sigma_1=(\Sigma_{red})^\vee$, and root datum
 The complex group $\hat G_\theta$ is the $L$-group of $G^1$, the
 identity component of the $\theta$-fixed subgroup of the split form
 $G^*$ \cite[\S1.3]{kottwitz1999foundations}.  As we will see, $\hat
-G_\theta$ fits naturally into the twisted Weyl character formula for
-${}^LG$, hence also into the Satake transform and its inverse.
+G_\theta$ appears naturally in the twisted Weyl character formula for
+${}^LG$, hence also in the Satake transform and its inverse.
 
 \begin{example} Let $G=\op{SU}(n,E/F)$ be an unramified unitary group
   in an odd number of variables $n=2k+1$.  The automorphism $\theta$
@@ -316,8 +317,9 @@ X^*(\hat T)^{\theta_1}$ be the norm map with respect to $\theta_1$:
 N_1 \mu = \sum_{\mu'\in \ang{\theta_1}\mu} \mu'.
 \]
 
-Let $V$ be a finite dimensional representation of ${}^LG$.  We let
-$V=\oplus V_\mu$ be the weight space decomposition of $V$.  We have
+Let $V$ be a finite dimensional representation of ${}^LG$, with
+weight space decomposition 
+$V=\oplus V_\mu$.  We have
 $\theta_1(V_\mu) = V_{\theta_1\mu}$.  Let $M\subset X^*(\hat T)$ be a
 $\theta_1$-stable set of weights of $V$, and set
 \begin{equation}\label{eqn:VM}
@@ -400,7 +402,7 @@ let $\theta_1 = \theta = \Frob$, the automorphism of $\hat G$ coming
 from the action of Frobenius on the root datum.  We let $M$ be the set
 of all weights, so that $V = V_M$.  As observed above, the partition
 function $P(\hat G,V,\theta,E,q)$ is a function on $\hat T_1 = \hat
-S$.
+S$.  The partition function evaluates to the local $L$-function.
 
 \begin{lemma} In this context,
 \[
@@ -545,8 +547,7 @@ highest weight $\lambda$.  The $\theta$-invariance of $\lambda$
 implies that $V_\lambda$ extends uniquely to a representation of $\hat
 G \rtimes \ang{\theta}$ such that $\theta v = v$ for $v$ in the
 highest weight space of $V_\lambda$.  We let $\tau_\lambda$ be the
-character on $V_\lambda$, restricted to $\hat G\rtimes\theta$.  Any
-such element is $\hat G$-conjugate to $\hat T\rtimes\theta$.  The
+character on $V_\lambda$, restricted to $\hat G\rtimes\theta$.   The
 $\theta$-conjugacy class of $t\theta\in \hat T\rtimes\theta$ depends
 only on the image of $t$ in $\hat S$.  Thus, we may consider
 $\tau_\lambda\in \ring{C}[X^*(\hat S)] =\ring{C}[Y^*]$.  Furthermore,
@@ -863,7 +864,7 @@ they give the same values as the integral on the left.
   $\beta$ with norm $\alpha$, for some sign $\epsilon\in \{\pm 1\}$,
   and for some $b\ge 1$.  For any $p$-adic field $F$, we have $q = q_F
   > 1$ and $q^{-b} < 1$.  Thus we have an absolutely convergent
-  expansion
+  expansion in $t$:
 \begin{equation}\label{eqn:t}
 \frac{1- t}{1- q^{-b} t} = 1 + (q^{-b}-1) t (1+ q^{-b} t + q^{-2b} t^2 + \cdots),
 \end{equation}
@@ -961,6 +962,7 @@ on the dominant weights and such that $J(f) = J(L(f))$, for $f\in
 e^\lambda$, for $\lambda\in\dom$.  This means that for any $f =
 \sum_{\lambda\in P^+} c_\lambda \tau_\lambda \in \ring{C}[Y^*]$, the
 coefficient $c_\lambda$ is the coefficient of $e^\lambda$ in $L(f)$.
+This is van Leeuwen inversion.
 We have
 \[
 L(e^\mu) = \sum_{w\in W^\theta} (-1)^{\ell w} e^{w\bullet \mu} e_w(\mu).
@@ -970,7 +972,7 @@ Recall that $S(\mu)$ is defined as the set of simple roots such that
 $\ang{\alpha^\vee,\mu}=0$ iff $\alpha\in S(\mu)$.  Recall also that
 $W_S\le W^\theta$ is the subgroup generated by reflections in $S$.
 
-\begin{lemma}[van Leeuwen]  
+\begin{lemma}[van Leeuwen]  \label{lemma:van}
   For each subset $S$ of the set of simple roots of $\Sigma^+_1$, and
   for every $\mu\in P^+$ with $S = S(\mu)$,
 \[
@@ -1028,6 +1030,7 @@ Define
 \[
 C = \{  - \sum_{\alpha\in S}\alpha \ \ \mid S \subseteq \Psi^+ \}^\theta;
 \]
+\XX{Do we need $w^{-1}$ now?}
 Define $p_\mu(q^{-1})$ by
 \begin{equation}\label{eqn:p}
  P(E^{-1},q^{-1})^{-1} = \sum_{\mu\in C} p_\mu(q^{-1}) e^{\mu},
@@ -1137,11 +1140,11 @@ Let $G$ be an unramified reductive group, and let ${}^LG = \hat G
 given by the action of the Frobenius element on the root datum.  
 % For the calculations in this section, we assume that $\hat G$ is a
 % simple algebraic group.
-These calculations will be used in Theorem
+The calculations in this subsection will be used in Theorem
 \ref{thm:branch} to give explicit branching rules for embeddings of
 endoscopic groups in $L$-groups.
 
-We have a simple set of roots $\Delta$, determined by $(\hat T,\hat
+We have a simple set of roots $\Delta\subseteq \Psi$, determined by $(\hat T,\hat
 B)$.  Let $\alpha$ be the highest positive root and let $\Delta^e =
 \Delta \cup \{-\alpha\}$ be the extended set of simple roots.  The
 extended Dynkin diagram has node set $\Delta^e$.  The automorphism
@@ -1185,27 +1188,31 @@ C_{\hat G}(s)^0$ for some $s\in \hat T$, and that $\xi(h) = h$, for $h
 T_G = \hat T_H$ using this identification of $\hat H$ with a subgroup
 of $\hat G$.
 
-We write $\Psi^+(\hat T,\hat B)$ for the set of positive roots of $\hat G$ with respect
-to Cartan subgroup $\hat T$ and a Borel subgroup $\hat B$.
+We write $\Psi^+(\hat T,\hat B)$ for the set of positive roots of
+$\hat G$ with respect to Cartan subgroup $\hat T$ and a Borel subgroup
+$\hat B$.
 
-\begin{lemma} In this context, there exists a Borel subgroup $\hat B(\theta_1)\supseteq \hat T$
-such that for every $\alpha\in\Psi^+(\hat T,\hat B(\theta_1))$, either
-$N_1\alpha = 0$ or $\theta_1\alpha\in \Psi^+(\hat T,\hat B(\theta_1))$.
+\begin{lemma} In this context, there exists a Borel subgroup
+  $\hat B(\theta_1)\supseteq \hat T$ such that for every
+  $\alpha\in\Psi^+(\hat T,\hat B(\theta_1))$, either $N_1\alpha = 0$
+  or $\g{\theta_1}\alpha\subseteq \Psi^+(\hat T,\hat B(\theta_1))$.
 \end{lemma}
 
-We call $\hat B(\theta_1)$ a {\it $\theta_1$-adapted}  Borel subgroup.
+We call $\hat B(\theta_1)$ a {\it $\theta_1$-adapted} Borel subgroup.
+The Borel $\hat B(\theta_1)$ depends on $\theta_1$ only through
+$w\theta$ (and not $\dotw \theta$).
 
 \begin{proof}  Let 
 \[
 C = \{N_1\alpha\in X^*(\hat T)^{\theta_1}=X^*(\hat T_1) \mid \alpha\in\Psi,\ N_1\alpha\ne 0\}.
 \]
-Clearly  $-C = C$.   Choose a hyperplane through the origin in $X^*(\hat T_1)\otimes\ring{Q}$
+Clearly  $N_1(-\alpha)= - N_1\alpha$ and  $-C = C$.   Choose a hyperplane through the origin in $X^*(\hat T_1)\otimes\ring{Q}$
 that does not meet $C$ to partition $C = C_+ \sqcup C_-$ into a positive and negative set.
 We can choose a compatible hyperplane through the origin in $X^*(\hat T)\otimes\ring{Q}$
 such that $\alpha$ is positive or negative according to $N_1\alpha\in C_\pm$, provided
 that $N_1\alpha\ne 0$.  By a small generic perturbation of this hyperplane through the origin,
 we may assume that for each pair $\pm\alpha$ of roots such that $N_1\alpha=0$,
-exactly one of $\pm\alpha$ is positive.  Then let $\hat B(\theta_1)$ be the Borel
+exactly one of $\pm\alpha$ is positive.  Let $\hat B(\theta_1)$ be the Borel
 subgroup defined by $\hat T$ and the positive roots determined by the hyperplane.
 \end{proof}
 
@@ -1237,97 +1244,106 @@ as above, with $\theta_1 = \dotw \theta$.
 Let $\hat B(\theta_1)$ and $\Psi^+_H$ be $\theta_1$-adapted.  
 We have a disjoint sum
 \begin{equation}\label{eqn:disj-b1}
-\Psi^+(\hat T,\hat B(\theta_1)) = \Psi^+_H \sqcup (\text{norm }  0) \sqcup M(\xi,\theta_1),
+\Psi^+(\hat T,\hat B(\theta_1)) = \Psi^+_H \sqcup (\text{norm }  0) \sqcup M_\xi,
 \end{equation}
-where $(\text{norm } 0)$ is the set of positive roots $\alpha$ such that $N_1\alpha=0$,
-and $M(\xi,\theta_1)$ is the set of positive roots with nonzero norm that are not roots
+where $(\text{norm } 0)$ is the set of $\hat B(\theta_1)$-positive roots $\alpha$ such that $N_1\alpha=0$,
+and $M_\xi$ is the set of positive roots with nonzero $N_1$-norm that are not roots
 of $\hat H$.
 We define the endoscopic partition function to be
 \begin{equation}\label{eqn:endo-partition}
-P(\hat G,M(\xi,\theta_1),\dotw\theta,E,q).
+P(\hat G,M_\xi,\dotw\theta,E,q).
 \end{equation}
 As we will see, the branching rule for the subgroup $\xi({}^LH)\subseteq {}^LG$ is
 given in terms of this partition function.
 
-We consider data $(\hat U,\hat B_1,\iota,\phi,\epsilon)$ of the following
-type: $\hat U = \hat T_1$ and $\iota:\hat U\to \hat T_1$ is an isogeny of tori.
-Also $\phi:\hat U\to \hat S$ is a homomorphism, and $\epsilon\in
-  \hat S$ is an element 
- of finite order.  Finally, $\hat B_1$ is a $\theta$-stable
- Borel subgroup of $\hat G$ 
-containing $\hat T$.
+We consider data $(\hat U,\hat B_1,\iota,\phi,\epsilon,\dotw)$ of the
+following type: $\hat U = \hat T_1$ and $\iota:\hat U\to \hat T_1$ is
+an isogeny of tori.  Also $\phi:\hat U\to \hat S$ is a homomorphism,
+and $\epsilon\in \hat S$ is an element of finite order.  Here
+$\dotw\in N_{\hat G}(\hat T)$ over $w\in W$ gives
+$\theta_1=\dotw\theta$ determining the $L$-morphism ${}^LH\to {}^LG$
+as described above.  Finally, $\hat B_1$ is a $\theta$-stable Borel
+subgroup of $\hat G$ containing $\hat T$.
 
 The purpose of the isogeny is to remove all radicals from the formulas that follow.
 We always have $\hat U = \hat T_1$, but we maintain two notations for
 the same torus to distinguish the source $\hat U$ from the target
 $\hat T_1$ of the isogeny $\iota$.  We write $\uu$ for an element of
-$\hat U$ and $\tau\in \hat T_1$ for an element of the target of the
-isogeny.  Let $\phi^*_\epsilon:\hat U\to\hat S$ be given by $\phi^*_\epsilon(\uu)=
+$\hat U$ and $\iota(\uu)=\tau\in \hat T_1$ for an element of the target of the
+isogeny.  Let $\phi_\epsilon:\hat U\to\hat S$ be given by $\phi_\epsilon(\uu)=
 \epsilon\phi(\uu)$.
 
 The next propositon gives a concrete representation of the image under
-$\xi$ of a $\theta_H$-conjugacy class in ${}^LH$.
-As noted above, $D(\hat G,M,\theta,E,q)$ is a function on $\hat S$,
-which we pull back to a function $\phi^*_\epsilon D(\hat G,M,\theta,E,q)$ on $\hat U$.
-Similarly, $\iota^* D(\hat G,M',\dotw \theta,E,q)$ is a function on $\hat U$.
+$\xi$ of a $\theta_H$-conjugacy class in ${}^LH$.  As noted above,
+$D(\hat G,M,\theta,E,q)$ is a function on $\hat S$, which we pull back
+to a function $\phi^*_\epsilon D(\hat G,M,\theta,E,q)$ on $\hat U$.
+Similarly, $\iota^* D(\hat G,M',\dotw \theta,E,q)$ is a function on
+$\hat U$.  The $\hat G$-conjugacy class of $t\dotw \theta$ depends
+only on the image $\tau\in \hat T_1$ of $t\in \hat T$.  We can
+therefore refer to the $\hat G$-conjugacy class of $\tau\dotw\theta$,
+for $\tau\in \hat T_1$.
 
 \begin{proposition}\label{lemma:ephi}
   Let $G$ be a reductive group and let $H$ be an endoscopic group of
   $G$, both unramified.  Let $\xi:{}^LH\to {}^LG$ be an embedding of
   $L$-groups that factors over a finite unramifed extension $E/F$.
-  We can construct $(\hat U,\hat B_1,\iota,\phi,\epsilon)$ typed as above
+  We can construct $(\hat U,\hat B_1,\iota,\phi,\epsilon,\dotw)$ typed as above
   such that
 \begin{enumerate}
-\item (conjugacy) $t\dotw\theta$ is $\hat G$-conjugate to
-  $\epsilon\phi(\uu) \theta$, whenever $\uu\in \hat U$ and $t\in \hat
-  T$ have the same image in $\hat T_1$;
+\item (conjugacy) $\tau\dotw\theta$ is $\hat G$-conjugate to
+  $\epsilon\phi(\uu) \theta$, where $\iota\uu = \tau\in\hat T_1$;
 %\item (non-negativity) $\phi^*\alpha$ is non-negative for every
 %  positive root $\alpha$ of $\hat G$ (that is, if $\phi^*\alpha$ is
 %  nonzero, then it is positive);
-\item (regularity) If $\uu$ is generic in $\hat U$, then for every
-  $\alpha\in\Sigma_1$, we have $\alpha(\epsilon\phi(\uu))\ne 0$.
+\item (regularity) If $\uu$ is generic in $\hat U$, then
+  $\alpha(\epsilon\phi(\uu))\ne 0$, for every $\alpha\in\Sigma_1$.
 \item (partition function) Let $M(\theta)$ be the set of roots $\alpha$ of
   $\Psi^+(\hat T,\hat B_1)$ such that $\phi^*N\alpha\ne 0$, and let
-  $M(\theta_1)$ be the set of roots $\alpha$ of $\Psi^+(\hat T,\hat B(\theta_1))$ such
+  $M_1$ be the set of roots $\alpha$ of $\Psi^+(\hat T,\hat B(\theta_1))$ such
   that $N_1\alpha\ne0$.  Then
 \begin{equation}
-\phi^*_\epsilon D(\hat G,M(\theta),\theta,E,q) =\iota^* D(\hat G,M(\theta_1),\dotw\theta,E,q).
+\phi^*_\epsilon D(\hat G,M(\theta),\theta,E,q) =\iota^* D(\hat G,M_1,\dotw\theta,E,q).
 \end{equation}
 \end{enumerate}
 \end{proposition}
 
-We note that $\hat T_1/W_H^{\theta_H}$ classifies $\theta_H$
-semisimple conjugacy classes in ${}^LH$, and $\hat S/W_G^{\theta}$
-classifies $\theta$ semisimple conjugacy classes in ${}^LG$.  The
-morphism $\xi$ induces a map of conjugacy classes $\hat
-T_1/W_H^{\theta_H}\to \hat S/W_G^\theta$.  The morphism $\phi$ should
-be viewed as a lifting of this map of conjugacy classes.
-The identity of partition functions should be viewed as a refinement of
-the statement that conjugate elements have the same characteristic polynomial.
+We note that $\hat T_1/W_H^{\theta_H}$ classifies
+$\theta_H$-semisimple conjugacy classes in ${}^LH$, and
+$\hat S/W_G^{\theta}$ classifies $\theta$-semisimple conjugacy classes
+in ${}^LG$.  The morphism $\xi$ induces a map of conjugacy classes
+$\hat T_1/W_H^{\theta_H}\to \hat S/W_G^\theta$.  The morphism
+$\phi:\hat U\to\hat S$ should be viewed as a lifting of this map of
+conjugacy classes.  The identity of partition functions should be
+viewed as a refinement of the statement that conjugate elements have
+the same characteristic polynomial.
 
+\XX{Rewrite proof checking partition property and using full data
+  $(\hat U,\ldots)$, rather than $\epsilon,\phi$.}
 
 \begin{proof}
   We give a reduction to the case that $\hat G$ is semisimple and
   simply-connected.  For this, we allow twisted endoscopic groups with
   non-trivial multiplicative character (and trivial automorphism) in
   the sense of Kottwitz and Shelstad \cite{kottwitz1999foundations}.
+  Assume that we are given $\xi:{}^LH\to {}^LG$.
   Let $\hat G_{sc}$ be the simply connected cover of the derived group
-  of $\hat G$.  Assume that we have constructed $\epsilon_{sc}$ and
-  $\phi_{sc}:\hat S_{H,sc}\to \hat S_{G,sc}$ for $\hat G_{sc}$.  We
+  of $\hat G$.  Assume that we are able to construct $(\hat U_{sc},\hat
+  B_{1,\sc},\iota_{sc},\phi_{sc},\epsilon_{sc},\dotw_{sc})$
+  for $\hat G_{sc}$.  We
   may assume the endoscopic data is defined by the centralizer of some
   $s = \bar s_{sc} z$, where $z$ is central and $\bar s_{sc}$ is the
   image of $s_{sc}\in \hat G_{sc}$.  We make the embeddings $\xi_{sc}$
-  and $\xi$ compatible by picking $\dotw _{sc}\in \hat G_{sc}$ for the
-  choice $\dotw =\bar \dotw _{sc}$.  Let $\hat Z = Z(\hat G)^0$.  Let
+  and $\xi$ compatible by picking $\dotw _{sc}\in \hat G_{sc}$ such that
+   $\bar \dotw _{sc} = \dotw$.  Let $\hat Z = Z(\hat G)^0$.  Let
   $\hat G' = \hat Z\times \hat G_{sc}$.  Using $s$ and $\dotw$, we
   construct an endoscopic group $H'$ of $G'$ with dual $\hat H'$, and
-  embedding $\xi':{}^LH' \to {}^LG'$ over $\xi:{}^LH\to {}^LG$.  We
+  embedding $\xi':{}^LH' \to {}^LG'$ compatible with $\xi:{}^LH\to {}^LG$.  We
   have surjective projections ${}^LH'\to {}^LH$ and ${}^LG'\to {}^LG$.
   We identify the root systems of $\hat H$ and $\hat H'$ and identify
   the root systems of $\hat G$ and $\hat G'$.  We can take
   $\epsilon\in \hat T$ to be the image of $(1,\epsilon_{sc})\in \hat
   Z\times \hat T_{sc}$.  We take $\hat U = \hat S_Z\times \tilde
-  S'_{sc,H}$ with its obvious projection to $\hat T_1$, where $\hat
+  \hat U_{sc}$ with its obvious projection to $\hat T_1$, where $\hat
   S_Z = \hat Z/(1-\theta)\hat Z$.  Under the identification of root
   systems, the regularity and non-negativity claims follow from the
   corresponding claims for $\hat G_{sc}$.  This reduces the proof to
@@ -1336,63 +1352,89 @@ the statement that conjugate elements have the same characteristic polynomial.
   We may partition connected components of the Dynkin diagram of $\hat
   G$ into orbits under $\theta$.  We give a reduction to the case that
   $\theta$ is transitive on orbits.  In fact, if $r$ is the number of
-  orbits, then we have factorizations $\hat T_1 = \hat S_{H,1}
-  \times\cdots \hat S_{H,r}$, $\hat S = \hat S_{G,1}\times\cdots \hat
-  S_{G,r}$, and we may define the data $\phi,\epsilon$ for $\hat G$ as
+  orbits, then we have factorizations of $\hat T_1$ and $\hat S$ as
+  $r$-fold products.  We may define the data $\phi,\epsilon$ for $\hat G$ as
   a $r$-tuples $\phi = (\phi_1,\ldots,\phi_r)$, $\epsilon =
-  (\epsilon_{1},\ldots,\epsilon_{r})$.
+  (\epsilon_{1},\ldots,\epsilon_{r})$.  This completes the reduction.
 
   We give a further reduction to $\hat G$ simple.  In fact, let $\hat
   G'$ and $\hat H'$ be the endoscopic data for a single factor.  By
   the transitivity of $\theta$ on connected components of the Dynkin
-  diagram, we have $\hat S_{H'} = \hat T_1$, and $\hat S_{G'} = \hat
-  S_{G}$.  Thus, assuming we have data $\phi'$ and $\epsilon'$ for
+  diagram, we have $\hat T_1' = \hat T_1$, and $\hat S' = \hat
+  S$.  Thus, assuming we have data $\phi'$ and $\epsilon'$ for
   $(\hat H',\hat G')$, we may use the same data
-  $(\phi,\epsilon)=(\phi',\epsilon'')$ for $(\hat H,\hat G)$.  We have
+  for $(\hat H,\hat G)$.  We have
   an identification of root systems $\Sigma_1$ for $\hat S$ and
-  $\Sigma'_1$ for $\hat S_{G'}$, so that non-negativity and regularity
-  for $G'$ implies non-negativity and regularity for $G$.
+  $\Sigma'_1$ for $\hat S'$, so that the partition function and
+  regularity properties
+  for $G'$ imply the corresponding properties for $G$.  We now assume
+ that $\hat G$ is simple.
 
   Next, we give a reduction that removes the assumption that $\hat G$
   is simply connected.  Suppose that we have a surjective map $\hat
   G_{sc}\to \hat G$ with kernel $Z' \subseteq Z(G_{sc})$.  Assume that
   we have data $\epsilon,\phi$ for $\hat G$.  We show how to construct
   data $\epsilon_{sc},\phi_{sc}$ for $\hat G_{sc}$.  We add subscript
-  ${sc}$ for all data attached to $\hat G_{sc}$.  The morphism $\hat U
-  \to \hat S\times \hat T_1$ gives $X_*(\hat T_1)\to X_*(\hat S)\times
-  X_*(\hat T_1)$.  Define $\hat T_{1,sc}$ by defining its character
-  lattice to be the preimage in $X_*(\hat T_1)$ of
+  ${sc}$ to all data attached to $\hat G_{sc}$.  The morphism $\hat U
+  \to \hat S\times \hat T_1$ gives $X_*(\hat U)\to X_*(\hat S)\times
+  X_*(\hat T_1)$.  Define $\hat U_{sc}$ by defining its character
+  lattice to be the preimage in $X_*(\hat U)$ of
 \[
 X_*(\hat S_{sc})\times X_*(\hat T_{1, sc}) 
 \subseteq X_*(\hat S)\times X_*(\hat T_1).
 \] 
-Then we have a morphism $\phi_{sc}:\hat U_{sc}\to\hat S_{sc}$ and
-an isogeny $\iota_{sc}:\hat U_{sc} \to \hat T_{1,sc}$.  Fix any lift
-$\dotw_{sc}$ of $\dotw$ to the simply connected cover.
+By restriction, we have
+\[
+X_*(\hat U_{sc})\to X_*(\hat S_{sc}) \times X_*(\hat T_{1,sc}).  
+\]
+The components give a morphism $\phi_{sc}:\hat U_{sc}\to\hat S_{sc}$
+and an isogeny $\iota_{sc}:\hat U_{sc} \to \hat T_{1,sc}$.  Fix any
+lift $\dotw_{sc}$ of $\dotw$ to the simply connected cover.
 
-Let $\epsilon_{sc}\in \hat S_{sc}$ be any lift of $\epsilon\in \hat
-S$.  Let $\uu\in \hat U_{sc}$ with image $\tau\in \hat T_{1,sc}$.
-Then by construction $\epsilon_{sc}\phi_{sc}(\uu)$ and
-$\tau\dotw_{sc}\theta$ give elements in $\hat S_{sc}$ with the same
-image in $\hat S/W^\theta$.  Fix some $\uu_0\in \hat U_{sc}$ such that
-$\epsilon\phi(\uu_0)$ is regular, and let $\tau_0\in \hat T_{1,sc}$ be
-its image.  After replacing $\epsilon_{sc}$ with $\epsilon_{sc} z$,
-for some $z\in Z'$, we may assume that $\epsilon_{sc}\phi_{sc}(\uu_0)$
-and $\tau_0\dotw_{sc}\theta$ have the same image in $\hat
-S_{sc}/W^\theta$.  \XX{properly finish this argument.}  The torus
-$\hat U_{sc}$ is irreducible, and the fibers of $S_{sc}\to \hat S$ are
-discrete, so by a lifting property, $\epsilon_{sc}\phi_{sc}(\uu)$ and
-$\tau\dotw_{sc}\theta$ have the same image in $\hat S_{sc}/W^\theta$
-for all $\uu\in\hat U_{sc}$, because they agree at $\tau_0$.  This
-finishes the argument to remove the assumption that $\hat G$ is simply
-connected.
-%\XX{check we have a fibration.}
+Let $\epsilon_{sc}\in \hat S_{sc}$ be any lift of
+$\epsilon\in \hat S$.  For every $\uu\in \hat U_{sc}$ with image
+$\tau\in \hat T_{1,sc}$, the elements $\epsilon_{sc}\phi_{sc}(\uu)$
+and $\tau\dotw_{sc}\theta$ have the same image in $\hat S/W^\theta$.
+For each $z\in Z'$, define
+\[
+\hat U_{sc,z} = \{\uu \in \hat U_{sc}\mid 
+z \epsilon_{sc}(\uu)\phi_{sc}(\uu)\theta\text{ and }
+\iota_{sc}(\uu)\dotw_{sc}\theta \text{ same image in } \hat S_{sc}/W^\theta\}.
+\]
+%Each set $\hat U_{sc,z}$ is closed in $\hat U_{sc}$. 
+ It follows from
+the fact that conjugacy (property 1) holds for $\hat G$ that
+\[
+\hat U_{sc} = \cup_{z\in Z'} \hat U_{sc,z},
+\]
+expressing an irreducible set $\hat U_{sc}$ as a finite union of
+Zariski closed subsets.  It follows that $\hat U_{sc} = \hat U_{sc,z}$ for
+some $z\in Z'$.  We replace $\epsilon_{sc}$ by $z\epsilon_{sc}$.  Then
+$\hat U_{sc} = \hat U_{sc,1}$.  That is, property (1) holds for
+$\hat G_{sc}$.
+
+
+%Fix some $\uu_0\in \hat U_{sc}$ such that
+%$\epsilon\phi(\uu_0)$ is regular, and let $\tau_0\in \hat T_{1,sc}$ be
+%its image.  After replacing $\epsilon_{sc}$ with $\epsilon_{sc} z$,
+%for some $z\in Z'$, we may assume that $\epsilon_{sc}\phi_{sc}(\uu_0)$
+%and $\tau_0\dotw_{sc}\theta$ have the same image in $\hat
+%S_{sc}/W^\theta$.   The torus
+%$\hat U_{sc}$ is irreducible, and the fibers of $S_{sc}\to \hat S$ are
+%discrete, so by a lifting property, $\epsilon_{sc}\phi_{sc}(\uu)$ and
+%$\tau\dotw_{sc}\theta$ have the same image in $\hat S_{sc}/W^\theta$
+%for all $\uu\in\hat U_{sc}$, because they agree at $\tau_0$.  This
+%finishes the argument to remove the assumption that $\hat G$ is simply
+%connected.
+
 
 We now assume that $\hat G$ is a simple algebraic group.  We can make
-case-by-case arguments for each simple group and for each family of
-endoscopic groups.  We have constructed $\epsilon$ and $\phi$ for each
-complex classical group in Appendix \ref{sec:phi}.  We see regularity
-by inspection of the explicit formulas for $\epsilon\phi(\uu)$.
+case-by-case arguments for each simple group and for each isogeny class of
+endoscopic groups.  We have constructed data $(\hat U,\hat
+B_1,\ldots)$ for each
+case in Appendix \ref{sec:phi}.  The data satisfies the stated
+properties
+of the Proposition.
 \end{proof}
 
 
@@ -1413,8 +1455,9 @@ for some coefficients $m(\lambda,\mu)$.
 If $\sigma_\mu$ is an irreducible character and
 $\chi:\ang{\theta_H}\to \ring{C}^\times$ is a multiplicative
 character, then $ \chi\otimes\sigma_\mu$ is again an irreducible
-character.  Restricted to $\hat H\rtimes\theta_H$, we have linear
-dependence $\chi\otimes\sigma_\mu = \chi(\theta_H) \sigma_\mu $.  This
+character.  Restricted to $\hat H\rtimes\theta_H$, the characters
+$\chi\otimes\sigma_\mu$ and $\sigma_\mu$ are linearly dependent:
+$\chi\otimes\sigma_\mu = \chi(\theta_H) \sigma_\mu $.  This
 means that the multiplicities $m(\lambda,\mu)$ should take values in
 $\ring{Z}[\zeta]$, where $\zeta$ is a primitive root of unity of the
 same order as $\theta_H$.
@@ -1423,7 +1466,7 @@ same order as $\theta_H$.
 % $\lambda$, it is quite possible for all the multiplicites
 % $m(\lambda,\mu)$ to be zero.
 
-We fix data $(\hat U,\hat B_1,\iota,\phi,\epsilon)$ associated with
+We fix data $(\hat U,\hat B_1,\iota,\phi,\epsilon,\dotw)$ associated with
 $\xi:{}^LH\to{}^LG$ as in Proposition \ref{lemma:ephi}.  That
 construction is based on a choice of $\theta_1$-adapted Borel subgroup
 $\hat B(\theta_1)$.  We have constructed a $\theta_1$-adapted set
@@ -1431,9 +1474,9 @@ $\Psi^+_H$ of positive roots of $\hat H$.  We expand the endoscopic
 partition function of Equation \ref{eqn:endo-partition} (or rather its
 pullback to $\hat U$) in a series
 \begin{equation}
-\iota^* P(\hat G,M(\xi,\theta_1),\dotw\theta,E,1) = \sum_{\mu} p_\mu e^\mu,
+\iota^* P(\hat G,M_\xi,\dotw\theta,E,1) = \sum_{\mu} p_\mu e^\mu,
 \end{equation}
-where the support of $p_\mu$ is a subset of $X^*(\hat U)$.  We have a
+where the support of $\mu\mapsto p_\mu$ is a subset of $X^*(\hat U)$.  We have a
 disjoint sum decomposition 
 \[
 \Psi^+(\hat T,\hat B_1) = M(\theta)\sqcup M_0(\theta),
@@ -1444,27 +1487,42 @@ M_0(\theta) = \{\alpha\in \Psi^+(\hat T,\hat B_1)\mid \phi^* N\alpha=0\}.
 \]
 Using the determinant identity of 
 Proposition \ref{lemma:ephi}, this gives a product decomposition
-\[
+\begin{equation}
 \phi^*_\epsilon D(\hat G,\Psi^+(\hat T,\hat B_1),\theta,E,1) = 
-\iota^* D(\hat G,M(\theta_1),\theta_1,E,1) \ \ 
+\iota^* D(\hat G,M_1,\theta_1,E,1) \ \ 
 \phi^*_\epsilon D(\hat G,M_0(\theta),\theta,E,1).
-\]
+\end{equation}
 The condition $\phi^* N\alpha=0$ implies that 
 the second factor $\phi^*_\epsilon D(\hat G,M_0(\theta),\theta,E,1)$
-is a constant $d_0(\epsilon,\theta)\in\ring{C}$.  Regularity implies that 
+is a constant $d_0(\epsilon,\theta)\in\ring{C}$ (that is, it is
+independent of $\mu\in X^*(\hat U)$.  Regularity implies that 
 the constant is nonzero.  The constant is easy to compute, but we  do not do so here.
 We abbreviate
 \begin{align*}
 D_H = \iota^* D(\hat H,\Psi^+_H,\theta_1,E,1) = \iota^* D(\hat G,\Psi^+_H,\theta_1,E,1).
 \end{align*}
-This is the denominator in the twisted Weyl character formula for $(\hat H,\theta_1)$
+This is the denominator in the twisted Weyl character formula (on
+$X^*(\hat U)$) for $(\hat H,\theta_1)$
 with respect to the postive root system $\Psi^+_H$.
 Combining these identities, we have
-\begin{equation}\label{eqn:DHDG}
-D_H = (\sum_{\mu} p_\mu e^\mu) 
+\begin{align}\label{eqn:DHDG}
+\begin{split}
+D_H &= i^* D(\hat H,\Psi^+_H,\dotw\theta,E,1)\\
+&=\frac{i^*D(\hat G,M_1,\dotw\theta,E,1)}
+{i^*D(\hat G,M_\xi,\dotw\theta,E,1)}\\
+&=\frac{1}
+{i^*D(\hat G,M_\xi,\dotw\theta,E,1)}
+\phi^*_\epsilon D(\hat G,M(\theta),\theta,E,1)\\
+&=\frac{1}
+{i^*D(\hat G,M_\xi,\dotw\theta,E,1)}
+\frac{\phi^*_\epsilon D(\hat G,\Psi^+(\hat B_1),\theta,E,1)}
+{\phi^*_\epsilon D(\hat G,M_0(\theta),\theta,E,1)}\\
+&=
+(\sum_{\mu} p_\mu e^\mu) 
 \ \frac{\phi^*_\epsilon D_G}{
 d_0(\epsilon,\theta)},
-\end{equation}
+\end{split}
+\end{align}
 with abbreviation $D_G= D(\hat G,\Psi^+(\hat T,\hat B_1),\theta,E,1)$ for
 the twisted Weyl denominator for $(\hat G,\theta)$ with respect to the positive
 root system $\Psi^+(\hat T,\hat B_1)$.
@@ -1473,7 +1531,7 @@ root system $\Psi^+(\hat T,\hat B_1)$.
 %a product formula
 
 %\[
-% P(\hat G,M(\xi,\theta_1),\dotw\theta,E,1) = 
+% P(\hat G,M_\xi,\dotw\theta,E,1) = 
 %\frac{D(\hat G,\Psi^+_H,\dotw\theta,E,1) D(\hat G,(\text{norm }0),\dotw\theta,E,1)}{}
 %\]
 
@@ -1484,7 +1542,7 @@ Define constants
 m(\lambda,\mu) = \sum_{w\in W^\theta} 
 %, ~\phi^*({w\bullet\lambda})\in  X^*(\hat T_1)} 
 (-1)^{\ell w} ({w\bullet\lambda})(\epsilon)
-\frac{p_{\mu-\phi^*(w\bullet\lambda)}}{d_0(\epsilon,\theta)} \in \ring{Z}[\zeta].
+\frac{p_{\mu-\phi^*(w\bullet\lambda)}}{d_0(\epsilon,\theta)} \in \ring{Q}(\zeta).
 \end{equation}
 
 The following theorem is the main result of this section.
@@ -1577,7 +1635,7 @@ e^{\mu'+\phi^*(w\bullet \lambda)} /d_0\\
 \end{align*}
 We have used the twisted Weyl character formula with respect to $\Psi^+_H$ on $\hat H$
 and with respect to $\Psi^+(\hat T,\hat B_1)$  on $\hat G$.
-To justify the equation in the second row, let $\mu\in P_H^+$.  If
+To justify the equation in the third row, let $\mu\in P_H^+$.  If
 $w'\bullet \mu' = w\bullet \mu$ for some $w,w'\in W_H$ and $\mu'\in
 P_H^+$, then using the fact that $P_H^+$ is a fundamental domain for
 $W_H$ and that $\mu'+\rho_H$ lies in the interior of that domain, we
@@ -1687,15 +1745,15 @@ morphism $\phi: X\to Y$ over $S$, there is a pushforward
 $\phi_!:I_SC(X)\to I_SC(Y)$ that is called {\it integration over
   fibers}.  Pushforwards compose: $(\phi\psi)_! = \phi_!\psi_!$.  In
 this article, we always deal with bounded constructible functions.
-Such functions are always integrable by
+Such functions are always integrable
 \cite[Prop~12.2.2]{cluckers2008constructible}.  Thus, we do not need
 to deal with integrability issues.
 
 \subsection{Presburger constructible functions}
 
-The ring of constructible functions is a tensor product $P(X) \otimes
-Q(X)$.  (This is not quite correct; $C(X)$ is the graded algebra
-associated to a filtration on the tensor product.)  In terms of the
+The ring $C(X)$ of constructible functions is 
+the graded algebra associated with a filtration on a tensor product $P(X) \otimes
+Q(X)$.   In terms of the
 three sorts of the Denef-Pas language, data related to the value-group
 sort $\ring{Z}$ is encoded in $P(X)$ and data related to the residue
 field sort $RF$ is encoded in $Q(X)$.  The left-hand side $P(X)$ is a
@@ -1742,14 +1800,14 @@ for all $F\in \C_N$, there are specializations
 \[
 X(F)\subseteq F^m\times k_F^n\times \ring{Z}^r,  \quad f_F: X(F) \to\ring{C},
 \]
-Only the  filtered colimits of $X$ and $f$ matter.
+To us, only the  filtered colimits of $X$ and $f$ matter.
 
 We warn the reader of a notational overload; we write $X(K)$ or $X(F)$
 as $K$ and $F$ range over two quite different classes of fields.
 Different symbols $K$ and $F$ disambiguate the context.  When $K\in
 \op{Field}_\Q$, the valued field is $K((t))$ and the residue field is
 $K$; but when $F$ is a $p$-adic field, $F$ is the valued field and its
-residue field is denoted $k_F$.  We also warn that we use $K$ both for
+residue field is denoted $k_F$.  We also warn that $K$ is used both for
 a hyperspecial subgroup and for $K\in\op{Field}_\Q$.
 
 The specializations have various expected properties.  If $\phi:X\to
@@ -1757,7 +1815,7 @@ Y$ is a morphism of definable subassignments, then we have functions
 $\phi_F:X(F)\to Y(F)$.  When $f$ is $S$-integrable on $X$, integration
 $\phi_!(f)$ over fibers specializes to integration over fibers with
 respect to a canonical measure in $p$-adic fields $F\in \C_N$ (for
-some $N$).
+some $N$ depending on $\phi$).
 
 The functions $f_F:X(F)\to\ring{C}$ that come from constructible
 motivic functions $f\in C(X)$ have a special form
@@ -1854,6 +1912,8 @@ the invariant differential form $\omega$.
 In this section we assume that $G$ is an unramified connected
 reductive group.  It is treated as definable subassignment over a
 definable cocycle space $Z$.
+
+\XX{insert proofs}
 
 \begin{lemma}  
   Let $G$ be an unramified reductive group.  There exists a definable
@@ -2060,6 +2120,10 @@ section, constructible means Presburger constructible.
 
 \subsection{weight multiplicities}
 
+We continue to work in the usual context of an unramified reductive
+group $G$, dual ${}^LG$, and partition function
+$P(E,q)=P(\hat G,\n,\theta,E,q)$.
+
 We expand the partition function into an infinite series
 \[
 P(E,q) = \sum_\mu (P(E,q),e^\mu) e^{\mu},
@@ -2108,7 +2172,7 @@ $\lambda\in P^+$.
   enough to check that each term in the sum is constructible.  The
   relevant partition functions are $P(w(E)^{-1},1)$, $P(w(E)^{-1},q)$,
   and $P(w(E)^{-1},q^{-1})$, respectively.  These are constructible by
-  Lemma \ref{lemma:partiton}.
+  Lemma \ref{lemma:partition}.
 \end{proof}
 
 \begin{theorem}\label{lemma:van-leeuwen} 
@@ -2117,11 +2181,16 @@ $\lambda\in P^+$.
 \end{theorem}
 
 \begin{proof} 
-  This is a consequence of van Leeuwen's algorithm.  It is enough to
-  show that the restriction of $n$ to each of the definable sets
-  $P^+_S\times \dom$ is constructible.  Since $Y^*_w$ is definable,
-  its characteristic function $e_w$ is constructible.  A finite sum of
-  constructible functions is constructible.
+  This is a consequence of van Leeuwen's formula (Lemma
+  \ref{lemma:van}).  Referring to that formula, it is enough to show
+  constructibility of each term in the sum, with fixed $(w',w)$.  This
+  follows from the definability of the set $Y^*_w$ and of the delta
+  function $(\mu,\lambda)\mapsto \delta_{w\bullet (w'\mu),\lambda}$.
+ %  It is enough to
+ % show that the restriction of $n$ to each of the definable sets
+ % $P^+_S\times \dom$ is constructible.  Since $Y^*_w$ is definable,
+ % its characteristic function $e_w$ is constructible.  A finite sum of
+ % constructible functions is constructible.
 \end{proof}
 
 \begin{corollary} 
@@ -2225,13 +2294,13 @@ classes in $\hat H$ to $\theta$-conjugacy classes in $\hat G$.  This
 is a morphism of varieties. The corresponding homomorphism of
 coordinate rings is $J_\xi$.
 
-Working $p$-adically, Langlands gives describes a homomorphism $b =
-b_\xi$ from the spherical Hecke algebra of $G$ to the spherical Hecke
-algebra of $H$.  If $f$ belongs to the spherical Hecek algebra of $G$,
-its Satake transform belongs to $\ring{C}[Y^*]^{W^\theta}$, where
-$W^\theta$ is the set of fixed points in $W$ under $\theta$.  
-The bi-invariant function $b_\xi(f)\in\H(H//K_H)$ is the inverse Satake transform 
-of the image of $f$ in
+Working $p$-adically, Langlands gives describes a homomorphism
+$b = b_\xi$ from the spherical Hecke algebra of $G$ to the spherical
+Hecke algebra of $H$.  If $f$ belongs to the spherical Hecek algebra
+of $G$, its Satake transform belongs to $\ring{C}[Y^*]^{W^\theta}$,
+where $W^\theta$ is the set of fixed points in $W$ under $\theta$.
+The bi-invariant function $b_\xi(f)\in\H(H//K_H)$ is the inverse
+Satake transform of the image of $f$ in
 \[
 \ring{C}[X^*(\hat T_1)]^{W_H^{\theta_H}}.
 \]
@@ -2298,10 +2367,11 @@ issues.
 \end{remark}
 
 
-\subsection{transfer principle}
+\subsection{transfer principle}\label{sec:transfer}
 
 We review the transfer principle from
 \cite{cluckers2010constructible}.
+\XX{insert}
 
 \subsection{enumerated Galois groups}
 
@@ -2394,10 +2464,12 @@ In this section, we assume familiarity with the Langlands-Shelstad
 transfer factor \cite{langlands1987definition}.
 
 In \cite{gordon}, we showed that the Lie algebra transfer factor is a
-constructible motivic function.  In that article we were able to
-disregard the multiplicative characters that appear in the group level
-transfer factor.  In this appendix we prove that group level transfer
-factor is constructible for unramified endoscopic data.
+constructible motivic function.  In that article, by restricting
+attention to a small neighborhood of the identity element of the
+group, we were able to avoid the analysis of multiplicative characters
+that appear in the group-level transfer factor.  In this appendix we
+analyze the multiplicative characters and prove that group level
+transfer factor is constructible for unramified endoscopic data.
 
 We use the canonical normalization of transfer factors given in
 \cite[\S7]{hales1993simple}.  The canonical normalization requires on
