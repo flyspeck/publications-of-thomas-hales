@@ -53,7 +53,7 @@ Let $A$ be a maximal split torus of $G$.  Let
 \dom = \{\lambda\in X_*(A) \mid \ang{\lambda,\alpha^\vee}\ge 0,
 \quad \alpha\in \Delta_1\}
 \]
-be the set of dominant weights in $X^*(\hat S) = X_*(A)$.  (The notation
+be a positive chamber of $X^*(\hat S) = X_*(A)$.  (The notation
 will be full explained below.)   The spherical
 Hecke algebra $\H(G)=\H(G//K)$ of functions that are bi-invariant with
 respect to a given hyperspecial subgroup $K$ has a linear basis given
@@ -62,18 +62,16 @@ $K\varpi^\lambda K$.  Here $\varpi$ is a fixed uniformizing element
 and $\lambda$ runs over the cocharacters in
 $P^+$.
 
-In this article, we use motivic integration to describe the spherical
-Hecke algebra, its Satake transform, and inverse Satake transform.
-One aim of this article is to study the function $B_\xi:P^+\times
+In this article, we use motivic integration to study the spherical
+Hecke algebra and the function $B_\xi:P^+\times
 H(F)\to \ring{C}$, given by $(\lambda,h)\mapsto b_\xi(f_\lambda)(h)$.
-The function $B_\xi$ can be lifted to a constructible motivic function
-(Theorem \ref{thm:B}).  In particular, $B_\xi$ admits a
-field-independent description.
+This function can be lifted to a constructible motivic function
+(Theorem \ref{thm:B}) and admits a field-independent description.
 
 As an application, we show that the fundamental lemma for the
 spherical Hecke algebra falls within the scope of the transfer
 principle for constructible motivic functions (Section~\ref{sec:transfer}).  This implies that the
-fundamental lemma holds for the spherical Hecke algebra in fields of
+fundamental lemma holds for the spherical Hecke algebra over fields of
 large positive characteristic (Theorem \ref{thm:fl}).
 
 This application to the fundamental lemma is the main motivation for
@@ -92,17 +90,18 @@ spherical Hecke algebra from characteristic zero to positive
 characteristic, but as far as we know, this has not been carried
 out~\cite[\S1.3]{LMW}.
 
-The construction of $B_\xi$ passes through the Langlands dual ${}^LG$, which
-is a non-connected complex reductive group.  Our constructibility
-result for $B_\xi$ follows from the Presburger constructibilty of
-various functions on lattices in the dual: Macdonald's formula, weight
-multiplicity formulas, the inverse of the weight multiplicity matrix,
-the Plancherel measure, and the Kato-Lusztig formula for the inverse
-Satake transform.  When $G$ and $H$ are split, we can take ${}^LG =
-\hat G$ and ${}^LH=\hat H$ to be connected.  In this case, formulas of
-the desired form were previously known.  In this article, we
-generalize these formulas to non-connected complex reductive groups.
-These generalizations are a major part of this work.
+The construction of $B_\xi$ passes through the Langlands dual ${}^LG$,
+which is a non-connected complex reductive group.  Our
+constructibility result for $B_\xi$ follows from the Presburger
+constructibilty of various functions on lattices in the dual:
+Macdonald's formula, weight multiplicity formulas, the inverse of the
+weight multiplicity matrix, the Plancherel measure, the geometric
+Satake transform, and the Kato-Lusztig formula for the inverse Satake
+transform.  When $G$ and $H$ are split, we can take ${}^LG = \hat G$
+and ${}^LH=\hat H$ to be connected.  In this case, the desired
+formulas were previously known.  In this article, we generalize these
+formulas to non-connected complex reductive groups.  These
+generalizations are a major part of this work.
 
 One novelty of this work is that we show how to extend the theory of
 motivic integration to the Langlands dual group, by encoding
@@ -110,7 +109,7 @@ representation-theoretic data of the complex dual group as Presburger
 constructible functions on the character lattice. These Presburger
 functions can then be recombined with constructible functions on the
 $p$-adic group.  A second innovation is to encode the entire Hecke
-algebra into a single constructible function $B$.  This makes it
+algebra into a single constructible function $B_\xi$.  This makes it
 possible to invoke the the transfer principle of motivic integration a
 single time, rather than once for each function in the Hecke algebra.
 (Invoking the transfer principle an infinite number of times could
@@ -161,7 +160,7 @@ and orbits of simple roots in $\Phi$.  If $\alpha$ is a root of $\Phi$
 (or coroot), we write $[\alpha]=\{\alpha,\theta\alpha,\ldots\}$ for
 its $\theta$-orbit, often identified with a root of $\Sigma$.
 %A root $\alpha$ is {\it nonmultipliable} if $2\alpha$ is not a root.
-A root is {\it indivisible} if $\frac12\alpha$ is not a root.
+A root $\alpha\in\Sigma$ is {\it indivisible} if $\frac12\alpha$ is not a root.
 %Let $\Sigma^{red}$ and 
 Let $\Sigma_{red}$ be the set of %nonmultipliable and
 indivisible roots of $\Sigma$.  It is a reduced root system.
@@ -204,13 +203,12 @@ when the diagram of $\alpha$ has type $A_k$, for $k=1,2$.
 
 Let $W$ be the Weyl group attached to the root datum of $G$ over a
 splitting field $E$.  The restricted Weyl group $W^\theta$ is the
-subgroup of $W$ commuting with $\theta$.  The simple reflection in
-$W^\theta$ associated with an orbit $[\alpha]$ of simple roots in
-$\Phi$ is the longest element in the Weyl group of the Levi component
-$M_{[\alpha]}$.  The group $W^\theta$ is a Coxeter group with
-generators given by these simple reflections.  We write $\ell(w)$ for
-the length of $w\in W^\theta$, computed relative to the set of simple
-reflections of the Coxeter group $W^\theta$.
+subgroup of $W$ commuting with $\theta$.  The group $W^\theta$ is a
+Coxeter group.  The simple reflection in $W^\theta$ associated with an
+orbit $[\alpha]$ of simple roots in $\Phi$ is the longest element in
+the Weyl group of the Levi component $M_{[\alpha]}$.  We write
+$\ell(w)$ for the length of $w\in W^\theta$, computed relative to the
+set of simple reflections of the Coxeter group $W^\theta$.
 
 \subsection{$L$-groups}
 
@@ -354,7 +352,7 @@ Taking $\theta_1^{-1}(u) u^{-1}\in (1-\theta_1)\hat T$, we have
 \det (1-q \theta_1 t \theta_1^{-1}(u) u^{-1};V_M) 
 &= \det(1- u (q \theta_1 t ) u^{-1};V_M) = \det(1-q\theta_1 t;V_M).
 \end{align*}
-Thus, the determinant and partition functions descend to functions on
+Thus, the partition function and determinant descend to functions on
 $\hat T_1$.  The next lemma gives the general shape of a factorization
 of the determinant.
 
@@ -447,6 +445,7 @@ d_\alpha(q) =
 We have the following factorization refining Lemma \ref{lemma:fact}.
 
 \begin{lemma} \label{lemma:prod}
+In this context,
 \[
 \det(1-\theta  E q ;\n) = \prod_{\alpha\in\Sigma^+_1} d_\alpha(q).
 \]
@@ -1141,8 +1140,8 @@ given by the action of the Frobenius element on the root datum.
 % For the calculations in this section, we assume that $\hat G$ is a
 % simple algebraic group.
 The calculations in this subsection will be used in Theorem
-\ref{thm:branch} to give explicit branching rules for embeddings of
-endoscopic groups in $L$-groups.
+\ref{thm:branch} to give an explicit branching rule for an embedding of
+the $L$-group of an endoscopic groups into the $L$-group of $G$.
 
 We have a simple set of roots $\Delta\subseteq \Psi$, determined by $(\hat T,\hat
 B)$.  Let $\alpha$ be the highest positive root and let $\Delta^e =
@@ -1652,7 +1651,7 @@ This completes the proof.
 This section reviews the theory of motivic integration as developed by
 Cluckers and Loeser~\cite{cluckers2008constructible}.
 
-\subsection{The Denef-Pas language}
+\subsection{the Denef-Pas language}
 
 The Denef-Pas language is a three-sorted first-order formal language
 in the sense of model theory.  Its intended structures are triples
@@ -1912,6 +1911,10 @@ the invariant differential form $\omega$.
 In this section we assume that $G$ is an unramified connected
 reductive group.  It is treated as definable subassignment over a
 definable cocycle space $Z$.
+
+Standard subgroups of $G$ such as hyperspecial $K$, Borel subgroup
+$B$, $T\subseteq B$, the unipotent radical $N$ of $B$, the maximal
+split subtorus $A$ of $T$ are all definable.
 
 \XX{insert proofs}
 
@@ -2266,7 +2269,7 @@ $\xi:{}^LH\to {}^LG$ of endoscopic groups.
 \end{proof}
 
 
-\subsection{The constructibility of $B$}\label{sec:B}
+\subsection{the constructibility of $B$}\label{sec:B}
 
 Let ${}^LG$ be the Langlands dual of an unramified reductive group
 $G$.  Let ${}^LH$ be the dual of an unramified endoscopic group $H$.
@@ -2294,7 +2297,7 @@ classes in $\hat H$ to $\theta$-conjugacy classes in $\hat G$.  This
 is a morphism of varieties. The corresponding homomorphism of
 coordinate rings is $J_\xi$.
 
-Working $p$-adically, Langlands gives describes a homomorphism
+Working $p$-adically, Langlands gives a homomorphism
 $b = b_\xi$ from the spherical Hecke algebra of $G$ to the spherical
 Hecke algebra of $H$.  If $f$ belongs to the spherical Hecek algebra
 of $G$, its Satake transform belongs to $\ring{C}[Y^*]^{W^\theta}$,
@@ -2404,7 +2407,7 @@ characteristic in the following form.
   there is a constant $N=N_R\in\ring{N}$ such that the
   Langlands-Shelstad fundamental lemma holds for all unramified
   connected reductive groups $G$ with absolute root system $R$ and all
-  of its unramified endoscopic groups $H$ over $F$ for all fields
+  of its unramified endoscopic groups $H$ over $F$ for all
   $p$-adic fields $F\in \C_N$.
 \end{theorem}
 
@@ -2883,7 +2886,7 @@ D(\hat G,\g_+,\dotw,E,q)
   $\hat G$ has nontrivial center.  The simply laced Dynkin diagram of
   $\hat G$ has type $A_{n-1}$, $D_n$, $E_6$, or $E_7$.
 
-\subsection{Types $E_6$ and $E_7$}
+\subsection{types $E_6$ and $E_7$}
   We start with the hardest cases $E_6$ and $E_7$.  The extended
   Dynkin diagram of $E_6$ has an automorphism of order $3$ and the
   extended Dynkin diagram of $E_7$ has an automorphism of order $2$.
@@ -3002,7 +3005,7 @@ $\phi(\uu)$ gives the $\tau$-dependence.  Here $\uu\in\hat U\to \hat
 T_1$, and $\phi:\hat U\to \hat S$.
 
 
-\subsection{Type $A_{n-1}$}
+\subsection{type $A_{n-1}$}
 We return to the proof of the lemma and do the computation for a split
 group of type $A_{n-1}$.  The elements $w$ that act on the extended
 Dynkin diagram are powers of the Coxeter element.
@@ -3050,7 +3053,7 @@ are best considered together.  The proof is completed in section
 \end{proof}
 
 
-\subsection{Type $C_n$}
+\subsection{type $C_n$}
 
 The outer automorphism $\theta$ of $C_n$ is trivial.  We have $\hat S
 = \hat T$ and the root system is $N_1\Psi =\Psi$.  We work in the
@@ -3091,7 +3094,7 @@ the root system $\Sigma$ is the non-reduced root system $BC_k$ of rank
 $k$ with underlying torus $\hat T_1$ and positive roots $\tau_i
 \tau_j^{\pm 1}$, $\tau_i^2$, $\tau_i$.
 
-\subsection{Type $B_n$}
+\subsection{type $B_n$}
 
 The outer automorphism $\theta$ of $B_n$ is trivial.  We have $\hat S
 = \hat T$ and the root system is $N_1\Psi =\Psi$.  We work in the
@@ -3119,7 +3122,7 @@ Here $\Sigma$ is the non-reduced root system $BC_{n-1}$ of rank $n-1$,
 with underlying torus $\hat T_1$ and positive roots $s_i s_j^{\pm 1}$,
 $s_i^2$, $s_i$, with $1<i<j\le n$.
 
-\subsection{Type $D_n$}\label{sec:dn}
+\subsection{type $D_n$}\label{sec:dn}
 
 Thus, we can confine our attention to classical automorphisms of the
 extended Dynkin diagram, of order $2$ or $4$.  The extended Dynkin
