@@ -758,7 +758,8 @@ element $g\in G$ in the next-to-last case is uniquely determined by Lemma
 
 \begin{lemma}[identity and inverse]\label{lemma:inv2} 
 The binary operation $(\hplus)$ is abelian, has identity
-  element $1_G\in G$, and has inverse $g\mapsto g^{-1}$ for $g\in G$
+  element $1_G\in G$, and has a unique inverse, which
+   is given by $g\mapsto g^{-1}$ for $g\in G$
   and $P\mapsto P^{-1} = (x,-y)$ for $P=(x,y)\in \Eoo$.  Moreover, $(g
   P)^{-1} = g^{-1} P^{-1}$ for $g\in G$ and $P\in \Eoo$.
 \end{lemma}
@@ -807,16 +808,28 @@ g (P\hplus Q) &= P\hplus (g Q);\\
   \Eoo$ and $\hplus = \oplus''$, using the first equation to handle
   cases where one of the points lies in $G$.  Case splits also reduce
   us quickly to the situation where all intermediate and final sums in
-  the equation belong to $\Eoo$.  We can make use of the symmetries
+  the equation belong to $\Eoo$.  
+  
+  We can make use of the symmetries
   from the first equation to reduce the number of cases in the second,
   by using $\tau$ to replace $\oplus'$ with $\oplus$ as in Equation
-  \ref{eqn:tauplus}.  Replacing $P,Q,R$ by $\tau P$, $\tau Q$, and $\tau
-  R$ as needed, we may now assume that all the sums on the left-hand
-  side of the equation are computed using
-  $\oplus''=\oplus$.  We have four cases on the right-hand side depending on
-  $\oplus'' =\oplus,\oplus'$.  We prove each identity by polynomial
-  division, exactly as in Lemma \ref{lemma:assoc}, which is one of the
-  four required identities.
+  \ref{eqn:tauplus} and the coherence identity.  Write $\oplus_\ell=\oplus$ if $\ell$ is even and
+  $\oplus_\ell=\oplus'$ if $\ell$ is odd.
+  Replacing $P,Q,R$ by $\tau P$, $\tau Q$, and $\tau
+  R$ as needed,  repeatedly using the general coherence identity 
+  \[
+  \tau^i P\oplus_{\ell} \tau^j Q = \tau^{i+j} (P\oplus_{\ell+i+j} Q),
+  \]
+  we reduce to the situation where three of the four sums $\oplus''=\oplus_\ell$ 
+  in the associative identity have even parity.  That is, we reduce to proving
+  \[
+  (P\oplus Q)\oplus R = P \oplus'' (Q\oplus R)
+  \]
+  We have two cases on the right-hand side depending on
+  $\oplus'' =\oplus,\oplus'$.  When $\oplus''=\oplus$, the
+  identity is already proved (Lemma \ref{lemma:assoc}) and
+  we prove the other case $\oplus''=\oplus'$ by  polynomial
+  division in exactly the same way.
 \end{proof}
 
 \begin{corollary}[group law] $E$ is an abelian group under addition $\hplus$.
