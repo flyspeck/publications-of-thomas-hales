@@ -6,10 +6,10 @@
 % Aug 2016. Projective curves added.
 % October 5, 2016. Rewritten to remove MAA expository style.
 
-\documentclass[18pt]{article}
+\documentclass[12pt]{article}
 
 \usepackage{graphicx}
-\usepackage{amsthm}
+\usepackage{amsthm,xcolor}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amscd}
@@ -22,6 +22,7 @@
 %\usepackage{xcolor} % to remove color.
 \usepackage{tikz} % 
 \usetikzlibrary{chains,shapes,arrows,trees,matrix,positioning,decorations}
+%\usepackage[framemethod=TikZ]{mdframed}
 
 \def\tikzfig#1#2#3{%
 \begin{figure}[htb]%
@@ -34,7 +35,9 @@
 }
 \def\smalldot#1{\draw[fill=black] (#1) node [inner sep=1.3pt,shape=circle,fill=black] {}}
 
-\newtheorem{theorem}{Theorem}[section]
+
+
+\newtheorem{theorem}{Theorem}[subsection]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{definition}[theorem]{Definition}
@@ -45,15 +48,15 @@
 \newcommand{\op}[1]{\hbox{#1}}
 \newcommand{\f}[1]{\frac{1}{#1}}
 %\newcommand{\text}[1]{\hbox{#1}}
-\newcommand{\Eo}{E^\circ}
-\newcommand{\Eoo}{E^{\circ\circ}}
+%\newcommand{\Eo}{E^\circ}
+\newcommand{\Eoo}{E^{\circ}}
 \newcommand{\hplus}{\hat\oplus}
 \newcommand{\Go}{\langle\rho\rangle}
 \def\cong{\equiv}
 
 \title{The Group Law for Edwards Curves}
 \author{Thomas C. Hales}
-\date{October 5, 2016}
+\date{October 6, 2016}
 
 \begin{document}
 
@@ -61,17 +64,18 @@
 
 \begin{abstract} 
   This article gives an elementary computational proof of the group
-  law for Edwards elliptic curves following Edwards, Bernstein, Lange, et al.,
-  and Friedl.  The associative law is expressed as a polynomial
+  law for Edwards elliptic curves following  Bernstein, Lange, et al.,
+  Edwards, and Friedl.  The associative law is expressed as a polynomial
   identity over the integers that is directly checked by polynomial division.
   No preliminaries such as intersection numbers, 
   B\'ezout's theorem, projective geometry, divisors,
-  or Riemann Roch are required. This article has been written for the benefit
-  of undergraduate cryptography students.  The proofs have been designed
+  or Riemann Roch are required. This article is intended be accessible to
+  undergraduate cryptography students.  The proofs have been designed
   to facilitate the formal verification of elliptic curve cryptography.
 \end{abstract}
 
 \parskip=0.8\baselineskip
+\baselineskip=1.05\baselineskip
 
 \newenvironment{blockquote}{%
   \par%
@@ -84,12 +88,14 @@
 
 \section{The Circle}
 
-The unit circle $U$ in the complex plane $\ring{C}$ is a group under
-complex multiplication, or equivalently under the addition of angles in polar coordinates.  
-%\subsection{Hyperbolic addition}
-We write $\iota(x,y) =
-(x,-y)$ for complex conjugation, the inverse in the group
-$U$.
+The unit circle $\ring{C}_1$ in the complex plane $\ring{C}$ is a
+group under complex multiplication, or equivalently under the addition
+of angles in polar coordinates:  
+\begin{equation}\label{eqn:cx}
+(x_1,y_1) * (x_2,y_2) = (x_1 x_2 - y_1 y_2,x_1 y_2 + x_2 y_1).
+\end{equation}
+We write $\iota(x,y) = (x,-y)$ for
+complex conjugation, the inverse in $\ring{C}_1$.
 
 We give an unusual interpretation of the group law on the unit circle
 that we call {\it hyperbolic addition}.  We consider the family of
@@ -99,23 +105,22 @@ such a hyperbola has the form
 \begin{equation}\label{eqn:hyp}
 x y + p (x+1) + q y = 0.
 \end{equation}
-All hyperbolas in this article are assumed to be of this form.
-  As special cases (such as $x y=0$), this family includes pairs of lines.
-  
-We fix a hyperbola within the family by the condition that the
-hyperbola must pass through the two points $z_1$ and $z_2$ on the unit
-circle.  Under the non-collinearity assumption, this condition
-uniquely determines $p$ and $q$.  As illustrated in
-Figure~\ref{fig:fig1}, the hyperbola meets the unit circle in one
-additional point $z_3 = (x_3,y_3)$.  We have the following remarkable
-relationship among the three points $z_1$, $z_2$, and $z_3$ on the
-intersection of the circle and hyperbola.
+All hyperbolas in this article are assumed to be of this form.  As
+special cases (such as $x y=0$), this family includes pairs of lines.
+ 
+  Every two points $z_1$ and $z_2$ on the unit circle intersect some
+  hyperbola within the family.  This incidence condition uniquely
+  determines $p$ and $q$ when $(-1,0)$, $z_1$ and $z_2$ are not
+  collinear.  As illustrated in Figure~\ref{fig:fig1}, the hyperbola
+  meets the unit circle in one additional point $z_3 = (x_3,y_3)$.
+  The following remarkable relationship holds among the three points
+  $z_1$, $z_2$, and $z_3$ on the intersection of the circle and
+  hyperbola.
 
 \begin{lemma}[hyperbolic addition on the circle] \label{lemma:ha} Let
   $z_0=(-1,0)$, $z_1$, $z_2$ and $z_3$ be four distinct points on the
-  intersection of the unit circle with a hyperbola whose asymptotes
-  run parallel to the coordinate axes.  Then with respect to the group
-  law on the unit circle, we have $z_1 z_2 z_3 = 1$.
+  intersection of the unit circle with a hyperbola in the family (\ref{eqn:hyp}).  
+  Then $z_1 z_2 z_3 = 1$ in $\ring{C}_1$.
 \end{lemma}
 
 The lemma is a special case of a more general lemma
@@ -123,21 +128,22 @@ The lemma is a special case of a more general lemma
 
 This gives a geometric construction of the group law: the product of
 the two points $z_1$ and $z_2$ on the unit circle is $\iota(z_3)$.
-Rather than starting with the formula (\ref{eqn:cx}), we can reverse
-the process, defining a binary operation on the circle by
+Rather than starting with the standard formula for addition in $\ring{C}_1$, 
+we can reverse
+the process, defining a binary operation $(\oplus)$ on the circle by setting
 \[
 z_1 \oplus z_2 = \iota(z_3)
 \]
-when $z_1$, $z_2$, and $z_3$ are related by the circle and hyperbola
-intersection construction.  We call the binary operation $\oplus$ {\it
+whenever $z_1$, $z_2$, and $z_3$ are related by the circle and
+hyperbola construction.  We call the binary operation $\oplus$ {\it
   hyperbolic addition} on the circle.
 
 It might seem that there is no point in reinterpreting complex
 multiplication on the unit circle as hyperbolic addition, because they
-are actually the same binary operation, and complex multiplication is
+are actually the same binary operation, and the group $\ring{C}_1$ is
 already perfectly well-understood.  However, in the next section, we
 will see that hyperbolic addition generalizes in ways that ordinary
-complex multiplication does not.  In this sense, we have found a
+multiplication does not.  In this sense, we have found a
 better description of the group law on the circle.
 
 
@@ -221,24 +227,30 @@ By construction, hyperbolic addition satisfies $z_1 \oplus z_2 = \iota(z_3)$.}{
 }
 }
 
-We define a binary operation on the Edwards curve by the hyperbolic addition law described above.
-Let $(-1,0)$, $z_1 = (x_1,y_1)$ and $z_2=(x_2,y_2)$ be three points on an Edwards curve
- that are not collinear (to avoid degenerate cases).  We fit a hyperbola of the usual form (\ref{eqn:hyp}) through these three points,
- and let $z_3$ be the fourth point of intersection of the hyperbola with the curve.  We define the hyperbolic sum
- $z_1\oplus z_2$ of $z_1$ and $z_2$ to be $\iota(z_3)$.
- The following lemma gives an explicit formula for $z_1\oplus z_2 = \iota(z_3)$.
+We define a binary operation on the Edwards curve by the hyperbolic
+addition law described above.  Let $(-1,0)$, $z_1 = (x_1,y_1)$ and
+$z_2=(x_2,y_2)$ be three points on an Edwards curve that are not
+collinear (to avoid degenerate cases).  We fit a hyperbola of the
+usual form (\ref{eqn:hyp}) through these three points, and let $z_3$
+be the fourth point of intersection of the hyperbola with the curve.
+We define the hyperbolic sum $z_1\oplus z_2$ of $z_1$ and $z_2$ to be
+$\iota(z_3)$.  The following lemma gives an explicit formula for
+$z_1\oplus z_2 = \iota(z_3)$.
 
  
- \begin{lemma}\label{lemma:hyp} In this construction, the coordinates are given explicitly by
+ \begin{lemma}\label{lemma:hyp} 
+In this construction, the coordinates are given explicitly by
  \begin{equation}\label{eqn:sum}
- \iota(z_3) = \left(\frac{x_1 x_2 - c y_1 y_2}{1 - d x_1 x_2 y_1 y_2},\frac{x_1 y_2 + y_1 x_2}{1+d x_1 x_2 y_1 y_2}\right)
+ \iota(z_3) = \left(\frac{x_1 x_2 - c y_1 y_2}{1 - d x_1 x_2 y_1 y_2},
+\frac{x_1 y_2 + y_1 x_2}{1+d x_1 x_2 y_1 y_2}\right)
  \end{equation}
  \end{lemma}
 
-This lemma will be proved below (Lemma~\ref{lemma:hyperbola}).
-Until now, we have assumed the points $(-1,0)$, $z_1$, and $z_2$ are not collinear.  
-Dropping the assumption of non-collinearity, we turn formula (\ref{eqn:sum})
-of Lemma~\ref{lemma:hyp} into a definition and define the hyperbolic sum
+ This lemma will be proved below (Lemma~\ref{lemma:hyperbola}).  Until
+ now, we have assumed the points $(-1,0)$, $z_1$, and $z_2$ are not
+ collinear.  Dropping the assumption of non-collinearity, we turn
+ formula (\ref{eqn:sum}) of Lemma~\ref{lemma:hyp} into a definition
+ and define the hyperbolic sum
 \[
  z_1\oplus z_2 := \iota(z_3).
 \]
@@ -248,11 +260,8 @@ works without fail (that is, the denominators are always nonzero) for
 suitable parameters $c$ and $d$.
 
 The unit circle belongs to the family of Edwards curves for parameter
-values $c=1$ and $d=0$.  In this case, the formula reduces to the
-familiar formula for multiplication:
-\begin{equation}\label{eqn:cx}
-(x_1,y_1) * (x_2,y_2) = (x_1 x_2 - y_1 y_2,x_1 y_2 + x_2 y_1).
-\end{equation}
+values $c=1$ and $d=0$.  In this case, the formula (\ref{eqn:sum})
+reduces to the the group law (\ref{eqn:cx}).
 
 In the next section, we prove quite generally that hyperbolic addition
 makes the Edwards curve into a group.
@@ -269,16 +278,21 @@ field $k$.
 
 \subsection{rings and homomorphisms}
 
-We try to keep our presentation at an undergraduate level.
-We will assume a basic background in abstract algebra at the level of a first course (rings, fields, homomorphisms, and kernels).
-We set things up in a way that all of the main identities to be proved are identities of polynomials with integer coefficients.
+We try to keep our presentation at an undergraduate level.  We will
+assume a basic background in abstract algebra at the level of a first
+course (rings, fields, homomorphisms, and kernels).  We set things up
+in a way that all of the main identities to be proved are identities
+of polynomials with integer coefficients.
 
-If $R$ is a ring (specifically, a ring of polynomials with integer coefficients), and if $\delta\in R$, then we write
-$R[\f{\delta}]$ for the localization of $R$ with respect to the multiplicative set $S=\{1,\delta,\delta^2,\ldots\}$.  That is,
-$R[\f{\delta}]$ is the ring of fractions with numerators in $R$ and denominators in $S$.  We will need the 
-well-known fact that if $\phi:R\to A$
-is a ring homomorphism that sends $\delta$ to a unit in $A$, then $\phi$ extends uniquely to a homomorphism
-$R[\f{\delta}]\to A$ that maps a fraction $g/\delta^i$ to $\phi(g)\phi(\delta^i)^{-1}$.
+If $R$ is a ring (specifically, a ring of polynomials with integer
+coefficients), and if $\delta\in R$, then we write $R[\f{\delta}]$ for
+the localization of $R$ with respect to the multiplicative set
+$S=\{1,\delta,\delta^2,\ldots\}$.  That is, $R[\f{\delta}]$ is the
+ring of fractions with numerators in $R$ and denominators in $S$.  We
+will need the well-known fact that if $\phi:R\to A$ is a ring
+homomorphism that sends $\delta$ to a unit in $A$, then $\phi$ extends
+uniquely to a homomorphism $R[\f{\delta}]\to A$ that maps a fraction
+$g/\delta^i$ to $\phi(g)\phi(\delta^i)^{-1}$.
 
 \begin{lemma}[kernel property] Suppose that an identity $g = r_1 e_1 +
   r_2 e_2 +\cdots + r_k e_k$ holds in a ring $R$.  If $\phi:R\to A$ is
@@ -299,54 +313,67 @@ e(x,y) = x^2 + c y^2 -1 - d x^2 y^2 \in  R_0[x,y].
 
 
 
-We write $e_i = e(x_i,y_i)$ for the image of the polynomial in $R_j$, for $i\le j$, under $x\mapsto x_i$ and $y\mapsto y_i$.
-Set
+We write $e_i = e(x_i,y_i)$ for the image of the polynomial in $R_j$,
+for $i\le j$, under $x\mapsto x_i$ and $y\mapsto y_i$.  Set
 \[\delta^\pm=\delta^{\pm} (x_1,y_1,x_2,y_2) = 1\pm d x_1 y_1 x_2 y_2\] and
 \[
 \delta(x_1,y_1,x_2,y_2) = 1 - d^2 x_1^2 y_1^2 x_2^2 y_2^2 =\delta^+\delta^-\in R_2.
 \]
-We write $\delta_{ij}$ for its image of $\delta$ under $(x_1,y_1,x_2,y_2)\mapsto (x_i,y_i,x_j,y_j)$.  So, $\delta=\delta_{12}$.
+We write $\delta_{ij}$ for its image of $\delta$ under
+$(x_1,y_1,x_2,y_2)\mapsto (x_i,y_i,x_j,y_j)$.  So,
+$\delta=\delta_{12}$.
 
 \subsection{inverse and closure}
 
-Borrowing the definition of hyperbolic addition from the previous section,
-we define a pair of rational functions that we denote using the symbol $\oplus$:
+Borrowing the definition of hyperbolic addition from the previous
+section, we define a pair of rational functions that we denote using
+the symbol $\oplus$:
 \begin{equation}\label{eqn:add}
-(x_1,y_1) \oplus (x_2,y_2) =  \left(\frac{x_1 x_2 - c y_1 y_2}{1 - d x_1 x_2 y_1 y_2},\frac{x_1 y_2 + y_1 x_2}{1+d x_1 x_2 y_1 y_2}\right) \in R_2[\f{\delta}]\times R_2[\f{\delta}].
+(x_1,y_1) \oplus (x_2,y_2) =  \left(\frac{x_1 x_2 - c y_1 y_2}{1 - d x_1 x_2 y_1 y_2},
+\frac{x_1 y_2 + y_1 x_2}{1+d x_1 x_2 y_1 y_2}\right) \in R_2[\f{\delta}]\times R_2[\f{\delta}].
 \end{equation}
-Commutivity is a consequence of the subscript symmetry $1\leftrightarrow 2$ evident in the pair of rational functions:
+Commutivity is a consequence of the subscript symmetry
+$1\leftrightarrow 2$ evident in the pair of rational functions:
 \[
 (x_1,y_1) \oplus (x_2,y_2) = (x_2,y_2) \oplus (x_1,y_1).
 \]
-If $\phi:R_2[\f{\delta}]\to A$ is a ring homomorphism, we also write $(a_1,b_1)\oplus (a_2,b_2)\in A^2$ for the image
-of $(x_1,y_1)\oplus (x_2,y_2)$, where $x_1,y_1,x_2,y_2 \mapsto^\phi a_1,b_1,a_2,b_2$.  We write $\bar e_i=\bar e(a_i,b_i)\in A$ for the
-image of $e_i$ under $\phi$.  Geometrically,
-$\bar e_i=0$ asserts that $(a_i,b_i)$ is a point on the Edwards curve.
-More generally, we often mark the image $\bar g=\phi(g)$ of an element with a bar accent.
+If $\phi:R_2[\f{\delta}]\to A$ is a ring homomorphism, we also write
+$(a_1,b_1)\oplus (a_2,b_2)\in A^2$ for the image of $(x_1,y_1)\oplus
+(x_2,y_2)$, where $x_1,y_1,x_2,y_2 \mapsto^\phi a_1,b_1,a_2,b_2$.  We
+write $\bar e_i=\bar e(a_i,b_i)\in A$ for the image of $e_i$ under
+$\phi$.  Geometrically, $\bar e_i=0$ asserts that $(a_i,b_i)$ is a
+point on the Edwards curve.  More generally, we often mark the image
+$\bar g=\phi(g)$ of an element with a bar accent.
 
-There is an obvious identity element $(1,0)$, expressed as follows.  Under a homomorphism
-$\phi:R_2[\f{\delta}]\to A$, mapping $x_1,y_1,x_2,y_2\mapsto a,b,1,0$,
-we have $(a,b)\oplus(1,0) = (a,b)$.
+There is an obvious identity element $(1,0)$, expressed as follows.
+Under a homomorphism $\phi:R_2[\f{\delta}]\to A$, mapping
+$x_1,y_1,x_2,y_2\mapsto a,b,1,0$, we have 
+\begin{equation}
+(a,b)\oplus(1,0) = (a,b).
+\end{equation}
 
 \begin{lemma} [inverse] 
-Under a homomorphism
-$\phi:R_2[\f{\delta}]\to A$, with $x_1,y_1,x_2,y_2\mapsto a_1,b_1,a_1,-b_1$,
-we have $(a_1,b_1)\oplus (a_1,-b_1) = (1,0)$, provided $\bar e_1=0$. 
+  Under a homomorphism $\phi:R_2[\f{\delta}]\to A$, with
+  $x_1,y_1,x_2,y_2\mapsto a_1,b_1,a_1,-b_1$, we have $(a_1,b_1)\oplus
+  (a_1,-b_1) = (1,0)$, provided $\bar e_1=0$.
 \end{lemma}
 
-\begin{proof}  Plug $(a_1,b_1)$ and $(a_1,-b_1)$ into  (\ref{eqn:add})
-and simplify using $\bar e_1=0$.
+\begin{proof} Plug $(a_1,b_1)$ and $(a_1,-b_1)$ into (\ref{eqn:add})
+  and simplify using $\bar e_1=0$.
 \end{proof}
 
 \begin{lemma}[closure under addition]\label{lemma:closure}
-Let $\phi:R_2[\f{\delta}]\to A$ be a ring homomorphism with $x_1,y_1,x_2,y_2 \mapsto^\phi a_1,b_1,a_2,b_2$.
-If $\bar e_1 = \bar e_2 = 0$ then ${\bar e}(a_3,b_3) = 0$, where $(a_3,b_3) = (a_1,b_1)\oplus (a_2,b_2)$.
+  Let $\phi:R_2[\f{\delta}]\to A$ be a ring homomorphism with
+  $x_1,y_1,x_2,y_2 \mapsto^\phi a_1,b_1,a_2,b_2$.  If $\bar e_1 = \bar
+  e_2 = 0$ then ${\bar e}(a_3,b_3) = 0$, where $(a_3,b_3) =
+  (a_1,b_1)\oplus (a_2,b_2)$.
 \end{lemma}
 
-\begin{proof} This proof serves as a model for several proofs that
-  are based on multivariate polynomial division.  We write
+\begin{proof} This proof serves as a model for several proofs that are
+  based on multivariate polynomial division.  We write
 \[
-e(x_3',y_3') = \frac{g}{\delta^2},\quad \text{ where } (x_3',y_3')=(x_1,y_1) \oplus (x_2,y_2) ,\quad 
+e(x_3',y_3') = \frac{g}{\delta^2},\quad \text{ where } 
+(x_3',y_3')=(x_1,y_1) \oplus (x_2,y_2) 
 \]
 for some polynomial $g \in R_2$.  It is enough to show that $\phi(g)=0$.
 Polynomial division gives
@@ -363,22 +390,22 @@ property and (\ref{eqn:closure}); $\bar e_1 = \bar e_2 = 0$ implies
 $\phi(g)= 0$, giving ${\bar e}(a_3,b_3)=0$.
 \end{proof}
 
- Although the documentation is incomplete, the function {\tt PolynomialReduce}
-  seems to be
-  an implementation of a naive multivariate 
-  division algorithm such as \cite{cox1992ideals}.  In particular, our
-  approach does not require the use of Gr\"obner bases (except in
-  Lemma \ref{lemma:noco} 
-  where they make an easily avoidable appearance).  We write
+Although the documentation is incomplete, the function {\tt
+  PolynomialReduce} seems to be an implementation of a naive
+multivariate division algorithm such as \cite{cox1992ideals}.  In
+particular, our approach does not require the use of Gr\"obner bases
+(except in Lemma \ref{lemma:noco} where they make an easily avoidable
+appearance).  We write
 \[
 g \cong 0 \mod S,
 \]
 where $g$ is a polynomial and $S$ is a set of polynomials, to indicate
-that $g$ has zero remainder when reduced by polynomial division\footnote{Our computer algebra
-calculations are available at \url{www.github.com/flyspeck}.  This includes
-a formal verification in HOL Light of key polynomial identities.} with
-respect to $S$ using {\tt PolynomialReduce}.  The zero remainder will
-give $\phi(g)=0$ in each application.  Using this approach, most of the
+that $g$ has zero remainder when reduced by polynomial
+division\footnote{Our computer algebra calculations are available at
+  \url{www.github.com/flyspeck}.  This includes a formal verification
+  in HOL Light of key polynomial identities.} with respect to $S$
+using {\tt PolynomialReduce}.  The zero remainder will give
+$\phi(g)=0$ in each application.  Using this approach, most of the
 proofs in this article almost write themselves.
 
 
@@ -451,9 +478,15 @@ $\bar d = 0$.
 
 \begin{theorem}[group law]\label{thm:group} 
   Let $k$ be a field, let $\bar c \in k$ be a square, and let $\bar
-  d\not\in k^{\times 2}$.  Let $\bar e(x,y) \in k[x,y]$ be the
-  specialization of $e(x,y)$, obtained by $(c,d)\mapsto (\bar c,\bar
-  d)$.  Then $C= \{(a,b)\in k^2 \mid \bar e(a,b) = 0\}$ is an abelian
+  d\not\in k^{\times 2}$.  
+  %Let $\bar e(x,y) \in k[x,y]$ be the
+  %specialization of $e(x,y)$, obtained by $(c,d)\mapsto (\bar c,\bar
+  %d)$.  
+  Then 
+  \[
+  C= \{(a,b)\in k^2 \mid \bar e(a,b) = 0\}
+  \]
+   is an abelian
   group with binary operation $\oplus$.
 \end{theorem}
 
@@ -471,22 +504,49 @@ $\bar d = 0$.
   inverse, and affine closure.
 \end{proof}
 
+The Mathematica calculations in this section are fast. For example,
+the associativity certificate takes about $0.12$ second to compute on
+a 2.13 GHz processor.  Once the Mathematica code was in final form, it
+took less than 30 minutes of development time in HOL Light to copy the
+polynomial identities over to the proof assistant and formally verify
+them.  All the polynomial identities in this section combined can be
+formally verified in less than 2 seconds. The most difficult formal
+verification is the associativity identity which takes about 1.5
+seconds.
+
+Working with the Weierstrass form of the curve, Friedl was
+the first to give a proof of the associative law of elliptic
+curves in a computer algebra system (in Cocoa using Gr\"obner bases) \cite{friedl}. 
+He writes, ``The verification of some identities took several hours
+on a modern computer; this proof could not have been carried out
+before the 1980s.''  These identities were eventually formalized in Coq
+with runtime 1 minute and 20 seconds \cite{thery2007proving}.
+We have significantly improved the speed of the calculations.
+
 \section{Group law for projective Edwards curves}
+
+By proving the group laws for a large class of elliptic curves,
+Theorem \ref{thm:group} is sufficiently general for many applications
+to cryptography.  However, to achieve complete generality, we
+push forward.
 
 This section show how to remove the restriction $\bar d\not\in
 k^{\times 2}$ that appears in the group law in the previous section.
-By removing this restriction, we obtain a new proof of the group law for all elliptic
-curves in characteristics different from $2$.  Unfortunately, in this
-section, some case-by-case arguments are needed.
+By removing this restriction, we obtain a new proof of the group law
+for all elliptic curves in characteristics different from $2$.
+Unfortunately, in this section, some case-by-case arguments are
+needed.
 
 The basic idea of our construction that if $\Eoo$ is the set of affine
 points on the Edwards curve with nonzero coordinates, then the set of
-points $G$ we must add to compactify is an abelian group of order eight that acts
-as autormophisms of $\Eoo$.  We obtain a binary operation on the
-projective curve $\Eoo\sqcup G$ by merging hyperbolic addition on $\Eoo$
-with the group action of $G$ on $\Eoo$.  It will be associative by the
-underlying associativity of the binary operations that are merged.
+points $G$ we must add to compactify it is actually an abelian group of order
+eight that acts as automophisms of $\Eoo$.  We obtain a binary
+operation on the set $E=\Eoo\sqcup G$ by merging
+hyperbolic addition on $\Eoo$ with the group action of $G$ on $\Eoo$.
+It will be associative by the underlying associativity of the binary
+operations that are merged.
 
+\subsection{definitions}
 
 Let $k$ be a field of characteristic different from $2$.  In this
 section, we assume that $c\ne 0$ and that $c$ and $d$ are both
@@ -511,9 +571,10 @@ R_n = R_0[x_1,y_1,\ldots,x_n,y_n].
 We write $e_i = e(x_i,y_i)$, and $\bar e_i = \phi(e_i)$ when a
 homomorphism $\phi$ is given.
 
-Let $\Eo$ be the set of solutions of Equation (\ref{eqn:t}) with
-coordinates $x,y$ in the field $k$.  Let $\Eoo\subset E^0$ be the set
-of points such that $x\ne0$ and $y\ne 0$.
+Let $\Eoo$ be the set of solutions of Equation (\ref{eqn:t}) with
+nonzero coordinates $x,y\in k^\times$.
+% in the field $k$.  Let $\Eoo\subset \Eo$ be the set
+%of points such that $x\ne0$ and $y\ne 0$.
 
 Let $G$ be the abelian group of order eight generated by the following
 two permutations $\rho,\tau$ of the set $\Eoo$:
@@ -526,65 +587,70 @@ Define $E = G\sqcup \Eoo$.  We will show that $E$ can be made into a
 group.  The binary operation 
 combines $\oplus$ with the action of $G$ on $\Eoo$.
 
-Let $[g] = g(1,0)\in \Eo$.  Then $\{[g]\mid g\in \Go\} = \Eo \setminus
-\Eoo$ and $[g]\oplus Q = g Q$, for $g\in \Go$ and $Q\in \Eoo$.
+%Let $[g] = g(1,0)\in \Eo$.  Then $\{[g]\mid g\in \Go\} = \Eo \setminus
+%\Eoo$ and $[g]\oplus Q = g Q$, for $g\in \Go$ and $Q\in \Eoo$.
 
-We define an action $G\times E\to E$ by
-\[
-(g,P)\mapsto \begin{cases}g P,& P\in \Eoo;\\
-g g_1,& P = g_1\in G.
-\end{cases}
-\]
-It is easy to check that this is indeed an action of $G$ on $E$, using
-the fact that $G$ acts on $\Eoo$ and on $G$ by left multiplication.
+%We define an action $G\times E\to E$ by
+%\[
+%(g,P)\mapsto \begin{cases}g P,& P\in \Eoo;\\
+%g g_1,& P = g_1\in G.
+%\end{cases}
+%\]
+%This is indeed an action of $G$ on $E$ because
+% $G$ acts on $\Eoo$ and on $G$ by left multiplication.
 
 \begin{lemma}  \label{lemma:no-fix}
-  $G$ acts without fixed point on $E$.  That is, $g P = P$ implies
-  that $g=e_G\in G$.
+  $G$ acts without fixed point on $\Eoo$.  That is, $g P = P$ implies
+  that $g=1_G\in G$.
 \end{lemma}
 
-\begin{proof} If $P=g_1\in G$, then $g g_1 = g_1$ clearly implies that
-  $g=e_G$.  If $g = \rho^k\ne e_G$, then $g P = P$ implies that $t x y
+\begin{proof} 
+%If $P=g_1\in G$, then $g g_1 = g_1$ clearly implies that
+%  $g=1_G$.  
+  If $g = \rho^k\ne 1_G$, then $g P = P$ implies that $t x y
   = - t x y$ and $x=y=0$, which is not a point on the curve.  If $g =
   \tau \rho^k$, then the fixed point condition $g P = P$ leads to $t
   x^2 = t y^2 =\pm 1$.  Such a point can lie on the curve only
 when $t^2=1$, which is contrary to our standing assumption.
 \end{proof}
 
-We extend the binary operation $\oplus$ as follows.  The idea is to
+\subsection{extended addition}
+
+We extend the binary operation $\oplus$ using the automorphism $\tau$
+as follows.  The idea is to
 set 
 \begin{equation}\label{eqn:tauplus}
 P\oplus' Q = \tau((\tau P)\oplus Q).
 \end{equation}
-More formally, calculating the right-hand side in terms of coordinates, 
- we define $(\oplus')$ by a pair of rational functions
+More formally, calculating the right-hand side in terms of
+coordinates, we define $(\oplus')$ by a pair of rational functions
 \[
 (x_1,y_1)\oplus' (x_2,y_2) := \left(\frac{x_1y_1 - x_2 y_2}{x_2
     y_1-x_1 y_2},\frac{x_1 y_1 + x_2 y_2}{x_1 x_2 + y_1 y_2}\right) 
     \in R_2[\f{\delta'}].
 \]
-Let
+Let the denominators be denoted
 \[
 \delta'_+(x_1,y_1,x_2,y_2) = x_2 y_1 - x_1 y_2,
 \quad \delta'_-(x_1,y_1,x_2,y_2)= x_1 x_2 + y_1 y_2,
-\quad \delta' = \delta'_+ \delta'_-
+\quad \delta' = \delta'_+ \delta'_-.
 \] 
-be the denominators.
+\smallskip
 
-\begin{lemma}  
+\begin{lemma}[closure]
   Let $\phi:R_2[\f{\delta'}]\to R$.  Let $(a_i,b_i)$ be the image of
   $(x_i,y_i)$.  Let $(a_3,b_3)=(a_1,b_1)\oplus' (a_2,b_2)$.  If $\bar
   e_1 = \bar e_2 = 0$, then $e(a_3,b_3)=0$.
 \end{lemma}
 
-\begin{proof} Follow the proof of Lemma \ref{lemma:closure} to reduce to an
-identity
+\begin{proof} Follow the proof of Lemma \ref{lemma:closure} to reduce
+  to an identity
 \[
 g\cong 0 \mod \{e_1,e_2\}.
 \].
 \end{proof}
 
-\begin{lemma} \label{lemma:extend} Let $\phi:R_2[\f{\delta'\delta}]\to
+\begin{lemma}[coherence] \label{lemma:extend} Let $\phi:R_2[\f{\delta'\delta}]\to
   A$ be a homomorphism sending $x_i,y_i\mapsto a_i,b_i$.  Assume $\bar
   e_1 = \bar e_ 2 = 0$. Then
 \[
@@ -604,105 +670,124 @@ for some polynomials $g_1,g_2$.   Polynomial division gives
 \]
 \end{proof}
 
-Using this compatibility, we define $\oplus''$ on the domain
+Using coherence, we define $\oplus''$ on the domain
 \begin{align*}
-\{(a_1,b_1,a_2,b_2)\in \Eo\times \Eo &\mid 
-\delta(a_1,b_1,a_2,b_2)\ne 0 \vee
-\delta'(a_1,b_1,a_2,b_2)\ne 0 \},
+\{(P,Q)\in \Eoo\times \Eoo &\mid 
+\delta(P,Q)\ne 0 \vee
+\delta'(P,Q)\ne 0 \},
 \end{align*}
-that restricts to $\oplus$ and $\oplus'$ where defined.  We say that
-$P=(a_1,b_1), Q=(a_2,b_2)\in \Eo$ are {\emph {composable}}, if
-$(a_1,b_1,a_2,b_2)$ lies in this domain.
+that restricts to $\oplus$ and $\oplus'$ where their denominators are nonzero.  
 
-\begin{lemma}\label{lemma:noco} 
-  If $P=(a_1,b_1),Q=(a_2,b_2)\in \Eo$ are not composable, then there
-  exists $g\in G$ such that $Q= gP^{-1}$.
+\subsection{trichotomy}
+
+\begin{lemma}[trichotomy]\label{lemma:noco} 
+  Let $P,Q\in \Eoo$.  Then either $Q=g P^{-1}$ for some $g\in G$, or
+  $\delta(P,Q)\ne 0$, or $\delta'(P,Q)\ne 0$.
 \end{lemma}
 
-\begin{proof} If $P$ or $Q$ is in $G$, then the result is immediate.
-  Assume that $P,Q\in \Eoo$.  Set $\tau Q = Q_0 = (a_0,b_0)$. Then
-\[
-Q = \tau Q_0 = (1/(t a_0),1/(t b_0)).
-\]
-It is enough to show that
+\begin{proof} 
+  Assuming
+  \[
+  \delta(P,Q) = \delta^+(P,Q)\delta^-(P,Q)=0,\quad\text{and}\quad
+  \delta'(P,Q) = \delta_+'(P,Q)\delta_-'(P,Q)=0,
+  \]
+  we show that $Q = g P^{-1}$ for some $g\in G$.
+  Replacing $Q$ by $\rho Q$ if needed, which exchanges
+  $\delta^+\leftrightarrow \delta^-$, we may assume that
+  $\delta^+(P,Q)=0$.  Set $\tau Q = Q_0 = (a_0,b_0)$ and
+  $P=(a_1,b_1)$.  
+
+We claim that
 \begin{equation}\label{eqn:gp-}
 (a_0,b_0) \in \{\pm (b_1,a_1),\pm (a_1,-b_1)\} = \Go P^{-1}.
 \end{equation}
-We analyze the vanishing of the denominators of $\oplus$ and
-$\oplus'$.  Replacing $Q_0$ by $\rho Q_0$ if needed, which exchanges
-$\delta^+\leftrightarrow \delta^-$, we may assume that
-$\delta^+(a_1,b_1,1/(t a_0),1/(t b_0))=0$.  Let $S$ be the Gr\"obner
-basis of the polynomials $e_1,e_2, q x_0 x_1 y_0 y_1 - 1$ and the
-numerators of
+Write $\delta^+_0,\delta_{+0}',\delta_{-0}'$ for $t x_0 y_0\delta^+$,
+$x_0 y_0\delta_+'$, and $x_0 y_0 \delta_-'$ respectively, evaluated at
+$(x_1,y_1,1/(t x_0),1/(t y_0))$. (The factors $x_0y_0$ and $t x_0 y_0$ 
+have been included to clear the
+denominators, leaving us with polynomials.)
+
+We have two cases depending on whether $\delta_+'(P,Q)=0$ or
+$\delta_-'(P,Q)=0$.  In the first case, Let
 \[
-\delta^+(x_1,y_1,1/(t x_0),1/(t y_0)),\quad \text{and}\quad
-\delta_-'(x_1,y_1,1/(t x_0),1/(t y_0)).
+S = \text{Gr\"obner basis of } \{e_1,e_2, 
+\delta^+_0,\delta_{-0}',q x_0 x_1 y_0 y_1 - 1\}.
 \]
+The polynomial $q x_0 x_1 y_0 y_1-1$ is included to encode the
+condition $a_0,b_0,a_1,b_1\ne 0$, which holds on $\Eoo$.
 Polynomial division gives
 \[
 (x_0^2-y_1^2,x_1^2-y_0^2,x_0 y_0 - x_1 y_1) \cong (0,0,0) \mod S.
 \]
 These equations immediately yield $(a_0,b_0) = \pm (b_1,a_1)$ and
-(\ref{eqn:gp-}).  Now let $S$ be the Gr\"obner basis of the polynomials
-$e_1,e_2, q x_0 x_1 y_0 y_1 - 1$ and the numerators of
+(\ref{eqn:gp-}).  
+
+In the second case, let
 \[
-\delta^+(x_1,y_1,1/(t x_0),1/(t y_0)),\quad \text{and}\quad
-\delta_+'(x_1,y_1,1/(t x_0),1/(t y_0)).
+S = \text{Gr\"obner basis of } \{e_1,e_2, 
+\delta^+_0,\delta_{+0}',q x_0 x_1 y_0 y_1 - 1\}.
 \]
 Polynomial division gives
 \[
 (x_0^2-x_1^2,y_0^2-y_1^2,x_0 y_0 - x_1 y_1) \cong (0,0,0) \mod S.
 \]
 These equations immediately yield $(a_0,b_0) = \pm (a_1,-b_1)$ and
-(\ref{eqn:gp-}).  In summary, we have $\tau Q = Q_0 = (a_0,b_0) = g
-P^{-1}$, for some $g\in \Go$.  Then $Q = \tau g P^{-1}$.
+(\ref{eqn:gp-}).  This gives the claim.
+
+In summary, we have $\tau Q = Q_0 = (a_0,b_0) = g P^{-1}$, for some
+$g\in \Go$.  Then $Q = \tau g P^{-1}$.
 \end{proof}
 
+\subsection{group law}
+
 We define a group structure on $E$ by merging the binary operations
-that are available.  $e_G\in G\subset E$ serves as the group identity
-element.  Note that $[e_G] = (1,0)$, the identity defined earlier for
-Edwards curve addition.  The inverse $P\mapsto P^{-1}$ is $g\mapsto
-g^{-1}$ on $G$ and $(x,y)\mapsto (x,-y)$ on $\Eoo$.  From here on, we
-write the inverse on $\Eo$ in multiplicative notation $P\mapsto
-P^{-1}$.  We define addition $\hplus$ by
+that are available.  We define addition $\hplus$ by
 \begin{equation}
 P\hplus Q = \begin{cases}
 g_1 g_2,& P = g_1, Q = g_2 \in G;\\
 g_1 Q,& P = g_1\in G,  Q\in \Eoo;\\
 g_2 P,& P \in \Eoo, Q = g_2\in G;\\
-P\oplus'' Q,& P,Q\in \Eoo \text{ (if composable)};\\
-g,& Q = g P^{-1}, P,Q\in \Eoo, g\in G.
+g,& Q = g P^{-1}, P,Q\in \Eoo, g\in G;\\
+P\oplus'' Q,&\text{otherwise}.
 \end{cases}
 \end{equation}
-By Lemma \ref{lemma:noco}, the definition covers all $P,Q\in E$.  The
-element $g\in G$ in the last case is uniquely determined by Lemma
+By Lemma \ref{lemma:noco}, $(\oplus'')$ has nonzero denominator
+in the final case.   The
+element $g\in G$ in the next-to-last case is uniquely determined by Lemma
 \ref{lemma:no-fix}.
 
-We remark that our definition of addition on the complete curve is
-essentially equivalent to the definition in
-\cite{bernstein2011complete}.  A cosmetic difference is that we label
-points at infinity by $g\in G$, rather than using projective
-coordinates.  The action of $G$ on $E$ extends to an action on
-$\ring{P}^1_k\times \ring{P}^1_k$.  Let $[g] = g (1,0)\in
-\ring{P}^1_k\times \ring{P}^1_k$.  Then $\Eoo\sqcup \{[g]\mid g\in
-G\}$ is the completion of $\Eoo$ in $\ring{P}^1_k\times \ring{P}^1_k$.
-This gives the translation from our representation to that of
-\cite{bernstein2011complete}.
+\begin{lemma}[identity and inverse]\label{lemma:inv2} 
+The binary operation $(\hplus)$ is abelian, has identity
+  element $1_G\in G$, and has inverse $g\mapsto g^{-1}$ for $g\in G$
+  and $P\mapsto P^{-1} = (x,-y)$ for $P=(x,y)\in \Eoo$.  Moreover, $(g
+  P)^{-1} = g^{-1} P^{-1}$ for $g\in G$ and $P\in \Eoo$.
+\end{lemma}
 
+\begin{proof} These are routine verifications.
+\end{proof}
 
-It is easily checked that for all $P,Q\in E$,  and all $g\in G$ we have
-\begin{equation}\label{eqn:cid}
-P\hplus Q = Q\hplus P,\quad 
-e_G \hplus P = P,\quad P^{-1} \hplus P = e_G,\quad (g P)^{-1} = g^{-1} P^{-1}
-\end{equation}
-Also, if $g\in \Go$ and $P\in \Eo$, then
-\[
- g P = [g]\oplus P = [g] \oplus' P.
-\]
+%$1_G\in G\subset E$ serves as the group identity
+%element.  
+%Note that $1_G\in G$ the identity defined earlier for
+%Edwards curve addition.  
+%The inverse $P\mapsto P^{-1}$ is $g\mapsto
+%g^{-1}$ on $G$ and $(x,y)\mapsto (x,-y)$ on $\Eoo$.  From here on, we
+%write the inverse on $\Eoo$ in multiplicative notation $P\mapsto
+%P^{-1}$. 
+%It is easily checked that for all $P,Q\in E$,  and all $g\in G$ we have
+%\begin{equation}\label{eqn:cid}
+%P\hplus Q = Q\hplus P,\quad 
+%1_G \hplus P = P,\quad P^{-1} \hplus P = 1_G,\quad (g P)^{-1} = g^{-1} P^{-1}
+%\end{equation}
+%Also, if $g\in \Go$ and $P\in \Eo$, then
+%\[
+% g P = [g]\oplus P = [g] \oplus' P.
+%\]
 
-\begin{lemma}\label{lemma:pseudo} For all $g\in G$ and all $P,Q,R\in E$, we have
+\begin{lemma}[extended associativity]\label{lemma:pseudo} 
+  For all $g\in G$ and all $P,Q,R\in E$, we have
 \begin{align}
-g (P\hplus Q) &= (g P)\hplus Q;\\
+g (P\hplus Q) &= P\hplus (g Q);\\
 (P\hplus Q)\hplus R &= P \hplus (Q\hplus R).
 \end{align}
 \end{lemma}
@@ -713,9 +798,9 @@ g (P\hplus Q) &= (g P)\hplus Q;\\
   according to $G\sqcup \Eoo$ reduce the proof to $P,Q\in \Eoo$ and
   $\hplus =\oplus''$.  It is then enough to check the equation on the
   generators $g=\rho,\tau$ of $G$.  For $\rho$, this reduces to an easy
-  identity of rational functions (no polynomial division is required);
-  and for $\tau$, we recover the defining relation of $\oplus'$ in
-  Equation \ref{eqn:tauplus}.
+  identity of rational functions 
+  (it is a true identity requiring no polynomial division);
+  and for $\tau$, it is precisely the coherence identity (Lemma \ref{lemma:extend}).
 
   Next, we prove associativity.  Again, easy case splits
   according to $G\sqcup \Eoo$ reduce the proof quickly to $P,Q,R\in
@@ -726,21 +811,32 @@ g (P\hplus Q) &= (g P)\hplus Q;\\
   from the first equation to reduce the number of cases in the second,
   by using $\tau$ to replace $\oplus'$ with $\oplus$ as in Equation
   \ref{eqn:tauplus}.  Replacing $P,Q,R$ by $\tau P$, $\tau Q$, and $\tau
-  R$ if needed, we may now assume that all the sums on the left-hand
-  side of the equation are composable and computed using
-  $\oplus''=\oplus$.  We have four cases on the right depending on
+  R$ as needed, we may now assume that all the sums on the left-hand
+  side of the equation are computed using
+  $\oplus''=\oplus$.  We have four cases on the right-hand side depending on
   $\oplus'' =\oplus,\oplus'$.  We prove each identity by polynomial
   division, exactly as in Lemma \ref{lemma:assoc}, which is one of the
   four required identities.
 \end{proof}
 
-\begin{corollary} $E$ is an abelian group under addition $\hplus$.
+\begin{corollary}[group law] $E$ is an abelian group under addition $\hplus$.
 \end{corollary}
 
 \begin{proof} This follows from earlier observations about the 
-  identity element and inverse (\ref{eqn:cid}),
+  identity element and inverse (Lemma \ref{lemma:inv2}),
   and associativity (Lemma \ref{lemma:pseudo}).
 \end{proof}
+
+We remark that our definition of addition on the curve $E$ is
+essentially equivalent to the definition in
+\cite{bernstein2011complete}.  A cosmetic difference is that we label
+points at infinity by $g\in G$, rather than using projective
+coordinates.  The action of $G$ on $\Eoo$ extends to an action on
+$\ring{P}^1_k\times \ring{P}^1_k$.  Let $[g] = g (1,0)\in
+\ring{P}^1_k\times \ring{P}^1_k$.  Then $\Eoo\sqcup \{[g]\mid g\in
+G\}$ is the projective Edwards curve in $\ring{P}^1_k\times \ring{P}^1_k$.
+This gives the translation from our representation to that of
+\cite{bernstein2011complete}.
 
 \section{Hyperbola Lemma}
 
@@ -815,7 +911,7 @@ elliptic curve.
 After passing to a quadratic extension if necessary, every elliptic
 curve is isomorphic to an Edwards curve.  This observation can be used
 to give a new proof that a general elliptic curve $E$ (say chord and
-tangent addition in Weierstrass form) is a group.  To carry this out, 
+tangent addition in Weierstrass form) is a group.  To carry this out,
 write the explicit isomorphism $E\to E'$ to an Edwards curve taking
 the binary operation $\oplus_E$ on $E$ to the group operation on the
 Edwards curve.  Then associativity for $\oplus_E$ follows from
@@ -823,17 +919,15 @@ associativity on the Edwards curve.
 
 \section{Acknowledgements}
 
-A number of calculations are reworkings of
-calculations found in Edwards, Bernstein, 
-Lange et al.~\cite{edwards2007normal}, \cite{bernstein2008twisted},
-\cite{bernstein2007faster}.  Inspiration for this article comes from
-Bernstein and Lange's wonderfully gentle introduction to
-elliptic-curve cryptography at the 31st Chaos Communication Congress
-in December, 2014.  They use the group law on the circle to motivate
-the group law on Edwards elliptic curves.  Hyperbolic addition is
-introduced for Edwards elliptic curves in \cite{arene2011faster}.  A
-proof of the associative law of elliptic curves using Gr\"obner bases was first
-carried out by Friedl \cite{friedl}.
+A number of calculations are reworkings of calculations found in
+Edwards, Bernstein, Lange et al.~\cite{edwards2007normal},
+\cite{bernstein2008twisted}, \cite{bernstein2007faster}.  Inspiration
+for this article comes from Bernstein and Lange's wonderfully gentle
+introduction to elliptic-curve cryptography at the 31st Chaos
+Communication Congress in December, 2014.  They use the group law on
+the circle to motivate the group law on Edwards elliptic curves.
+Hyperbolic addition is introduced for Edwards elliptic curves in
+\cite{arene2011faster}.  
 
 \bibliography{refs} 
 \bibliographystyle{alpha}
