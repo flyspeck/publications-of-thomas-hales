@@ -55,7 +55,7 @@
 \newcommand{\ang}[1]{\langle{#1}\rangle}
 \def\cong{\equiv}
 
-\title{The Group Law for Edwards Curves}
+\title{The Group Law for Edwards Curves without Tears}
 \author{Thomas C. Hales}
 \date{October 10, 2016}
 
@@ -85,6 +85,33 @@
   \leftskip=2em\rightskip=2em%
   \noindent\ignorespaces}{%
   \par\medskip}
+
+This article started with my frustration in teaching the elliptic curve group law
+ in an undergraduate course in cryptography.  I needed
+a simple proof of associativity.  At the same time, my work on the
+formal verification of mathematics made me wary of the so-called simple proofs 
+on the internet that achieve their simplicity by skipping cases or by relying on
+unjustified machinery.  
+
+Edwards curves have been widely
+promoted because their addition law avoids exceptional cases.  
+It is natural to ask whether the proof of the associative law also avoids exceptional
+cases when expressed in terms of Edwards curves.  Indeed, this article gives
+a six-line proof of the associative law for ``complete'' Edwards curves
+that avoids case splits and all the usual machinery.   
+
+At the same time, we have tackled the problem of motivating the addition
+formulas.  The usual chord and tangent addition law for Weierstrass curves
+can seem terribly unmotivated at first sight.  We show that the
+group law for a circle can be described by a geometric construction.  
+The circle motivates our construction.  That
+same geometric construction applied to an Edwards curve gives its group law.
+One pleasant surprise is that our proof of the group axioms applies 
+uniformly to both the circle and the
+Edwards curve.  
+
+
+
 
 
 \section{The Circle}
@@ -427,7 +454,7 @@ more involved.  Specifically, let $ (x_3',y_3')=(x_1,y_1) \oplus
 Define $\Delta_y$ analogously.
 
 \begin{lemma}[generic associativity] \label{lemma:assoc} Let
-  $\phi:R_3[\f{\Delta_y\Delta_x}]\to A$ be a homomorphism with $z_i\mapsto P_i$.
+  $\phi:R_3[\f{\Delta_x\Delta_y}]\to A$ be a homomorphism with $z_i\mapsto P_i$.
   If $e(P_1)=e(P_2)=e(P_3)=0$, then
 \[
 (P_1 \oplus P_2)\oplus P_3 = 
@@ -435,8 +462,8 @@ P_1 \oplus (P_2\oplus P_3).
 \]
 \end{lemma}
 
-\begin{proof} The proof is almost identical to the previous proof.  We
-  work in the ring $R_3[\f{\Delta_y\Delta_x}]$ and take the
+\begin{proof} The proof is nearly identical to the previous one.  We
+  work in the ring $R_3[\f{\Delta_x\Delta_y}]$ and take the
   component-wise difference of the two sides, writing
 \[
 ((x_1,y_1)\oplus (x_2,y_2)) \oplus (x_3,y_3)-
@@ -726,7 +753,7 @@ Turing to the second statement, if $g_1\in \ang{\rho}$, then
 \[
 [g_1]\oplus_0 P_2 = (x_1 x_2-y_1 y_2,x_1 y_2 + x_2 y_1);
 \]
-that is, the group law for the circle.  $g_1=\rho^j$ and $[\rho^j]$
+that is, the group law for the circle.  Then $g_1=\rho^j$ and $[\rho^j]$
 both act by rotation by angle $\pi j/2$.
 
 In the final statement, the intersection of $G$ with the range of
@@ -899,12 +926,12 @@ identity without further comment to cancel any elements of $G$ that
 appear on both sides of an equation.
 
 Next we show that for all $i,j,k,\ell\in \ring{Z}/2\ring{Z}$, and all
-$P,Q,R\in \Eoo$, with the obvious domain constraints, we have
+$P,Q,R\in \Eaff$, with the obvious domain constraints, we have
 \begin{equation}\label{eqn:assoc-affine}
 (P\oplus_i Q) \oplus_j R = P \oplus_k (Q \oplus_\ell R),
 \end{equation}
 which we prove by polynomial division in the same manner as
-Lemma \ref{lemma:assoc}, which is one of the cases.  (We might try to
+Lemma \ref{lemma:assoc}, which is one of the cases.  (We might
 reduce the number of cases by making systematic use of identities
 $(\tau^i P\oplus\tau^j Q)\oplus \tau^k R = \tau^{i+j+k} ((P\oplus
 Q)\oplus R)$, but we do not pursue that here.) A special case of this
@@ -941,14 +968,14 @@ We claim that
 \end{equation}
 This is an easy consequence of definitions if $P\in G$, $Q\in G$, or
 $Q = gP^{-1}$.  Otherwise, by (\ref{eqn:g-cancel}), $P\oplus G\not\in
-G$, and by (\ref{eqn:cancel}) $P\oplus Q$ does not have the form $g
+G$, and by (\ref{eqn:cancel}), $P\oplus Q$ does not have the form $g
 Q$.  By dichotomy, we reduce to an affine calculation, which is
 (\ref{eqn:semiaffine}).
 
 Finally, we prove general associativity.  This is an easy consequence
 of definitions if $P\in G$, $Q\in G$, or $R\in G$.  If $P\oplus Q\in
 G$, $Q\oplus R\in G$, $(P\oplus Q)\oplus R\in G$, or $P\oplus (Q\oplus
-R)\in G$, then the identity reduces to (\ref{eqn:semi}).  Otherwise,
+R)\in G$, then associativity reduces to (\ref{eqn:semi}).  Otherwise,
 by dichotomy, we reduce to the affine calculation
 (\ref{eqn:assoc-affine}).
 \end{proof}
@@ -1051,7 +1078,8 @@ Its divisor has the form
 \begin{equation}\label{eqn:h}
 [P] + [Q] + [R] - [(1,0)] - [(0,1)] - [(0,-1)],
 \end{equation}
-for some points $P,Q,R\in E(k)$.  By the definition of hyperbolic
+for some points $P,Q,R\in E(k)$.  (In particular, no  hidden zeros or
+poles lurk ``at infinity.'')  By the definition of hyperbolic
 addition, $\iota(R) = P\oplus Q$.  Conversely, three points on the Edwards
 curve that sum to $0$ determine a rational function in the family (by solving
 Equation (\ref{eqn:pq}) for $p$ and $q$ using any two of the three points). We
