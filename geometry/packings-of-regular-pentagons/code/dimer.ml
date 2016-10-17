@@ -16,6 +16,7 @@ module Dimer = struct
 
 open Pent;;
 open Pet;;
+open Banana;;
 
 (* ************************************************** *)
 (* iso_2C and iso_2C are footnotes in article *)

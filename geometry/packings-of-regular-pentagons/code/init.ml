@@ -11,10 +11,10 @@ then rename buffer to *ocaml-toplevel*
 *)
 
 #directory "/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/";;
-
+(*
 #use "topfind";;
 #list;;
-
+*)
 Gc.set { (Gc.get()) with Gc.stack_limit = 16777216 };;
 
 Sys.catch_break true;;
@@ -33,7 +33,9 @@ let hol_expand_directory s =
   else s;;
 
 let load_path = ref ["."; "$";
-"/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/"];;
+"/home/hasty/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/";
+"/Users/namaste/Desktop/git/publications-of-thomas-hales/geometry/packings-of-regular-pentagons/code/";
+];;
 
 let loaded_files = ref [];;
 
@@ -117,4 +119,4 @@ reneeds "banana.ml";;
 reneeds "dimer.ml";;
 reneeds "autodiff.ml";;
 reneeds "meet-in-middle.ml";;
-reneeds "mitm-calcs.ml";;
+(* reneeds "mitm-calcs.ml";; *)

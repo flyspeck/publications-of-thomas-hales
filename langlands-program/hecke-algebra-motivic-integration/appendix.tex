@@ -1,0 +1,377 @@
+
+
+
+\section{Inner type and simply laced}  
+
+This appendix give extra details about the endoscopic partition function
+for various simple groups.  This appendix will not be included in the published version.
+
+We will say that $w\theta$ has {\it inner type} if $\theta=1$, and $w$
+acts as usual on the extended Dynkin diagram.  This subsection
+considers data of inner type and simply laced.  Choose $\hat
+B(w\theta)$ to be adapted as in Lemma \ref{lemma:adapted} and let
+$\Psi^{++} = \Psi_{w\theta}^+(\hat T,\hat B(w\theta))$.
+
+\begin{proposition}\label{lemma:inner} 
+  Suppose that $\theta=1$ and the $\hat G$ is simple and simply laced.
+  Let $N_1\Psi=\{N_1\beta\mid \beta\in \Psi\}$ be the norm root system
+  of $\hat T_1$. Let $\ell$ be the order of $w$.  Let $m:\Psi\to
+  \ring{N}$ be given by $m(\alpha)=\ell$ if $\alpha$ is a long root in
+  $N_1\Psi$ (or if $N_1\Psi$ is simply laced).  Let $m(\alpha) = 1$,
+  otherwise.  Then there exists a lift $\dotw\in N_{\hat G}(\hat T)$
+  such that
+\begin{equation}\label{eqn:laced}
+D(\hat G,\Psi^{++},\dotw,E,q) 
+= \prod_{\alpha\in N_1\Psi^{++}} (1- q^{m(\alpha)} e^\alpha)^{m(\alpha)}.
+\end{equation}
+\end{proposition}
+
+\begin{proof} 
+  We make a case-by-case calculation.  As we will see, $m(\alpha)$ is
+  the orbit size of $\alpha$.
+
+  If $w=1$, then we set $\dotw=1$.  The determinant in the lemma is
+  the determinant $\det(1- q E;\n)$, the root system is $N_1\Psi
+  =\Psi$, $\hat B(w\theta)=\hat B_1$, $\Psi^{++}=\Psi^+(\hat T,\hat B)$,
+$m(\alpha)=1$, and we reduced to the classical partiton function
+\[
+\prod_{\Psi^+}(1-q e^\alpha).
+\]
+ This case is immediate.  (Note that these
+  cases are both inner and outer type.)
+
+  There is no non-trivial automorphism $w$ of the extended Dynkin
+  diagram when $\hat G_{sc} = \hat G_{adj}$.  Thus, we assume that
+  $\hat G$ has nontrivial center.  The simply laced Dynkin diagram of
+  $\hat G$ has type $A_{n-1}$, $D_n$, $E_6$, or $E_7$.
+
+\subsection{Types $E_6$ and $E_7$}
+  We start with the hardest cases $E_6$ and $E_7$.  We work with the adjoint
+  groups $E_{6,adj}$ and $E_{7,adj}$.  The extended
+  Dynkin diagram of $E_6$ has an automorphism of order $3$ and the
+  extended Dynkin diagram of $E_7$ has an automorphism of order $2$.
+  The root system $N_1\Psi$ has type $G_2$ or $F_4$, respectively,
+  when the original root system $\Psi$ has type $E_6$ or $E_7$.
+
+  We choose the representative $\dotw$ of $w\in W$ as follows.  Let
+  $w=r_1\ldots r_k$ be a reduced word for $w$, where each $r_i$ is a
+  simple reflection.  Tits constructs a choice of lift $\dot r_i$ of
+  $r_i$ to an element in the normalizer, depending only on the pinning
+  $(\hat B,\hat T,X)$.  The product $\dotw = \dot r_1\ldots \dot r_k$
+  is independent of the reduced word for $w$.
+
+  Let $\{ e_\gamma \mid \gamma\in \Psi\}\cup \{h_\alpha\mid
+  \alpha\in\Delta\}$ be the Kottwitz basis of the Lie algebra of $\hat
+  G$.  (A Kottwitz basis is a particularly nice Chevalley basis of the
+  Lie algebra, introduced in \cite{cassstructure}.)  For a
+  simply-laced root system, there is a single choice involved in
+  constructing the basis: a choice of simple root, which we take to be
+  the node of valence three in the Dynkin diagram (types $E_6$ and
+  $E_7$).  We make some computer assisted calculations, using
+  Mathematica.  No specialized Lie package is required; the
+  calculations are short and rather simple to implement directly.  An
+  algorithmic formula for $\op{Ad}(\dotw) e_\gamma$ appears in
+  \cite{cassstructure}.  In our situation, a short computer
+  calculation gives the remarkably simple answer:
+\[
+\op{Ad}(\dotw) e_\gamma 
+= e_{w\gamma}\text{ for all } \gamma\in \Psi;
+\qquad (E_6 \text{ and } E_7).
+\]
+This implies that the roots of unity $\zeta$ in Lemma \ref{lemma:fact}
+are all $1$, and that the determinant is a product of factors $(1-q^b
+e^{N_1\alpha})$.  Then, the lemma follows by counting the number of
+times each norm $N_1\alpha$ appears.  The numerical data for the
+partition function can be summarized by two equations
+\begin{equation}\label{eqn:count}
+\card(\Psi) = m + p + \ell^2 p,\quad m = \ell(n-a),
+\end{equation}
+\begin{align*}
+\begin{matrix}
+n & m&\ell & a & p & \card(\Psi)\\
+6 & 12&3 & 2 & 6 & 126\\
+7 & 6& 2 & 4 & 24 & 72,
+\end{matrix}
+\end{align*}
+where $n=6,7$ is the rank, $\ell$ is the order of $w$, $a$ is the
+multiplicity of the eigenvalue $1$ for the linear transformation $w$
+of $\op{Lie}(\hat T)$, $p$ is the cardinality of the norm positive
+root system $p = N_1\Psi^{++}$ (either $G_2$ or $F_4$).  Also, $m$ is
+the number of roots $\alpha\in\Psi$ such that $N_1\alpha=0$, and $p$
+is the number of roots fixed by $w$ (giving terms such that
+$m(\alpha)=1$ in the determinant and giving short roots $N_1\alpha$),
+and $\ell^2p$ is the number of the roots in orbits of $w$ of
+cardinality $\ell$ (giving terms such that $m(\alpha)=\ell$ in the
+determinant and giving long roots $N_1\alpha$).  This gives the
+partition function for $E_6$ and $E_7$.
+
+Next, we compute $\epsilon,\phi$ for $E_6$ and $E_7$.  We describe the
+root systems of $E_6$ and $E_7$ as explicit subsets of the root
+systems of $E_8$.  Let $e_0=(1/2,1/2,\ldots)\in\ring{R}^8$.  The root
+system of $E_8$ consists of all vectors $v$ with $v\cdot v = 2$ with
+coefficents in
+\[
+\ring{Z}^8 \cup (e_0 + \ring{Z}^8) \subset \ring{R}^8,
+\]
+and such that $v\cdot 2 e_0 \in2\ring{Z}$.  The root system $E_7$
+consists of those roots of $E_8$ that are orthogonal to $e_0$.  The
+root system of $E_6$ consists of those roots of $E_7$ that are
+orthogonal to $(0,0,0,0,0,0,1,1)$.  The maximal torus of $E_8$ is
+$\ring{C}^{\times,8}$, and of $E_7$ and $E_6$:
+\[
+\{(t_1,\ldots,t_8)\mid t_1\cdots t_8 = 1\},\quad 
+(\text{and also for $E_6$: } t_7 t_8 = 1).
+\]
+For $E_7$, we can take $\phi:\hat U\to\hat T$ and $\iota:\hat U\to\hat
+T_1 = \ring{C}^{\times,4}$.
+\[
+\epsilon\phi(\uu) = (-\zeta\uu_1,\zeta\uu_2,\zeta\uu_3,\zeta\uu_4,
+\zeta\uu_4^{-1},\zeta\uu_3^{-1},\zeta\uu_2^{-1},-\zeta\uu_1^{-1}),
+\]
+where $\zeta$ is a primitive eighth root of unity, and $\iota:\hat
+U\to\hat T_1$, $(\uu_1,\ldots)\mapsto (\uu_1^2,\ldots)$.  For $E_6$,
+we can take
+\[
+\epsilon\phi(\uu) = (\zeta \uu_1,\zeta^2 \uu_1,\uu_1,\zeta\uu_1^{-1},\uu_1^{-1},
+\zeta^2\uu_1^{-1},\uu_2,\uu_2^{-1}),
+\]
+where $\zeta$ is a primitve cube root of unity.
+
+Regularity follows from the observation that no root vanishes identically on
+$\epsilon\phi(\hat U)$.
+Choose $\hat B_1 = \hat B(\theta_1)$, 
+\[
+\Psi_{w\theta}^+(\hat T,\hat B(w\theta)) = \{
+\alpha\in \Psi(\hat T,\hat B(w\theta)\mid \phi^*\alpha\ne0\}.
+\]
+
+\XX{rework}
+
+Before continuing with the proof, we pause to describe the general
+strategy to compute partition functions in the remaining cases.  The
+strategy applies to this proof and to other proofs that follow.  The
+cases we have considered already (outer, $E_6$, $E_7$) give the
+partition function in all exceptional cases.  This means that the
+remaining cases are $A_{n-1}$, $B_n$, $C_n$, $D_n$.  When $n=4$, the
+triality automorphism of $D_4$ has outer type, which has been
+considered already.  Thus, we can assume that the automorphism of the
+extended diagram of $D_n$ has order $2$ or $4$.  By cases considered,
+we may assume the automorphism $\theta$ is trivial except in the case
+$D_n$.
+
+We calculate the data in the same manner.  We work in the standard
+representation of the each classical group.  For each automorphism of
+the extended Dynkin diagram (excluding those of outer type), we
+construct a lift $\dotw \in N_{\hat G}(\hat T)$ in the normalizer, and
+compute the partition function with respect to $\theta_1=\dotw
+\theta$.  For $\tau\in \hat T_1$, we diagonalize $\tau\dotw\theta$ to
+$s\theta$, with $s\in\hat S$ by computing its characteristic
+polynomial and eigenvalues.  From this diagonal form, we can read off
+the determinant.  \XX{insert a formula.}  We write $s = \epsilon
+\phi(\uu)$, where $\epsilon \in \hat S$ is independent of $\tau$ and
+$\phi(\uu)$ gives the $\tau$-dependence, for some $\iota:\uu\in\hat
+U\to \hat T_1$, and $\phi:\hat U\to \hat S$.
+
+
+\subsection{Type $A_{n-1}$}
+We return to the proof of the lemma and do the computation for a split
+group of type $A_{n-1}$.  The elements $w$ that act on the extended
+Dynkin diagram are powers of the Coxeter element.
+
+Let $\hat G = \op{SL}(n,\ring{C})$, and let $\theta=1$.  Assume that
+$n=m \ell$.  We may assume that $w$ acts on
+\[
+\hat T = \{(t_1,\ldots,t_{n})\mid t_1t_2\cdots t_{n}=1\},
+\quad \text{ by } w(t_1,\ldots,t_{n}) = (t_{m+1},t_{m+2},\ldots).
+\]
+The element $w$ has order $\ell$ and acts on the extended Dynkin
+diagram.  We lift $w$ to an element $\dotw = \zeta \dotw'$, where
+$\dotw'$ is an orthogonal matrix with entries in $\{0,1\}$ that
+realizes the permutation, and the root of unity $\zeta$ is chosen so
+that $\dotw \in \op{SL}(n,\ring{C})$.  We have
+\[
+\hat T \to \hat T_1 = 
+\{(\tau_1,\ldots,\tau_m)\mid \tau_1\ldots\tau_m=1\},
+\quad \op{diag}(t_1,\ldots,t_n)
+\mapsto (t_1t_{m+1}\cdots,t_2 t_{m+2}\cdots,\cdots).
+\]
+A calculation of the characteristic polynomial of $t\dotw$, for $t\in
+\hat T_1$ shows that $t\dotw$ can be described as follows.  Let
+$\zeta$ be a primitive $2\ell^\op{th}$ root of unity in
+$\ring{C}^\times$.  We set
+\begin{equation}
+s=\epsilon\phi(\uu)=\op{diag}(z\uu_1,z\uu_2,\ldots,z\uu_m)
+\in \hat T\subset \ring{C}^{\times,m\ell},
+\end{equation}
+where $z\in \ring{C}^{\times,\ell}$ is
+\begin{align*}
+z &= \op{diag}(\zeta^{2k-1},\zeta^{2k-3},\ldots,\zeta^{1-2k}), &(\ell=2k);\\
+      &= \op{diag}(\zeta^{2k},\zeta^{2k-2},\ldots,\zeta^{-2k}), &(\ell=2k+1)
+\end{align*}
+and
+\[
+\uu=(\uu_1,\ldots,\uu_m)\in \hat U,
+\]
+with isogeny $\uu\mapsto
+\iota(\uu)=(\uu_1^\ell,\uu_2^\ell,\ldots,\uu_m^\ell) = \tau\in \hat
+T_1$.  Since $s$ is in diagonal form, $\op{Ad}(s) e_\gamma = \gamma(s)
+e_\gamma$.  Let $N_1\Psi$ be the root system of $\op{SL}(m,\ring{C})$.
+The determinant is as stated in the lemma.  This completes the
+calculation for $A_{n-1}$.
+
+To finish the lemma, we need to compute the determinant for a groups
+of type $D_n$.  There are several cases that occur for $D_n$.  They
+are best considered together.  The proof is completed in section
+\ref{sec:dn}.
+\end{proof}
+
+
+\subsection{Type $C_n$}
+
+The outer automorphism $\theta$ of $C_n$ is trivial.  We have $\hat S
+= \hat T$ and the root system is $N_1\Psi =\Psi$.  We work in the
+standard representation of $\op{Sp}(2n)$ of dimension $2n$, defined
+with respect to a skew form along the anti-diagonal $J =
+\op{anti}(-1,-1,\ldots,\ 1,1\ldots,1)$.  The extended Dynkin diagram
+has a nontrivial automorphism of order $2$ that exchanges the two ends
+of the diagram.  It is represented in the normalizer as a block matrix
+of block size $n$:
+\[
+\dotw = \begin{pmatrix} 0 &I \\ -I & 0\end{pmatrix}.
+\]
+Write $n = 2k$ or $n = 2k+1$, depending on the parity of $n$.  The
+morphism $\hat T\to \hat T_1=\ring{C}^{\times,k}$ is
+\[
+t = \op{diag}(t_1,\ldots,t_n,t_n^{-1},\ldots,t_1^{-1})
+\mapsto \tau=(\tau_1,\ldots,\tau_k)=(t_1/t_n,t_2/t_{n-1},\ldots).
+\]
+Define an isogeny $\iota:\hat U=\ring{C}^{\times,k} \to \hat T_1$,
+where $(\uu_1,\ldots,\uu_k)\mapsto \tau=(\uu_1^2,\ldots,\uu_k^2)$.
+Diagonalizing $t\dotw$, we obtain
+\begin{align*}
+\epsilon\phi(\uu) 
+&= \op{diag}(i \uu_1,-i\uu_1,i\uu_2,-i\uu_2,\ldots,i\uu_k,
+-i\uu_k,\ i\uu_k^{-1},\ldots, -i\uu_1^{-1})\in \hat S,
+& (n = 2k);\\
+    &= \op{diag}(i \uu_1,-i\uu_1,i\uu_2,-i\uu_2,\ldots,i\uu_k,-i\uu_k,i,
+  -i,\ i\uu_k^{-1},\ldots, -i\uu_1^{-1}),
+& (n = 2k+1).\\
+\end{align*}
+We compute the determinant/Weyl denominator/partition function:
+\begin{equation}
+D_+ = \prod_{\alpha\in \Sigma^+} (1-e^\alpha)^2.
+\end{equation}
+When $n=2k$, the root system $\Sigma$ is that of the endoscopic group
+$H=\op{Sp}(2k,E)$, with $E/F$ quadratic unramified.  When $n=2k+1$,
+the root system $\Sigma$ is the non-reduced root system $BC_k$ of rank
+$k$ with underlying torus $\hat T_1$ and positive roots $\tau_i
+\tau_j^{\pm 1}$, $\tau_i^2$, $\tau_i$.
+
+\subsection{Type $B_n$}
+
+The outer automorphism $\theta$ of $B_n$ is trivial.  We have $\hat S
+= \hat T$ and the root system is $N_1\Psi =\Psi$.  We work in the
+standard representation of $\op{SO}(2n+1)$ of dimension $2n+1$,
+defined with respect to a symmetric form along the anti-diagonal $J =
+\op{anti}(1,1,\ldots,1)$.  The extended Dynkin diagram has type $B_n$
+at one end and has a fork of type $D_n$ at the other.  There is an
+automorphism of order $2$ that exchanges the two prongs of the fork.
+The morphism $\hat T\to \hat T_1=\ring{C}^{\times,n-1}$ is
+\[
+t = \op{diag}(t_1,\ldots,t_n,1,t_n^{-1},\ldots,t_1^{-1})
+\mapsto \tau = (t_2,\ldots,t_n).
+\]
+In this case, the isogeny $\iota$ is trivial: $\hat U= \hat T_1$,
+$\uu=\tau$.  Diagonalizing $t\dotw$, we obtain
+\begin{equation}
+\epsilon\phi(\tau) 
+= \op{diag}(-t_2,\ldots,-t_n,-1,1,-1,-t_n^{-1},\ldots,-t_1^{-1}).
+\end{equation}
+We compute the determinant
+\begin{equation}
+D_+ = \prod_{\alpha\in \Sigma^+} (1-e^\alpha).
+\end{equation}
+Here $\Sigma$ is the non-reduced root system $BC_{n-1}$ of rank $n-1$,
+with underlying torus $\hat T_1$ and positive roots $s_i s_j^{\pm 1}$,
+$s_i^2$, $s_i$, with $1<i<j\le n$.
+
+\subsection{Type $D_n$}\label{sec:dn}
+
+Thus, we can confine our attention to classical automorphisms of the
+extended Dynkin diagram, of order $2$ or $4$.  The extended Dynkin
+diagram of $D_n$ is forked at both ends.  There are various
+possibilities for $w\theta$, according to the symmetries of the
+extended Dynkin diagram.  We compute all cases (other than outer
+type).
+
+We work in the standard representation $\op{SO}(2n)$ of dimension
+$2n$, defined with respect to a symmetric form along the anti-diagonal
+$J = \op{anti}(1,1,\ldots,1)$.
+
+An outer automorphism $\theta$ exchanges the two prongs of one of the
+forks.  When $\theta=1$, then $\hat S = \hat T$ and the root system is
+$N_1\Psi = \Psi$.  When the outer automorphism $\theta$ is nontrivial,
+then $\hat T\to \hat S =\ring{C}^{\times,n-1}$ is
+$\op{diag}(t_1,\ldots,t_n,t_n^{-1},\ldots,t_1^{-1})\mapsto
+(t_1,\ldots,t_{n-1})$.  In this case, the root system $\Sigma_1$ with
+underlying torus $\hat S$ has type $C_{n-1}$ with positive roots $t_i
+t_j^{\pm 1}$, for $1\le i\le j<n$.
+
+Suppose the automorphism is of order $2$, preserving both ends, and
+acting non-trivially on the prongs at both ends.  In this case
+$\theta=1$ and $\hat S = \hat T$.  Then $\hat T\to \hat T_1 =
+\ring{C}^{\times,n-2}$, where $(t_1,\ldots,t_n,\ldots)\mapsto \tau =
+(t_2,\ldots,t_{n-1})$.  We can take the isogeny $\iota:\hat U\to \hat
+T_1$ to be the identity map, and
+\[
+\epsilon\phi(\tau) 
+= \op{diag}(t_2,\ldots,t_{n-1},-1,1,\ 1,-1,t_{n-1}^{-1},\ldots,t_2^{-1}).
+\]
+This case has inner type.  We compute the determinant and find that it
+has the form described in Lemma \ref{lemma:inner}.
+
+Next, suppose the automorphism is of order $2$, swapping the two ends.
+In this case $\theta$ is trivial exactly when $n$ is even.  Write
+$n=2k$ or $n=2k+1$, depending on the parity.  We have $\hat T\to \hat
+T_1 = \ring{C}^{\times,k}$, where $(t_1,\ldots,t_n,\ldots)\mapsto
+\tau=(t_1/t_n,t_2/t_{n-1},\ldots)$.  We can take the isogeny to be
+$\iota:\hat U =\ring{C}^{\times,k}\to \hat T_1$, $\uu =
+(\uu_2,\ldots,\uu_k)\mapsto \tau=(\uu_2^2,\ldots,\uu_k^2)$.
+\begin{align*}
+\epsilon \phi(\uu)
+&= (\uu_1,-\uu_1,\ldots,\uu_k,-\uu_k) \in \hat T = \hat S, 
+&(n=2k);\\
+&= (\uu_1,-\uu_1,\ldots,\uu_k,-\uu_k)\in \hat S = \ring{C}^{\times,n-1}, 
+&(n=2k+1).
+\end{align*}
+We compute the determinant
+\begin{equation}
+D_+ = \prod_{\alpha\in\Sigma^+} (1-e^\alpha)^2.
+\end{equation}
+Here $\Sigma$ is a root system of type $C_k$ with underlying torus
+$\hat T_1$ and positive roots $s_i s_j^{\pm 1}$, for $1\le i\le j\le
+k$.
+
+Finally, assume that the automorphism has order $4$.  The automorphism
+$\theta$ is trivial when $n$ is odd.  Write $n=2k+1$ or $n=2k$.  We
+have $\hat T\to \hat T_1 = \ring{C}^{\times,k-1}$ given by
+$(t_1,\ldots,t_n)\mapsto \tau = (t_2/t_{n-1},t_3/t_{n_2},\ldots)$.  We
+take the isogeny $\iota:\hat U =\ring{C}^{\times,k-1}\to \hat T_1$, to
+be given by $\uu = (\uu_2,\ldots,\uu_k)\mapsto \tau =
+(\uu_2^2,\ldots,\uu_k^2)$.  Diagonalizing $t\dotw\theta$, we find
+\begin{align}
+\epsilon\phi(\uu) 
+&= (\uu_2,-\uu_2,\ldots,\uu_k,-\uu_k,i)\in \hat S=\ring{C}^{n-1},
+&(n=2k);\\
+&= (\uu_2,-\uu_2,\ldots,\uu_k,-\uu_k,i,-1,1)\in \hat T = \ring{C}^n,
+&(n=2k+1).
+\end{align}
+We compute the determinant
+\begin{align*}
+D_+ = \begin{cases}\prod_{\alpha\in \Sigma^+} 
+(1-e^\alpha)^2 \prod_{\alpha\in \Sigma^+_{long}} (1+e^{\alpha/2})^2,&(n=2k);\\
+          \prod_{\alpha\in\Sigma^+} (1-e^\alpha)^2,&(n=2k+1).
+          \end{cases}
+\end{align*}
+In both cases, the root system $\Sigma$ has type $C_{k-1}$ on torus
+$\hat T_1$.
