@@ -1,5 +1,6 @@
 % Thomas Hales
 % Nov 8, 2016
+% arXiv version, Mar 3, 2017.
 % Reinhardt Conjecture 2, control theory
 %[12pt]
 
@@ -8,6 +9,7 @@
 
 % http://english.stackexchange.com/questions/79847/parametrise-or-parameterise-a-curve
 % parameter spell, using parametrization.
+
 
 \documentclass{article}
 
@@ -87,7 +89,7 @@
     1104102.  I thank W\"oden Kusner for discussions related to this
     problem.}}  
 \date{} 
-\date{February 26, 2017}
+%\date{February 26, 2017}
 
 \begin{document}
 
@@ -97,7 +99,8 @@
 \begin{abstract} 
   In 1934, Reinhardt conjectured that the shape of the centrally
   symmetric convex body in the plane whose densest lattice packing has
-  the smallest density is a smoothed octagon.  We formulate the
+  the smallest density is a smoothed octagon.  This conjecture is
+  still open.  We formulate the
   Reinhardt Conjecture as a problem in optimal control theory.
 
   The smoothed octagon is a Pontryagin extremal trajectory with
@@ -334,7 +337,6 @@ convexity and endpoint conditions to define a convex centrally
 symmetric disk $D(g)$ in the plane, with boundary arcs
 (\ref{eqn:sigma}).  Each hexagonally symmetric disk $D$ (that is, a
 centrally symmetric convex disk in the plane, centered at the origin)
-%such that its boundary is given by a path $g:[0,t_f]\to\SL$ as above)
 has the form $D=D(g)$ for some $g:[0,t_f]\to\SL$.
 
 With fixed area $\sqrt{12}$ for each hexagon, the Reinhardt problem
@@ -574,8 +576,6 @@ conditions:
   \item The endpoints of the trajectory are $(g(0),z(0))=(I,z_0)$ and
     $(g(t_f),z(t_f))=(R,R^{-1}.z_0)$, for some $z_0\in \h$, where $R:=
     \exp(J\pi/3)$.  
-   %The trajectory $z$ extends to a rotationally
-    %symmetric trajectory (\ref{eqn:rotsym}).
 \item the path
   $g:[0,t_f]\to\SL$ is homotopic in $\SL$ to the path
   given by rotation:
@@ -623,14 +623,7 @@ The cost functional in \cite[\S5.1]{hales2011reinhardt} (correcting
 the formula there with a missing factor of $2$) is
 \begin{equation}\label{eqn:cost0}
 g\mapsto \op{area}(D(g))= -\frac{3}{2}\int_0^{t_f} \op{trace} (J g^{-1} g') dt \to\min.
-%  \frac{3}{2} \int_0^{t_f} c_{11}(g) c_{21}(g)' - c_{21}(g) c_{11}(g)'
-%  + c_{12}(g) c_{22}(g)' - c_{22}(g) c_{12}(g)' dt \to \min,
 \end{equation}
-%where
-%\[
-%g =  \begin{pmatrix} c_{11}(g) & c_{12}(g) \\ 
-%c_{21}(g) & c_{22}(g) \end{pmatrix} : [0,t_f]\to \SL.
-%\]
 The interpretation of the cost is the area of the hexagonally
 symmetric disk $D(g)$.  Using $g' = g X$, the cost (\ref{eqn:cost0})
 depends only on $X$ and simplifies to
@@ -835,10 +828,6 @@ convex hull of
 Fix $x+i y\in \hstar$ and pick two vertices $e_i,e_j\in U$.  
 By explicit calculation, the two vertices map to distinct points
 in the velocity set.
-%$f(x,It is enough to
-%check that the segment in $\ring{R}^2$ from $f(x,y;u_1)$ to
-%$f(x,y;u_2)$ lies in the velocity set. We may assume that
-%$f(x,y;u_1)\ne f(x,y;u_2)$.  
 Let $L:\ring{R}^2\to \ring{R}$ be the nonzero affine function that
 vanishes at $f(x,y;e_i)$ and $f(x,y;e_j)$.  From the explicit form of
 Equation \ref{eqn:ode-state-upper}, we have
@@ -848,17 +837,10 @@ L(f(x,y;u)) = \frac{\ell_1( u)}{\ell_2(u)},
 for some affine functions $\ell_1,\ell_2:U\to \ring{R}$ (depending on
 $x,y$), where $\ell_2(u)$ is nonvanishing (and fixed sign) on $U$.  By
 direct calculation,
-%Using
-%$L(f(x,y;u_1))=L(f(x,y;u_2))=0$, 
 we obtain $\ell_1(u)=0$ along the segment $[e_i,e_j]\subset U$ and
 that $\ell_1$ has fixed sign on $U$.  We conclude that the velocity
 set is a  convex hull as claimed.
 
-%Then $L(f(x,y;u))$ is zero along
-%the segment $[u_1,u_2]$.  This proves the convexity of the velocity
-%set.  (Closer analysis should show that for each $x+iy\in \h$
-%satisfying the star inequalities, the convex velocity set is a
-%triangle in $\ring{R}^2$.)
 
 Finally, Filippov's lemma requires (3) the compact support in
 $(x,y)$ of the velocity sets.  This is a serious issue in our setting
@@ -940,8 +922,6 @@ the following:
   lifted controlled trajectory $(\lambda,u)$.  
 \item The lifted trajectory $\lambda:[0,t_f]\to T^*M$ is Lipschitz continuous
   and satisfies the following ODE:
-% (\ref{eqn:adjoint}) for the maximized
-%  Hamiltonian (\ref{eqn:pmp-max}).
 \begin{equation}\label{eqn:adjoint}
 \begin{split}
 \Lambda' &= [\Lambda,X],\\
@@ -1039,19 +1019,6 @@ F:T_z\h\to T_{\rho.z}\h,\quad F^t:T_{\rho.z}^*\h\to T_z^*\h.
 \]
 are induced from $z\mapsto \rho.z$.
 
-
-
-%but it appears in the accompanying computer
-%algebra code.  In brief, the isomorphism $\rho:\h\to \h$ induces an
-%isomorphism of the cotangent space $\rho^*:T^*\h\to T^*\h$ in the
-%usual way, and this determines how $\nu$ must
-%transform:
-%\[
-%\langle (\bar \nu), D\rho_{* z_0} v\rangle_{\rho.z_0}
-%= \langle\nu,v\rangle_{z_0},
-%\quad \forall v\in T_{z_0} \h.
-%\]
-
 It is remarkable that the entire Hamiltonian is invariant under the
 full rotation group $\SO$:
 \[
@@ -1101,8 +1068,6 @@ and taking derivatives:
 X(t+t_f) = R^{-1} X(t) R,\quad 
 z(t+t_f) = R^{-1}.z(t).
 \end{equation}
-%This states that the trajectories in the upper half-plane have
-%rotational symmetry by $R^{-1}$.  
 Evaluating (\ref{eqn:rotsym}) at
 $t=0$ gives the terminal condition on $X(t_f)$ in Equation
 \ref{eqn:periodic}.
@@ -1356,7 +1321,7 @@ We have
 \]
 with constant control $u=R^i\cdot e_3$, using the action
 (\ref{eqn:ubar}) of the cyclic group $\langle R\rangle$ on the control
-simplex $U$. XX?
+simplex $U$. %XX?
 
 We define a continuous (shifted) extension of $\gamma_i$ that is
 non-constant only for $t\in [T_1,T_2]$:
@@ -1688,8 +1653,6 @@ $u=e_2$.
 (0.998111, -0.0564126) --  (0.998983, -0.0394749);
 }
 
-%We have the following points of comparison between the smoothed
-%$6k-2$-gon $D_{6k-2}$ and the smoothed $6k+2$-gon $D_{6k+2}$.  
 The trajectory in $\h$ for $D_{6k+2}$ follows a triangle (with edges
 following the arcs of Figure \ref{fig:traj-upper}) centered at
 $z=i\in\h$.  It moves counterclockwise around $i$, traversing one edge
@@ -1728,8 +1691,6 @@ $D_{6k-2}$.  In both cases, the limit of the cost is $\pi$ as
 $k\mapsto\infty$.  We show a graph of the costs of the smoothed
 polygons as a function of the number $n=6k\pm 2$ of sides (Figure
 \ref{fig:cost}). 
-%The values at $n=4+,8,10,14,16,20,22$ are exact, and
-%a Bezier curve interpolates between those points.
 
 \tikzfig{cost}{The graph interpolates the cost $c$ of known critical
   points as a function of the number $n=6k\pm 2$ of straight edge
@@ -1981,21 +1942,13 @@ singular arcs.
 \begin{proof} Along a singular arc, the set $U_\lambda$ 
 of controls maximizing the Hamiltonian has positive dimension.
 The set can be an edge of $U$ or all of $U$.
-%
-%By the monotonicity of the Hamiltonian (see Section
-%  \ref{sec:bang}), the maximum of the Hamiltonian occurs at a subset
-%  of the vertices of the control simplex $U$.  If there is a singular
-%  arc, then the maximum is achieved at two or three of the vertices of
-%  the control simplex.  
 We first assume that $U_{\lambda(t)}$ is an edge on a set 
 of positive measure.
 By the continuity of the lifted singular arc,  $U_{\lambda(t)}$
 is a fixed edge on an open set in $[t_1,t_2]$.
 We show that this leads to a contradiction.
-%We show  that $U_{\lambda(t)}$ is not an edge on any interval.
 
-%We return to the case where $U_{\lambda}$ is an edge of $U$ along some
-%time interval.  
+
 By symmetry, without loss of generality, we may assume
 that the endpoints of the edge are $e_2,e_3\in U$.
 Thus, the first component of the control $u$ is identically zero along
@@ -2351,20 +2304,9 @@ Theorem \ref{lemma:no-chatter2}.
   in some sufficiently small neighborhood of $t=0$.  Then the third
   switching function $\chi_{23}$ also has only finitely many zeros in
   some sufficiently small neighborhood of $t=0$.
-%
-%  many zeros of some switching function on
-%  every sufficiently small neighborhood of $t=0$.  Then there must
-%  also be infinitely many switches to the third vertex on every
-%  sufficiently small neighborhood of $t=0$.
 \end{theorem}
 
 \begin{proof} 
-%By symmetry, we may assume that the switching function
-%  is $\chi_{23}$.  To prove the contrapositive, we assume that there are
-%  only finitely many zeros of the switching functions $\chi_{12}$ and
-%  $\chi_{13}$ and show that there are only finitely many zeros of
-%  $\chi_{23}$.  
-%
   We may take the switching function $\chi_{23}$ to be $\nu_2$ (up to
   a positive factor).  We assume for a contradiction that
   $t=0$ is a limit point of the zero
@@ -2510,21 +2452,6 @@ treatment of chattering controls might be helpful: blowing-up along
 the singular locus, the Poincar\'e map, scaling, and
 self-similarity.  See \cite{zelikin2012theory}.
 
-%We remark that in a neighborhood of the point in question $z=i\in \h$,
-%many aspects of the problem become quite simple.  Write $x = \epsilon
-%x_1$ and $y= 1+\epsilon y_1$ with $\epsilon$ small.  The cost function
-%over interval $[0,t_f]$ is approximately the problem of minimum time:
-%\[
-%\op{cost}(z) = 3 t_f + O(\epsilon^2).
-%\]
-%The ODE (\ref{eqn:ode-state-upper}) becomes (to first order in
-%$\epsilon$):
-%\[
-% (\epsilon x_1',\epsilon y_1') 
-%\in \op{convex-hull} \{(-2,0),(1,-\sqrt{3}),(1,\sqrt{3})\}.
-%\]
-%That is, the control problem constrains the derivatives to lie in an
-%equilateral triangle centered at the origin.
 
 
 \subsection{a neighborhood of the circle}
@@ -2597,14 +2524,6 @@ consider the projectivized variant:
 \[
 \ring{P}(\ring{R}_{cost}\times T_I^* M^\star),
 \]
-%where $\ring{P}^+$ identifies nonzero tuples that differ by a positive
-%multiplicative factor along fibers of the cotangent bundle.  The extra
-%factor of $\ring{R}_{cost}:=\ring{R}$ is there to include $\lambda_{cost}\le 0$.  A careful
-%treatment of the working hypothesis (\ref{hyp:star}) would allow us to
-%%replace $\hstar$ with an explicit compact subset $K\subset \hstar$.  A
-%careful treatment of the second working hypothesis would allow us to
-%remove an explicit open neighborhood of the initial conditions of the
-%circle.
 This is an explicit $7$-dimensional manifold.  It can be
 reduced by two dimensions to a $5$-dimensional manifold
 by the vanishing of the maximized
@@ -2612,13 +2531,6 @@ Hamiltonian (\ref{sec:pmp}) and setting the start time $t=0$ at a
 switching time between controls $u=e_3$ and $u=e_2$, which
 gives $\nu_2^0=0$.
 
-%The problem has been reduced to an optimization problem over a a
-%five-dimensional manifold.  There is a standard cover of projective
-%space $\ring{P}(\ring{R}^k)$ by compact sets that is useful for
-%computations: we use coordinates $(y_1,\ldots,\hat
-%y_i,\ldots,y_n)=(x_1/x_i,\ldots x_n/x_i)$ with $|y_i|\le 1$ on the
-%subset of projective space for which $|x_i|$ has the largest absolute
-%value.
 
 We might try to make a direct computer search through this space (say
 using interval arithmetic) and show that there is nothing better than

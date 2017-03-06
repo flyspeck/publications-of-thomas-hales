@@ -1,0 +1,9 @@
+In 1934, Reinhardt conjectured that the shape of the centrally symmetric convex body in the plane whose densest lattice packing has the smallest density is a smoothed octagon.  This conjecture is still open.  We formulate the Reinhardt Conjecture as a problem in optimal control theory.
+
+The smoothed octagon is a Pontryagin extremal trajectory with bang-bang control.  More generally, the smoothed regular $6k+2$-gon is a Pontryagin extremal with bang-bang control.  The smoothed octagon is a strict (micro) local minimum to the optimal control problem.
+
+The optimal solution to the Reinhardt problem is a trajectory without singular arcs.  The extremal trajectories that do not meet the singular locus have bang-bang controls with finitely many switching times.
+
+Finally, we reduce the Reinhardt problem to an optimization problem on a five-dimensional manifold.  (Each point on the manifold is an initial condition for a potential Pontryagin extremal lifted trajectory.)  We suggest that the Reinhardt conjecture might eventually be fully resolved through optimal control theory.
+
+Some proofs are computer-assisted using a computer algebra system.
