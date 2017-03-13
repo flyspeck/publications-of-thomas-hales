@@ -1,0 +1,70 @@
+\BOOKMARK [0][-]{chapter.0}{Preface}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Overview}{}% 2
+\BOOKMARK [1][-]{section.1.1}{Why do we need foundations?}{chapter.1}% 3
+\BOOKMARK [2][-]{subsection.1.1.1}{consistency}{section.1.1}% 4
+\BOOKMARK [2][-]{subsection.1.1.2}{settle disputes}{section.1.1}% 5
+\BOOKMARK [2][-]{subsection.1.1.3}{unification of mathematics}{section.1.1}% 6
+\BOOKMARK [2][-]{subsection.1.1.4}{formal proofs}{section.1.1}% 7
+\BOOKMARK [1][-]{section.1.2}{various systems}{chapter.1}% 8
+\BOOKMARK [2][-]{subsection.1.2.1}{Zermelo set theory}{section.1.2}% 9
+\BOOKMARK [2][-]{subsection.1.2.2}{Bourbaki}{section.1.2}% 10
+\BOOKMARK [2][-]{subsection.1.2.3}{Higher Order Logic}{section.1.2}% 11
+\BOOKMARK [2][-]{subsection.1.2.4}{others}{section.1.2}% 12
+\BOOKMARK [1][-]{section.1.3}{How to choose?}{chapter.1}% 13
+\BOOKMARK [2][-]{subsection.1.3.1}{analogy}{section.1.3}% 14
+\BOOKMARK [2][-]{subsection.1.3.2}{Why HOL?}{section.1.3}% 15
+\BOOKMARK [1][-]{section.1.4}{immersion}{chapter.1}% 16
+\BOOKMARK [0][-]{chapter.2}{Naive Set Theory}{}% 17
+\BOOKMARK [1][-]{section.2.1}{notation}{chapter.2}% 18
+\BOOKMARK [2][-]{subsection.2.1.1}{prefix}{section.2.1}% 19
+\BOOKMARK [2][-]{subsection.2.1.2}{postfix}{section.2.1}% 20
+\BOOKMARK [2][-]{subsection.2.1.3}{infix}{section.2.1}% 21
+\BOOKMARK [2][-]{subsection.2.1.4}{right associative}{section.2.1}% 22
+\BOOKMARK [1][-]{section.2.2}{sets}{chapter.2}% 23
+\BOOKMARK [2][-]{subsection.2.2.1}{extensionality}{section.2.2}% 24
+\BOOKMARK [2][-]{subsection.2.2.2}{comprehension}{section.2.2}% 25
+\BOOKMARK [2][-]{subsection.2.2.3}{powerset}{section.2.2}% 26
+\BOOKMARK [2][-]{subsection.2.2.4}{ordered pairs}{section.2.2}% 27
+\BOOKMARK [1][-]{section.2.3}{curried functions}{chapter.2}% 28
+\BOOKMARK [2][-]{subsection.2.3.1}{unwrapping the exponents}{section.2.3}% 29
+\BOOKMARK [2][-]{subsection.2.3.2}{parentheses}{section.2.3}% 30
+\BOOKMARK [2][-]{subsection.2.3.3}{partial functions}{section.2.3}% 31
+\BOOKMARK [1][-]{section.2.4}{natural numbers}{chapter.2}% 32
+\BOOKMARK [2][-]{subsection.2.4.1}{base}{section.2.4}% 33
+\BOOKMARK [2][-]{subsection.2.4.2}{serial pairs}{section.2.4}% 34
+\BOOKMARK [2][-]{subsection.2.4.3}{recursion}{section.2.4}% 35
+\BOOKMARK [2][-]{subsection.2.4.4}{lists}{section.2.4}% 36
+\BOOKMARK [1][-]{section.2.5}{boolean}{chapter.2}% 37
+\BOOKMARK [0][-]{chapter.3}{Types}{}% 38
+\BOOKMARK [1][-]{section.3.1}{basic facts}{chapter.3}% 39
+\BOOKMARK [1][-]{section.3.2}{type variables}{chapter.3}% 40
+\BOOKMARK [1][-]{section.3.3}{type substitution}{chapter.3}% 41
+\BOOKMARK [0][-]{chapter.4}{Terms}{}% 42
+\BOOKMARK [1][-]{section.4.1}{definition}{chapter.4}% 43
+\BOOKMARK [2][-]{subsection.4.1.1}{combination}{section.4.1}% 44
+\BOOKMARK [2][-]{subsection.4.1.2}{abstraction}{section.4.1}% 45
+\BOOKMARK [2][-]{subsection.4.1.3}{variables}{section.4.1}% 46
+\BOOKMARK [2][-]{subsection.4.1.4}{constants}{section.4.1}% 47
+\BOOKMARK [1][-]{section.4.2}{equality}{chapter.4}% 48
+\BOOKMARK [1][-]{section.4.3}{free variables}{chapter.4}% 49
+\BOOKMARK [1][-]{section.4.4}{variable capture}{chapter.4}% 50
+\BOOKMARK [2][-]{subsection.4.4.1}{term substitution}{section.4.4}% 51
+\BOOKMARK [0][-]{chapter.5}{Rules of Inference}{}% 52
+\BOOKMARK [1][-]{section.5.1}{reflection}{chapter.5}% 53
+\BOOKMARK [1][-]{section.5.2}{transitivity}{chapter.5}% 54
+\BOOKMARK [1][-]{section.5.3}{modus ponens for equality}{chapter.5}% 55
+\BOOKMARK [1][-]{section.5.4}{make combination}{chapter.5}% 56
+\BOOKMARK [1][-]{section.5.5}{abstraction}{chapter.5}% 57
+\BOOKMARK [1][-]{section.5.6}{beta}{chapter.5}% 58
+\BOOKMARK [1][-]{section.5.7}{assume}{chapter.5}% 59
+\BOOKMARK [1][-]{section.5.8}{antisymmetric deduction}{chapter.5}% 60
+\BOOKMARK [1][-]{section.5.9}{type substitution}{chapter.5}% 61
+\BOOKMARK [1][-]{section.5.10}{term instantiation}{chapter.5}% 62
+\BOOKMARK [0][-]{chapter.6}{Theorems}{}% 63
+\BOOKMARK [1][-]{section.6.1}{state}{chapter.6}% 64
+\BOOKMARK [1][-]{section.6.2}{primitive theorems}{chapter.6}% 65
+\BOOKMARK [1][-]{section.6.3}{Definitions}{chapter.6}% 66
+\BOOKMARK [2][-]{subsection.6.3.1}{type definitions}{section.6.3}% 67
+\BOOKMARK [2][-]{subsection.6.3.2}{term definitions}{section.6.3}% 68
+\BOOKMARK [1][-]{section.6.4}{Axioms}{chapter.6}% 69
+\BOOKMARK [1][-]{section.6.5}{extensions}{chapter.6}% 70
