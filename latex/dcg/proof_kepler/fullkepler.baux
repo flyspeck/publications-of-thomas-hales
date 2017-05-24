@@ -1,0 +1,1000 @@
+\relax 
+\@writefile{toc}{\contentsline {chapter}{Preface}{vii}}
+\@writefile{toc}{\contentsline {part}{\hbox to 20pt{I}Historical Overview of the Kepler Conjecture}{1}}
+\citation{CoSl95}
+\newlabel{part:intro}{{I}{3}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{3}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:intro-review}{{1}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}The face-centered cubic packing}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces The face-centered-cubic packing.}}{4}}
+\newlabel{fig:fcc-pack}{{1.1}{4}}
+\citation{Plo00}
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}Early History, Hariot, and Kepler}{5}}
+\newlabel{sec:early}{{1.2}{5}}
+\citation{Shi83}
+\citation{Mas66}
+\citation{Kar66}
+\citation{Why66}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Hariot's view of Pascal's triangle.}}{8}}
+\newlabel{fig:pascal}{{1.2}{8}}
+\citation{Ben74}
+\citation{Gun75}
+\citation{Hop74}
+\citation{Boe52}
+\citation{Sch53}
+\citation{Lee56}
+\citation{Fej53}
+\citation{Thu92}
+\citation{Thu10}
+\citation{Szp02}
+\citation{Szp02}
+\citation{Rog58}
+\citation{Fej50}
+\citation{Fej53}
+\citation{SeM44}
+\citation{Hil01}
+\citation{Mil76}
+\@writefile{toc}{\contentsline {section}{\numberline {1.3}History}{9}}
+\newlabel{sec:history}{{1.3}{9}}
+\citation{Bli19}
+\citation{Bli29}
+\citation{Ran47}
+\citation{Rog58}
+\citation{Lin86}
+\citation{Mud88}
+\citation{Mud93}
+\citation{Fej42}
+\citation{McL98}
+\@writefile{toc}{\contentsline {section}{\numberline {1.4}The Literature}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4.1}Bounds}{10}}
+\citation{Bez97}
+\citation{Lag73}
+\citation{Gau31}
+\citation{KoZ73}
+\citation{KoZ77}
+\citation{Bli35}
+\citation{CoKu}
+\citation{Oes90}
+\citation{Rog64}
+\citation{CoSl93}
+\citation{Fej95}
+\citation{BKM91}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4.2}Classes of packings}{11}}
+\citation{Bez90}
+\citation{MP93}
+\citation{Bez94}
+\citation{Fej53}
+\citation{Fej64}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4.3}Other convex bodies}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4.4}Strategies of proof}{12}}
+\citation{Hsi93}
+\citation{Hsi93a}
+\citation{Hsi93b}
+\citation{Hsi02}
+\citation{CoHMS94}
+\citation{Hal94}
+\citation{Hsi95}
+\citation{Hal94}
+\citation{Fej95}
+\citation{Bez97}
+\citation{Mud97}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Overview of the proof}{15}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Experiments with other Decompositions}{15}}
+\newlabel{sec:experiment}{{2.1}{15}}
+\citation{Hal97B}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces The origin of the constant $2.51$.}}{16}}
+\newlabel{fig:t51}{{2.1}{16}}
+\citation{Hal97B}
+\citation{Hal97A}
+\citation{Hal97A}
+\citation{Hal92}
+\citation{Hal93}
+\citation{Fer97}
+\citation{Hal97A}
+\citation{Hal97B}
+\citation{Hal97A}
+\citation{Hal97B}
+\citation{Hal97A}
+\citation{Hal97A}
+\citation{Hal97B}
+\citation{Form}
+\citation{Hal97A}
+\citation{Hal97A}
+\citation{Hal97B}
+\citation{Hal98B}
+\citation{Fer97}
+\citation{Hal98C}
+\citation{Hal98D}
+\citation{Hal98D}
+\citation{Hal97A}
+\citation{Hal97B}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Contents of the Papers}{18}}
+\citation{arXiv}
+\citation{Hal97A}
+\citation{Hal97B}
+\citation{Hal00}
+\citation{Hal-A}
+\citation{Hal-A}
+\citation{Hal01}
+\citation{HoPT95}
+\citation{Mel97}
+\citation{Hal92}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Complexity}{19}}
+\citation{arXiv}
+\citation{Fej97}
+\citation{CoSl93}
+\citation{PaA95}
+\citation{Goo97}
+\citation{Rog64}
+\citation{Fej64}
+\citation{Fej72}
+\citation{Hal96}
+\citation{Hal96}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Computers}{20}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Acknowledgments}{20}}
+\newlabel{sec:ack}{{2.5}{20}}
+\bibcite{arXiv}{arXiv}
+\bibcite{Ben74}{Ben74}
+\bibcite{Bez90}{Bez90}
+\bibcite{BKM91}{BKM91}
+\bibcite{Bez94}{Bez94}
+\bibcite{Bez97}{Bez97}
+\bibcite{Bli19}{Bli19}
+\bibcite{Bli29}{Bli29}
+\bibcite{Bli35}{Bli35}
+\bibcite{Boe52}{Boe52}
+\bibcite{CoKu}{CK04}
+\bibcite{CoHMS94}{CHMS94}
+\bibcite{CoSl95}{CS95}
+\bibcite{CoSl93}{CS93}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{23}}
+\bibcite{Fej93}{Fej93}
+\bibcite{Fej95}{Fej95}
+\bibcite{Fej95b}{Fej95b}
+\bibcite{Fej97}{Fej97}
+\bibcite{Fej72}{Fej72}
+\bibcite{Fej64}{Fej64}
+\bibcite{Fej42}{Fej42}
+\bibcite{Fej50}{Fej50}
+\bibcite{Fej53}{Fej53}
+\bibcite{Form}{FH98}
+\bibcite{Fer97}{Fer97}
+\bibcite{Gau31}{Gau31}
+\bibcite{Goo97}{Goo97}
+\bibcite{Gun75}{Gun75}
+\bibcite{Hal92}{Hal92}
+\bibcite{Hal93}{Hal93}
+\bibcite{Hal94}{Hal94}
+\bibcite{Hal96}{Hal96}
+\bibcite{Hal97A}{Hal97a}
+\bibcite{Hal97B}{Hal97b}
+\bibcite{Hal98A}{Hal98a}
+\bibcite{Hal98B}{Hal98b}
+\bibcite{Hal98C}{Hal98c}
+\bibcite{Hal98D}{Hal98d}
+\bibcite{Hal00}{Hal00}
+\bibcite{Hal01}{Hal01}
+\bibcite{Hal-A}{Hal03}
+\bibcite{Hil01}{Hil01}
+\bibcite{Hop74}{Hop74}
+\bibcite{HoPT95}{HPT95}
+\bibcite{Hsi93}{Hsi93a}
+\bibcite{Hsi93a}{Hsi93b}
+\bibcite{Hsi93b}{Hsi93c}
+\bibcite{Hsi95}{Hsi95}
+\bibcite{Hsi02}{Hsi02}
+\bibcite{Kar66}{Kar66}
+\bibcite{Kep66}{Kep66}
+\bibcite{KoZ73}{KZ73}
+\bibcite{KoZ77}{KZ77}
+\bibcite{Lag73}{Lag73}
+\bibcite{Lee56}{Lee56}
+\bibcite{Lin86}{Lin86}
+\bibcite{Mas66}{Mas66}
+\citation{Kep66}
+\bibcite{McL98}{McL98}
+\bibcite{Mel97}{Mel97}
+\bibcite{Mil76}{Mil76}
+\bibcite{MP93}{MP93}
+\bibcite{Mud88}{Mud88}
+\bibcite{Mud93}{Mud93}
+\bibcite{Mud97}{Mud97}
+\bibcite{Oes90}{Oes90}
+\bibcite{PaA95}{PA95}
+\bibcite{Plo00}{Plo00}
+\bibcite{Ran47}{Ran47}
+\bibcite{Rog58}{Rog58}
+\bibcite{Rog64}{Rog64}
+\bibcite{Sch53}{SW53}
+\bibcite{SeM44}{SM44}
+\bibcite{Shi83}{Shi83}
+\bibcite{SHDC95}{SHDC95}
+\bibcite{Szp02}{Szp02}
+\bibcite{Thu92}{Thu92}
+\bibcite{Thu10}{Thu10}
+\bibcite{Why66}{Why66}
+\citation{Kep66}
+\@writefile{toc}{\contentsline {part}{\hbox to 20pt{II}A Formulation of the Kepler Conjecture}{29}}
+\citation{hilbert}
+\citation{FT}
+\citation{CH}
+\citation{CS}
+\citation{algorithm}
+\citation{arbeitstagung}
+\citation{web}
+\citation{reform}
+\newlabel{part:form}{{II}{32}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}The Top Level Structure of the Proof}{33}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:overview}{{3}{33}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Statement of Theorems}{33}}
+\newlabel{sec:statement}{{3.1}{33}}
+\newlabel{theorem:kepler}{{3.1}{33}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces The face-centered cubic packing}}{33}}
+\newlabel{fig:fcc}{{3.1}{33}}
+\newlabel{def:negligible}{{3.2}{34}}
+\newlabel{lemma:deltabound}{{3.3}{34}}
+\newlabel{eqn:Abound}{{3.1}{34}}
+\newlabel{eqn:Bbound}{{3.2}{35}}
+\newlabel{remark:precise}{{3.4}{35}}
+\newlabel{lemma:negligible'}{{3.5}{36}}
+\newlabel{eqn:32}{{3.3}{36}}
+\newlabel{def:pt}{{3.6}{36}}
+\newlabel{theorem:sigma}{{3.7}{36}}
+\citation{web}
+\newlabel{theorem:sharp}{{3.9}{37}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Basic Concepts in the Proof}{37}}
+\newlabel{sec:outline}{{3.2}{37}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces The plane graphs $G_{fcc}$ and $G_{hcp}$}}{38}}
+\newlabel{fig:gfcchcp}{{3.2}{38}}
+\newlabel{lemma:ferguson}{{3.10}{38}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces The plane graph $G_{pent}$}}{38}}
+\newlabel{fig:pentahedral}{{3.3}{38}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Logical Skeleton of the Proof}{38}}
+\newlabel{sec:logic}{{3.3}{38}}
+\newlabel{claim-A}{{3.11}{39}}
+\newlabel{claim-B}{{3.12}{39}}
+\newlabel{claim-C}{{3.13}{39}}
+\newlabel{claim-D}{{3.14}{39}}
+\newlabel{claim-E}{{3.15}{39}}
+\newlabel{claim-F}{{3.16}{39}}
+\newlabel{lemma:claim-fcc-graph}{{3.17}{39}}
+\newlabel{lemma:claim-sigma}{{3.18}{39}}
+\newlabel{lemma:claim-sharp}{{3.19}{39}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Proofs of the Central Claims}{40}}
+\citation{remarks}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Construction of the $Q$-system}{43}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:construction}{{4}{43}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Description of the $Q$-system}{43}}
+\newlabel{sec:Q-describe}{{4.1}{43}}
+\newlabel{def:oct-order}{{4.6}{44}}
+\newlabel{def:anchor}{{4.7}{45}}
+\newlabel{def:q-system}{{4.8}{45}}
+\newlabel{thm:nonoverlap}{{4.9}{45}}
+\newlabel{lemma:diags-engulf}{{4.10}{46}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Geometric Considerations}{46}}
+\newlabel{sec:decomposition}{{4.2}{46}}
+\newlabel{def:dih}{{4.12}{46}}
+\newlabel{def:calE}{{4.14}{46}}
+\citation{part1}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces ${\mathcal  E}$ measures the distance between the vertices at $0$ and $v$. The standard indexing of the edges of a simplex is marked on the lower simplex.}}{47}}
+\newlabel{fig:diag11}{{4.1}{47}}
+\citation{part1}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Incidence Relations}{48}}
+\newlabel{lemma:v-interior-alt}{{4.15}{48}}
+\newlabel{lemma:v-interior}{{4.16}{48}}
+\newlabel{cor:interior}{{4.17}{48}}
+\newlabel{def:passes-through}{{4.18}{49}}
+\newlabel{lemma:2t0-doesnt-pass-through}{{4.19}{49}}
+\newlabel{def:eta}{{4.20}{49}}
+\newlabel{lemma:no-pass-sqrt2}{{4.21}{49}}
+\newlabel{lemma:qrtet-pair-pass}{{4.22}{49}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Frame (a) depicts two quasi-regular tetrahedra that share a face. The same convex body may also be viewed as three quarters that share a diagonal, as in Frame (b).}}{50}}
+\newlabel{fig:dia31}{{4.2}{50}}
+\newlabel{lemma:qrtet-quarter}{{4.23}{50}}
+\newlabel{lemma:pass-anchor}{{4.24}{50}}
+\newlabel{def:height}{{4.25}{50}}
+\newlabel{def:enclosed}{{4.26}{50}}
+\newlabel{def:corner}{{4.27}{51}}
+\newlabel{lemma:skew-quad}{{4.30}{51}}
+\newlabel{lemma:oct}{{4.31}{51}}
+\newlabel{lemma:double-face}{{4.32}{51}}
+\newlabel{eqn:1.7.1}{{4.1}{52}}
+\newlabel{eqn:1.7.2}{{4.2}{52}}
+\newlabel{lemma:single-enclosed}{{4.33}{52}}
+\newlabel{lemma:pass-makes-quarter}{{4.34}{52}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Overlap of Simplices}{52}}
+\newlabel{sec:nonoverlap}{{4.4}{52}}
+\newlabel{lemma:qrtet-over}{{4.35}{53}}
+\newlabel{lemma:oct-over}{{4.36}{53}}
+\newlabel{lemma:adj-over}{{4.37}{53}}
+\newlabel{remark:iso}{{4.38}{54}}
+\newlabel{lemma:iso-over}{{4.39}{54}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces An isolated pair. The isolated pair consists of two simplices $Q_1=\{0,u,w,v_2\}$ and $Q_2=\{0,w',v_1,v_2\}$. The six extremal vertices form an octahedron. This is not a quartered octahedron because the edges $\{u,w'\}$ and $\{w,v_1\}$ have length greater than $2t_0$.}}{55}}
+\newlabel{fig:diag19}{{4.3}{55}}
+\citation{Rogers}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}$V$-cells}{57}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:vcells}{{5}{57}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}$V$-Cells}{57}}
+\newlabel{sec:cells}{{5.1}{57}}
+\newlabel{def:Voronoi}{{5.1}{57}}
+\newlabel{def:barrier}{{5.2}{58}}
+\newlabel{lemma:barrier-no-overlap}{{5.3}{58}}
+\newlabel{def:obstructed}{{5.4}{58}}
+\newlabel{def:phi}{{5.5}{58}}
+\newlabel{def:vcell}{{5.6}{59}}
+\newlabel{lemma:V-convex}{{5.9}{59}}
+\newlabel{remark:pathology}{{5.10}{60}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces A hypothetical arrangement that leads to a nonconvex $V$-cell at $v$.}}{60}}
+\newlabel{fig:nonstar}{{5.1}{60}}
+\citation{part1}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Orientation}{61}}
+\newlabel{sec:orientation}{{5.2}{61}}
+\newlabel{def:orientation}{{5.12}{61}}
+\newlabel{lemma:at-most-one-negative}{{5.13}{61}}
+\newlabel{def:chi}{{5.14}{61}}
+\newlabel{lemma:chi}{{5.15}{61}}
+\citation{part1}
+\newlabel{lemma:neg-orient-quad}{{5.16}{62}}
+\newlabel{lemma:neg-orient-tet}{{5.17}{62}}
+\newlabel{lemma:sqrt2-chi+}{{5.18}{62}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Interaction of $V$-cells with the $Q$-system}{63}}
+\newlabel{lemma:voronoi-truncation-over-Q}{{5.19}{63}}
+\newlabel{lemma:sqrt2-unobstructed}{{5.20}{63}}
+\newlabel{lemma:unobstr-t0}{{5.22}{64}}
+\newlabel{lemma:VC-Omega}{{5.23}{64}}
+\newlabel{def:arc}{{5.24}{64}}
+\newlabel{lemma:nocross}{{5.25}{64}}
+\newlabel{lemma:Q-in-region}{{5.26}{65}}
+\newlabel{lemma:Q-divide}{{5.28}{65}}
+\newlabel{lemma:V-cell-local}{{5.29}{65}}
+\citation{part2}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces The perpendicular bisector to $\{0,w\}$ (dashed line) cannot meet the quadrant $X'$ (shaded).}}{67}}
+\newlabel{fig:haII23}{{5.2}{67}}
+\newlabel{lemma:back}{{5.31}{67}}
+\citation{remarks}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Decomposition Stars}{69}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:compact}{{6}{69}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Indexing Sets}{69}}
+\newlabel{sec:indexing}{{6.1}{69}}
+\newlabel{def:d-star0}{{6.1}{71}}
+\newlabel{def:decomposition-star}{{6.2}{71}}
+\newlabel{def:dstar-at-v}{{6.3}{71}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Cells attached to Decomposition Stars}{71}}
+\newlabel{sec:cell-ds}{{6.2}{71}}
+\newlabel{lemma:vc-cont}{{6.6}{72}}
+\newlabel{lemma:vor}{{6.8}{73}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Colored Spaces}{73}}
+\newlabel{app:coloredspace}{{6.3}{73}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces A piecewise linear function}}{74}}
+\newlabel{fig:discontinuous}{{6.1}{74}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Scoring\nobreakspace  {}[Ferguson,\nobreakspace  {}Hales]}{77}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:scoring}{{7}{77}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Definitions}{78}}
+\newlabel{sec:rules}{{7.1}{78}}
+\newlabel{eqn:A}{{7.1}{78}}
+\newlabel{def:context}{{7.1}{78}}
+\newlabel{eqn:A1}{{7.2}{78}}
+\newlabel{def:rogers}{{7.2}{78}}
+\newlabel{def:quoin}{{7.3}{78}}
+\citation{part1}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces The Rogers simplex is an orthosimplex.}}{79}}
+\newlabel{fig:rogers}{{7.1}{79}}
+\newlabel{eqn:3.3}{{7.3}{79}}
+\newlabel{lemma:cap-rogers}{{7.4}{79}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces The quoin above a Rogers simplex is the part of the shaded solid outside the illustrated box. It is bounded by the shaded planes, the plane through the front face of the box, and a sphere centered at the origin passing through the opposite corner of the box.}}{80}}
+\newlabel{fig:quoin}{{7.2}{80}}
+\newlabel{def:sol}{{7.5}{80}}
+\citation{spp}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces The intersection of two caps on the unit ball can be partitioned into four quoins (shaded).}}{81}}
+\newlabel{fig:capriquoin}{{7.3}{81}}
+\newlabel{eqn:vol-theta-0}{{7.4}{81}}
+\newlabel{def:svor}{{7.6}{81}}
+\newlabel{eqn:gamma}{{7.5}{82}}
+\newlabel{def:sigma}{{7.8}{82}}
+\newlabel{eqn:a1-sigma}{{7.6}{82}}
+\newlabel{eqn:3.8}{{7.7}{83}}
+\newlabel{lemma:A1-cancel}{{7.10}{84}}
+\newlabel{eqn:sigma-4}{{7.8}{84}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Negligibility}{84}}
+\newlabel{sec:negligible}{{7.2}{84}}
+\newlabel{lemma:negligible}{{7.11}{84}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.3}Fcc-compatibility}{85}}
+\newlabel{def:score}{{7.12}{85}}
+\newlabel{lemma:8pt-compat}{{7.13}{85}}
+\newlabel{lemma:exista}{{7.14}{86}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.4}Scores of Standard Clusters}{86}}
+\newlabel{sec:ssc}{{7.4}{86}}
+\newlabel{def:standard-cluster}{{7.15}{86}}
+\newlabel{def:score-std-region}{{7.16}{87}}
+\newlabel{eqn:vorD}{{7.10}{87}}
+\newlabel{lemma:R'}{{7.18}{87}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.5}Scores of Simplices and Cones}{88}}
+\newlabel{remark:vor}{{7.20}{88}}
+\newlabel{def:r-vor}{{7.21}{88}}
+\newlabel{def:cone}{{7.22}{88}}
+\newlabel{eqn:3.2}{{7.11}{88}}
+\newlabel{remark:score}{{7.23}{88}}
+\newlabel{eqn:3.5}{{7.12}{88}}
+\newlabel{eqn:3.7}{{7.13}{89}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.6}The Example of a Dodecahedron}{89}}
+\@writefile{toc}{\contentsline {part}{\hbox to 20pt{III}Sphere Packings III. Extremal Cases}{91}}
+\newlabel{part:iii}{{III}{93}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Local Optimality}{95}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:local-opt}{{8}{95}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.1}Results}{95}}
+\newlabel{lemma:local-optimality}{{8.1}{95}}
+\newlabel{lemma:local-optimality2}{{8.3}{96}}
+\newlabel{lemma:quad0}{{8.4}{96}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.2}Rogers Simplices}{96}}
+\newlabel{lemma:rogers-lemma}{{8.5}{96}}
+\citation{part1}
+\citation{part2}
+\citation{web}
+\citation{algorithm}
+\citation{part1}
+\citation{web}
+\newlabel{lemma:rogers-app}{{8.6}{97}}
+\newlabel{lemma:wedge}{{8.7}{97}}
+\newlabel{lemma:cone}{{8.8}{97}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.3}Bounds on Simplices}{97}}
+\newlabel{sec:bounds-simplex}{{8.3}{97}}
+\citation{part1}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.1}{\ignorespaces Some sets of low density.}}{98}}
+\newlabel{fig:doct}{{8.1}{98}}
+\newlabel{def:point}{{8.9}{98}}
+\newlabel{lemma:1pt}{{8.10}{98}}
+\newlabel{lemma:quarter0}{{8.12}{98}}
+\newlabel{eqn:Adoct}{{8.1}{99}}
+\newlabel{lemma:simplex0}{{8.13}{100}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.4}Breaking Clusters into Pieces}{101}}
+\newlabel{sec:break_piece}{{8.4}{101}}
+\newlabel{lemma:no-eta-barrier}{{8.14}{101}}
+\newlabel{lemma:eta-barrier}{{8.15}{101}}
+\newlabel{lemma:sqrt2-cone-avoidance}{{8.17}{101}}
+\newlabel{lemma:cone-avoidance}{{8.18}{102}}
+\newlabel{def:C'}{{8.21}{103}}
+\newlabel{lemma:C'}{{8.22}{103}}
+\newlabel{lemma:F'}{{8.23}{105}}
+\newlabel{lemma:all-in-C'}{{8.25}{105}}
+\citation{part2}
+\newlabel{lemma:sixth}{{8.27}{106}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.5}Proofs}{106}}
+\newlabel{sec:proofs}{{8.5}{106}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.2}{\ignorespaces A planar region.}}{108}}
+\newlabel{fig:face}{{8.2}{108}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {9}The ${\mathcal  S}$-system}{111}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:fine}{{9}{111}}
+\newlabel{x-2}{{9}{111}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.1}Overview}{111}}
+\newlabel{sec:fine-overview}{{9.1}{111}}
+\newlabel{x-2.1}{{9.1}{111}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.2}The set $\delta (v)$}{112}}
+\newlabel{sec:deltaP}{{9.2}{112}}
+\newlabel{x-2.3}{{9.2}{112}}
+\newlabel{def:eta0}{{9.1}{112}}
+\newlabel{def:wedge}{{9.2}{112}}
+\newlabel{enum:wedge2}{{2}{112}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9.1}{\ignorespaces An example of a set $W^e$ (shaded region).}}{113}}
+\newlabel{fig:anchor-quarter}{{9.1}{113}}
+\newlabel{def:delta-e}{{9.3}{113}}
+\newlabel{lemma:prev}{{9.7}{114}}
+\newlabel{lemma:delta-tri}{{9.8}{115}}
+\newlabel{lemma:delta-flat}{{9.10}{116}}
+\newlabel{lemma:delta-upright}{{9.11}{117}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.3}Overlap}{119}}
+\newlabel{sec:overlap}{{9.3}{119}}
+\newlabel{x-2.4}{{9.3}{119}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.4}The ${\mathcal  S}$-system defined}{120}}
+\newlabel{x-2.5}{{9.4}{120}}
+\newlabel{lemma:2.77}{{9.15}{120}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.5}Disjointness}{121}}
+\newlabel{x-2.6}{{9.5}{121}}
+\newlabel{lemma:no-overlap}{{9.17}{121}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.6}Separation of simplices of type $A$}{122}}
+\newlabel{sec:separation}{{9.6}{122}}
+\newlabel{x-2.7}{{9.6}{122}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.7}Separation of simplices of type $B$}{123}}
+\newlabel{x-2.8}{{9.7}{123}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.8}Separation of simplices of type $C$}{123}}
+\newlabel{x-2.9}{{9.8}{123}}
+\@writefile{toc}{\contentsline {section}{\numberline {9.9}Simplices of type $C'$}{124}}
+\newlabel{x-2.10}{{9.9}{124}}
+\citation{part1}
+\@writefile{toc}{\contentsline {section}{\numberline {9.10}Scoring}{125}}
+\newlabel{x-2.11}{{9.10}{125}}
+\newlabel{lemma:tau-positive}{{9.20}{125}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {10}Bounds on the Score in Triangular and Quadrilateral Regions}{127}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:intro}{{10}{127}}
+\newlabel{x-1}{{10}{127}}
+\@writefile{toc}{\contentsline {section}{\numberline {10.1}The function $\tau $}{127}}
+\newlabel{lemma:roger0}{{10.1}{127}}
+\newlabel{lemma:sigma-tau}{{10.2}{127}}
+\citation{spp}
+\citation{part1}
+\newlabel{lemma:no-enclosed-tri}{{10.4}{128}}
+\@writefile{toc}{\contentsline {section}{\numberline {10.2}Types}{128}}
+\newlabel{sec:types}{{10.2}{128}}
+\newlabel{eqn:old5.1}{{10.1}{128}}
+\newlabel{lemma:pq}{{10.5}{128}}
+\newlabel{lemma:0.55}{{10.6}{129}}
+\newlabel{lemma:0.55A}{{10.7}{130}}
+\@writefile{toc}{\contentsline {section}{\numberline {10.3}Limitations on Types}{131}}
+\newlabel{lemma:0.1317}{{10.8}{131}}
+\newlabel{lemma:pq-impossible}{{10.9}{131}}
+\newlabel{lemma:pq-types}{{10.10}{131}}
+\newlabel{rem:pq-list}{{10.11}{131}}
+\citation{part1}
+\@writefile{toc}{\contentsline {section}{\numberline {10.4}Bounds on the Score in Quadrilateral Regions}{132}}
+\newlabel{sec:bounds}{{10.4}{132}}
+\newlabel{lemma:gc}{{10.12}{132}}
+\newlabel{lemma:enclosed}{{10.13}{132}}
+\newlabel{lemma:1.04}{{10.14}{133}}
+\newlabel{eqn:KS}{{10.2}{134}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10.1}{\ignorespaces The set measured by the function $K(S)$.}}{134}}
+\newlabel{fig:KS}{{10.1}{134}}
+\@writefile{toc}{\contentsline {section}{\numberline {10.5}A Volume Formula}{135}}
+\newlabel{eqn:4.5}{{10.4}{135}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10.2}{\ignorespaces An illustration of the terms $\operatorname  {anc}$.}}{136}}
+\newlabel{fig:anchor}{{10.2}{136}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10.3}{\ignorespaces The terms $\operatorname  {anc}$ near an upright quarter.}}{136}}
+\newlabel{fig:anchor-quarter:bis}{{10.3}{136}}
+\newlabel{lemma:mixed-vor0}{{10.15}{136}}
+\newlabel{eqn:4.8}{{10.5}{137}}
+\newlabel{eqn:4.9}{{10.6}{137}}
+\newlabel{eqn:4.10}{{10.7}{137}}
+\newlabel{eqn:4.11}{{10.8}{137}}
+\@writefile{toc}{\contentsline {part}{\hbox to 20pt{IV}Sphere Packings IV. Detailed Bounds}{139}}
+\newlabel{part:bounds}{{IV}{141}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {11}Upright Quarters}{143}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:upright}{{11}{143}}
+\newlabel{x-3}{{11}{143}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.1}Erasing Upright Quarters}{143}}
+\newlabel{x-3.1}{{11.1}{143}}
+\newlabel{x-3.2}{{11.1}{143}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.2}Contexts}{144}}
+\newlabel{x-3.3}{{11.2}{144}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.3}Three anchors}{145}}
+\newlabel{x-3.4}{{11.3}{145}}
+\newlabel{x-3.4.1}{{11.2}{145}}
+\newlabel{x-3.4.2}{{11.3}{146}}
+\newlabel{lemma:unerased}{{11.3}{146}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.4}Six anchors}{146}}
+\newlabel{x-3.5}{{11.4}{146}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.5}Anchored simplices}{146}}
+\newlabel{x-3.6}{{11.5}{146}}
+\newlabel{sec:anchored-simplex}{{11.5}{146}}
+\newlabel{lemma:anc-simplex-not-enc}{{11.5}{147}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.6}Anchored simplices do not overlap}{148}}
+\newlabel{x-3.7}{{11.6}{148}}
+\newlabel{lemma:anchor-no-overlap}{{11.9}{148}}
+\newlabel{x-3.7.1}{{11.11}{149}}
+\newlabel{lemma:3-crowded}{{11.11}{149}}
+\newlabel{x-3.7.2}{{11.12}{149}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.7}Five anchors}{150}}
+\newlabel{x-3.8}{{11.7}{150}}
+\newlabel{sec:five-anchors}{{11.7}{150}}
+\newlabel{rem:2gap}{{11.13}{150}}
+\newlabel{x-3.8.1}{{11.14}{150}}
+\newlabel{x-3.8.2}{{11.16}{150}}
+\newlabel{x-3.8.3}{{11.18}{151}}
+\newlabel{lemma:4-crowded}{{11.18}{151}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.8}Four anchors}{152}}
+\newlabel{x-3.9}{{11.8}{152}}
+\newlabel{x-3.9.1}{{11.21}{152}}
+\newlabel{remark:2.6}{{11.22}{152}}
+\newlabel{x-3.9.2}{{11.23}{152}}
+\newlabel{lemma:0.008}{{11.23}{152}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.9}Summary}{154}}
+\newlabel{x-3.10}{{11.9}{154}}
+\newlabel{sec:upright-summary}{{11.9}{154}}
+\@writefile{toc}{\contentsline {section}{\numberline {11.10}Some flat quarters}{155}}
+\newlabel{x-3.11}{{11.10}{155}}
+\newlabel{sec:some-flat}{{11.10}{155}}
+\newlabel{x-3.11.1}{{11.26}{156}}
+\newlabel{lemma:hatsigma}{{11.26}{156}}
+\newlabel{lemma:min0-svor}{{11.27}{156}}
+\newlabel{x-3.11.2}{{11.27}{156}}
+\newlabel{remark:3rd-quarter}{{11.28}{156}}
+\newlabel{x-3.11.3}{{11.29}{156}}
+\newlabel{lemma:1.32}{{11.30}{157}}
+\newlabel{x-3.11.4}{{11.30}{157}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {12}Bounds in Exceptional Regions}{159}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{x-4}{{12}{159}}
+\newlabel{sec:BER}{{12}{159}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.1}The main theorem}{159}}
+\newlabel{sec:the-main-theorem}{{12.1}{159}}
+\newlabel{x-4.4}{{12.1}{159}}
+\newlabel{thm:the-main-theorem}{{12.1}{159}}
+\newlabel{cor:std-aggregate-list}{{12.2}{160}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12.1}{\ignorespaces }}{160}}
+\newlabel{fig:std-aggregates}{{12.1}{160}}
+\newlabel{lemma:70}{{12.3}{160}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.2}Nonagons}{161}}
+\newlabel{sec:nonagon}{{12.2}{161}}
+\newlabel{x-4.6}{{12.2}{161}}
+\newlabel{lemma:s9-t9}{{12.4}{161}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.3}Distinguished edge conditions}{161}}
+\newlabel{x-4.2}{{12.3}{161}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.4}Scoring subclusters}{162}}
+\newlabel{x-4.3}{{12.4}{162}}
+\newlabel{lemma:no-cross}{{12.5}{162}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.5}Proof}{163}}
+\newlabel{x-4.5}{{12.5}{163}}
+\newlabel{eqn:D-superadd}{{12.1}{163}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.6}Preparation of the standard cluster}{164}}
+\newlabel{sec:prep-cluster}{{12.6}{164}}
+\newlabel{x-4.7}{{12.6}{164}}
+\citation{part1}
+\@writefile{toc}{\contentsline {section}{\numberline {12.7}Reduction to polygons}{165}}
+\newlabel{x-4.8}{{12.7}{165}}
+\newlabel{remark:proof-2}{{12.7}{165}}
+\citation{part1}
+\citation{part1}
+\citation{part1}
+\newlabel{eqn:D>0}{{12.2}{166}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.8}Some deformations}{166}}
+\newlabel{x-4.9}{{12.8}{166}}
+\newlabel{def:concave}{{12.8}{166}}
+\newlabel{x-4.9.1}{{12.9}{166}}
+\newlabel{x-4.9.2}{{12.10}{167}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.9}Truncated corner cells}{168}}
+\newlabel{x-4.10}{{12.9}{168}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.10}Formulas for Truncated corner cells}{169}}
+\newlabel{x-4.11}{{12.10}{169}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.11}Containment of Truncated corner cells}{170}}
+\newlabel{x-4.12}{{12.11}{170}}
+\newlabel{x-4.12.1}{{12.11}{170}}
+\newlabel{x-4.12.2}{{12.12}{171}}
+\newlabel{x-4.12.3}{{12.13}{171}}
+\newlabel{x-4.12.4}{{12.14}{171}}
+\newlabel{x-4.12.5}{{12.15}{171}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.12}Convexity}{173}}
+\newlabel{x-4.13}{{12.12}{173}}
+\newlabel{x-4.13.1}{{12.17}{173}}
+\newlabel{x-4.13.2}{{12.18}{173}}
+\@writefile{toc}{\contentsline {section}{\numberline {12.13}Proof that Distances Remain at least $2$}{174}}
+\newlabel{sec:proof-2}{{12.13}{174}}
+\newlabel{flexremark}{{12.19}{174}}
+\newlabel{dist2}{{12.20}{175}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {13}Convex Polygons}{177}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{x-5}{{13}{177}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.1}Deformations}{177}}
+\newlabel{x-5.1}{{13.1}{177}}
+\newlabel{x-5.1.1}{{13.1}{177}}
+\newlabel{x-5.1.2}{{13.2}{177}}
+\newlabel{lemma:7-sides}{{13.2}{177}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.2}Truncated corner cells}{178}}
+\newlabel{x-5.2}{{13.2}{178}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.3}Analytic continuation}{179}}
+\newlabel{x-5.3}{{13.3}{179}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13.1}{\ignorespaces Different forms of truncated corner cells are shown. The structure shown in the middle frame cannot occur.}}{179}}
+\newlabel{fig:chi-anal-vs-geom}{{13.1}{179}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.4}Penalties}{180}}
+\newlabel{x-5.4}{{13.4}{180}}
+\newlabel{sec:penalty1}{{13.4}{180}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.5}Penalties and Bounds}{181}}
+\newlabel{x-5.5}{{13.5}{181}}
+\newlabel{eqn:tau>D(n,k)}{{13.1}{181}}
+\newlabel{eqn:sigma<Z(n,k)}{{13.2}{182}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.6}Penalties}{182}}
+\newlabel{sec:4.2}{{13.6}{182}}
+\newlabel{sec:penalty}{{13.6}{182}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.7}Constants}{184}}
+\newlabel{x-5.6}{{13.7}{184}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.8}Triangles}{185}}
+\newlabel{x-5.7}{{13.8}{185}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.9}Quadrilaterals}{186}}
+\newlabel{x-5.8}{{13.9}{186}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.10}Pentagons}{187}}
+\newlabel{x-5.9}{{13.10}{187}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.11}Hexagons and heptagons}{188}}
+\newlabel{x-5.10}{{13.11}{188}}
+\@writefile{toc}{\contentsline {section}{\numberline {13.12}Loops}{189}}
+\newlabel{x-5.11}{{13.12}{189}}
+\newlabel{sec:loops}{{13.12}{189}}
+\newlabel{lemma:loop}{{13.5}{190}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {14}Further Bounds in Exceptional Regions}{193}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{x-5.12}{{14}{193}}
+\newlabel{sec:fb}{{14}{193}}
+\@writefile{toc}{\contentsline {section}{\numberline {14.1}Small dihedral angles}{193}}
+\newlabel{sec:small-dih}{{14.1}{193}}
+\newlabel{x-5.12.1}{{14.1}{193}}
+\newlabel{remark:1.47}{{14.2}{194}}
+\@writefile{toc}{\contentsline {section}{\numberline {14.2}A particular $4$-circuit}{194}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14.1}{\ignorespaces A $4$-circuit}}{194}}
+\newlabel{fig:no4circuit}{{14.1}{194}}
+\newlabel{lemma:11.16}{{14.4}{195}}
+\@writefile{toc}{\contentsline {section}{\numberline {14.3}A particular $5$-circuit}{196}}
+\newlabel{lemma:6079}{{14.5}{196}}
+\newlabel{lemma:excess-1}{{14.6}{201}}
+\newlabel{eqn:307}{{14.1}{202}}
+\newlabel{eqn:one-v}{{14.2}{202}}
+\newlabel{part:ferguson}{{14.3}{203}}
+\@writefile{toc}{\contentsline {part}{\hbox to 20pt{V}Sphere Packings V. Pentahedral Prisms -- Ferguson}{207}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {15}Pentahedral Prisms}{211}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {16}The Main Propositions}{213}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {chapter}{\numberline {17}Calculations}{215}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {part}{\hbox to 20pt{VI}Sphere Packings VI. Tame Graphs and Linear Programs}{217}}
+\citation{KC}
+\newlabel{part:tame}{{VI}{219}}
+\newlabel{sec:tame}{{VI}{220}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {18}Tame Graphs}{221}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:def-and-class}{{18}{221}}
+\@writefile{toc}{\contentsline {section}{\numberline {18.1}Basic Definitions}{221}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18.1}{\ignorespaces Some examples of graphs that are excluded from the narrow definition of plane graph, as defined in this section.}}{222}}
+\newlabel{fig:nonplanar}{{18.1}{222}}
+\newlabel{definition:type}{{18.6}{223}}
+\@writefile{toc}{\contentsline {section}{\numberline {18.2}Weight Assignments}{223}}
+\newlabel{sec:wtassign}{{18.2}{223}}
+\newlabel{admissible:b}{{2}{224}}
+\newlabel{definition:admissible:excess}{{4}{224}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18.2}{\ignorespaces Tame $4$-circuits}}{225}}
+\newlabel{fig:fourcircuit}{{18.2}{225}}
+\@writefile{toc}{\contentsline {section}{\numberline {18.3}Plane Graph Properties}{225}}
+\newlabel{sec:graphproperty}{{18.3}{225}}
+\newlabel{definition:tame}{{18.3}{225}}
+\newlabel{definition:tame:length}{{1}{225}}
+\newlabel{definition:tame:3-circuit}{{2}{225}}
+\newlabel{definition:tame:4-circuit}{{3}{225}}
+\newlabel{definition:tame:degree}{{4}{225}}
+\newlabel{definition:tame:degreeE}{{5}{225}}
+\newlabel{definition:tame:score}{{6}{225}}
+\newlabel{definition:tame:squander}{{7}{225}}
+\newlabel{definition:tame:40}{{8}{225}}
+\citation{web}
+\@writefile{toc}{\contentsline {chapter}{\numberline {19}Classification of Tame Plane Graphs}{227}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:proof-classification}{{19}{227}}
+\@writefile{toc}{\contentsline {section}{\numberline {19.1}Statement of the Theorem}{227}}
+\newlabel{sec:classification}{{19.1}{227}}
+\newlabel{theorem:classification}{{19.1}{227}}
+\@writefile{toc}{\contentsline {section}{\numberline {19.2}Basic Definitions}{227}}
+\newlabel{definition:partial (plane graph)}{{19.2}{227}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19.1}{\ignorespaces Patching a plane graph}}{228}}
+\newlabel{fig:patching}{{19.1}{228}}
+\@writefile{toc}{\contentsline {section}{\numberline {19.3}A Finite State Machine}{229}}
+\newlabel{lemma:reachable}{{19.3}{229}}
+\@writefile{toc}{\contentsline {section}{\numberline {19.4}Pruning Strategies}{229}}
+\newlabel{enum:not-tame}{{1}{229}}
+\newlabel{enum:branch}{{2}{230}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19.2}{\ignorespaces States $I_{3,2}$ and $I_{3,2}'$}}{231}}
+\newlabel{fig:states}{{19.2}{231}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19.3}{\ignorespaces Some impossibilities}}{231}}
+\newlabel{fig:nonexistant}{{19.3}{231}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {20}Contravening Graphs}{233}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:startame}{{20}{233}}
+\@writefile{toc}{\contentsline {section}{\numberline {20.1}A Review of Earlier Results}{233}}
+\newlabel{sec:star-review}{{20.1}{233}}
+\newlabel{eqn:tauR-def}{{20.1}{233}}
+\newlabel{eqn:tau-def}{{20.2}{233}}
+\newlabel{eqn:tau-sig}{{20.3}{233}}
+\newlabel{eqn:sig-F}{{20.4}{234}}
+\newlabel{eqn:sig-all}{{20.5}{234}}
+\newlabel{cor:std-aggregate-list:bis}{{20.1}{234}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20.1}{\ignorespaces Non-polygonal standard regions ($n(R)=7,7,8,8,8$)}}{234}}
+\newlabel{fig:aggregates}{{20.1}{234}}
+\newlabel{lemma:sn-tn}{{20.2}{234}}
+\newlabel{lemma:s9-t9:bis}{{20.3}{235}}
+\newlabel{lemma:0pt-1pt}{{20.4}{235}}
+\newlabel{lemma:roger0:bis}{{20.5}{235}}
+\newlabel{x-part3.3.1}{{20.5}{235}}
+\newlabel{eqn:old5.1:bis}{{20.6}{235}}
+\newlabel{lemma:pq:bis}{{20.6}{235}}
+\citation{part1}
+\citation{part1}
+\newlabel{lemma:0.55:bis}{{20.7}{236}}
+\newlabel{lemma:pq-types:bis}{{20.8}{236}}
+\newlabel{lemma:no-enclosed-tri:bis}{{20.9}{236}}
+\newlabel{lemma:enclosed:bis}{{20.10}{236}}
+\newlabel{lemma:no-2}{{20.11}{236}}
+\newlabel{lemma:11.16:bis}{{20.12}{236}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20.2}{\ignorespaces A $4$-circuit}}{237}}
+\newlabel{fig:no4circuit:bis}{{20.2}{237}}
+\newlabel{lemma:1.47}{{20.13}{237}}
+\newlabel{lemma:0.8638}{{20.14}{237}}
+\newlabel{lemma:1.32:bis}{{20.16}{237}}
+\@writefile{toc}{\contentsline {section}{\numberline {20.2}Contravening Plane Graphs defined}{238}}
+\newlabel{sec:stargraph}{{20.2}{238}}
+\newlabel{remark:tri-pent}{{20.18}{238}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20.3}{\ignorespaces An aggregate forming a pentagon}}{238}}
+\newlabel{fig:tri-pent}{{20.3}{238}}
+\newlabel{remark:degree6}{{20.19}{238}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20.4}{\ignorespaces Degree $6$ aggregates}}{239}}
+\newlabel{fig:degree6}{{20.4}{239}}
+\newlabel{theorem:contravene}{{20.20}{239}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {21}Contravention is tame}{241}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:contraproof}{{21}{241}}
+\@writefile{toc}{\contentsline {section}{\numberline {21.1}First Properties}{241}}
+\newlabel{prop:nonempty}{{21.1}{241}}
+\citation{part1}
+\citation{web}
+\@writefile{toc}{\contentsline {section}{\numberline {21.2}Computer Calculations and Their Consequences}{242}}
+\@writefile{toc}{\contentsline {section}{\numberline {21.3}Linear Programs}{243}}
+\newlabel{sec:2.2}{{21.3}{243}}
+\newlabel{eqn:sigma}{{21.1}{243}}
+\newlabel{proposition:wttau}{{21.7}{244}}
+\newlabel{lemma:aggregate6}{{21.9}{245}}
+\@writefile{lof}{\contentsline {figure}{\numberline {21.1}{\ignorespaces Non-adjacent vertices of degree $6$ on a pentagon}}{245}}
+\newlabel{fig:doubledegree6}{{21.1}{245}}
+\@writefile{toc}{\contentsline {section}{\numberline {21.4}A Non-contravening Four-circuit}{246}}
+\newlabel{sec:impossible}{{21.4}{246}}
+\newlabel{lemma:nobad4}{{21.10}{246}}
+\newlabel{lemma:deg5}{{21.11}{247}}
+\@writefile{toc}{\contentsline {section}{\numberline {21.5}Possible four-circuits}{247}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {22}Weight Assignments}{249}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:weight}{{22}{249}}
+\@writefile{toc}{\contentsline {section}{\numberline {22.1}Admissibility}{249}}
+\newlabel{sec:admissibility}{{22.1}{249}}
+\newlabel{proposition:excess}{{22.5}{250}}
+\@writefile{toc}{\contentsline {section}{\numberline {22.2}Proof that $tri(v)>2$}{250}}
+\newlabel{sec:2.4}{{22.2}{250}}
+\newlabel{sec:tri2}{{22.2}{250}}
+\@writefile{toc}{\contentsline {section}{\numberline {22.3}Bounds when $tri(v)\in \{3,4\}$. }{252}}
+\newlabel{sec:2.7}{{22.3}{252}}
+\newlabel{sec:tri34}{{22.3}{252}}
+\newlabel{lemma:split}{{22.10}{253}}
+\newlabel{lemma:excess-1:bis}{{22.11}{253}}
+\newlabel{eqn:tau1.32}{{22.1}{254}}
+\newlabel{eqn:tau-alpha}{{22.2}{254}}
+\@writefile{toc}{\contentsline {section}{\numberline {22.4}Weight Assignments for Aggregates}{255}}
+\citation{web}
+\@writefile{toc}{\contentsline {chapter}{\numberline {23}Linear Program Estimates}{257}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:linearprogram}{{23}{257}}
+\newlabel{lemma:fcc-hcp-pent}{{23.1}{257}}
+\citation{web}
+\@writefile{toc}{\contentsline {section}{\numberline {23.1}Relaxation}{258}}
+\newlabel{lemma:bound}{{23.2}{258}}
+\citation{algorithm}
+\citation{web}
+\newlabel{remark:derived}{{23.4}{259}}
+\@writefile{toc}{\contentsline {section}{\numberline {23.2}The Linear Programs}{259}}
+\newlabel{lemma:construct-LP}{{23.5}{259}}
+\@writefile{toc}{\contentsline {section}{\numberline {23.3}Basic Linear Programs}{260}}
+\newlabel{sec:blp}{{23.3}{260}}
+\citation{web}
+\@writefile{toc}{\contentsline {section}{\numberline {23.4}Error Analysis}{261}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {24}Elimination of Aggregates}{263}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:noaggregate}{{24}{263}}
+\newlabel{theorem:noaggregate}{{24.1}{263}}
+\@writefile{toc}{\contentsline {section}{\numberline {24.1}Triangle and Quad Branching}{263}}
+\newlabel{sec:tribranch}{{24.1}{263}}
+\@writefile{toc}{\contentsline {section}{\numberline {24.2}A pentagonal hull with $n=8$}{264}}
+\newlabel{sec:pentagonal}{{24.2}{264}}
+\newlabel{sec:3.6}{{24.2}{264}}
+\newlabel{lemma:not301}{{24.2}{264}}
+\@writefile{toc}{\contentsline {section}{\numberline {24.3}$n=8$, hexagonal hull}{264}}
+\newlabel{sec:hexagonal}{{24.3}{264}}
+\newlabel{3.7}{{24.3}{264}}
+\@writefile{toc}{\contentsline {section}{\numberline {24.4}$n=7$, pentagonal hull}{264}}
+\newlabel{sec:3.8}{{24.4}{264}}
+\newlabel{lemma:6079:bis}{{24.3}{265}}
+\@writefile{toc}{\contentsline {section}{\numberline {24.5}Type $(p,q,r)=(5,0,1)$}{266}}
+\newlabel{sec:3.10}{{24.5}{266}}
+\@writefile{toc}{\contentsline {section}{\numberline {24.6}Summary}{266}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {25}Branch and Bound Strategies}{267}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sec:branchbound}{{25}{267}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.1}Review of Internal Structures}{267}}
+\newlabel{lemma:loop:bis}{{25.1}{268}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.2}$3$-crowded and $4$-crowded upright diagonals}{269}}
+\newlabel{sec:3.9}{{25.2}{269}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.3}Five Anchors}{270}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.4}Penalties}{270}}
+\newlabel{sec:penalty-lp}{{25.4}{270}}
+\newlabel{lemma:2.7}{{25.11}{272}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.5}Pent and Hex Branching}{272}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25.1}{\ignorespaces Pentagonal Face Refinements}}{272}}
+\newlabel{fig:penthex}{{25.1}{272}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25.2}{\ignorespaces Hexagonal Face Refinements. The only figures with a penalty are the first two on the top row and those on the bottom row. The first two on the top row have penalties $2(0.008)$ and $0.008$. Those on the bottom row have penalties $3\xi _\Gamma $, $3\xi _\Gamma $, $\xi _\Gamma +2\xi _V$, and $\xi _\Gamma +2\xi _V$. }}{273}}
+\newlabel{fig:hexrefine}{{25.2}{273}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.6}Hept and Oct Branching}{274}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25.3}{\ignorespaces Hept Face Refinements}}{274}}
+\newlabel{fig:heprefine}{{25.3}{274}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25.4}{\ignorespaces Oct Face Refinements}}{275}}
+\newlabel{fig:octrefine}{{25.4}{275}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {25.6.1}One flat quarter}{275}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {25.6.2}Two flat quarters}{275}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.7}Branching on Upright Diagonals}{276}}
+\newlabel{sec:4.12}{{25.7}{276}}
+\newlabel{eqn:6.1}{{25.1}{277}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.8}Branching on Flat Quarters}{277}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.9}Branching on Simplices that are not Quarters}{278}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.10}Branching on Quadrilateral subregions}{278}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.11}Implementation Details for Branching}{279}}
+\newlabel{sec:facerefinement}{{25.11}{279}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.12}Variables related to score}{279}}
+\newlabel{sec:variable}{{25.12}{279}}
+\@writefile{toc}{\contentsline {section}{\numberline {25.13}Appendix Hexagonal Inequalities}{281}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {25.13.1}Statement of results}{282}}
+\newlabel{app:hex1}{{1}{282}}
+\newlabel{x-eqn:4.6.1}{{1}{282}}
+\newlabel{app:hex2}{{2}{282}}
+\newlabel{app:hex3}{{3}{282}}
+\newlabel{app:hex4}{{4}{282}}
+\newlabel{app:hex5}{{5}{282}}
+\newlabel{app:hex6}{{6}{282}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25.5}{\ignorespaces A hexagonal cluster with context $(4,2)$.}}{283}}
+\newlabel{fig:hex42}{{25.5}{283}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25.6}{\ignorespaces A hexagonal cluster with context $(4,2)$.}}{283}}
+\newlabel{fig:hex42a}{{25.6}{283}}
+\newlabel{app:hex7}{{7}{283}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25.7}{\ignorespaces A hexagonal cluster with context $(4,2)$.}}{283}}
+\newlabel{fig:hex42b}{{25.7}{283}}
+\newlabel{app:hex8}{{8}{284}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25.8}{\ignorespaces A hexagonal cluster with context $(4,1)$.}}{284}}
+\newlabel{fig:hex41}{{25.8}{284}}
+\newlabel{app:hex9}{{9}{284}}
+\newlabel{app:hex10}{{10}{284}}
+\newlabel{app:hex11}{{11}{284}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25.9}{\ignorespaces A hexagonal cluster with context $(4,1)$.}}{285}}
+\newlabel{fig:hex41a}{{25.9}{285}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {25.13.2}Proof of inequalities}{285}}
+\newlabel{app:hexquad}{{25.13.2}{285}}
+\newlabel{eqn:hexquadsig}{{25.6}{285}}
+\newlabel{eqn:hexquadtau}{{25.7}{285}}
+\citation{web}
+\@writefile{toc}{\contentsline {section}{\numberline {25.14}Conclusion}{290}}
+\bibcite{CS}{CS98}
+\bibcite{FT}{Fej72}
+\bibcite{spp}{Hal92}
+\bibcite{remarks}{Hal93}
+\bibcite{reform}{Hal96}
+\bibcite{part1}{Hal97a}
+\bibcite{part2}{Hal97b}
+\bibcite{CH}{Hal00}
+\bibcite{arbeitstagung}{Hal01}
+\bibcite{algorithm}{Hal03}
+\bibcite{KC}{Hal05a}
+\bibcite{web}{Hal05b}
+\bibcite{IEEE}{IEEE}
+\bibcite{hilbert}{Hil01}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{291}}
+\bibcite{Rogers}{Rog58}
