@@ -6,8 +6,7 @@
 %!TEX TS-program = latex    
 %% This line is for TexShop. 
 
-% started June 2015
-% submitted to arxiv Feb 23, 2016
+% started April 15, 2014.
 
 \documentclass{amsart}
 \usepackage{graphicx}
@@ -19,7 +18,6 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amscd}
-%\usepackage{mnsymbol}
 
 %%\documentclass[spanningrule]{cambridge7A}
 %% Cambridge University Press Macros from
@@ -33,9 +31,8 @@
  \rotfloatpagestyle{empty}
 \usepackage{amsthm}
 \usepackage{graphicx}
-\usepackage{multind}\ProvidesPackage{multind}
+%\usepackage{multind}\ProvidesPackage{multind}
 \usepackage{times}
-
 
 % my additions
 \usepackage{verbatim}
@@ -46,8 +43,7 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage{txfonts}
-%\usepackage[hyphens]{url}
-%\usepackage{url}
+\usepackage[hyphens]{url}
 \usepackage{setspace}
 \usepackage{ellipsis} % 
 % http://www.ctan.org/tex-archive/macros/latex/contrib/ellipsis/ellipsis.pdf 
@@ -59,14 +55,13 @@
 
 %tikz graphics
 %\usepackage{xcolor} % to remove color.
-\usepackage{tikz} % Needs pgf version >= 2.10.
-\usetikzlibrary{chains,shapes,arrows,trees,matrix,positioning,backgrounds,fit,calc,fadings}
-
+%\usepackage{tikz} % Needs pgf version >= 2.10.
+%\usetikzlibrary{chains,shapes,arrows,shadings,trees,matrix,positioning,intersections,decorations,
+%  decorations.markings,backgrounds,fit,calc,fadings,decorations.pathreplacing}
 % fonts
 \usepackage[mathscr]{euscript} % powerset.
 \usepackage{pifont} %ding
 \usepackage[displaymath]{lineno}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -119,39 +114,42 @@
 \newtheorem{notation}[equation]{Notation}
 \newtheorem{exer}[equation]{Exercise}
 
-\renewcommand\footnotemark{}
-%\renewcommand\footnoterule{}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 \title
-    {Packings of Regular Pentagons in the Plane}
-\author{Thomas Hales and W\"oden Kusner}
-\date{September 11, 2016}
-\thanks{Research supported by NSF grant 1104102 and partially supported by Austrian Science Fund (FWF) Project 5503}
-
-\begin{abstract}  
-We show that every packing of congruent regular pentagons in the Euclidean plane has
-density at most $(5-\sqrt5)/3\approx 0.92$.     More specifically,
-this article proves the pentagonal ice-ray
-conjecture of Henley (1986), and Kuperberg and Kuperberg (1990), 
-which asserts that an optimal packing of congruent regular pentagons in the plane is a double lattice,
-formed by aligned vertical columns of upward pointing pentagons alternating
-with aligned vertical columns of downward pointing pentagons.  The strategy is based on estimates
-of the areas of Delaunay triangles.  Our strategy reduces the pentagonal ice-ray conjecture to
-area minimization problems that involve at most four Delaunay triangles.  These minimization problems
-are solved by computer.  The computer-assisted portions of the proof use techniques such as
-interval arithmetic, automatic differentiation, and a meet-in-the-middle algorithm.
-\end{abstract}
-
- \lhead{Hales and Kusner}
-\rhead{Pentagon Packings}
-
-\parskip=\baselineskip
-
- \maketitle
-
+    {A formal proof of the Kepler conjecture}
+\author{Thomas Hales,
+  %
+  Mark Adams,
+  %
+  Gertrud Bauer,
+  Dang Tat Dat, 
+  John Harrison,
+  Hoang Le Truong,
+  Cezary Kaliszyk,
+  Victor Magron, 
+  Sean McLaughlin, 
+  Nguyen Tat Thang, 
+  Nguyen Quang Truong, 
+  Tobias Nipkow,
+  %
+  Steven Obua,
+  Joseph Pleso,
+  Jason Rute, 
+  Alexey Solovyev,
+  Ta Thi Hoai An, 
+  Tran Nam Trung, 
+  Trieu Thi Diep, 
+  Josef Urban,
+  %
+  Vu Khac Ky, 
+  % Vuong Anh Quyen, declined authorship, Nov 2014.
+  Roland Zumkeller,
+  }
+ 
+ \lhead{Hales et al.}
+\rhead{A formal proof of the Kepler conjecture}
 %%%
 
 
@@ -159,23 +157,13 @@ interval arithmetic, automatic differentiation, and a meet-in-the-middle algorit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% FRONT
 
-      \input{pentagon}
-      
-      \bibliography{pentagon} 
-%\bibliographystyle{plain}
-      
+      \input{flyspeck_paper}
+ \newpage     
       \bibliographystyle{plainnat}
-%\bibliography{announce_refs}
+\bibliography{announce_refs}
 
 
 
-%% shell:>makeindex index/Index
-%% shell:>makeindex index/Notation
-%% edit index/Notation.ind to put an \indexspace before Greek entries.
 
-%\printindex{index/Index}{General index}
-%\printindex{index/Notation}{Notation index}
-
-%\input{frontmatter}
 
 \end{document}
