@@ -7,6 +7,7 @@
 % Revised March 10, 2005.  Sam's thesis added.
 % Revised July 19, 2005. Sam's revisions added.  (See changes_2005_7_19.txt)
 % Checked that latex files still work (using XeLaTeX, October 2015)
+% May 2017 updated .ps figures to .pdf
 
 \documentclass[onecolumn]{newsiambook}
 
@@ -50,6 +51,7 @@
         \renewcommand\chaptername{Section}
         \renewcommand\partname{Paper}
     \fi
+\def\skipversion#1{{}}
 
 % NOTES:
 % 1. Give exact citation on algorithms.
@@ -94,14 +96,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 \begin{document}
     %% Title, optional running title in brackets.
     \title{A Proof of the Kepler Conjecture
-      \longversion{(DCG Version)}
+      \skipversion{(DCG Version)}
       \shortversion{(Annals Version)}
         }
     %\authorline{Thomas C. Hales}
     \author{Thomas C. Hales}
+    \date{July 2005}
     \maketitle
     \frontmatter
     \tableofcontents
@@ -175,6 +179,7 @@ Version -- July, 2005.
     }
     \label{part:form}
     \input{form}
+    
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -201,13 +206,30 @@ Version -- July, 2005.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\longversion{
+\skipversion{ % was longversion
     \part{Sphere Packings V. Pentahedral Prisms -- Ferguson}
     \label{part:ferguson}
     \chapter*{Introduction}
     \input{intro5}
     \input{ferguson}
     }
+    
+\longversion{ % was longversion
+	\label{part:ferguson}
+    	\chapter*{Introduction}
+    	\part{Sphere Packings V. Pentahedral Prisms -- Ferguson}
+    This paper is the fifth in a series of papers devoted to the proof
+of the Kepler conjecture, which asserts that no packing of congruent
+balls in three dimensions has density greater than the face-centered
+cubic packing.
+(Insert Ferguson's thesis here.)
+   \chapter{Pentahedral Prisms} 
+   \chapter{The Main Propositions}
+   \chapter{Calculations}
+        %\input{intro5}
+    	%\input{ferguson}
+    }
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
